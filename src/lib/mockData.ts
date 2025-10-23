@@ -92,11 +92,32 @@ export function calculateKPIs(trades: Trade[]) {
   
   const profitFactor = totalLosses > 0 ? (totalWins / totalLosses).toFixed(2) : "∞";
   
+  // Calculate Max Drawdown
+  const sorted = [...trades].sort((a, b) => 
+    new Date(a.exitTime).getTime() - new Date(b.exitTime).getTime()
+  );
+  
+  let cumulative = 0;
+  let peak = 0;
+  let maxDrawdown = 0;
+  
+  sorted.forEach((trade) => {
+    cumulative += trade.pnlNet;
+    if (cumulative > peak) {
+      peak = cumulative;
+    }
+    const drawdown = peak - cumulative;
+    if (drawdown > maxDrawdown) {
+      maxDrawdown = drawdown;
+    }
+  });
+  
   return {
     totalTrades,
     winRate: `${winRate}%`,
     netPnL: totalPnL.toFixed(2),
     profitFactor,
+    maxDrawdown: maxDrawdown.toFixed(2),
   };
 }
 

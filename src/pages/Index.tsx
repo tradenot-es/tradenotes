@@ -16,7 +16,7 @@ const Index = () => {
         <p className="text-muted-foreground">Overview of your trading performance</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <KPICard
           title="Total Trades"
           value={kpis.totalTrades}
@@ -39,6 +39,11 @@ const Index = () => {
         <KPICard
           title="Profit Factor"
           value={kpis.profitFactor}
+          icon={TrendingUp}
+        />
+        <KPICard
+          title="Max Drawdown"
+          value={`$${kpis.maxDrawdown}`}
           icon={TrendingUp}
         />
       </div>
