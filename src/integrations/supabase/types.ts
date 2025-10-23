@@ -14,7 +14,135 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      journal_entries: {
+        Row: {
+          content: string
+          created_at: string | null
+          date: string
+          id: string
+          linked_trade_ids: string[] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          date: string
+          id?: string
+          linked_trade_ids?: string[] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          date?: string
+          id?: string
+          linked_trade_ids?: string[] | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      trades: {
+        Row: {
+          created_at: string | null
+          entry_price: number
+          entry_time: string
+          exit_price: number
+          exit_time: string
+          fees: number | null
+          id: string
+          note: string | null
+          pnl_net: number
+          qty: number
+          r: number | null
+          screenshot_url: string | null
+          setup: string | null
+          side: string
+          symbol: string
+          tags: string[] | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          entry_price: number
+          entry_time: string
+          exit_price: number
+          exit_time: string
+          fees?: number | null
+          id?: string
+          note?: string | null
+          pnl_net: number
+          qty: number
+          r?: number | null
+          screenshot_url?: string | null
+          setup?: string | null
+          side: string
+          symbol: string
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          entry_price?: number
+          entry_time?: string
+          exit_price?: number
+          exit_time?: string
+          fees?: number | null
+          id?: string
+          note?: string | null
+          pnl_net?: number
+          qty?: number
+          r?: number | null
+          screenshot_url?: string | null
+          setup?: string | null
+          side?: string
+          symbol?: string
+          tags?: string[] | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          base_currency: string | null
+          created_at: string | null
+          default_fees: number | null
+          id: string
+          setups: string[] | null
+          tags: string[] | null
+          timezone: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          base_currency?: string | null
+          created_at?: string | null
+          default_fees?: number | null
+          id?: string
+          setups?: string[] | null
+          tags?: string[] | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          base_currency?: string | null
+          created_at?: string | null
+          default_fees?: number | null
+          id?: string
+          setups?: string[] | null
+          tags?: string[] | null
+          timezone?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

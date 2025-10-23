@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,18 +6,66 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 
 const Settings = () => {
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const [currency, setCurrency] = useState("USD");
   const [timezone, setTimezone] = useState("America/New_York");
   const [defaultFees, setDefaultFees] = useState("2.00");
-  const [setups, setSetups] = useState(["Breakout", "Failed Rally", "Gap Fill", "Trend Follow"]);
-  const [tags, setTags] = useState(["momentum", "reversal", "tech", "index"]);
+  const [setups, setSetups] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [newSetup, setNewSetup] = useState("");
   const [newTag, setNewTag] = useState("");
+  const [settingsId, setSettingsId] = useState<string>("");
 
-  const handleSave = () => {
-    toast.success("Settings saved successfully");
+  useEffect(() => {
+    if (user) {
+      loadSettings();
+    }
+  }, [user]);
+
+  const loadSettings = async () => {
+    const { data, error } = await supabase
+      .from("user_settings")
+      .select("*")
+      .single();
+
+    if (!error && data) {
+      setSettingsId(data.id);
+      setCurrency(data.base_currency);
+      setTimezone(data.timezone);
+      setDefaultFees(data.default_fees.toString());
+      setSetups(data.setups || []);
+      setTags(data.tags || []);
+    }
+    setLoading(false);
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const { error } = await supabase
+        .from("user_settings")
+        .update({
+          base_currency: currency,
+          timezone: timezone,
+          default_fees: parseFloat(defaultFees),
+          setups: setups,
+          tags: tags,
+        })
+        .eq("id", settingsId);
+
+      if (error) throw error;
+      toast.success("Einstellungen gespeichert");
+    } catch (error: any) {
+      toast.error(error.message || "Fehler beim Speichern");
+    } finally {
+      setSaving(false);
+    }
   };
 
   const addSetup = () => {
@@ -42,22 +90,26 @@ const Settings = () => {
     setTags(tags.filter((t) => t !== tag));
   };
 
+  if (loading) {
+    return <div className="flex items-center justify-center min-h-screen">Lädt...</div>;
+  }
+
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Settings</h1>
-        <p className="text-muted-foreground">Configure your trading journal preferences</p>
+        <h1 className="text-3xl font-bold">Einstellungen</h1>
+        <p className="text-muted-foreground">Konfiguriere deine Trading-Journal-Präferenzen</p>
       </div>
 
       <div className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>General Settings</CardTitle>
-            <CardDescription>Basic configuration for your trading journal</CardDescription>
+            <CardTitle>Allgemeine Einstellungen</CardTitle>
+            <CardDescription>Basis-Konfiguration für dein Trading Journal</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-2">
-              <Label htmlFor="currency">Base Currency</Label>
+              <Label htmlFor="currency">Basiswährung</Label>
               <Input
                 id="currency"
                 value={currency}
@@ -65,7 +117,7 @@ const Settings = () => {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="timezone">Timezone</Label>
+              <Label htmlFor="timezone">Zeitzone</Label>
               <Input
                 id="timezone"
                 value={timezone}
@@ -73,7 +125,7 @@ const Settings = () => {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="fees">Default Fees ($)</Label>
+              <Label htmlFor="fees">Standard-Gebühren ($)</Label>
               <Input
                 id="fees"
                 type="number"
@@ -88,17 +140,17 @@ const Settings = () => {
         <Card>
           <CardHeader>
             <CardTitle>Trading Setups</CardTitle>
-            <CardDescription>Manage your trading setup patterns</CardDescription>
+            <CardDescription>Verwalte deine Trading-Setup-Muster</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2">
               <Input
-                placeholder="Add new setup..."
+                placeholder="Neues Setup hinzufügen..."
                 value={newSetup}
                 onChange={(e) => setNewSetup(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addSetup()}
               />
-              <Button onClick={addSetup}>Add</Button>
+              <Button onClick={addSetup}>Hinzufügen</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               {setups.map((setup) => (
@@ -119,17 +171,17 @@ const Settings = () => {
         <Card>
           <CardHeader>
             <CardTitle>Tags</CardTitle>
-            <CardDescription>Manage your trade tags</CardDescription>
+            <CardDescription>Verwalte deine Trade-Tags</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2">
               <Input
-                placeholder="Add new tag..."
+                placeholder="Neuen Tag hinzufügen..."
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addTag()}
               />
-              <Button onClick={addTag}>Add</Button>
+              <Button onClick={addTag}>Hinzufügen</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
@@ -147,8 +199,8 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Button onClick={handleSave} className="w-full">
-          Save Settings
+        <Button onClick={handleSave} className="w-full" disabled={saving}>
+          {saving ? "Speichert..." : "Einstellungen speichern"}
         </Button>
       </div>
     </div>
