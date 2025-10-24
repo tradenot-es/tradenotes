@@ -67,7 +67,15 @@
     "selectSetup": "Setup auswählen",
     "tradeAdded": "Trade erfolgreich hinzugefügt",
     "addError": "Fehler beim Hinzufügen des Trades",
-    "required": "Alle Pflichtfelder müssen ausgefüllt werden"
+    "required": "Alle Pflichtfelder müssen ausgefüllt werden",
+    "calendarView": "Kalenderansicht",
+    "selectDate": "Wähle ein Datum aus, um Trades hinzuzufügen oder anzuzeigen",
+    "tradesOnDate": "Trades am",
+    "newsOnDate": "Finanznachrichten",
+    "noTradesOnDate": "Keine Trades an diesem Datum",
+    "noNewsAvailable": "Keine Nachrichten verfügbar",
+    "loadingNews": "Lade Nachrichten...",
+    "selectCurrency": "Währung Auswählen"
   },
   "import": {
     "title": "Trades importieren",
@@ -124,7 +132,8 @@
     "returnHome": "Zurück zur Startseite"
   },
   "common": {
-    "loading": "Lädt..."
+    "loading": "Lädt...",
+    "readMore": "Weiterlesen"
   },
   "validation": {
     "emailInvalid": "Ungültiges E-Mail-Format",

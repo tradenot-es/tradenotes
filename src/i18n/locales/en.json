@@ -67,7 +67,15 @@
     "selectSetup": "Select setup",
     "tradeAdded": "Trade added successfully",
     "addError": "Error adding trade",
-    "required": "All required fields must be filled"
+    "required": "All required fields must be filled",
+    "calendarView": "Calendar View",
+    "selectDate": "Select a date to add or view trades",
+    "tradesOnDate": "Trades on",
+    "newsOnDate": "Financial News",
+    "noTradesOnDate": "No trades on this date",
+    "noNewsAvailable": "No news available",
+    "loadingNews": "Loading news...",
+    "selectCurrency": "Select Currency"
   },
   "import": {
     "title": "Import Trades",
@@ -124,7 +132,8 @@
     "returnHome": "Return to Home"
   },
   "common": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "readMore": "Read more"
   },
   "validation": {
     "emailInvalid": "Invalid email format",

@@ -67,7 +67,15 @@
     "selectSetup": "Seleccionar configuración",
     "tradeAdded": "Operación añadida con éxito",
     "addError": "Error al añadir la operación",
-    "required": "Todos los campos obligatorios deben completarse"
+    "required": "Todos los campos obligatorios deben completarse",
+    "calendarView": "Vista de Calendario",
+    "selectDate": "Selecciona una fecha para añadir o ver trades",
+    "tradesOnDate": "Trades del",
+    "newsOnDate": "Noticias Financieras",
+    "noTradesOnDate": "No hay trades en esta fecha",
+    "noNewsAvailable": "No hay noticias disponibles",
+    "loadingNews": "Cargando noticias...",
+    "selectCurrency": "Seleccionar Moneda"
   },
   "import": {
     "title": "Importar operaciones",
@@ -124,7 +132,8 @@
     "returnHome": "Volver al inicio"
   },
   "common": {
-    "loading": "Cargando..."
+    "loading": "Cargando...",
+    "readMore": "Leer más"
   },
   "validation": {
     "emailInvalid": "Formato de correo electrónico no válido",

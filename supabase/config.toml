@@ -1,1 +1,4 @@
 project_id = "REDACTED"
+
+[functions.financial-news]
+verify_jwt = false

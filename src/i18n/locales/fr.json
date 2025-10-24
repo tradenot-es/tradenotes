@@ -67,7 +67,15 @@
     "selectSetup": "Sélectionner la configuration",
     "tradeAdded": "Transaction ajoutée avec succès",
     "addError": "Erreur lors de l'ajout de la transaction",
-    "required": "Tous les champs obligatoires doivent être remplis"
+    "required": "Tous les champs obligatoires doivent être remplis",
+    "calendarView": "Vue Calendrier",
+    "selectDate": "Sélectionnez une date pour ajouter ou voir les trades",
+    "tradesOnDate": "Trades du",
+    "newsOnDate": "Actualités Financières",
+    "noTradesOnDate": "Aucun trade à cette date",
+    "noNewsAvailable": "Aucune actualité disponible",
+    "loadingNews": "Chargement des actualités...",
+    "selectCurrency": "Sélectionner la Devise"
   },
   "import": {
     "title": "Importer des transactions",
@@ -124,7 +132,8 @@
     "returnHome": "Retour à l'accueil"
   },
   "common": {
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "readMore": "Lire la suite"
   },
   "validation": {
     "emailInvalid": "Format d'e-mail invalide",

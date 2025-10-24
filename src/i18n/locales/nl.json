@@ -67,7 +67,15 @@
     "selectSetup": "Selecteer setup",
     "tradeAdded": "Transactie succesvol toegevoegd",
     "addError": "Fout bij toevoegen van transactie",
-    "required": "Alle verplichte velden moeten worden ingevuld"
+    "required": "Alle verplichte velden moeten worden ingevuld",
+    "calendarView": "Kalenderweergave",
+    "selectDate": "Selecteer een datum om trades toe te voegen of te bekijken",
+    "tradesOnDate": "Trades op",
+    "newsOnDate": "Financieel Nieuws",
+    "noTradesOnDate": "Geen trades op deze datum",
+    "noNewsAvailable": "Geen nieuws beschikbaar",
+    "loadingNews": "Nieuws laden...",
+    "selectCurrency": "Selecteer Valuta"
   },
   "import": {
     "title": "Transacties importeren",
@@ -124,7 +132,8 @@
     "returnHome": "Terug naar home"
   },
   "common": {
-    "loading": "Laden..."
+    "loading": "Laden...",
+    "readMore": "Lees meer"
   },
   "validation": {
     "emailInvalid": "Ongeldig e-mailformaat",

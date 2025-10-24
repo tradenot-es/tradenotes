@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -14,9 +14,10 @@ interface AddTradeDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSuccess: () => void;
+  preselectedDate?: Date;
 }
 
-export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialogProps) {
+export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate }: AddTradeDialogProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -32,6 +33,18 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
     setup: "",
     note: "",
   });
+
+  // Set preselected date when dialog opens with a date
+  useEffect(() => {
+    if (preselectedDate && open) {
+      const dateStr = preselectedDate.toISOString().split('T')[0];
+      setFormData(prev => ({
+        ...prev,
+        entryTime: dateStr + 'T09:00',
+        exitTime: dateStr + 'T16:00'
+      }));
+    }
+  }, [preselectedDate, open]);
 
   const tradeSchema = z.object({
     symbol: z.string()
