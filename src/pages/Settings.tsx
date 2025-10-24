@@ -10,6 +10,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { z } from "zod";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -24,6 +25,21 @@ const Settings = () => {
   const [newSetup, setNewSetup] = useState("");
   const [newTag, setNewTag] = useState("");
   const [settingsId, setSettingsId] = useState<string>("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const settingsSchema = z.object({
+    base_currency: z.string().length(3, { message: t("validation.currencyInvalid") }).regex(/^[A-Z]+$/),
+    timezone: z.string().min(1),
+    default_fees: z.number()
+      .nonnegative({ message: t("validation.feesInvalid") })
+      .max(1000, { message: t("validation.feesInvalid") }),
+    setups: z.array(
+      z.string().trim().min(1).max(50, { message: t("validation.setupItemTooLong") })
+    ).max(20, { message: t("validation.setupMaxReached") }),
+    tags: z.array(
+      z.string().trim().min(1).max(30, { message: t("validation.tagItemTooLong") })
+    ).max(30, { message: t("validation.tagMaxReached") })
+  });
 
   useEffect(() => {
     if (user) {
@@ -49,6 +65,28 @@ const Settings = () => {
   };
 
   const handleSave = async () => {
+    setErrors({});
+
+    // Validate input
+    const validation = settingsSchema.safeParse({
+      base_currency: currency,
+      timezone: timezone,
+      default_fees: parseFloat(defaultFees),
+      setups: setups,
+      tags: tags
+    });
+
+    if (!validation.success) {
+      const fieldErrors: Record<string, string> = {};
+      validation.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      toast.error(t("settings.saveError"));
+      return;
+    }
+
     setSaving(true);
     try {
       const { error } = await supabase
@@ -72,7 +110,21 @@ const Settings = () => {
   };
 
   const addSetup = () => {
-    if (newSetup.trim() && !setups.includes(newSetup.trim())) {
+    setErrors({ ...errors, setups: undefined });
+    
+    if (!newSetup.trim()) return;
+    
+    if (newSetup.trim().length > 50) {
+      setErrors({ ...errors, setups: t("validation.setupItemTooLong") });
+      return;
+    }
+    
+    if (setups.length >= 20) {
+      setErrors({ ...errors, setups: t("validation.setupMaxReached") });
+      return;
+    }
+    
+    if (!setups.includes(newSetup.trim())) {
       setSetups([...setups, newSetup.trim()]);
       setNewSetup("");
     }
@@ -83,7 +135,21 @@ const Settings = () => {
   };
 
   const addTag = () => {
-    if (newTag.trim() && !tags.includes(newTag.trim())) {
+    setErrors({ ...errors, tags: undefined });
+    
+    if (!newTag.trim()) return;
+    
+    if (newTag.trim().length > 30) {
+      setErrors({ ...errors, tags: t("validation.tagItemTooLong") });
+      return;
+    }
+    
+    if (tags.length >= 30) {
+      setErrors({ ...errors, tags: t("validation.tagMaxReached") });
+      return;
+    }
+    
+    if (!tags.includes(newTag.trim())) {
       setTags([...tags, newTag.trim()]);
       setNewTag("");
     }
@@ -116,15 +182,25 @@ const Settings = () => {
               <Input
                 id="currency"
                 value={currency}
-                onChange={(e) => setCurrency(e.target.value)}
+                onChange={(e) => {
+                  setCurrency(e.target.value.toUpperCase());
+                  setErrors({ ...errors, base_currency: undefined });
+                }}
+                maxLength={3}
               />
+              {errors.base_currency && (
+                <p className="text-sm text-destructive">{errors.base_currency}</p>
+              )}
             </div>
             <div className="grid gap-2">
               <Label htmlFor="timezone">{t("settings.timezone")}</Label>
               <Input
                 id="timezone"
                 value={timezone}
-                onChange={(e) => setTimezone(e.target.value)}
+                onChange={(e) => {
+                  setTimezone(e.target.value);
+                  setErrors({ ...errors, timezone: undefined });
+                }}
               />
             </div>
             <div className="grid gap-2">
@@ -134,8 +210,14 @@ const Settings = () => {
                 type="number"
                 step="0.01"
                 value={defaultFees}
-                onChange={(e) => setDefaultFees(e.target.value)}
+                onChange={(e) => {
+                  setDefaultFees(e.target.value);
+                  setErrors({ ...errors, default_fees: undefined });
+                }}
               />
+              {errors.default_fees && (
+                <p className="text-sm text-destructive">{errors.default_fees}</p>
+              )}
             </div>
           </CardContent>
         </Card>
@@ -146,14 +228,22 @@ const Settings = () => {
             <CardDescription>{t("settings.setupsDesc")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex gap-2">
-              <Input
-                placeholder={t("settings.setups")}
-                value={newSetup}
-                onChange={(e) => setNewSetup(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && addSetup()}
-              />
-              <Button onClick={addSetup}>{t("trades.save")}</Button>
+            <div className="space-y-2">
+              <div className="flex gap-2">
+                <Input
+                  placeholder={t("settings.setups")}
+                  value={newSetup}
+                  onChange={(e) => {
+                    setNewSetup(e.target.value);
+                    setErrors({ ...errors, setups: undefined });
+                  }}
+                  onKeyPress={(e) => e.key === "Enter" && addSetup()}
+                />
+                <Button onClick={addSetup}>{t("trades.save")}</Button>
+              </div>
+              {errors.setups && (
+                <p className="text-sm text-destructive">{errors.setups}</p>
+              )}
             </div>
             <div className="flex flex-wrap gap-2">
               {setups.map((setup) => (
@@ -177,14 +267,22 @@ const Settings = () => {
             <CardDescription>{t("settings.tagsDesc")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex gap-2">
-              <Input
-                placeholder={t("settings.tags")}
-                value={newTag}
-                onChange={(e) => setNewTag(e.target.value)}
-                onKeyPress={(e) => e.key === "Enter" && addTag()}
-              />
-              <Button onClick={addTag}>{t("trades.save")}</Button>
+            <div className="space-y-2">
+              <div className="flex gap-2">
+                <Input
+                  placeholder={t("settings.tags")}
+                  value={newTag}
+                  onChange={(e) => {
+                    setNewTag(e.target.value);
+                    setErrors({ ...errors, tags: undefined });
+                  }}
+                  onKeyPress={(e) => e.key === "Enter" && addTag()}
+                />
+                <Button onClick={addTag}>{t("trades.save")}</Button>
+              </div>
+              {errors.tags && (
+                <p className="text-sm text-destructive">{errors.tags}</p>
+              )}
             </div>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (

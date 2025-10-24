@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { z } from "zod";
 
 interface AddTradeDialogProps {
   open: boolean;
@@ -18,6 +19,7 @@ interface AddTradeDialogProps {
 export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialogProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -31,18 +33,73 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
     note: "",
   });
 
+  const tradeSchema = z.object({
+    symbol: z.string()
+      .trim()
+      .min(1, { message: t("validation.symbolRequired") })
+      .max(10, { message: t("validation.symbolTooLong") })
+      .regex(/^[A-Z0-9]+$/, { message: t("validation.symbolInvalid") }),
+    side: z.enum(['long', 'short']),
+    qty: z.number()
+      .positive({ message: t("validation.qtyPositive") })
+      .max(1000000, { message: t("validation.qtyMax") }),
+    entryPrice: z.number()
+      .positive({ message: t("validation.pricePositive") })
+      .max(1000000, { message: t("validation.priceMax") }),
+    exitPrice: z.number()
+      .positive({ message: t("validation.pricePositive") })
+      .max(1000000, { message: t("validation.priceMax") }),
+    entryTime: z.string(),
+    exitTime: z.string(),
+    fees: z.number()
+      .nonnegative({ message: t("validation.feesNonNegative") })
+      .max(10000, { message: t("validation.feesMax") }),
+    setup: z.string().max(100, { message: t("validation.setupTooLong") }).optional(),
+    note: z.string().max(1000, { message: t("validation.noteTooLong") }).optional()
+  }).refine(data => new Date(data.exitTime) > new Date(data.entryTime), {
+    message: t("validation.exitTimeAfterEntry"),
+    path: ["exitTime"]
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    const qty = parseFloat(formData.qty);
+    const entryPrice = parseFloat(formData.entryPrice);
+    const exitPrice = parseFloat(formData.exitPrice);
+    const fees = parseFloat(formData.fees);
+
+    // Validate input
+    const validation = tradeSchema.safeParse({
+      symbol: formData.symbol.toUpperCase(),
+      side: formData.side,
+      qty,
+      entryPrice,
+      exitPrice,
+      entryTime: formData.entryTime,
+      exitTime: formData.exitTime,
+      fees,
+      setup: formData.setup || undefined,
+      note: formData.note || undefined
+    });
+
+    if (!validation.success) {
+      const fieldErrors: Record<string, string> = {};
+      validation.error.errors.forEach((err) => {
+        const field = err.path[0] as string;
+        fieldErrors[field] = err.message;
+      });
+      setErrors(fieldErrors);
+      toast.error(t("trades.required"));
+      return;
+    }
+
     setLoading(true);
 
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Nicht angemeldet");
-
-      const qty = parseFloat(formData.qty);
-      const entryPrice = parseFloat(formData.entryPrice);
-      const exitPrice = parseFloat(formData.exitPrice);
-      const fees = parseFloat(formData.fees);
 
       const priceDiff = formData.side === "long" 
         ? exitPrice - entryPrice 
@@ -101,10 +158,15 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               <Input
                 id="symbol"
                 value={formData.symbol}
-                onChange={(e) => setFormData({ ...formData, symbol: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, symbol: e.target.value.toUpperCase() });
+                  setErrors({ ...errors, symbol: undefined });
+                }}
                 placeholder="AAPL"
-                required
               />
+              {errors.symbol && (
+                <p className="text-sm text-destructive">{errors.symbol}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="side">{t("trades.side")} *</Label>
@@ -128,9 +190,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 type="number"
                 step="0.01"
                 value={formData.qty}
-                onChange={(e) => setFormData({ ...formData, qty: e.target.value })}
-                required
+                onChange={(e) => {
+                  setFormData({ ...formData, qty: e.target.value });
+                  setErrors({ ...errors, qty: undefined });
+                }}
               />
+              {errors.qty && (
+                <p className="text-sm text-destructive">{errors.qty}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
@@ -139,9 +206,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 type="number"
                 step="0.01"
                 value={formData.entryPrice}
-                onChange={(e) => setFormData({ ...formData, entryPrice: e.target.value })}
-                required
+                onChange={(e) => {
+                  setFormData({ ...formData, entryPrice: e.target.value });
+                  setErrors({ ...errors, entryPrice: undefined });
+                }}
               />
+              {errors.entryPrice && (
+                <p className="text-sm text-destructive">{errors.entryPrice}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="exitPrice">{t("trades.exitPrice")} *</Label>
@@ -150,9 +222,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 type="number"
                 step="0.01"
                 value={formData.exitPrice}
-                onChange={(e) => setFormData({ ...formData, exitPrice: e.target.value })}
-                required
+                onChange={(e) => {
+                  setFormData({ ...formData, exitPrice: e.target.value });
+                  setErrors({ ...errors, exitPrice: undefined });
+                }}
               />
+              {errors.exitPrice && (
+                <p className="text-sm text-destructive">{errors.exitPrice}</p>
+              )}
             </div>
           </div>
 
@@ -163,9 +240,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 id="entryTime"
                 type="datetime-local"
                 value={formData.entryTime}
-                onChange={(e) => setFormData({ ...formData, entryTime: e.target.value })}
-                required
+                onChange={(e) => {
+                  setFormData({ ...formData, entryTime: e.target.value });
+                  setErrors({ ...errors, entryTime: undefined });
+                }}
               />
+              {errors.entryTime && (
+                <p className="text-sm text-destructive">{errors.entryTime}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="exitTime">{t("trades.exitTime")} *</Label>
@@ -173,9 +255,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 id="exitTime"
                 type="datetime-local"
                 value={formData.exitTime}
-                onChange={(e) => setFormData({ ...formData, exitTime: e.target.value })}
-                required
+                onChange={(e) => {
+                  setFormData({ ...formData, exitTime: e.target.value });
+                  setErrors({ ...errors, exitTime: undefined });
+                }}
               />
+              {errors.exitTime && (
+                <p className="text-sm text-destructive">{errors.exitTime}</p>
+              )}
             </div>
           </div>
 
@@ -187,17 +274,29 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
                 type="number"
                 step="0.01"
                 value={formData.fees}
-                onChange={(e) => setFormData({ ...formData, fees: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, fees: e.target.value });
+                  setErrors({ ...errors, fees: undefined });
+                }}
               />
+              {errors.fees && (
+                <p className="text-sm text-destructive">{errors.fees}</p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="setup">{t("trades.setup")}</Label>
               <Input
                 id="setup"
                 value={formData.setup}
-                onChange={(e) => setFormData({ ...formData, setup: e.target.value })}
+                onChange={(e) => {
+                  setFormData({ ...formData, setup: e.target.value });
+                  setErrors({ ...errors, setup: undefined });
+                }}
                 placeholder="Breakout, Reversal, etc."
               />
+              {errors.setup && (
+                <p className="text-sm text-destructive">{errors.setup}</p>
+              )}
             </div>
           </div>
 
@@ -206,10 +305,16 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
             <Textarea
               id="note"
               value={formData.note}
-              onChange={(e) => setFormData({ ...formData, note: e.target.value })}
+              onChange={(e) => {
+                setFormData({ ...formData, note: e.target.value });
+                setErrors({ ...errors, note: undefined });
+              }}
               placeholder={t("trades.note")}
               rows={3}
             />
+            {errors.note && (
+              <p className="text-sm text-destructive">{errors.note}</p>
+            )}
           </div>
 
           <div className="flex gap-2">

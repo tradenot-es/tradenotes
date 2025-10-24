@@ -125,5 +125,32 @@
   },
   "common": {
     "loading": "Loading..."
+  },
+  "validation": {
+    "emailInvalid": "Invalid email format",
+    "emailTooLong": "Email must be less than 255 characters",
+    "passwordMin": "Password must be at least 8 characters",
+    "passwordUppercase": "Password must contain an uppercase letter",
+    "passwordNumber": "Password must contain a number",
+    "symbolRequired": "Symbol is required",
+    "symbolInvalid": "Only uppercase letters and numbers allowed",
+    "symbolTooLong": "Symbol must be 10 characters or less",
+    "qtyPositive": "Quantity must be positive",
+    "qtyMax": "Quantity must be less than 1,000,000",
+    "pricePositive": "Price must be positive",
+    "priceMax": "Price must be less than 1,000,000",
+    "feesNonNegative": "Fees cannot be negative",
+    "feesMax": "Fees must be less than 10,000",
+    "exitTimeAfterEntry": "Exit time must be after entry time",
+    "setupTooLong": "Setup name must be 100 characters or less",
+    "noteTooLong": "Note must be 1,000 characters or less",
+    "journalContentRequired": "Content cannot be empty",
+    "journalContentTooLong": "Content must be less than 10,000 characters",
+    "currencyInvalid": "Currency must be a 3-letter code",
+    "feesInvalid": "Default fees must be non-negative and less than 1,000",
+    "setupItemTooLong": "Setup name must be 50 characters or less",
+    "setupMaxReached": "Maximum 20 setups allowed",
+    "tagItemTooLong": "Tag must be 30 characters or less",
+    "tagMaxReached": "Maximum 30 tags allowed"
   }
 }

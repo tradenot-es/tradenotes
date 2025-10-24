@@ -125,5 +125,32 @@
   },
   "common": {
     "loading": "Lädt..."
+  },
+  "validation": {
+    "emailInvalid": "Ungültiges E-Mail-Format",
+    "emailTooLong": "E-Mail muss weniger als 255 Zeichen haben",
+    "passwordMin": "Passwort muss mindestens 8 Zeichen haben",
+    "passwordUppercase": "Passwort muss einen Großbuchstaben enthalten",
+    "passwordNumber": "Passwort muss eine Zahl enthalten",
+    "symbolRequired": "Symbol ist erforderlich",
+    "symbolInvalid": "Nur Großbuchstaben und Zahlen erlaubt",
+    "symbolTooLong": "Symbol darf maximal 10 Zeichen haben",
+    "qtyPositive": "Menge muss positiv sein",
+    "qtyMax": "Menge muss weniger als 1.000.000 sein",
+    "pricePositive": "Preis muss positiv sein",
+    "priceMax": "Preis muss weniger als 1.000.000 sein",
+    "feesNonNegative": "Gebühren können nicht negativ sein",
+    "feesMax": "Gebühren müssen weniger als 10.000 sein",
+    "exitTimeAfterEntry": "Ausstiegszeit muss nach Einstiegszeit liegen",
+    "setupTooLong": "Setup-Name darf maximal 100 Zeichen haben",
+    "noteTooLong": "Notiz darf maximal 1.000 Zeichen haben",
+    "journalContentRequired": "Inhalt darf nicht leer sein",
+    "journalContentTooLong": "Inhalt muss weniger als 10.000 Zeichen haben",
+    "currencyInvalid": "Währung muss ein 3-stelliger Code sein",
+    "feesInvalid": "Standardgebühren müssen nicht negativ und weniger als 1.000 sein",
+    "setupItemTooLong": "Setup-Name darf maximal 50 Zeichen haben",
+    "setupMaxReached": "Maximal 20 Setups erlaubt",
+    "tagItemTooLong": "Tag darf maximal 30 Zeichen haben",
+    "tagMaxReached": "Maximal 30 Tags erlaubt"
   }
 }

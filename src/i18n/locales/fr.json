@@ -125,5 +125,32 @@
   },
   "common": {
     "loading": "Chargement..."
+  },
+  "validation": {
+    "emailInvalid": "Format d'e-mail invalide",
+    "emailTooLong": "L'e-mail doit contenir moins de 255 caractères",
+    "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
+    "passwordUppercase": "Le mot de passe doit contenir une majuscule",
+    "passwordNumber": "Le mot de passe doit contenir un chiffre",
+    "symbolRequired": "Le symbole est requis",
+    "symbolInvalid": "Seules les lettres majuscules et les chiffres sont autorisés",
+    "symbolTooLong": "Le symbole doit contenir 10 caractères ou moins",
+    "qtyPositive": "La quantité doit être positive",
+    "qtyMax": "La quantité doit être inférieure à 1 000 000",
+    "pricePositive": "Le prix doit être positif",
+    "priceMax": "Le prix doit être inférieur à 1 000 000",
+    "feesNonNegative": "Les frais ne peuvent pas être négatifs",
+    "feesMax": "Les frais doivent être inférieurs à 10 000",
+    "exitTimeAfterEntry": "L'heure de sortie doit être après l'heure d'entrée",
+    "setupTooLong": "Le nom du setup doit contenir 100 caractères ou moins",
+    "noteTooLong": "La note doit contenir 1 000 caractères ou moins",
+    "journalContentRequired": "Le contenu ne peut pas être vide",
+    "journalContentTooLong": "Le contenu doit contenir moins de 10 000 caractères",
+    "currencyInvalid": "La devise doit être un code à 3 lettres",
+    "feesInvalid": "Les frais par défaut doivent être non négatifs et inférieurs à 1 000",
+    "setupItemTooLong": "Le nom du setup doit contenir 50 caractères ou moins",
+    "setupMaxReached": "Maximum 20 setups autorisés",
+    "tagItemTooLong": "Le tag doit contenir 30 caractères ou moins",
+    "tagMaxReached": "Maximum 30 tags autorisés"
   }
 }

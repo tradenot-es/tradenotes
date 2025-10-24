@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { z } from "zod";
 
 interface JournalEntry {
   id: string;
@@ -20,6 +21,15 @@ const Journal = () => {
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [newEntry, setNewEntry] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>("");
+  const [charCount, setCharCount] = useState(0);
+
+  const journalSchema = z.object({
+    content: z.string()
+      .trim()
+      .min(1, { message: t("validation.journalContentRequired") })
+      .max(10000, { message: t("validation.journalContentTooLong") })
+  });
 
   useEffect(() => {
     if (user) {
@@ -40,7 +50,14 @@ const Journal = () => {
   };
 
   const handleAddEntry = async () => {
-    if (!newEntry.trim()) return;
+    setError("");
+
+    // Validate input
+    const validation = journalSchema.safeParse({ content: newEntry });
+    if (!validation.success) {
+      setError(validation.error.errors[0].message);
+      return;
+    }
 
     try {
       const { data: { user: currentUser } } = await supabase.auth.getUser();
@@ -56,6 +73,7 @@ const Journal = () => {
 
       toast.success(t("journal.entryAdded"));
       setNewEntry("");
+      setCharCount(0);
       loadEntries();
     } catch (error: any) {
       toast.error(error.message || t("journal.addError"));
@@ -78,12 +96,26 @@ const Journal = () => {
           <CardTitle>{t("journal.newEntry")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Textarea
-            placeholder={t("journal.placeholder")}
-            value={newEntry}
-            onChange={(e) => setNewEntry(e.target.value)}
-            rows={5}
-          />
+          <div className="space-y-2">
+            <Textarea
+              placeholder={t("journal.placeholder")}
+              value={newEntry}
+              onChange={(e) => {
+                setNewEntry(e.target.value);
+                setCharCount(e.target.value.length);
+                setError("");
+              }}
+              rows={5}
+            />
+            <div className="flex justify-between items-center">
+              <p className="text-sm text-muted-foreground">
+                {charCount} / 10,000
+              </p>
+              {error && (
+                <p className="text-sm text-destructive">{error}</p>
+              )}
+            </div>
+          </div>
           <Button onClick={handleAddEntry}>
             <Plus className="mr-2 h-4 w-4" />
             {t("journal.addEntry")}

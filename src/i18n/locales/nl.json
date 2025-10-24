@@ -125,5 +125,32 @@
   },
   "common": {
     "loading": "Laden..."
+  },
+  "validation": {
+    "emailInvalid": "Ongeldig e-mailformaat",
+    "emailTooLong": "E-mail moet minder dan 255 tekens bevatten",
+    "passwordMin": "Wachtwoord moet minimaal 8 tekens bevatten",
+    "passwordUppercase": "Wachtwoord moet een hoofdletter bevatten",
+    "passwordNumber": "Wachtwoord moet een cijfer bevatten",
+    "symbolRequired": "Symbool is verplicht",
+    "symbolInvalid": "Alleen hoofdletters en cijfers toegestaan",
+    "symbolTooLong": "Symbool moet 10 tekens of minder zijn",
+    "qtyPositive": "Hoeveelheid moet positief zijn",
+    "qtyMax": "Hoeveelheid moet minder dan 1.000.000 zijn",
+    "pricePositive": "Prijs moet positief zijn",
+    "priceMax": "Prijs moet minder dan 1.000.000 zijn",
+    "feesNonNegative": "Kosten kunnen niet negatief zijn",
+    "feesMax": "Kosten moeten minder dan 10.000 zijn",
+    "exitTimeAfterEntry": "Uitgangstijd moet na ingangstijd zijn",
+    "setupTooLong": "Setup naam moet 100 tekens of minder zijn",
+    "noteTooLong": "Notitie moet 1.000 tekens of minder zijn",
+    "journalContentRequired": "Inhoud mag niet leeg zijn",
+    "journalContentTooLong": "Inhoud moet minder dan 10.000 tekens bevatten",
+    "currencyInvalid": "Valuta moet een code van 3 letters zijn",
+    "feesInvalid": "Standaard kosten moeten niet-negatief en minder dan 1.000 zijn",
+    "setupItemTooLong": "Setup naam moet 50 tekens of minder zijn",
+    "setupMaxReached": "Maximaal 20 setups toegestaan",
+    "tagItemTooLong": "Tag moet 30 tekens of minder zijn",
+    "tagMaxReached": "Maximaal 30 tags toegestaan"
   }
 }
