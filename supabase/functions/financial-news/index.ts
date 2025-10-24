@@ -56,7 +56,7 @@ Deno.serve(async (req) => {
     const response = await fetch('https://api.finlight.me/v2/articles', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'X-API-KEY': apiKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody)
