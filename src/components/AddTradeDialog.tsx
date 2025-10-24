@@ -24,6 +24,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
+    market: "Stock" as "Stock" | "Futures" | "Crypto" | "Option" | "Forex" | "Index",
     qty: "",
     entryPrice: "",
     exitPrice: "",
@@ -53,6 +54,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
       .max(10, { message: t("validation.symbolTooLong") })
       .regex(/^[A-Z0-9]+$/, { message: t("validation.symbolInvalid") }),
     side: z.enum(['long', 'short']),
+    market: z.enum(['Stock', 'Futures', 'Crypto', 'Option', 'Forex', 'Index']),
     qty: z.number()
       .positive({ message: t("validation.qtyPositive") })
       .max(1000000, { message: t("validation.qtyMax") }),
@@ -87,6 +89,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
     const validation = tradeSchema.safeParse({
       symbol: formData.symbol.toUpperCase(),
       side: formData.side,
+      market: formData.market,
       qty,
       entryPrice,
       exitPrice,
@@ -123,6 +126,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
         user_id: user.id,
         symbol: formData.symbol.toUpperCase(),
         side: formData.side,
+        market: formData.market,
         qty,
         entry_price: entryPrice,
         exit_price: exitPrice,
@@ -142,6 +146,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
       setFormData({
         symbol: "",
         side: "long",
+        market: "Stock",
         qty: "",
         entryPrice: "",
         exitPrice: "",
@@ -165,7 +170,23 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
           <DialogTitle>{t("trades.newTrade")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="market">{t("trades.market")} *</Label>
+              <Select value={formData.market} onValueChange={(v) => setFormData({ ...formData, market: v as any })}>
+                <SelectTrigger>
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Stock">{t("trades.stock")}</SelectItem>
+                  <SelectItem value="Futures">{t("trades.futures")}</SelectItem>
+                  <SelectItem value="Crypto">{t("trades.crypto")}</SelectItem>
+                  <SelectItem value="Option">{t("trades.option")}</SelectItem>
+                  <SelectItem value="Forex">{t("trades.forex")}</SelectItem>
+                  <SelectItem value="Index">{t("trades.index")}</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
             <div className="space-y-2">
               <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
               <Input
@@ -195,7 +216,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="qty">{t("trades.qty")} *</Label>
               <Input

@@ -75,7 +75,14 @@
     "noTradesOnDate": "Geen trades op deze datum",
     "noNewsAvailable": "Geen nieuws beschikbaar",
     "loadingNews": "Nieuws laden...",
-    "selectCurrency": "Selecteer Valuta"
+    "selectCurrency": "Selecteer Valuta",
+    "market": "Markt",
+    "stock": "Aandeel",
+    "futures": "Futures",
+    "crypto": "Crypto",
+    "option": "Optie",
+    "forex": "Forex",
+    "index": "Index"
   },
   "import": {
     "title": "Transacties importeren",

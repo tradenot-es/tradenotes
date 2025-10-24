@@ -2,6 +2,7 @@ export interface Trade {
   id: string;
   symbol: string;
   side: "long" | "short";
+  market?: "Stock" | "Futures" | "Crypto" | "Option" | "Forex" | "Index";
   qty: number;
   entryPrice: number;
   exitPrice: number;

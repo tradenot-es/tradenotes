@@ -75,7 +75,14 @@
     "noTradesOnDate": "Aucun trade à cette date",
     "noNewsAvailable": "Aucune actualité disponible",
     "loadingNews": "Chargement des actualités...",
-    "selectCurrency": "Sélectionner la Devise"
+    "selectCurrency": "Sélectionner la Devise",
+    "market": "Marché",
+    "stock": "Action",
+    "futures": "Futures",
+    "crypto": "Crypto",
+    "option": "Option",
+    "forex": "Forex",
+    "index": "Indice"
   },
   "import": {
     "title": "Importer des transactions",

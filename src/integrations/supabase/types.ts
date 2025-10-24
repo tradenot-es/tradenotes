@@ -53,6 +53,7 @@ export type Database = {
           exit_time: string
           fees: number | null
           id: string
+          market: string | null
           note: string | null
           pnl_net: number
           qty: number
@@ -73,6 +74,7 @@ export type Database = {
           exit_time: string
           fees?: number | null
           id?: string
+          market?: string | null
           note?: string | null
           pnl_net: number
           qty: number
@@ -93,6 +95,7 @@ export type Database = {
           exit_time?: string
           fees?: number | null
           id?: string
+          market?: string | null
           note?: string | null
           pnl_net?: number
           qty?: number
