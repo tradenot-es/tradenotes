@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -179,15 +180,20 @@ const Settings = () => {
             <LanguageSwitcher />
             <div className="grid gap-2">
               <Label htmlFor="currency">{t("settings.currency")}</Label>
-              <Input
-                id="currency"
-                value={currency}
-                onChange={(e) => {
-                  setCurrency(e.target.value.toUpperCase());
-                  setErrors({ ...errors, base_currency: undefined });
-                }}
-                maxLength={3}
-              />
+              <Select value={currency} onValueChange={setCurrency}>
+                <SelectTrigger id="currency">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="USD">USD</SelectItem>
+                  <SelectItem value="EUR">EUR</SelectItem>
+                  <SelectItem value="GBP">GBP</SelectItem>
+                  <SelectItem value="JPY">JPY</SelectItem>
+                  <SelectItem value="CHF">CHF</SelectItem>
+                  <SelectItem value="CAD">CAD</SelectItem>
+                  <SelectItem value="AUD">AUD</SelectItem>
+                </SelectContent>
+              </Select>
               {errors.base_currency && (
                 <p className="text-sm text-destructive">{errors.base_currency}</p>
               )}
