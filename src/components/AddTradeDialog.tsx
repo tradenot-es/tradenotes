@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ interface AddTradeDialogProps {
 }
 
 export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialogProps) {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     symbol: "",
@@ -64,7 +66,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
 
       if (error) throw error;
 
-      toast.success("Trade erfolgreich hinzugefügt!");
+      toast.success(t("trades.tradeAdded"));
       onSuccess();
       onOpenChange(false);
       setFormData({
@@ -80,7 +82,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
         note: "",
       });
     } catch (error: any) {
-      toast.error(error.message || "Fehler beim Hinzufügen des Trades");
+      toast.error(error.message || t("trades.addError"));
     } finally {
       setLoading(false);
     }
@@ -90,12 +92,12 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>Neuer Trade</DialogTitle>
+          <DialogTitle>{t("trades.newTrade")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="symbol">Symbol *</Label>
+              <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
               <Input
                 id="symbol"
                 value={formData.symbol}
@@ -105,14 +107,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="side">Richtung *</Label>
+              <Label htmlFor="side">{t("trades.side")} *</Label>
               <Select value={formData.side} onValueChange={(v) => setFormData({ ...formData, side: v as "long" | "short" })}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="long">Long</SelectItem>
-                  <SelectItem value="short">Short</SelectItem>
+                  <SelectItem value="long">{t("trades.long")}</SelectItem>
+                  <SelectItem value="short">{t("trades.short")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -120,7 +122,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
 
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="qty">Menge *</Label>
+              <Label htmlFor="qty">{t("trades.qty")} *</Label>
               <Input
                 id="qty"
                 type="number"
@@ -131,7 +133,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="entryPrice">Entry *</Label>
+              <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
               <Input
                 id="entryPrice"
                 type="number"
@@ -142,7 +144,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="exitPrice">Exit *</Label>
+              <Label htmlFor="exitPrice">{t("trades.exitPrice")} *</Label>
               <Input
                 id="exitPrice"
                 type="number"
@@ -156,7 +158,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="entryTime">Entry Zeit *</Label>
+              <Label htmlFor="entryTime">{t("trades.entryTime")} *</Label>
               <Input
                 id="entryTime"
                 type="datetime-local"
@@ -166,7 +168,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="exitTime">Exit Zeit *</Label>
+              <Label htmlFor="exitTime">{t("trades.exitTime")} *</Label>
               <Input
                 id="exitTime"
                 type="datetime-local"
@@ -179,7 +181,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="fees">Gebühren ($)</Label>
+              <Label htmlFor="fees">{t("trades.fees")} ($)</Label>
               <Input
                 id="fees"
                 type="number"
@@ -189,7 +191,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="setup">Setup</Label>
+              <Label htmlFor="setup">{t("trades.setup")}</Label>
               <Input
                 id="setup"
                 value={formData.setup}
@@ -200,22 +202,22 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess }: AddTradeDialog
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="note">Notiz</Label>
+            <Label htmlFor="note">{t("trades.note")}</Label>
             <Textarea
               id="note"
               value={formData.note}
               onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-              placeholder="Trade-Notizen..."
+              placeholder={t("trades.note")}
               rows={3}
             />
           </div>
 
           <div className="flex gap-2">
             <Button type="submit" disabled={loading}>
-              {loading ? "Speichert..." : "Trade hinzufügen"}
+              {loading ? t("common.loading") : t("trades.addTrade")}
             </Button>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              Abbrechen
+              {t("trades.cancel")}
             </Button>
           </div>
         </form>

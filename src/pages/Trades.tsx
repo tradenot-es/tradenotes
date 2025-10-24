@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -28,6 +29,7 @@ interface Trade {
 }
 
 const Trades = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,20 +62,20 @@ const Trades = () => {
   );
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Lädt...</div>;
+    return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Trades</h1>
-          <p className="text-muted-foreground">Verwalte und analysiere deine Trades</p>
+          <h1 className="text-3xl font-bold">{t("trades.title")}</h1>
+          <p className="text-muted-foreground">{t("trades.subtitle")}</p>
         </div>
       </div>
 
       <Input
-        placeholder="Suche nach Symbol oder Setup..."
+        placeholder={t("trades.filterBy")}
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="max-w-sm"
@@ -81,21 +83,21 @@ const Trades = () => {
 
       {trades.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">Noch keine Trades. Klicke auf den Button unten rechts, um einen Trade hinzuzufügen.</p>
+          <p className="text-muted-foreground">{t("trades.noTrades")}</p>
         </div>
       ) : (
         <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Symbol</TableHead>
-                <TableHead>Datum</TableHead>
-                <TableHead>Richtung</TableHead>
-                <TableHead className="text-right">Entry</TableHead>
-                <TableHead className="text-right">Exit</TableHead>
-                <TableHead className="text-right">Menge</TableHead>
-                <TableHead className="text-right">P&L</TableHead>
-                <TableHead>Setup</TableHead>
+                <TableHead>{t("trades.symbol")}</TableHead>
+                <TableHead>{t("dashboard.pnlByMonth")}</TableHead>
+                <TableHead>{t("trades.side")}</TableHead>
+                <TableHead className="text-right">{t("trades.entryPrice")}</TableHead>
+                <TableHead className="text-right">{t("trades.exitPrice")}</TableHead>
+                <TableHead className="text-right">{t("trades.qty")}</TableHead>
+                <TableHead className="text-right">{t("trades.pnl")}</TableHead>
+                <TableHead>{t("trades.setup")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -107,7 +109,7 @@ const Trades = () => {
                 >
                   <TableCell className="font-medium">{trade.symbol}</TableCell>
                   <TableCell>
-                    {new Date(trade.exit_time).toLocaleDateString("de-DE")}
+                    {new Date(trade.exit_time).toLocaleDateString()}
                   </TableCell>
                   <TableCell>
                     <Badge variant={trade.side === "long" ? "default" : "secondary"}>
@@ -136,25 +138,25 @@ const Trades = () => {
       <Dialog open={!!selectedTrade} onOpenChange={() => setSelectedTrade(null)}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Trade Details: {selectedTrade?.symbol}</DialogTitle>
+            <DialogTitle>{t("trades.tradeDetails")}: {selectedTrade?.symbol}</DialogTitle>
           </DialogHeader>
           {selectedTrade && (
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-muted-foreground">Entry Preis</p>
+                  <p className="text-sm text-muted-foreground">{t("trades.entryPrice")}</p>
                   <p className="text-lg font-semibold">${selectedTrade.entry_price.toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Exit Preis</p>
+                  <p className="text-sm text-muted-foreground">{t("trades.exitPrice")}</p>
                   <p className="text-lg font-semibold">${selectedTrade.exit_price.toFixed(2)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Menge</p>
+                  <p className="text-sm text-muted-foreground">{t("trades.qty")}</p>
                   <p className="text-lg font-semibold">{selectedTrade.qty}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Net P&L</p>
+                  <p className="text-sm text-muted-foreground">{t("dashboard.netPnL")}</p>
                   <p className={`text-lg font-semibold ${selectedTrade.pnl_net >= 0 ? "text-success" : "text-destructive"}`}>
                     ${selectedTrade.pnl_net.toFixed(2)}
                   </p>
@@ -162,12 +164,12 @@ const Trades = () => {
               </div>
               {selectedTrade.note && (
                 <div>
-                  <p className="text-sm text-muted-foreground mb-2">Notizen</p>
+                  <p className="text-sm text-muted-foreground mb-2">{t("trades.note")}</p>
                   <p className="text-sm whitespace-pre-wrap">{selectedTrade.note}</p>
                 </div>
               )}
               <div className="flex gap-2">
-                <Button variant="outline" onClick={() => setSelectedTrade(null)}>Schließen</Button>
+                <Button variant="outline" onClick={() => setSelectedTrade(null)}>{t("trades.close")}</Button>
               </div>
             </div>
           )}

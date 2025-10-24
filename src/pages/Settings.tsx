@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +9,7 @@ import { X } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -61,9 +63,9 @@ const Settings = () => {
         .eq("id", settingsId);
 
       if (error) throw error;
-      toast.success("Einstellungen gespeichert");
+      toast.success(t("settings.settingsSaved"));
     } catch (error: any) {
-      toast.error(error.message || "Fehler beim Speichern");
+      toast.error(error.message || t("settings.saveError"));
     } finally {
       setSaving(false);
     }
@@ -92,25 +94,25 @@ const Settings = () => {
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Lädt...</div>;
+    return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Einstellungen</h1>
-        <p className="text-muted-foreground">Konfiguriere deine Trading-Journal-Präferenzen</p>
+        <h1 className="text-3xl font-bold">{t("settings.title")}</h1>
+        <p className="text-muted-foreground">{t("settings.subtitle")}</p>
       </div>
 
       <div className="grid gap-6">
         <Card>
           <CardHeader>
-            <CardTitle>Allgemeine Einstellungen</CardTitle>
-            <CardDescription>Basis-Konfiguration für dein Trading Journal</CardDescription>
+            <CardTitle>{t("settings.general")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+            <LanguageSwitcher />
             <div className="grid gap-2">
-              <Label htmlFor="currency">Basiswährung</Label>
+              <Label htmlFor="currency">{t("settings.currency")}</Label>
               <Input
                 id="currency"
                 value={currency}
@@ -118,7 +120,7 @@ const Settings = () => {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="timezone">Zeitzone</Label>
+              <Label htmlFor="timezone">{t("settings.timezone")}</Label>
               <Input
                 id="timezone"
                 value={timezone}
@@ -126,7 +128,7 @@ const Settings = () => {
               />
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="fees">Standard-Gebühren ($)</Label>
+              <Label htmlFor="fees">{t("settings.defaultFees")} ($)</Label>
               <Input
                 id="fees"
                 type="number"
@@ -140,18 +142,18 @@ const Settings = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Trading Setups</CardTitle>
-            <CardDescription>Verwalte deine Trading-Setup-Muster</CardDescription>
+            <CardTitle>{t("settings.setups")}</CardTitle>
+            <CardDescription>{t("settings.setupsDesc")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2">
               <Input
-                placeholder="Neues Setup hinzufügen..."
+                placeholder={t("settings.setups")}
                 value={newSetup}
                 onChange={(e) => setNewSetup(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addSetup()}
               />
-              <Button onClick={addSetup}>Hinzufügen</Button>
+              <Button onClick={addSetup}>{t("trades.save")}</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               {setups.map((setup) => (
@@ -171,18 +173,18 @@ const Settings = () => {
 
         <Card>
           <CardHeader>
-            <CardTitle>Tags</CardTitle>
-            <CardDescription>Verwalte deine Trade-Tags</CardDescription>
+            <CardTitle>{t("settings.tags")}</CardTitle>
+            <CardDescription>{t("settings.tagsDesc")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex gap-2">
               <Input
-                placeholder="Neuen Tag hinzufügen..."
+                placeholder={t("settings.tags")}
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
                 onKeyPress={(e) => e.key === "Enter" && addTag()}
               />
-              <Button onClick={addTag}>Hinzufügen</Button>
+              <Button onClick={addTag}>{t("trades.save")}</Button>
             </div>
             <div className="flex flex-wrap gap-2">
               {tags.map((tag) => (
@@ -201,7 +203,7 @@ const Settings = () => {
         </Card>
 
         <Button onClick={handleSave} className="w-full" disabled={saving}>
-          {saving ? "Speichert..." : "Einstellungen speichern"}
+          {saving ? t("common.loading") : t("settings.save")}
         </Button>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +15,7 @@ interface JournalEntry {
 }
 
 const Journal = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [newEntry, setNewEntry] = useState("");
@@ -42,7 +44,7 @@ const Journal = () => {
 
     try {
       const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) throw new Error("Nicht angemeldet");
+      if (!currentUser) throw new Error(t("journal.notLoggedIn"));
 
       const { error } = await supabase.from("journal_entries").insert({
         user_id: currentUser.id,
@@ -52,39 +54,39 @@ const Journal = () => {
 
       if (error) throw error;
 
-      toast.success("Journal-Eintrag hinzugefügt");
+      toast.success(t("journal.entryAdded"));
       setNewEntry("");
       loadEntries();
     } catch (error: any) {
-      toast.error(error.message || "Fehler beim Hinzufügen");
+      toast.error(error.message || t("journal.addError"));
     }
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Lädt...</div>;
+    return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Trading Journal</h1>
-        <p className="text-muted-foreground">Dokumentiere deine Trading-Erkenntnisse</p>
+        <h1 className="text-3xl font-bold">{t("journal.title")}</h1>
+        <p className="text-muted-foreground">{t("journal.subtitle")}</p>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Neuer Eintrag</CardTitle>
+          <CardTitle>{t("journal.newEntry")}</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <Textarea
-            placeholder="Was hast du heute gelernt? Dokumentiere deine Trading-Gedanken..."
+            placeholder={t("journal.placeholder")}
             value={newEntry}
             onChange={(e) => setNewEntry(e.target.value)}
             rows={5}
           />
           <Button onClick={handleAddEntry}>
             <Plus className="mr-2 h-4 w-4" />
-            Eintrag hinzufügen
+            {t("journal.addEntry")}
           </Button>
         </CardContent>
       </Card>
@@ -92,19 +94,14 @@ const Journal = () => {
       <div className="space-y-4">
         {entries.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted-foreground">Noch keine Journal-Einträge. Erstelle deinen ersten Eintrag!</p>
+            <p className="text-muted-foreground">{t("journal.noEntries")}</p>
           </div>
         ) : (
           entries.map((entry) => (
             <Card key={entry.id}>
               <CardHeader>
                 <CardTitle className="text-lg">
-                  {new Date(entry.date).toLocaleDateString("de-DE", {
-                    weekday: "long",
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
+                  {new Date(entry.date).toLocaleDateString()}
                 </CardTitle>
               </CardHeader>
               <CardContent>
