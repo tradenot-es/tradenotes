@@ -29,35 +29,67 @@ Deno.serve(async (req) => {
       throw new Error('Date parameter is required');
     }
 
-    const apiKey = Deno.env.get('MARKETAUX_API_KEY');
+    const apiKey = Deno.env.get('FINLIGHT_API_KEY');
     if (!apiKey) {
-      throw new Error('MARKETAUX_API_KEY not configured');
+      throw new Error('FINLIGHT_API_KEY not configured');
     }
 
     console.log('Fetching news for date:', date, 'symbols:', symbols);
 
-    // Build API URL with filters
-    let apiUrl = `https://api.marketaux.com/v1/news/all?api_token=${apiKey}&published_on=${date}&language=en&limit=10`;
-    
+    // Build query for Finlight API
+    let query = '';
     if (symbols && symbols.length > 0) {
-      apiUrl += `&symbols=${symbols.join(',')}`;
+      query = symbols.map((s: string) => `ticker:${s}`).join(' OR ');
     }
 
-    const response = await fetch(apiUrl);
+    const requestBody = {
+      from: date,
+      to: date,
+      pageSize: 10,
+      includeContent: true,
+      includeEntities: true,
+      ...(query && { query })
+    };
+
+    console.log('Finlight API request:', JSON.stringify(requestBody));
+
+    const response = await fetch('https://api.finlight.me/v2/articles', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody)
+    });
     
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Marketaux API error:', response.status, errorText);
+      console.error('Finlight API error:', response.status, errorText);
       throw new Error(`Failed to fetch news: ${response.status}`);
     }
 
     const data = await response.json();
-    console.log('News fetched successfully, count:', data.data?.length || 0);
+    console.log('News fetched successfully, count:', data.articles?.length || 0);
+
+    // Transform Finlight articles to match expected format
+    const transformedArticles = (data.articles || []).map((article: any) => ({
+      uuid: article.id || article.uuid,
+      title: article.title,
+      description: article.snippet || article.description,
+      url: article.url,
+      published_at: article.publishedAt || article.published_at,
+      source: article.source?.name || article.source || 'Unknown',
+      sentiment: article.sentiment,
+      entities: article.companies?.map((company: any) => ({
+        symbol: company.ticker,
+        name: company.name
+      })) || []
+    }));
 
     return new Response(
       JSON.stringify({
         success: true,
-        articles: data.data || [],
+        articles: transformedArticles,
         meta: data.meta || {}
       }),
       {
