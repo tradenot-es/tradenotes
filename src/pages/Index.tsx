@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
@@ -13,6 +14,7 @@ interface Trade {
 }
 
 const Index = () => {
+  const { t } = useTranslation();
   const { user } = useAuth();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
@@ -95,7 +97,7 @@ const Index = () => {
   };
 
   if (loading) {
-    return <div className="flex items-center justify-center min-h-screen">Lädt...</div>;
+    return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
 
   const kpis = calculateKPIs();
@@ -105,39 +107,39 @@ const Index = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <p className="text-muted-foreground">Übersicht deiner Trading-Performance</p>
+        <h1 className="text-3xl font-bold">{t("dashboard.title")}</h1>
+        <p className="text-muted-foreground">{t("dashboard.subtitle")}</p>
       </div>
 
       {trades.length === 0 ? (
         <div className="text-center py-12">
-          <p className="text-muted-foreground">Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!</p>
+          <p className="text-muted-foreground">{t("dashboard.noTrades")}</p>
         </div>
       ) : (
         <>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
             <KPICard
-              title="Total Trades"
+              title={t("dashboard.totalTrades")}
               value={kpis.totalTrades}
               icon={Activity}
             />
             <KPICard
-              title="Win Rate"
+              title={t("dashboard.winRate")}
               value={kpis.winRate}
               icon={Target}
             />
             <KPICard
-              title="Net P&L"
+              title={t("dashboard.netPnL")}
               value={`$${kpis.netPnL}`}
               icon={DollarSign}
             />
             <KPICard
-              title="Profit Factor"
+              title={t("dashboard.profitFactor")}
               value={kpis.profitFactor}
               icon={TrendingUp}
             />
             <KPICard
-              title="Max Drawdown"
+              title={t("dashboard.maxDrawdown")}
               value={`$${kpis.maxDrawdown}`}
               icon={TrendingUp}
             />
@@ -145,7 +147,7 @@ const Index = () => {
 
           <div className="grid gap-4 md:grid-cols-2">
             <EquityCurveChart data={equityData} />
-            <PnLChart data={pnlData} title="P&L nach Monat" />
+            <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
           </div>
         </>
       )}

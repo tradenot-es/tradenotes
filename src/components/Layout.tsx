@@ -1,20 +1,22 @@
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, LogOut } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 
-const navItems = [
-  { title: "Dashboard", url: "/", icon: LayoutDashboard },
-  { title: "Trades", url: "/trades", icon: TrendingUp },
-  { title: "Import", url: "/import", icon: Upload },
-  { title: "Journal", url: "/journal", icon: BookOpen },
-  { title: "Settings", url: "/settings", icon: Settings },
-];
-
 export function Layout({ children }: { children: ReactNode }) {
+  const { t } = useTranslation();
   const { signOut } = useAuth();
+
+  const navItems = [
+    { title: t("nav.dashboard"), url: "/", icon: LayoutDashboard },
+    { title: t("nav.trades"), url: "/trades", icon: TrendingUp },
+    { title: t("nav.import"), url: "/import", icon: Upload },
+    { title: t("nav.journal"), url: "/journal", icon: BookOpen },
+    { title: t("nav.settings"), url: "/settings", icon: Settings },
+  ];
 
   return (
     <SidebarProvider>
@@ -51,7 +53,7 @@ export function Layout({ children }: { children: ReactNode }) {
                 onClick={signOut}
               >
                 <LogOut className="h-4 w-4 mr-3" />
-                Abmelden
+                {t("nav.logout")}
               </Button>
             </div>
           </SidebarContent>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { toast } from "sonner";
 
 const Auth = () => {
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +35,7 @@ const Auth = () => {
           password,
         });
         if (error) throw error;
-        toast.success("Erfolgreich angemeldet!");
+        toast.success(t("auth.loginSuccess"));
         navigate("/");
       } else {
         const { error } = await supabase.auth.signUp({
@@ -44,11 +46,11 @@ const Auth = () => {
           },
         });
         if (error) throw error;
-        toast.success("Account erstellt! Du kannst dich jetzt anmelden.");
+        toast.success(t("auth.accountCreated"));
         setIsLogin(true);
       }
     } catch (error: any) {
-      toast.error(error.message || "Ein Fehler ist aufgetreten");
+      toast.error(error.message || t("auth.error"));
     } finally {
       setLoading(false);
     }
@@ -58,28 +60,26 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center p-6">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>{isLogin ? "Anmelden" : "Registrieren"}</CardTitle>
+          <CardTitle>{isLogin ? t("auth.login") : t("auth.register")}</CardTitle>
           <CardDescription>
-            {isLogin
-              ? "Melde dich an, um auf dein Trading Journal zuzugreifen"
-              : "Erstelle einen Account für dein Trading Journal"}
+            {isLogin ? t("auth.loginDesc") : t("auth.registerDesc")}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleAuth} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">E-Mail</Label>
+              <Label htmlFor="email">{t("auth.email")}</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="deine@email.com"
+                placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Passwort</Label>
+              <Label htmlFor="password">{t("auth.password")}</Label>
               <Input
                 id="password"
                 type="password"
@@ -91,7 +91,7 @@ const Auth = () => {
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Lädt..." : isLogin ? "Anmelden" : "Registrieren"}
+              {loading ? t("auth.loading") : isLogin ? t("auth.login") : t("auth.register")}
             </Button>
             <Button
               type="button"
@@ -99,9 +99,7 @@ const Auth = () => {
               className="w-full"
               onClick={() => setIsLogin(!isLogin)}
             >
-              {isLogin
-                ? "Noch kein Account? Registrieren"
-                : "Bereits registriert? Anmelden"}
+              {isLogin ? t("auth.noAccount") : t("auth.hasAccount")}
             </Button>
           </form>
         </CardContent>
