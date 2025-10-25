@@ -83,6 +83,7 @@ export type Database = {
           exit_time: string
           fees: number | null
           id: string
+          initial_risk: number | null
           market: string | null
           note: string | null
           pnl_net: number
@@ -92,6 +93,7 @@ export type Database = {
           setup: string | null
           setup_checklist_completed: boolean[] | null
           side: string
+          stop_loss_price: number | null
           symbol: string
           tags: string[] | null
           updated_at: string | null
@@ -105,6 +107,7 @@ export type Database = {
           exit_time: string
           fees?: number | null
           id?: string
+          initial_risk?: number | null
           market?: string | null
           note?: string | null
           pnl_net: number
@@ -114,6 +117,7 @@ export type Database = {
           setup?: string | null
           setup_checklist_completed?: boolean[] | null
           side: string
+          stop_loss_price?: number | null
           symbol: string
           tags?: string[] | null
           updated_at?: string | null
@@ -127,6 +131,7 @@ export type Database = {
           exit_time?: string
           fees?: number | null
           id?: string
+          initial_risk?: number | null
           market?: string | null
           note?: string | null
           pnl_net?: number
@@ -136,6 +141,7 @@ export type Database = {
           setup?: string | null
           setup_checklist_completed?: boolean[] | null
           side?: string
+          stop_loss_price?: number | null
           symbol?: string
           tags?: string[] | null
           updated_at?: string | null

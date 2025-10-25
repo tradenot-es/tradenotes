@@ -11,6 +11,7 @@ import Import from "./pages/Import";
 import Journal from "./pages/Journal";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
+import Glossary from "./pages/Glossary";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -36,6 +37,7 @@ const App = () => (
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="/glossary" element={<Glossary />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>

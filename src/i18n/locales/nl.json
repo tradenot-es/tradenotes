@@ -4,6 +4,7 @@
     "trades": "Transacties",
     "import": "Importeren",
     "journal": "Dagboek",
+    "glossary": "Begrippenlijst",
     "account": "Account",
     "settings": "Instellingen",
     "logout": "Uitloggen"
@@ -27,9 +28,18 @@
     "subtitle": "Overzicht van je trading prestaties",
     "totalTrades": "Totaal transacties",
     "winRate": "Winstpercentage",
+    "winRateTooltip": "Percentage winstgevende transacties",
     "netPnL": "Netto P&L",
+    "avgRMultiple": "Gem. R-Multiple",
+    "avgRMultipleTooltip": "Gemiddelde risico-beloning uitkomst. 1R = 1x risico, 2R = 2x je risico verdiend",
+    "expectancy": "Verwachting",
+    "expectancyTooltip": "Verwachte winst per transactie. Positief = winstgevend systeem",
     "profitFactor": "Winstfactor",
+    "profitFactorTooltip": "Verhouding totale winsten tot verliezen. Boven 2.0 is uitstekend",
+    "avgWinLoss": "Gem. Winst / Verlies",
+    "avgWinLossTooltip": "Gemiddelde winnende transactie vs gemiddelde verliezende transactie",
     "maxDrawdown": "Max drawdown",
+    "maxDrawdownTooltip": "Grootste daling vanaf het hoogtepunt",
     "equityCurve": "Vermogenscurve",
     "pnlByMonth": "P&L per maand",
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
@@ -92,7 +102,10 @@
     "crypto": "Crypto",
     "option": "Optie",
     "forex": "Forex",
-    "index": "Index"
+    "index": "Index",
+    "stopLossPrice": "Stop Loss Prijs",
+    "initialRisk": "Initieel Risico",
+    "initialRiskHint": "Voor R-Multiple berekening: (Entry - Stop Loss) × Hoeveelheid"
   },
   "import": {
     "title": "Transacties importeren",

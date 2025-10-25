@@ -4,6 +4,7 @@
     "trades": "Operaciones",
     "import": "Importar",
     "journal": "Diario",
+    "glossary": "Glosario",
     "account": "Cuenta",
     "settings": "Configuración",
     "logout": "Cerrar sesión"
@@ -27,9 +28,18 @@
     "subtitle": "Resumen de tu rendimiento de trading",
     "totalTrades": "Total de operaciones",
     "winRate": "Tasa de éxito",
+    "winRateTooltip": "Porcentaje de operaciones rentables",
     "netPnL": "P&L neto",
+    "avgRMultiple": "R-Multiple promedio",
+    "avgRMultipleTooltip": "Resultado promedio de riesgo-recompensa. 1R = arriesgaste 1, 2R = ganaste 2x tu riesgo",
+    "expectancy": "Expectativa",
+    "expectancyTooltip": "Beneficio esperado por operación. Positivo = sistema rentable",
     "profitFactor": "Factor de beneficio",
+    "profitFactorTooltip": "Ratio de ganancias totales a pérdidas. Más de 2.0 es excelente",
+    "avgWinLoss": "Ganancia / Pérdida promedio",
+    "avgWinLossTooltip": "Operación ganadora promedio vs operación perdedora promedio",
     "maxDrawdown": "Drawdown máx",
+    "maxDrawdownTooltip": "Mayor caída desde el máximo",
     "equityCurve": "Curva de capital",
     "pnlByMonth": "P&L por mes",
     "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
@@ -92,7 +102,10 @@
     "crypto": "Cripto",
     "option": "Opción",
     "forex": "Forex",
-    "index": "Índice"
+    "index": "Índice",
+    "stopLossPrice": "Precio Stop Loss",
+    "initialRisk": "Riesgo Inicial",
+    "initialRiskHint": "Para cálculo R-Multiple: (Entrada - Stop Loss) × Cantidad"
   },
   "import": {
     "title": "Importar operaciones",

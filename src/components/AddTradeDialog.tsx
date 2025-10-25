@@ -23,6 +23,9 @@ interface Trade {
   entry_time: string;
   exit_time: string;
   fees: number;
+  r?: number;
+  initial_risk?: number;
+  stop_loss_price?: number;
   setup?: string;
   note?: string;
   setup_checklist_completed?: boolean[];
@@ -49,6 +52,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     qty: "",
     entryPrice: "",
     exitPrice: "",
+    stopLossPrice: "",
+    initialRisk: "",
     entryTime: "",
     exitTime: "",
     fees: "2.00",
@@ -86,6 +91,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           qty: editTrade.qty.toString(),
           entryPrice: editTrade.entry_price.toString(),
           exitPrice: editTrade.exit_price.toString(),
+          stopLossPrice: editTrade.stop_loss_price?.toString() || "",
+          initialRisk: editTrade.initial_risk?.toString() || "",
           entryTime: editTrade.entry_time.substring(0, 16),
           exitTime: editTrade.exit_time.substring(0, 16),
           fees: editTrade.fees.toString(),
@@ -195,10 +202,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Nicht angemeldet");
 
+      // Calculate P&L
       const priceDiff = formData.side === "long" 
         ? exitPrice - entryPrice 
         : entryPrice - exitPrice;
       const pnlNet = (priceDiff * qty) - fees;
+
+      const stopLossPrice = formData.stopLossPrice ? parseFloat(formData.stopLossPrice) : null;
+      const initialRisk = formData.initialRisk ? parseFloat(formData.initialRisk) : null;
+      
+      // Calculate R-Multiple if initial_risk is provided
+      let rMultiple = null;
+      if (initialRisk && initialRisk > 0) {
+        rMultiple = pnlNet / initialRisk;
+      }
 
       const tradeData = {
         symbol: formData.symbol.toUpperCase(),
@@ -211,6 +228,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         exit_time: formData.exitTime,
         fees,
         pnl_net: pnlNet,
+        stop_loss_price: stopLossPrice,
+        initial_risk: initialRisk,
+        r: rMultiple,
         setup: formData.setup || null,
         note: formData.note || null,
         setup_checklist_completed: checklistCompleted.length > 0 ? checklistCompleted : null,
@@ -247,6 +267,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         qty: "",
         entryPrice: "",
         exitPrice: "",
+        stopLossPrice: "",
+        initialRisk: "",
         entryTime: "",
         exitTime: "",
         fees: "2.00",
@@ -414,6 +436,34 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               {errors.fees && (
                 <p className="text-sm text-destructive">{errors.fees}</p>
               )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="stopLossPrice">{t("trades.stopLossPrice")} ($)</Label>
+              <Input
+                id="stopLossPrice"
+                type="number"
+                step="0.01"
+                value={formData.stopLossPrice}
+                onChange={(e) => setFormData({ ...formData, stopLossPrice: e.target.value })}
+                placeholder="Optional"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="initialRisk">{t("trades.initialRisk")} ($)</Label>
+              <Input
+                id="initialRisk"
+                type="number"
+                step="0.01"
+                value={formData.initialRisk}
+                onChange={(e) => setFormData({ ...formData, initialRisk: e.target.value })}
+                placeholder="Optional"
+              />
+              <p className="text-xs text-muted-foreground">
+                {t("trades.initialRiskHint")}
+              </p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="setup">{t("trades.setup")}</Label>

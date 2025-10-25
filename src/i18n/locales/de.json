@@ -4,6 +4,7 @@
     "trades": "Trades",
     "import": "Import",
     "journal": "Journal",
+    "glossary": "Glossar",
     "account": "Konto",
     "settings": "Einstellungen",
     "logout": "Abmelden"
@@ -27,9 +28,18 @@
     "subtitle": "Übersicht deiner Trading-Performance",
     "totalTrades": "Total Trades",
     "winRate": "Win Rate",
+    "winRateTooltip": "Prozentsatz profitabler Trades",
     "netPnL": "Net P&L",
+    "avgRMultiple": "Ø R-Multiple",
+    "avgRMultipleTooltip": "Durchschnittliches Risiko-Ertrags-Verhältnis. 1R = 1x Risiko, 2R = 2x Risiko verdient",
+    "expectancy": "Erwartungswert",
+    "expectancyTooltip": "Erwarteter Gewinn pro Trade. Positiv = profitables System",
     "profitFactor": "Profit Factor",
+    "profitFactorTooltip": "Verhältnis Gesamtgewinne zu Gesamtverlusten. Über 2.0 ist exzellent",
+    "avgWinLoss": "Ø Gewinn / Verlust",
+    "avgWinLossTooltip": "Durchschnittlicher Gewinn-Trade vs. durchschnittlicher Verlust-Trade",
     "maxDrawdown": "Max Drawdown",
+    "maxDrawdownTooltip": "Größter Rückgang vom Höchststand",
     "equityCurve": "Equity Curve",
     "pnlByMonth": "P&L nach Monat",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
@@ -92,7 +102,10 @@
     "crypto": "Krypto",
     "option": "Option",
     "forex": "Forex",
-    "index": "Index"
+    "index": "Index",
+    "stopLossPrice": "Stop Loss Preis",
+    "initialRisk": "Geplantes Risiko",
+    "initialRiskHint": "Für R-Multiple Berechnung: (Entry - Stop Loss) × Menge"
   },
   "import": {
     "title": "Trades importieren",

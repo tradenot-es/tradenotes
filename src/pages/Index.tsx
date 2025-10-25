@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
+import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
@@ -23,6 +24,9 @@ interface Trade {
   exit_time: string;
   fees: number;
   pnl_net: number;
+  r?: number;
+  initial_risk?: number;
+  stop_loss_price?: number;
   setup?: string;
   note?: string;
 }
@@ -78,13 +82,27 @@ const Index = () => {
   const calculateKPIs = () => {
     const totalTrades = trades.length;
     const winningTrades = trades.filter((t) => t.pnl_net > 0).length;
+    const losingTrades = trades.filter((t) => t.pnl_net < 0).length;
     const winRate = totalTrades > 0 ? ((winningTrades / totalTrades) * 100).toFixed(1) : "0.0";
     
     const totalPnL = trades.reduce((sum, t) => sum + t.pnl_net, 0);
     const totalWins = trades.filter((t) => t.pnl_net > 0).reduce((sum, t) => sum + t.pnl_net, 0);
     const totalLosses = Math.abs(trades.filter((t) => t.pnl_net < 0).reduce((sum, t) => sum + t.pnl_net, 0));
     
+    const avgWin = winningTrades > 0 ? totalWins / winningTrades : 0;
+    const avgLoss = losingTrades > 0 ? totalLosses / losingTrades : 0;
+    
     const profitFactor = totalLosses > 0 ? (totalWins / totalLosses).toFixed(2) : "∞";
+    
+    // R-Multiple calculation
+    const tradesWithR = trades.filter(t => t.r != null && t.initial_risk != null && t.initial_risk > 0);
+    const avgRMultiple = tradesWithR.length > 0 
+      ? (tradesWithR.reduce((sum, t) => sum + (t.r || 0), 0) / tradesWithR.length).toFixed(2)
+      : "N/A";
+    
+    // Expectancy calculation
+    const lossRate = totalTrades > 0 ? losingTrades / totalTrades : 0;
+    const expectancy = (winningTrades / totalTrades) * avgWin - lossRate * avgLoss;
     
     let cumulative = 0;
     let peak = 0;
@@ -103,6 +121,10 @@ const Index = () => {
       netPnL: totalPnL.toFixed(2),
       profitFactor,
       maxDrawdown: maxDrawdown.toFixed(2),
+      avgRMultiple,
+      expectancy: expectancy.toFixed(2),
+      avgWin: avgWin.toFixed(2),
+      avgLoss: avgLoss.toFixed(2),
     };
   };
 
@@ -155,31 +177,61 @@ const Index = () => {
         </div>
       ) : (
         <>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <KPICard
               title={t("dashboard.totalTrades")}
               value={kpis.totalTrades}
               icon={Activity}
             />
-            <KPICard
+            <KPICardWithTooltip
               title={t("dashboard.winRate")}
               value={kpis.winRate}
               icon={Target}
+              tooltip={t("dashboard.winRateTooltip")}
+              glossaryLink="/glossary#win-rate"
             />
             <KPICard
               title={t("dashboard.netPnL")}
               value={`$${kpis.netPnL}`}
               icon={DollarSign}
             />
-            <KPICard
+            <KPICardWithTooltip
+              title={t("dashboard.avgRMultiple")}
+              value={kpis.avgRMultiple}
+              icon={TrendingUp}
+              tooltip={t("dashboard.avgRMultipleTooltip")}
+              glossaryLink="/glossary#r-multiple"
+            />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <KPICardWithTooltip
+              title={t("dashboard.expectancy")}
+              value={`$${kpis.expectancy}`}
+              icon={DollarSign}
+              tooltip={t("dashboard.expectancyTooltip")}
+              glossaryLink="/glossary#expectancy"
+            />
+            <KPICardWithTooltip
               title={t("dashboard.profitFactor")}
               value={kpis.profitFactor}
               icon={TrendingUp}
+              tooltip={t("dashboard.profitFactorTooltip")}
+              glossaryLink="/glossary#profit-factor"
             />
-            <KPICard
+            <KPICardWithTooltip
+              title={t("dashboard.avgWinLoss")}
+              value={`$${kpis.avgWin} / $${kpis.avgLoss}`}
+              icon={Activity}
+              tooltip={t("dashboard.avgWinLossTooltip")}
+              glossaryLink="/glossary#avg-win-loss"
+            />
+            <KPICardWithTooltip
               title={t("dashboard.maxDrawdown")}
               value={`$${kpis.maxDrawdown}`}
               icon={TrendingUp}
+              tooltip={t("dashboard.maxDrawdownTooltip")}
+              glossaryLink="/glossary#max-drawdown"
             />
           </div>
 
