@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { X, HelpCircle, Shield, ShieldCheck, QrCode } from "lucide-react";
+import { X, HelpCircle, Shield, ShieldCheck, QrCode, User, Lock, Mail } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -38,6 +38,11 @@ const Settings = () => {
   const [totpSecret, setTotpSecret] = useState<string>("");
   const [verifyCode, setVerifyCode] = useState("");
   const [showQRDialog, setShowQRDialog] = useState(false);
+  
+  // Account states
+  const [email, setEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const timezones = [
     "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -68,6 +73,7 @@ const Settings = () => {
     if (user) {
       loadSettings();
       checkMFAStatus();
+      setEmail(user.email || "");
     }
   }, [user]);
 
@@ -252,6 +258,36 @@ const Settings = () => {
     setTags(tags.filter((t) => t !== tag));
   };
 
+  const handleUpdateEmail = async () => {
+    try {
+      const { error } = await supabase.auth.updateUser({ email });
+      if (error) throw error;
+      toast.success(t("settings.emailUpdateSuccess"));
+    } catch (error: any) {
+      toast.error(error.message || t("settings.emailUpdateError"));
+    }
+  };
+
+  const handleUpdatePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      toast.error(t("settings.passwordMismatch"));
+      return;
+    }
+    if (newPassword.length < 6) {
+      toast.error(t("settings.passwordTooShort"));
+      return;
+    }
+    try {
+      const { error } = await supabase.auth.updateUser({ password: newPassword });
+      if (error) throw error;
+      setNewPassword("");
+      setConfirmPassword("");
+      toast.success(t("settings.passwordUpdateSuccess"));
+    } catch (error: any) {
+      toast.error(error.message || t("settings.passwordUpdateError"));
+    }
+  };
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
@@ -265,17 +301,48 @@ const Settings = () => {
         </div>
 
         <div className="grid gap-6">
-          {/* Security Section */}
+          {/* Account Section */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Shield className="h-5 w-5" />
-                {t("settings.security")}
+                <User className="h-5 w-5" />
+                {t("settings.account")}
               </CardTitle>
-              <CardDescription>{t("settings.securityDesc")}</CardDescription>
+              <CardDescription>{t("settings.accountDesc")}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between">
+            <CardContent className="space-y-6">
+              {/* Email */}
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="email" className="text-base">{t("settings.email")}</Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.emailHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="flex gap-2">
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="flex-1"
+                  />
+                  <Button onClick={handleUpdateEmail}>
+                    <Mail className="h-4 w-4 mr-2" />
+                    {t("settings.updateEmail")}
+                  </Button>
+                </div>
+              </div>
+
+              {/* 2FA */}
+              <div className="flex items-center justify-between pt-4 border-t">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="mfa" className="text-base">
                     {t("settings.twoFactor")}
@@ -302,6 +369,55 @@ const Settings = () => {
                   </Button>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Security Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Lock className="h-5 w-5" />
+                {t("settings.security")}
+              </CardTitle>
+              <CardDescription>{t("settings.securityDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="newPassword" className="text-base">{t("settings.newPassword")}</Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.passwordHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Input
+                  id="newPassword"
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder={t("settings.newPasswordPlaceholder")}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">{t("settings.confirmPassword")}</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder={t("settings.confirmPasswordPlaceholder")}
+                />
+              </div>
+              <Button onClick={handleUpdatePassword} className="w-full">
+                <Lock className="h-4 w-4 mr-2" />
+                {t("settings.updatePassword")}
+              </Button>
             </CardContent>
           </Card>
 
