@@ -4,11 +4,15 @@ import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
+import { DashboardCalendar } from "@/components/DashboardCalendar";
+import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 
 interface Trade {
   id: string;
+  symbol: string;
+  side: string;
   pnl_net: number;
   exit_time: string;
 }
@@ -18,6 +22,7 @@ const Index = () => {
   const { user } = useAuth();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   useEffect(() => {
     if (user) {
@@ -28,7 +33,7 @@ const Index = () => {
   const loadTrades = async () => {
     const { data, error } = await supabase
       .from("trades")
-      .select("id, pnl_net, exit_time")
+      .select("id, symbol, side, pnl_net, exit_time")
       .order("exit_time", { ascending: true });
 
     if (!error && data) {
@@ -143,6 +148,22 @@ const Index = () => {
               value={`$${kpis.maxDrawdown}`}
               icon={TrendingUp}
             />
+          </div>
+
+          <div className="flex gap-6 h-[600px]">
+            <div className="flex-1">
+              <DashboardCalendar 
+                trades={trades}
+                currentMonth={currentMonth}
+                onMonthChange={setCurrentMonth}
+              />
+            </div>
+            <div className="w-80">
+              <WeeklyPerformance 
+                trades={trades}
+                currentMonth={currentMonth}
+              />
+            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
