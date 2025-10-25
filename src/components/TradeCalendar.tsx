@@ -4,10 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, addMonths, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import { de, enUS, fr, es, nl } from "date-fns/locale";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FinancialNews } from "./FinancialNews";
+import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface Trade {
   id: string;
@@ -28,6 +30,13 @@ interface TradeCalendarProps {
 export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }: TradeCalendarProps) {
   const { t, i18n } = useTranslation();
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  
+  const monthStart = startOfMonth(currentMonth);
+  const monthEnd = endOfMonth(currentMonth);
+  const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
+  const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+  
+  const { getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
 
   const getLocale = () => {
     switch (i18n.language) {
@@ -55,10 +64,6 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
     return [...new Set(symbols)];
   };
 
-  const monthStart = startOfMonth(currentMonth);
-  const monthEnd = endOfMonth(currentMonth);
-  const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
-  const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -160,6 +165,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
                 const dayPnL = getDayPnL(day);
                 const isCurrentMonth = isSameMonth(day, currentMonth);
                 const isSelected = selectedDate && format(day, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd');
+                const politicalEvents = getEventsForDate(day);
+                const hasTrumpEvent = politicalEvents.some(e => e.type === 'trump_speech');
 
                 return (
                   <div
@@ -173,9 +180,23 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
                     `}
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <span className={`text-sm font-medium ${isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
-                        {format(day, 'd')}
-                      </span>
+                      <div className="flex items-center gap-1">
+                        <span className={`text-sm font-medium ${isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
+                          {format(day, 'd')}
+                        </span>
+                        {hasTrumpEvent && isCurrentMonth && (
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <Megaphone className="h-3 w-3 text-orange-500" />
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p className="text-xs">{politicalEvents.find(e => e.type === 'trump_speech')?.title}</p>
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
+                        )}
+                      </div>
                       {isCurrentMonth && (
                         <Button
                           variant="ghost"
