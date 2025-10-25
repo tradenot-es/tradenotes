@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
 import { Star, Upload, X } from "lucide-react";
+import { SymbolCombobox } from "./SymbolCombobox";
 
 interface Trade {
   id: string;
@@ -344,14 +345,13 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </div>
             <div className="space-y-2">
               <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
-              <Input
-                id="symbol"
+              <SymbolCombobox
                 value={formData.symbol}
-                onChange={(e) => {
-                  setFormData({ ...formData, symbol: e.target.value.toUpperCase() });
+                onChange={(value) => {
+                  setFormData({ ...formData, symbol: value });
                   setErrors({ ...errors, symbol: undefined });
                 }}
-                placeholder="AAPL"
+                market={formData.market}
               />
               {errors.symbol && (
                 <p className="text-sm text-destructive">{errors.symbol}</p>
