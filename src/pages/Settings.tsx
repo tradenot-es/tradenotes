@@ -281,8 +281,10 @@ const Settings = () => {
                     {t("settings.twoFactor")}
                   </Label>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p className="max-w-xs text-sm">{t("settings.twoFactorHelp")}</p>
@@ -315,8 +317,10 @@ const Settings = () => {
                 <div className="flex items-center gap-2">
                   <Label htmlFor="currency">{t("settings.currency")}</Label>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p className="max-w-xs text-sm">{t("settings.currencyHelp")}</p>
@@ -346,8 +350,10 @@ const Settings = () => {
                 <div className="flex items-center gap-2">
                   <Label htmlFor="timezone">{t("settings.timezone")}</Label>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p className="max-w-xs text-sm">{t("settings.timezoneHelp")}</p>
@@ -370,8 +376,10 @@ const Settings = () => {
                 <div className="flex items-center gap-2">
                   <Label htmlFor="fees">{t("settings.defaultFees")} ($)</Label>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p className="max-w-xs text-sm">{t("settings.feesHelp")}</p>
@@ -398,8 +406,10 @@ const Settings = () => {
                 <div className="flex items-center gap-2">
                   <Label htmlFor="slippage">{t("settings.defaultSlippage")} (%)</Label>
                   <Tooltip>
-                    <TooltipTrigger>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
                     </TooltipTrigger>
                     <TooltipContent>
                       <p className="max-w-xs text-sm">{t("settings.slippageHelp")}</p>
@@ -431,8 +441,10 @@ const Settings = () => {
               <div className="flex items-center gap-2">
                 <CardTitle>{t("settings.setups")}</CardTitle>
                 <Tooltip>
-                  <TooltipTrigger>
-                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                  <TooltipTrigger asChild>
+                    <button type="button" className="inline-flex">
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p className="max-w-xs text-sm">{t("settings.setupsHelp")}</p>
@@ -481,8 +493,10 @@ const Settings = () => {
               <div className="flex items-center gap-2">
                 <CardTitle>{t("settings.tags")}</CardTitle>
                 <Tooltip>
-                  <TooltipTrigger>
-                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                  <TooltipTrigger asChild>
+                    <button type="button" className="inline-flex">
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </button>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p className="max-w-xs text-sm">{t("settings.tagsHelp")}</p>
