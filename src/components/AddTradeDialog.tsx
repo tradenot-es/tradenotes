@@ -101,6 +101,15 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           entryTime: dateStr + 'T09:00',
           exitTime: dateStr + 'T16:00'
         }));
+      } else {
+        // Set current date and time for new trade
+        const now = new Date();
+        const dateTimeStr = now.toISOString().substring(0, 16);
+        setFormData(prev => ({
+          ...prev,
+          entryTime: dateTimeStr,
+          exitTime: dateTimeStr
+        }));
       }
     } else {
       // Reset checklist when dialog closes
