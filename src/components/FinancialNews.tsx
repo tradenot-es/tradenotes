@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { ExternalLink, TrendingUp, TrendingDown, Minus } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { NewsSourceFilter } from "./NewsSourceFilter";
 
 interface NewsArticle {
   uuid: string;
@@ -27,10 +28,11 @@ export function FinancialNews({ date, symbols }: FinancialNewsProps) {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
+  const [selectedSources, setSelectedSources] = useState<string[]>([]);
 
   useEffect(() => {
     loadNews();
-  }, [date, symbols]);
+  }, [date, symbols, selectedSources]);
 
   const loadNews = async () => {
     setLoading(true);
@@ -40,7 +42,12 @@ export function FinancialNews({ date, symbols }: FinancialNewsProps) {
       const dateStr = date.toISOString().split('T')[0];
       
       const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
-        body: { date: dateStr, symbols }
+        body: { 
+          action: 'get-articles',
+          date: dateStr, 
+          symbols,
+          sources: selectedSources.length > 0 ? selectedSources : undefined
+        }
       });
 
       if (functionError) throw functionError;
@@ -86,7 +93,10 @@ export function FinancialNews({ date, symbols }: FinancialNewsProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{t("trades.newsOnDate")}</CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle>{t("trades.newsOnDate")}</CardTitle>
+          <NewsSourceFilter onSourcesChange={setSelectedSources} />
+        </div>
       </CardHeader>
       <CardContent>
         {error ? (

@@ -44,6 +44,36 @@ export type Database = {
         }
         Relationships: []
       }
+      news_source_preferences: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          source_id: string
+          source_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          source_id: string
+          source_name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          source_id?: string
+          source_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       trades: {
         Row: {
           created_at: string | null

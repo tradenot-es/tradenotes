@@ -16,6 +16,12 @@ interface NewsArticle {
   entities?: Array<{ symbol: string; name: string }>;
 }
 
+interface NewsSource {
+  id: string;
+  name: string;
+  domain: string;
+}
+
 Deno.serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -23,18 +29,52 @@ Deno.serve(async (req) => {
   }
 
   try {
-    const { date, symbols } = await req.json();
+    const { date, symbols, sources, action } = await req.json();
     
-    if (!date) {
-      throw new Error('Date parameter is required');
-    }
-
     const apiKey = Deno.env.get('FINLIGHT_API_KEY');
     if (!apiKey) {
       throw new Error('FINLIGHT_API_KEY not configured');
     }
 
-    console.log('Fetching news for date:', date, 'symbols:', symbols);
+    // Handle "get-sources" action
+    if (action === 'get-sources') {
+      console.log('Fetching available news sources');
+      
+      const response = await fetch('https://api.finlight.me/v2/sources', {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': apiKey,
+          'accept': '*/*',
+        },
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Finlight API error:', response.status, errorText);
+        throw new Error(`Failed to fetch sources: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('Sources fetched successfully, count:', data.sources?.length || 0);
+
+      return new Response(
+        JSON.stringify({
+          success: true,
+          sources: data.sources || []
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        }
+      );
+    }
+
+    // Handle "get-articles" action (default)
+    if (!date) {
+      throw new Error('Date parameter is required');
+    }
+
+    console.log('Fetching news for date:', date, 'symbols:', symbols, 'sources:', sources);
 
     // Build query for Finlight API
     let query = '';
@@ -42,13 +82,14 @@ Deno.serve(async (req) => {
       query = symbols.map((s: string) => `ticker:${s}`).join(' OR ');
     }
 
-    const requestBody = {
+    const requestBody: any = {
       from: date,
       to: date,
-      pageSize: 10,
+      pageSize: 20,
       includeContent: true,
       includeEntities: true,
-      ...(query && { query })
+      ...(query && { query }),
+      ...(sources && sources.length > 0 && { sources })
     };
 
     console.log('Finlight API request:', JSON.stringify(requestBody));
