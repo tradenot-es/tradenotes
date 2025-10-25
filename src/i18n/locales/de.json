@@ -72,7 +72,9 @@
     "save": "Speichern",
     "close": "Schließen",
     "optional": "optional",
-    "selectSetup": "Setup auswählen",
+    "selectSetup": "Setup auswählen...",
+    "setupChecklist": "Setup-Checkliste",
+    "checklistCompleted": "erfüllt",
     "tradeAdded": "Trade erfolgreich hinzugefügt",
     "addError": "Fehler beim Hinzufügen des Trades",
     "required": "Alle Pflichtfelder müssen ausgefüllt werden",
@@ -167,6 +169,11 @@
     "general": "Allgemein",
     "setups": "Trading-Setups",
     "setupsDesc": "Definiere deine Handelsstrategien und Setups",
+    "setupsChecklistDesc": "Definiere Trading-Setups mit Checklisten zur Verfolgung der Setup-Kriterien",
+    "newSetupName": "Neuer Setup-Name",
+    "checklistItems": "Punkte",
+    "newChecklistItem": "Checklisten-Kriterium hinzufügen...",
+    "deleteSetup": "Setup löschen",
     "tags": "Tags",
     "tagsDesc": "Erstelle Tags zur Organisation deiner Trades",
     "currency": "Basiswährung",
@@ -255,6 +262,7 @@
     "setupMaxReached": "Maximal 20 Setups erlaubt",
     "tagItemTooLong": "Tag darf maximal 30 Zeichen haben",
     "tagMaxReached": "Maximal 30 Tags erlaubt",
+    "checklistMaxReached": "Maximal 10 Checklisten-Punkte pro Setup",
     "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen"
   }
 }

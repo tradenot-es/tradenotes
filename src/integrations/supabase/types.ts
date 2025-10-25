@@ -90,6 +90,7 @@ export type Database = {
           r: number | null
           screenshot_url: string | null
           setup: string | null
+          setup_checklist_completed: boolean[] | null
           side: string
           symbol: string
           tags: string[] | null
@@ -111,6 +112,7 @@ export type Database = {
           r?: number | null
           screenshot_url?: string | null
           setup?: string | null
+          setup_checklist_completed?: boolean[] | null
           side: string
           symbol: string
           tags?: string[] | null
@@ -132,6 +134,7 @@ export type Database = {
           r?: number | null
           screenshot_url?: string | null
           setup?: string | null
+          setup_checklist_completed?: boolean[] | null
           side?: string
           symbol?: string
           tags?: string[] | null
@@ -147,6 +150,7 @@ export type Database = {
           default_fees: number | null
           default_slippage: number | null
           id: string
+          setup_definitions: Json | null
           setups: string[] | null
           tags: string[] | null
           timezone: string | null
@@ -159,6 +163,7 @@ export type Database = {
           default_fees?: number | null
           default_slippage?: number | null
           id?: string
+          setup_definitions?: Json | null
           setups?: string[] | null
           tags?: string[] | null
           timezone?: string | null
@@ -171,6 +176,7 @@ export type Database = {
           default_fees?: number | null
           default_slippage?: number | null
           id?: string
+          setup_definitions?: Json | null
           setups?: string[] | null
           tags?: string[] | null
           timezone?: string | null

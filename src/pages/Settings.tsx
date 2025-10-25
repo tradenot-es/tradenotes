@@ -13,6 +13,9 @@ import { useAuth } from "@/hooks/useAuth";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { z } from "zod";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { SetupDefinition } from "@/types/setup";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Plus } from "lucide-react";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -23,9 +26,10 @@ const Settings = () => {
   const [timezone, setTimezone] = useState("America/New_York");
   const [defaultFees, setDefaultFees] = useState("2.00");
   const [defaultSlippage, setDefaultSlippage] = useState("0.5");
-  const [setups, setSetups] = useState<string[]>([]);
+  const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [newSetup, setNewSetup] = useState("");
+  const [newChecklistItem, setNewChecklistItem] = useState("");
   const [newTag, setNewTag] = useState("");
   const [settingsId, setSettingsId] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -47,8 +51,11 @@ const Settings = () => {
     default_slippage: z.number()
       .nonnegative({ message: t("validation.slippageInvalid") })
       .max(100, { message: t("validation.slippageInvalid") }),
-    setups: z.array(
-      z.string().trim().min(1).max(50, { message: t("validation.setupItemTooLong") })
+    setup_definitions: z.array(
+      z.object({
+        name: z.string().trim().min(1).max(50),
+        checklist: z.array(z.string().trim().min(1).max(100)).max(10)
+      })
     ).max(20, { message: t("validation.setupMaxReached") }),
     tags: z.array(
       z.string().trim().min(1).max(30, { message: t("validation.tagItemTooLong") })
@@ -73,7 +80,11 @@ const Settings = () => {
       setTimezone(data.timezone);
       setDefaultFees(data.default_fees?.toString() || "2.00");
       setDefaultSlippage(data.default_slippage?.toString() || "0.5");
-      setSetups(data.setups || []);
+      
+      // Load setup definitions from JSONB field
+      const setupDefs = (data.setup_definitions as unknown as SetupDefinition[]) || [];
+      setSetupDefinitions(setupDefs);
+      
       setTags(data.tags || []);
     }
     setLoading(false);
@@ -88,7 +99,7 @@ const Settings = () => {
       timezone: timezone,
       default_fees: parseFloat(defaultFees),
       default_slippage: parseFloat(defaultSlippage),
-      setups: setups,
+      setup_definitions: setupDefinitions,
       tags: tags
     });
 
@@ -112,7 +123,7 @@ const Settings = () => {
           timezone: timezone,
           default_fees: parseFloat(defaultFees),
           default_slippage: parseFloat(defaultSlippage),
-          setups: setups,
+          setup_definitions: setupDefinitions as any,
           tags: tags,
         })
         .eq("id", settingsId);
@@ -127,28 +138,59 @@ const Settings = () => {
   };
 
   const addSetup = () => {
-    setErrors({ ...errors, setups: undefined });
+    setErrors({ ...errors, setup_definitions: undefined });
     
     if (!newSetup.trim()) return;
     
     if (newSetup.trim().length > 50) {
-      setErrors({ ...errors, setups: t("validation.setupItemTooLong") });
+      setErrors({ ...errors, setup_definitions: t("validation.setupItemTooLong") });
       return;
     }
     
-    if (setups.length >= 20) {
-      setErrors({ ...errors, setups: t("validation.setupMaxReached") });
+    if (setupDefinitions.length >= 20) {
+      setErrors({ ...errors, setup_definitions: t("validation.setupMaxReached") });
       return;
     }
     
-    if (!setups.includes(newSetup.trim())) {
-      setSetups([...setups, newSetup.trim()]);
+    if (!setupDefinitions.find(s => s.name === newSetup.trim())) {
+      setSetupDefinitions([...setupDefinitions, { name: newSetup.trim(), checklist: [] }]);
       setNewSetup("");
     }
   };
 
-  const removeSetup = (setup: string) => {
-    setSetups(setups.filter((s) => s !== setup));
+  const removeSetup = (setupName: string) => {
+    setSetupDefinitions(setupDefinitions.filter((s) => s.name !== setupName));
+  };
+
+  const addChecklistItem = (setupName: string) => {
+    if (!newChecklistItem.trim()) return;
+    
+    setSetupDefinitions(setupDefinitions.map(setup => {
+      if (setup.name === setupName) {
+        if (setup.checklist.length >= 10) {
+          toast.error(t("validation.checklistMaxReached"));
+          return setup;
+        }
+        return {
+          ...setup,
+          checklist: [...setup.checklist, newChecklistItem.trim()]
+        };
+      }
+      return setup;
+    }));
+    setNewChecklistItem("");
+  };
+
+  const removeChecklistItem = (setupName: string, itemIndex: number) => {
+    setSetupDefinitions(setupDefinitions.map(setup => {
+      if (setup.name === setupName) {
+        return {
+          ...setup,
+          checklist: setup.checklist.filter((_, idx) => idx !== itemIndex)
+        };
+      }
+      return setup;
+    }));
   };
 
   const addTag = () => {
@@ -322,7 +364,7 @@ const Settings = () => {
             </CardContent>
           </Card>
 
-          {/* Trading Setups */}
+          {/* Trading Setups with Checklists */}
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
@@ -338,41 +380,95 @@ const Settings = () => {
                   </TooltipContent>
                 </Tooltip>
               </div>
-              <CardDescription>{t("settings.setupsDesc")}</CardDescription>
+              <CardDescription>{t("settings.setupsChecklistDesc")}</CardDescription>
             </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex gap-2">
-                <Input
-                  placeholder={t("settings.setups")}
-                  value={newSetup}
-                  onChange={(e) => {
-                    setNewSetup(e.target.value);
-                    setErrors({ ...errors, setups: undefined });
-                  }}
-                  onKeyPress={(e) => e.key === "Enter" && addSetup()}
-                />
-                <Button onClick={addSetup}>{t("trades.save")}</Button>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex gap-2">
+                  <Input
+                    placeholder={t("settings.newSetupName")}
+                    value={newSetup}
+                    onChange={(e) => {
+                      setNewSetup(e.target.value);
+                      setErrors({ ...errors, setup_definitions: undefined });
+                    }}
+                    onKeyPress={(e) => e.key === "Enter" && addSetup()}
+                  />
+                  <Button onClick={addSetup}><Plus className="h-4 w-4" /></Button>
+                </div>
+                {errors.setup_definitions && (
+                  <p className="text-sm text-destructive">{errors.setup_definitions}</p>
+                )}
               </div>
-              {errors.setups && (
-                <p className="text-sm text-destructive">{errors.setups}</p>
+
+              {setupDefinitions.length > 0 && (
+                <Accordion type="single" collapsible className="w-full">
+                  {setupDefinitions.map((setup) => (
+                    <AccordionItem key={setup.name} value={setup.name}>
+                      <AccordionTrigger className="hover:no-underline">
+                        <div className="flex items-center justify-between w-full pr-4">
+                          <span className="font-medium">{setup.name}</span>
+                          <Badge variant="secondary" className="ml-2">
+                            {setup.checklist.length} {t("settings.checklistItems")}
+                          </Badge>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-3 pt-2">
+                          <div className="flex gap-2">
+                            <Input
+                              placeholder={t("settings.newChecklistItem")}
+                              value={newChecklistItem}
+                              onChange={(e) => setNewChecklistItem(e.target.value)}
+                              onKeyPress={(e) => {
+                                if (e.key === "Enter") {
+                                  addChecklistItem(setup.name);
+                                }
+                              }}
+                            />
+                            <Button 
+                              size="sm" 
+                              onClick={() => addChecklistItem(setup.name)}
+                            >
+                              <Plus className="h-4 w-4" />
+                            </Button>
+                          </div>
+
+                          {setup.checklist.length > 0 && (
+                            <div className="space-y-2">
+                              {setup.checklist.map((item, idx) => (
+                                <div 
+                                  key={idx}
+                                  className="flex items-center justify-between bg-muted/50 rounded-md px-3 py-2"
+                                >
+                                  <span className="text-sm">{item}</span>
+                                  <button
+                                    onClick={() => removeChecklistItem(setup.name, idx)}
+                                    className="text-muted-foreground hover:text-destructive"
+                                  >
+                                    <X className="h-4 w-4" />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={() => removeSetup(setup.name)}
+                            className="w-full mt-2"
+                          >
+                            {t("settings.deleteSetup")}
+                          </Button>
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
               )}
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {setups.map((setup) => (
-                <Badge key={setup} variant="secondary" className="pr-1">
-                  {setup}
-                  <button
-                    onClick={() => removeSetup(setup)}
-                    className="ml-2 hover:text-destructive"
-                  >
-                    <X className="h-3 w-3" />
-                  </button>
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
           {/* Trading Tags */}
           <Card>

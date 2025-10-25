@@ -72,7 +72,9 @@
     "save": "Opslaan",
     "close": "Sluiten",
     "optional": "optioneel",
-    "selectSetup": "Selecteer setup",
+    "selectSetup": "Selecteer een setup...",
+    "setupChecklist": "Setup Checklist",
+    "checklistCompleted": "voltooid",
     "tradeAdded": "Transactie succesvol toegevoegd",
     "addError": "Fout bij toevoegen van transactie",
     "required": "Alle verplichte velden moeten worden ingevuld",
@@ -167,6 +169,11 @@
     "general": "Algemeen",
     "setups": "Trading Setups",
     "setupsDesc": "Definieer je handelsstrategieën en setups",
+    "setupsChecklistDesc": "Definieer je trading setups met checklists om setup-criteria bij te houden",
+    "newSetupName": "Nieuwe setup naam",
+    "checklistItems": "items",
+    "newChecklistItem": "Checklijstcriterium toevoegen...",
+    "deleteSetup": "Setup verwijderen",
     "tags": "Tags",
     "tagsDesc": "Maak tags om je transacties te organiseren",
     "currency": "Basisvaluta",
@@ -255,6 +262,7 @@
     "setupMaxReached": "Maximaal 20 setups toegestaan",
     "tagItemTooLong": "Tag moet 30 tekens of minder zijn",
     "tagMaxReached": "Maximaal 30 tags toegestaan",
+    "checklistMaxReached": "Maximaal 10 checklist items per setup",
     "slippageInvalid": "Slippage moet tussen 0 en 100% zijn"
   }
 }

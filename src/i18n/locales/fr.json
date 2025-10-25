@@ -72,7 +72,9 @@
     "save": "Enregistrer",
     "close": "Fermer",
     "optional": "optionnel",
-    "selectSetup": "Sélectionner la configuration",
+    "selectSetup": "Sélectionner un setup...",
+    "setupChecklist": "Liste de Contrôle du Setup",
+    "checklistCompleted": "complétés",
     "tradeAdded": "Transaction ajoutée avec succès",
     "addError": "Erreur lors de l'ajout de la transaction",
     "required": "Tous les champs obligatoires doivent être remplis",
@@ -167,6 +169,11 @@
     "general": "Général",
     "setups": "Setups de Trading",
     "setupsDesc": "Définissez vos stratégies et setups de trading",
+    "setupsChecklistDesc": "Définissez vos setups avec des listes de contrôle pour suivre les critères",
+    "newSetupName": "Nom du nouveau setup",
+    "checklistItems": "éléments",
+    "newChecklistItem": "Ajouter un critère...",
+    "deleteSetup": "Supprimer le Setup",
     "tags": "Tags",
     "tagsDesc": "Créez des tags pour organiser vos transactions",
     "currency": "Devise de Base",
@@ -255,6 +262,7 @@
     "setupMaxReached": "Maximum 20 setups autorisés",
     "tagItemTooLong": "Le tag doit contenir 30 caractères ou moins",
     "tagMaxReached": "Maximum 30 tags autorisés",
+    "checklistMaxReached": "Maximum 10 éléments par setup",
     "slippageInvalid": "Le slippage doit être entre 0 et 100%"
   }
 }

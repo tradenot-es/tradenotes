@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
+import { SetupDefinition } from "@/types/setup";
 
 interface Trade {
   id: string;
@@ -23,6 +25,7 @@ interface Trade {
   fees: number;
   setup?: string;
   note?: string;
+  setup_checklist_completed?: boolean[];
 }
 
 interface AddTradeDialogProps {
@@ -37,6 +40,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
+  const [checklistCompleted, setChecklistCompleted] = useState<boolean[]>([]);
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -50,6 +55,24 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     setup: "",
     note: "",
   });
+
+  // Load setup definitions
+  useEffect(() => {
+    const loadSetups = async () => {
+      const { data } = await supabase
+        .from("user_settings")
+        .select("setup_definitions")
+        .maybeSingle();
+      
+      if (data?.setup_definitions) {
+        setSetupDefinitions(data.setup_definitions as unknown as SetupDefinition[]);
+      }
+    };
+    
+    if (open) {
+      loadSetups();
+    }
+  }, [open]);
 
   // Set preselected date when dialog opens with a date or load edit data
   useEffect(() => {
@@ -69,6 +92,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           setup: editTrade.setup || "",
           note: editTrade.note || "",
         });
+        setChecklistCompleted(editTrade.setup_checklist_completed || []);
       } else if (preselectedDate) {
         // Set preselected date for new trade
         const dateStr = preselectedDate.toISOString().split('T')[0];
@@ -78,8 +102,19 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           exitTime: dateStr + 'T16:00'
         }));
       }
+    } else {
+      // Reset checklist when dialog closes
+      setChecklistCompleted([]);
     }
   }, [preselectedDate, open, editTrade]);
+
+  // Update checklist when setup changes
+  useEffect(() => {
+    const selectedSetup = setupDefinitions.find(s => s.name === formData.setup);
+    if (selectedSetup && checklistCompleted.length !== selectedSetup.checklist.length) {
+      setChecklistCompleted(new Array(selectedSetup.checklist.length).fill(false));
+    }
+  }, [formData.setup, setupDefinitions]);
 
   const tradeSchema = z.object({
     symbol: z.string()
@@ -169,6 +204,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         pnl_net: pnlNet,
         setup: formData.setup || null,
         note: formData.note || null,
+        setup_checklist_completed: checklistCompleted.length > 0 ? checklistCompleted : null,
       };
 
       let error;
@@ -208,6 +244,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         setup: "",
         note: "",
       });
+      setChecklistCompleted([]);
     } catch (error: any) {
       toast.error(error.message || t("trades.addError"));
     } finally {
@@ -371,20 +408,62 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </div>
             <div className="space-y-2">
               <Label htmlFor="setup">{t("trades.setup")}</Label>
-              <Input
-                id="setup"
-                value={formData.setup}
-                onChange={(e) => {
-                  setFormData({ ...formData, setup: e.target.value });
+              <Select 
+                value={formData.setup} 
+                onValueChange={(v) => {
+                  setFormData({ ...formData, setup: v });
                   setErrors({ ...errors, setup: undefined });
                 }}
-                placeholder="Breakout, Reversal, etc."
-              />
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder={t("trades.selectSetup")} />
+                </SelectTrigger>
+                <SelectContent>
+                  {setupDefinitions.map((setup) => (
+                    <SelectItem key={setup.name} value={setup.name}>
+                      {setup.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               {errors.setup && (
                 <p className="text-sm text-destructive">{errors.setup}</p>
               )}
             </div>
           </div>
+
+          {/* Setup Checklist */}
+          {formData.setup && setupDefinitions.find(s => s.name === formData.setup)?.checklist.length > 0 && (
+            <div className="space-y-3 p-4 border rounded-lg bg-muted/30">
+              <Label className="text-base font-semibold">{t("trades.setupChecklist")}</Label>
+              <div className="space-y-2">
+                {setupDefinitions
+                  .find(s => s.name === formData.setup)
+                  ?.checklist.map((item, idx) => (
+                    <div key={idx} className="flex items-center space-x-3">
+                      <Checkbox
+                        id={`checklist-${idx}`}
+                        checked={checklistCompleted[idx] || false}
+                        onCheckedChange={(checked) => {
+                          const newCompleted = [...checklistCompleted];
+                          newCompleted[idx] = checked as boolean;
+                          setChecklistCompleted(newCompleted);
+                        }}
+                      />
+                      <Label 
+                        htmlFor={`checklist-${idx}`}
+                        className="text-sm font-normal cursor-pointer"
+                      >
+                        {item}
+                      </Label>
+                    </div>
+                  ))}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {checklistCompleted.filter(Boolean).length} / {setupDefinitions.find(s => s.name === formData.setup)?.checklist.length || 0} {t("trades.checklistCompleted")}
+              </p>
+            </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="note">{t("trades.note")}</Label>
