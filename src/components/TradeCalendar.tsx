@@ -4,12 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, addMonths, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import { de, enUS, fr, es, nl } from "date-fns/locale";
-import { ChevronLeft, ChevronRight, Plus, Megaphone } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FinancialNews } from "./FinancialNews";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import trumpEmoji from "@/assets/trump-emoji.png";
 
 interface Trade {
   id: string;
@@ -188,7 +189,11 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <Megaphone className="h-3 w-3 text-orange-500" />
+                                <img 
+                                  src={trumpEmoji} 
+                                  alt="Trump speech" 
+                                  className="h-5 w-5 object-contain" 
+                                />
                               </TooltipTrigger>
                               <TooltipContent>
                                 <p className="text-xs">{politicalEvents.find(e => e.type === 'trump_speech')?.title}</p>
