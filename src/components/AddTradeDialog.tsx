@@ -46,6 +46,7 @@ interface AddTradeDialogProps {
 export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate, editTrade }: AddTradeDialogProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
+  const [loadingPrice, setLoadingPrice] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [checklistCompleted, setChecklistCompleted] = useState<boolean[]>([]);
@@ -143,6 +144,32 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setChecklistCompleted(new Array(selectedSetup.checklist.length).fill(false));
     }
   }, [formData.setup, setupDefinitions]);
+
+  // Fetch current price for a symbol
+  const fetchCurrentPrice = async (symbol: string, market: string) => {
+    if (!symbol) return;
+    
+    setLoadingPrice(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('get-stock-price', {
+        body: { symbol, market }
+      });
+
+      if (error) throw error;
+
+      if (data?.price) {
+        setFormData(prev => ({ ...prev, entryPrice: data.price.toString() }));
+        toast.success(t("trades.priceUpdated", { price: data.price }));
+      } else {
+        toast.error(t("trades.priceNotAvailable"));
+      }
+    } catch (error) {
+      console.error("Error fetching price:", error);
+      toast.error(t("trades.priceError"));
+    } finally {
+      setLoadingPrice(false);
+    }
+  };
 
   const tradeSchema = z.object({
     symbol: z.string()
@@ -350,6 +377,10 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                 onChange={(value) => {
                   setFormData({ ...formData, symbol: value });
                   setErrors({ ...errors, symbol: undefined });
+                  // Auto-fetch price when symbol changes
+                  if (value) {
+                    fetchCurrentPrice(value, formData.market);
+                  }
                 }}
                 market={formData.market}
               />
@@ -390,16 +421,38 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </div>
             <div className="space-y-2">
               <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
-              <Input
-                id="entryPrice"
-                type="number"
-                step="0.01"
-                value={formData.entryPrice}
-                onChange={(e) => {
-                  setFormData({ ...formData, entryPrice: e.target.value });
-                  setErrors({ ...errors, entryPrice: undefined });
-                }}
-              />
+              <div className="flex gap-2">
+                <Input
+                  id="entryPrice"
+                  type="number"
+                  step="0.01"
+                  value={formData.entryPrice}
+                  onChange={(e) => {
+                    setFormData({ ...formData, entryPrice: e.target.value });
+                    setErrors({ ...errors, entryPrice: undefined });
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  onClick={() => {
+                    if (formData.symbol) {
+                      fetchCurrentPrice(formData.symbol, formData.market);
+                    } else {
+                      toast.error(t("trades.selectSymbolFirst"));
+                    }
+                  }}
+                  disabled={loadingPrice}
+                  title={t("trades.refreshPrice")}
+                >
+                  {loadingPrice ? (
+                    <span className="animate-spin">↻</span>
+                  ) : (
+                    "↻"
+                  )}
+                </Button>
+              </div>
               {errors.entryPrice && (
                 <p className="text-sm text-destructive">{errors.entryPrice}</p>
               )}
