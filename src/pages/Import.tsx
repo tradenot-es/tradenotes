@@ -2,8 +2,18 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download } from "lucide-react";
+import { Upload, Download, HelpCircle } from "lucide-react";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 const Import = () => {
   const { t } = useTranslation();
@@ -30,9 +40,74 @@ const Import = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">{t("import.title")}</h1>
-        <p className="text-muted-foreground">{t("import.subtitle")}</p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">{t("import.title")}</h1>
+          <p className="text-muted-foreground">{t("import.subtitle")}</p>
+        </div>
+        
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="icon">
+              <HelpCircle className="h-5 w-5" />
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-3xl max-h-[80vh]">
+            <DialogHeader>
+              <DialogTitle>{t("import.helpTitle")}</DialogTitle>
+              <DialogDescription>{t("import.helpDescription")}</DialogDescription>
+            </DialogHeader>
+            <ScrollArea className="h-[60vh] pr-4">
+              <div className="space-y-6">
+                {/* CSV Import Section */}
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{t("import.helpCsvTitle")}</h3>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>{t("import.helpCsvStep1")}</li>
+                    <li>{t("import.helpCsvStep2")}</li>
+                    <li>{t("import.helpCsvStep3")}</li>
+                  </ol>
+                </div>
+
+                <Separator />
+
+                {/* TradingView Section */}
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{t("import.helpTvTitle")}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">{t("import.helpTvIntro")}</p>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>{t("import.helpTvStep1")}</li>
+                    <li>{t("import.helpTvStep2")}</li>
+                    <li>{t("import.helpTvStep3")}</li>
+                    <li>{t("import.helpTvStep4")}</li>
+                  </ol>
+                </div>
+
+                <Separator />
+
+                {/* NinjaTrader Section */}
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{t("import.helpNtTitle")}</h3>
+                  <p className="text-sm text-muted-foreground mb-2">{t("import.helpNtIntro")}</p>
+                  <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                    <li>{t("import.helpNtStep1")}</li>
+                    <li>{t("import.helpNtStep2")}</li>
+                    <li>{t("import.helpNtStep3")}</li>
+                    <li>{t("import.helpNtStep4")}</li>
+                  </ol>
+                </div>
+
+                <Separator />
+
+                {/* Webhook Info */}
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">{t("import.helpWebhookTitle")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("import.helpWebhookInfo")}</p>
+                </div>
+              </div>
+            </ScrollArea>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2">
