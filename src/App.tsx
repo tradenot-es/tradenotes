@@ -12,6 +12,7 @@ import Journal from "./pages/Journal";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Glossary from "./pages/Glossary";
+import Reports from "./pages/Reports";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 
@@ -34,6 +35,7 @@ const App = () => (
                     <Route path="/" element={<Index />} />
                     <Route path="/trades" element={<Trades />} />
                     <Route path="/import" element={<Import />} />
+                    <Route path="/reports" element={<Reports />} />
                     <Route path="/journal" element={<Journal />} />
                     <Route path="/account" element={<Account />} />
                     <Route path="/settings" element={<Settings />} />

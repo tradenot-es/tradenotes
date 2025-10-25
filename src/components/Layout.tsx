@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3 } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ export function Layout({ children }: { children: ReactNode }) {
     { title: t("nav.dashboard"), url: "/", icon: LayoutDashboard },
     { title: t("nav.trades"), url: "/trades", icon: TrendingUp },
     { title: t("nav.import"), url: "/import", icon: Upload },
+    { title: t("nav.reports"), url: "/reports", icon: BarChart3 },
     { title: t("nav.journal"), url: "/journal", icon: BookOpen },
     { title: t("nav.glossary"), url: "/glossary", icon: BookMarked },
     { title: t("nav.account"), url: "/account", icon: User },
