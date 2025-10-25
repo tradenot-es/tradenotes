@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      daily_prep: {
+        Row: {
+          checklist: Json | null
+          created_at: string
+          date: string
+          id: string
+          key_levels: string | null
+          market_outlook: string | null
+          mindset: string | null
+          trading_plan: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          checklist?: Json | null
+          created_at?: string
+          date: string
+          id?: string
+          key_levels?: string | null
+          market_outlook?: string | null
+          mindset?: string | null
+          trading_plan?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          checklist?: Json | null
+          created_at?: string
+          date?: string
+          id?: string
+          key_levels?: string | null
+          market_outlook?: string | null
+          mindset?: string | null
+          trading_plan?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       journal_entries: {
         Row: {
           content: string

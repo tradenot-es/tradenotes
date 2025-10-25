@@ -66,6 +66,10 @@ export function DailyPrep() {
       .maybeSingle();
 
     if (!error && data) {
+      const checklistData = typeof data.checklist === 'object' && data.checklist !== null
+        ? data.checklist as any
+        : prepData.checklist;
+
       setPrepData({
         id: data.id,
         date: data.date,
@@ -73,7 +77,7 @@ export function DailyPrep() {
         keyLevels: data.key_levels || "",
         tradingPlan: data.trading_plan || "",
         mindset: data.mindset || "",
-        checklist: data.checklist || prepData.checklist,
+        checklist: checklistData,
       });
     }
     setLoading(false);
