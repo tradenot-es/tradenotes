@@ -4,6 +4,7 @@
     "trades": "Transacties",
     "import": "Importeren",
     "journal": "Dagboek",
+    "account": "Account",
     "settings": "Instellingen",
     "logout": "Uitloggen"
   },
@@ -142,6 +143,12 @@
     "entryAdded": "Dagboek invoer toegevoegd",
     "addError": "Fout bij toevoegen",
     "notLoggedIn": "Niet ingelogd"
+  },
+  "account": {
+    "title": "Account",
+    "subtitle": "Beheer je email, wachtwoord en beveiligingsinstellingen",
+    "accountInfo": "Accountinformatie",
+    "accountInfoDesc": "Update je email en authenticatie-instellingen"
   },
   "settings": {
     "title": "Instellingen",

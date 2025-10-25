@@ -4,6 +4,7 @@
     "trades": "Trades",
     "import": "Import",
     "journal": "Journal",
+    "account": "Account",
     "settings": "Settings",
     "logout": "Logout"
   },
@@ -142,6 +143,12 @@
     "entryAdded": "Journal entry added",
     "addError": "Error adding entry",
     "notLoggedIn": "Not logged in"
+  },
+  "account": {
+    "title": "Account",
+    "subtitle": "Manage your email, password and security settings",
+    "accountInfo": "Account Information",
+    "accountInfoDesc": "Update your email and authentication settings"
   },
   "settings": {
     "title": "Settings",

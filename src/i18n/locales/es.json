@@ -4,6 +4,7 @@
     "trades": "Operaciones",
     "import": "Importar",
     "journal": "Diario",
+    "account": "Cuenta",
     "settings": "Configuración",
     "logout": "Cerrar sesión"
   },
@@ -142,6 +143,12 @@
     "entryAdded": "Entrada de diario añadida",
     "addError": "Error al añadir",
     "notLoggedIn": "No has iniciado sesión"
+  },
+  "account": {
+    "title": "Cuenta",
+    "subtitle": "Gestiona tu correo, contraseña y configuración de seguridad",
+    "accountInfo": "Información de Cuenta",
+    "accountInfoDesc": "Actualiza tu correo y configuración de autenticación"
   },
   "settings": {
     "title": "Configuración",

@@ -4,6 +4,7 @@
     "trades": "Transactions",
     "import": "Importer",
     "journal": "Journal",
+    "account": "Compte",
     "settings": "Paramètres",
     "logout": "Déconnexion"
   },
@@ -142,6 +143,12 @@
     "entryAdded": "Entrée de journal ajoutée",
     "addError": "Erreur lors de l'ajout",
     "notLoggedIn": "Non connecté"
+  },
+  "account": {
+    "title": "Compte",
+    "subtitle": "Gérez votre email, mot de passe et paramètres de sécurité",
+    "accountInfo": "Informations du Compte",
+    "accountInfoDesc": "Mettez à jour votre email et paramètres d'authentification"
   },
   "settings": {
     "title": "Paramètres",
