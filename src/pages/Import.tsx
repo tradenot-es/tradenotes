@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, HelpCircle } from "lucide-react";
+import { Upload, Download, HelpCircle, Copy, Check } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +19,12 @@ import { Separator } from "@/components/ui/separator";
 
 const Import = () => {
   const { t } = useTranslation();
+  const { session } = useAuth();
   const [file, setFile] = useState<File | null>(null);
+  const [importing, setImporting] = useState(false);
+  const [copied, setCopied] = useState(false);
+  
+  const webhookUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-trades`;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -26,16 +33,112 @@ const Import = () => {
     }
   };
 
-  const handleImport = () => {
-    if (file) {
-      toast.success(t("import.importWillConnect"));
-    } else {
+  const parseCSV = (text: string): any[] => {
+    const lines = text.split('\n').filter(line => line.trim());
+    if (lines.length < 2) return [];
+    
+    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+    const trades = [];
+    
+    for (let i = 1; i < lines.length; i++) {
+      const values = lines[i].split(',').map(v => v.trim());
+      const trade: any = {};
+      
+      headers.forEach((header, index) => {
+        const value = values[index];
+        
+        // Map CSV headers to trade fields
+        if (header === 'symbol') trade.symbol = value;
+        else if (header === 'side') trade.side = value.toLowerCase();
+        else if (header === 'market') trade.market = value;
+        else if (header === 'qty' || header === 'quantity') trade.qty = parseFloat(value);
+        else if (header === 'entryprice' || header === 'entry_price') trade.entryPrice = parseFloat(value);
+        else if (header === 'exitprice' || header === 'exit_price') trade.exitPrice = parseFloat(value);
+        else if (header === 'entrytime' || header === 'entry_time') trade.entryTime = value;
+        else if (header === 'exittime' || header === 'exit_time') trade.exitTime = value;
+        else if (header === 'fees') trade.fees = parseFloat(value) || 0;
+        else if (header === 'tags') trade.tags = value ? value.split(';') : [];
+        else if (header === 'setup') trade.setup = value;
+        else if (header === 'note') trade.note = value;
+      });
+      
+      // Calculate PnL
+      if (trade.entryPrice && trade.exitPrice && trade.qty) {
+        const multiplier = trade.side === 'long' ? 1 : -1;
+        trade.pnlNet = (trade.exitPrice - trade.entryPrice) * trade.qty * multiplier - (trade.fees || 0);
+      }
+      
+      trades.push(trade);
+    }
+    
+    return trades;
+  };
+
+  const handleImport = async () => {
+    if (!file) {
       toast.error(t("import.selectFile"));
+      return;
+    }
+
+    setImporting(true);
+    
+    try {
+      const text = await file.text();
+      const trades = parseCSV(text);
+      
+      if (trades.length === 0) {
+        toast.error(t("import.noTradesFound"));
+        setImporting(false);
+        return;
+      }
+
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast.error(t("import.notAuthenticated"));
+        setImporting(false);
+        return;
+      }
+
+      const response = await supabase.functions.invoke('import-trades', {
+        body: trades,
+      });
+
+      if (response.error) {
+        throw response.error;
+      }
+
+      toast.success(t("import.importSuccess", { count: trades.length }));
+      setFile(null);
+      
+    } catch (error: any) {
+      console.error('Import error:', error);
+      toast.error(t("import.importError") + ": " + error.message);
+    } finally {
+      setImporting(false);
     }
   };
 
   const downloadTemplate = () => {
-    toast.info(t("import.templateSoon"));
+    const csvContent = `symbol,side,qty,entryPrice,exitPrice,entryTime,exitTime,fees,tags,setup,note
+AAPL,long,100,150.50,155.25,2024-01-15T09:30:00Z,2024-01-15T15:45:00Z,2.00,momentum;tech,Breakout,Strong momentum breakout
+TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,reversal,Failed Rally,Resistance rejection`;
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'trade-import-template.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    
+    toast.success(t("import.templateDownloaded"));
+  };
+
+  const copyWebhookUrl = () => {
+    navigator.clipboard.writeText(webhookUrl);
+    setCopied(true);
+    toast.success(t("import.webhookCopied"));
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -110,6 +213,28 @@ const Import = () => {
         </Dialog>
       </div>
 
+      {session && (
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>{t("import.webhookTitle")}</CardTitle>
+            <CardDescription>{t("import.webhookDescription")}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex items-center gap-2">
+              <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all">
+                {webhookUrl}
+              </code>
+              <Button onClick={copyWebhookUrl} size="icon" variant="outline">
+                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+              </Button>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              {t("import.webhookInstructions")}
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
@@ -139,8 +264,8 @@ const Import = () => {
                 <p className="text-sm">{t("import.selected")}: {file.name}</p>
               </div>
             )}
-            <Button onClick={handleImport} className="w-full" disabled={!file}>
-              {t("import.importTrades")}
+            <Button onClick={handleImport} className="w-full" disabled={!file || importing}>
+              {importing ? t("import.importing") : t("import.importTrades")}
             </Button>
           </CardContent>
         </Card>
