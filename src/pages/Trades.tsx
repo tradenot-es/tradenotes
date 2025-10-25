@@ -11,6 +11,7 @@ interface Trade {
   id: string;
   symbol: string;
   side: string;
+  market: string;
   qty: number;
   entry_price: number;
   exit_price: number;
@@ -18,8 +19,6 @@ interface Trade {
   exit_time: string;
   fees: number;
   pnl_net: number;
-  r?: number;
-  tags?: string[];
   setup?: string;
   note?: string;
 }
@@ -32,6 +31,7 @@ const Trades = () => {
   const [addDialogOpen, setAddDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [preselectedDate, setPreselectedDate] = useState<Date>();
+  const [editTrade, setEditTrade] = useState<Trade | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -58,7 +58,14 @@ const Trades = () => {
   };
 
   const handleAddTradeForDate = (date: Date) => {
+    setEditTrade(null);
     setPreselectedDate(date);
+    setAddDialogOpen(true);
+  };
+
+  const handleEditTrade = (trade: Trade) => {
+    setEditTrade(trade);
+    setPreselectedDate(undefined);
     setAddDialogOpen(true);
   };
 
@@ -74,19 +81,28 @@ const Trades = () => {
         onDateSelect={handleDateSelect}
         selectedDate={selectedDate}
         onAddTrade={handleAddTradeForDate}
+        onEditTrade={handleEditTrade}
       />
 
       <AddTradeDialog 
         open={addDialogOpen} 
         onOpenChange={(open) => {
           setAddDialogOpen(open);
-          if (!open) setPreselectedDate(undefined);
+          if (!open) {
+            setPreselectedDate(undefined);
+            setEditTrade(null);
+          }
         }}
         onSuccess={loadTrades}
         preselectedDate={preselectedDate}
+        editTrade={editTrade}
       />
 
-      <AddTradeFAB onClick={() => setAddDialogOpen(true)} />
+      <AddTradeFAB onClick={() => {
+        setEditTrade(null);
+        setPreselectedDate(undefined);
+        setAddDialogOpen(true);
+      }} />
     </div>
   );
 };

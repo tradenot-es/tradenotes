@@ -20,9 +20,11 @@ interface DashboardCalendarProps {
   trades: Trade[];
   currentMonth: Date;
   onMonthChange: (date: Date) => void;
+  onEditTrade?: (trade: Trade) => void;
+  onDeleteTrade?: (tradeId: string) => void;
 }
 
-export function DashboardCalendar({ trades, currentMonth, onMonthChange }: DashboardCalendarProps) {
+export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditTrade, onDeleteTrade }: DashboardCalendarProps) {
   const { t, i18n } = useTranslation();
   
   const monthStart = startOfMonth(currentMonth);
@@ -151,10 +153,15 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange }: Dashb
                 <div
                   key={idx}
                   className={`
-                    relative border rounded-lg p-3 min-h-[100px] transition-all
+                    relative border rounded-lg p-3 min-h-[100px] transition-all group
                     ${isCurrentMonth ? 'bg-card' : 'bg-muted/20'}
-                    ${dayTrades.length > 0 ? 'border-primary/50' : 'border-border'}
+                    ${dayTrades.length > 0 ? 'border-primary/50 cursor-pointer hover:border-primary' : 'border-border'}
                   `}
+                  onClick={() => {
+                    if (dayTrades.length === 1 && onEditTrade) {
+                      onEditTrade(dayTrades[0]);
+                    }
+                  }}
                 >
                   <div className="flex justify-between items-start mb-2">
                     <span className={`text-sm font-medium ${isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>

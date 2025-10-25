@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, addMonths, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import { de, enUS, fr, es, nl } from "date-fns/locale";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FinancialNews } from "./FinancialNews";
@@ -26,9 +26,10 @@ interface TradeCalendarProps {
   onDateSelect: (date: Date) => void;
   selectedDate?: Date;
   onAddTrade: (date: Date) => void;
+  onEditTrade?: (trade: Trade) => void;
 }
 
-export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }: TradeCalendarProps) {
+export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, onEditTrade }: TradeCalendarProps) {
   const { t, i18n } = useTranslation();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   
@@ -275,17 +276,29 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
                     {getTradesForDate(selectedDate).map(trade => (
                       <div
                         key={trade.id}
-                        className="flex items-center justify-between p-2 rounded border"
+                        className="flex items-center justify-between p-2 rounded border group hover:border-primary transition-colors"
                       >
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-1">
                           <Badge variant={trade.side === "long" ? "default" : "secondary"}>
                             {trade.side}
                           </Badge>
                           <span className="text-sm font-medium">{trade.symbol}</span>
                         </div>
-                        <span className={`text-sm font-semibold ${trade.pnl_net >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          ${trade.pnl_net.toFixed(2)}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <span className={`text-sm font-semibold ${trade.pnl_net >= 0 ? 'text-success' : 'text-destructive'}`}>
+                            ${trade.pnl_net.toFixed(2)}
+                          </span>
+                          {onEditTrade && (
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-7 w-7 opacity-0 group-hover:opacity-100"
+                              onClick={() => onEditTrade(trade)}
+                            >
+                              <Pencil className="h-3 w-3" />
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     ))}
                     <div className="pt-2 border-t">

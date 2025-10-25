@@ -10,14 +10,30 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 
+interface Trade {
+  id: string;
+  symbol: string;
+  side: string;
+  market: string;
+  qty: number;
+  entry_price: number;
+  exit_price: number;
+  entry_time: string;
+  exit_time: string;
+  fees: number;
+  setup?: string;
+  note?: string;
+}
+
 interface AddTradeDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onSuccess: () => void;
   preselectedDate?: Date;
+  editTrade?: Trade | null;
 }
 
-export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate }: AddTradeDialogProps) {
+export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate, editTrade }: AddTradeDialogProps) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -35,17 +51,35 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
     note: "",
   });
 
-  // Set preselected date when dialog opens with a date
+  // Set preselected date when dialog opens with a date or load edit data
   useEffect(() => {
-    if (preselectedDate && open) {
-      const dateStr = preselectedDate.toISOString().split('T')[0];
-      setFormData(prev => ({
-        ...prev,
-        entryTime: dateStr + 'T09:00',
-        exitTime: dateStr + 'T16:00'
-      }));
+    if (open) {
+      if (editTrade) {
+        // Load trade data for editing
+        setFormData({
+          symbol: editTrade.symbol,
+          side: editTrade.side as "long" | "short",
+          market: editTrade.market as any,
+          qty: editTrade.qty.toString(),
+          entryPrice: editTrade.entry_price.toString(),
+          exitPrice: editTrade.exit_price.toString(),
+          entryTime: editTrade.entry_time.substring(0, 16),
+          exitTime: editTrade.exit_time.substring(0, 16),
+          fees: editTrade.fees.toString(),
+          setup: editTrade.setup || "",
+          note: editTrade.note || "",
+        });
+      } else if (preselectedDate) {
+        // Set preselected date for new trade
+        const dateStr = preselectedDate.toISOString().split('T')[0];
+        setFormData(prev => ({
+          ...prev,
+          entryTime: dateStr + 'T09:00',
+          exitTime: dateStr + 'T16:00'
+        }));
+      }
     }
-  }, [preselectedDate, open]);
+  }, [preselectedDate, open, editTrade]);
 
   const tradeSchema = z.object({
     symbol: z.string()
@@ -122,8 +156,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
         : entryPrice - exitPrice;
       const pnlNet = (priceDiff * qty) - fees;
 
-      const { error } = await supabase.from("trades").insert({
-        user_id: user.id,
+      const tradeData = {
         symbol: formData.symbol.toUpperCase(),
         side: formData.side,
         market: formData.market,
@@ -136,11 +169,30 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
         pnl_net: pnlNet,
         setup: formData.setup || null,
         note: formData.note || null,
-      });
+      };
+
+      let error;
+      if (editTrade) {
+        // Update existing trade
+        const result = await supabase
+          .from("trades")
+          .update(tradeData)
+          .eq('id', editTrade.id);
+        error = result.error;
+      } else {
+        // Insert new trade
+        const result = await supabase
+          .from("trades")
+          .insert({
+            user_id: user.id,
+            ...tradeData
+          });
+        error = result.error;
+      }
 
       if (error) throw error;
 
-      toast.success(t("trades.tradeAdded"));
+      toast.success(editTrade ? t("trades.tradeUpdated") : t("trades.tradeAdded"));
       onSuccess();
       onOpenChange(false);
       setFormData({
@@ -167,7 +219,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t("trades.newTrade")}</DialogTitle>
+          <DialogTitle>{editTrade ? t("trades.editTrade") : t("trades.newTrade")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
@@ -353,7 +405,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate 
 
           <div className="flex gap-2">
             <Button type="submit" disabled={loading}>
-              {loading ? t("common.loading") : t("trades.addTrade")}
+              {loading ? t("common.loading") : (editTrade ? t("trades.updateTrade") : t("trades.addTrade"))}
             </Button>
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
               {t("trades.cancel")}

@@ -6,15 +6,25 @@ import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformance } from "@/components/WeeklyPerformance";
+import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { toast } from "sonner";
 
 interface Trade {
   id: string;
   symbol: string;
   side: string;
-  pnl_net: number;
+  market: string;
+  qty: number;
+  entry_price: number;
+  exit_price: number;
+  entry_time: string;
   exit_time: string;
+  fees: number;
+  pnl_net: number;
+  setup?: string;
+  note?: string;
 }
 
 const Index = () => {
@@ -23,6 +33,8 @@ const Index = () => {
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [editTrade, setEditTrade] = useState<Trade | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -33,13 +45,34 @@ const Index = () => {
   const loadTrades = async () => {
     const { data, error } = await supabase
       .from("trades")
-      .select("id, symbol, side, pnl_net, exit_time")
+      .select("*")
       .order("exit_time", { ascending: true });
 
     if (!error && data) {
       setTrades(data);
     }
     setLoading(false);
+  };
+
+  const handleEditTrade = (trade: Trade) => {
+    setEditTrade(trade);
+    setEditDialogOpen(true);
+  };
+
+  const handleDeleteTrade = async (tradeId: string) => {
+    if (!confirm(t("trades.confirmDelete"))) return;
+
+    const { error } = await supabase
+      .from("trades")
+      .delete()
+      .eq('id', tradeId);
+
+    if (error) {
+      toast.error(t("trades.deleteError"));
+    } else {
+      toast.success(t("trades.tradeDeleted"));
+      loadTrades();
+    }
   };
 
   const calculateKPIs = () => {
@@ -156,6 +189,8 @@ const Index = () => {
                 trades={trades}
                 currentMonth={currentMonth}
                 onMonthChange={setCurrentMonth}
+                onEditTrade={handleEditTrade}
+                onDeleteTrade={handleDeleteTrade}
               />
             </div>
             <div className="w-80">
@@ -172,6 +207,16 @@ const Index = () => {
           </div>
         </>
       )}
+
+      <AddTradeDialog 
+        open={editDialogOpen} 
+        onOpenChange={(open) => {
+          setEditDialogOpen(open);
+          if (!open) setEditTrade(null);
+        }}
+        onSuccess={loadTrades}
+        editTrade={editTrade}
+      />
     </div>
   );
 };
