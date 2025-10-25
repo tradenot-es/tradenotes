@@ -8,8 +8,14 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
-import { Calendar, CheckCircle2, Target, Brain, TrendingUp } from "lucide-react";
+import { Calendar, CheckCircle2, Target, Brain, TrendingUp, Plus } from "lucide-react";
 import { format } from "date-fns";
+
+interface ChecklistItem {
+  id: string;
+  label: string;
+  checked: boolean;
+}
 
 interface DailyPrepData {
   id?: string;
@@ -18,14 +24,7 @@ interface DailyPrepData {
   keyLevels: string;
   tradingPlan: string;
   mindset: string;
-  checklist: {
-    reviewedNews: boolean;
-    checkedEconomicCalendar: boolean;
-    identifiedKeyLevels: boolean;
-    reviewedYesterday: boolean;
-    setDailyGoals: boolean;
-    checkedRiskManagement: boolean;
-  };
+  checklist: ChecklistItem[];
 }
 
 export function DailyPrep() {
@@ -35,21 +34,25 @@ export function DailyPrep() {
   const [saving, setSaving] = useState(false);
   const today = format(new Date(), "yyyy-MM-dd");
 
+  const getDefaultChecklist = (): ChecklistItem[] => [
+    { id: "1", label: t("dailyPrep.reviewedNews"), checked: false },
+    { id: "2", label: t("dailyPrep.checkedEconomicCalendar"), checked: false },
+    { id: "3", label: t("dailyPrep.identifiedKeyLevels"), checked: false },
+    { id: "4", label: t("dailyPrep.reviewedYesterday"), checked: false },
+    { id: "5", label: t("dailyPrep.setDailyGoals"), checked: false },
+    { id: "6", label: t("dailyPrep.checkedRiskManagement"), checked: false },
+  ];
+
   const [prepData, setPrepData] = useState<DailyPrepData>({
     date: today,
     marketOutlook: "",
     keyLevels: "",
     tradingPlan: "",
     mindset: "",
-    checklist: {
-      reviewedNews: false,
-      checkedEconomicCalendar: false,
-      identifiedKeyLevels: false,
-      reviewedYesterday: false,
-      setDailyGoals: false,
-      checkedRiskManagement: false,
-    },
+    checklist: getDefaultChecklist(),
   });
+
+  const [newChecklistItem, setNewChecklistItem] = useState("");
 
   useEffect(() => {
     if (user) {
@@ -66,9 +69,15 @@ export function DailyPrep() {
       .maybeSingle();
 
     if (!error && data) {
-      const checklistData = typeof data.checklist === 'object' && data.checklist !== null
-        ? data.checklist as any
-        : prepData.checklist;
+      let checklistData: ChecklistItem[] = getDefaultChecklist();
+      
+      if (Array.isArray(data.checklist) && data.checklist.length > 0) {
+        try {
+          checklistData = JSON.parse(JSON.stringify(data.checklist)) as ChecklistItem[];
+        } catch {
+          checklistData = getDefaultChecklist();
+        }
+      }
 
       setPrepData({
         id: data.id,
@@ -95,7 +104,7 @@ export function DailyPrep() {
         key_levels: prepData.keyLevels,
         trading_plan: prepData.tradingPlan,
         mindset: prepData.mindset,
-        checklist: prepData.checklist,
+        checklist: JSON.parse(JSON.stringify(prepData.checklist)),
       };
 
       let error;
@@ -121,19 +130,42 @@ export function DailyPrep() {
     }
   };
 
-  const updateChecklist = (key: keyof typeof prepData.checklist) => {
+  const updateChecklist = (itemId: string) => {
     setPrepData({
       ...prepData,
-      checklist: {
-        ...prepData.checklist,
-        [key]: !prepData.checklist[key],
-      },
+      checklist: prepData.checklist.map((item) =>
+        item.id === itemId ? { ...item, checked: !item.checked } : item
+      ),
     });
   };
 
-  const completedItems = Object.values(prepData.checklist).filter(Boolean).length;
-  const totalItems = Object.keys(prepData.checklist).length;
-  const completionPercentage = (completedItems / totalItems) * 100;
+  const addChecklistItem = () => {
+    if (!newChecklistItem.trim()) return;
+    
+    const newItem: ChecklistItem = {
+      id: Date.now().toString(),
+      label: newChecklistItem.trim(),
+      checked: false,
+    };
+    
+    setPrepData({
+      ...prepData,
+      checklist: [...prepData.checklist, newItem],
+    });
+    
+    setNewChecklistItem("");
+  };
+
+  const removeChecklistItem = (itemId: string) => {
+    setPrepData({
+      ...prepData,
+      checklist: prepData.checklist.filter((item) => item.id !== itemId),
+    });
+  };
+
+  const completedItems = prepData.checklist.filter((item) => item.checked).length;
+  const totalItems = prepData.checklist.length;
+  const completionPercentage = totalItems > 0 ? (completedItems / totalItems) * 100 : 0;
 
   if (loading) {
     return <div className="text-center py-4">{t("common.loading")}</div>;
@@ -165,70 +197,39 @@ export function DailyPrep() {
           </div>
 
           <div className="space-y-3 pt-2">
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="reviewedNews"
-                checked={prepData.checklist.reviewedNews}
-                onCheckedChange={() => updateChecklist("reviewedNews")}
+            {prepData.checklist.map((item) => (
+              <div key={item.id} className="flex items-center space-x-3 group">
+                <Checkbox
+                  id={item.id}
+                  checked={item.checked}
+                  onCheckedChange={() => updateChecklist(item.id)}
+                />
+                <Label htmlFor={item.id} className="cursor-pointer flex-1">
+                  {item.label}
+                </Label>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => removeChecklistItem(item.id)}
+                  className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0"
+                >
+                  ×
+                </Button>
+              </div>
+            ))}
+            
+            <div className="flex gap-2 pt-2 border-t">
+              <input
+                type="text"
+                value={newChecklistItem}
+                onChange={(e) => setNewChecklistItem(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addChecklistItem()}
+                placeholder={t("dailyPrep.addChecklistItem")}
+                className="flex-1 px-3 py-2 text-sm border rounded-md bg-background"
               />
-              <Label htmlFor="reviewedNews" className="cursor-pointer">
-                {t("dailyPrep.reviewedNews")}
-              </Label>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="checkedEconomicCalendar"
-                checked={prepData.checklist.checkedEconomicCalendar}
-                onCheckedChange={() => updateChecklist("checkedEconomicCalendar")}
-              />
-              <Label htmlFor="checkedEconomicCalendar" className="cursor-pointer">
-                {t("dailyPrep.checkedEconomicCalendar")}
-              </Label>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="identifiedKeyLevels"
-                checked={prepData.checklist.identifiedKeyLevels}
-                onCheckedChange={() => updateChecklist("identifiedKeyLevels")}
-              />
-              <Label htmlFor="identifiedKeyLevels" className="cursor-pointer">
-                {t("dailyPrep.identifiedKeyLevels")}
-              </Label>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="reviewedYesterday"
-                checked={prepData.checklist.reviewedYesterday}
-                onCheckedChange={() => updateChecklist("reviewedYesterday")}
-              />
-              <Label htmlFor="reviewedYesterday" className="cursor-pointer">
-                {t("dailyPrep.reviewedYesterday")}
-              </Label>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="setDailyGoals"
-                checked={prepData.checklist.setDailyGoals}
-                onCheckedChange={() => updateChecklist("setDailyGoals")}
-              />
-              <Label htmlFor="setDailyGoals" className="cursor-pointer">
-                {t("dailyPrep.setDailyGoals")}
-              </Label>
-            </div>
-
-            <div className="flex items-center space-x-3">
-              <Checkbox
-                id="checkedRiskManagement"
-                checked={prepData.checklist.checkedRiskManagement}
-                onCheckedChange={() => updateChecklist("checkedRiskManagement")}
-              />
-              <Label htmlFor="checkedRiskManagement" className="cursor-pointer">
-                {t("dailyPrep.checkedRiskManagement")}
-              </Label>
+              <Button onClick={addChecklistItem} size="sm">
+                <Plus className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </CardContent>
