@@ -6,12 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { X } from "lucide-react";
+import { X, HelpCircle, Shield, ShieldCheck, QrCode } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { z } from "zod";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -21,12 +23,29 @@ const Settings = () => {
   const [currency, setCurrency] = useState("USD");
   const [timezone, setTimezone] = useState("America/New_York");
   const [defaultFees, setDefaultFees] = useState("2.00");
+  const [defaultSlippage, setDefaultSlippage] = useState("0.5");
   const [setups, setSetups] = useState<string[]>([]);
   const [tags, setTags] = useState<string[]>([]);
   const [newSetup, setNewSetup] = useState("");
   const [newTag, setNewTag] = useState("");
   const [settingsId, setSettingsId] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  
+  // 2FA states
+  const [mfaEnabled, setMfaEnabled] = useState(false);
+  const [enrolling, setEnrolling] = useState(false);
+  const [qrCode, setQrCode] = useState<string>("");
+  const [totpSecret, setTotpSecret] = useState<string>("");
+  const [verifyCode, setVerifyCode] = useState("");
+  const [showQRDialog, setShowQRDialog] = useState(false);
+
+  const timezones = [
+    "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
+    "America/Toronto", "America/Sao_Paulo", "Europe/London", "Europe/Paris",
+    "Europe/Berlin", "Europe/Zurich", "Europe/Amsterdam", "Asia/Tokyo",
+    "Asia/Shanghai", "Asia/Hong_Kong", "Asia/Singapore", "Asia/Dubai",
+    "Australia/Sydney", "Pacific/Auckland"
+  ];
 
   const settingsSchema = z.object({
     base_currency: z.string().length(3, { message: t("validation.currencyInvalid") }).regex(/^[A-Z]+$/),
@@ -34,6 +53,9 @@ const Settings = () => {
     default_fees: z.number()
       .nonnegative({ message: t("validation.feesInvalid") })
       .max(1000, { message: t("validation.feesInvalid") }),
+    default_slippage: z.number()
+      .nonnegative({ message: t("validation.slippageInvalid") })
+      .max(100, { message: t("validation.slippageInvalid") }),
     setups: z.array(
       z.string().trim().min(1).max(50, { message: t("validation.setupItemTooLong") })
     ).max(20, { message: t("validation.setupMaxReached") }),
@@ -45,20 +67,33 @@ const Settings = () => {
   useEffect(() => {
     if (user) {
       loadSettings();
+      checkMFAStatus();
     }
   }, [user]);
+
+  const checkMFAStatus = async () => {
+    try {
+      const { data, error } = await supabase.auth.mfa.listFactors();
+      if (error) throw error;
+      const totpFactor = data?.totp?.find(f => f.status === 'verified');
+      setMfaEnabled(!!totpFactor);
+    } catch (error) {
+      console.error('Error checking MFA status:', error);
+    }
+  };
 
   const loadSettings = async () => {
     const { data, error } = await supabase
       .from("user_settings")
       .select("*")
-      .single();
+      .maybeSingle();
 
     if (!error && data) {
       setSettingsId(data.id);
       setCurrency(data.base_currency);
       setTimezone(data.timezone);
-      setDefaultFees(data.default_fees.toString());
+      setDefaultFees(data.default_fees?.toString() || "2.00");
+      setDefaultSlippage(data.default_slippage?.toString() || "0.5");
       setSetups(data.setups || []);
       setTags(data.tags || []);
     }
@@ -73,6 +108,7 @@ const Settings = () => {
       base_currency: currency,
       timezone: timezone,
       default_fees: parseFloat(defaultFees),
+      default_slippage: parseFloat(defaultSlippage),
       setups: setups,
       tags: tags
     });
@@ -96,6 +132,7 @@ const Settings = () => {
           base_currency: currency,
           timezone: timezone,
           default_fees: parseFloat(defaultFees),
+          default_slippage: parseFloat(defaultSlippage),
           setups: setups,
           tags: tags,
         })
@@ -107,6 +144,61 @@ const Settings = () => {
       toast.error(error.message || t("settings.saveError"));
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleEnableMFA = async () => {
+    setEnrolling(true);
+    try {
+      const { data, error } = await supabase.auth.mfa.enroll({ factorType: 'totp' });
+      if (error) throw error;
+      
+      setTotpSecret(data.totp.secret);
+      setQrCode(data.totp.qr_code);
+      setShowQRDialog(true);
+    } catch (error: any) {
+      toast.error(error.message || t("settings.mfaEnableError"));
+    } finally {
+      setEnrolling(false);
+    }
+  };
+
+  const handleVerifyMFA = async () => {
+    try {
+      const factors = await supabase.auth.mfa.listFactors();
+      if (factors.data?.totp?.[0]) {
+        const factorId = factors.data.totp[0].id;
+        const { error } = await supabase.auth.mfa.challengeAndVerify({
+          factorId,
+          code: verifyCode
+        });
+        
+        if (error) throw error;
+        
+        setMfaEnabled(true);
+        setShowQRDialog(false);
+        setVerifyCode("");
+        toast.success(t("settings.mfaEnabled"));
+      }
+    } catch (error: any) {
+      toast.error(error.message || t("settings.mfaVerifyError"));
+    }
+  };
+
+  const handleDisableMFA = async () => {
+    try {
+      const { data } = await supabase.auth.mfa.listFactors();
+      const factor = data?.totp?.find(f => f.status === 'verified');
+      
+      if (factor) {
+        const { error } = await supabase.auth.mfa.unenroll({ factorId: factor.id });
+        if (error) throw error;
+        
+        setMfaEnabled(false);
+        toast.success(t("settings.mfaDisabled"));
+      }
+    } catch (error: any) {
+      toast.error(error.message || t("settings.mfaDisableError"));
     }
   };
 
@@ -165,74 +257,190 @@ const Settings = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">{t("settings.title")}</h1>
-        <p className="text-muted-foreground">{t("settings.subtitle")}</p>
-      </div>
+    <TooltipProvider>
+      <div className="space-y-6">
+        <div>
+          <h1 className="text-3xl font-bold">{t("settings.title")}</h1>
+          <p className="text-muted-foreground">{t("settings.subtitle")}</p>
+        </div>
 
-      <div className="grid gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("settings.general")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <LanguageSwitcher />
-            <div className="grid gap-2">
-              <Label htmlFor="currency">{t("settings.currency")}</Label>
-              <Select value={currency} onValueChange={setCurrency}>
-                <SelectTrigger id="currency">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="USD">USD</SelectItem>
-                  <SelectItem value="EUR">EUR</SelectItem>
-                  <SelectItem value="GBP">GBP</SelectItem>
-                  <SelectItem value="JPY">JPY</SelectItem>
-                  <SelectItem value="CHF">CHF</SelectItem>
-                  <SelectItem value="CAD">CAD</SelectItem>
-                  <SelectItem value="AUD">AUD</SelectItem>
-                </SelectContent>
-              </Select>
-              {errors.base_currency && (
-                <p className="text-sm text-destructive">{errors.base_currency}</p>
-              )}
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="timezone">{t("settings.timezone")}</Label>
-              <Input
-                id="timezone"
-                value={timezone}
-                onChange={(e) => {
-                  setTimezone(e.target.value);
-                  setErrors({ ...errors, timezone: undefined });
-                }}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="fees">{t("settings.defaultFees")} ($)</Label>
-              <Input
-                id="fees"
-                type="number"
-                step="0.01"
-                value={defaultFees}
-                onChange={(e) => {
-                  setDefaultFees(e.target.value);
-                  setErrors({ ...errors, default_fees: undefined });
-                }}
-              />
-              {errors.default_fees && (
-                <p className="text-sm text-destructive">{errors.default_fees}</p>
-              )}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid gap-6">
+          {/* Security Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Shield className="h-5 w-5" />
+                {t("settings.security")}
+              </CardTitle>
+              <CardDescription>{t("settings.securityDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="mfa" className="text-base">
+                    {t("settings.twoFactor")}
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.twoFactorHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="flex items-center gap-2">
+                  {mfaEnabled && <ShieldCheck className="h-5 w-5 text-green-500" />}
+                  <Button
+                    variant={mfaEnabled ? "destructive" : "default"}
+                    onClick={mfaEnabled ? handleDisableMFA : handleEnableMFA}
+                    disabled={enrolling}
+                  >
+                    {mfaEnabled ? t("settings.disable2FA") : t("settings.enable2FA")}
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("settings.setups")}</CardTitle>
-            <CardDescription>{t("settings.setupsDesc")}</CardDescription>
-          </CardHeader>
+          {/* General Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("settings.general")}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <LanguageSwitcher />
+              
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="currency">{t("settings.currency")}</Label>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.currencyHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Select value={currency} onValueChange={setCurrency}>
+                  <SelectTrigger id="currency">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="USD">USD - US Dollar</SelectItem>
+                    <SelectItem value="EUR">EUR - Euro</SelectItem>
+                    <SelectItem value="GBP">GBP - British Pound</SelectItem>
+                    <SelectItem value="JPY">JPY - Japanese Yen</SelectItem>
+                    <SelectItem value="CHF">CHF - Swiss Franc</SelectItem>
+                    <SelectItem value="CAD">CAD - Canadian Dollar</SelectItem>
+                    <SelectItem value="AUD">AUD - Australian Dollar</SelectItem>
+                  </SelectContent>
+                </Select>
+                {errors.base_currency && (
+                  <p className="text-sm text-destructive">{errors.base_currency}</p>
+                )}
+              </div>
+
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="timezone">{t("settings.timezone")}</Label>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.timezoneHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Select value={timezone} onValueChange={setTimezone}>
+                  <SelectTrigger id="timezone">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="max-h-[300px]">
+                    {timezones.map((tz) => (
+                      <SelectItem key={tz} value={tz}>{tz}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="fees">{t("settings.defaultFees")} ($)</Label>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.feesHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Input
+                  id="fees"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={defaultFees}
+                  onChange={(e) => {
+                    setDefaultFees(e.target.value);
+                    setErrors({ ...errors, default_fees: undefined });
+                  }}
+                />
+                {errors.default_fees && (
+                  <p className="text-sm text-destructive">{errors.default_fees}</p>
+                )}
+              </div>
+
+              <div className="grid gap-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="slippage">{t("settings.defaultSlippage")} (%)</Label>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.slippageHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Input
+                  id="slippage"
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  max="100"
+                  value={defaultSlippage}
+                  onChange={(e) => {
+                    setDefaultSlippage(e.target.value);
+                    setErrors({ ...errors, default_slippage: undefined });
+                  }}
+                />
+                {errors.default_slippage && (
+                  <p className="text-sm text-destructive">{errors.default_slippage}</p>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Trading Setups */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <CardTitle>{t("settings.setups")}</CardTitle>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-xs text-sm">{t("settings.setupsHelp")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <CardDescription>{t("settings.setupsDesc")}</CardDescription>
+            </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex gap-2">
@@ -267,11 +475,22 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>{t("settings.tags")}</CardTitle>
-            <CardDescription>{t("settings.tagsDesc")}</CardDescription>
-          </CardHeader>
+          {/* Trading Tags */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-2">
+                <CardTitle>{t("settings.tags")}</CardTitle>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="max-w-xs text-sm">{t("settings.tagsHelp")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <CardDescription>{t("settings.tagsDesc")}</CardDescription>
+            </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <div className="flex gap-2">
@@ -306,11 +525,51 @@ const Settings = () => {
           </CardContent>
         </Card>
 
-        <Button onClick={handleSave} className="w-full" disabled={saving}>
-          {saving ? t("common.loading") : t("settings.save")}
-        </Button>
+          <Button onClick={handleSave} className="w-full" disabled={saving}>
+            {saving ? t("common.loading") : t("settings.save")}
+          </Button>
+        </div>
+
+        {/* 2FA QR Code Dialog */}
+        <Dialog open={showQRDialog} onOpenChange={setShowQRDialog}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <QrCode className="h-5 w-5" />
+                {t("settings.scanQRCode")}
+              </DialogTitle>
+              <DialogDescription>{t("settings.scanQRCodeDesc")}</DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              {qrCode && (
+                <div className="flex justify-center p-4 bg-white rounded-lg">
+                  <img src={qrCode} alt="QR Code" className="w-64 h-64" />
+                </div>
+              )}
+              <div className="space-y-2">
+                <Label>{t("settings.manualCode")}</Label>
+                <code className="block p-3 bg-muted rounded text-sm break-all">
+                  {totpSecret}
+                </code>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="verify-code">{t("settings.enterCode")}</Label>
+                <Input
+                  id="verify-code"
+                  placeholder="000000"
+                  value={verifyCode}
+                  onChange={(e) => setVerifyCode(e.target.value)}
+                  maxLength={6}
+                />
+              </div>
+              <Button onClick={handleVerifyMFA} className="w-full">
+                {t("settings.verify")}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
-    </div>
+    </TooltipProvider>
   );
 };
 

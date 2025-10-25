@@ -145,6 +145,7 @@ export type Database = {
           base_currency: string | null
           created_at: string | null
           default_fees: number | null
+          default_slippage: number | null
           id: string
           setups: string[] | null
           tags: string[] | null
@@ -156,6 +157,7 @@ export type Database = {
           base_currency?: string | null
           created_at?: string | null
           default_fees?: number | null
+          default_slippage?: number | null
           id?: string
           setups?: string[] | null
           tags?: string[] | null
@@ -167,6 +169,7 @@ export type Database = {
           base_currency?: string | null
           created_at?: string | null
           default_fees?: number | null
+          default_slippage?: number | null
           id?: string
           setups?: string[] | null
           tags?: string[] | null
