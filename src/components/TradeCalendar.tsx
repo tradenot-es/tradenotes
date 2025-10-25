@@ -37,7 +37,9 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade }
   const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
   const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
   
-  const { getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
+  // Temporarily disabled due to API rate limits
+  // const { getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
+  const getEventsForDate = (date: Date) => [];
 
   const getLocale = () => {
     switch (i18n.language) {
