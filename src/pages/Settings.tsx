@@ -43,6 +43,7 @@ const Settings = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState<"weak" | "medium" | "strong" | null>(null);
 
   const timezones = [
     "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -268,12 +269,37 @@ const Settings = () => {
     }
   };
 
+  const calculatePasswordStrength = (password: string): "weak" | "medium" | "strong" | null => {
+    if (!password) return null;
+    
+    let strength = 0;
+    
+    // Length check
+    if (password.length >= 10) strength += 1;
+    if (password.length >= 14) strength += 1;
+    
+    // Character diversity
+    if (/[a-z]/.test(password)) strength += 1;
+    if (/[A-Z]/.test(password)) strength += 1;
+    if (/[0-9]/.test(password)) strength += 1;
+    if (/[^a-zA-Z0-9]/.test(password)) strength += 1;
+    
+    if (strength <= 2) return "weak";
+    if (strength <= 4) return "medium";
+    return "strong";
+  };
+
+  const handlePasswordChange = (value: string) => {
+    setNewPassword(value);
+    setPasswordStrength(calculatePasswordStrength(value));
+  };
+
   const handleUpdatePassword = async () => {
     if (newPassword !== confirmPassword) {
       toast.error(t("settings.passwordMismatch"));
       return;
     }
-    if (newPassword.length < 6) {
+    if (newPassword.length < 10) {
       toast.error(t("settings.passwordTooShort"));
       return;
     }
@@ -282,6 +308,7 @@ const Settings = () => {
       if (error) throw error;
       setNewPassword("");
       setConfirmPassword("");
+      setPasswordStrength(null);
       toast.success(t("settings.passwordUpdateSuccess"));
     } catch (error: any) {
       toast.error(error.message || t("settings.passwordUpdateError"));
@@ -400,9 +427,21 @@ const Settings = () => {
                   id="newPassword"
                   type="password"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={(e) => handlePasswordChange(e.target.value)}
                   placeholder={t("settings.newPasswordPlaceholder")}
                 />
+                {passwordStrength && (
+                  <div className="space-y-1">
+                    <div className="flex gap-1 h-1">
+                      <div className={`flex-1 rounded ${passwordStrength === "weak" ? "bg-destructive" : passwordStrength === "medium" ? "bg-orange-500" : "bg-green-500"}`} />
+                      <div className={`flex-1 rounded ${passwordStrength === "medium" || passwordStrength === "strong" ? passwordStrength === "medium" ? "bg-orange-500" : "bg-green-500" : "bg-muted"}`} />
+                      <div className={`flex-1 rounded ${passwordStrength === "strong" ? "bg-green-500" : "bg-muted"}`} />
+                    </div>
+                    <p className={`text-xs ${passwordStrength === "weak" ? "text-destructive" : passwordStrength === "medium" ? "text-orange-500" : "text-green-500"}`}>
+                      {t(`settings.passwordStrength.${passwordStrength}`)}
+                    </p>
+                  </div>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="confirmPassword">{t("settings.confirmPassword")}</Label>
