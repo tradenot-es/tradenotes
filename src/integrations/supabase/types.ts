@@ -89,6 +89,7 @@ export type Database = {
           pnl_net: number
           qty: number
           r: number | null
+          rating: number | null
           screenshot_url: string | null
           setup: string | null
           setup_checklist_completed: boolean[] | null
@@ -113,6 +114,7 @@ export type Database = {
           pnl_net: number
           qty: number
           r?: number | null
+          rating?: number | null
           screenshot_url?: string | null
           setup?: string | null
           setup_checklist_completed?: boolean[] | null
@@ -137,6 +139,7 @@ export type Database = {
           pnl_net?: number
           qty?: number
           r?: number | null
+          rating?: number | null
           screenshot_url?: string | null
           setup?: string | null
           setup_checklist_completed?: boolean[] | null

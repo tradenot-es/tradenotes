@@ -105,7 +105,11 @@
     "index": "Index",
     "stopLossPrice": "Stop Loss Prijs",
     "initialRisk": "Initieel Risico",
-    "initialRiskHint": "Voor R-Multiple berekening: (Entry - Stop Loss) × Hoeveelheid"
+    "initialRiskHint": "Voor R-Multiple berekening: (Entry - Stop Loss) × Hoeveelheid",
+    "rating": "Trade Kwaliteitsbeoordeling",
+    "ratingHint": "Beoordeel deze trade van 1 (slechte uitvoering) tot 5 (uitstekende uitvoering)",
+    "screenshot": "Screenshot",
+    "screenshotHint": "Upload een grafiek screenshot van deze trade"
   },
   "import": {
     "title": "Transacties importeren",
@@ -277,5 +281,40 @@
     "tagMaxReached": "Maximaal 30 tags toegestaan",
     "checklistMaxReached": "Maximaal 10 checklist items per setup",
     "slippageInvalid": "Slippage moet tussen 0 en 100% zijn"
+  },
+  "glossary": {
+    "rMultiple": {
+      "term": "R-Multiple",
+      "definition": "Meet hoeveel keer uw initiële risico u heeft gewonnen of verloren op een trade. Een R-Multiple van 2R betekent dat u twee keer uw initiële risico maakte, terwijl -1R betekent dat u uw volledige risicobedrag verloor.",
+      "formula": "R-Multiple = Netto P&L / Initieel Risico",
+      "example": "Risico $100, winst $200 → R-Multiple = 2R"
+    },
+    "initialRisk": {
+      "term": "Initieel Risico",
+      "definition": "Het geldbedrag dat u bereid bent te verliezen op een trade, berekend van entry prijs tot stop loss prijs.",
+      "formula": "Initieel Risico = (Entry Prijs - Stop Loss Prijs) × Hoeveelheid",
+      "example": "Entry $50, Stop Loss $48, Hoev. 100 → Risico = $200"
+    },
+    "expectancy": {
+      "term": "Verwachting",
+      "definition": "Het gemiddelde bedrag dat u per trade kunt verwachten te winnen (of verliezen) in de loop van de tijd. Houdt rekening met zowel winstpercentage als gemiddelde winst/verlies.",
+      "formula": "Verwachting = (Winstpercentage × Gem. Winst) - (Verliespercentage × Gem. Verlies)",
+      "example": "60% winst%, $150 gem. winst, $100 gem. verlies → Verwachting = $50"
+    },
+    "tradeRating": {
+      "term": "Trade Kwaliteitsbeoordeling",
+      "definition": "Een subjectieve beoordeling (1-5 sterren) die de kwaliteit van de trade-uitvoering weerspiegelt. Houdt rekening met factoren zoals: uw plan volgen, entry/exit timing, emotionele controle en risicobeheer. Helpt bij het identificeren van goed uitgevoerde trades ongeacht het P&L-resultaat."
+    },
+    "winRate": { "term": "Winstpercentage", "definition": "Percentage winstgevende trades.", "formula": "Winstpercentage = (Winst Trades / Totaal) × 100%", "example": "60 winsten van 100 → 60%" },
+    "profitFactor": { "term": "Profit Factor", "definition": "Verhouding brutowinsten tot brutoverliezen.", "formula": "Factor = Brutowinst / Brutoverlies", "example": "$10.000 winst, $5.000 verlies → 2.0" },
+    "riskReward": { "term": "Risico-Opbrengst", "definition": "Vergelijkt potentiële winst met potentieel verlies.", "formula": "R:R = (Doel - Entry) / (Entry - Stop)", "example": "Entry $50, Doel $56, Stop $48 → 3:1" },
+    "maxDrawdown": { "term": "Maximum Drawdown", "definition": "Grootste piek-tot-dal daling.", "formula": "Max DD = (Piek - Dal) / Piek × 100%", "example": "Piek $10.000, dal $8.000 → 20%" },
+    "avgWinLoss": { "term": "Gem. Winst/Verlies", "definition": "Gemiddelde winst vs gemiddeld verlies.", "formula": "Gem. = Totale Winst / # Winsten", "example": "5 winsten van $500 → Gem. $100" },
+    "pnl": { "term": "P&L (Winst & Verlies)", "definition": "Netto winst/verlies na kosten.", "formula": "P&L = (Exit - Entry) × Aantal - Kosten", "example": "100 @ $50, exit $55, $2 kosten → $498" },
+    "setup": { "term": "Setup", "definition": "Specifiek patroon dat kans signaleert.", "example": "Breakout, Failed Rally, Gap Fill" },
+    "stopLoss": { "term": "Stop Loss", "definition": "Vooraf bepaald prijsniveau om verliezen te beperken.", "example": "Long $50, stop $48 beperkt risico tot $2/aandeel" },
+    "subtitle": "Essentiële trading termen en risicobeheer concepten",
+    "formula": "Formule",
+    "example": "Voorbeeld"
   }
 }

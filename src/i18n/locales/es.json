@@ -105,7 +105,11 @@
     "index": "Índice",
     "stopLossPrice": "Precio Stop Loss",
     "initialRisk": "Riesgo Inicial",
-    "initialRiskHint": "Para cálculo R-Multiple: (Entrada - Stop Loss) × Cantidad"
+    "initialRiskHint": "Para cálculo R-Multiple: (Entrada - Stop Loss) × Cantidad",
+    "rating": "Calificación de Calidad del Trade",
+    "ratingHint": "Califique este trade de 1 (mala ejecución) a 5 (ejecución excelente)",
+    "screenshot": "Captura de Pantalla",
+    "screenshotHint": "Suba una captura del gráfico de este trade"
   },
   "import": {
     "title": "Importar operaciones",
@@ -277,5 +281,40 @@
     "tagMaxReached": "Máximo 30 tags permitidos",
     "checklistMaxReached": "Máximo 10 elementos de lista por setup",
     "slippageInvalid": "El slippage debe estar entre 0 y 100%"
+  },
+  "glossary": {
+    "rMultiple": {
+      "term": "R-Multiple",
+      "definition": "Mide cuántas veces su riesgo inicial ganó o perdió en una operación. Un R-Multiple de 2R significa que obtuvo el doble de su riesgo inicial, mientras que -1R significa que perdió su monto de riesgo completo.",
+      "formula": "R-Multiple = P&L Neto / Riesgo Inicial",
+      "example": "Riesgo $100, beneficio $200 → R-Multiple = 2R"
+    },
+    "initialRisk": {
+      "term": "Riesgo Inicial",
+      "definition": "La cantidad de dinero que está dispuesto a perder en una operación, calculada desde el precio de entrada hasta el precio de stop loss.",
+      "formula": "Riesgo Inicial = (Precio de Entrada - Precio Stop Loss) × Cantidad",
+      "example": "Entrada $50, Stop Loss $48, Cant 100 → Riesgo = $200"
+    },
+    "expectancy": {
+      "term": "Expectativa",
+      "definition": "La cantidad promedio que puede esperar ganar (o perder) por operación a lo largo del tiempo. Considera tanto la tasa de ganancia como el promedio de ganancia/pérdida.",
+      "formula": "Expectativa = (Tasa de Ganancia × Ganancia Promedio) - (Tasa de Pérdida × Pérdida Promedio)",
+      "example": "60% tasa de ganancia, $150 gan. prom., $100 pérd. prom. → Expectativa = $50"
+    },
+    "tradeRating": {
+      "term": "Calificación de Calidad del Trade",
+      "definition": "Una calificación subjetiva (1-5 estrellas) que refleja la calidad de la ejecución del trade. Considera factores como: seguimiento de su plan, timing de entrada/salida, control emocional y gestión de riesgo. Ayuda a identificar trades bien ejecutados independientemente del resultado P&L."
+    },
+    "winRate": { "term": "Tasa de Ganancia", "definition": "Porcentaje de trades rentables.", "formula": "Tasa = (Trades Ganadores / Total) × 100%", "example": "60 ganancias de 100 → 60%" },
+    "profitFactor": { "term": "Factor de Beneficio", "definition": "Ratio de ganancias brutas a pérdidas brutas.", "formula": "Factor = Ganancia Bruta / Pérdida Bruta", "example": "$10.000 ganancia, $5.000 pérdida → 2.0" },
+    "riskReward": { "term": "Riesgo-Beneficio", "definition": "Compara beneficio potencial con pérdida potencial.", "formula": "R:R = (Objetivo - Entrada) / (Entrada - Stop)", "example": "Entrada $50, Objetivo $56, Stop $48 → 3:1" },
+    "maxDrawdown": { "term": "Drawdown Máximo", "definition": "Mayor caída de pico a valle.", "formula": "Max DD = (Pico - Mínimo) / Pico × 100%", "example": "Pico $10.000, mín. $8.000 → 20%" },
+    "avgWinLoss": { "term": "Prom. Ganancia/Pérdida", "definition": "Ganancia promedio vs pérdida promedio.", "formula": "Prom. = Ganancia Total / # Ganancias", "example": "5 ganancias de $500 → Prom. $100" },
+    "pnl": { "term": "P&L (Ganancias y Pérdidas)", "definition": "Ganancia/pérdida neta después de comisiones.", "formula": "P&L = (Salida - Entrada) × Cant - Comisiones", "example": "100 @ $50, salida $55, $2 com. → $498" },
+    "setup": { "term": "Setup", "definition": "Patrón específico que señala oportunidad.", "example": "Breakout, Failed Rally, Gap Fill" },
+    "stopLoss": { "term": "Stop Loss", "definition": "Nivel de precio predeterminado para limitar pérdidas.", "example": "Long $50, stop $48 limita riesgo a $2/acción" },
+    "subtitle": "Términos esenciales de trading y gestión de riesgo",
+    "formula": "Fórmula",
+    "example": "Ejemplo"
   }
 }

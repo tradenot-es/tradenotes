@@ -105,7 +105,11 @@
     "index": "Index",
     "stopLossPrice": "Stop Loss Preis",
     "initialRisk": "Geplantes Risiko",
-    "initialRiskHint": "Für R-Multiple Berechnung: (Entry - Stop Loss) × Menge"
+    "initialRiskHint": "Für R-Multiple Berechnung: (Entry - Stop Loss) × Menge",
+    "rating": "Trade-Qualitätsbewertung",
+    "ratingHint": "Bewerten Sie diesen Trade von 1 (schlechte Ausführung) bis 5 (exzellente Ausführung)",
+    "screenshot": "Screenshot",
+    "screenshotHint": "Laden Sie einen Chart-Screenshot dieses Trades hoch"
   },
   "import": {
     "title": "Trades importieren",
@@ -277,5 +281,40 @@
     "tagMaxReached": "Maximal 30 Tags erlaubt",
     "checklistMaxReached": "Maximal 10 Checklisten-Punkte pro Setup",
     "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen"
+  },
+  "glossary": {
+    "rMultiple": {
+      "term": "R-Multiple",
+      "definition": "Misst wie oft Ihr anfängliches Risiko Sie bei einem Trade gewonnen oder verloren haben. Ein R-Multiple von 2R bedeutet, dass Sie das Doppelte Ihres anfänglichen Risikos gemacht haben, während -1R bedeutet, dass Sie Ihr volles Risiko verloren haben.",
+      "formula": "R-Multiple = Netto P&L / Anfängliches Risiko",
+      "example": "Risiko $100, Gewinn $200 → R-Multiple = 2R"
+    },
+    "initialRisk": {
+      "term": "Anfängliches Risiko",
+      "definition": "Der Geldbetrag, den Sie bereit sind bei einem Trade zu verlieren, berechnet vom Einstiegspreis bis zum Stop-Loss-Preis.",
+      "formula": "Anfängliches Risiko = (Einstiegspreis - Stop Loss Preis) × Menge",
+      "example": "Einstieg $50, Stop Loss $48, Menge 100 → Risiko = $200"
+    },
+    "expectancy": {
+      "term": "Erwartungswert",
+      "definition": "Der durchschnittliche Betrag, den Sie pro Trade im Laufe der Zeit erwarten können zu gewinnen (oder zu verlieren). Berücksichtigt sowohl Gewinnrate als auch durchschnittlichen Gewinn/Verlust.",
+      "formula": "Erwartungswert = (Gewinnrate × Ø Gewinn) - (Verlustrate × Ø Verlust)",
+      "example": "60% Gewinnrate, $150 Ø Gewinn, $100 Ø Verlust → Erwartungswert = $50"
+    },
+    "tradeRating": {
+      "term": "Trade-Qualitätsbewertung",
+      "definition": "Eine subjektive Bewertung (1-5 Sterne), die die Qualität der Trade-Ausführung widerspiegelt. Berücksichtigt Faktoren wie: Befolgen Ihres Plans, Entry/Exit-Timing, emotionale Kontrolle und Risikomanagement. Hilft, gut ausgeführte Trades unabhängig vom P&L-Ergebnis zu identifizieren."
+    },
+    "winRate": { "term": "Gewinnrate", "definition": "Prozentsatz profitabler Trades.", "formula": "Gewinnrate = (Gewinn-Trades / Gesamt) × 100%", "example": "60 Gewinne von 100 Trades → 60%" },
+    "profitFactor": { "term": "Profit Factor", "definition": "Verhältnis Bruttogewinne zu Bruttoverlusten. >1.0 profitabel, >2.0 exzellent.", "formula": "Profit Factor = Bruttogewinn / Bruttoverlust", "example": "$10.000 Gewinn, $5.000 Verlust → 2.0" },
+    "riskReward": { "term": "Risiko-Ertrag", "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.", "formula": "R:R = (Ziel - Entry) / (Entry - Stop)", "example": "Entry $50, Ziel $56, Stop $48 → 3:1" },
+    "maxDrawdown": { "term": "Max. Drawdown", "definition": "Größter Rückgang vom Höchst- zum Tiefststand.", "formula": "Max DD = (Peak - Tief) / Peak × 100%", "example": "Peak $10.000, Tief $8.000 → 20%" },
+    "avgWinLoss": { "term": "Ø Gewinn/Verlust", "definition": "Durchschnittlicher Gewinn vs. Verlust.", "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne", "example": "5 Gewinne à $500 → Ø $100" },
+    "pnl": { "term": "P&L (Gewinn & Verlust)", "definition": "Nettogewinn/-verlust nach Gebühren.", "formula": "P&L = (Exit - Entry) × Menge - Gebühren", "example": "100 @ $50, Exit $55, $2 Gebühren → $498" },
+    "setup": { "term": "Setup", "definition": "Spezifisches Muster für Trading-Gelegenheit.", "example": "Breakout, Failed Rally, Gap Fill" },
+    "stopLoss": { "term": "Stop Loss", "definition": "Vorbestimmtes Preisniveau zum Verlustbegrenzen.", "example": "Long $50, Stop $48 begrenzt Risiko auf $2/Aktie" },
+    "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
+    "formula": "Formel",
+    "example": "Beispiel"
   }
 }

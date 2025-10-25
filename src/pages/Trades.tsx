@@ -19,6 +19,8 @@ interface Trade {
   exit_time: string;
   fees: number;
   pnl_net: number;
+  rating?: number;
+  screenshot_url?: string;
   setup?: string;
   note?: string;
 }

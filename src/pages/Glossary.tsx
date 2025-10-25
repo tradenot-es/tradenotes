@@ -16,87 +16,92 @@ export default function Glossary() {
   const terms: GlossaryTerm[] = [
     {
       id: "r-multiple",
-      term: "R-Multiple",
-      definition: "Measures how many times your initial risk you won or lost on a trade. An R-Multiple of 2R means you made twice your initial risk, while -1R means you lost your full risk amount.",
-      formula: "R-Multiple = Net P&L / Initial Risk",
-      example: "Risk $100, profit $200 → R-Multiple = 2R"
+      term: t("glossary.rMultiple.term"),
+      definition: t("glossary.rMultiple.definition"),
+      formula: t("glossary.rMultiple.formula"),
+      example: t("glossary.rMultiple.example")
     },
     {
       id: "initial-risk",
-      term: "Initial Risk",
-      definition: "The amount of money you are willing to lose on a trade, calculated from entry price to stop loss price.",
-      formula: "Initial Risk = (Entry Price - Stop Loss Price) × Quantity",
-      example: "Entry $50, Stop Loss $48, Qty 100 → Risk = $200"
+      term: t("glossary.initialRisk.term"),
+      definition: t("glossary.initialRisk.definition"),
+      formula: t("glossary.initialRisk.formula"),
+      example: t("glossary.initialRisk.example")
     },
     {
       id: "expectancy",
-      term: "Expectancy",
-      definition: "The average amount you can expect to win or lose per trade over time. Positive expectancy means profitable system.",
-      formula: "Expectancy = (Win Rate × Avg Win) - (Loss Rate × Avg Loss)",
-      example: "60% win rate, $150 avg win, $100 avg loss → Expectancy = $50"
+      term: t("glossary.expectancy.term"),
+      definition: t("glossary.expectancy.definition"),
+      formula: t("glossary.expectancy.formula"),
+      example: t("glossary.expectancy.example")
+    },
+    {
+      id: "trade-rating",
+      term: t("glossary.tradeRating.term"),
+      definition: t("glossary.tradeRating.definition"),
     },
     {
       id: "win-rate",
-      term: "Win Rate",
-      definition: "Percentage of trades that are profitable.",
-      formula: "Win Rate = (Winning Trades / Total Trades) × 100%",
-      example: "60 wins out of 100 trades → Win Rate = 60%"
+      term: t("glossary.winRate.term"),
+      definition: t("glossary.winRate.definition"),
+      formula: t("glossary.winRate.formula"),
+      example: t("glossary.winRate.example")
     },
     {
       id: "profit-factor",
-      term: "Profit Factor",
-      definition: "Ratio of gross profits to gross losses. Above 1.0 means profitable, above 2.0 is excellent.",
-      formula: "Profit Factor = Total Gross Profit / Total Gross Loss",
-      example: "$10,000 profit, $5,000 losses → Profit Factor = 2.0"
+      term: t("glossary.profitFactor.term"),
+      definition: t("glossary.profitFactor.definition"),
+      formula: t("glossary.profitFactor.formula"),
+      example: t("glossary.profitFactor.example")
     },
     {
       id: "risk-reward",
-      term: "Risk-Reward Ratio",
-      definition: "Compares potential profit to potential loss before entering a trade.",
-      formula: "Risk-Reward = (Target Price - Entry Price) / (Entry Price - Stop Loss)",
-      example: "Entry $50, Target $56, Stop $48 → R:R = 3:1"
+      term: t("glossary.riskReward.term"),
+      definition: t("glossary.riskReward.definition"),
+      formula: t("glossary.riskReward.formula"),
+      example: t("glossary.riskReward.example")
     },
     {
       id: "max-drawdown",
-      term: "Maximum Drawdown",
-      definition: "The largest peak-to-trough decline in account equity. Measures worst-case scenario risk.",
-      formula: "Max DD = (Peak Equity - Lowest Equity) / Peak Equity × 100%",
-      example: "Peak $10,000, low $8,000 → Max DD = 20%"
+      term: t("glossary.maxDrawdown.term"),
+      definition: t("glossary.maxDrawdown.definition"),
+      formula: t("glossary.maxDrawdown.formula"),
+      example: t("glossary.maxDrawdown.example")
     },
     {
       id: "avg-win-loss",
-      term: "Average Win / Loss",
-      definition: "Average profit of winning trades vs. average loss of losing trades.",
-      formula: "Avg Win = Total Profit / # Wins, Avg Loss = Total Loss / # Losses",
-      example: "5 wins totaling $500 → Avg Win = $100"
+      term: t("glossary.avgWinLoss.term"),
+      definition: t("glossary.avgWinLoss.definition"),
+      formula: t("glossary.avgWinLoss.formula"),
+      example: t("glossary.avgWinLoss.example")
     },
     {
       id: "pnl",
-      term: "P&L (Profit & Loss)",
-      definition: "The net gain or loss from a trade after all fees and commissions.",
-      formula: "P&L = (Exit Price - Entry Price) × Quantity - Fees",
-      example: "Buy 100 @ $50, sell @ $55, $2 fees → P&L = $498"
+      term: t("glossary.pnl.term"),
+      definition: t("glossary.pnl.definition"),
+      formula: t("glossary.pnl.formula"),
+      example: t("glossary.pnl.example")
     },
     {
       id: "setup",
-      term: "Setup",
-      definition: "A specific pattern or condition that signals a trading opportunity, based on your strategy.",
-      example: "Breakout, Failed Rally, Gap Fill, Trend Follow"
+      term: t("glossary.setup.term"),
+      definition: t("glossary.setup.definition"),
+      example: t("glossary.setup.example")
     },
     {
       id: "stop-loss",
-      term: "Stop Loss",
-      definition: "Predetermined price level where you exit a trade to limit losses.",
-      example: "Long entry $50, stop loss at $48 limits risk to $2/share"
+      term: t("glossary.stopLoss.term"),
+      definition: t("glossary.stopLoss.definition"),
+      example: t("glossary.stopLoss.example")
     }
   ];
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">Trading Glossary</h1>
+        <h1 className="text-4xl font-bold mb-2">{t("nav.glossary")}</h1>
         <p className="text-muted-foreground">
-          Essential trading terms and risk management concepts explained
+          {t("glossary.subtitle")}
         </p>
       </div>
 
@@ -113,7 +118,7 @@ export default function Glossary() {
               {term.formula && (
                 <div>
                   <p className="font-semibold text-sm text-muted-foreground mb-1">
-                    Formula:
+                    {t("glossary.formula")}:
                   </p>
                   <code className="block bg-muted p-3 rounded-md font-mono text-sm">
                     {term.formula}
@@ -123,7 +128,7 @@ export default function Glossary() {
               {term.example && (
                 <div>
                   <p className="font-semibold text-sm text-muted-foreground mb-1">
-                    Example:
+                    {t("glossary.example")}:
                   </p>
                   <p className="text-sm bg-muted/50 p-3 rounded-md">
                     {term.example}

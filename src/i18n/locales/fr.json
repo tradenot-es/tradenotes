@@ -105,7 +105,11 @@
     "index": "Indice",
     "stopLossPrice": "Prix Stop Loss",
     "initialRisk": "Risque Initial",
-    "initialRiskHint": "Pour calcul R-Multiple: (Entrée - Stop Loss) × Quantité"
+    "initialRiskHint": "Pour calcul R-Multiple: (Entrée - Stop Loss) × Quantité",
+    "rating": "Évaluation de la Qualité du Trade",
+    "ratingHint": "Évaluez ce trade de 1 (mauvaise exécution) à 5 (excellente exécution)",
+    "screenshot": "Capture d'écran",
+    "screenshotHint": "Téléchargez une capture d'écran du graphique de ce trade"
   },
   "import": {
     "title": "Importer des transactions",
@@ -277,5 +281,40 @@
     "tagMaxReached": "Maximum 30 tags autorisés",
     "checklistMaxReached": "Maximum 10 éléments par setup",
     "slippageInvalid": "Le slippage doit être entre 0 et 100%"
+  },
+  "glossary": {
+    "rMultiple": {
+      "term": "R-Multiple",
+      "definition": "Mesure combien de fois votre risque initial vous avez gagné ou perdu sur un trade. Un R-Multiple de 2R signifie que vous avez fait deux fois votre risque initial, tandis que -1R signifie que vous avez perdu votre montant de risque complet.",
+      "formula": "R-Multiple = P&L Net / Risque Initial",
+      "example": "Risque $100, profit $200 → R-Multiple = 2R"
+    },
+    "initialRisk": {
+      "term": "Risque Initial",
+      "definition": "Le montant d'argent que vous êtes prêt à perdre sur un trade, calculé du prix d'entrée au prix de stop loss.",
+      "formula": "Risque Initial = (Prix d'Entrée - Prix Stop Loss) × Quantité",
+      "example": "Entrée $50, Stop Loss $48, Qté 100 → Risque = $200"
+    },
+    "expectancy": {
+      "term": "Espérance",
+      "definition": "Le montant moyen que vous pouvez vous attendre à gagner (ou perdre) par trade au fil du temps. Considère à la fois le taux de gain et le gain/perte moyen.",
+      "formula": "Espérance = (Taux de Gain × Gain Moyen) - (Taux de Perte × Perte Moyenne)",
+      "example": "60% taux de gain, $150 gain moy., $100 perte moy. → Espérance = $50"
+    },
+    "tradeRating": {
+      "term": "Évaluation de la Qualité du Trade",
+      "definition": "Une évaluation subjective (1-5 étoiles) reflétant la qualité de l'exécution du trade. Considère des facteurs comme: suivre votre plan, timing d'entrée/sortie, contrôle émotionnel et gestion des risques. Aide à identifier les trades bien exécutés indépendamment du résultat P&L."
+    },
+    "winRate": { "term": "Taux de Gain", "definition": "Pourcentage de trades rentables.", "formula": "Taux = (Trades Gagnants / Total) × 100%", "example": "60 gains sur 100 → 60%" },
+    "profitFactor": { "term": "Facteur de Profit", "definition": "Ratio profits bruts sur pertes brutes.", "formula": "Facteur = Profit Brut / Perte Brute", "example": "$10.000 profit, $5.000 perte → 2.0" },
+    "riskReward": { "term": "Ratio Risque-Rendement", "definition": "Compare profit potentiel à perte potentielle.", "formula": "R:R = (Cible - Entrée) / (Entrée - Stop)", "example": "Entrée $50, Cible $56, Stop $48 → 3:1" },
+    "maxDrawdown": { "term": "Drawdown Maximum", "definition": "Plus grande baisse de pic à creux.", "formula": "Max DD = (Pic - Creux) / Pic × 100%", "example": "Pic $10.000, creux $8.000 → 20%" },
+    "avgWinLoss": { "term": "Moy. Gain/Perte", "definition": "Gain moyen vs perte moyenne.", "formula": "Moy. = Gain Total / # Gains", "example": "5 gains de $500 → Moy. $100" },
+    "pnl": { "term": "P&L (Profit & Perte)", "definition": "Gain/perte net après frais.", "formula": "P&L = (Sortie - Entrée) × Qté - Frais", "example": "100 @ $50, sortie $55, $2 frais → $498" },
+    "setup": { "term": "Setup", "definition": "Motif spécifique signalant opportunité.", "example": "Breakout, Failed Rally, Gap Fill" },
+    "stopLoss": { "term": "Stop Loss", "definition": "Niveau de prix prédéterminé pour limiter pertes.", "example": "Long $50, stop $48 limite risque à $2/action" },
+    "subtitle": "Termes essentiels du trading et concepts de gestion des risques",
+    "formula": "Formule",
+    "example": "Exemple"
   }
 }

@@ -11,6 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
+import { Star, Upload, X } from "lucide-react";
 
 interface Trade {
   id: string;
@@ -26,6 +27,8 @@ interface Trade {
   r?: number;
   initial_risk?: number;
   stop_loss_price?: number;
+  rating?: number;
+  screenshot_url?: string;
   setup?: string;
   note?: string;
   setup_checklist_completed?: boolean[];
@@ -45,6 +48,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [checklistCompleted, setChecklistCompleted] = useState<boolean[]>([]);
+  const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
+  const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
+  const [rating, setRating] = useState<number>(0);
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -100,6 +106,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           note: editTrade.note || "",
         });
         setChecklistCompleted(editTrade.setup_checklist_completed || []);
+        setRating(editTrade.rating || 0);
+        setScreenshotPreview(editTrade.screenshot_url || null);
       } else if (preselectedDate) {
         // Set preselected date for new trade
         const dateStr = preselectedDate.toISOString().split('T')[0];
@@ -119,8 +127,11 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         }));
       }
     } else {
-      // Reset checklist when dialog closes
+      // Reset when dialog closes
       setChecklistCompleted([]);
+      setScreenshotFile(null);
+      setScreenshotPreview(null);
+      setRating(0);
     }
   }, [preselectedDate, open, editTrade]);
 
@@ -202,6 +213,25 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Nicht angemeldet");
 
+      // Upload screenshot if provided
+      let screenshotUrl = editTrade?.screenshot_url || null;
+      if (screenshotFile) {
+        const fileExt = screenshotFile.name.split('.').pop();
+        const fileName = `${user.id}/${Date.now()}.${fileExt}`;
+        
+        const { error: uploadError, data: uploadData } = await supabase.storage
+          .from('trade-screenshots')
+          .upload(fileName, screenshotFile);
+
+        if (uploadError) throw uploadError;
+        
+        const { data: { publicUrl } } = supabase.storage
+          .from('trade-screenshots')
+          .getPublicUrl(fileName);
+        
+        screenshotUrl = publicUrl;
+      }
+
       // Calculate P&L
       const priceDiff = formData.side === "long" 
         ? exitPrice - entryPrice 
@@ -231,6 +261,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         stop_loss_price: stopLossPrice,
         initial_risk: initialRisk,
         r: rMultiple,
+        rating: rating > 0 ? rating : null,
+        screenshot_url: screenshotUrl,
         setup: formData.setup || null,
         note: formData.note || null,
         setup_checklist_completed: checklistCompleted.length > 0 ? checklistCompleted : null,
@@ -276,6 +308,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         note: "",
       });
       setChecklistCompleted([]);
+      setScreenshotFile(null);
+      setScreenshotPreview(null);
+      setRating(0);
     } catch (error: any) {
       toast.error(error.message || t("trades.addError"));
     } finally {
@@ -523,6 +558,92 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               </p>
             </div>
           )}
+
+          {/* Rating */}
+          <div className="space-y-2">
+            <Label>{t("trades.rating")}</Label>
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => setRating(star)}
+                  className="transition-colors"
+                >
+                  <Star
+                    className={`h-6 w-6 ${
+                      star <= rating
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "text-muted-foreground"
+                    }`}
+                  />
+                </button>
+              ))}
+              {rating > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setRating(0)}
+                  className="ml-2 text-xs text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {t("trades.ratingHint")}
+            </p>
+          </div>
+
+          {/* Screenshot Upload */}
+          <div className="space-y-2">
+            <Label htmlFor="screenshot">{t("trades.screenshot")}</Label>
+            <div className="space-y-2">
+              {screenshotPreview && !screenshotFile && (
+                <div className="relative">
+                  <img
+                    src={screenshotPreview}
+                    alt="Current screenshot"
+                    className="w-full h-32 object-cover rounded border"
+                  />
+                </div>
+              )}
+              {screenshotFile && (
+                <div className="relative">
+                  <img
+                    src={URL.createObjectURL(screenshotFile)}
+                    alt="Screenshot preview"
+                    className="w-full h-32 object-cover rounded border"
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon"
+                    className="absolute top-2 right-2 h-6 w-6"
+                    onClick={() => {
+                      setScreenshotFile(null);
+                    }}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+              <Input
+                id="screenshot"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    setScreenshotFile(file);
+                  }
+                }}
+                className="cursor-pointer"
+              />
+              <p className="text-xs text-muted-foreground">
+                {t("trades.screenshotHint")}
+              </p>
+            </div>
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="note">{t("trades.note")}</Label>
