@@ -11,8 +11,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
-import { Star, Upload, X } from "lucide-react";
+import { Star, Upload, X, Info } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
+import { getSymbolInfo, getMarketDefaultFee } from "@/lib/symbolData";
 
 interface Trade {
   id: string;
@@ -53,6 +54,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [rating, setRating] = useState<number>(0);
+  const [symbolInfo, setSymbolInfo] = useState<{ pointValue?: number; multiplier?: number; info?: string }>({});
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -144,6 +146,24 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setChecklistCompleted(new Array(selectedSetup.checklist.length).fill(false));
     }
   }, [formData.setup, setupDefinitions]);
+
+  // Auto-update fees when market changes
+  useEffect(() => {
+    if (!editTrade && formData.market) {
+      const defaultFee = getMarketDefaultFee(formData.market);
+      setFormData(prev => ({ ...prev, fees: defaultFee.toFixed(2) }));
+    }
+  }, [formData.market, editTrade]);
+
+  // Update symbol info when symbol or market changes
+  useEffect(() => {
+    if (formData.symbol && formData.market) {
+      const info = getSymbolInfo(formData.symbol, formData.market);
+      setSymbolInfo(info);
+    } else {
+      setSymbolInfo({});
+    }
+  }, [formData.symbol, formData.market]);
 
   // Fetch current price for a symbol
   const fetchCurrentPrice = async (symbol: string, market: string) => {
@@ -264,7 +284,16 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       const priceDiff = formData.side === "long" 
         ? exitPrice - entryPrice 
         : entryPrice - exitPrice;
-      const pnlNet = (priceDiff * qty) - fees;
+      
+      // For Futures, multiply by point value; for Options, multiply by multiplier
+      let pnlGross = priceDiff * qty;
+      if (formData.market === "Futures" && symbolInfo.pointValue) {
+        pnlGross = priceDiff * qty * symbolInfo.pointValue;
+      } else if (formData.market === "Option" && symbolInfo.multiplier) {
+        pnlGross = priceDiff * qty * symbolInfo.multiplier;
+      }
+      
+      const pnlNet = pnlGross - fees;
 
       const stopLossPrice = formData.stopLossPrice ? parseFloat(formData.stopLossPrice) : null;
       const initialRisk = formData.initialRisk ? parseFloat(formData.initialRisk) : null;
@@ -384,6 +413,12 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                 }}
                 market={formData.market}
               />
+              {symbolInfo.info && (
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Info className="h-3 w-3" />
+                  <span>{symbolInfo.info}</span>
+                </div>
+              )}
               {errors.symbol && (
                 <p className="text-sm text-destructive">{errors.symbol}</p>
               )}
