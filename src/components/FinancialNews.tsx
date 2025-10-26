@@ -21,9 +21,10 @@ interface NewsArticle {
 interface FinancialNewsProps {
   date: Date;
   symbols?: string[];
+  market?: string;
 }
 
-export function FinancialNews({ date, symbols }: FinancialNewsProps) {
+export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
   const { t } = useTranslation();
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +33,7 @@ export function FinancialNews({ date, symbols }: FinancialNewsProps) {
 
   useEffect(() => {
     loadNews();
-  }, [date, symbols, selectedSources]);
+  }, [date, symbols, market, selectedSources]);
 
   const loadNews = async () => {
     setLoading(true);
@@ -46,6 +47,7 @@ export function FinancialNews({ date, symbols }: FinancialNewsProps) {
           action: 'get-articles',
           date: dateStr, 
           symbols,
+          market,
           sources: selectedSources.length > 0 ? selectedSources : undefined
         }
       });

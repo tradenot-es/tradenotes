@@ -16,6 +16,7 @@ interface Trade {
   id: string;
   symbol: string;
   side: string;
+  market?: string;
   pnl_net: number;
   entry_time: string;
   exit_time: string;
@@ -66,6 +67,21 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
       .filter(trade => trade.exit_time.startsWith(dateStr))
       .map(trade => trade.symbol);
     return [...new Set(symbols)];
+  };
+
+  const getMarketForDate = (date: Date): string | undefined => {
+    const dateStr = format(date, 'yyyy-MM-dd');
+    const dateTrades = trades.filter(trade => trade.exit_time.startsWith(dateStr));
+    if (dateTrades.length === 0) return undefined;
+    
+    // Get the most common market for that date
+    const marketCounts = dateTrades.reduce((acc, trade) => {
+      const market = trade.market || 'Stock';
+      acc[market] = (acc[market] || 0) + 1;
+      return acc;
+    }, {} as Record<string, number>);
+    
+    return Object.entries(marketCounts).sort((a, b) => b[1] - a[1])[0][0];
   };
 
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
@@ -319,6 +335,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
             <FinancialNews
               date={selectedDate}
               symbols={getSymbolsForDate(selectedDate)}
+              market={getMarketForDate(selectedDate)}
             />
           </>
         )}

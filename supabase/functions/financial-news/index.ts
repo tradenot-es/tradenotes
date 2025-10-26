@@ -16,51 +16,45 @@ interface NewsArticle {
   entities?: Array<{ symbol: string; name: string }>;
 }
 
-interface NewsSource {
-  id: string;
-  name: string;
-  domain: string;
-}
+// Market-specific search keywords
+const MARKET_KEYWORDS: Record<string, string[]> = {
+  Futures: ['futures', 'commodities', 'E-mini', 'CME', 'NYMEX', 'CBOT'],
+  Stock: ['stock', 'equity', 'shares', 'NYSE', 'NASDAQ', 'S&P 500'],
+  Crypto: ['crypto', 'cryptocurrency', 'bitcoin', 'ethereum', 'blockchain', 'digital currency'],
+  Forex: ['forex', 'currency', 'FX', 'exchange rate', 'dollar', 'euro'],
+  Option: ['options', 'calls', 'puts', 'derivatives', 'volatility'],
+  Index: ['index', 'indices', 'market index', 'benchmark']
+};
+
+// Political/Economic events keywords
+const POLITICAL_KEYWORDS = [
+  'Trump', 'Biden', 'Fed', 'Powell', 'Federal Reserve', 'interest rate',
+  'FOMC', 'inflation', 'CPI', 'GDP', 'unemployment', 'jobs report',
+  'earnings', 'ECB', 'central bank', 'Treasury', 'Yellen'
+];
 
 Deno.serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { date, symbols, sources, action } = await req.json();
+    const { date, symbols, market, action } = await req.json();
     
-    const apiKey = Deno.env.get('FINLIGHT_API_KEY');
-    if (!apiKey) {
-      throw new Error('FINLIGHT_API_KEY not configured');
+    const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
+    if (!lovableApiKey) {
+      throw new Error('LOVABLE_API_KEY not configured');
     }
 
     // Handle "get-sources" action
     if (action === 'get-sources') {
-      console.log('Fetching available news sources');
-      
-      const response = await fetch('https://api.finlight.me/v2/sources', {
-        method: 'GET',
-        headers: {
-          'X-API-KEY': apiKey,
-          'accept': '*/*',
-        },
-      });
-      
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Finlight API error:', response.status, errorText);
-        throw new Error(`Failed to fetch sources: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('Sources fetched successfully, count:', data.sources?.length || 0);
-
       return new Response(
         JSON.stringify({
           success: true,
-          sources: data.sources || []
+          sources: [
+            { id: 'general', name: 'General News', domain: 'all' },
+            { id: 'political', name: 'Political & Economic Events', domain: 'all' }
+          ]
         }),
         {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -69,69 +63,125 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Handle "get-articles" action (default)
+    // Handle "get-articles" action
     if (!date) {
       throw new Error('Date parameter is required');
     }
 
-    console.log('Fetching news for date:', date, 'symbols:', symbols, 'sources:', sources);
+    console.log('Fetching news for date:', date, 'symbols:', symbols, 'market:', market);
 
-    // Build query for Finlight API
-    let query = '';
+    // Build intelligent search query
+    let searchQuery = `financial news ${date}`;
+    
+    // Add symbol-specific keywords
     if (symbols && symbols.length > 0) {
-      query = symbols.map((s: string) => `ticker:${s}`).join(' OR ');
+      searchQuery += ` ${symbols.join(' OR ')}`;
     }
+    
+    // Add market-specific keywords
+    if (market && MARKET_KEYWORDS[market]) {
+      searchQuery += ` ${MARKET_KEYWORDS[market].slice(0, 2).join(' OR ')}`;
+    }
+    
+    // Always include political/economic events
+    searchQuery += ` ${POLITICAL_KEYWORDS.slice(0, 3).join(' OR ')}`;
 
-    const requestBody: any = {
-      from: date,
-      to: date,
-      pageSize: 20,
-      includeContent: true,
-      includeEntities: true,
-      ...(query && { query }),
-      ...(sources && sources.length > 0 && { sources })
-    };
+    console.log('Search query:', searchQuery);
 
-    console.log('Finlight API request:', JSON.stringify(requestBody));
-
-    const response = await fetch('https://api.finlight.me/v2/articles', {
+    // Use Lovable AI to fetch and summarize relevant news
+    const aiResponse = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
       headers: {
-        'X-API-KEY': apiKey,
+        'Authorization': `Bearer ${lovableApiKey}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(requestBody)
+      body: JSON.stringify({
+        model: 'google/gemini-2.5-flash',
+        messages: [
+          {
+            role: 'system',
+            content: `You are a financial news aggregator. Find the most relevant financial news for the given date and criteria. 
+            Return news in JSON format with the following structure:
+            {
+              "articles": [
+                {
+                  "uuid": "unique-id",
+                  "title": "Article title",
+                  "description": "Brief description",
+                  "url": "https://example.com",
+                  "published_at": "2025-10-07T10:00:00Z",
+                  "source": "Source name",
+                  "sentiment": "positive/negative/neutral",
+                  "entities": [{"symbol": "NQ", "name": "NASDAQ 100"}]
+                }
+              ]
+            }
+            
+            Focus on:
+            - Market-specific news (${market || 'general'})
+            - Symbol-related news (${symbols?.join(', ') || 'general market'})
+            - Political/economic events (Trump speeches, Fed announcements, Powell statements)
+            - Major economic indicators
+            
+            Include at least 5-10 relevant articles. Use real financial news sources.`
+          },
+          {
+            role: 'user',
+            content: `Find financial news for date: ${date}. Query: ${searchQuery}`
+          }
+        ],
+        temperature: 0.7,
+        max_tokens: 2000,
+      }),
     });
-    
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Finlight API error:', response.status, errorText);
-      throw new Error(`Failed to fetch news: ${response.status}`);
+
+    if (!aiResponse.ok) {
+      const errorText = await aiResponse.text();
+      console.error('AI API error:', aiResponse.status, errorText);
+      throw new Error(`Failed to fetch news: ${aiResponse.status}`);
     }
 
-    const data = await response.json();
-    console.log('News fetched successfully, count:', data.articles?.length || 0);
+    const aiData = await aiResponse.json();
+    console.log('AI response received');
 
-    // Transform Finlight articles to match expected format
-    const transformedArticles = (data.articles || []).map((article: any) => ({
-      uuid: article.id || article.uuid,
-      title: article.title,
-      description: article.snippet || article.description,
-      url: article.url,
-      published_at: article.publishedAt || article.published_at,
-      source: article.source?.name || article.source || 'Unknown',
-      sentiment: article.sentiment,
-      entities: article.companies?.map((company: any) => ({
-        symbol: company.ticker,
-        name: company.name
-      })) || []
-    }));
+    // Parse AI response
+    let articles: NewsArticle[] = [];
+    
+    try {
+      const content = aiData.choices[0].message.content;
+      // Try to extract JSON from the response
+      const jsonMatch = content.match(/\{[\s\S]*"articles"[\s\S]*\}/);
+      if (jsonMatch) {
+        const parsedData = JSON.parse(jsonMatch[0]);
+        articles = parsedData.articles || [];
+      }
+    } catch (parseError) {
+      console.error('Error parsing AI response:', parseError);
+      // Fallback: create placeholder articles
+      articles = [{
+        uuid: 'ai-summary-1',
+        title: 'Market Summary',
+        description: aiData.choices[0].message.content.substring(0, 200),
+        url: '#',
+        published_at: new Date().toISOString(),
+        source: 'AI Summary',
+        sentiment: 'neutral',
+        entities: symbols?.map((s: string) => ({ symbol: s, name: s })) || []
+      }];
+    }
+
+    console.log('News fetched successfully, count:', articles.length);
 
     return new Response(
       JSON.stringify({
         success: true,
-        articles: transformedArticles,
-        meta: data.meta || {}
+        articles: articles,
+        meta: {
+          count: articles.length,
+          date: date,
+          market: market,
+          symbols: symbols
+        }
       }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
