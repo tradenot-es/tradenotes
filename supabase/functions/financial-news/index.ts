@@ -138,6 +138,20 @@ Deno.serve(async (req) => {
     if (!aiResponse.ok) {
       const errorText = await aiResponse.text();
       console.error('AI API error:', aiResponse.status, errorText);
+      
+      if (aiResponse.status === 429) {
+        return new Response(
+          JSON.stringify({
+            success: false,
+            error: 'API rate limit exceeded. Please try again in a few minutes.'
+          }),
+          {
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            status: 429,
+          }
+        );
+      }
+      
       throw new Error(`Failed to fetch news: ${aiResponse.status}`);
     }
 

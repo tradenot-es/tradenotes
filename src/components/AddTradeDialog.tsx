@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -34,6 +35,7 @@ interface Trade {
   setup?: string;
   note?: string;
   setup_checklist_completed?: boolean[];
+  tags?: string[];
 }
 
 interface AddTradeDialogProps {
@@ -50,6 +52,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [loadingPrice, setLoadingPrice] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
+  const [availableTags, setAvailableTags] = useState<string[]>([]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [checklistCompleted, setChecklistCompleted] = useState<boolean[]>([]);
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
@@ -71,21 +75,24 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     note: "",
   });
 
-  // Load setup definitions
+  // Load setup definitions and tags
   useEffect(() => {
-    const loadSetups = async () => {
+    const loadSettings = async () => {
       const { data } = await supabase
         .from("user_settings")
-        .select("setup_definitions")
+        .select("setup_definitions, tags")
         .maybeSingle();
       
       if (data?.setup_definitions) {
         setSetupDefinitions(data.setup_definitions as unknown as SetupDefinition[]);
       }
+      if (data?.tags) {
+        setAvailableTags(data.tags);
+      }
     };
     
     if (open) {
-      loadSetups();
+      loadSettings();
     }
   }, [open]);
 
@@ -110,6 +117,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           note: editTrade.note || "",
         });
         setChecklistCompleted(editTrade.setup_checklist_completed || []);
+        setSelectedTags(editTrade.tags || []);
         setRating(editTrade.rating || 0);
         setScreenshotPreview(editTrade.screenshot_url || null);
       } else if (preselectedDate) {
@@ -133,6 +141,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     } else {
       // Reset when dialog closes
       setChecklistCompleted([]);
+      setSelectedTags([]);
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
@@ -323,6 +332,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         setup: formData.setup || null,
         note: formData.note || null,
         setup_checklist_completed: checklistCompleted.length > 0 ? checklistCompleted : null,
+        tags: selectedTags.length > 0 ? selectedTags : null,
       };
 
       let error;
@@ -365,6 +375,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         note: "",
       });
       setChecklistCompleted([]);
+      setSelectedTags([]);
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
@@ -613,6 +624,36 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               )}
             </div>
           </div>
+
+          {/* Tags */}
+          {availableTags.length > 0 && (
+            <div className="space-y-2">
+              <Label>{t("trades.tags")}</Label>
+              <div className="flex flex-wrap gap-2">
+                {availableTags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant={selectedTags.includes(tag) ? "default" : "outline"}
+                    className="cursor-pointer"
+                    onClick={() => {
+                      if (selectedTags.includes(tag)) {
+                        setSelectedTags(selectedTags.filter(t => t !== tag));
+                      } else {
+                        setSelectedTags([...selectedTags, tag]);
+                      }
+                    }}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+              {selectedTags.length > 0 && (
+                <p className="text-xs text-muted-foreground">
+                  {selectedTags.length} {t("trades.tagsSelected")}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Setup Checklist */}
           {formData.setup && setupDefinitions.find(s => s.name === formData.setup)?.checklist.length > 0 && (

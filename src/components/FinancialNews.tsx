@@ -52,12 +52,23 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
         }
       });
 
-      if (functionError) throw functionError;
+      if (functionError) {
+        if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
+          setError('News temporarily unavailable due to rate limits. Please try again later.');
+        } else {
+          throw functionError;
+        }
+        return;
+      }
 
       if (data.success) {
         setArticles(data.articles);
       } else {
-        setError(data.error || t("trades.noNewsAvailable"));
+        if (data.error?.includes('rate limit') || data.error?.includes('429')) {
+          setError('News temporarily unavailable due to rate limits. Please try again later.');
+        } else {
+          setError(data.error || t("trades.noNewsAvailable"));
+        }
       }
     } catch (err: any) {
       console.error('Error loading news:', err);

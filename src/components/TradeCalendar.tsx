@@ -237,25 +237,9 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                     </div>
 
                     {dayTrades.length > 0 && (
-                      <div className="space-y-1">
-                        <div className="flex flex-wrap gap-1">
-                          {dayTrades.slice(0, 2).map(trade => (
-                            <Badge
-                              key={trade.id}
-                              variant={trade.side === "long" ? "default" : "secondary"}
-                              className="text-xs px-1"
-                            >
-                              {trade.symbol}
-                            </Badge>
-                          ))}
-                          {dayTrades.length > 2 && (
-                            <Badge variant="outline" className="text-xs px-1">
-                              +{dayTrades.length - 2}
-                            </Badge>
-                          )}
-                        </div>
-                        <div className={`text-xs font-semibold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          ${dayPnL.toFixed(2)}
+                      <div className="flex items-center justify-center h-full">
+                        <div className={`text-lg font-bold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
+                          {dayPnL >= 0 ? '+' : ''}{dayPnL.toFixed(0)}
                         </div>
                       </div>
                     )}

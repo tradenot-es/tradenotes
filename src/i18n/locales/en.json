@@ -73,6 +73,7 @@
     "exitTime": "Exit Time",
     "setup": "Setup",
     "tags": "Tags",
+    "tagsSelected": "selected",
     "note": "Note",
     "actions": "Actions",
     "view": "View",
