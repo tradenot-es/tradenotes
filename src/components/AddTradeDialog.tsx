@@ -54,6 +54,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [tagSearchQuery, setTagSearchQuery] = useState("");
   const [checklistCompleted, setChecklistCompleted] = useState<boolean[]>([]);
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
@@ -142,6 +143,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       // Reset when dialog closes
       setChecklistCompleted([]);
       setSelectedTags([]);
+      setTagSearchQuery("");
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
@@ -629,23 +631,33 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           {availableTags.length > 0 && (
             <div className="space-y-2">
               <Label>{t("trades.tags")}</Label>
-              <div className="flex flex-wrap gap-2">
-                {availableTags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant={selectedTags.includes(tag) ? "default" : "outline"}
-                    className="cursor-pointer"
-                    onClick={() => {
-                      if (selectedTags.includes(tag)) {
-                        setSelectedTags(selectedTags.filter(t => t !== tag));
-                      } else {
-                        setSelectedTags([...selectedTags, tag]);
-                      }
-                    }}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
+              <Input
+                placeholder={t("trades.searchTags")}
+                value={tagSearchQuery}
+                onChange={(e) => setTagSearchQuery(e.target.value)}
+                className="mb-2"
+              />
+              <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 border rounded-md">
+                {availableTags
+                  .filter(tag => 
+                    tag.toLowerCase().includes(tagSearchQuery.toLowerCase())
+                  )
+                  .map((tag) => (
+                    <Badge
+                      key={tag}
+                      variant={selectedTags.includes(tag) ? "default" : "outline"}
+                      className="cursor-pointer"
+                      onClick={() => {
+                        if (selectedTags.includes(tag)) {
+                          setSelectedTags(selectedTags.filter(t => t !== tag));
+                        } else {
+                          setSelectedTags([...selectedTags, tag]);
+                        }
+                      }}
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
               </div>
               {selectedTags.length > 0 && (
                 <p className="text-xs text-muted-foreground">

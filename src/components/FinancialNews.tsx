@@ -118,8 +118,8 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
           <p className="text-sm text-muted-foreground">{t("trades.noNewsAvailable")}</p>
         ) : (
           <div className="space-y-4">
-            {articles.map((article) => (
-              <div key={article.uuid} className="border-b pb-4 last:border-0">
+            {articles.map((article, index) => (
+              <div key={`${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
                   {article.sentiment && getSentimentIcon(article.sentiment)}

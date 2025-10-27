@@ -11,6 +11,8 @@ import { FinancialNews } from "./FinancialNews";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import trumpEmoji from "@/assets/trump-emoji.png";
+import { supabase } from "@/integrations/supabase/client";
+import { useEffect } from "react";
 
 interface Trade {
   id: string;
@@ -33,11 +35,27 @@ interface TradeCalendarProps {
 export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, onEditTrade }: TradeCalendarProps) {
   const { t, i18n } = useTranslation();
   const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [currency, setCurrency] = useState("USD");
   
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
   const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
   const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+
+  // Load currency from settings
+  useEffect(() => {
+    const loadCurrency = async () => {
+      const { data } = await supabase
+        .from("user_settings")
+        .select("base_currency")
+        .maybeSingle();
+      
+      if (data?.base_currency) {
+        setCurrency(data.base_currency);
+      }
+    };
+    loadCurrency();
+  }, []);
   
   // Temporarily disabled due to API rate limits
   // const { getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
@@ -239,7 +257,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                     {dayTrades.length > 0 && (
                       <div className="flex items-center justify-center h-full">
                         <div className={`text-lg font-bold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          {dayPnL >= 0 ? '+' : ''}{dayPnL.toFixed(0)}
+                          {dayPnL >= 0 ? '+' : ''}{currency} {Math.abs(dayPnL).toFixed(0)}
                         </div>
                       </div>
                     )}
@@ -286,7 +304,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                         </div>
                         <div className="flex items-center gap-2">
                           <span className={`text-sm font-semibold ${trade.pnl_net >= 0 ? 'text-success' : 'text-destructive'}`}>
-                            ${trade.pnl_net.toFixed(2)}
+                            {currency} {trade.pnl_net.toFixed(2)}
                           </span>
                           {onEditTrade && (
                             <Button
@@ -307,7 +325,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                         <span className={`font-bold ${
                           getDayPnL(selectedDate) >= 0 ? 'text-success' : 'text-destructive'
                         }`}>
-                          ${getDayPnL(selectedDate).toFixed(2)}
+                          {currency} {getDayPnL(selectedDate).toFixed(2)}
                         </span>
                       </div>
                     </div>

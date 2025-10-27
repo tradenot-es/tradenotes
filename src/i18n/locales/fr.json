@@ -70,6 +70,7 @@
     "setup": "Configuration",
     "tags": "Étiquettes",
     "tagsSelected": "sélectionné",
+    "searchTags": "Rechercher des tags...",
     "note": "Note",
     "actions": "Actions",
     "view": "Voir",

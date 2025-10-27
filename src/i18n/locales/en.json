@@ -74,6 +74,7 @@
     "setup": "Setup",
     "tags": "Tags",
     "tagsSelected": "selected",
+    "searchTags": "Search tags...",
     "note": "Note",
     "actions": "Actions",
     "view": "View",
