@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
+import { TrendingUp, DollarSign, Target, Activity, Info } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
@@ -11,6 +11,9 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Link } from "react-router-dom";
 
 interface Trade {
   id: string;
@@ -219,13 +222,35 @@ const Index = () => {
               tooltip={t("dashboard.profitFactorTooltip")}
               glossaryLink="/glossary#profit-factor"
             />
-            <KPICardWithTooltip
-              title={t("dashboard.avgWinLoss")}
-              value={`$${kpis.avgWin} / $${kpis.avgLoss}`}
-              icon={Activity}
-              tooltip={t("dashboard.avgWinLossTooltip")}
-              glossaryLink="/glossary#avg-win-loss"
-            />
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium">{t("dashboard.avgWinLoss")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("dashboard.avgWinLossTooltip")}</p>
+                      <Link 
+                        to="/glossary#avg-win-loss" 
+                        className="text-xs text-primary hover:underline mt-2 block"
+                      >
+                        Learn more in glossary →
+                      </Link>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
+                <Activity className="h-4 w-4 text-muted-foreground" />
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-baseline gap-2 text-2xl font-bold">
+                  <span className="text-success">${kpis.avgWin}</span>
+                  <span className="text-muted-foreground">/</span>
+                  <span className="text-destructive">${kpis.avgLoss}</span>
+                </div>
+              </CardContent>
+            </Card>
             <KPICardWithTooltip
               title={t("dashboard.maxDrawdown")}
               value={`$${kpis.maxDrawdown}`}
