@@ -13,6 +13,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import trumpEmoji from "@/assets/trump-emoji.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
+import { getCurrencySymbol } from "@/lib/utils";
 
 interface Trade {
   id: string;
@@ -51,7 +52,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
         .maybeSingle();
       
       if (data?.base_currency) {
-        setCurrency(data.base_currency);
+        setCurrency(getCurrencySymbol(data.base_currency));
       }
     };
     loadCurrency();
@@ -257,7 +258,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                     {dayTrades.length > 0 && (
                       <div className="flex items-center justify-center h-full">
                         <div className={`text-lg font-bold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          {dayPnL >= 0 ? '+' : ''}{currency} {Math.abs(dayPnL).toFixed(0)}
+                          {dayPnL >= 0 ? '+' : ''}{currency}{Math.abs(dayPnL).toFixed(0)}
                         </div>
                       </div>
                     )}
@@ -304,7 +305,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                         </div>
                         <div className="flex items-center gap-2">
                           <span className={`text-sm font-semibold ${trade.pnl_net >= 0 ? 'text-success' : 'text-destructive'}`}>
-                            {currency} {trade.pnl_net.toFixed(2)}
+                            {currency}{trade.pnl_net.toFixed(2)}
                           </span>
                           {onEditTrade && (
                             <Button
@@ -325,7 +326,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                         <span className={`font-bold ${
                           getDayPnL(selectedDate) >= 0 ? 'text-success' : 'text-destructive'
                         }`}>
-                          {currency} {getDayPnL(selectedDate).toFixed(2)}
+                          {currency}{getDayPnL(selectedDate).toFixed(2)}
                         </span>
                       </div>
                     </div>

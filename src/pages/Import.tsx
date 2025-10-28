@@ -214,21 +214,21 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
       </div>
 
       {session && (
-        <Card className="mb-6">
+        <Card className="mb-6 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-background to-primary/5">
           <CardHeader>
-            <CardTitle>{t("import.webhookTitle")}</CardTitle>
-            <CardDescription>{t("import.webhookDescription")}</CardDescription>
+            <CardTitle className="text-xl">{t("import.webhookTitle")}</CardTitle>
+            <CardDescription className="text-base">{t("import.webhookDescription")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-2">
-              <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all">
+            <div className="flex items-center gap-2 p-4 bg-background rounded-lg border-2">
+              <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all font-mono">
                 {webhookUrl}
               </code>
-              <Button onClick={copyWebhookUrl} size="icon" variant="outline">
+              <Button onClick={copyWebhookUrl} size="icon" variant="default">
                 {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
               </Button>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground font-medium">
               {t("import.webhookInstructions")}
             </p>
           </CardContent>

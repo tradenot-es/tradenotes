@@ -368,6 +368,12 @@
     "avgWin": "Ganancia Promedio",
     "avgLoss": "Pérdida Promedia",
     "profitFactor": "Factor de Beneficio",
+    "totalTradesTooltip": "Número total de operaciones ejecutadas en el período seleccionado",
+    "winningTradesTooltip": "Número de operaciones rentables",
+    "losingTradesTooltip": "Número de operaciones con pérdidas",
+    "tradesWithRiskTooltip": "Número de operaciones con riesgo definido (R)",
+    "avgWinTooltip": "Ganancia promedio en operaciones ganadoras",
+    "avgLossTooltip": "Pérdida promedio en operaciones perdedoras",
     "noRiskData": "No hay datos de riesgo disponibles. Añada riesgo inicial y stop loss a sus trades."
   },
   "filters": {

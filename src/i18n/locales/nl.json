@@ -368,6 +368,12 @@
     "avgWin": "Gemiddelde Winst",
     "avgLoss": "Gemiddeld Verlies",
     "profitFactor": "Profit Factor",
+    "totalTradesTooltip": "Totaal aantal uitgevoerde trades in de geselecteerde periode",
+    "winningTradesTooltip": "Aantal winstgevende trades",
+    "losingTradesTooltip": "Aantal verliesgevende trades",
+    "tradesWithRiskTooltip": "Aantal trades met gedefinieerd risico (R)",
+    "avgWinTooltip": "Gemiddelde winst bij winnende trades",
+    "avgLossTooltip": "Gemiddeld verlies bij verliezende trades",
     "noRiskData": "Geen risico gegevens beschikbaar. Voeg initieel risico en stop loss toe aan uw trades."
   },
   "filters": {

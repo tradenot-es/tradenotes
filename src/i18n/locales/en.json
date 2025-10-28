@@ -410,6 +410,12 @@
     "avgWin": "Average Win",
     "avgLoss": "Average Loss",
     "profitFactor": "Profit Factor",
+    "totalTradesTooltip": "Total number of executed trades in the selected period",
+    "winningTradesTooltip": "Number of profitable trades",
+    "losingTradesTooltip": "Number of losing trades",
+    "tradesWithRiskTooltip": "Number of trades with defined risk (R)",
+    "avgWinTooltip": "Average profit on winning trades",
+    "avgLossTooltip": "Average loss on losing trades",
     "noRiskData": "No risk data available. Add initial risk and stop loss to your trades."
   },
   "filters": {

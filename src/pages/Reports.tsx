@@ -8,6 +8,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
 import { Calendar } from "lucide-react";
+import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
+import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 
 interface Trade {
   id: string;
@@ -259,31 +261,33 @@ export default function Reports() {
             </Card>
           </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("reports.summary")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold">{filteredTrades.length}</div>
-                  <div className="text-sm text-muted-foreground">{t("reports.totalTrades")}</div>
-                </div>
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold text-success">{winLossStats.wins}</div>
-                  <div className="text-sm text-muted-foreground">{t("reports.winningTrades")}</div>
-                </div>
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold text-destructive">{winLossStats.losses}</div>
-                  <div className="text-sm text-muted-foreground">{t("reports.losingTrades")}</div>
-                </div>
-                <div className="text-center p-4 border rounded-lg">
-                  <div className="text-2xl font-bold">{winLossStats.winRate}%</div>
-                  <div className="text-sm text-muted-foreground">{t("dashboard.winRate")}</div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <KPICardWithTooltip
+              title={t("reports.totalTrades")}
+              value={filteredTrades.length}
+              icon={Activity}
+              tooltip={t("reports.totalTradesTooltip")}
+            />
+            <KPICardWithTooltip
+              title={t("reports.winningTrades")}
+              value={winLossStats.wins}
+              icon={TrendingUp}
+              tooltip={t("reports.winningTradesTooltip")}
+            />
+            <KPICardWithTooltip
+              title={t("reports.losingTrades")}
+              value={winLossStats.losses}
+              icon={TrendingUp}
+              tooltip={t("reports.losingTradesTooltip")}
+            />
+            <KPICardWithTooltip
+              title={t("dashboard.winRate")}
+              value={`${winLossStats.winRate}%`}
+              icon={Target}
+              tooltip={t("dashboard.winRateTooltip")}
+              glossaryLink="/glossary#win-rate"
+            />
+          </div>
         </TabsContent>
 
         {/* By Setup Tab */}
@@ -392,26 +396,38 @@ export default function Reports() {
                 <CardTitle>{t("reports.riskMetrics")}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <span className="text-muted-foreground">{t("reports.avgRMultiple")}</span>
-                  <span className="text-2xl font-bold">{riskMetrics.avgR}R</span>
-                </div>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <span className="text-muted-foreground">{t("reports.tradesWithRisk")}</span>
-                  <span className="text-2xl font-bold">{riskMetrics.totalWithR}</span>
-                </div>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <span className="text-muted-foreground">{t("reports.avgWin")}</span>
-                  <span className="text-2xl font-bold text-success">${winLossStats.avgWin}</span>
-                </div>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <span className="text-muted-foreground">{t("reports.avgLoss")}</span>
-                  <span className="text-2xl font-bold text-destructive">${winLossStats.avgLoss}</span>
-                </div>
-                <div className="flex items-center justify-between p-4 border rounded-lg">
-                  <span className="text-muted-foreground">{t("reports.profitFactor")}</span>
-                  <span className="text-2xl font-bold">{winLossStats.profitFactor}</span>
-                </div>
+                <KPICardWithTooltip
+                  title={t("reports.avgRMultiple")}
+                  value={`${riskMetrics.avgR}R`}
+                  icon={TrendingUp}
+                  tooltip={t("dashboard.avgRMultipleTooltip")}
+                  glossaryLink="/glossary#r-multiple"
+                />
+                <KPICardWithTooltip
+                  title={t("reports.tradesWithRisk")}
+                  value={riskMetrics.totalWithR}
+                  icon={Activity}
+                  tooltip={t("reports.tradesWithRiskTooltip")}
+                />
+                <KPICardWithTooltip
+                  title={t("reports.avgWin")}
+                  value={`$${winLossStats.avgWin}`}
+                  icon={DollarSign}
+                  tooltip={t("reports.avgWinTooltip")}
+                />
+                <KPICardWithTooltip
+                  title={t("reports.avgLoss")}
+                  value={`$${winLossStats.avgLoss}`}
+                  icon={DollarSign}
+                  tooltip={t("reports.avgLossTooltip")}
+                />
+                <KPICardWithTooltip
+                  title={t("reports.profitFactor")}
+                  value={winLossStats.profitFactor}
+                  icon={TrendingUp}
+                  tooltip={t("dashboard.profitFactorTooltip")}
+                  glossaryLink="/glossary#profit-factor"
+                />
               </CardContent>
             </Card>
           </div>
