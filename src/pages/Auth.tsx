@@ -31,7 +31,7 @@ const Auth = () => {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        navigate("/");
+        navigate("/dashboard");
       }
     });
   }, [navigate]);
@@ -62,13 +62,13 @@ const Auth = () => {
         });
         if (error) throw error;
         toast.success(t("auth.loginSuccess"));
-        navigate("/");
+        navigate("/dashboard");
       } else {
         const { error } = await supabase.auth.signUp({
           email,
           password,
           options: {
-            emailRedirectTo: `${window.location.origin}/`,
+            emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
         if (error) throw error;

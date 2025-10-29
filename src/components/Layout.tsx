@@ -11,14 +11,14 @@ export function Layout({ children }: { children: ReactNode }) {
   const { signOut } = useAuth();
 
   const navItems = [
-    { title: t("nav.dashboard"), url: "/", icon: LayoutDashboard },
-    { title: t("nav.trades"), url: "/trades", icon: TrendingUp },
-    { title: t("nav.import"), url: "/import", icon: Upload },
-    { title: t("nav.reports"), url: "/reports", icon: BarChart3 },
-    { title: t("nav.journal"), url: "/journal", icon: BookOpen },
-    { title: t("nav.glossary"), url: "/glossary", icon: BookMarked },
-    { title: t("nav.account"), url: "/account", icon: User },
-    { title: t("nav.settings"), url: "/settings", icon: Settings },
+    { title: t("nav.dashboard"), url: "/dashboard", icon: LayoutDashboard },
+    { title: t("nav.trades"), url: "/dashboard/trades", icon: TrendingUp },
+    { title: t("nav.import"), url: "/dashboard/import", icon: Upload },
+    { title: t("nav.reports"), url: "/dashboard/reports", icon: BarChart3 },
+    { title: t("nav.journal"), url: "/dashboard/journal", icon: BookOpen },
+    { title: t("nav.glossary"), url: "/dashboard/glossary", icon: BookMarked },
+    { title: t("nav.account"), url: "/dashboard/account", icon: User },
+    { title: t("nav.settings"), url: "/dashboard/settings", icon: Settings },
   ];
 
   return (
@@ -33,9 +33,9 @@ export function Layout({ children }: { children: ReactNode }) {
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.url}>
                   <SidebarMenuButton asChild>
-                    <NavLink
+                     <NavLink
                       to={item.url}
-                      end={item.url === "/"}
+                      end={item.url === "/dashboard"}
                       className={({ isActive }) =>
                         isActive
                           ? "flex items-center gap-3 px-3 py-2 rounded-md bg-sidebar-accent text-sidebar-accent-foreground"

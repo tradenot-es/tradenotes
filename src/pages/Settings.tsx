@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { z } from "zod";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { SetupDefinition } from "@/types/setup";
@@ -241,6 +242,16 @@ const Settings = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <LanguageSwitcher />
+              
+              <div className="grid gap-2">
+                <Label>Theme</Label>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle />
+                  <span className="text-sm text-muted-foreground">
+                    Wähle zwischen Hell, Dunkel oder System Theme
+                  </span>
+                </div>
+              </div>
               
               <div className="grid gap-2">
                 <div className="flex items-center gap-2">
