@@ -113,6 +113,18 @@ export default function Glossary() {
       term: t("glossary.stopLoss.term"),
       definition: t("glossary.stopLoss.definition"),
       example: t("glossary.stopLoss.example")
+    },
+    {
+      id: "equity-curve",
+      term: t("glossary.equityCurve.term"),
+      definition: t("glossary.equityCurve.definition"),
+      example: t("glossary.equityCurve.example")
+    },
+    {
+      id: "consistency-tracker",
+      term: t("glossary.consistencyTracker.term"),
+      definition: t("glossary.consistencyTracker.definition"),
+      example: t("glossary.consistencyTracker.example")
     }
   ];
 

@@ -41,6 +41,7 @@
     "avgWinLoss": "Avg Win / Loss",
     "avgWinLossTooltip": "Shows the ratio between average win and average loss. A higher Avg Win enables profitability despite lower win rate.",
     "consistencyTracker": "Trading Consistency",
+    "consistencyTrackerTooltip": "Visualizes your daily trading activity and performance over the last 12 weeks. Green squares show profitable days, red squares show losing days. The more intense the color, the more trades were executed.",
     "less": "Less",
     "more": "More",
     "trades": "trades",
@@ -55,6 +56,7 @@
     "maxDrawdown": "Max Drawdown",
     "maxDrawdownTooltip": "Largest capital decline from peak to trough. Always negative - measures maximum risk and emotional burden of your strategy.",
     "equityCurve": "Equity Curve",
+    "equityCurveTooltip": "Shows the cumulative development of your trading capital over time. A steadily rising curve indicates consistent profitability. Large declines show drawdown phases.",
     "pnlByMonth": "P&L by Month",
     "noTrades": "No trades yet. Add your first trade!",
     "equity": "Equity",
@@ -382,6 +384,16 @@
       "term": "Stop Loss",
       "definition": "Predetermined price level to exit and limit losses.",
       "example": "Long $50, stop at $48 limits risk to $2/share"
+    },
+    "equityCurve": {
+      "term": "Equity Curve",
+      "definition": "The Equity Curve is a graphical representation of the cumulative performance of your trading account over time. It shows the development of your capital from trade to trade and visualizes growth phases and drawdown periods. An ideal equity curve rises continuously with moderate declines. Analysis of the equity curve helps identify patterns: Is your performance consistent or dependent on a few big winners? Does the curve show long sideways phases or deep drawdowns? This is essential for psychological trading management.",
+      "example": "Start with $10,000: After 5 trades (Wins: +$200, +$150, Losses: -$100, -$80, +$300) the equity curve shows: $10,000 → $10,200 → $10,350 → $10,250 → $10,170 → $10,470. The visualization immediately shows that despite 3 out of 5 winning trades (60% win rate), the largest win (+$300) was crucial. A flat or falling equity curve over an extended period signals the need for strategy adjustment."
+    },
+    "consistencyTracker": {
+      "term": "Consistency Tracker / Trading Activity Heatmap",
+      "definition": "The Consistency Tracker is a visual heatmap of your daily trading activity over multiple weeks/months. Each tile represents a day: Green = profitable day, Red = losing day, Intensity = number of trades. This tool reveals patterns in your trading behavior: Are you trading too frequently? Are there day-of-week specific patterns? Are you consistently active or sporadic? Consistency is critical for statistically significant results. If you only make 5 trades per month, you need 100+ trades for valid strategy evaluation - that takes 20 months. More consistency = faster learning curve.",
+      "example": "The heatmap shows: Monday-Wednesday mostly green with high intensity (many profitable trades), Thursday-Friday mixed or empty (less/no activity). This could mean: You perform better early in the week when the market establishes trends. Or: You become less disciplined towards the weekend. Analysis leads to adjustment: Focus on Monday-Wednesday trading, strict break Thursday-Friday → immediate performance improvement through elimination of weak days."
     },
     "subtitle": "Essential trading terms and risk management concepts",
     "formula": "Formula",

@@ -13,7 +13,9 @@ import {
   Check,
   Star,
   Import,
-  FileText
+  FileText,
+  Activity,
+  Target
 } from "lucide-react";
 
 const Landing = () => {
@@ -26,17 +28,27 @@ const Landing = () => {
     {
       icon: <BarChart3 className="h-6 w-6" />,
       title: "Performance Analytics",
-      description: "Umfassende Statistiken mit Win-Rate, Profit-Factor, durchschnittlichem Gewinn/Verlust und Drawdown-Analyse"
+      description: "Umfassende Statistiken mit Win-Rate, R-Multiple, Profit-Factor, Expectancy und kritischen Risikomanagement-KPIs"
     },
     {
       icon: <LineChart className="h-6 w-6" />,
-      title: "Equity Curve & P&L Charts",
-      description: "Visualisiere deine Kontentwicklung und täglichen Gewinne mit interaktiven Charts und Trendanalysen"
+      title: "Equity Curve",
+      description: "Visualisiere deine kumulative Kapitalentwicklung - erkenne Drawdown-Phasen und Wachstumstrends auf einen Blick"
+    },
+    {
+      icon: <Activity className="h-6 w-6" />,
+      title: "Consistency Tracker",
+      description: "GitHub-Style Heatmap deiner Trading-Konsistenz über 12 Wochen - identifiziere profitable Muster und meide Verlusttage"
     },
     {
       icon: <Calendar className="h-6 w-6" />,
       title: "Trading Kalender",
       description: "Behalte den Überblick über deine Trades im Kalender-Format mit farblicher Kennzeichnung profitabler Tage"
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: "Win/Loss Analytics",
+      description: "Detaillierte Breakdown deiner Gewinn- und Verlust-Trades mit Durchschnittswerten, Best/Worst Trades und Ratio-Darstellung"
     },
     {
       icon: <Import className="h-6 w-6" />,
@@ -45,19 +57,27 @@ const Landing = () => {
     },
     {
       icon: <FileText className="h-6 w-6" />,
-      title: "Detaillierte Reports",
-      description: "Automatisch generierte Performance-Reports mit allen wichtigen KPIs und Trading-Mustern"
+      title: "Setup-basierte Reports",
+      description: "Analysiere Performance nach Trading-Setup, Wochentag und Symbol - finde deine profitabelsten Setups"
+    },
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      title: "P&L Charts",
+      description: "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
     }
   ];
 
   const allFeatures = [
     "Unbegrenzte Trades dokumentieren",
-    "Vollständige Performance Analytics",
+    "Vollständige Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
     "Trading Journal mit Notizen & Screenshots",
-    "Equity Curve & P&L Charts",
+    "Equity Curve zur Kapitalverfolgung",
+    "Consistency Tracker (12-Wochen Heatmap)",
+    "Win/Loss Analytics & Performance Breakdown",
     "Trading Kalender-Ansicht",
+    "P&L Charts & Visualisierungen",
     "CSV Import & Export",
-    "Detaillierte Performance Reports",
+    "Setup-basierte Performance Reports",
     "Alle zukünftigen Features inklusive",
     "7 Tage kostenlos testen"
   ];

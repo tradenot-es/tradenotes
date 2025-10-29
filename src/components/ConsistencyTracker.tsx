@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { TrendingUp } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { TrendingUp, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Trade {
   exit_time: string;
@@ -72,10 +74,26 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
     <Card className="elegant-shadow">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <TrendingUp className="h-5 w-5 text-primary" />
-            {t("dashboard.consistencyTracker")}
-          </CardTitle>
+          <div className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2">
+              <TrendingUp className="h-5 w-5 text-primary" />
+              {t("dashboard.consistencyTracker")}
+            </CardTitle>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <p className="text-sm">{t("dashboard.consistencyTrackerTooltip")}</p>
+                <Link 
+                  to="/glossary#consistency-tracker" 
+                  className="text-xs text-primary hover:underline mt-2 block"
+                >
+                  Learn more in glossary →
+                </Link>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <span>{t("dashboard.less")}</span>

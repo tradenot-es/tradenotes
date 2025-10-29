@@ -41,6 +41,7 @@
     "avgWinLoss": "Ø Gewinn / Verlust",
     "avgWinLossTooltip": "Zeigt das Verhältnis zwischen durchschnittlichem Gewinn und durchschnittlichem Verlust. Ein höherer Avg Win ermöglicht Profitabilität trotz niedrigerer Win Rate.",
     "consistencyTracker": "Trading Konsistenz",
+    "consistencyTrackerTooltip": "Visualisiert Ihre tägliche Trading-Aktivität und Performance über die letzten 12 Wochen. Grüne Kacheln zeigen profitable Tage, rote Kacheln Verlusttage. Je intensiver die Farbe, desto mehr Trades wurden ausgeführt.",
     "less": "Weniger",
     "more": "Mehr",
     "trades": "Trades",
@@ -55,6 +56,7 @@
     "maxDrawdown": "Max Drawdown",
     "maxDrawdownTooltip": "Größter Kapitalrückgang vom Peak zum Tief. Immer negativ - misst das maximale Risiko und die emotionale Belastung Ihrer Strategie.",
     "equityCurve": "Equity Curve",
+    "equityCurveTooltip": "Zeigt die kumulative Entwicklung Ihres Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konsistente Profitabilität hin. Große Rückgänge zeigen Drawdown-Phasen.",
     "pnlByMonth": "P&L nach Monat",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
     "equity": "Equity",
@@ -372,6 +374,16 @@
       "term": "Stop-Loss",
       "definition": "Ein Stop-Loss ist ein vordefinierter Ausstiegspunkt, der eine Position automatisch schließt, wenn der Kurs ein bestimmtes Niveau erreicht. Es ist das wichtigste Risikomanagement-Tool im Trading. Der Stop-Loss definiert das maximale Risiko (R) pro Trade und sollte auf Basis technischer Analyse (z.B. unter Support, hinter Swing-Low) und nicht auf Basis von Prozenten oder Willkür gesetzt werden. Ohne Stop-Loss ist konsistentes Trading unmöglich, da ein einzelner Trade das gesamte Konto vernichten könnte.",
       "example": "Long Entry bei 50€, technischer Stop-Loss bei 47€ (unter vorherigem Swing-Low): Maximales Risiko = 3€ pro Aktie (6% vom Entry). Bei 500€ Konto und 2% Risiko (10€): Position Size = 10€ / 3€ = 3,3 Aktien → kaufe 3 Aktien. Stop kann mental oder als Order beim Broker platziert werden. Mental-Stops erfordern Disziplin!"
+    },
+    "equityCurve": {
+      "term": "Equity Curve",
+      "definition": "Die Equity Curve ist eine grafische Darstellung der kumulativen Performance Ihres Trading-Kontos über die Zeit. Sie zeigt die Entwicklung Ihres Kapitals von Trade zu Trade und visualisiert Wachstumsphasen sowie Drawdown-Perioden. Eine ideale Equity Curve steigt kontinuierlich mit moderaten Rückgängen. Die Analyse der Equity Curve hilft, Muster zu erkennen: Ist Ihre Performance konsistent oder von wenigen großen Gewinnern abhängig? Zeigt die Kurve lange Seitwärtsphasen oder tiefe Drawdowns? Dies ist essentiell für psychologisches Trading-Management.",
+      "example": "Start mit 10.000€: Nach 5 Trades (Gewinne: +200€, +150€, Verluste: -100€, -80€, +300€) zeigt die Equity Curve: 10.000€ → 10.200€ → 10.350€ → 10.250€ → 10.170€ → 10.470€. Die Visualisierung macht sofort sichtbar, dass trotz 3 von 5 gewinnenden Trades (60% Win Rate) der größte Gewinn (+300€) entscheidend war. Eine flache oder fallende Equity Curve über längere Zeit signalisiert Strategieanpassung."
+    },
+    "consistencyTracker": {
+      "term": "Consistency Tracker / Trading-Aktivitäts-Heatmap",
+      "definition": "Der Consistency Tracker ist eine visuelle Heatmap Ihrer täglichen Trading-Aktivität über mehrere Wochen/Monate. Jede Kachel repräsentiert einen Tag: Grün = profitabler Tag, Rot = Verlusttag, Intensität = Anzahl der Trades. Dieses Tool offenbart Muster in Ihrem Trading-Verhalten: Traden Sie zu häufig? Gibt es wochentagsspezifische Muster? Sind Sie konsistent aktiv oder sporadisch? Konsistenz ist kritisch für statistisch signifikante Ergebnisse. Wenn Sie nur 5 Trades pro Monat machen, sind 100+ Trades für valide Strategie-Bewertung nötig - das dauert 20 Monate. Mehr Konsistenz = schnellere Lernkurve.",
+      "example": "Die Heatmap zeigt: Montag-Mittwoch meist grün mit hoher Intensität (viele profitable Trades), Donnerstag-Freitag gemischt oder leer (weniger/keine Aktivität). Dies könnte bedeuten: Sie performen besser am Wochenanfang wenn der Markt Trends etabliert. Oder: Sie werden gegen Wochenende weniger diszipliniert. Die Analyse führt zu Anpassung: Fokus auf Montag-Mittwoch Trading, strikte Pause Donnerstag-Freitag → sofortige Performance-Verbesserung durch Elimination schwacher Tage."
     },
     "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
     "formula": "Formel",

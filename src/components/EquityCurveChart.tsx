@@ -1,5 +1,9 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Info } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface DataPoint {
   date: string;
@@ -11,10 +15,28 @@ interface EquityCurveChartProps {
 }
 
 export function EquityCurveChart({ data }: EquityCurveChartProps) {
+  const { t } = useTranslation();
+  
   return (
     <Card className="elegant-shadow">
       <CardHeader>
-        <CardTitle>Equity Curve</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>{t("dashboard.equityCurve")}</CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("dashboard.equityCurveTooltip")}</p>
+              <Link 
+                to="/glossary#equity-curve" 
+                className="text-xs text-primary hover:underline mt-2 block"
+              >
+                Learn more in glossary →
+              </Link>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
