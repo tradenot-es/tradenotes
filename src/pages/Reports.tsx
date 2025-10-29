@@ -10,6 +10,10 @@ import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOf
 import { Calendar } from "lucide-react";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
+import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
+import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysis";
+import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
+import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
 
 interface Trade {
   id: string;
@@ -22,6 +26,9 @@ interface Trade {
   setup?: string;
   r?: number;
   rating?: number;
+  qty: number;
+  entry_price: number;
+  exit_price: number;
 }
 
 export default function Reports() {
@@ -212,10 +219,12 @@ export default function Reports() {
       </div>
 
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
           <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
           <TabsTrigger value="setup">{t("reports.bySetup")}</TabsTrigger>
           <TabsTrigger value="time">{t("reports.timeAnalysis")}</TabsTrigger>
+          <TabsTrigger value="behavior">{t("reports.behavior")}</TabsTrigger>
+          <TabsTrigger value="symbols">{t("reports.symbols")}</TabsTrigger>
           <TabsTrigger value="risk">{t("reports.riskAnalysis")}</TabsTrigger>
         </TabsList>
 
@@ -363,6 +372,19 @@ export default function Reports() {
               </div>
             </CardContent>
           </Card>
+
+          <HourOfDayAnalysis trades={filteredTrades} />
+        </TabsContent>
+
+        {/* Behavior Tab */}
+        <TabsContent value="behavior" className="space-y-6">
+          <StreakAnalysis trades={filteredTrades} />
+          <HoldingPeriodAnalysis trades={filteredTrades} />
+        </TabsContent>
+
+        {/* Symbols Tab */}
+        <TabsContent value="symbols" className="space-y-6">
+          <SymbolPerformance trades={filteredTrades} />
         </TabsContent>
 
         {/* Risk Analysis Tab */}
