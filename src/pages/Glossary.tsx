@@ -1,6 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 interface GlossaryTerm {
   id: string;
@@ -12,6 +13,19 @@ interface GlossaryTerm {
 
 export default function Glossary() {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    // Scroll to anchor on mount and when hash changes
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, []);
 
   const terms: GlossaryTerm[] = [
     {
