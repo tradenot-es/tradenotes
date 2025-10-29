@@ -300,35 +300,67 @@
   "glossary": {
     "rMultiple": {
       "term": "R-Multiple",
-      "definition": "Misst wie oft Ihr anfängliches Risiko Sie bei einem Trade gewonnen oder verloren haben. Ein R-Multiple von 2R bedeutet, dass Sie das Doppelte Ihres anfänglichen Risikos gemacht haben, während -1R bedeutet, dass Sie Ihr volles Risiko verloren haben.",
-      "formula": "R-Multiple = Netto P&L / Anfängliches Risiko",
-      "example": "Risiko $100, Gewinn $200 → R-Multiple = 2R"
+      "definition": "Das R-Multiple ist eine fundamentale Kennzahl im Risikomanagement, die das Verhältnis zwischen Gewinn/Verlust und dem initialen Risiko misst. Es normalisiert jeden Trade auf das eingegangene Risiko und ermöglicht so einen fairen Vergleich verschiedener Trades unabhängig von Position Size oder absoluten Beträgen. Ein positives R-Multiple zeigt einen Gewinn, ein negatives einen Verlust relativ zum Risiko.",
+      "formula": "R-Multiple = (Exit Price - Entry Price) / Initial Risk\n\nFür Short-Positionen: R-Multiple = (Entry Price - Exit Price) / Initial Risk",
+      "example": "Entry bei 100€, Stop-Loss bei 95€ (5€ Risiko = 1R), Exit bei 110€ ergibt: R-Multiple = (110 - 100) / 5 = 2R (doppelter Gewinn des Risikos). Bei Exit auf 92,50€: R-Multiple = (92,50 - 100) / 5 = -1,5R (Verlust vom 1,5-fachen des Risikos)"
     },
     "initialRisk": {
-      "term": "Anfängliches Risiko",
-      "definition": "Der Geldbetrag, den Sie bereit sind bei einem Trade zu verlieren, berechnet vom Einstiegspreis bis zum Stop-Loss-Preis.",
-      "formula": "Anfängliches Risiko = (Einstiegspreis - Stop Loss Preis) × Menge",
-      "example": "Einstieg $50, Stop Loss $48, Menge 100 → Risiko = $200"
+      "term": "Anfängliches Risiko (R)",
+      "definition": "Das initiale Risiko (R) definiert den maximalen Verlustbetrag, den Sie bei einem Trade akzeptieren, bevor Sie die Position schließen. Es ist die Grundlage für Positionsgrößenbestimmung und Trade-Management. Das Risiko sollte als fester Prozentsatz des Kontos (z.B. 1-2% pro Trade) festgelegt werden, um das Gesamtrisiko des Portfolios zu kontrollieren. Dies ist der Ausgangspunkt für alle R-Multiple-Berechnungen.",
+      "formula": "Initial Risk (R) = |Entry Price - Stop Loss Price| × Position Size\n\nOder als Kontoprozentsatz: R = Account Size × Risk Percentage",
+      "example": "Entry bei 50€, Stop-Loss bei 48€, Position 100 Aktien: Initial Risk = 2€ × 100 = 200€. Bei einem 10.000€ Konto entspricht dies 2% Risiko. Alternative: 10.000€ Konto, 1% Risiko = 100€ R"
     },
     "expectancy": {
-      "term": "Erwartungswert",
-      "definition": "Der durchschnittliche Betrag, den Sie pro Trade im Laufe der Zeit erwarten können zu gewinnen (oder zu verlieren). Berücksichtigt sowohl Gewinnrate als auch durchschnittlichen Gewinn/Verlust.",
-      "formula": "Erwartungswert = (Gewinnrate × Ø Gewinn) - (Verlustrate × Ø Verlust)",
-      "example": "60% Gewinnrate, $150 Ø Gewinn, $100 Ø Verlust → Erwartungswert = $50"
+      "term": "Erwartungswert (Expectancy)",
+      "definition": "Der Erwartungswert ist eine statistische Kennzahl, die den durchschnittlichen Gewinn oder Verlust pro Trade über eine große Anzahl von Trades prognostiziert. Er kombiniert Win Rate mit durchschnittlichem Gewinn und Verlust zu einer einzigen Metrik. Ein positiver Erwartungswert ist essentiell für langfristige Profitabilität - er zeigt, dass Ihre Strategie einen statistischen Edge hat. Je höher der Erwartungswert, desto profitabler ist Ihre Strategie über viele Trades hinweg.",
+      "formula": "Expectancy = (Win Rate × Avg Win) - (Loss Rate × Avg Loss)\n\nOder in R: Expectancy in R = (Win Rate × Avg Win in R) - (Loss Rate × Avg Loss in R)",
+      "example": "50% Win Rate, Ø Win 200€, Ø Loss 100€: Expectancy = (0,5 × 200) - (0,5 × 100) = 50€ pro Trade. Bei 100 Trades erwarten Sie 5.000€ Gewinn. Mit R-Multiple: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust: Expectancy = (0,4 × 3R) - (0,6 × 1R) = 0,6R pro Trade"
     },
     "tradeRating": {
       "term": "Trade-Qualitätsbewertung",
       "definition": "Eine subjektive Bewertung (1-5 Sterne), die die Qualität der Trade-Ausführung widerspiegelt. Berücksichtigt Faktoren wie: Befolgen Ihres Plans, Entry/Exit-Timing, emotionale Kontrolle und Risikomanagement. Hilft, gut ausgeführte Trades unabhängig vom P&L-Ergebnis zu identifizieren."
     },
-    "winRate": { "term": "Gewinnrate", "definition": "Prozentsatz profitabler Trades.", "formula": "Gewinnrate = (Gewinn-Trades / Gesamt) × 100%", "example": "60 Gewinne von 100 Trades → 60%" },
-    "winRateRiskReward": { "term": "Win Rate & Risk-Reward Zusammenhang", "definition": "Eine niedrige Win Rate (z.B. 40%) kann hochprofitabel sein, wenn das durchschnittliche R-Multiple hoch ist. Beispiel: 40% Win Rate mit 3R Gewinn und -1R Verlust = (0.4 × 3R) + (0.6 × -1R) = +0.6R Erwartungswert pro Trade. Umgekehrt kann eine hohe Win Rate (z.B. 70%) unprofitabel sein bei schlechtem Risk-Reward: 70% Win Rate mit 1R Gewinn und -3R Verlust = (0.7 × 1R) + (0.3 × -3R) = -0.2R pro Trade.", "example": "Strategie A: 40% Win Rate, 3:1 R:R → Profitabel | Strategie B: 70% Win Rate, 1:3 R:R → Verlust" },
-    "profitFactor": { "term": "Profit Factor", "definition": "Verhältnis Bruttogewinne zu Bruttoverlusten. >1.0 profitabel, >2.0 exzellent.", "formula": "Profit Factor = Bruttogewinn / Bruttoverlust", "example": "$10.000 Gewinn, $5.000 Verlust → 2.0" },
+    "winRate": {
+      "term": "Trefferquote (Win Rate)",
+      "definition": "Die Trefferquote misst den Prozentsatz erfolgreicher Trades im Verhältnis zur Gesamtzahl aller Trades. Sie ist eine wichtige Kennzahl, muss aber immer im Kontext von Risk-Reward betrachtet werden. Eine hohe Win Rate garantiert keine Profitabilität, wenn die Gewinne klein und Verluste groß sind. Umgekehrt kann eine niedrige Win Rate mit hohen durchschnittlichen Gewinnen sehr profitabel sein.",
+      "formula": "Win Rate = (Anzahl Gewinn-Trades / Anzahl aller Trades) × 100%\n\nMinimale Win Rate für Profitabilität = 1 / (1 + Avg R-Multiple)",
+      "example": "60 gewinnbringende Trades von 100 insgesamt: Win Rate = (60 / 100) × 100% = 60%. Bei Ø R-Multiple von 2R benötigen Sie nur: 1/(1+2) = 33,3% Win Rate für Breakeven. Bei R-Multiple 1R benötigen Sie 50% Win Rate"
+    },
+    "winRateRiskReward": {
+      "term": "Zusammenhang Win Rate & Risk-Reward",
+      "definition": "Win Rate und Risk-Reward-Verhältnis (R-Multiple) sind die beiden fundamentalen Säulen der Trading-Profitabilität. Sie stehen in einem inversen Verhältnis: Je höher Ihr durchschnittliches R-Multiple, desto niedriger kann Ihre Win Rate sein und Sie bleiben trotzdem profitabel. Dies ist essentiell zu verstehen, da viele Trader fälschlicherweise nur auf hohe Win Rates fokussieren. Momentum-Strategien haben oft nur 30-40% Win Rate, sind aber durch hohe R-Multiples (3R+) sehr profitabel. Mean-Reversion-Strategien haben oft 60-70% Win Rate, aber niedrigere R-Multiples (0,5-1,5R).",
+      "example": "Szenario A (Momentum): 35% Win Rate, Ø Gewinn 4R, Ø Verlust 1R → Expectancy = (0,35 × 4R) - (0,65 × 1R) = 0,75R pro Trade (sehr profitabel).\n\nSzenario B (Mean-Reversion): 65% Win Rate, Ø Gewinn 0,8R, Ø Verlust 1R → Expectancy = (0,65 × 0,8R) - (0,35 × 1R) = 0,17R pro Trade (profitabel, aber weniger).\n\nSzenario C (verlustreich): 60% Win Rate, Ø Gewinn 0,5R, Ø Verlust 1R → Expectancy = (0,6 × 0,5R) - (0,4 × 1R) = -0,1R pro Trade (Verlust trotz hoher Win Rate!).\n\nBreakeven-Formel: Bei Ø R-Multiple von X benötigen Sie mindestens 1/(1+X) Win Rate. Bei 2R: 33,3%, bei 1R: 50%, bei 0,5R: 66,7%"
+    },
+    "profitFactor": {
+      "term": "Profit Factor",
+      "definition": "Der Profit Factor misst das Verhältnis zwischen der Summe aller Gewinne und der Summe aller Verluste. Es ist eine umfassende Kennzahl, die sowohl Win Rate als auch durchschnittliche Gewinn- und Verlustgrößen berücksichtigt. Ein Profit Factor > 1,0 bedeutet Profitabilität. Werte von 1,5-2,0 gelten als gut, über 2,0 als sehr gut. Im Gegensatz zu Expectancy ist der Profit Factor leichter zu interpretieren und wird oft als Qualitätsmaßstab für Trading-Systeme verwendet.",
+      "formula": "Profit Factor = Summe aller Gewinne / Summe aller Verluste (absolut)\n\nBeziehung zu Win Rate & R: PF = (Win Rate × Avg Win) / (Loss Rate × Avg Loss)",
+      "example": "10.000€ Gesamtgewinne (aus 15 Trades), 6.000€ Gesamtverluste (aus 10 Trades): Profit Factor = 10.000 / 6.000 = 1,67. Das bedeutet: Für jeden verlorenen Euro werden 1,67€ gewonnen. Alternativ: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust → PF = (0,4 × 3) / (0,6 × 1) = 2,0"
+    },
     "riskReward": { "term": "Risiko-Ertrag", "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.", "formula": "R:R = (Ziel - Entry) / (Entry - Stop)", "example": "Entry $50, Ziel $56, Stop $48 → 3:1" },
-    "maxDrawdown": { "term": "Max. Drawdown", "definition": "Größter Rückgang vom Höchst- zum Tiefststand.", "formula": "Max DD = (Peak - Tief) / Peak × 100%", "example": "Peak $10.000, Tief $8.000 → 20%" },
+    "maxDrawdown": {
+      "term": "Maximaler Drawdown",
+      "definition": "Der maximale Drawdown misst den größten prozentualen Rückgang vom Höchststand zum Tiefststand der Equity-Kurve während einer Verlustphase. Es ist eine der wichtigsten Risikokennzahlen, da sie das psychologische und finanzielle Worst-Case-Szenario darstellt. Ein hoher Drawdown kann zur Kapitulation führen, selbst wenn die Strategie langfristig profitabel ist. Professionelle Trader überwachen Drawdowns genau und setzen oft maximale Drawdown-Limits (z.B. 20-25% als Stop-Trading-Level).",
+      "formula": "Max Drawdown % = ((Trough Value - Peak Value) / Peak Value) × 100%\n\nMax Drawdown € = Peak Value - Trough Value",
+      "example": "Konto erreicht 15.000€ Peak, fällt durch Verlustserie auf 12.000€ Trough, bevor es sich erholt: Max Drawdown = ((12.000 - 15.000) / 15.000) × 100% = -20% oder 3.000€ absolut. Bei 50% Drawdown (15.000€ auf 7.500€) benötigen Sie +100% Gewinn nur um wieder auf Ausgangsniveau zu kommen!"
+    },
     "avgWinLoss": { "term": "Ø Gewinn/Verlust", "definition": "Durchschnittlicher Gewinn vs. Verlust.", "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne", "example": "5 Gewinne à $500 → Ø $100" },
-    "pnl": { "term": "P&L (Gewinn & Verlust)", "definition": "Nettogewinn/-verlust nach Gebühren.", "formula": "P&L = (Exit - Entry) × Menge - Gebühren", "example": "100 @ $50, Exit $55, $2 Gebühren → $498" },
-    "setup": { "term": "Setup", "definition": "Spezifisches Muster für Trading-Gelegenheit.", "example": "Breakout, Failed Rally, Gap Fill" },
-    "stopLoss": { "term": "Stop Loss", "definition": "Vorbestimmtes Preisniveau zum Verlustbegrenzen.", "example": "Long $50, Stop $48 begrenzt Risiko auf $2/Aktie" },
+    "pnl": {
+      "term": "Profit & Loss (P&L)",
+      "definition": "P&L bezeichnet den realisierten Gewinn oder Verlust einer geschlossenen Position oder eines Portfolios über einen bestimmten Zeitraum. Es kann in absoluten Beträgen (€/$) oder relativen Kennzahlen (%, R-Multiple) gemessen werden. Das P&L ist die finale Kennzahl, die über Erfolg oder Misserfolg entscheidet. Wichtig: Nicht realisierte Gewinne (offene Positionen) zählen nicht zum finalen P&L.",
+      "formula": "P&L = (Exit Price - Entry Price) × Position Size - (Gebühren + Slippage)\n\nFür Short: P&L = (Entry Price - Exit Price) × Position Size - Kosten\n\nIn Prozent: P&L% = (P&L / Initial Investment) × 100%",
+      "example": "Long: Entry 100€, Exit 110€, 50 Aktien, 10€ Total-Gebühren: P&L = (110 - 100) × 50 - 10 = 490€. Short: Entry 100€, Exit 95€, 50 Aktien, 10€ Gebühren: P&L = (100 - 95) × 50 - 10 = 240€"
+    },
+    "setup": {
+      "term": "Setup / Trading-Setup",
+      "definition": "Ein Trading-Setup ist eine spezifische, vordefinierte Konstellation von Chart-Mustern, technischen Indikatoren und Marktbedingungen, die einen Trade auslösen. Professionelle Trader arbeiten mit einem Arsenal von 3-10 getesteten Setups, die sie unter bestimmten Marktbedingungen anwenden. Jedes Setup sollte klare Entry-, Exit- und Stop-Loss-Regeln haben. Das Kategorisieren von Trades nach Setups ermöglicht statistische Analyse: Welche Setups funktionieren am besten? In welchen Marktphasen? Bei welchen Symbolen? Dies ist essentiell für kontinuierliche Verbesserung.",
+      "example": "Beispiel-Setups:\n• 'Breakout': Kurs durchbricht Widerstand mit erhöhtem Volumen\n• 'Pullback zur 20-EMA': Nach Trend-Bewegung, Rückkehr zu moving average\n• 'Gap Fill': Schließen einer Kurslücke vom Vortag\n• 'Failed Breakdown': Fakeout unter Support, dann reversal\n• 'Inside Bar Breakout': Konsolidierung, dann Ausbruch\n\nJedes Setup wird einzeln getrackt: Setup 'Breakout' könnte 42% Win Rate haben aber 2,8R Ø Gewinn → profitabel"
+    },
+    "stopLoss": {
+      "term": "Stop-Loss",
+      "definition": "Ein Stop-Loss ist ein vordefinierter Ausstiegspunkt, der eine Position automatisch schließt, wenn der Kurs ein bestimmtes Niveau erreicht. Es ist das wichtigste Risikomanagement-Tool im Trading. Der Stop-Loss definiert das maximale Risiko (R) pro Trade und sollte auf Basis technischer Analyse (z.B. unter Support, hinter Swing-Low) und nicht auf Basis von Prozenten oder Willkür gesetzt werden. Ohne Stop-Loss ist konsistentes Trading unmöglich, da ein einzelner Trade das gesamte Konto vernichten könnte.",
+      "example": "Long Entry bei 50€, technischer Stop-Loss bei 47€ (unter vorherigem Swing-Low): Maximales Risiko = 3€ pro Aktie (6% vom Entry). Bei 500€ Konto und 2% Risiko (10€): Position Size = 10€ / 3€ = 3,3 Aktien → kaufe 3 Aktien. Stop kann mental oder als Order beim Broker platziert werden. Mental-Stops erfordern Disziplin!"
+    },
     "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
     "formula": "Formel",
     "example": "Beispiel"

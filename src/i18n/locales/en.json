@@ -300,9 +300,9 @@
   "glossary": {
     "rMultiple": {
       "term": "R-Multiple",
-      "definition": "Measures how many times your initial risk you won or lost on a trade. An R-Multiple of 2R means you made twice your initial risk, while -1R means you lost your full risk amount.",
-      "formula": "R-Multiple = Net P&L / Initial Risk",
-      "example": "Risk $100, profit $200 → R-Multiple = 2R"
+      "definition": "R-Multiple is a fundamental risk management metric that measures the ratio between profit/loss and initial risk. It normalizes every trade based on the risk taken, enabling fair comparison across different trades regardless of position size or absolute amounts. A positive R-Multiple shows a gain, a negative one shows a loss relative to risk.",
+      "formula": "R-Multiple = (Exit Price - Entry Price) / Initial Risk\n\nFor Short positions: R-Multiple = (Entry Price - Exit Price) / Initial Risk",
+      "example": "Entry at $100, Stop-Loss at $95 ($5 risk = 1R), Exit at $110: R-Multiple = (110 - 100) / 5 = 2R (double the risk gained). Exit at $92.50: R-Multiple = (92.50 - 100) / 5 = -1.5R (1.5x risk lost)"
     },
     "initialRisk": {
       "term": "Initial Risk",
@@ -328,8 +328,8 @@
     },
     "winRateRiskReward": {
       "term": "Win Rate & Risk-Reward Relationship",
-      "definition": "A low win rate (e.g., 40%) can be highly profitable if the average R-Multiple is high. Example: 40% win rate with 3R average win and -1R average loss = (0.4 × 3R) + (0.6 × -1R) = +0.6R expectancy per trade. Conversely, a high win rate (e.g., 70%) can be unprofitable with poor risk-reward: 70% win rate with 1R average win and -3R average loss = (0.7 × 1R) + (0.3 × -3R) = -0.2R per trade.",
-      "example": "Strategy A: 40% win rate, 3:1 R:R → Profitable | Strategy B: 70% win rate, 1:3 R:R → Losing"
+      "definition": "Win Rate and Risk-Reward ratio (R-Multiple) are the two fundamental pillars of trading profitability. They are inversely related: the higher your average R-Multiple, the lower your win rate can be while remaining profitable. This is essential to understand, as many traders mistakenly focus only on high win rates. Momentum strategies often have only 30-40% win rate but are highly profitable through high R-Multiples (3R+). Mean-reversion strategies often have 60-70% win rate but lower R-Multiples (0.5-1.5R).",
+      "example": "Scenario A (Momentum): 35% win rate, avg win 4R, avg loss 1R → Expectancy = (0.35 × 4R) - (0.65 × 1R) = 0.75R per trade (highly profitable).\n\nScenario B (Mean-Reversion): 65% win rate, avg win 0.8R, avg loss 1R → Expectancy = (0.65 × 0.8R) - (0.35 × 1R) = 0.17R per trade (profitable but less).\n\nScenario C (losing): 60% win rate, avg win 0.5R, avg loss 1R → Expectancy = (0.6 × 0.5R) - (0.4 × 1R) = -0.1R per trade (losing despite high win rate!).\n\nBreakeven formula: With avg R-Multiple of X, you need minimum 1/(1+X) win rate. At 2R: 33.3%, at 1R: 50%, at 0.5R: 66.7%"
     },
     "profitFactor": {
       "term": "Profit Factor",
