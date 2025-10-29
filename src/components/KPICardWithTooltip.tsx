@@ -9,6 +9,7 @@ interface KPICardWithTooltipProps {
   icon: LucideIcon;
   tooltip?: string;
   glossaryLink?: string;
+  valueColor?: "success" | "warning" | "destructive" | "default";
   trend?: {
     value: string;
     positive: boolean;
@@ -21,12 +22,18 @@ export function KPICardWithTooltip({
   icon: Icon, 
   tooltip, 
   glossaryLink,
+  valueColor,
   trend 
 }: KPICardWithTooltipProps) {
   const isNegativeCurrency = typeof value === 'string' && value.startsWith('$-');
   const isPositiveCurrency = typeof value === 'string' && value.startsWith('$') && !value.startsWith('$-');
   
   const getValueColor = () => {
+    if (valueColor === "success") return 'text-success';
+    if (valueColor === "warning") return 'text-warning';
+    if (valueColor === "destructive") return 'text-destructive';
+    if (valueColor === "default") return '';
+    
     if (isNegativeCurrency) return 'text-destructive';
     if (isPositiveCurrency && parseFloat(value.substring(1)) > 0) return 'text-success';
     return '';

@@ -87,6 +87,7 @@ const Index = () => {
     const winningTrades = trades.filter((t) => t.pnl_net > 0).length;
     const losingTrades = trades.filter((t) => t.pnl_net < 0).length;
     const winRate = totalTrades > 0 ? ((winningTrades / totalTrades) * 100).toFixed(1) : "0.0";
+    const winRateNum = parseFloat(winRate);
     
     const totalPnL = trades.reduce((sum, t) => sum + t.pnl_net, 0);
     const totalWins = trades.filter((t) => t.pnl_net > 0).reduce((sum, t) => sum + t.pnl_net, 0);
@@ -96,12 +97,16 @@ const Index = () => {
     const avgLoss = losingTrades > 0 ? totalLosses / losingTrades : 0;
     
     const profitFactor = totalLosses > 0 ? (totalWins / totalLosses).toFixed(2) : "∞";
+    const profitFactorNum = totalLosses > 0 ? totalWins / totalLosses : Infinity;
     
     // R-Multiple calculation
     const tradesWithR = trades.filter(t => t.r != null && t.initial_risk != null && t.initial_risk > 0);
     const avgRMultiple = tradesWithR.length > 0 
       ? (tradesWithR.reduce((sum, t) => sum + (t.r || 0), 0) / tradesWithR.length).toFixed(2)
       : "N/A";
+    const avgRMultipleNum = tradesWithR.length > 0 
+      ? tradesWithR.reduce((sum, t) => sum + (t.r || 0), 0) / tradesWithR.length
+      : 0;
     
     // Expectancy calculation
     const lossRate = totalTrades > 0 ? losingTrades / totalTrades : 0;
@@ -121,11 +126,16 @@ const Index = () => {
     return {
       totalTrades,
       winRate: `${winRate}%`,
+      winRateNum,
       netPnL: totalPnL.toFixed(2),
+      netPnLNum: totalPnL,
       profitFactor,
+      profitFactorNum,
       maxDrawdown: maxDrawdown.toFixed(2),
       avgRMultiple,
+      avgRMultipleNum,
       expectancy: expectancy.toFixed(2),
+      expectancyNum: expectancy,
       avgWin: avgWin.toFixed(2),
       avgLoss: avgLoss.toFixed(2),
     };
@@ -167,6 +177,25 @@ const Index = () => {
   const equityData = generateEquityCurve();
   const pnlData = generatePnLByMonth();
 
+  // Color logic for KPIs
+  const getWinRateColor = (winRate: number): "success" | "warning" | "destructive" => {
+    if (winRate >= 50) return "success";
+    if (winRate >= 40) return "warning";
+    return "destructive";
+  };
+
+  const getRMultipleColor = (rMultiple: number): "success" | "warning" | "destructive" => {
+    if (rMultiple >= 1) return "success";
+    if (rMultiple >= 0.5) return "warning";
+    return "destructive";
+  };
+
+  const getProfitFactorColor = (pf: number): "success" | "warning" | "destructive" => {
+    if (pf >= 1.5) return "success";
+    if (pf >= 1) return "warning";
+    return "destructive";
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -192,11 +221,14 @@ const Index = () => {
               icon={Target}
               tooltip={t("dashboard.winRateTooltip")}
               glossaryLink="/glossary#win-rate"
+              valueColor={getWinRateColor(kpis.winRateNum)}
             />
-            <KPICard
+            <KPICardWithTooltip
               title={t("dashboard.netPnL")}
               value={`$${kpis.netPnL}`}
               icon={DollarSign}
+              tooltip={t("dashboard.netPnLTooltip")}
+              valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
             />
             <KPICardWithTooltip
               title={t("dashboard.avgRMultiple")}
@@ -204,6 +236,7 @@ const Index = () => {
               icon={TrendingUp}
               tooltip={t("dashboard.avgRMultipleTooltip")}
               glossaryLink="/glossary#r-multiple"
+              valueColor={kpis.avgRMultiple !== "N/A" ? getRMultipleColor(kpis.avgRMultipleNum) : "default"}
             />
           </div>
 
@@ -214,6 +247,7 @@ const Index = () => {
               icon={DollarSign}
               tooltip={t("dashboard.expectancyTooltip")}
               glossaryLink="/glossary#expectancy"
+              valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
             />
             <KPICardWithTooltip
               title={t("dashboard.profitFactor")}
@@ -221,6 +255,7 @@ const Index = () => {
               icon={TrendingUp}
               tooltip={t("dashboard.profitFactorTooltip")}
               glossaryLink="/glossary#profit-factor"
+              valueColor={kpis.profitFactor !== "∞" ? getProfitFactorColor(kpis.profitFactorNum) : "success"}
             />
             <Card>
               <CardHeader className="flex flex-row items-center justify-between pb-2">
@@ -257,6 +292,7 @@ const Index = () => {
               icon={TrendingUp}
               tooltip={t("dashboard.maxDrawdownTooltip")}
               glossaryLink="/glossary#max-drawdown"
+              valueColor="destructive"
             />
           </div>
 
