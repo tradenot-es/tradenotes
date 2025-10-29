@@ -13,28 +13,39 @@ interface PnLChartProps {
 
 export function PnLChart({ data, title }: PnLChartProps) {
   return (
-    <Card>
+    <Card className="elegant-shadow">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="period" stroke="hsl(var(--muted-foreground))" />
-            <YAxis stroke="hsl(var(--muted-foreground))" />
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+            <XAxis 
+              dataKey="period" 
+              stroke="hsl(var(--muted-foreground))" 
+              fontSize={12}
+              tickLine={false}
+            />
+            <YAxis 
+              stroke="hsl(var(--muted-foreground))" 
+              fontSize={12}
+              tickLine={false}
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
                 border: "1px solid hsl(var(--border))",
                 borderRadius: "0.5rem",
+                boxShadow: "0 4px 12px hsl(var(--border) / 0.3)",
               }}
             />
-            <Bar dataKey="pnl" radius={[4, 4, 0, 0]}>
+            <Bar dataKey="pnl" radius={[8, 8, 0, 0]}>
               {data.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={entry.pnl >= 0 ? "hsl(var(--success))" : "hsl(var(--destructive))"}
+                  opacity={0.9}
                 />
               ))}
             </Bar>

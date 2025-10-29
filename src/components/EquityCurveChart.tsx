@@ -12,29 +12,46 @@ interface EquityCurveChartProps {
 
 export function EquityCurveChart({ data }: EquityCurveChartProps) {
   return (
-    <Card>
+    <Card className="elegant-shadow">
       <CardHeader>
         <CardTitle>Equity Curve</CardTitle>
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-            <XAxis dataKey="date" stroke="hsl(var(--muted-foreground))" />
-            <YAxis stroke="hsl(var(--muted-foreground))" />
+            <defs>
+              <linearGradient id="equityGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
+                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+            <XAxis 
+              dataKey="date" 
+              stroke="hsl(var(--muted-foreground))" 
+              fontSize={12}
+              tickLine={false}
+            />
+            <YAxis 
+              stroke="hsl(var(--muted-foreground))" 
+              fontSize={12}
+              tickLine={false}
+            />
             <Tooltip
               contentStyle={{
                 backgroundColor: "hsl(var(--card))",
-                border: "1px solid hsl(var(--border))",
+                border: "1px solid hsl(var(--primary))",
                 borderRadius: "0.5rem",
+                boxShadow: "0 4px 12px hsl(var(--primary) / 0.2)",
               }}
             />
             <Line
               type="monotone"
               dataKey="equity"
               stroke="hsl(var(--primary))"
-              strokeWidth={2}
+              strokeWidth={3}
               dot={false}
+              fill="url(#equityGradient)"
             />
           </LineChart>
         </ResponsiveContainer>

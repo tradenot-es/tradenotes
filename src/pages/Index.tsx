@@ -7,6 +7,8 @@ import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformance } from "@/components/WeeklyPerformance";
+import { ConsistencyTracker } from "@/components/ConsistencyTracker";
+import { PerformanceStats } from "@/components/PerformanceStats";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -96,6 +98,9 @@ const Index = () => {
     const avgWin = winningTrades > 0 ? totalWins / winningTrades : 0;
     const avgLoss = losingTrades > 0 ? totalLosses / losingTrades : 0;
     
+    const bestTrade = trades.length > 0 ? Math.max(...trades.map(t => t.pnl_net)) : 0;
+    const worstTrade = trades.length > 0 ? Math.min(...trades.map(t => t.pnl_net)) : 0;
+    
     const profitFactor = totalLosses > 0 ? (totalWins / totalLosses).toFixed(2) : "∞";
     const profitFactorNum = totalLosses > 0 ? totalWins / totalLosses : Infinity;
     
@@ -125,6 +130,8 @@ const Index = () => {
     
     return {
       totalTrades,
+      winningTrades,
+      losingTrades,
       winRate: `${winRate}%`,
       winRateNum,
       netPnL: totalPnL.toFixed(2),
@@ -136,8 +143,10 @@ const Index = () => {
       avgRMultipleNum,
       expectancy: expectancy.toFixed(2),
       expectancyNum: expectancy,
-      avgWin: avgWin.toFixed(2),
-      avgLoss: avgLoss.toFixed(2),
+      avgWin,
+      avgLoss,
+      bestTrade,
+      worstTrade,
     };
   };
 
@@ -257,7 +266,7 @@ const Index = () => {
               glossaryLink="/glossary#profit-factor"
               valueColor={kpis.profitFactor !== "∞" ? getProfitFactorColor(kpis.profitFactorNum) : "success"}
             />
-            <Card>
+            <Card className="elegant-shadow">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-sm font-medium">{t("dashboard.avgWinLoss")}</CardTitle>
@@ -280,9 +289,9 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-2 text-2xl font-bold">
-                  <span className="text-success">${kpis.avgWin}</span>
+                  <span className="text-success">${kpis.avgWin.toFixed(2)}</span>
                   <span className="text-muted-foreground">/</span>
-                  <span className="text-destructive">${kpis.avgLoss}</span>
+                  <span className="text-destructive">${kpis.avgLoss.toFixed(2)}</span>
                 </div>
               </CardContent>
             </Card>
@@ -296,28 +305,42 @@ const Index = () => {
             />
           </div>
 
-          <div className="flex gap-6 h-[600px]">
-            <div className="flex-1">
-              <DashboardCalendar 
-                trades={trades}
-                currentMonth={currentMonth}
-                onMonthChange={setCurrentMonth}
-                onEditTrade={handleEditTrade}
-                onDeleteTrade={handleDeleteTrade}
-              />
+          <ConsistencyTracker trades={trades} />
+
+          <div className="grid gap-4 md:grid-cols-3">
+            <div className="md:col-span-2">
+              <EquityCurveChart data={equityData} />
             </div>
-            <div className="w-80">
-              <WeeklyPerformance 
-                trades={trades}
-                currentMonth={currentMonth}
-              />
-            </div>
+            <PerformanceStats
+              winningTrades={kpis.winningTrades}
+              losingTrades={kpis.losingTrades}
+              avgWin={kpis.avgWin}
+              avgLoss={kpis.avgLoss}
+              bestTrade={kpis.bestTrade}
+              worstTrade={kpis.worstTrade}
+              totalTrades={kpis.totalTrades}
+            />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <EquityCurveChart data={equityData} />
             <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
+            <div className="flex gap-6 flex-col lg:flex-row">
+              <div className="flex-1">
+                <DashboardCalendar 
+                  trades={trades}
+                  currentMonth={currentMonth}
+                  onMonthChange={setCurrentMonth}
+                  onEditTrade={handleEditTrade}
+                  onDeleteTrade={handleDeleteTrade}
+                />
+              </div>
+            </div>
           </div>
+
+          <WeeklyPerformance 
+            trades={trades}
+            currentMonth={currentMonth}
+          />
         </>
       )}
 
