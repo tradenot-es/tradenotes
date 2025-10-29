@@ -31,6 +31,10 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
               <Link 
                 to="/glossary#equity-curve" 
                 className="text-xs text-primary hover:underline mt-2 block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = "/glossary#equity-curve";
+                }}
               >
                 Learn more in glossary →
               </Link>

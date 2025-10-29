@@ -47,21 +47,21 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const maxTrades = Math.max(...Object.values(weeksData).map(d => d.count), 1);
 
   const getIntensityColor = (count: number, pnl: number) => {
-    if (count === 0) return "bg-muted/20";
+    if (count === 0) return "bg-muted border border-border/40";
     const intensity = Math.min(count / maxTrades, 1);
     
     if (pnl > 0) {
-      if (intensity > 0.75) return "bg-success";
-      if (intensity > 0.5) return "bg-success/70";
-      if (intensity > 0.25) return "bg-success/50";
-      return "bg-success/30";
+      if (intensity > 0.75) return "bg-success border border-success/30";
+      if (intensity > 0.5) return "bg-success/70 border border-success/30";
+      if (intensity > 0.25) return "bg-success/50 border border-success/30";
+      return "bg-success/30 border border-success/30";
     } else if (pnl < 0) {
-      if (intensity > 0.75) return "bg-destructive";
-      if (intensity > 0.5) return "bg-destructive/70";
-      if (intensity > 0.25) return "bg-destructive/50";
-      return "bg-destructive/30";
+      if (intensity > 0.75) return "bg-destructive border border-destructive/30";
+      if (intensity > 0.5) return "bg-destructive/70 border border-destructive/30";
+      if (intensity > 0.25) return "bg-destructive/50 border border-destructive/30";
+      return "bg-destructive/30 border border-destructive/30";
     }
-    return "bg-muted";
+    return "bg-muted border border-border/40";
   };
 
   // Group by weeks (7 days)
@@ -88,6 +88,10 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                 <Link 
                   to="/glossary#consistency-tracker" 
                   className="text-xs text-primary hover:underline mt-2 block"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = "/glossary#consistency-tracker";
+                  }}
                 >
                   Learn more in glossary →
                 </Link>
@@ -97,13 +101,13 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <span>{t("dashboard.less")}</span>
-              <div className="flex gap-1">
-                <div className="w-3 h-3 rounded-sm bg-muted/20" />
-                <div className="w-3 h-3 rounded-sm bg-success/30" />
-                <div className="w-3 h-3 rounded-sm bg-success/50" />
-                <div className="w-3 h-3 rounded-sm bg-success/70" />
-                <div className="w-3 h-3 rounded-sm bg-success" />
-              </div>
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded-sm bg-muted border border-border/40" />
+                  <div className="w-3 h-3 rounded-sm bg-success/30 border border-success/30" />
+                  <div className="w-3 h-3 rounded-sm bg-success/50 border border-success/30" />
+                  <div className="w-3 h-3 rounded-sm bg-success/70 border border-success/30" />
+                  <div className="w-3 h-3 rounded-sm bg-success border border-success/30" />
+                </div>
               <span>{t("dashboard.more")}</span>
             </div>
           </div>
