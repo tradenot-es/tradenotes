@@ -48,6 +48,12 @@ export default function Glossary() {
       example: t("glossary.winRate.example")
     },
     {
+      id: "win-rate-risk-reward",
+      term: t("glossary.winRateRiskReward.term"),
+      definition: t("glossary.winRateRiskReward.definition"),
+      example: t("glossary.winRateRiskReward.example")
+    },
+    {
       id: "profit-factor",
       term: t("glossary.profitFactor.term"),
       definition: t("glossary.profitFactor.definition"),

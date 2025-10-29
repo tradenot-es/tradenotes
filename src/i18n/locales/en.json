@@ -326,6 +326,11 @@
       "formula": "Win Rate = (Winning Trades / Total Trades) × 100%",
       "example": "60 wins out of 100 trades → Win Rate = 60%"
     },
+    "winRateRiskReward": {
+      "term": "Win Rate & Risk-Reward Relationship",
+      "definition": "A low win rate (e.g., 40%) can be highly profitable if the average R-Multiple is high. Example: 40% win rate with 3R average win and -1R average loss = (0.4 × 3R) + (0.6 × -1R) = +0.6R expectancy per trade. Conversely, a high win rate (e.g., 70%) can be unprofitable with poor risk-reward: 70% win rate with 1R average win and -3R average loss = (0.7 × 1R) + (0.3 × -3R) = -0.2R per trade.",
+      "example": "Strategy A: 40% win rate, 3:1 R:R → Profitable | Strategy B: 70% win rate, 1:3 R:R → Losing"
+    },
     "profitFactor": {
       "term": "Profit Factor",
       "definition": "Ratio of gross profits to gross losses. Above 1.0 means profitable, above 2.0 is excellent.",
