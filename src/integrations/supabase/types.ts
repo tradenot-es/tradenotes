@@ -195,6 +195,8 @@ export type Database = {
         Row: {
           base_currency: string | null
           created_at: string | null
+          daily_goal_amount: number | null
+          daily_goal_max_trades: number | null
           default_fees: number | null
           default_slippage: number | null
           id: string
@@ -208,6 +210,8 @@ export type Database = {
         Insert: {
           base_currency?: string | null
           created_at?: string | null
+          daily_goal_amount?: number | null
+          daily_goal_max_trades?: number | null
           default_fees?: number | null
           default_slippage?: number | null
           id?: string
@@ -221,6 +225,8 @@ export type Database = {
         Update: {
           base_currency?: string | null
           created_at?: string | null
+          daily_goal_amount?: number | null
+          daily_goal_max_trades?: number | null
           default_fees?: number | null
           default_slippage?: number | null
           id?: string

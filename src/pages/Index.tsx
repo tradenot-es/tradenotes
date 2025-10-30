@@ -306,12 +306,34 @@ const Index = () => {
             />
           </div>
 
-          <ConsistencyTracker trades={trades} />
+          {/* Charts Grid */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <EquityCurveChart data={equityData} />
+            <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
+          </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          {/* Calendar, Weekly Performance and Consistency */}
+          <div className="grid gap-6 md:grid-cols-3">
             <div className="md:col-span-2">
-              <EquityCurveChart data={equityData} />
+              <DashboardCalendar 
+                trades={trades}
+                currentMonth={currentMonth}
+                onMonthChange={setCurrentMonth}
+                onEditTrade={handleEditTrade}
+                onDeleteTrade={handleDeleteTrade}
+              />
             </div>
+            <div className="space-y-6">
+              <WeeklyPerformance 
+                trades={trades}
+                currentMonth={currentMonth}
+              />
+              <ConsistencyTracker trades={trades} />
+            </div>
+          </div>
+
+          {/* Performance Stats and Portfolio News */}
+          <div className="grid gap-6 md:grid-cols-2">
             <PerformanceStats
               winningTrades={kpis.winningTrades}
               losingTrades={kpis.losingTrades}
@@ -321,29 +343,8 @@ const Index = () => {
               worstTrade={kpis.worstTrade}
               totalTrades={kpis.totalTrades}
             />
+            <PortfolioNews />
           </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
-            <div className="flex gap-6 flex-col lg:flex-row">
-              <div className="flex-1">
-                <DashboardCalendar 
-                  trades={trades}
-                  currentMonth={currentMonth}
-                  onMonthChange={setCurrentMonth}
-                  onEditTrade={handleEditTrade}
-                  onDeleteTrade={handleDeleteTrade}
-                />
-              </div>
-            </div>
-          </div>
-
-          <WeeklyPerformance 
-            trades={trades}
-            currentMonth={currentMonth}
-          />
-
-          <PortfolioNews />
         </>
       )}
 

@@ -14,6 +14,8 @@ import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
 import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysis";
 import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
+import { DailyGoalProgress } from "@/components/DailyGoalProgress";
+import { startOfDay, endOfDay } from "date-fns";
 
 interface Trade {
   id: string;
@@ -37,12 +39,27 @@ export default function Reports() {
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeFilter, setTimeFilter] = useState<string>("all");
+  const [dailyGoalAmount, setDailyGoalAmount] = useState(500);
+  const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState(10);
 
   useEffect(() => {
     if (user) {
       loadTrades();
+      loadSettings();
     }
   }, [user]);
+
+  const loadSettings = async () => {
+    const { data } = await supabase
+      .from("user_settings")
+      .select("daily_goal_amount, daily_goal_max_trades")
+      .maybeSingle();
+
+    if (data) {
+      setDailyGoalAmount(data.daily_goal_amount || 500);
+      setDailyGoalMaxTrades(data.daily_goal_max_trades || 10);
+    }
+  };
 
   const loadTrades = async () => {
     setLoading(true);
@@ -189,6 +206,33 @@ export default function Reports() {
     };
   }, [filteredTrades]);
 
+  // Daily Goal Tracking
+  const dailyGoalTracking = useMemo(() => {
+    const dailyMap = new Map<string, { pnl: number; trades: number }>();
+    
+    filteredTrades.forEach(trade => {
+      const date = format(new Date(trade.exit_time), 'yyyy-MM-dd');
+      const current = dailyMap.get(date) || { pnl: 0, trades: 0 };
+      current.pnl += trade.pnl_net;
+      current.trades++;
+      dailyMap.set(date, current);
+    });
+
+    const result = Array.from(dailyMap.entries()).map(([date, stats]) => ({
+      date,
+      pnl: stats.pnl,
+      trades: stats.trades,
+      goalAchieved: stats.pnl >= dailyGoalAmount && stats.trades <= dailyGoalMaxTrades,
+      overTraded: stats.trades > dailyGoalMaxTrades
+    }));
+
+    const totalDays = result.length;
+    const daysAchieved = result.filter(d => d.goalAchieved).length;
+    const achievementRate = totalDays > 0 ? ((daysAchieved / totalDays) * 100).toFixed(1) : "0";
+
+    return { days: result, totalDays, daysAchieved, achievementRate };
+  }, [filteredTrades, dailyGoalAmount, dailyGoalMaxTrades]);
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
@@ -219,8 +263,9 @@ export default function Reports() {
       </div>
 
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6">
+        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
           <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
+          <TabsTrigger value="goals">Daily Goals</TabsTrigger>
           <TabsTrigger value="setup">{t("reports.bySetup")}</TabsTrigger>
           <TabsTrigger value="time">{t("reports.timeAnalysis")}</TabsTrigger>
           <TabsTrigger value="behavior">{t("reports.behavior")}</TabsTrigger>
@@ -297,6 +342,87 @@ export default function Reports() {
               glossaryLink="/glossary#win-rate"
             />
           </div>
+        </TabsContent>
+
+        {/* Daily Goals Tab */}
+        <TabsContent value="goals" className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Goal Achievement Rate</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-3xl font-bold text-primary">
+                  {dailyGoalTracking.achievementRate}%
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  {dailyGoalTracking.daysAchieved} von {dailyGoalTracking.totalDays} Tagen
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Current Goal</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">
+                  ${dailyGoalAmount.toFixed(2)}
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Max {dailyGoalMaxTrades} Trades pro Tag
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Best Day</CardTitle>
+              </CardHeader>
+              <CardContent>
+                {dailyGoalTracking.days.length > 0 ? (
+                  <>
+                    <div className="text-2xl font-bold text-success">
+                      ${Math.max(...dailyGoalTracking.days.map(d => d.pnl)).toFixed(2)}
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Bester Handelstag
+                    </p>
+                  </>
+                ) : (
+                  <p className="text-sm text-muted-foreground">Keine Daten</p>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Daily Goal History</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {dailyGoalTracking.days
+                  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+                  .slice(0, 10)
+                  .map((day) => (
+                    <DailyGoalProgress
+                      key={day.date}
+                      date={day.date}
+                      dailyPnL={day.pnl}
+                      dailyTrades={day.trades}
+                      goalAmount={dailyGoalAmount}
+                      maxTrades={dailyGoalMaxTrades}
+                    />
+                  ))}
+                {dailyGoalTracking.days.length === 0 && (
+                  <div className="text-center py-8 text-muted-foreground">
+                    Keine Trades im ausgewählten Zeitraum
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
 
         {/* By Setup Tab */}

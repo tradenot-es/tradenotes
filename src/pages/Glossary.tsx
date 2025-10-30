@@ -131,6 +131,12 @@ export default function Glossary() {
       term: t("glossary.portfolioNews.term"),
       definition: t("glossary.portfolioNews.definition"),
       example: t("glossary.portfolioNews.example")
+    },
+    {
+      id: "daily-trade-goal",
+      term: t("glossary.dailyTradeGoal.term"),
+      definition: t("glossary.dailyTradeGoal.definition"),
+      example: t("glossary.dailyTradeGoal.example")
     }
   ];
 
