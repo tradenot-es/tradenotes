@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { startOfWeek, endOfWeek, format, eachWeekOfInterval, startOfMonth, endOfMonth } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { Calendar, Info } from "lucide-react";
 
 interface Trade {
   id: string;
@@ -48,9 +50,23 @@ export function WeeklyPerformance({ trades, currentMonth }: WeeklyPerformancePro
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle className="text-lg">
-          {format(currentMonth, 'MMMM yyyy')}
-        </CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="text-lg flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-primary" />
+            {format(currentMonth, 'MMMM yyyy')}
+          </CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">
+                Wöchentliche Performance-Übersicht für den ausgewählten Monat. 
+                Zeigt P&L, Anzahl der Trades und Win Rate pro Woche.
+              </p>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </CardHeader>
       <CardContent className="space-y-3">
         {weeks.map((week, idx) => {

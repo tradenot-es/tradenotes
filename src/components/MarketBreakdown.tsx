@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { RadialProgress } from "@/components/RadialProgress";
-import { PieChart } from "lucide-react";
+import { PieChart, Info } from "lucide-react";
 
 interface Trade {
   market: string;
@@ -35,10 +36,23 @@ export function MarketBreakdown({ trades }: MarketBreakdownProps) {
   return (
     <Card className="elegant-shadow">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <PieChart className="h-5 w-5 text-primary" />
-          Market Performance
-        </CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2">
+            <PieChart className="h-5 w-5 text-primary" />
+            Market Performance
+          </CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">
+                Performance-Übersicht nach Märkten (Stock, Crypto, Forex, etc.). 
+                Zeigt Win Rate, Gesamt-P&L und Marktanteil für jeden gehandelten Markt.
+              </p>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

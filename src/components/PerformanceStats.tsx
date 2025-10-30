@@ -1,7 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { RadialProgress } from "@/components/RadialProgress";
 import { useTranslation } from "react-i18next";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, Info } from "lucide-react";
 
 interface PerformanceStatsProps {
   winningTrades: number;
@@ -28,10 +29,23 @@ export function PerformanceStats({
   return (
     <Card className="elegant-shadow">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <BarChart3 className="h-5 w-5 text-primary" />
-          {t("dashboard.performanceBreakdown")}
-        </CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2">
+            <BarChart3 className="h-5 w-5 text-primary" />
+            {t("dashboard.performanceBreakdown")}
+          </CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">
+                Detaillierte Performance-Statistiken: Win/Loss Ratio, durchschnittliche Gewinne/Verluste, 
+                sowie beste und schlechteste Trades. Gibt Einblick in die Qualität deiner Trading-Entscheidungen.
+              </p>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex flex-col items-center">

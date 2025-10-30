@@ -97,11 +97,11 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
             <div className="flex items-center gap-2">
               <span>{t("dashboard.less")}</span>
                 <div className="flex gap-1">
-                  <div className="w-3 h-3 rounded-sm bg-muted border border-border/40" />
-                  <div className="w-3 h-3 rounded-sm bg-success/30 border border-success/30" />
-                  <div className="w-3 h-3 rounded-sm bg-success/50 border border-success/30" />
-                  <div className="w-3 h-3 rounded-sm bg-success/70 border border-success/30" />
-                  <div className="w-3 h-3 rounded-sm bg-success border border-success/30" />
+                  <div className="w-4 h-4 rounded-sm bg-muted border border-border/40" />
+                  <div className="w-4 h-4 rounded-sm bg-success/30 border border-success/30" />
+                  <div className="w-4 h-4 rounded-sm bg-success/50 border border-success/30" />
+                  <div className="w-4 h-4 rounded-sm bg-success/70 border border-success/30" />
+                  <div className="w-4 h-4 rounded-sm bg-success border border-success/30" />
                 </div>
               <span>{t("dashboard.more")}</span>
             </div>
@@ -110,16 +110,16 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex gap-1 overflow-x-auto pb-2">
+          <div className="flex gap-1.5 overflow-x-auto pb-2 justify-center">
             {weeks.reverse().map((week, weekIdx) => (
-              <div key={weekIdx} className="flex flex-col gap-1">
+              <div key={weekIdx} className="flex flex-col gap-1.5">
                 {week.map((date) => {
                   const data = weeksData[date];
                   return (
                     <Tooltip key={date}>
                       <TooltipTrigger asChild>
                         <div
-                          className={`w-3 h-3 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
+                          className={`w-5 h-5 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
                         />
                       </TooltipTrigger>
                       <TooltipContent>

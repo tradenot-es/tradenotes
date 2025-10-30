@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingUp, TrendingDown } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { TrendingUp, TrendingDown, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 interface Trade {
@@ -38,10 +39,23 @@ export function TopSymbols({ trades }: TopSymbolsProps) {
   return (
     <Card className="elegant-shadow">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <TrendingUp className="h-5 w-5 text-primary" />
-          Top Performing Symbols
-        </CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2">
+            <TrendingUp className="h-5 w-5 text-primary" />
+            Top Performing Symbols
+          </CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">
+                Die 5 profitabelsten Symbole basierend auf dem Gesamt-P&L. 
+                Zeigt Anzahl der Trades und Win Rate für jedes Symbol.
+              </p>
+            </HoverCardContent>
+          </HoverCard>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-3">
