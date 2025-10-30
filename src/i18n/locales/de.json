@@ -531,6 +531,17 @@
     "maxPnl": "Max P&L ($)",
     "clearFilters": "Filter löschen"
   },
+  "assistant": {
+    "title": "AI Trading Assistent",
+    "subtitle": "Stelle Fragen zu deiner Trading-Performance und erhalte datengetriebene Antworten",
+    "welcome": "Willkommen beim AI Assistenten",
+    "welcomeDescription": "Stelle mir Fragen zu deiner Trading-Performance, deinen Setups, Symbolen oder beliebigen anderen Analysen.",
+    "suggestedQuestions": "Vorgeschlagene Fragen:",
+    "inputPlaceholder": "Stelle eine Frage...",
+    "error": "Fehler",
+    "errorDescription": "Die Anfrage konnte nicht verarbeitet werden. Bitte versuche es erneut.",
+    "creditsExhausted": "Lovable AI Credits aufgebraucht. Bitte lade Credits auf unter Settings → Workspace → Usage."
+  },
   "dailyPrep": {
     "title": "Tägliche Vorbereitung",
     "checklistProgress": "Checklisten-Fortschritt",

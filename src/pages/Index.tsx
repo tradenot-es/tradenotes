@@ -11,6 +11,7 @@ import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
+import { AIAssistantFAB } from "@/components/AIAssistantFAB";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -208,6 +209,7 @@ const Index = () => {
 
   return (
     <div className="space-y-6">
+      <AIAssistantFAB />
       <div>
         <h1 className="text-3xl font-bold">{t("dashboard.title")}</h1>
         <p className="text-muted-foreground">{t("dashboard.subtitle")}</p>

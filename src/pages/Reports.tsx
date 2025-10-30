@@ -19,6 +19,7 @@ import { RadialProgress } from "@/components/RadialProgress";
 import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
+import { AIAssistantFAB } from "@/components/AIAssistantFAB";
 import { startOfDay, endOfDay } from "date-fns";
 
 interface Trade {
@@ -243,6 +244,7 @@ export default function Reports() {
 
   return (
     <div className="container mx-auto p-6 space-y-6">
+      <AIAssistantFAB />
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">{t("reports.title")}</h1>

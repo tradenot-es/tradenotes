@@ -16,7 +16,6 @@ export function Layout({ children }: { children: ReactNode }) {
     { title: t("nav.import"), url: "/dashboard/import", icon: Upload },
     { title: t("nav.reports"), url: "/dashboard/reports", icon: BarChart3 },
     { title: t("nav.journal"), url: "/dashboard/journal", icon: BookOpen },
-    { title: t("nav.assistant"), url: "/dashboard/assistant", icon: MessageSquare },
     { title: t("nav.glossary"), url: "/dashboard/glossary", icon: BookMarked },
     { title: t("nav.account"), url: "/dashboard/account", icon: User },
     { title: t("nav.settings"), url: "/dashboard/settings", icon: Settings },
