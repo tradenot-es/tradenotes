@@ -85,7 +85,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.consistencyTrackerTooltip")}</p>
                 <a 
-                  href="/dashboard/glossary#trading-consistency" 
+                  href="/dashboard/glossary#consistency-tracker" 
                   className="text-xs text-primary hover:underline mt-2 block"
                 >
                   Learn more in glossary →
