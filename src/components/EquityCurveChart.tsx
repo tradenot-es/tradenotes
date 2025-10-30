@@ -28,12 +28,16 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("dashboard.equityCurveTooltip")}</p>
-              <Link 
-                to="/glossary#equity-curve" 
+              <a 
+                href="/glossary#equity-curve" 
                 className="text-xs text-primary hover:underline mt-2 block"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = '/glossary#equity-curve';
+                }}
               >
                 Learn more in glossary →
-              </Link>
+              </a>
             </HoverCardContent>
           </HoverCard>
         </div>

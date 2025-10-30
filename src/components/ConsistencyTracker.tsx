@@ -85,12 +85,16 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.consistencyTrackerTooltip")}</p>
-                <Link 
-                  to="/glossary#consistency-tracker" 
+                <a 
+                  href="/glossary#consistency-tracker" 
                   className="text-xs text-primary hover:underline mt-2 block"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = '/glossary#consistency-tracker';
+                  }}
                 >
                   Learn more in glossary →
-                </Link>
+                </a>
               </HoverCardContent>
             </HoverCard>
           </div>

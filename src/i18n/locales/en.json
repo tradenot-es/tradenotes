@@ -124,6 +124,7 @@
     "newsOnDate": "Financial News",
     "noTradesOnDate": "No trades on this date",
     "noNewsAvailable": "No news available",
+    "newsAnalyzedFor": "Analyzed for your traded symbols",
     "loadingNews": "Loading news...",
     "selectCurrency": "Select Currency",
     "market": "Market",

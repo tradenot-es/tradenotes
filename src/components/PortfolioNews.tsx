@@ -173,7 +173,7 @@ export function PortfolioNews() {
         ) : (
           <div className="space-y-4">
             {articles.map((article, index) => (
-              <div key={`${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
+              <div key={`portfolio-${article.uuid}-${article.published_at}-${index}`} className="border-b pb-4 last:border-0">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
                   {article.sentiment && getSentimentIcon(article.sentiment)}

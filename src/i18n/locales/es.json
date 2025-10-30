@@ -103,6 +103,7 @@
     "newsOnDate": "Noticias Financieras",
     "noTradesOnDate": "No hay trades en esta fecha",
     "noNewsAvailable": "No hay noticias disponibles",
+    "newsAnalyzedFor": "Analizado para sus símbolos negociados",
     "loadingNews": "Cargando noticias...",
     "selectCurrency": "Seleccionar Moneda",
     "market": "Mercado",

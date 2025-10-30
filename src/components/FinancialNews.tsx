@@ -110,6 +110,11 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
           <CardTitle>{t("trades.newsOnDate")}</CardTitle>
           <NewsSourceFilter onSourcesChange={setSelectedSources} />
         </div>
+        {symbols && symbols.length > 0 && (
+          <p className="text-xs text-muted-foreground mt-2">
+            {t("trades.newsAnalyzedFor")}: <span className="font-medium">{symbols.join(", ")}</span>
+          </p>
+        )}
       </CardHeader>
       <CardContent>
         {error ? (
@@ -119,7 +124,7 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
         ) : (
           <div className="space-y-4">
             {articles.map((article, index) => (
-              <div key={`${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
+              <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
                 <div className="flex items-start justify-between gap-2 mb-2">
                   <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
                   {article.sentiment && getSentimentIcon(article.sentiment)}
