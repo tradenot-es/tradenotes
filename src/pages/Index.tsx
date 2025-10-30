@@ -342,7 +342,7 @@ const Index = () => {
             <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
           </div>
 
-          {/* Calendar, Weekly Performance and Consistency */}
+          {/* Calendar and Weekly Performance */}
           <div className="grid gap-6 md:grid-cols-3">
             <div className="md:col-span-2">
               <DashboardCalendar 
@@ -353,12 +353,11 @@ const Index = () => {
                 onDeleteTrade={handleDeleteTrade}
               />
             </div>
-            <div className="space-y-6">
+            <div>
               <WeeklyPerformance 
                 trades={trades}
                 currentMonth={currentMonth}
               />
-              <ConsistencyTracker trades={trades} />
             </div>
           </div>
 
@@ -375,6 +374,9 @@ const Index = () => {
             />
             <PortfolioNews />
           </div>
+
+          {/* Consistency Tracker */}
+          <ConsistencyTracker trades={trades} />
         </>
       )}
 

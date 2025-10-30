@@ -32,22 +32,34 @@ export function DailyGoalProgress({
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-primary" />
-            Daily Goal Progress
-          </CardTitle>
-          {goalAchieved && (
-            <Badge variant="default" className="gap-1">
-              <CheckCircle2 className="h-3 w-3" />
-              Ziel erreicht
-            </Badge>
-          )}
-          {overTraded && (
-            <Badge variant="destructive" className="gap-1">
-              <XCircle className="h-3 w-3" />
-              Übertrieben
-            </Badge>
-          )}
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="h-5 w-5 text-primary" />
+              Daily Goal Progress
+            </CardTitle>
+            <p className="text-sm text-muted-foreground mt-1">
+              {new Date(date).toLocaleDateString('de-DE', { 
+                weekday: 'short', 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })}
+            </p>
+          </div>
+          <div className="flex gap-2">
+            {goalAchieved && (
+              <Badge variant="default" className="gap-1">
+                <CheckCircle2 className="h-3 w-3" />
+                Ziel erreicht
+              </Badge>
+            )}
+            {overTraded && (
+              <Badge variant="destructive" className="gap-1">
+                <XCircle className="h-3 w-3" />
+                Übertrieben
+              </Badge>
+            )}
+          </div>
         </div>
       </CardHeader>
       <CardContent>
