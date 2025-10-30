@@ -160,7 +160,7 @@ export function PortfolioNews() {
         <div className="flex items-center gap-2 mt-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
           <TrendingUp className="h-4 w-4 text-primary" />
           <p className="text-xs text-muted-foreground">
-            <span className="font-semibold text-primary">Dynamisches Dashboard:</span> News automatisch gefiltert nach deinen Top-Performern
+            <span className="font-semibold text-primary">{t("dashboard.dynamicDashboard")}:</span> {t("dashboard.dynamicDashboardInfo")}
           </p>
         </div>
         <div className="flex gap-1 flex-wrap mt-2">

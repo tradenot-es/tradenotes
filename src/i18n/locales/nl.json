@@ -254,7 +254,12 @@
     "tagsHelp": "Aangepaste labels om transacties te categoriseren (bijv. 'Hoge Overtuiging', 'Nieuwsspel', 'Tech Sector'). Gebruik tags om je prestaties te filteren en analyseren op basis van verschillende criteria.",
     "trading": "Trading",
     "language": "Taal",
-    "selectLanguage": "Selecteer taal"
+    "selectLanguage": "Selecteer taal",
+    "dailyGoal": "Dagelijks Handelsdoel",
+    "dailyGoalTooltip": "Stel een dagelijks winstdoel en maximaal aantal transacties per dag in",
+    "dailyGoalDesc": "Definieer je dagelijks handelsdoel en volg het in Rapporten",
+    "dailyGoalAmount": "Dagelijks Winstdoel ($)",
+    "dailyGoalMaxTrades": "Maximum Transacties per Dag"
   },
   "notFound": {
     "title": "404",

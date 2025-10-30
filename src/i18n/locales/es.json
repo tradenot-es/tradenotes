@@ -254,7 +254,12 @@
     "tagsHelp": "Etiquetas personalizadas para categorizar operaciones (ej., 'Alta Convicción', 'Jugada de Noticias', 'Sector Tech'). Usa etiquetas para filtrar y analizar tu rendimiento según diferentes criterios.",
     "trading": "Trading",
     "language": "Idioma",
-    "selectLanguage": "Seleccionar idioma"
+    "selectLanguage": "Seleccionar idioma",
+    "dailyGoal": "Objetivo Diario de Trading",
+    "dailyGoalTooltip": "Establece un objetivo de ganancia diario y número máximo de operaciones por día",
+    "dailyGoalDesc": "Define tu objetivo de trading diario y rastréalo en Informes",
+    "dailyGoalAmount": "Objetivo de Ganancia Diaria ($)",
+    "dailyGoalMaxTrades": "Máximo de Operaciones por Día"
   },
   "notFound": {
     "title": "404",

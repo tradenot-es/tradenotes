@@ -50,13 +50,13 @@ export function DailyGoalProgress({
             {goalAchieved && (
               <Badge variant="default" className="gap-1">
                 <CheckCircle2 className="h-3 w-3" />
-                Ziel erreicht
+                {t("reports.goalAchieved")}
               </Badge>
             )}
             {overTraded && (
               <Badge variant="destructive" className="gap-1">
                 <XCircle className="h-3 w-3" />
-                Übertrieben
+                {t("reports.overtraded")}
               </Badge>
             )}
           </div>
@@ -78,7 +78,7 @@ export function DailyGoalProgress({
                 ${dailyPnL.toFixed(2)} / ${goalAmount.toFixed(2)}
               </div>
               <div className="text-xs text-muted-foreground mt-1">
-                Täglicher P&L
+                {t("reports.dailyPnl")}
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ export function DailyGoalProgress({
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">Trades heute</span>
+                <span className="text-muted-foreground">{t("reports.tradesToday")}</span>
                 <span className={`font-bold ${overTraded ? 'text-destructive' : 'text-foreground'}`}>
                   {dailyTrades} / {maxTrades}
                 </span>
@@ -98,10 +98,10 @@ export function DailyGoalProgress({
               />
               <div className="text-xs text-muted-foreground">
                 {maxTrades - dailyTrades > 0 
-                  ? `Noch ${maxTrades - dailyTrades} Trades verfügbar`
+                  ? t("reports.tradesRemaining", { remaining: maxTrades - dailyTrades })
                   : overTraded 
-                    ? `${dailyTrades - maxTrades} Trades über Limit`
-                    : 'Limit erreicht'
+                    ? t("reports.tradesOverLimit", { over: dailyTrades - maxTrades })
+                    : t("reports.limitReached")
                 }
               </div>
             </div>
@@ -110,7 +110,7 @@ export function DailyGoalProgress({
               <div className="p-3 rounded-lg bg-success/10 border border-success/20">
                 <div className="flex items-center gap-2 text-success text-sm">
                   <CheckCircle2 className="h-4 w-4" />
-                  <span className="font-medium">Perfekt! Ziel erreicht ohne Overtrading</span>
+                  <span className="font-medium">{t("reports.goalAchievedPerfect")}</span>
                 </div>
               </div>
             )}
@@ -119,7 +119,7 @@ export function DailyGoalProgress({
               <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
                 <div className="flex items-center gap-2 text-destructive text-sm">
                   <XCircle className="h-4 w-4" />
-                  <span className="font-medium">Trade-Limit überschritten</span>
+                  <span className="font-medium">{t("reports.goalNotAchievedOvertraded")}</span>
                 </div>
               </div>
             )}

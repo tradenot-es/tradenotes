@@ -370,14 +370,17 @@ export default function Reports() {
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Goal Achievement Rate</CardTitle>
+                <CardTitle className="text-lg">{t("reports.goalAchievementRate")}</CardTitle>
               </CardHeader>
               <CardContent className="flex justify-center py-4">
                 <RadialProgress
                   value={parseFloat(dailyGoalTracking.achievementRate)}
                   size={160}
                   strokeWidth={12}
-                  subtitle={`${dailyGoalTracking.daysAchieved} von ${dailyGoalTracking.totalDays} Tagen`}
+                  subtitle={t("reports.daysAchieved", { 
+                    achieved: dailyGoalTracking.daysAchieved, 
+                    total: dailyGoalTracking.totalDays 
+                  })}
                   color="warning"
                 />
               </CardContent>
@@ -385,21 +388,21 @@ export default function Reports() {
             
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Current Goal</CardTitle>
+                <CardTitle className="text-lg">{t("reports.currentGoal")}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
                   ${dailyGoalAmount.toFixed(2)}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  Max {dailyGoalMaxTrades} Trades pro Tag
+                  {t("reports.maxTradesPerDay", { trades: dailyGoalMaxTrades })}
                 </p>
               </CardContent>
             </Card>
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Best Day</CardTitle>
+                <CardTitle className="text-lg">{t("reports.bestDay")}</CardTitle>
               </CardHeader>
               <CardContent>
                 {dailyGoalTracking.days.length > 0 ? (
@@ -408,11 +411,11 @@ export default function Reports() {
                       ${Math.max(...dailyGoalTracking.days.map(d => d.pnl)).toFixed(2)}
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Bester Handelstag
+                      {t("reports.bestTradingDay")}
                     </p>
                   </>
                 ) : (
-                  <p className="text-sm text-muted-foreground">Keine Daten</p>
+                  <p className="text-sm text-muted-foreground">{t("reports.noData")}</p>
                 )}
               </CardContent>
             </Card>
@@ -420,7 +423,7 @@ export default function Reports() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Daily Goal History</CardTitle>
+              <CardTitle>{t("reports.dailyGoalHistory")}</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -439,7 +442,7 @@ export default function Reports() {
                   ))}
                 {dailyGoalTracking.days.length === 0 && (
                   <div className="text-center py-8 text-muted-foreground">
-                    Keine Trades im ausgewählten Zeitraum
+                    {t("reports.noTradesInPeriod")}
                   </div>
                 )}
               </div>

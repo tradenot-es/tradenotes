@@ -385,7 +385,7 @@ const Settings = () => {
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
-                <CardTitle>Daily Trade Goal</CardTitle>
+                <CardTitle>{ t("settings.dailyGoal")}</CardTitle>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button type="button" className="inline-flex">
@@ -394,18 +394,18 @@ const Settings = () => {
                   </TooltipTrigger>
                   <TooltipContent>
                     <p className="max-w-xs text-sm">
-                      Setze ein tägliches Gewinnziel und eine maximale Anzahl von Trades pro Tag
+                      {t("settings.dailyGoalTooltip")}
                     </p>
                   </TooltipContent>
                 </Tooltip>
               </div>
               <CardDescription>
-                Definiere dein tägliches Handelsziel und verfolge es in den Reports
+                {t("settings.dailyGoalDesc")}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid gap-2">
-                <Label htmlFor="dailyGoalAmount">Tägliches Gewinnziel ($)</Label>
+                <Label htmlFor="dailyGoalAmount">{t("settings.dailyGoalAmount")}</Label>
                 <Input
                   id="dailyGoalAmount"
                   type="number"
@@ -416,7 +416,7 @@ const Settings = () => {
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="dailyGoalMaxTrades">Maximale Anzahl Trades pro Tag</Label>
+                <Label htmlFor="dailyGoalMaxTrades">{t("settings.dailyGoalMaxTrades")}</Label>
                 <Input
                   id="dailyGoalMaxTrades"
                   type="number"

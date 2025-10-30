@@ -254,7 +254,12 @@
     "tagsHelp": "Étiquettes personnalisées pour catégoriser les transactions (par ex., 'Haute Conviction', 'Jeu de Nouvelles', 'Secteur Tech'). Utilisez des tags pour filtrer et analyser votre performance selon différents critères.",
     "trading": "Trading",
     "language": "Langue",
-    "selectLanguage": "Sélectionner la langue"
+    "selectLanguage": "Sélectionner la langue",
+    "dailyGoal": "Objectif Quotidien de Trading",
+    "dailyGoalTooltip": "Définir un objectif de profit quotidien et un nombre maximum de transactions par jour",
+    "dailyGoalDesc": "Définissez votre objectif de trading quotidien et suivez-le dans les rapports",
+    "dailyGoalAmount": "Objectif de Profit Quotidien ($)",
+    "dailyGoalMaxTrades": "Maximum de Transactions par Jour"
   },
   "notFound": {
     "title": "404",
