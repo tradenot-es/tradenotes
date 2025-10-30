@@ -357,6 +357,12 @@ export default function Reports() {
               glossaryLink="/glossary#win-rate"
             />
           </div>
+
+          {/* Top Symbols and Market Breakdown */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <TopSymbols trades={filteredTrades} />
+            <MarketBreakdown trades={filteredTrades} />
+          </div>
         </TabsContent>
 
         {/* Daily Goals Tab */}
@@ -594,12 +600,6 @@ export default function Reports() {
                 />
               </CardContent>
             </Card>
-          </div>
-
-          {/* Performance Breakdown - Moved from Dashboard */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <TopSymbols trades={filteredTrades} />
-            <MarketBreakdown trades={filteredTrades} />
           </div>
         </TabsContent>
       </Tabs>
