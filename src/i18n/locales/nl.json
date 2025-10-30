@@ -197,6 +197,8 @@
     "security": "Beveiliging",
     "securityDesc": "Wijzig je wachtwoord en beveiligingsinstellingen",
     "general": "Algemeen",
+    "theme": "Thema",
+    "themeDescription": "Kies tussen Licht, Donker of Systeem thema",
     "setups": "Trading Setups",
     "setupsDesc": "Definieer je handelsstrategieën en setups",
     "setupsChecklistDesc": "Definieer je trading setups met checklists om setup-criteria bij te houden",

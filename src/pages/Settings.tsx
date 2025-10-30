@@ -250,11 +250,11 @@ const Settings = () => {
               <LanguageSwitcher />
               
               <div className="grid gap-2">
-                <Label>Theme</Label>
+                <Label>{t("settings.theme")}</Label>
                 <div className="flex items-center gap-2">
                   <ThemeToggle />
                   <span className="text-sm text-muted-foreground">
-                    Wähle zwischen Hell, Dunkel oder System Theme
+                    {t("settings.themeDescription")}
                   </span>
                 </div>
               </div>

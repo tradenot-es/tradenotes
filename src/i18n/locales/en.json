@@ -219,6 +219,8 @@
     "security": "Security",
     "securityDesc": "Change your password and security settings",
     "general": "General",
+    "theme": "Theme",
+    "themeDescription": "Choose between Light, Dark, or System theme",
     "setups": "Trading Setups",
     "setupsDesc": "Define your trading strategies and setups",
     "setupsChecklistDesc": "Define your trading setups with checklists to track setup criteria",

@@ -1,10 +1,11 @@
 import { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3, MessageSquare } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3 } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
+import { AIAssistantFAB } from "@/components/AIAssistantFAB";
 
 export function Layout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
@@ -62,6 +63,7 @@ export function Layout({ children }: { children: ReactNode }) {
           </SidebarContent>
         </Sidebar>
         <main className="flex-1 p-6 overflow-auto">{children}</main>
+        <AIAssistantFAB />
       </div>
     </SidebarProvider>
   );
