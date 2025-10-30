@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { RadialProgress } from "@/components/RadialProgress";
 import { Target, TrendingUp, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -49,44 +50,67 @@ export function DailyGoalProgress({
           )}
         </div>
       </CardHeader>
-      <CardContent className="space-y-6">
-        {/* PnL Progress */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Täglicher P&L</span>
-            <span className={`font-bold ${dailyPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-              ${dailyPnL.toFixed(2)} / ${goalAmount.toFixed(2)}
-            </span>
+      <CardContent>
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* Radial Progress for Goal */}
+          <div className="flex flex-col items-center justify-center">
+            <RadialProgress
+              value={Math.max(0, Math.min(100, goalProgress))}
+              size={140}
+              strokeWidth={10}
+              label="Goal Progress"
+              color="warning"
+            />
+            <div className="mt-4 text-center">
+              <div className={`text-lg font-bold ${dailyPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
+                ${dailyPnL.toFixed(2)} / ${goalAmount.toFixed(2)}
+              </div>
+              <div className="text-xs text-muted-foreground mt-1">
+                Täglicher P&L
+              </div>
+            </div>
           </div>
-          <Progress 
-            value={Math.max(0, goalProgress)} 
-            className="h-3"
-          />
-          <div className="flex items-center gap-1 text-xs text-muted-foreground">
-            <TrendingUp className="h-3 w-3" />
-            {goalProgress.toFixed(0)}% des Ziels erreicht
-          </div>
-        </div>
 
-        {/* Trades Progress */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm">
-            <span className="text-muted-foreground">Trades heute</span>
-            <span className={`font-bold ${overTraded ? 'text-destructive' : 'text-foreground'}`}>
-              {dailyTrades} / {maxTrades}
-            </span>
-          </div>
-          <Progress 
-            value={tradesProgress} 
-            className={`h-3 ${overTraded ? '[&>div]:bg-destructive' : ''}`}
-          />
-          <div className="text-xs text-muted-foreground">
-            {maxTrades - dailyTrades > 0 
-              ? `Noch ${maxTrades - dailyTrades} Trades verfügbar`
-              : overTraded 
-                ? `${dailyTrades - maxTrades} Trades über Limit`
-                : 'Limit erreicht'
-            }
+          {/* Trades Info */}
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-muted-foreground">Trades heute</span>
+                <span className={`font-bold ${overTraded ? 'text-destructive' : 'text-foreground'}`}>
+                  {dailyTrades} / {maxTrades}
+                </span>
+              </div>
+              <Progress 
+                value={tradesProgress} 
+                className={`h-3 ${overTraded ? '[&>div]:bg-destructive' : ''}`}
+              />
+              <div className="text-xs text-muted-foreground">
+                {maxTrades - dailyTrades > 0 
+                  ? `Noch ${maxTrades - dailyTrades} Trades verfügbar`
+                  : overTraded 
+                    ? `${dailyTrades - maxTrades} Trades über Limit`
+                    : 'Limit erreicht'
+                }
+              </div>
+            </div>
+
+            {goalAchieved && (
+              <div className="p-3 rounded-lg bg-success/10 border border-success/20">
+                <div className="flex items-center gap-2 text-success text-sm">
+                  <CheckCircle2 className="h-4 w-4" />
+                  <span className="font-medium">Perfekt! Ziel erreicht ohne Overtrading</span>
+                </div>
+              </div>
+            )}
+
+            {overTraded && !goalAchieved && (
+              <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+                <div className="flex items-center gap-2 text-destructive text-sm">
+                  <XCircle className="h-4 w-4" />
+                  <span className="font-medium">Trade-Limit überschritten</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </CardContent>

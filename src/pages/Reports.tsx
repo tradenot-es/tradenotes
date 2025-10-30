@@ -15,6 +15,7 @@ import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysi
 import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
 import { DailyGoalProgress } from "@/components/DailyGoalProgress";
+import { RadialProgress } from "@/components/RadialProgress";
 import { startOfDay, endOfDay } from "date-fns";
 
 interface Trade {
@@ -351,13 +352,14 @@ export default function Reports() {
               <CardHeader>
                 <CardTitle className="text-lg">Goal Achievement Rate</CardTitle>
               </CardHeader>
-              <CardContent>
-                <div className="text-3xl font-bold text-primary">
-                  {dailyGoalTracking.achievementRate}%
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {dailyGoalTracking.daysAchieved} von {dailyGoalTracking.totalDays} Tagen
-                </p>
+              <CardContent className="flex justify-center py-4">
+                <RadialProgress
+                  value={parseFloat(dailyGoalTracking.achievementRate)}
+                  size={160}
+                  strokeWidth={12}
+                  subtitle={`${dailyGoalTracking.daysAchieved} von ${dailyGoalTracking.totalDays} Tagen`}
+                  color="warning"
+                />
               </CardContent>
             </Card>
             
