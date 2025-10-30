@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { TrendingUp, DollarSign, Target, Activity, Info } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
+import { RadialKPICard } from "@/components/RadialKPICard";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
@@ -10,6 +11,8 @@ import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { PortfolioNews } from "@/components/PortfolioNews";
+import { TopSymbols } from "@/components/TopSymbols";
+import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -225,13 +228,14 @@ const Index = () => {
               value={kpis.totalTrades}
               icon={Activity}
             />
-            <KPICardWithTooltip
+            <RadialKPICard
               title={t("dashboard.winRate")}
-              value={kpis.winRate}
+              value={kpis.winRateNum}
+              displayValue={kpis.winRate}
               icon={Target}
               tooltip={t("dashboard.winRateTooltip")}
               glossaryLink="/glossary#win-rate"
-              valueColor={getWinRateColor(kpis.winRateNum)}
+              color={getWinRateColor(kpis.winRateNum)}
             />
             <KPICardWithTooltip
               title={t("dashboard.netPnL")}
@@ -240,14 +244,26 @@ const Index = () => {
               tooltip={t("dashboard.netPnLTooltip")}
               valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
             />
-            <KPICardWithTooltip
-              title={t("dashboard.avgRMultiple")}
-              value={kpis.avgRMultiple}
-              icon={TrendingUp}
-              tooltip={t("dashboard.avgRMultipleTooltip")}
-              glossaryLink="/glossary#r-multiple"
-              valueColor={kpis.avgRMultiple !== "N/A" ? getRMultipleColor(kpis.avgRMultipleNum) : "default"}
-            />
+            {kpis.avgRMultiple !== "N/A" ? (
+              <RadialKPICard
+                title={t("dashboard.avgRMultiple")}
+                value={Math.min(kpis.avgRMultipleNum * 50, 100)}
+                displayValue={kpis.avgRMultiple}
+                icon={TrendingUp}
+                tooltip={t("dashboard.avgRMultipleTooltip")}
+                glossaryLink="/glossary#r-multiple"
+                color={getRMultipleColor(kpis.avgRMultipleNum)}
+              />
+            ) : (
+              <KPICardWithTooltip
+                title={t("dashboard.avgRMultiple")}
+                value={kpis.avgRMultiple}
+                icon={TrendingUp}
+                tooltip={t("dashboard.avgRMultipleTooltip")}
+                glossaryLink="/glossary#r-multiple"
+                valueColor="default"
+              />
+            )}
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -259,14 +275,26 @@ const Index = () => {
               glossaryLink="/glossary#expectancy"
               valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
             />
-            <KPICardWithTooltip
-              title={t("dashboard.profitFactor")}
-              value={kpis.profitFactor}
-              icon={TrendingUp}
-              tooltip={t("dashboard.profitFactorTooltip")}
-              glossaryLink="/glossary#profit-factor"
-              valueColor={kpis.profitFactor !== "∞" ? getProfitFactorColor(kpis.profitFactorNum) : "success"}
-            />
+            {kpis.profitFactor !== "∞" && kpis.profitFactorNum <= 5 ? (
+              <RadialKPICard
+                title={t("dashboard.profitFactor")}
+                value={Math.min(kpis.profitFactorNum * 20, 100)}
+                displayValue={kpis.profitFactor}
+                icon={TrendingUp}
+                tooltip={t("dashboard.profitFactorTooltip")}
+                glossaryLink="/glossary#profit-factor"
+                color={getProfitFactorColor(kpis.profitFactorNum)}
+              />
+            ) : (
+              <KPICardWithTooltip
+                title={t("dashboard.profitFactor")}
+                value={kpis.profitFactor}
+                icon={TrendingUp}
+                tooltip={t("dashboard.profitFactorTooltip")}
+                glossaryLink="/glossary#profit-factor"
+                valueColor={kpis.profitFactor !== "∞" ? getProfitFactorColor(kpis.profitFactorNum) : "success"}
+              />
+            )}
             <Card className="elegant-shadow">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div className="flex items-center gap-2">
@@ -344,6 +372,12 @@ const Index = () => {
               totalTrades={kpis.totalTrades}
             />
             <PortfolioNews />
+          </div>
+
+          {/* Data Synergies - Top Symbols and Market Breakdown */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <TopSymbols trades={trades} />
+            <MarketBreakdown trades={trades} />
           </div>
         </>
       )}

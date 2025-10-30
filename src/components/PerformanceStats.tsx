@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { RadialProgress } from "@/components/RadialProgress";
 import { useTranslation } from "react-i18next";
 import { BarChart3 } from "lucide-react";
 
@@ -34,19 +34,20 @@ export function PerformanceStats({
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div>
-          <div className="flex justify-between text-sm mb-2">
-            <span className="text-muted-foreground">{t("dashboard.winLossRatio")}</span>
+        <div className="flex flex-col items-center">
+          <RadialProgress
+            value={winRate}
+            size={140}
+            strokeWidth={10}
+            color={winRate >= 50 ? "success" : winRate >= 40 ? "warning" : "destructive"}
+            label={t("dashboard.winLossRatio")}
+          />
+          <div className="mt-3 text-center">
             <span className="font-medium">
               <span className="text-success">{winningTrades}</span>
               {" / "}
               <span className="text-destructive">{losingTrades}</span>
             </span>
-          </div>
-          <Progress value={winRate} className="h-2" />
-          <div className="flex justify-between text-xs text-muted-foreground mt-1">
-            <span>{winRate.toFixed(1)}% {t("dashboard.wins")}</span>
-            <span>{(100 - winRate).toFixed(1)}% {t("dashboard.losses")}</span>
           </div>
         </div>
 
