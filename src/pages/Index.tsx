@@ -222,12 +222,8 @@ const Index = () => {
         </div>
       ) : (
         <>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <KPICard
-              title={t("dashboard.totalTrades")}
-              value={kpis.totalTrades}
-              icon={Activity}
-            />
+          {/* Radial Progress KPIs - Featured Metrics */}
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             <RadialKPICard
               title={t("dashboard.winRate")}
               value={kpis.winRateNum}
@@ -236,13 +232,6 @@ const Index = () => {
               tooltip={t("dashboard.winRateTooltip")}
               glossaryLink="/glossary#win-rate"
               color={getWinRateColor(kpis.winRateNum)}
-            />
-            <KPICardWithTooltip
-              title={t("dashboard.netPnL")}
-              value={`$${kpis.netPnL}`}
-              icon={DollarSign}
-              tooltip={t("dashboard.netPnLTooltip")}
-              valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
             />
             {kpis.avgRMultiple !== "N/A" ? (
               <RadialKPICard
@@ -255,26 +244,16 @@ const Index = () => {
                 color={getRMultipleColor(kpis.avgRMultipleNum)}
               />
             ) : (
-              <KPICardWithTooltip
+              <RadialKPICard
                 title={t("dashboard.avgRMultiple")}
-                value={kpis.avgRMultiple}
+                value={0}
+                displayValue="N/A"
                 icon={TrendingUp}
                 tooltip={t("dashboard.avgRMultipleTooltip")}
                 glossaryLink="/glossary#r-multiple"
-                valueColor="default"
+                color="primary"
               />
             )}
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <KPICardWithTooltip
-              title={t("dashboard.expectancy")}
-              value={`$${kpis.expectancy}`}
-              icon={DollarSign}
-              tooltip={t("dashboard.expectancyTooltip")}
-              glossaryLink="/glossary#expectancy"
-              valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
-            />
             {kpis.profitFactor !== "∞" && kpis.profitFactorNum <= 5 ? (
               <RadialKPICard
                 title={t("dashboard.profitFactor")}
@@ -286,15 +265,40 @@ const Index = () => {
                 color={getProfitFactorColor(kpis.profitFactorNum)}
               />
             ) : (
-              <KPICardWithTooltip
+              <RadialKPICard
                 title={t("dashboard.profitFactor")}
-                value={kpis.profitFactor}
+                value={100}
+                displayValue={kpis.profitFactor}
                 icon={TrendingUp}
                 tooltip={t("dashboard.profitFactorTooltip")}
                 glossaryLink="/glossary#profit-factor"
-                valueColor={kpis.profitFactor !== "∞" ? getProfitFactorColor(kpis.profitFactorNum) : "success"}
+                color="success"
               />
             )}
+          </div>
+
+          {/* Compact KPIs - Supporting Metrics */}
+          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <KPICard
+              title={t("dashboard.totalTrades")}
+              value={kpis.totalTrades}
+              icon={Activity}
+            />
+            <KPICardWithTooltip
+              title={t("dashboard.netPnL")}
+              value={`$${kpis.netPnL}`}
+              icon={DollarSign}
+              tooltip={t("dashboard.netPnLTooltip")}
+              valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
+            />
+            <KPICardWithTooltip
+              title={t("dashboard.expectancy")}
+              value={`$${kpis.expectancy}`}
+              icon={DollarSign}
+              tooltip={t("dashboard.expectancyTooltip")}
+              glossaryLink="/glossary#expectancy"
+              valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
+            />
             <Card className="elegant-shadow">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div className="flex items-center gap-2">
