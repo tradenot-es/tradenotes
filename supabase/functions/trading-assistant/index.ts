@@ -37,6 +37,57 @@ serve(async (req) => {
 
     console.log('Processing question:', question, 'for user:', user.id);
 
+    // Check daily usage and rate limits
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const { data: todayQuestions, error: countError } = await supabase
+      .from('assistant_conversations')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', user.id)
+      .gte('created_at', today.toISOString());
+
+    if (countError) {
+      console.error('Error counting questions:', countError);
+      throw new Error('Could not verify usage limit');
+    }
+
+    const questionsToday = todayQuestions || 0;
+    console.log('Questions asked today:', questionsToday);
+
+    // Get subscription status from Stripe
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('subscription_tier')
+      .eq('id', user.id)
+      .single();
+
+    // Define rate limits per tier
+    const rateLimits = {
+      free: 5,
+      basic: 20,
+      premium: 50,
+      enterprise: 200
+    };
+
+    const userTier = profile?.subscription_tier || 'free';
+    const dailyLimit = rateLimits[userTier as keyof typeof rateLimits] || rateLimits.free;
+
+    if (questionsToday >= dailyLimit) {
+      return new Response(
+        JSON.stringify({ 
+          error: 'Daily limit reached',
+          limit: dailyLimit,
+          tier: userTier,
+          questionsToday 
+        }),
+        { 
+          status: 429,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+        }
+      );
+    }
+
     // Fetch user's trades with optional timeframe filter
     let tradesQuery = supabase
       .from('trades')
@@ -168,7 +219,13 @@ Anweisungen:
     }
 
     return new Response(
-      JSON.stringify({ answer, tradesAnalyzed: totalTrades }),
+      JSON.stringify({ 
+        answer, 
+        tradesAnalyzed: totalTrades,
+        questionsRemaining: dailyLimit - (questionsToday + 1),
+        dailyLimit,
+        tier: userTier
+      }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
 

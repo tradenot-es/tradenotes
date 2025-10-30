@@ -62,6 +62,9 @@ export const AIAssistantFAB = () => {
         if (error.message?.includes('402') || error.message?.includes('credits') || error.message?.includes('payment')) {
           throw new Error(t("assistant.creditsExhausted"));
         }
+        if (error.message?.includes('429') || error.message?.includes('Daily limit')) {
+          throw new Error(t("assistant.dailyLimitReached"));
+        }
         throw error;
       }
 
@@ -72,6 +75,13 @@ export const AIAssistantFAB = () => {
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
+      
+      // Update remaining questions
+      if (data.questionsRemaining !== undefined) {
+        setQuestionsRemaining(data.questionsRemaining);
+        setDailyLimit(data.dailyLimit);
+        setTier(data.tier);
+      }
     } catch (error) {
       console.error('Error calling assistant:', error);
       toast({
@@ -116,6 +126,18 @@ export const AIAssistantFAB = () => {
           </CardHeader>
 
           <CardContent className="flex-1 flex flex-col p-4 overflow-hidden">
+            {/* Usage indicator */}
+            {questionsRemaining !== null && dailyLimit !== null && (
+              <div className="mb-3 p-2 bg-muted rounded-lg text-xs text-muted-foreground text-center">
+                {questionsRemaining} / {dailyLimit} {t("assistant.questionsRemaining")}
+                {tier === 'free' && questionsRemaining <= 2 && (
+                  <span className="block mt-1 text-primary font-medium">
+                    {t("assistant.upgradeForMore")}
+                  </span>
+                )}
+              </div>
+            )}
+            
             {messages.length === 0 ? (
               <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                 <div className="text-center space-y-2">
