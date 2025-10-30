@@ -9,7 +9,6 @@ import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
-import { PerformanceStats } from "@/components/PerformanceStats";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
@@ -361,22 +360,11 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Performance Stats and Portfolio News */}
+          {/* Consistency Tracker and Portfolio News */}
           <div className="grid gap-6 md:grid-cols-2">
-            <PerformanceStats
-              winningTrades={kpis.winningTrades}
-              losingTrades={kpis.losingTrades}
-              avgWin={kpis.avgWin}
-              avgLoss={kpis.avgLoss}
-              bestTrade={kpis.bestTrade}
-              worstTrade={kpis.worstTrade}
-              totalTrades={kpis.totalTrades}
-            />
+            <ConsistencyTracker trades={trades} />
             <PortfolioNews />
           </div>
-
-          {/* Consistency Tracker */}
-          <ConsistencyTracker trades={trades} />
         </>
       )}
 

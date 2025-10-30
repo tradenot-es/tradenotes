@@ -18,6 +18,7 @@ import { DailyGoalProgress } from "@/components/DailyGoalProgress";
 import { RadialProgress } from "@/components/RadialProgress";
 import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
+import { PerformanceStats } from "@/components/PerformanceStats";
 import { startOfDay, endOfDay } from "date-fns";
 
 interface Trade {
@@ -278,6 +279,17 @@ export default function Reports() {
 
         {/* Overview Tab */}
         <TabsContent value="overview" className="space-y-6">
+          {/* Performance Stats Overview */}
+          <PerformanceStats
+            winningTrades={winLossStats.wins}
+            losingTrades={winLossStats.losses}
+            avgWin={parseFloat(winLossStats.avgWin)}
+            avgLoss={parseFloat(winLossStats.avgLoss)}
+            bestTrade={filteredTrades.length > 0 ? Math.max(...filteredTrades.map(t => t.pnl_net)) : 0}
+            worstTrade={filteredTrades.length > 0 ? Math.min(...filteredTrades.map(t => t.pnl_net)) : 0}
+            totalTrades={filteredTrades.length}
+          />
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
