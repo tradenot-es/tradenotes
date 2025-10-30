@@ -4,12 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle } from "lucide-react";
+import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { format } from "date-fns";
+import { de } from "date-fns/locale";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -28,13 +30,44 @@ const Account = () => {
   const [totpSecret, setTotpSecret] = useState<string>("");
   const [verifyCode, setVerifyCode] = useState("");
   const [showQRDialog, setShowQRDialog] = useState(false);
+  
+  // Subscription states
+  const [subscriptionStatus, setSubscriptionStatus] = useState<{
+    subscribed: boolean;
+    plan_name?: string;
+    subscription_end?: string;
+  } | null>(null);
+  const [loadingSubscription, setLoadingSubscription] = useState(true);
 
   useEffect(() => {
     if (user) {
       setEmail(user.email || "");
       checkMFAStatus();
+      checkSubscriptionStatus();
     }
   }, [user]);
+
+  const checkSubscriptionStatus = async () => {
+    setLoadingSubscription(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const { data, error } = await supabase.functions.invoke('check-subscription', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+
+      if (error) throw error;
+      setSubscriptionStatus(data);
+    } catch (error) {
+      console.error('Error checking subscription:', error);
+      toast.error("Fehler beim Laden des Abonnement-Status");
+    } finally {
+      setLoadingSubscription(false);
+    }
+  };
 
   const checkMFAStatus = async () => {
     try {
@@ -158,6 +191,26 @@ const Account = () => {
     }
   };
 
+  const handleManageSubscription = async () => {
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) return;
+
+      const { data, error } = await supabase.functions.invoke('customer-portal', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+      });
+
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Fehler beim Öffnen des Kundenportals");
+    }
+  };
+
   return (
     <TooltipProvider delayDuration={0}>
       <div className="space-y-6">
@@ -235,6 +288,55 @@ const Account = () => {
                   </Button>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Payment Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CreditCard className="h-5 w-5" />
+                Zahlungsmodalitäten
+              </CardTitle>
+              <CardDescription>Verwalten Sie Ihr Abonnement und Zahlungsinformationen</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {loadingSubscription ? (
+                <div className="text-center py-4 text-muted-foreground">Lade Abonnement-Status...</div>
+              ) : subscriptionStatus?.subscribed ? (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+                    <div className="flex-1 space-y-1">
+                      <p className="font-medium">Aktives Abonnement</p>
+                      {subscriptionStatus.plan_name && (
+                        <p className="text-sm text-muted-foreground">Plan: {subscriptionStatus.plan_name}</p>
+                      )}
+                      {subscriptionStatus.subscription_end && (
+                        <p className="text-sm text-muted-foreground">
+                          Gültig bis: {format(new Date(subscriptionStatus.subscription_end), "dd. MMMM yyyy", { locale: de })}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <Button onClick={handleManageSubscription} className="w-full">
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    Abonnement verwalten
+                  </Button>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3 p-4 bg-muted border rounded-lg">
+                    <XCircle className="h-5 w-5 text-muted-foreground mt-0.5" />
+                    <div className="flex-1 space-y-1">
+                      <p className="font-medium">Kein aktives Abonnement</p>
+                      <p className="text-sm text-muted-foreground">
+                        Schließen Sie ein Abonnement ab, um alle Premium-Features zu nutzen.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 
