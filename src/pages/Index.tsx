@@ -11,8 +11,6 @@ import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { PortfolioNews } from "@/components/PortfolioNews";
-import { TopSymbols } from "@/components/TopSymbols";
-import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -376,12 +374,6 @@ const Index = () => {
               totalTrades={kpis.totalTrades}
             />
             <PortfolioNews />
-          </div>
-
-          {/* Data Synergies - Top Symbols and Market Breakdown */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <TopSymbols trades={trades} />
-            <MarketBreakdown trades={trades} />
           </div>
         </>
       )}

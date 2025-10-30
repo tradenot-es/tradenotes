@@ -157,6 +157,12 @@ export function PortfolioNews() {
             </HoverCardContent>
           </HoverCard>
         </div>
+        <div className="flex items-center gap-2 mt-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
+          <TrendingUp className="h-4 w-4 text-primary" />
+          <p className="text-xs text-muted-foreground">
+            <span className="font-semibold text-primary">Dynamisches Dashboard:</span> News automatisch gefiltert nach deinen Top-Performern
+          </p>
+        </div>
         <div className="flex gap-1 flex-wrap mt-2">
           {frequentSymbols.slice(0, 5).map((s) => (
             <Badge key={s.symbol} variant="secondary" className="text-xs">

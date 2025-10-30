@@ -16,6 +16,8 @@ import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
 import { DailyGoalProgress } from "@/components/DailyGoalProgress";
 import { RadialProgress } from "@/components/RadialProgress";
+import { TopSymbols } from "@/components/TopSymbols";
+import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { startOfDay, endOfDay } from "date-fns";
 
 interface Trade {
@@ -580,6 +582,12 @@ export default function Reports() {
                 />
               </CardContent>
             </Card>
+          </div>
+
+          {/* Performance Breakdown - Moved from Dashboard */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <TopSymbols trades={filteredTrades} />
+            <MarketBreakdown trades={filteredTrades} />
           </div>
         </TabsContent>
       </Tabs>
