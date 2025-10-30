@@ -540,7 +540,10 @@
     "inputPlaceholder": "Stelle eine Frage...",
     "error": "Fehler",
     "errorDescription": "Die Anfrage konnte nicht verarbeitet werden. Bitte versuche es erneut.",
-    "creditsExhausted": "Lovable AI Credits aufgebraucht. Bitte lade Credits auf unter Settings → Workspace → Usage."
+    "creditsExhausted": "Lovable AI Credits aufgebraucht. Bitte lade Credits auf unter Settings → Workspace → Usage.",
+    "dailyLimitReached": "Tageslimit erreicht. Upgrade für mehr Fragen oder versuche es morgen erneut.",
+    "questionsRemaining": "Fragen heute verfügbar",
+    "upgradeForMore": "Upgrade für mehr Fragen"
   },
   "dailyPrep": {
     "title": "Tägliche Vorbereitung",

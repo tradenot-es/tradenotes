@@ -41,9 +41,9 @@ serve(async (req) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     
-    const { data: todayQuestions, error: countError } = await supabase
+    const { count: questionsToday, error: countError } = await supabase
       .from('assistant_conversations')
-      .select('id', { count: 'exact', head: true })
+      .select('*', { count: 'exact', head: true })
       .eq('user_id', user.id)
       .gte('created_at', today.toISOString());
 
@@ -52,14 +52,14 @@ serve(async (req) => {
       throw new Error('Could not verify usage limit');
     }
 
-    const questionsToday = todayQuestions || 0;
-    console.log('Questions asked today:', questionsToday);
+    const questionCount = questionsToday || 0;
+    console.log('Questions asked today:', questionCount);
 
-    // Get subscription status from Stripe
-    const { data: profile } = await supabase
-      .from('profiles')
+    // Get subscription tier from user_settings
+    const { data: settings } = await supabase
+      .from('user_settings')
       .select('subscription_tier')
-      .eq('id', user.id)
+      .eq('user_id', user.id)
       .single();
 
     // Define rate limits per tier
@@ -70,16 +70,16 @@ serve(async (req) => {
       enterprise: 200
     };
 
-    const userTier = profile?.subscription_tier || 'free';
+    const userTier = settings?.subscription_tier || 'free';
     const dailyLimit = rateLimits[userTier as keyof typeof rateLimits] || rateLimits.free;
 
-    if (questionsToday >= dailyLimit) {
+    if (questionCount >= dailyLimit) {
       return new Response(
         JSON.stringify({ 
           error: 'Daily limit reached',
           limit: dailyLimit,
           tier: userTier,
-          questionsToday 
+          questionsToday: questionCount 
         }),
         { 
           status: 429,
@@ -222,7 +222,7 @@ Anweisungen:
       JSON.stringify({ 
         answer, 
         tradesAnalyzed: totalTrades,
-        questionsRemaining: dailyLimit - (questionsToday + 1),
+        questionsRemaining: dailyLimit - (questionCount + 1),
         dailyLimit,
         tier: userTier
       }),
@@ -231,8 +231,9 @@ Anweisungen:
 
   } catch (error) {
     console.error('Error in trading-assistant function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: errorMessage }),
       { 
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 

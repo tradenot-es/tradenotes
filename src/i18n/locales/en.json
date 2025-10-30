@@ -550,7 +550,10 @@
     "inputPlaceholder": "Ask a question...",
     "error": "Error",
     "errorDescription": "Could not process the request. Please try again.",
-    "creditsExhausted": "Lovable AI credits exhausted. Please add credits under Settings → Workspace → Usage."
+    "creditsExhausted": "Lovable AI credits exhausted. Please add credits under Settings → Workspace → Usage.",
+    "dailyLimitReached": "Daily limit reached. Upgrade for more questions or try again tomorrow.",
+    "questionsRemaining": "questions remaining today",
+    "upgradeForMore": "Upgrade for more questions"
   },
   "dailyPrep": {
     "title": "Daily Preparation",

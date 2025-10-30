@@ -229,6 +229,7 @@ export type Database = {
           id: string
           setup_definitions: Json | null
           setups: string[] | null
+          subscription_tier: string | null
           tags: string[] | null
           timezone: string | null
           updated_at: string | null
@@ -244,6 +245,7 @@ export type Database = {
           id?: string
           setup_definitions?: Json | null
           setups?: string[] | null
+          subscription_tier?: string | null
           tags?: string[] | null
           timezone?: string | null
           updated_at?: string | null
@@ -259,6 +261,7 @@ export type Database = {
           id?: string
           setup_definitions?: Json | null
           setups?: string[] | null
+          subscription_tier?: string | null
           tags?: string[] | null
           timezone?: string | null
           updated_at?: string | null

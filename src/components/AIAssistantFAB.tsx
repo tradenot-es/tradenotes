@@ -36,6 +36,9 @@ export const AIAssistantFAB = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [questionsRemaining, setQuestionsRemaining] = useState<number | null>(null);
+  const [dailyLimit, setDailyLimit] = useState<number | null>(null);
+  const [tier, setTier] = useState<string>('free');
 
   const suggestedQuestions = i18n.language === 'de' ? SUGGESTED_QUESTIONS_DE : SUGGESTED_QUESTIONS_EN;
 
