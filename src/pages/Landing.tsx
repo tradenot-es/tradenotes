@@ -51,9 +51,9 @@ const Landing = () => {
       description: "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
     },
     {
-      icon: <Target className="h-6 w-6" />,
-      title: "Win/Loss Analytics",
-      description: "Detaillierte Breakdown deiner Gewinn- und Verlust-Trades mit Durchschnittswerten, Best/Worst Trades und Ratio-Darstellung"
+      icon: <FileText className="h-6 w-6" />,
+      title: "Detaillierte Reports",
+      description: "Analysiere Performance nach Symbol, Wochentag, Uhrzeit, Holding-Period und Gewinn-/Verlustserien - finde deine profitabelsten Muster"
     },
     {
       icon: <Import className="h-6 w-6" />,
@@ -61,14 +61,24 @@ const Landing = () => {
       description: "Importiere Trades aus deinem Broker via CSV oder exportiere deine Daten für weitere Analysen"
     },
     {
-      icon: <FileText className="h-6 w-6" />,
-      title: "Setup-basierte Reports",
-      description: "Analysiere Performance nach Trading-Setup, Wochentag und Symbol - finde deine profitabelsten Setups"
+      icon: <Activity className="h-6 w-6" />,
+      title: "Weekly Performance",
+      description: "Wochenweise Übersicht deiner Trading-Performance mit Trades pro Woche und P&L-Entwicklung"
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
       title: "P&L Charts",
       description: "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: "Daily Prep",
+      description: "Bereite dich optimal auf den Trading-Tag vor mit politischen Events, Wirtschaftskalendern und deinen Watchlist-Symbolen"
+    },
+    {
+      icon: <BookOpen className="h-6 w-6" />,
+      title: "Trading Glossar",
+      description: "Umfangreiches Glossar mit allen wichtigen Trading-Begriffen - von A wie Average True Range bis Z wie Zeitwertverfall"
     }
   ];
 
@@ -84,6 +94,15 @@ const Landing = () => {
     "P&L Charts & Visualisierungen",
     "CSV Import & Export",
     "Setup-basierte Performance Reports",
+    "Hour-of-Day Analytics (beste Handelszeiten)",
+    "Symbol Performance Reports",
+    "Streak Analysis (Gewinn-/Verlustserien)",
+    "Holding Period Analysis",
+    "Weekly Performance Tracking",
+    "Daily Prep mit politischen Events",
+    "Trading Glossar mit allen wichtigen Begriffen",
+    "Dark/Light Mode",
+    "Multi-Language Support (DE, EN, ES, FR, NL)",
     "Alle zukünftigen Features inklusive",
     "7 Tage kostenlos testen"
   ];
