@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      assistant_conversations: {
+        Row: {
+          answer: string
+          context_trades_count: number | null
+          created_at: string
+          id: string
+          question: string
+          user_id: string
+        }
+        Insert: {
+          answer: string
+          context_trades_count?: number | null
+          created_at?: string
+          id?: string
+          question: string
+          user_id: string
+        }
+        Update: {
+          answer?: string
+          context_trades_count?: number | null
+          created_at?: string
+          id?: string
+          question?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       daily_prep: {
         Row: {
           checklist: Json | null

@@ -5,6 +5,7 @@
     "import": "Importar",
     "reports": "Informes",
     "journal": "Diario",
+    "assistant": "Asistente IA",
     "glossary": "Glosario",
     "account": "Cuenta",
     "settings": "Configuración",
@@ -429,5 +430,15 @@
     "savePrep": "Guardar Preparación Diaria",
     "saved": "Preparación diaria guardada exitosamente",
     "saveError": "Error al guardar preparación diaria"
+  },
+  "assistant": {
+    "title": "Asistente de Trading IA",
+    "subtitle": "Haz preguntas sobre tu rendimiento de trading y obtén respuestas basadas en datos",
+    "welcome": "Bienvenido al Asistente IA",
+    "welcomeDescription": "Hazme preguntas sobre tu rendimiento de trading, setups, símbolos o cualquier otro análisis.",
+    "suggestedQuestions": "Preguntas Sugeridas:",
+    "inputPlaceholder": "Haz una pregunta...",
+    "error": "Error de Procesamiento",
+    "errorDescription": "No se pudo procesar la solicitud. Por favor, inténtalo de nuevo."
   }
 }

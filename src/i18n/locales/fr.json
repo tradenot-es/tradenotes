@@ -5,6 +5,7 @@
     "import": "Importer",
     "reports": "Rapports",
     "journal": "Journal",
+    "assistant": "Assistant IA",
     "glossary": "Glossaire",
     "account": "Compte",
     "settings": "Paramètres",
@@ -429,5 +430,15 @@
     "savePrep": "Sauvegarder Préparation",
     "saved": "Préparation quotidienne sauvegardée avec succès",
     "saveError": "Erreur lors de la sauvegarde"
+  },
+  "assistant": {
+    "title": "Assistant de Trading IA",
+    "subtitle": "Posez des questions sur vos performances de trading et obtenez des réponses basées sur les données",
+    "welcome": "Bienvenue dans l'Assistant IA",
+    "welcomeDescription": "Posez-moi des questions sur vos performances de trading, vos setups, symboles ou toute autre analyse.",
+    "suggestedQuestions": "Questions Suggérées:",
+    "inputPlaceholder": "Posez une question...",
+    "error": "Erreur de Traitement",
+    "errorDescription": "Impossible de traiter la demande. Veuillez réessayer."
   }
 }

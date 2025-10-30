@@ -16,6 +16,7 @@ import Account from "./pages/Account";
 import Glossary from "./pages/Glossary";
 import Reports from "./pages/Reports";
 import Auth from "./pages/Auth";
+import Assistant from "./pages/Assistant";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
                       <Route path="/import" element={<Import />} />
                       <Route path="/reports" element={<Reports />} />
                       <Route path="/journal" element={<Journal />} />
+                      <Route path="/assistant" element={<Assistant />} />
                       <Route path="/account" element={<Account />} />
                       <Route path="/settings" element={<Settings />} />
                       <Route path="/glossary" element={<Glossary />} />

@@ -5,6 +5,7 @@
     "import": "Importeren",
     "reports": "Rapporten",
     "journal": "Dagboek",
+    "assistant": "AI Assistent",
     "glossary": "Begrippenlijst",
     "account": "Account",
     "settings": "Instellingen",
@@ -429,5 +430,15 @@
     "savePrep": "Dagelijkse Voorbereiding Opslaan",
     "saved": "Dagelijkse voorbereiding succesvol opgeslagen",
     "saveError": "Fout bij opslaan dagelijkse voorbereiding"
+  },
+  "assistant": {
+    "title": "AI Trading Assistent",
+    "subtitle": "Stel vragen over je trading prestaties en krijg datagestuurde antwoorden",
+    "welcome": "Welkom bij de AI Assistent",
+    "welcomeDescription": "Stel me vragen over je trading prestaties, setups, symbolen of andere analyses.",
+    "suggestedQuestions": "Voorgestelde Vragen:",
+    "inputPlaceholder": "Stel een vraag...",
+    "error": "Verwerkingsfout",
+    "errorDescription": "Kon het verzoek niet verwerken. Probeer het opnieuw."
   }
 }

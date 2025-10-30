@@ -15,7 +15,8 @@ import {
   Import,
   FileText,
   Activity,
-  Target
+  Target,
+  MessageSquare
 } from "lucide-react";
 
 const Landing = () => {
@@ -49,6 +50,11 @@ const Landing = () => {
       icon: <Target className="h-6 w-6" />,
       title: "Portfolio News",
       description: "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
+    },
+    {
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: "AI Trading Assistant",
+      description: "Stelle natürliche Fragen zu deiner Performance und erhalte sofortige, datengetriebene Antworten und Insights"
     },
     {
       icon: <FileText className="h-6 w-6" />,
@@ -89,6 +95,7 @@ const Landing = () => {
     "Equity Curve zur Kapitalverfolgung",
     "Consistency Tracker (12-Wochen Heatmap)",
     "Portfolio News für meist gehandelte Symbole",
+    "AI Trading Assistant für datengetriebene Insights",
     "Win/Loss Analytics & Performance Breakdown",
     "Trading Kalender-Ansicht",
     "P&L Charts & Visualisierungen",
