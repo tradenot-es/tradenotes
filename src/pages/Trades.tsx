@@ -4,6 +4,7 @@ import { AddTradeFAB } from "@/components/AddTradeFAB";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
 import { TradeFilters, TradeFilterOptions } from "@/components/TradeFilters";
+import { PortfolioNews } from "@/components/PortfolioNews";
 
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -136,6 +137,8 @@ const Trades = () => {
           compact
         />
       </div>
+
+      <PortfolioNews />
 
       <div className="h-[calc(100vh-14rem)]">
         <TradeCalendar

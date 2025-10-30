@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TrendingUp, Info } from "lucide-react";
-import { Link } from "react-router-dom";
 
 interface Trade {
   exit_time: string;
@@ -86,12 +85,8 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.consistencyTrackerTooltip")}</p>
                 <a 
-                  href="/glossary#consistency-tracker" 
+                  href="/dashboard/glossary#trading-consistency" 
                   className="text-xs text-primary hover:underline mt-2 block"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = '/glossary#consistency-tracker';
-                  }}
                 >
                   Learn more in glossary →
                 </a>

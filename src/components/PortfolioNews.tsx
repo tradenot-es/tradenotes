@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper } from "lucide-react";
-import { Link } from "react-router-dom";
+
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
@@ -119,12 +119,12 @@ export function PortfolioNews() {
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.portfolioNewsTooltip")}</p>
-                <Link 
-                  to="/glossary#portfolio-news" 
+                <a 
+                  href="/dashboard/glossary#portfolio-news" 
                   className="text-xs text-primary hover:underline mt-2 block"
                 >
                   Learn more in glossary →
-                </Link>
+                </a>
               </HoverCardContent>
             </HoverCard>
           </div>
@@ -148,12 +148,12 @@ export function PortfolioNews() {
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("dashboard.portfolioNewsTooltip")}</p>
-              <Link 
-                to="/glossary#portfolio-news" 
-                className="text-xs text-primary hover:underline mt-2 block"
-              >
-                Learn more in glossary →
-              </Link>
+                <a 
+                  href="/dashboard/glossary#portfolio-news" 
+                  className="text-xs text-primary hover:underline mt-2 block"
+                >
+                  Learn more in glossary →
+                </a>
             </HoverCardContent>
           </HoverCard>
         </div>
