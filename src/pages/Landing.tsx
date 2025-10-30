@@ -47,6 +47,11 @@ const Landing = () => {
     },
     {
       icon: <Target className="h-6 w-6" />,
+      title: "Portfolio News",
+      description: "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
       title: "Win/Loss Analytics",
       description: "Detaillierte Breakdown deiner Gewinn- und Verlust-Trades mit Durchschnittswerten, Best/Worst Trades und Ratio-Darstellung"
     },
@@ -73,6 +78,7 @@ const Landing = () => {
     "Trading Journal mit Notizen & Screenshots",
     "Equity Curve zur Kapitalverfolgung",
     "Consistency Tracker (12-Wochen Heatmap)",
+    "Portfolio News für meist gehandelte Symbole",
     "Win/Loss Analytics & Performance Breakdown",
     "Trading Kalender-Ansicht",
     "P&L Charts & Visualisierungen",

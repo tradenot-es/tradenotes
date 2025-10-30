@@ -9,6 +9,7 @@ import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PerformanceStats } from "@/components/PerformanceStats";
+import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -341,6 +342,8 @@ const Index = () => {
             trades={trades}
             currentMonth={currentMonth}
           />
+
+          <PortfolioNews />
         </>
       )}
 

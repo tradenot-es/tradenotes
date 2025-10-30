@@ -57,6 +57,9 @@
     "maxDrawdownTooltip": "Größter Kapitalrückgang vom Peak zum Tief. Immer negativ - misst das maximale Risiko und die emotionale Belastung Ihrer Strategie.",
     "equityCurve": "Equity Curve",
     "equityCurveTooltip": "Zeigt die kumulative Entwicklung Ihres Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konsistente Profitabilität hin. Große Rückgänge zeigen Drawdown-Phasen.",
+    "portfolioNews": "Portfolio-Nachrichten",
+    "portfolioNewsTooltip": "Automatisch kuratierte Finanznachrichten zu Ihren am häufigsten gehandelten Symbolen. Bleiben Sie über marktbewegende Events und Entwicklungen informiert, die Ihre Positionen beeinflussen könnten.",
+    "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
     "pnlByMonth": "P&L nach Monat",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
     "equity": "Equity",
@@ -384,6 +387,11 @@
       "term": "Consistency Tracker / Trading-Aktivitäts-Heatmap",
       "definition": "Der Consistency Tracker ist eine visuelle Heatmap Ihrer täglichen Trading-Aktivität über mehrere Wochen/Monate. Jede Kachel repräsentiert einen Tag: Grün = profitabler Tag, Rot = Verlusttag, Intensität = Anzahl der Trades. Dieses Tool offenbart Muster in Ihrem Trading-Verhalten: Traden Sie zu häufig? Gibt es wochentagsspezifische Muster? Sind Sie konsistent aktiv oder sporadisch? Konsistenz ist kritisch für statistisch signifikante Ergebnisse. Wenn Sie nur 5 Trades pro Monat machen, sind 100+ Trades für valide Strategie-Bewertung nötig - das dauert 20 Monate. Mehr Konsistenz = schnellere Lernkurve.",
       "example": "Die Heatmap zeigt: Montag-Mittwoch meist grün mit hoher Intensität (viele profitable Trades), Donnerstag-Freitag gemischt oder leer (weniger/keine Aktivität). Dies könnte bedeuten: Sie performen besser am Wochenanfang wenn der Markt Trends etabliert. Oder: Sie werden gegen Wochenende weniger diszipliniert. Die Analyse führt zu Anpassung: Fokus auf Montag-Mittwoch Trading, strikte Pause Donnerstag-Freitag → sofortige Performance-Verbesserung durch Elimination schwacher Tage."
+    },
+    "portfolioNews": {
+      "term": "Portfolio-Nachrichten / Symbol-News-Feed",
+      "definition": "Portfolio-Nachrichten ist ein intelligentes Feature, das automatisch relevante Finanznachrichten für Ihre am häufigsten gehandelten Symbole kuratiert und anzeigt. Das System analysiert Ihre Trading-Historie, identifiziert die Top 5-10 Symbole nach Handelsfrequenz und filtert dann aktuelle Marktnachrichten, die diese Symbole betreffen. Dies ermöglicht es Ihnen, fokussiert und effizient über marktbewegende Events, Earnings-Reports, regulatorische Änderungen oder makroökonomische Entwicklungen informiert zu bleiben, die direkten Einfluss auf Ihre bevorzugten Trading-Instrumente haben könnten. Im Gegensatz zu generischen News-Feeds, die Sie mit Informationen überladen, ist dieser Feed personalisiert auf Ihr tatsächliches Trading-Verhalten.",
+      "example": "Angenommen, Sie traden hauptsächlich AAPL, TSLA, SPY, QQQ und NVDA. Der Portfolio-News-Feed zeigt automatisch News wie: 'Apple kündigt neue iPhone-Linie an', 'Tesla übertrifft Auslieferungszahlen', 'Fed-Entscheidung beeinflusst S&P 500 Index', 'Tech-Sektor unter Druck durch Regulierung'. Sie ignorieren irrelevante News über Öl-Aktien oder Pharma-Unternehmen, die Sie nicht handeln. Dies spart Zeit und erhöht Trading-Effizienz, da Sie nur auf Events reagieren müssen, die Ihre Positionen direkt betreffen."
     },
     "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
     "formula": "Formel",

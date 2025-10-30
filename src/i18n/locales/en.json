@@ -57,6 +57,9 @@
     "maxDrawdownTooltip": "Largest capital decline from peak to trough. Always negative - measures maximum risk and emotional burden of your strategy.",
     "equityCurve": "Equity Curve",
     "equityCurveTooltip": "Shows the cumulative development of your trading capital over time. A steadily rising curve indicates consistent profitability. Large declines show drawdown phases.",
+    "portfolioNews": "Portfolio News",
+    "portfolioNewsTooltip": "Automatically curated financial news for your most frequently traded symbols. Stay informed about market-moving events and developments that could impact your positions.",
+    "noSymbolsForNews": "No symbols available yet. Add trades to receive relevant news.",
     "pnlByMonth": "P&L by Month",
     "noTrades": "No trades yet. Add your first trade!",
     "equity": "Equity",
@@ -394,6 +397,11 @@
       "term": "Consistency Tracker / Trading Activity Heatmap",
       "definition": "The Consistency Tracker is a visual heatmap of your daily trading activity over multiple weeks/months. Each tile represents a day: Green = profitable day, Red = losing day, Intensity = number of trades. This tool reveals patterns in your trading behavior: Are you trading too frequently? Are there day-of-week specific patterns? Are you consistently active or sporadic? Consistency is critical for statistically significant results. If you only make 5 trades per month, you need 100+ trades for valid strategy evaluation - that takes 20 months. More consistency = faster learning curve.",
       "example": "The heatmap shows: Monday-Wednesday mostly green with high intensity (many profitable trades), Thursday-Friday mixed or empty (less/no activity). This could mean: You perform better early in the week when the market establishes trends. Or: You become less disciplined towards the weekend. Analysis leads to adjustment: Focus on Monday-Wednesday trading, strict break Thursday-Friday → immediate performance improvement through elimination of weak days."
+    },
+    "portfolioNews": {
+      "term": "Portfolio News / Symbol News Feed",
+      "definition": "Portfolio News is an intelligent feature that automatically curates and displays relevant financial news for your most frequently traded symbols. The system analyzes your trading history, identifies the top 5-10 symbols by trading frequency, and then filters current market news affecting these symbols. This allows you to stay focused and efficiently informed about market-moving events, earnings reports, regulatory changes, or macroeconomic developments that could directly impact your preferred trading instruments. Unlike generic news feeds that overwhelm you with information, this feed is personalized to your actual trading behavior.",
+      "example": "Suppose you mainly trade AAPL, TSLA, SPY, QQQ, and NVDA. The Portfolio News Feed automatically shows news like: 'Apple announces new iPhone lineup', 'Tesla exceeds delivery targets', 'Fed decision impacts S&P 500 Index', 'Tech sector under pressure from regulation'. You ignore irrelevant news about oil stocks or pharmaceutical companies you don't trade. This saves time and increases trading efficiency as you only need to react to events directly affecting your positions."
     },
     "subtitle": "Essential trading terms and risk management concepts",
     "formula": "Formula",

@@ -125,6 +125,12 @@ export default function Glossary() {
       term: t("glossary.consistencyTracker.term"),
       definition: t("glossary.consistencyTracker.definition"),
       example: t("glossary.consistencyTracker.example")
+    },
+    {
+      id: "portfolio-news",
+      term: t("glossary.portfolioNews.term"),
+      definition: t("glossary.portfolioNews.definition"),
+      example: t("glossary.portfolioNews.example")
     }
   ];
 

@@ -88,10 +88,6 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                 <Link 
                   to="/glossary#consistency-tracker" 
                   className="text-xs text-primary hover:underline mt-2 block"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = "/glossary#consistency-tracker";
-                  }}
                 >
                   Learn more in glossary →
                 </Link>
