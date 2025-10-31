@@ -336,43 +336,74 @@ const Account = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <CreditCard className="h-5 w-5" />
-                Zahlungsmodalitäten
+                {t("account.subscription")}
               </CardTitle>
-              <CardDescription>Verwalten Sie Ihr Abonnement und Zahlungsinformationen</CardDescription>
+              <CardDescription>{t("account.subscriptionDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {loadingSubscription ? (
-                <div className="text-center py-4 text-muted-foreground">Lade Abonnement-Status...</div>
+                <div className="text-center py-4 text-muted-foreground">{t("account.loadingSubscription")}</div>
               ) : subscriptionStatus?.subscribed ? (
                 <div className="space-y-4">
                   <div className="flex items-start gap-3 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
                     <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
-                    <div className="flex-1 space-y-1">
-                      <p className="font-medium">Aktives Abonnement</p>
+                    <div className="flex-1 space-y-2">
+                      <p className="font-medium">{t("account.activeSubscription")}</p>
                       {subscriptionStatus.plan_name && (
-                        <p className="text-sm text-muted-foreground">Plan: {subscriptionStatus.plan_name}</p>
+                        <p className="text-sm text-muted-foreground">{t("account.plan")}: {subscriptionStatus.plan_name}</p>
                       )}
                       {subscriptionStatus.subscription_end && (
                         <p className="text-sm text-muted-foreground">
-                          Gültig bis: {format(new Date(subscriptionStatus.subscription_end), "dd. MMMM yyyy", { locale: de })}
+                          {t("account.validUntil")}: {format(new Date(subscriptionStatus.subscription_end), "dd. MMMM yyyy", { locale: de })}
                         </p>
                       )}
+                      <div className="pt-2 border-t border-green-500/20">
+                        <p className="text-sm font-medium text-green-600">{t("account.allFeaturesUnlocked")}</p>
+                      </div>
                     </div>
                   </div>
                   <Button onClick={handleManageSubscription} className="w-full">
                     <CreditCard className="h-4 w-4 mr-2" />
-                    Abonnement verwalten
+                    {t("account.manageSubscription")}
                   </Button>
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3 p-4 bg-muted border rounded-lg">
-                    <XCircle className="h-5 w-5 text-muted-foreground mt-0.5" />
-                    <div className="flex-1 space-y-1">
-                      <p className="font-medium">Kein aktives Abonnement</p>
-                      <p className="text-sm text-muted-foreground">
-                        Schließen Sie ein Abonnement ab, um alle Premium-Features zu nutzen.
-                      </p>
+                  <div className="flex items-start gap-3 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
+                    <XCircle className="h-5 w-5 text-blue-500 mt-0.5" />
+                    <div className="flex-1 space-y-3">
+                      <div>
+                        <p className="font-medium text-blue-600">{t("account.trialActive")}</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {t("account.trialDescription")}
+                        </p>
+                      </div>
+                      
+                      <div className="pt-2 border-t border-blue-500/20">
+                        <p className="text-sm font-medium mb-2">{t("account.availablePlans")}</p>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li>• {t("account.monthlyPlan")}</li>
+                          <li>• {t("account.yearlyPlan")}</li>
+                        </ul>
+                      </div>
+
+                      <div className="pt-2 border-t border-blue-500/20">
+                        <p className="text-sm font-medium mb-2">{t("account.trialLimitations")}</p>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          <li className="flex items-start gap-2">
+                            <span className="text-red-500 mt-0.5">✗</span>
+                            <span>{t("account.limitationAI")}</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-red-500 mt-0.5">✗</span>
+                            <span>{t("account.limitationMetrics")}</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-green-500 mt-0.5">✓</span>
+                            <span>{t("account.allOtherFeatures")}</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
