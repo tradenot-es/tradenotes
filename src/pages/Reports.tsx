@@ -269,13 +269,68 @@ export default function Reports() {
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
-          <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
-          <TabsTrigger value="goals">Daily Goals</TabsTrigger>
-          <TabsTrigger value="setup">{t("reports.bySetup")}</TabsTrigger>
-          <TabsTrigger value="time">{t("reports.timeAnalysis")}</TabsTrigger>
-          <TabsTrigger value="behavior">{t("reports.behavior")}</TabsTrigger>
-          <TabsTrigger value="symbols">{t("reports.symbols")}</TabsTrigger>
-          <TabsTrigger value="risk">{t("reports.riskAnalysis")}</TabsTrigger>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.overviewTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="goals">Daily Goals</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.dailyGoalsTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="setup">{t("reports.bySetup")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.bySetupTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="time">{t("reports.timeAnalysis")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.timeAnalysisTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="behavior">{t("reports.behavior")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.behaviorTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="symbols">{t("reports.symbols")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.symbolsTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="risk">{t("reports.riskAnalysis")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.riskAnalysisTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
         </TabsList>
 
         {/* Overview Tab */}
