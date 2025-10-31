@@ -86,7 +86,7 @@ export function RadialProgress({
         </svg>
         
         {/* Center content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/80 rounded-full backdrop-blur-sm">
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
           {showPercentage && (
             <span className="text-2xl font-bold tabular-nums text-foreground">
               {Math.round(animatedValue)}%
