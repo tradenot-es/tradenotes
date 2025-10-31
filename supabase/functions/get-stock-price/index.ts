@@ -1,9 +1,19 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.1";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
+
+const StockPriceRequestSchema = z.object({
+  symbol: z.string()
+    .min(1, 'Symbol cannot be empty')
+    .max(20, 'Symbol too long')
+    .regex(/^[A-Z0-9.^-]+$/i, 'Invalid symbol format'),
+  market: z.enum(['Stock', 'Futures', 'Crypto', 'Forex', 'Option']).optional().default('Stock')
+});
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -11,14 +21,36 @@ serve(async (req) => {
   }
 
   try {
-    const { symbol, market } = await req.json();
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    const authHeader = req.headers.get('Authorization')!;
+    
+    const supabase = createClient(supabaseUrl, supabaseKey, {
+      global: { headers: { Authorization: authHeader } }
+    });
 
-    if (!symbol) {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (userError || !user) {
       return new Response(
-        JSON.stringify({ error: "Symbol is required" }),
+        JSON.stringify({ error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    const payload = await req.json();
+    
+    const validation = StockPriceRequestSchema.safeParse(payload);
+    if (!validation.success) {
+      return new Response(
+        JSON.stringify({ 
+          error: 'Invalid request format',
+          details: validation.error.errors.map(e => e.message)
+        }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
+
+    const { symbol, market } = validation.data;
 
     // Format symbol based on market
     let formattedSymbol = symbol;

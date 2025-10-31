@@ -3,6 +3,9 @@ project_id = "REDACTED"
 [functions.financial-news]
 verify_jwt = true
 
+[functions.get-stock-price]
+verify_jwt = true
+
 [functions.import-trades]
 verify_jwt = true
 
