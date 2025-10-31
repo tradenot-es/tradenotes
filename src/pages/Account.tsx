@@ -259,35 +259,6 @@ const Account = () => {
                   </Button>
                 </div>
               </div>
-
-              {/* 2FA */}
-              <div className="flex items-center justify-between pt-4 border-t">
-                <div className="flex items-center gap-2">
-                  <Label htmlFor="mfa" className="text-base">
-                    {t("settings.twoFactor")}
-                  </Label>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <button type="button" className="inline-flex">
-                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
-                      </button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p className="max-w-xs text-sm">{t("settings.twoFactorHelp")}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-                <div className="flex items-center gap-2">
-                  {mfaEnabled && <ShieldCheck className="h-5 w-5 text-green-500" />}
-                  <Button
-                    variant={mfaEnabled ? "destructive" : "default"}
-                    onClick={mfaEnabled ? handleDisableMFA : handleEnableMFA}
-                    disabled={enrolling}
-                  >
-                    {mfaEnabled ? t("settings.disable2FA") : t("settings.enable2FA")}
-                  </Button>
-                </div>
-              </div>
             </CardContent>
           </Card>
 
@@ -398,6 +369,35 @@ const Account = () => {
                 <Lock className="h-4 w-4 mr-2" />
                 {t("settings.updatePassword")}
               </Button>
+              
+              {/* 2FA */}
+              <div className="flex items-center justify-between pt-4 border-t">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="mfa" className="text-base">
+                    {t("settings.twoFactor")}
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <button type="button" className="inline-flex">
+                        <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p className="max-w-xs text-sm">{t("settings.twoFactorHelp")}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <div className="flex items-center gap-2">
+                  {mfaEnabled && <ShieldCheck className="h-5 w-5 text-green-500" />}
+                  <Button
+                    variant={mfaEnabled ? "destructive" : "default"}
+                    onClick={mfaEnabled ? handleDisableMFA : handleEnableMFA}
+                    disabled={enrolling}
+                  >
+                    {mfaEnabled ? t("settings.disable2FA") : t("settings.enable2FA")}
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
         </div>
