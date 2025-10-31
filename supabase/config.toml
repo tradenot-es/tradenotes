@@ -4,7 +4,7 @@ project_id = "REDACTED"
 verify_jwt = true
 
 [functions.import-trades]
-verify_jwt = false
+verify_jwt = true
 
 [functions.trading-assistant]
 verify_jwt = true

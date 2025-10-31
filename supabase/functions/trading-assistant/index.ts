@@ -31,8 +31,34 @@ serve(async (req) => {
 
     const { question, timeframe } = await req.json();
 
-    if (!question) {
-      throw new Error('No question provided');
+    // Input validation
+    if (!question || typeof question !== 'string') {
+      throw new Error('Invalid question format');
+    }
+
+    // Length validation (prevent token abuse)
+    if (question.length > 500) {
+      throw new Error('Question too long (max 500 characters)');
+    }
+
+    // Sanitization
+    const sanitizedQuestion = question
+      .trim()
+      .replace(/[\r\n\t]+/g, ' ')
+      .substring(0, 500);
+
+    // Content filtering for prompt injection
+    const suspiciousPatterns = [
+      /ignore.{0,30}previous/i,
+      /system.{0,30}prompt/i,
+      /admin.{0,30}mode/i,
+      /reveal.{0,30}(instructions|prompt)/i,
+      /pretend.{0,30}you.{0,30}are/i,
+      /disregard.{0,30}(above|previous)/i,
+    ];
+
+    if (suspiciousPatterns.some(p => p.test(sanitizedQuestion))) {
+      throw new Error('Question contains prohibited content');
     }
 
     console.log('Processing question:', question, 'for user:', user.id);
@@ -185,7 +211,7 @@ Anweisungen:
         model: 'google/gemini-2.5-flash',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: question }
+          { role: 'user', content: sanitizedQuestion }
         ],
         temperature: 0.7,
         max_tokens: 500,
@@ -208,7 +234,7 @@ Anweisungen:
       .from('assistant_conversations')
       .insert({
         user_id: user.id,
-        question,
+        question: sanitizedQuestion,
         answer,
         context_trades_count: totalTrades,
       });
