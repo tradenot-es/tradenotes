@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp, TrendingDown, Target } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   symbol: string;
@@ -14,6 +15,7 @@ interface SymbolPerformanceProps {
 
 export function SymbolPerformance({ trades }: SymbolPerformanceProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
 
   const symbolData = useMemo(() => {
     const symbolMap = new Map<string, {
@@ -88,10 +90,10 @@ export function SymbolPerformance({ trades }: SymbolPerformanceProps) {
       </div>
       <div className="text-right">
         <div className={`text-lg font-bold ${pnl >= 0 ? 'text-success' : 'text-destructive'}`}>
-          ${pnl.toFixed(2)}
+          {formatCurrency(pnl)}
         </div>
         <div className="text-xs text-muted-foreground">
-          Avg: ${avgPnl}
+          Avg: {formatCurrency(parseFloat(avgPnl))}
         </div>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Clock } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from "recharts";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   entry_time: string;
@@ -16,6 +17,7 @@ interface HourOfDayAnalysisProps {
 
 export function HourOfDayAnalysis({ trades }: HourOfDayAnalysisProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
 
   const hourData = useMemo(() => {
     const hourStats = Array.from({ length: 24 }, (_, i) => ({
@@ -97,7 +99,7 @@ export function HourOfDayAnalysis({ trades }: HourOfDayAnalysisProps) {
                           {t("reports.winRate")}: {data.winRate}%
                         </p>
                         <p className={`text-sm font-semibold ${data.pnl >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          P&L: ${data.pnl.toFixed(2)}
+                          P&L: {formatCurrency(data.pnl)}
                         </p>
                       </div>
                     );
@@ -138,7 +140,7 @@ export function HourOfDayAnalysis({ trades }: HourOfDayAnalysisProps) {
                       </div>
                     </div>
                     <div className="text-lg font-bold text-success">
-                      ${hour.pnl.toFixed(2)}
+                      {formatCurrency(hour.pnl)}
                     </div>
                   </div>
                 ))
@@ -170,7 +172,7 @@ export function HourOfDayAnalysis({ trades }: HourOfDayAnalysisProps) {
                       </div>
                     </div>
                     <div className="text-lg font-bold text-destructive">
-                      ${hour.pnl.toFixed(2)}
+                      {formatCurrency(hour.pnl)}
                     </div>
                   </div>
                 ))}

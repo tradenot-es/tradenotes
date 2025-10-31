@@ -444,6 +444,78 @@
       "definition": "The Daily Trade Goal is a risk management tool that defines two critical parameters: (1) A daily profit target in dollars and (2) a maximum number of trades per day. This feature helps you stay disciplined and avoid two common trading mistakes: Overtrading (too many trades from boredom or 'revenge trading' after losses) and lack of goal-setting (endless trading without clear exit criteria). Once you reach your daily goal OR exceed your trade limit, you should end the trading day. This promotes quality over quantity and protects against emotional decisions.",
       "example": "You set a Daily Goal of $500 with a maximum of 10 trades. Scenario 1: After 6 trades you have $520 profit → You stop for the day, take the profit, and avoid giving it back through overtrading. Scenario 2: After 10 trades you have $200 profit → You stop despite not reaching the goal because you've reached your trade limit. This prevents revenge trading or desperately chasing the goal. The system tracks your success rate: How often do you reach your goal? How often do you exceed the trade limit? This data reveals patterns and helps optimize your trading strategy."
     },
+    "breakout": {
+      "term": "Breakout",
+      "definition": "A breakout occurs when price breaks through a defined resistance or support level, signaling a potential new trend movement.",
+      "example": "Stock trades at $45-50 for weeks. Break above $50 with high volume = bullish breakout"
+    },
+    "consolidation": {
+      "term": "Consolidation",
+      "definition": "A sideways phase where price trades in a tight range, typically after a strong move. Shows balance between buyers and sellers.",
+      "example": "After 20% rally, stock trades in 5% range for 2 weeks – consolidation before next potential move"
+    },
+    "edge": {
+      "term": "Edge / Trading Advantage",
+      "definition": "An edge is a statistical or informational advantage that increases your probability of winning beyond chance. Can come from strategy, timing, information, or execution.",
+      "example": "Your edge: Trading only specific chart patterns with 55% win rate and 2R avg win → positive expectancy"
+    },
+    "gap": {
+      "term": "Gap / Price Gap",
+      "definition": "A gap occurs when opening price is significantly above or below previous closing price, often due to news during closed hours.",
+      "example": "Stock closes at $50, opens at $55 next day after positive earnings – $5 gap up"
+    },
+    "leverage": {
+      "term": "Leverage",
+      "definition": "Leverage allows controlling larger positions with borrowed capital than your actual capital permits. Amplifies both gains and losses proportionally.",
+      "formula": "Leverage Ratio = Position Value / Equity\n\nMargin Required = Position Value / Leverage",
+      "example": "$10,000 account, 2:1 leverage → can hold $20,000 position. 5% gain: $1,000 (10% on equity). 5% loss: -$1,000 (-10% on equity)"
+    },
+    "liquidity": {
+      "term": "Liquidity",
+      "definition": "Liquidity measures how quickly and at what price an asset can be bought or sold without significantly affecting market price. High liquidity = tight spreads, fast execution.",
+      "example": "Apple (AAPL): Millions shares daily, $0.01 spread = highly liquid. Penny stock: 1000 shares/day, 5% spread = illiquid"
+    },
+    "positionSizing": {
+      "term": "Position Sizing",
+      "definition": "Position sizing defines how much capital to invest in a single trade based on risk, account size, and trade setup. Critical for long-term survival and growth.",
+      "formula": "Position Size = Risk Amount / Risk per Unit\n\nRisk Amount = Account Size × Risk% (e.g., 1-2%)",
+      "example": "$10,000 account, 2% risk ($200), entry $50, stop $47 ($3 risk): Position Size = $200 / $3 = 66 shares"
+    },
+    "scalping": {
+      "term": "Scalping",
+      "definition": "Scalping is a short-term trading strategy aiming to profit from small price movements through many daily trades (seconds to minutes holding period).",
+      "example": "Buy at $50.10, sell at $50.20 for $0.10 profit × 1000 shares = $100. 50+ such trades daily"
+    },
+    "slippage": {
+      "term": "Slippage",
+      "definition": "Slippage is the difference between expected trade price and actual execution price. Occurs with market orders in fast/illiquid markets.",
+      "example": "You want to buy at $50 (market order), but get filled at $50.15 = $0.15 slippage per share (0.3%)"
+    },
+    "supportResistance": {
+      "term": "Support & Resistance",
+      "definition": "Support is a price level where buying pressure historically was strong enough to stop downtrends. Resistance is where selling pressure stops uptrends. Become self-fulfilling prophecies.",
+      "example": "Stock falls to $45 three times and recovers = support at $45. Reaches $55 three times and falls = resistance at $55"
+    },
+    "takeProfit": {
+      "term": "Take Profit",
+      "definition": "Take profit is a predefined exit point where you automatically realize gains. Should be based on technical analysis (resistance, Fibonacci, etc.) not greed.",
+      "example": "Entry $50, take profit at $56 (previous resistance). With $3 stop = 2:1 risk-reward"
+    },
+    "trend": {
+      "term": "Trend",
+      "definition": "A trend is the general direction of price movement over time. Uptrend = higher highs & lows, downtrend = lower highs & lows, sideways = no clear direction.",
+      "example": "Stock: $40 → $45 → $43 → $48 → $46 → $51 = uptrend (rising lows at $43, $46)"
+    },
+    "volatility": {
+      "term": "Volatility",
+      "definition": "Volatility measures the magnitude of price swings. High volatility = large price movements (high risk & opportunity), low volatility = small movements (low risk & opportunity).",
+      "example": "Stock A: $50 ±$0.50/day (1% volatility), Stock B: $50 ±$2.50/day (5% volatility) = 5x more volatile"
+    },
+    "volume": {
+      "term": "Trading Volume",
+      "definition": "Volume measures the number of shares/contracts traded in a period. High volume confirms price moves (conviction), low volume = weak/questionable moves.",
+      "example": "Breakout above $50: With 10x normal volume = strong signal. With below-average volume = likely false breakout"
+    },
     "subtitle": "Essential trading terms and risk management concepts",
     "formula": "Formula",
     "example": "Example"

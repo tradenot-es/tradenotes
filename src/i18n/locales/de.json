@@ -434,6 +434,78 @@
       "definition": "Das Daily Trade Goal ist ein Risikomanagement-Tool, das zwei kritische Parameter festlegt: (1) Ein tägliches Gewinnziel in Dollar und (2) eine maximale Anzahl von Trades pro Tag. Dieses Feature hilft Ihnen, diszipliniert zu bleiben und zwei häufige Trading-Fehler zu vermeiden: Overtrading (zu viele Trades aus Langeweile oder 'Revenge Trading' nach Verlusten) und mangelnde Zielsetzung (endloses Traden ohne klares Exit-Kriterium). Sobald Sie Ihr Tagesziel erreichen ODER Ihr Trade-Limit überschreiten, sollten Sie den Handelstag beenden. Dies fördert Qualität über Quantität und schützt vor emotionalen Entscheidungen.",
       "example": "Sie setzen ein Daily Goal von $500 bei maximal 10 Trades. Szenario 1: Nach 6 Trades haben Sie $520 Gewinn → Sie stoppen für den Tag, nehmen den Profit mit und vermeiden Rückgabe durch Overtrading. Szenario 2: Nach 10 Trades haben Sie $200 Gewinn → Sie stoppen trotz Nicht-Erreichen des Ziels, da Sie Ihr Trade-Limit erreicht haben. Dies verhindert Revenge-Trading oder verzweifeltes Nachjagen des Ziels. Das System trackt Ihre Erfolgsrate: Wie oft erreichen Sie Ihr Ziel? Wie oft überschreiten Sie das Trade-Limit? Diese Daten offenbaren Muster und helfen bei der Optimierung Ihrer Trading-Strategie."
     },
+    "breakout": {
+      "term": "Breakout",
+      "definition": "Ein Breakout tritt auf, wenn der Preis ein definiertes Widerstands- oder Unterstützungsniveau durchbricht und signalisiert eine mögliche neue Trendbewegung.",
+      "example": "Eine Aktie handelt bei 45-50€ für Wochen. Durchbruch über 50€ mit hohem Volumen = bullischer Breakout"
+    },
+    "consolidation": {
+      "term": "Konsolidierung",
+      "definition": "Eine Seitwärtsphase wo der Preis in einer engen Range handelt, typischerweise nach einer starken Bewegung. Zeigt Balance zwischen Käufern und Verkäufern.",
+      "example": "Nach 20% Anstieg handelt die Aktie 2 Wochen in 5% Range – Konsolidierung vor möglichem nächsten Move"
+    },
+    "edge": {
+      "term": "Edge / Handelsvorteil",
+      "definition": "Ein Edge ist ein statistischer oder informationeller Vorteil, der Ihre Gewinnwahrscheinlichkeit über den Zufall hinaus erhöht. Kann durch Strategie, Timing, Information oder Execution kommen.",
+      "example": "Dein Edge: Trades nur bei spezifischen Chart-Mustern mit 55% Win Rate und 2R Avg Win → positiver Erwartungswert"
+    },
+    "gap": {
+      "term": "Gap / Kurslücke",
+      "definition": "Eine Kurslücke entsteht, wenn der Eröffnungskurs signifikant über oder unter dem vorherigen Schlusskurs liegt, oft aufgrund von Nachrichten außerhalb der Handelszeiten.",
+      "example": "Aktie schließt bei 50€, öffnet bei 55€ am nächsten Tag nach positiven Earnings – 5€ Gap Up"
+    },
+    "leverage": {
+      "term": "Hebel / Leverage",
+      "definition": "Leverage ermöglicht es, mit geliehenem Kapital größere Positionen zu kontrollieren als Ihr tatsächliches Kapital erlaubt. Verstärkt sowohl Gewinne als auch Verluste proportional.",
+      "formula": "Leverage Ratio = Positionswert / Eigenkapital\n\nMargin Required = Positionswert / Leverage",
+      "example": "10.000€ Konto, 2:1 Leverage → können 20.000€ Position halten. Bei 5% Gewinn: 1.000€ (10% auf Eigenkapital). Bei 5% Verlust: -1.000€ (-10% auf Eigenkapital)"
+    },
+    "liquidity": {
+      "term": "Liquidität",
+      "definition": "Liquidität misst, wie schnell und zu welchem Preis ein Asset gekauft oder verkauft werden kann ohne den Marktpreis signifikant zu beeinflussen. Hohe Liquidität = enge Spreads, schnelle Ausführung.",
+      "example": "Apple (AAPL): Millionen Aktien täglich, Spread 0.01€ = hochliquide. Penny Stock: 1000 Aktien/Tag, Spread 5% = illiquide"
+    },
+    "positionSizing": {
+      "term": "Positionsgrößenbestimmung",
+      "definition": "Position Sizing definiert, wie viel Kapital Sie in einen einzelnen Trade investieren basierend auf Risiko, Konto-Größe und Trade-Setup. Kritisch für langfristiges Überleben und Wachstum.",
+      "formula": "Position Size = Risikobetrag / Risiko pro Einheit\n\nRisikobetrag = Kontogröße × Risiko% (z.B. 1-2%)",
+      "example": "10.000€ Konto, 2% Risiko (200€), Entry 50€, Stop 47€ (3€ Risiko): Position Size = 200€ / 3€ = 66 Aktien"
+    },
+    "scalping": {
+      "term": "Scalping",
+      "definition": "Scalping ist eine kurzfristige Trading-Strategie, die darauf abzielt, kleine Gewinne aus kleinen Preisbewegungen zu erzielen durch viele Trades täglich (Sekunden bis Minuten Haltedauer).",
+      "example": "Kaufe bei 50.10€, verkaufe bei 50.20€ für 0.10€ Gewinn × 1000 Aktien = 100€. 50+ solche Trades täglich"
+    },
+    "slippage": {
+      "term": "Slippage",
+      "definition": "Slippage ist die Differenz zwischen dem erwarteten Trade-Preis und dem tatsächlichen Ausführungspreis. Tritt bei Market Orders in schnellen/illiquiden Märkten auf.",
+      "example": "Sie wollen bei 50€ kaufen (Market Order), aber werden bei 50.15€ ausgeführt = 0.15€ Slippage pro Aktie (0.3%)"
+    },
+    "supportResistance": {
+      "term": "Support & Widerstand",
+      "definition": "Support ist ein Preisniveau, wo Kaufdruck historisch stark genug war, um Abwärtstrends zu stoppen. Widerstand ist wo Verkaufsdruck Aufwärtstrends stoppt. Werden zu selbst-erfüllenden Prophezeiungen.",
+      "example": "Aktie fällt 3x auf 45€ und erholt sich = Support bei 45€. Erreicht 3x 55€ und fällt zurück = Widerstand bei 55€"
+    },
+    "takeProfit": {
+      "term": "Take Profit / Gewinnmitnahme",
+      "definition": "Take Profit ist ein vordefinierter Ausstiegspunkt, wo Sie automatisch Gewinne realisieren. Sollte auf technischer Analyse basieren (Widerstand, Fibonacci, etc.) nicht Gier.",
+      "example": "Entry 50€, Take Profit bei 56€ (vorheriger Widerstand). Bei 3€ Stop = 2:1 Risk-Reward"
+    },
+    "trend": {
+      "term": "Trend",
+      "definition": "Ein Trend ist die allgemeine Richtung der Preisbewegung über einen Zeitraum. Uptrend = höhere Hochs & Tiefs, Downtrend = niedrigere Hochs & Tiefs, Seitwärts = keine klare Richtung.",
+      "example": "Aktie: 40€ → 45€ → 43€ → 48€ → 46€ → 51€ = Uptrend (steigende Tiefs bei 43€, 46€)"
+    },
+    "volatility": {
+      "term": "Volatilität",
+      "definition": "Volatilität misst die Stärke von Preisschwankungen. Hohe Volatilität = große Preisbewegungen (hohes Risiko & Chance), niedrige Volatilität = kleine Bewegungen (geringes Risiko & Chance).",
+      "example": "Aktie A: 50€ ±0.50€/Tag (1% Volatilität), Aktie B: 50€ ±2.50€/Tag (5% Volatilität) = 5x volatiler"
+    },
+    "volume": {
+      "term": "Handelsvolumen",
+      "definition": "Volume misst die Anzahl der gehandelten Aktien/Kontrakte in einem Zeitraum. Hohes Volumen bestätigt Preisbewegungen (Überzeugung), niedriges Volumen = schwache/fragwürdige Moves.",
+      "example": "Breakout über 50€: Mit 10x normalem Volumen = starkes Signal. Mit unterdurchschnittlichem Volumen = wahrscheinlich falscher Ausbruch"
+    },
     "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
     "formula": "Formel",
     "example": "Beispiel"
