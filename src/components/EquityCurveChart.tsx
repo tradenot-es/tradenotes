@@ -1,4 +1,4 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Info } from "lucide-react";
@@ -39,11 +39,11 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
       </CardHeader>
       <CardContent>
         <ResponsiveContainer width="100%" height={300}>
-          <LineChart data={data}>
+          <AreaChart data={data}>
             <defs>
               <linearGradient id="equityGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
-                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0} />
+                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity={0.8} />
+                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
@@ -66,15 +66,14 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
                 boxShadow: "0 4px 12px hsl(var(--primary) / 0.2)",
               }}
             />
-            <Line
+            <Area
               type="monotone"
               dataKey="equity"
               stroke="hsl(var(--primary))"
               strokeWidth={3}
-              dot={false}
               fill="url(#equityGradient)"
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </CardContent>
     </Card>
