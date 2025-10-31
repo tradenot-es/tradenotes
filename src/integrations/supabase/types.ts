@@ -110,6 +110,33 @@ export type Database = {
         }
         Relationships: []
       }
+      news_cache: {
+        Row: {
+          articles: Json
+          cache_key: string
+          created_at: string
+          expires_at: string
+          id: string
+          symbols: string[]
+        }
+        Insert: {
+          articles: Json
+          cache_key: string
+          created_at?: string
+          expires_at: string
+          id?: string
+          symbols: string[]
+        }
+        Update: {
+          articles?: Json
+          cache_key?: string
+          created_at?: string
+          expires_at?: string
+          id?: string
+          symbols?: string[]
+        }
+        Relationships: []
+      }
       news_source_preferences: {
         Row: {
           created_at: string
@@ -274,7 +301,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      clean_expired_news_cache: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never

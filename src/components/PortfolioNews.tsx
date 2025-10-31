@@ -26,6 +26,7 @@ export function PortfolioNews() {
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
+  const [isCached, setIsCached] = useState(false);
 
   useEffect(() => {
     if (!symbolsLoading && frequentSymbols.length > 0) {
@@ -63,6 +64,7 @@ export function PortfolioNews() {
 
       if (data.success) {
         setArticles(data.articles.slice(0, 5)); // Limit to 5 articles
+        setIsCached(data.meta?.cached || false);
       } else {
         if (data.error?.includes('rate limit') || data.error?.includes('429')) {
           setError('News temporarily unavailable due to rate limits. Please try again later.');
@@ -161,6 +163,7 @@ export function PortfolioNews() {
           <TrendingUp className="h-4 w-4 text-primary" />
           <p className="text-xs text-muted-foreground">
             <span className="font-semibold text-primary">{t("dashboard.dynamicDashboard")}:</span> {t("dashboard.dynamicDashboardInfo")}
+            {isCached && <span className="ml-2 text-success">• Cached</span>}
           </p>
         </div>
         <div className="flex gap-1 flex-wrap mt-2">

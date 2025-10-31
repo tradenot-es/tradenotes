@@ -1,7 +1,12 @@
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.76.1';
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+// Cache duration: 6 hours
+const CACHE_DURATION_HOURS = 6;
 
 interface NewsArticle {
   uuid: string;
@@ -79,6 +84,47 @@ Deno.serve(async (req) => {
     }
 
     console.log('Fetching news for date:', date, 'symbols:', symbols, 'market:', market);
+
+    // Initialize Supabase client with service role for cache access
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    // Create cache key based on date, symbols, and sources
+    const sortedSymbols = symbols ? [...symbols].sort() : [];
+    const sourcesKey = sources ? sources.sort().join(',') : 'general';
+    const cacheKey = `${date}-${sortedSymbols.join(',')}-${sourcesKey}`;
+
+    // Check cache first
+    const { data: cachedData, error: cacheError } = await supabase
+      .from('news_cache')
+      .select('articles, expires_at')
+      .eq('cache_key', cacheKey)
+      .gt('expires_at', new Date().toISOString())
+      .maybeSingle();
+
+    if (cachedData && !cacheError) {
+      console.log('Cache hit! Returning cached news for key:', cacheKey);
+      return new Response(
+        JSON.stringify({
+          success: true,
+          articles: cachedData.articles,
+          meta: {
+            count: cachedData.articles.length,
+            date: date,
+            market: market,
+            symbols: symbols,
+            cached: true
+          }
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        }
+      );
+    }
+
+    console.log('Cache miss. Fetching from Finlight API...');
 
     // Build search query based on sources
     let searchQuery = '';
@@ -170,6 +216,28 @@ Deno.serve(async (req) => {
 
     console.log('News fetched successfully, count:', articles.length);
 
+    // Store in cache
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + CACHE_DURATION_HOURS);
+
+    const { error: insertError } = await supabase
+      .from('news_cache')
+      .upsert({
+        cache_key: cacheKey,
+        articles: articles,
+        symbols: sortedSymbols,
+        expires_at: expiresAt.toISOString()
+      }, {
+        onConflict: 'cache_key'
+      });
+
+    if (insertError) {
+      console.error('Failed to cache news:', insertError);
+      // Continue anyway - caching failure shouldn't break the response
+    } else {
+      console.log('News cached successfully until:', expiresAt.toISOString());
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
@@ -178,7 +246,8 @@ Deno.serve(async (req) => {
           count: articles.length,
           date: date,
           market: market,
-          symbols: symbols
+          symbols: symbols,
+          cached: false
         }
       }),
       {
