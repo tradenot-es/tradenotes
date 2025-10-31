@@ -9,7 +9,8 @@
     "glossary": "Glosario",
     "account": "Cuenta",
     "settings": "Configuración",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "welcome": "¡Bienvenido, {{name}}!"
   },
   "auth": {
     "login": "Iniciar sesión",
@@ -230,6 +231,12 @@
     "settingsSaved": "Configuración guardada exitosamente",
     "saveError": "Error al guardar la configuración",
     "email": "Dirección de Correo Electrónico",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "firstNamePlaceholder": "Tu nombre",
+    "lastNamePlaceholder": "Tu apellido",
+    "updateProfile": "Actualizar Perfil",
+    "profileUpdated": "Perfil actualizado exitosamente",
     "emailHelp": "Tu dirección de correo electrónico de inicio de sesión. Se enviará un enlace de confirmación para verificar tu nueva dirección de correo.",
     "updateEmail": "Actualizar Correo",
     "emailUpdateSuccess": "Actualización de correo iniciada. Por favor, revisa tu nuevo correo para confirmar.",

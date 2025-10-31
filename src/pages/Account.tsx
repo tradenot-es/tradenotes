@@ -19,6 +19,8 @@ const Account = () => {
   
   // Account states
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState<"weak" | "medium" | "strong" | null>(null);
@@ -42,10 +44,30 @@ const Account = () => {
   useEffect(() => {
     if (user) {
       setEmail(user.email || "");
+      loadProfile();
       checkMFAStatus();
       checkSubscriptionStatus();
     }
   }, [user]);
+
+  const loadProfile = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('first_name, last_name')
+        .eq('id', user?.id)
+        .single();
+
+      if (error && error.code !== 'PGRST116') throw error;
+      
+      if (data) {
+        setFirstName(data.first_name || "");
+        setLastName(data.last_name || "");
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+    }
+  };
 
   const checkSubscriptionStatus = async () => {
     setLoadingSubscription(true);
@@ -103,6 +125,23 @@ const Account = () => {
   const handlePasswordChange = (value: string) => {
     setNewPassword(value);
     setPasswordStrength(calculatePasswordStrength(value));
+  };
+
+  const handleUpdateProfile = async () => {
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .upsert({
+          id: user?.id,
+          first_name: firstName,
+          last_name: lastName,
+        });
+      
+      if (error) throw error;
+      toast.success(t("settings.profileUpdated"));
+    } catch (error: any) {
+      toast.error(error.message);
+    }
   };
 
   const handleUpdateEmail = async () => {
@@ -230,6 +269,36 @@ const Account = () => {
               <CardDescription>{t("account.accountInfoDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
+              {/* Name Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="firstName">{t("settings.firstName")}</Label>
+                  <Input
+                    id="firstName"
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder={t("settings.firstNamePlaceholder")}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="lastName">{t("settings.lastName")}</Label>
+                  <Input
+                    id="lastName"
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    placeholder={t("settings.lastNamePlaceholder")}
+                  />
+                </div>
+              </div>
+              <Button onClick={handleUpdateProfile} className="w-full">
+                <User className="h-4 w-4 mr-2" />
+                {t("settings.updateProfile")}
+              </Button>
+
+              <div className="border-t pt-6" />
+
               {/* Email */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2">

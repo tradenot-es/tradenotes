@@ -8,7 +8,8 @@
     "glossary": "Glossary",
     "account": "Account",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "welcome": "Welcome, {{name}}!"
   },
   "auth": {
     "login": "Login",
@@ -240,6 +241,12 @@
     "settingsSaved": "Settings saved successfully",
     "saveError": "Error saving settings",
     "email": "Email Address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "firstNamePlaceholder": "Your first name",
+    "lastNamePlaceholder": "Your last name",
+    "updateProfile": "Update Profile",
+    "profileUpdated": "Profile successfully updated",
     "emailHelp": "Your login email address. A confirmation link will be sent to verify your new email address.",
     "updateEmail": "Update Email",
     "emailUpdateSuccess": "Email update initiated. Please check your new email to confirm.",

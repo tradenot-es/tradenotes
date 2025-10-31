@@ -8,7 +8,8 @@
     "glossary": "Glossar",
     "account": "Konto",
     "settings": "Einstellungen",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "welcome": "Willkommen, {{name}}!"
   },
   "auth": {
     "login": "Anmelden",
@@ -240,6 +241,12 @@
     "settingsSaved": "Einstellungen erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der Einstellungen",
     "email": "E-Mail-Adresse",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "firstNamePlaceholder": "Dein Vorname",
+    "lastNamePlaceholder": "Dein Nachname",
+    "updateProfile": "Profil aktualisieren",
+    "profileUpdated": "Profil erfolgreich aktualisiert",
     "emailHelp": "Deine Login-E-Mail-Adresse. Ein Bestätigungslink wird an deine neue E-Mail-Adresse gesendet.",
     "updateEmail": "E-Mail aktualisieren",
     "emailUpdateSuccess": "E-Mail-Aktualisierung eingeleitet. Bitte überprüfe deine neue E-Mail zur Bestätigung.",

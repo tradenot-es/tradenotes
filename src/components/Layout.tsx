@@ -4,12 +4,14 @@ import { useTranslation } from "react-i18next";
 import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3 } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import { AIAssistantFAB } from "@/components/AIAssistantFAB";
 
 export function Layout({ children }: { children: ReactNode }) {
   const { t } = useTranslation();
   const { signOut } = useAuth();
+  const { displayName } = useProfile();
 
   const navItems = [
     { title: t("nav.dashboard"), url: "/dashboard", icon: LayoutDashboard },
@@ -27,9 +29,12 @@ export function Layout({ children }: { children: ReactNode }) {
       <div className="flex min-h-screen w-full">
         <Sidebar>
           <SidebarContent>
-            <div className="p-4 border-b border-sidebar-border">
-              <h1 className="text-xl font-bold text-sidebar-foreground">TradeJournal</h1>
-            </div>
+          <div className="p-4 border-b border-sidebar-border">
+            <h1 className="text-xl font-bold text-sidebar-foreground">TradeJournal</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              {t("nav.welcome", { name: displayName })}
+            </p>
+          </div>
             <SidebarMenu className="p-2">
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.url}>

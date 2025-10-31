@@ -9,7 +9,8 @@
     "glossary": "Begrippenlijst",
     "account": "Account",
     "settings": "Instellingen",
-    "logout": "Uitloggen"
+    "logout": "Uitloggen",
+    "welcome": "Welkom, {{name}}!"
   },
   "auth": {
     "login": "Inloggen",
@@ -230,6 +231,12 @@
     "settingsSaved": "Instellingen succesvol opgeslagen",
     "saveError": "Fout bij opslaan van instellingen",
     "email": "E-mailadres",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "firstNamePlaceholder": "Je voornaam",
+    "lastNamePlaceholder": "Je achternaam",
+    "updateProfile": "Profiel Bijwerken",
+    "profileUpdated": "Profiel succesvol bijgewerkt",
     "emailHelp": "Je login e-mailadres. Een bevestigingslink wordt verzonden om je nieuwe e-mailadres te verifiëren.",
     "updateEmail": "E-mail Bijwerken",
     "emailUpdateSuccess": "E-mail update geïnitieerd. Controleer je nieuwe e-mail om te bevestigen.",

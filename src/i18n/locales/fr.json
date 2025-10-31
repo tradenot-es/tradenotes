@@ -9,7 +9,8 @@
     "glossary": "Glossaire",
     "account": "Compte",
     "settings": "Paramètres",
-    "logout": "Déconnexion"
+    "logout": "Déconnexion",
+    "welcome": "Bienvenue, {{name}} !"
   },
   "auth": {
     "login": "Connexion",
@@ -230,6 +231,12 @@
     "settingsSaved": "Paramètres enregistrés avec succès",
     "saveError": "Erreur lors de l'enregistrement des paramètres",
     "email": "Adresse Email",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "firstNamePlaceholder": "Votre prénom",
+    "lastNamePlaceholder": "Votre nom",
+    "updateProfile": "Mettre à jour le Profil",
+    "profileUpdated": "Profil mis à jour avec succès",
     "emailHelp": "Votre adresse email de connexion. Un lien de confirmation sera envoyé pour vérifier votre nouvelle adresse email.",
     "updateEmail": "Mettre à jour l'Email",
     "emailUpdateSuccess": "Mise à jour de l'email initiée. Veuillez vérifier votre nouvel email pour confirmer.",
