@@ -7,6 +7,7 @@ import { de, enUS, fr, es, nl } from "date-fns/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   id: string;
@@ -26,6 +27,7 @@ interface DashboardCalendarProps {
 
 export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditTrade, onDeleteTrade }: DashboardCalendarProps) {
   const { t, i18n } = useTranslation();
+  const { formatCurrency } = useCurrency();
   
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -188,7 +190,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
                         )}
                       </div>
                       <div className={`text-xs font-semibold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                        ${dayPnL.toFixed(2)}
+                        {formatCurrency(dayPnL)}
                       </div>
                     </div>
                   )}

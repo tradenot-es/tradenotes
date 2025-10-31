@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Info } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { useTranslation } from "react-i18next";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface DataPoint {
   period: string;
@@ -16,40 +15,12 @@ interface PnLChartProps {
   title: string;
 }
 
-const getCurrencySymbol = (currency: string) => {
-  const symbols: Record<string, string> = {
-    'USD': '$',
-    'EUR': '€',
-    'GBP': '£',
-    'JPY': '¥',
-    'CHF': 'CHF',
-    'CAD': 'C$',
-    'AUD': 'A$',
-  };
-  return symbols[currency] || currency;
-};
-
 export function PnLChart({ data, title }: PnLChartProps) {
   const { t } = useTranslation();
-  const [currency, setCurrency] = useState('USD');
-
-  useEffect(() => {
-    const loadCurrency = async () => {
-      const { data: settings } = await supabase
-        .from('user_settings')
-        .select('base_currency')
-        .single();
-      
-      if (settings?.base_currency) {
-        setCurrency(settings.base_currency);
-      }
-    };
-    
-    loadCurrency();
-  }, []);
+  const { symbol } = useCurrency();
 
   const formatYAxis = (value: number) => {
-    return `${getCurrencySymbol(currency)}${value.toLocaleString()}`;
+    return `${symbol}${value.toLocaleString()}`;
   };
 
   const formatLabel = (value: number) => {
@@ -57,7 +28,7 @@ export function PnLChart({ data, title }: PnLChartProps) {
       minimumFractionDigits: 0,
       maximumFractionDigits: 0
     });
-    return `${getCurrencySymbol(currency)}${formatted}`;
+    return `${symbol}${formatted}`;
   };
 
   const CustomTooltip = ({ active, payload }: any) => {

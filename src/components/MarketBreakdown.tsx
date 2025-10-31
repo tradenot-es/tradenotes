@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { RadialProgress } from "@/components/RadialProgress";
 import { PieChart, Info } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   market: string;
@@ -13,6 +14,8 @@ interface MarketBreakdownProps {
 }
 
 export function MarketBreakdown({ trades }: MarketBreakdownProps) {
+  const { formatCurrency } = useCurrency();
+  
   // Calculate performance per market
   const marketStats = trades.reduce((acc, trade) => {
     const market = trade.market || "Stock";
@@ -82,7 +85,7 @@ export function MarketBreakdown({ trades }: MarketBreakdownProps) {
                   />
                   <div className="mt-2 text-center">
                     <div className={`text-sm font-bold ${stat.totalPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                      ${stat.totalPnL.toFixed(2)}
+                      {formatCurrency(stat.totalPnL)}
                     </div>
                     <div className="text-xs text-muted-foreground">
                       {stat.trades} trades ({marketShare.toFixed(0)}%)

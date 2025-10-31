@@ -3,6 +3,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { startOfWeek, endOfWeek, format, eachWeekOfInterval, startOfMonth, endOfMonth } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { Calendar, Info } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   id: string;
@@ -17,6 +18,7 @@ interface WeeklyPerformanceProps {
 
 export function WeeklyPerformance({ trades, currentMonth }: WeeklyPerformanceProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
   
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(currentMonth);
@@ -84,7 +86,7 @@ export function WeeklyPerformance({ trades, currentMonth }: WeeklyPerformancePro
                 <span className={`text-lg font-bold ${
                   stats.totalPnL >= 0 ? 'text-success' : 'text-destructive'
                 }`}>
-                  ${stats.totalPnL.toFixed(2)}
+                  {formatCurrency(stats.totalPnL)}
                 </span>
               </div>
               

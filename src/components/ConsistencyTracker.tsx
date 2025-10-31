@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TrendingUp, Info } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   exit_time: string;
@@ -15,6 +16,7 @@ interface ConsistencyTrackerProps {
 
 export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
 
   // Get last 12 weeks
   const getWeeksData = () => {
@@ -127,7 +129,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                           <div className="font-semibold">{new Date(date).toLocaleDateString()}</div>
                           <div>{data.count} {t("dashboard.trades")}</div>
                           <div className={data.pnl >= 0 ? "text-success" : "text-destructive"}>
-                            ${data.pnl.toFixed(2)}
+                            {formatCurrency(data.pnl)}
                           </div>
                         </div>
                       </TooltipContent>

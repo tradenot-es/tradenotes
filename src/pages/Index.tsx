@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Link } from "react-router-dom";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   id: string;
@@ -40,6 +41,7 @@ interface Trade {
 const Index = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const { formatCurrency, formatCurrencyCompact } = useCurrency();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -283,14 +285,14 @@ const Index = () => {
             />
             <KPICardWithTooltip
               title={t("dashboard.netPnL")}
-              value={`$${kpis.netPnL}`}
+              value={formatCurrencyCompact(kpis.netPnLNum)}
               icon={DollarSign}
               tooltip={t("dashboard.netPnLTooltip")}
               valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
             />
             <KPICardWithTooltip
               title={t("dashboard.expectancy")}
-              value={`$${kpis.expectancy}`}
+              value={formatCurrency(kpis.expectancyNum)}
               icon={DollarSign}
               tooltip={t("dashboard.expectancyTooltip")}
               glossaryLink="/glossary#expectancy"
@@ -319,15 +321,15 @@ const Index = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
-                  <span className="text-success">${kpis.avgWin.toFixed(2)}</span>
+                  <span className="text-success">{formatCurrency(kpis.avgWin)}</span>
                   <span className="text-muted-foreground">/</span>
-                  <span className="text-destructive">${kpis.avgLoss.toFixed(2)}</span>
+                  <span className="text-destructive">{formatCurrency(kpis.avgLoss)}</span>
                 </div>
               </CardContent>
             </Card>
             <KPICardWithTooltip
               title={t("dashboard.maxDrawdown")}
-              value={`$${kpis.maxDrawdown}`}
+              value={formatCurrencyCompact(parseFloat(kpis.maxDrawdown))}
               icon={TrendingUp}
               tooltip={t("dashboard.maxDrawdownTooltip")}
               glossaryLink="/glossary#max-drawdown"

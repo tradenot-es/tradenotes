@@ -3,6 +3,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/h
 import { RadialProgress } from "@/components/RadialProgress";
 import { useTranslation } from "react-i18next";
 import { BarChart3, Info } from "lucide-react";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface PerformanceStatsProps {
   winningTrades: number;
@@ -24,6 +25,7 @@ export function PerformanceStats({
   totalTrades,
 }: PerformanceStatsProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
   const winRate = totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0;
 
   return (
@@ -68,19 +70,19 @@ export function PerformanceStats({
           <div className="grid grid-cols-2 gap-3">
             <div className="p-3 rounded-lg bg-success/10 border border-success/20">
               <p className="text-xs text-muted-foreground mb-1">{t("dashboard.avgWin")}</p>
-              <p className="text-lg font-bold text-success">${avgWin.toFixed(2)}</p>
+              <p className="text-lg font-bold text-success">{formatCurrency(avgWin)}</p>
             </div>
             <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
               <p className="text-xs text-muted-foreground mb-1">{t("dashboard.avgLoss")}</p>
-              <p className="text-lg font-bold text-destructive">${avgLoss.toFixed(2)}</p>
+              <p className="text-lg font-bold text-destructive">{formatCurrency(avgLoss)}</p>
             </div>
             <div className="p-3 rounded-lg bg-success/10 border border-success/20">
               <p className="text-xs text-muted-foreground mb-1">{t("dashboard.bestTrade")}</p>
-              <p className="text-lg font-bold text-success">${bestTrade.toFixed(2)}</p>
+              <p className="text-lg font-bold text-success">{formatCurrency(bestTrade)}</p>
             </div>
             <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
               <p className="text-xs text-muted-foreground mb-1">{t("dashboard.worstTrade")}</p>
-              <p className="text-lg font-bold text-destructive">${worstTrade.toFixed(2)}</p>
+              <p className="text-lg font-bold text-destructive">{formatCurrency(worstTrade)}</p>
             </div>
           </div>
         </div>

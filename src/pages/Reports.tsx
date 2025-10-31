@@ -21,6 +21,7 @@ import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { startOfDay, endOfDay } from "date-fns";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   id: string;
@@ -41,6 +42,7 @@ interface Trade {
 export default function Reports() {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const { formatCurrency, formatCurrencyCompact } = useCurrency();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeFilter, setTimeFilter] = useState<string>("all");
@@ -488,7 +490,7 @@ export default function Reports() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
-                  ${dailyGoalAmount.toFixed(2)}
+                  {formatCurrency(dailyGoalAmount)}
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {t("reports.maxTradesPerDay", { trades: dailyGoalMaxTrades })}
@@ -514,7 +516,7 @@ export default function Reports() {
                 {dailyGoalTracking.days.length > 0 ? (
                   <>
                     <div className="text-2xl font-bold text-success">
-                      ${Math.max(...dailyGoalTracking.days.map(d => d.pnl)).toFixed(2)}
+                      {formatCurrency(Math.max(...dailyGoalTracking.days.map(d => d.pnl)))}
                     </div>
                     <p className="text-sm text-muted-foreground">
                       {t("reports.bestTradingDay")}
@@ -574,10 +576,10 @@ export default function Reports() {
                     </div>
                     <div className="text-right">
                       <div className={`text-lg font-bold ${setup.pnl >= 0 ? 'text-success' : 'text-destructive'}`}>
-                        ${setup.pnl.toFixed(2)}
+                        {formatCurrency(setup.pnl)}
                       </div>
                       <div className="text-sm text-muted-foreground">
-                        Avg: ${setup.avgPnl}
+                        Avg: {formatCurrency(parseFloat(setup.avgPnl))}
                       </div>
                     </div>
                   </div>
@@ -620,7 +622,7 @@ export default function Reports() {
                         <td className="text-right text-destructive">{day.losses}</td>
                         <td className="text-right">{day.winRate}%</td>
                         <td className={`text-right font-semibold ${day.pnl >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          ${day.pnl.toFixed(2)}
+                          {formatCurrency(day.pnl)}
                         </td>
                       </tr>
                     ))}
@@ -690,13 +692,13 @@ export default function Reports() {
                 />
                 <KPICardWithTooltip
                   title={t("reports.avgWin")}
-                  value={`$${winLossStats.avgWin}`}
+                  value={formatCurrency(parseFloat(winLossStats.avgWin))}
                   icon={DollarSign}
                   tooltip={t("reports.avgWinTooltip")}
                 />
                 <KPICardWithTooltip
                   title={t("reports.avgLoss")}
-                  value={`$${winLossStats.avgLoss}`}
+                  value={formatCurrency(parseFloat(winLossStats.avgLoss))}
                   icon={DollarSign}
                   tooltip={t("reports.avgLossTooltip")}
                 />

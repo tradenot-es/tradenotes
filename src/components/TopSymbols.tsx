@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { TrendingUp, TrendingDown, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
   symbol: string;
@@ -14,6 +15,8 @@ interface TopSymbolsProps {
 }
 
 export function TopSymbols({ trades }: TopSymbolsProps) {
+  const { formatCurrency } = useCurrency();
+  
   // Calculate performance per symbol
   const symbolStats = trades.reduce((acc, trade) => {
     if (!acc[trade.symbol]) {
@@ -89,7 +92,7 @@ export function TopSymbols({ trades }: TopSymbolsProps) {
                   </div>
                   <div className={`text-lg font-bold ${stat.totalPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
                     {stat.totalPnL >= 0 ? <TrendingUp className="h-4 w-4 inline mr-1" /> : <TrendingDown className="h-4 w-4 inline mr-1" />}
-                    ${Math.abs(stat.totalPnL).toFixed(2)}
+                    {formatCurrency(Math.abs(stat.totalPnL))}
                   </div>
                 </div>
               );

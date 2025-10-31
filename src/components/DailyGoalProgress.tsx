@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadialProgress } from "@/components/RadialProgress";
 import { Target, TrendingUp, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useCurrency } from "@/hooks/useCurrency";
 
 interface DailyGoalProgressProps {
   dailyPnL: number;
@@ -21,6 +22,7 @@ export function DailyGoalProgress({
   date 
 }: DailyGoalProgressProps) {
   const { t } = useTranslation();
+  const { formatCurrency } = useCurrency();
   
   const goalProgress = Math.min((dailyPnL / goalAmount) * 100, 100);
   const tradesProgress = (dailyTrades / maxTrades) * 100;
@@ -75,7 +77,7 @@ export function DailyGoalProgress({
             />
             <div className="mt-4 text-center">
               <div className={`text-lg font-bold ${dailyPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                ${dailyPnL.toFixed(2)} / ${goalAmount.toFixed(2)}
+                {formatCurrency(dailyPnL)} / {formatCurrency(goalAmount)}
               </div>
               <div className="text-xs text-muted-foreground mt-1">
                 {t("reports.dailyPnl")}
