@@ -39,10 +39,7 @@ export function PerformanceStats({
               <Info className="h-3 w-3 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
-              <p className="text-sm">
-                Detaillierte Performance-Statistiken: Win/Loss Ratio, durchschnittliche Gewinne/Verluste, 
-                sowie beste und schlechteste Trades. Gibt Einblick in die Qualität deiner Trading-Entscheidungen.
-              </p>
+              <p className="text-sm">{t("dashboard.performanceBreakdownTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
         </div>

@@ -46,6 +46,7 @@
     "more": "Mehr",
     "trades": "Trades",
     "performanceBreakdown": "Performance Details",
+    "performanceBreakdownTooltip": "Detaillierte Performance-Statistiken: Win/Loss Ratio, durchschnittliche Gewinne/Verluste, sowie beste und schlechteste Trades. Gibt Einblick in die Qualität deiner Trading-Entscheidungen.",
     "winLossRatio": "Win/Loss Verhältnis",
     "wins": "Gewinne",
     "losses": "Verluste",
