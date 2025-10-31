@@ -1,13 +1,14 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
-import { Calendar } from "lucide-react";
+import { Calendar, Info } from "lucide-react";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
@@ -293,7 +294,17 @@ export default function Reports() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>{t("reports.dayOfWeekDistribution")}</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle>{t("reports.dayOfWeekDistribution")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("reports.dayOfWeekDistributionTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
@@ -310,7 +321,17 @@ export default function Reports() {
 
             <Card>
               <CardHeader>
-                <CardTitle>{t("reports.performanceByDay")}</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle>{t("reports.performanceByDay")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("reports.performanceByDayTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
