@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Info } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
 
 interface DataPoint {
   period: string;
@@ -29,6 +30,7 @@ const getCurrencySymbol = (currency: string) => {
 };
 
 export function PnLChart({ data, title }: PnLChartProps) {
+  const { t } = useTranslation();
   const [currency, setCurrency] = useState('USD');
 
   useEffect(() => {
@@ -83,10 +85,7 @@ export function PnLChart({ data, title }: PnLChartProps) {
               <Info className="h-3 w-3 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
-              <p className="text-sm">
-                Monatliche Profit & Loss Übersicht. Zeigt die Performance für jeden Monat 
-                und hilft dabei, saisonale Muster und langfristige Trends zu erkennen.
-              </p>
+              <p className="text-sm">{t("dashboard.pnlChartTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
         </div>

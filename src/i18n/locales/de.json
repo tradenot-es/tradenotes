@@ -63,6 +63,7 @@
     "dynamicDashboardInfo": "News automatisch gefiltert nach deinen Top-Performern",
     "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
     "pnlByMonth": "P&L nach Monat",
+    "pnlChartTooltip": "Monatliche Profit & Loss Übersicht. Zeigt die Performance für jeden Monat und hilft dabei, saisonale Muster und langfristige Trends zu erkennen.",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
     "equity": "Equity",
     "pnl": "P&L"
