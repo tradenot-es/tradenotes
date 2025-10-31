@@ -318,7 +318,7 @@ const Index = () => {
                 <Activity className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="flex items-baseline gap-2 text-2xl font-bold">
+                <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
                   <span className="text-success">${kpis.avgWin.toFixed(2)}</span>
                   <span className="text-muted-foreground">/</span>
                   <span className="text-destructive">${kpis.avgLoss.toFixed(2)}</span>
