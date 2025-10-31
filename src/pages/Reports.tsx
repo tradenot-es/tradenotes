@@ -391,7 +391,17 @@ export default function Reports() {
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">{t("reports.goalAchievementRate")}</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-lg">{t("reports.goalAchievementRate")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("reports.goalAchievementRateTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
               </CardHeader>
               <CardContent className="flex justify-center py-4">
                 <RadialProgress
@@ -409,7 +419,17 @@ export default function Reports() {
             
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">{t("reports.currentGoal")}</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-lg">{t("reports.currentGoal")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("reports.currentGoalTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">
@@ -423,7 +443,17 @@ export default function Reports() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">{t("reports.bestDay")}</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-lg">{t("reports.bestDay")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("reports.bestDayTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
               </CardHeader>
               <CardContent>
                 {dailyGoalTracking.days.length > 0 ? (
