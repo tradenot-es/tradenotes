@@ -1,8 +1,10 @@
+import { useState, useEffect } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Info } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { supabase } from "@/integrations/supabase/client";
 
 interface DataPoint {
   date: string;
@@ -13,8 +15,41 @@ interface EquityCurveChartProps {
   data: DataPoint[];
 }
 
+const getCurrencySymbol = (currency: string) => {
+  const symbols: Record<string, string> = {
+    'USD': '$',
+    'EUR': '€',
+    'GBP': '£',
+    'JPY': '¥',
+    'CHF': 'CHF',
+    'CAD': 'C$',
+    'AUD': 'A$',
+  };
+  return symbols[currency] || currency;
+};
+
 export function EquityCurveChart({ data }: EquityCurveChartProps) {
   const { t } = useTranslation();
+  const [currency, setCurrency] = useState('USD');
+
+  useEffect(() => {
+    const loadCurrency = async () => {
+      const { data: settings } = await supabase
+        .from('user_settings')
+        .select('base_currency')
+        .single();
+      
+      if (settings?.base_currency) {
+        setCurrency(settings.base_currency);
+      }
+    };
+    
+    loadCurrency();
+  }, []);
+
+  const formatYAxis = (value: number) => {
+    return `${getCurrencySymbol(currency)}${value.toLocaleString()}`;
+  };
   
   return (
     <Card className="elegant-shadow">
@@ -57,6 +92,7 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
               stroke="hsl(var(--muted-foreground))" 
               fontSize={12}
               tickLine={false}
+              tickFormatter={formatYAxis}
             />
             <Tooltip
               contentStyle={{
