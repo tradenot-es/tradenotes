@@ -311,6 +311,133 @@
     "loading": "Chargement...",
     "readMore": "Lire la suite"
   },
+  "landing": {
+    "badge": "Journal de Trading Professionnel",
+    "heroTitle": "Devenez un meilleur trader grâce à",
+    "heroTitleHighlight": "un journal systématique",
+    "heroDescription": "TradeNotes.io vous aide à apprendre de chaque transaction. Analysez vos performances, reconnaissez les modèles et développez une stratégie de trading rentable avec des analyses et graphiques détaillés.",
+    "ctaStart": "Commencer",
+    "ctaFeatures": "Découvrir les Fonctionnalités",
+    "rating": "4.9/5 par 1000+ Traders",
+    "dashboardAlt": "Tableau de bord TradeNotes.io avec Graphiques de Performance, Calendrier de Trading et Analytics",
+    "featuresBadge": "Fonctionnalités",
+    "featuresTitle": "Tout pour un journal de trading réussi",
+    "featuresDescription": "Tous les outils dont vous avez besoin pour apprendre de vos transactions et devenir régulièrement rentable",
+    "pricingBadge": "Tarification Simple",
+    "pricingTitle": "Un Prix. Toutes les Fonctionnalités.",
+    "pricingDescription": "Pas de coûts cachés. Pas de modèle d'abonnement compliqué. Juste un prix équitable pour toutes les fonctionnalités.",
+    "trialBadge": "Essai Gratuit de 7 Jours",
+    "premiumTitle": "TradeNotes.io Premium",
+    "premiumDescription": "Accès à toutes les fonctionnalités – maintenant et à l'avenir",
+    "monthlyPlan": "Mensuel",
+    "monthlyPrice": "9,99€",
+    "monthlyPeriod": "/mois",
+    "monthlyCancel": "Annuler à tout moment",
+    "yearlyPlan": "Annuel",
+    "yearlyBadge": "Économisez 17%",
+    "yearlyPrice": "99€",
+    "yearlyPeriod": "/an",
+    "yearlyDiscount": "Seulement 8,25€ par mois",
+    "allFeaturesTitle": "Toutes les Fonctionnalités Incluses:",
+    "ctaTrial": "Commencer l'Essai Gratuit de 7 Jours",
+    "trialNotice": "Aucune carte de crédit requise • Annuler à tout moment",
+    "ctaTitle": "Commencez votre journal de trading aujourd'hui",
+    "ctaDescription": "Commencez votre essai gratuit de 7 jours et devenez un trader régulièrement rentable",
+    "footerTitle": "TradeNotes.io",
+    "footerDescription": "Le journal de trading professionnel pour traders ambitieux",
+    "footerProduct": "Produit",
+    "footerFeatures": "Fonctionnalités",
+    "footerPricing": "Tarification",
+    "footerLogin": "Connexion",
+    "footerSupport": "Support",
+    "footerHelp": "Centre d'Aide",
+    "footerContact": "Contact",
+    "footerStatus": "Statut",
+    "footerLegal": "Légal",
+    "footerPrivacy": "Confidentialité",
+    "footerTerms": "Conditions",
+    "footerImprint": "Mentions Légales",
+    "footerCopyright": "© 2025 TradeNotes.io. Tous droits réservés.",
+    "features": {
+      "journal": {
+        "title": "Journal de Trading",
+        "description": "Documentez chaque transaction avec des notes détaillées, des captures d'écran et une analyse des émotions pour un apprentissage durable"
+      },
+      "analytics": {
+        "title": "Analytique de Performance",
+        "description": "Statistiques complètes avec Win Rate, R-Multiple, Profit Factor, Expectancy et KPIs critiques de gestion des risques"
+      },
+      "equity": {
+        "title": "Courbe de Capital",
+        "description": "Visualisez le développement cumulatif de votre capital - reconnaissez les phases de drawdown et les tendances de croissance en un coup d'œil"
+      },
+      "consistency": {
+        "title": "Suivi de Cohérence",
+        "description": "Carte thermique de style GitHub de votre cohérence de trading sur 12 semaines - identifiez les modèles rentables et évitez les jours perdants"
+      },
+      "calendar": {
+        "title": "Calendrier de Trading",
+        "description": "Gardez une trace de vos transactions au format calendrier avec des jours rentables codés par couleur"
+      },
+      "news": {
+        "title": "Actualités de Portefeuille",
+        "description": "Flux d'actualités automatique pour vos symboles les plus échangés - restez informé des événements qui font bouger le marché"
+      },
+      "ai": {
+        "title": "Assistant Trading IA",
+        "description": "Posez des questions naturelles sur vos performances et recevez des réponses instantanées basées sur les données et des insights"
+      },
+      "reports": {
+        "title": "Rapports Détaillés",
+        "description": "Analysez les performances par symbole, jour de la semaine, heure, période de détention et séries de gains/pertes - trouvez vos modèles les plus rentables"
+      },
+      "import": {
+        "title": "Import/Export CSV",
+        "description": "Importez des transactions de votre courtier via CSV ou exportez vos données pour une analyse plus approfondie"
+      },
+      "weekly": {
+        "title": "Performance Hebdomadaire",
+        "description": "Vue hebdomadaire de vos performances de trading avec transactions par semaine et développement P&L"
+      },
+      "pnl": {
+        "title": "Graphiques P&L",
+        "description": "Développement mensuel du P&L en graphiques à barres clairs - suivez vos progrès au fil du temps"
+      },
+      "prep": {
+        "title": "Préparation Quotidienne",
+        "description": "Préparez-vous de manière optimale pour la journée de trading avec des événements politiques, des calendriers économiques et vos symboles de watchlist"
+      },
+      "glossary": {
+        "title": "Glossaire de Trading",
+        "description": "Glossaire complet avec tous les termes importants du trading - de A comme Average True Range à Z comme Décroissance Temporelle"
+      }
+    },
+    "allFeatures": {
+      "unlimited": "Documenter des transactions illimitées",
+      "fullAnalytics": "Analytique de Performance Complet (Win Rate, R-Multiple, Profit Factor, Expectancy)",
+      "journal": "Journal de Trading avec notes et captures d'écran",
+      "equity": "Courbe de Capital pour suivi du capital",
+      "consistency": "Suivi de Cohérence (carte thermique de 12 semaines)",
+      "news": "Actualités de Portefeuille pour symboles les plus échangés",
+      "ai": "Assistant Trading IA pour insights basés sur les données",
+      "winLoss": "Analytique Gains/Pertes et Répartition des Performances",
+      "calendar": "Vue Calendrier de Trading",
+      "pnlCharts": "Graphiques et Visualisations P&L",
+      "csvImport": "Import et Export CSV",
+      "setupReports": "Rapports de Performance basés sur Setup",
+      "hourAnalysis": "Analytique par Heure du Jour (meilleurs moments de trading)",
+      "symbolReports": "Rapports de Performance par Symbole",
+      "streakAnalysis": "Analyse des Séries (séries de gains/pertes)",
+      "holdingPeriod": "Analyse de Période de Détention",
+      "weeklyTracking": "Suivi de Performance Hebdomadaire",
+      "dailyPrep": "Préparation Quotidienne avec événements politiques",
+      "glossary": "Glossaire de Trading avec tous les termes importants",
+      "darkMode": "Mode Sombre/Clair",
+      "multiLanguage": "Support Multi-langue (DE, EN, ES, FR, NL)",
+      "futureFeatures": "Toutes les fonctionnalités futures incluses",
+      "freeTrial": "Essai Gratuit de 7 Jours"
+    }
+  },
   "validation": {
     "emailInvalid": "Format d'e-mail invalide",
     "emailTooLong": "L'e-mail doit contenir moins de 255 caractères",

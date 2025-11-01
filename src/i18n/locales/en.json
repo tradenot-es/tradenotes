@@ -321,6 +321,133 @@
     "loading": "Loading...",
     "readMore": "Read more"
   },
+  "landing": {
+    "badge": "Professional Trading Journal",
+    "heroTitle": "Become a better trader through",
+    "heroTitleHighlight": "systematic journaling",
+    "heroDescription": "TradeNotes.io helps you learn from every trade. Analyze your performance, recognize patterns and develop a profitable trading strategy with detailed analytics and charts.",
+    "ctaStart": "Get Started",
+    "ctaFeatures": "Explore Features",
+    "rating": "4.9/5 from 1000+ Traders",
+    "dashboardAlt": "TradeNotes.io Dashboard with Performance Charts, Trading Calendar and Analytics",
+    "featuresBadge": "Features",
+    "featuresTitle": "Everything for successful trading journaling",
+    "featuresDescription": "All tools you need to learn from your trades and become consistently profitable",
+    "pricingBadge": "Simple Pricing",
+    "pricingTitle": "One Price. All Features.",
+    "pricingDescription": "No hidden costs. No complicated subscription model. Just a fair price for all features.",
+    "trialBadge": "7 Days Free Trial",
+    "premiumTitle": "TradeNotes.io Premium",
+    "premiumDescription": "Access to all features – now and in the future",
+    "monthlyPlan": "Monthly",
+    "monthlyPrice": "$9.99",
+    "monthlyPeriod": "/month",
+    "monthlyCancel": "Cancel anytime",
+    "yearlyPlan": "Yearly",
+    "yearlyBadge": "Save 17%",
+    "yearlyPrice": "$99",
+    "yearlyPeriod": "/year",
+    "yearlyDiscount": "Only $8.25 per month",
+    "allFeaturesTitle": "All Features Included:",
+    "ctaTrial": "Start 7-Day Free Trial",
+    "trialNotice": "No credit card required • Cancel anytime",
+    "ctaTitle": "Start your trading journal today",
+    "ctaDescription": "Begin your 7-day free trial and become a consistently profitable trader",
+    "footerTitle": "TradeNotes.io",
+    "footerDescription": "The professional trading journal for ambitious traders",
+    "footerProduct": "Product",
+    "footerFeatures": "Features",
+    "footerPricing": "Pricing",
+    "footerLogin": "Login",
+    "footerSupport": "Support",
+    "footerHelp": "Help Center",
+    "footerContact": "Contact",
+    "footerStatus": "Status",
+    "footerLegal": "Legal",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Terms",
+    "footerImprint": "Imprint",
+    "footerCopyright": "© 2025 TradeNotes.io. All rights reserved.",
+    "features": {
+      "journal": {
+        "title": "Trading Journal",
+        "description": "Document every trade with detailed notes, screenshots and emotion analysis for sustainable learning success"
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Comprehensive statistics with Win Rate, R-Multiple, Profit Factor, Expectancy and critical risk management KPIs"
+      },
+      "equity": {
+        "title": "Equity Curve",
+        "description": "Visualize your cumulative capital development - recognize drawdown phases and growth trends at a glance"
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "GitHub-style heatmap of your trading consistency over 12 weeks - identify profitable patterns and avoid losing days"
+      },
+      "calendar": {
+        "title": "Trading Calendar",
+        "description": "Keep track of your trades in calendar format with color-coded profitable days"
+      },
+      "news": {
+        "title": "Portfolio News",
+        "description": "Automatic news feed for your most traded symbols - stay informed about market-moving events"
+      },
+      "ai": {
+        "title": "AI Trading Assistant",
+        "description": "Ask natural questions about your performance and receive instant, data-driven answers and insights"
+      },
+      "reports": {
+        "title": "Detailed Reports",
+        "description": "Analyze performance by symbol, weekday, time, holding period and win/loss streaks - find your most profitable patterns"
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Import trades from your broker via CSV or export your data for further analysis"
+      },
+      "weekly": {
+        "title": "Weekly Performance",
+        "description": "Week-by-week overview of your trading performance with trades per week and P&L development"
+      },
+      "pnl": {
+        "title": "P&L Charts",
+        "description": "Monthly P&L development in clear bar charts - track your progress over time"
+      },
+      "prep": {
+        "title": "Daily Prep",
+        "description": "Prepare optimally for the trading day with political events, economic calendars and your watchlist symbols"
+      },
+      "glossary": {
+        "title": "Trading Glossary",
+        "description": "Comprehensive glossary with all important trading terms - from A like Average True Range to Z like Time Decay"
+      }
+    },
+    "allFeatures": {
+      "unlimited": "Document unlimited trades",
+      "fullAnalytics": "Complete Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
+      "journal": "Trading Journal with notes & screenshots",
+      "equity": "Equity Curve for capital tracking",
+      "consistency": "Consistency Tracker (12-week heatmap)",
+      "news": "Portfolio News for most traded symbols",
+      "ai": "AI Trading Assistant for data-driven insights",
+      "winLoss": "Win/Loss Analytics & Performance Breakdown",
+      "calendar": "Trading Calendar View",
+      "pnlCharts": "P&L Charts & Visualizations",
+      "csvImport": "CSV Import & Export",
+      "setupReports": "Setup-based Performance Reports",
+      "hourAnalysis": "Hour-of-Day Analytics (best trading times)",
+      "symbolReports": "Symbol Performance Reports",
+      "streakAnalysis": "Streak Analysis (win/loss streaks)",
+      "holdingPeriod": "Holding Period Analysis",
+      "weeklyTracking": "Weekly Performance Tracking",
+      "dailyPrep": "Daily Prep with political events",
+      "glossary": "Trading Glossary with all important terms",
+      "darkMode": "Dark/Light Mode",
+      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL)",
+      "futureFeatures": "All future features included",
+      "freeTrial": "7 Days Free Trial"
+    }
+  },
   "validation": {
     "emailInvalid": "Invalid email format",
     "emailTooLong": "Email must be less than 255 characters",

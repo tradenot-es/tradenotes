@@ -311,6 +311,133 @@
     "loading": "Laden...",
     "readMore": "Lees meer"
   },
+  "landing": {
+    "badge": "Professioneel Trading Dagboek",
+    "heroTitle": "Word een betere trader door",
+    "heroTitleHighlight": "systematisch journaling",
+    "heroDescription": "TradeNotes.io helpt je van elke trade te leren. Analyseer je prestaties, herken patronen en ontwikkel een winstgevende trading strategie met gedetailleerde analytics en grafieken.",
+    "ctaStart": "Begin Nu",
+    "ctaFeatures": "Ontdek Functies",
+    "rating": "4.9/5 van 1000+ Traders",
+    "dashboardAlt": "TradeNotes.io Dashboard met Performance Charts, Trading Kalender en Analytics",
+    "featuresBadge": "Functies",
+    "featuresTitle": "Alles voor succesvol trading journaling",
+    "featuresDescription": "Alle tools die je nodig hebt om van je trades te leren en consistent winstgevend te worden",
+    "pricingBadge": "Eenvoudige Prijzen",
+    "pricingTitle": "Één Prijs. Alle Functies.",
+    "pricingDescription": "Geen verborgen kosten. Geen ingewikkeld abonnementsmodel. Alleen een eerlijke prijs voor alle functies.",
+    "trialBadge": "7 Dagen Gratis Proberen",
+    "premiumTitle": "TradeNotes.io Premium",
+    "premiumDescription": "Toegang tot alle functies – nu en in de toekomst",
+    "monthlyPlan": "Maandelijks",
+    "monthlyPrice": "€9,99",
+    "monthlyPeriod": "/maand",
+    "monthlyCancel": "Altijd opzegbaar",
+    "yearlyPlan": "Jaarlijks",
+    "yearlyBadge": "Bespaar 17%",
+    "yearlyPrice": "€99",
+    "yearlyPeriod": "/jaar",
+    "yearlyDiscount": "Slechts €8,25 per maand",
+    "allFeaturesTitle": "Alle Functies Inbegrepen:",
+    "ctaTrial": "Start 7 Dagen Gratis Proefperiode",
+    "trialNotice": "Geen creditcard vereist • Altijd opzegbaar",
+    "ctaTitle": "Start vandaag met je trading dagboek",
+    "ctaDescription": "Begin je 7 dagen gratis proefperiode en word een consistent winstgevende trader",
+    "footerTitle": "TradeNotes.io",
+    "footerDescription": "Het professionele trading dagboek voor ambitieuze traders",
+    "footerProduct": "Product",
+    "footerFeatures": "Functies",
+    "footerPricing": "Prijzen",
+    "footerLogin": "Inloggen",
+    "footerSupport": "Ondersteuning",
+    "footerHelp": "Helpcentrum",
+    "footerContact": "Contact",
+    "footerStatus": "Status",
+    "footerLegal": "Juridisch",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Voorwaarden",
+    "footerImprint": "Colofon",
+    "footerCopyright": "© 2025 TradeNotes.io. Alle rechten voorbehouden.",
+    "features": {
+      "journal": {
+        "title": "Trading Dagboek",
+        "description": "Documenteer elke trade met gedetailleerde notities, screenshots en emotie-analyse voor duurzaam leersucces"
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Uitgebreide statistieken met Win Rate, R-Multiple, Profit Factor, Expectancy en kritieke risicomanagement KPI's"
+      },
+      "equity": {
+        "title": "Equity Curve",
+        "description": "Visualiseer je cumulatieve kapitaalontwikkeling - herken drawdown fases en groeitrends in één oogopslag"
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "GitHub-stijl heatmap van je trading consistentie over 12 weken - identificeer winstgevende patronen en vermijd verliezende dagen"
+      },
+      "calendar": {
+        "title": "Trading Kalender",
+        "description": "Houd je trades bij in kalenderformaat met kleurgecodeerde winstgevende dagen"
+      },
+      "news": {
+        "title": "Portfolio Nieuws",
+        "description": "Automatische nieuwsfeed voor je meest verhandelde symbolen - blijf op de hoogte van marktbewegende evenementen"
+      },
+      "ai": {
+        "title": "AI Trading Assistent",
+        "description": "Stel natuurlijke vragen over je prestaties en ontvang directe, datagestuurde antwoorden en inzichten"
+      },
+      "reports": {
+        "title": "Gedetailleerde Rapporten",
+        "description": "Analyseer prestaties per symbool, weekdag, tijd, houdperiode en winst/verlies series - vind je meest winstgevende patronen"
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Importeer trades van je broker via CSV of exporteer je gegevens voor verdere analyse"
+      },
+      "weekly": {
+        "title": "Wekelijkse Prestaties",
+        "description": "Week-voor-week overzicht van je trading prestaties met trades per week en P&L ontwikkeling"
+      },
+      "pnl": {
+        "title": "P&L Grafieken",
+        "description": "Maandelijkse P&L ontwikkeling in duidelijke staafdiagrammen - volg je vooruitgang in de tijd"
+      },
+      "prep": {
+        "title": "Dagelijkse Voorbereiding",
+        "description": "Bereid je optimaal voor op de trading dag met politieke evenementen, economische kalenders en je watchlist symbolen"
+      },
+      "glossary": {
+        "title": "Trading Woordenlijst",
+        "description": "Uitgebreide woordenlijst met alle belangrijke trading termen - van A zoals Average True Range tot Z zoals Tijdsverval"
+      }
+    },
+    "allFeatures": {
+      "unlimited": "Onbeperkt trades documenteren",
+      "fullAnalytics": "Volledige Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
+      "journal": "Trading Dagboek met notities & screenshots",
+      "equity": "Equity Curve voor kapitaalvolging",
+      "consistency": "Consistency Tracker (12-weken heatmap)",
+      "news": "Portfolio Nieuws voor meest verhandelde symbolen",
+      "ai": "AI Trading Assistent voor datagestuurde inzichten",
+      "winLoss": "Win/Loss Analytics & Performance Breakdown",
+      "calendar": "Trading Kalender Weergave",
+      "pnlCharts": "P&L Grafieken & Visualisaties",
+      "csvImport": "CSV Import & Export",
+      "setupReports": "Setup-gebaseerde Performance Rapporten",
+      "hourAnalysis": "Uur-van-de-Dag Analytics (beste trading tijden)",
+      "symbolReports": "Symbool Performance Rapporten",
+      "streakAnalysis": "Streak Analyse (winst/verlies series)",
+      "holdingPeriod": "Houdperiode Analyse",
+      "weeklyTracking": "Wekelijkse Performance Tracking",
+      "dailyPrep": "Dagelijkse Voorbereiding met politieke evenementen",
+      "glossary": "Trading Woordenlijst met alle belangrijke termen",
+      "darkMode": "Donkere/Lichte Modus",
+      "multiLanguage": "Meertalige Ondersteuning (DE, EN, ES, FR, NL)",
+      "futureFeatures": "Alle toekomstige functies inbegrepen",
+      "freeTrial": "7 Dagen Gratis Proberen"
+    }
+  },
   "validation": {
     "emailInvalid": "Ongeldig e-mailformaat",
     "emailTooLong": "E-mail moet minder dan 255 tekens bevatten",

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,98 +21,100 @@ import {
 } from "lucide-react";
 
 const Landing = () => {
+  const { t } = useTranslation();
+
   const features = [
     {
       icon: <BookOpen className="h-6 w-6" />,
-      title: "Trading Journal",
-      description: "Dokumentiere jeden Trade mit detaillierten Notizen, Screenshots und Emotionsanalyse für nachhaltigen Lernerfolg"
+      title: t("landing.features.journal.title"),
+      description: t("landing.features.journal.description")
     },
     {
       icon: <BarChart3 className="h-6 w-6" />,
-      title: "Performance Analytics",
-      description: "Umfassende Statistiken mit Win-Rate, R-Multiple, Profit-Factor, Expectancy und kritischen Risikomanagement-KPIs"
+      title: t("landing.features.analytics.title"),
+      description: t("landing.features.analytics.description")
     },
     {
       icon: <LineChart className="h-6 w-6" />,
-      title: "Equity Curve",
-      description: "Visualisiere deine kumulative Kapitalentwicklung - erkenne Drawdown-Phasen und Wachstumstrends auf einen Blick"
+      title: t("landing.features.equity.title"),
+      description: t("landing.features.equity.description")
     },
     {
       icon: <Activity className="h-6 w-6" />,
-      title: "Consistency Tracker",
-      description: "GitHub-Style Heatmap deiner Trading-Konsistenz über 12 Wochen - identifiziere profitable Muster und meide Verlusttage"
+      title: t("landing.features.consistency.title"),
+      description: t("landing.features.consistency.description")
     },
     {
       icon: <Calendar className="h-6 w-6" />,
-      title: "Trading Kalender",
-      description: "Behalte den Überblick über deine Trades im Kalender-Format mit farblicher Kennzeichnung profitabler Tage"
+      title: t("landing.features.calendar.title"),
+      description: t("landing.features.calendar.description")
     },
     {
       icon: <Target className="h-6 w-6" />,
-      title: "Portfolio News",
-      description: "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
+      title: t("landing.features.news.title"),
+      description: t("landing.features.news.description")
     },
     {
       icon: <MessageSquare className="h-6 w-6" />,
-      title: "AI Trading Assistant",
-      description: "Stelle natürliche Fragen zu deiner Performance und erhalte sofortige, datengetriebene Antworten und Insights"
+      title: t("landing.features.ai.title"),
+      description: t("landing.features.ai.description")
     },
     {
       icon: <FileText className="h-6 w-6" />,
-      title: "Detaillierte Reports",
-      description: "Analysiere Performance nach Symbol, Wochentag, Uhrzeit, Holding-Period und Gewinn-/Verlustserien - finde deine profitabelsten Muster"
+      title: t("landing.features.reports.title"),
+      description: t("landing.features.reports.description")
     },
     {
       icon: <Import className="h-6 w-6" />,
-      title: "CSV Import/Export",
-      description: "Importiere Trades aus deinem Broker via CSV oder exportiere deine Daten für weitere Analysen"
+      title: t("landing.features.import.title"),
+      description: t("landing.features.import.description")
     },
     {
       icon: <Activity className="h-6 w-6" />,
-      title: "Weekly Performance",
-      description: "Wochenweise Übersicht deiner Trading-Performance mit Trades pro Woche und P&L-Entwicklung"
+      title: t("landing.features.weekly.title"),
+      description: t("landing.features.weekly.description")
     },
     {
       icon: <TrendingUp className="h-6 w-6" />,
-      title: "P&L Charts",
-      description: "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
+      title: t("landing.features.pnl.title"),
+      description: t("landing.features.pnl.description")
     },
     {
       icon: <Target className="h-6 w-6" />,
-      title: "Daily Prep",
-      description: "Bereite dich optimal auf den Trading-Tag vor mit politischen Events, Wirtschaftskalendern und deinen Watchlist-Symbolen"
+      title: t("landing.features.prep.title"),
+      description: t("landing.features.prep.description")
     },
     {
       icon: <BookOpen className="h-6 w-6" />,
-      title: "Trading Glossar",
-      description: "Umfangreiches Glossar mit allen wichtigen Trading-Begriffen - von A wie Average True Range bis Z wie Zeitwertverfall"
+      title: t("landing.features.glossary.title"),
+      description: t("landing.features.glossary.description")
     }
   ];
 
   const allFeatures = [
-    "Unbegrenzte Trades dokumentieren",
-    "Vollständige Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
-    "Trading Journal mit Notizen & Screenshots",
-    "Equity Curve zur Kapitalverfolgung",
-    "Consistency Tracker (12-Wochen Heatmap)",
-    "Portfolio News für meist gehandelte Symbole",
-    "AI Trading Assistant für datengetriebene Insights",
-    "Win/Loss Analytics & Performance Breakdown",
-    "Trading Kalender-Ansicht",
-    "P&L Charts & Visualisierungen",
-    "CSV Import & Export",
-    "Setup-basierte Performance Reports",
-    "Hour-of-Day Analytics (beste Handelszeiten)",
-    "Symbol Performance Reports",
-    "Streak Analysis (Gewinn-/Verlustserien)",
-    "Holding Period Analysis",
-    "Weekly Performance Tracking",
-    "Daily Prep mit politischen Events",
-    "Trading Glossar mit allen wichtigen Begriffen",
-    "Dark/Light Mode",
-    "Multi-Language Support (DE, EN, ES, FR, NL)",
-    "Alle zukünftigen Features inklusive",
-    "7 Tage kostenlos testen"
+    t("landing.allFeatures.unlimited"),
+    t("landing.allFeatures.fullAnalytics"),
+    t("landing.allFeatures.journal"),
+    t("landing.allFeatures.equity"),
+    t("landing.allFeatures.consistency"),
+    t("landing.allFeatures.news"),
+    t("landing.allFeatures.ai"),
+    t("landing.allFeatures.winLoss"),
+    t("landing.allFeatures.calendar"),
+    t("landing.allFeatures.pnlCharts"),
+    t("landing.allFeatures.csvImport"),
+    t("landing.allFeatures.setupReports"),
+    t("landing.allFeatures.hourAnalysis"),
+    t("landing.allFeatures.symbolReports"),
+    t("landing.allFeatures.streakAnalysis"),
+    t("landing.allFeatures.holdingPeriod"),
+    t("landing.allFeatures.weeklyTracking"),
+    t("landing.allFeatures.dailyPrep"),
+    t("landing.allFeatures.glossary"),
+    t("landing.allFeatures.darkMode"),
+    t("landing.allFeatures.multiLanguage"),
+    t("landing.allFeatures.futureFeatures"),
+    t("landing.allFeatures.freeTrial")
   ];
 
   return (
@@ -124,24 +127,23 @@ const Landing = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
               <Badge className="w-fit glow-effect">
-                Professionelles Trading Journal
+                {t("landing.badge")}
               </Badge>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Werde ein besserer Trader durch
+                {t("landing.heroTitle")}
                 <span className="gradient-text block mt-2">
-                  systematisches Journaling
+                  {t("landing.heroTitleHighlight")}
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground">
-                TradeNotes.io hilft dir, aus jedem Trade zu lernen. Analysiere deine Performance, 
-                erkenne Muster und entwickle eine profitable Trading-Strategie mit detaillierten Analytics und Charts.
+                {t("landing.heroDescription")}
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button size="lg" variant="premium" asChild>
-                  <Link to="/auth">Jetzt starten</Link>
+                  <Link to="/auth">{t("landing.ctaStart")}</Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
-                  <a href="#features">Features entdecken</a>
+                  <a href="#features">{t("landing.ctaFeatures")}</a>
                 </Button>
               </div>
               <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -152,14 +154,14 @@ const Landing = () => {
                   <Star className="h-5 w-5 fill-primary text-primary" />
                   <Star className="h-5 w-5 fill-primary text-primary" />
                 </div>
-                <span>4.9/5 von 1000+ Tradern</span>
+                <span>{t("landing.rating")}</span>
               </div>
             </div>
             <div className="relative">
               <div className="aspect-video rounded-2xl border border-primary/20 elegant-shadow overflow-hidden">
                 <img 
                   src={dashboardPreview} 
-                  alt="TradeNotes.io Dashboard mit Performance Charts, Trading Kalender und Analytics" 
+                  alt={t("landing.dashboardAlt")}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -172,10 +174,10 @@ const Landing = () => {
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4">Features</Badge>
-            <h2 className="text-4xl font-bold mb-4">Alles für erfolgreiches Trading-Journaling</h2>
+            <Badge className="mb-4">{t("landing.featuresBadge")}</Badge>
+            <h2 className="text-4xl font-bold mb-4">{t("landing.featuresTitle")}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Alle Tools, die du brauchst, um aus deinen Trades zu lernen und konstant profitabel zu werden
+              {t("landing.featuresDescription")}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -198,10 +200,10 @@ const Landing = () => {
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <Badge className="mb-4 glow-effect">Einfaches Pricing</Badge>
-            <h2 className="text-4xl font-bold mb-4">Ein Preis. Alle Features.</h2>
+            <Badge className="mb-4 glow-effect">{t("landing.pricingBadge")}</Badge>
+            <h2 className="text-4xl font-bold mb-4">{t("landing.pricingTitle")}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Keine versteckten Kosten. Kein kompliziertes Abo-Modell. Nur ein fairer Preis für alle Funktionen.
+              {t("landing.pricingDescription")}
             </p>
           </div>
           
@@ -209,41 +211,41 @@ const Landing = () => {
             <Card className="border-primary glow-effect">
               <CardHeader className="text-center pb-8">
                 <div className="inline-block mx-auto mb-4">
-                  <Badge className="text-lg px-4 py-2">7 Tage kostenlos testen</Badge>
+                  <Badge className="text-lg px-4 py-2">{t("landing.trialBadge")}</Badge>
                 </div>
-                <CardTitle className="text-3xl mb-2">TradeNotes.io Premium</CardTitle>
+                <CardTitle className="text-3xl mb-2">{t("landing.premiumTitle")}</CardTitle>
                 <CardDescription className="text-lg">
-                  Zugriff auf alle Features – jetzt und in Zukunft
+                  {t("landing.premiumDescription")}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
                   {/* Monthly Plan */}
                   <div className="text-center p-6 rounded-lg bg-muted/50">
-                    <p className="text-sm text-muted-foreground mb-2">Monatlich</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t("landing.monthlyPlan")}</p>
                     <div className="mb-4">
-                      <span className="text-5xl font-bold">9,99€</span>
-                      <span className="text-muted-foreground ml-2">/Monat</span>
+                      <span className="text-5xl font-bold">{t("landing.monthlyPrice")}</span>
+                      <span className="text-muted-foreground ml-2">{t("landing.monthlyPeriod")}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground">Jederzeit kündbar</p>
+                    <p className="text-sm text-muted-foreground">{t("landing.monthlyCancel")}</p>
                   </div>
                   
                   {/* Yearly Plan */}
                   <div className="text-center p-6 rounded-lg bg-primary/10 border-2 border-primary relative">
                     <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      17% sparen
+                      {t("landing.yearlyBadge")}
                     </Badge>
-                    <p className="text-sm text-muted-foreground mb-2">Jährlich</p>
+                    <p className="text-sm text-muted-foreground mb-2">{t("landing.yearlyPlan")}</p>
                     <div className="mb-4">
-                      <span className="text-5xl font-bold">99€</span>
-                      <span className="text-muted-foreground ml-2">/Jahr</span>
+                      <span className="text-5xl font-bold">{t("landing.yearlyPrice")}</span>
+                      <span className="text-muted-foreground ml-2">{t("landing.yearlyPeriod")}</span>
                     </div>
-                    <p className="text-sm text-primary font-medium">Nur 8,25€ pro Monat</p>
+                    <p className="text-sm text-primary font-medium">{t("landing.yearlyDiscount")}</p>
                   </div>
                 </div>
 
                 <div className="mb-8">
-                  <h3 className="font-semibold text-lg mb-4 text-center">Alle Features inklusive:</h3>
+                  <h3 className="font-semibold text-lg mb-4 text-center">{t("landing.allFeaturesTitle")}</h3>
                   <div className="grid md:grid-cols-2 gap-3">
                     {allFeatures.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2">
@@ -256,10 +258,10 @@ const Landing = () => {
 
                 <div className="space-y-3">
                   <Button className="w-full" size="lg" variant="premium" asChild>
-                    <Link to="/auth">7 Tage kostenlos testen</Link>
+                    <Link to="/auth">{t("landing.ctaTrial")}</Link>
                   </Button>
                   <p className="text-center text-sm text-muted-foreground">
-                    Keine Kreditkarte erforderlich • Jederzeit kündbar
+                    {t("landing.trialNotice")}
                   </p>
                 </div>
               </CardContent>
@@ -272,13 +274,13 @@ const Landing = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">
-            Starte heute mit deinem Trading Journal
+            {t("landing.ctaTitle")}
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Beginne deine 7-tägige kostenlose Testphase und entwickle dich zum konstant profitablen Trader
+            {t("landing.ctaDescription")}
           </p>
           <Button size="lg" variant="premium" asChild>
-            <Link to="/auth">7 Tage kostenlos testen</Link>
+            <Link to="/auth">{t("landing.ctaTrial")}</Link>
           </Button>
         </div>
       </section>
@@ -288,38 +290,38 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-bold text-lg mb-4">TradeNotes.io</h3>
+              <h3 className="font-bold text-lg mb-4">{t("landing.footerTitle")}</h3>
               <p className="text-sm text-muted-foreground">
-                Das professionelle Trading Journal für ambitionierte Trader
+                {t("landing.footerDescription")}
               </p>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Produkt</h4>
+              <h4 className="font-semibold mb-4">{t("landing.footerProduct")}</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#features" className="hover:text-primary">Features</a></li>
-                <li><a href="#pricing" className="hover:text-primary">Pricing</a></li>
-                <li><Link to="/auth" className="hover:text-primary">Login</Link></li>
+                <li><a href="#features" className="hover:text-primary">{t("landing.footerFeatures")}</a></li>
+                <li><a href="#pricing" className="hover:text-primary">{t("landing.footerPricing")}</a></li>
+                <li><Link to="/auth" className="hover:text-primary">{t("landing.footerLogin")}</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Support</h4>
+              <h4 className="font-semibold mb-4">{t("landing.footerSupport")}</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Hilfe Center</a></li>
-                <li><a href="#" className="hover:text-primary">Kontakt</a></li>
-                <li><a href="#" className="hover:text-primary">Status</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerHelp")}</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerContact")}</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerStatus")}</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
+              <h4 className="font-semibold mb-4">{t("landing.footerLegal")}</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Datenschutz</a></li>
-                <li><a href="#" className="hover:text-primary">AGB</a></li>
-                <li><a href="#" className="hover:text-primary">Impressum</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerPrivacy")}</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerTerms")}</a></li>
+                <li><a href="#" className="hover:text-primary">{t("landing.footerImprint")}</a></li>
               </ul>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            © 2025 TradeNotes.io. Alle Rechte vorbehalten.
+            {t("landing.footerCopyright")}
           </div>
         </div>
       </footer>

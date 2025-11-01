@@ -321,6 +321,133 @@
     "loading": "Lädt...",
     "readMore": "Weiterlesen"
   },
+  "landing": {
+    "badge": "Professionelles Trading Journal",
+    "heroTitle": "Werde ein besserer Trader durch",
+    "heroTitleHighlight": "systematisches Journaling",
+    "heroDescription": "TradeNotes.io hilft dir, aus jedem Trade zu lernen. Analysiere deine Performance, erkenne Muster und entwickle eine profitable Trading-Strategie mit detaillierten Analytics und Charts.",
+    "ctaStart": "Jetzt starten",
+    "ctaFeatures": "Features entdecken",
+    "rating": "4.9/5 von 1000+ Tradern",
+    "dashboardAlt": "TradeNotes.io Dashboard mit Performance Charts, Trading Kalender und Analytics",
+    "featuresBadge": "Features",
+    "featuresTitle": "Alles für erfolgreiches Trading-Journaling",
+    "featuresDescription": "Alle Tools, die du brauchst, um aus deinen Trades zu lernen und konstant profitabel zu werden",
+    "pricingBadge": "Einfaches Pricing",
+    "pricingTitle": "Ein Preis. Alle Features.",
+    "pricingDescription": "Keine versteckten Kosten. Kein kompliziertes Abo-Modell. Nur ein fairer Preis für alle Funktionen.",
+    "trialBadge": "7 Tage kostenlos testen",
+    "premiumTitle": "TradeNotes.io Premium",
+    "premiumDescription": "Zugriff auf alle Features – jetzt und in Zukunft",
+    "monthlyPlan": "Monatlich",
+    "monthlyPrice": "9,99€",
+    "monthlyPeriod": "/Monat",
+    "monthlyCancel": "Jederzeit kündbar",
+    "yearlyPlan": "Jährlich",
+    "yearlyBadge": "17% sparen",
+    "yearlyPrice": "99€",
+    "yearlyPeriod": "/Jahr",
+    "yearlyDiscount": "Nur 8,25€ pro Monat",
+    "allFeaturesTitle": "Alle Features inklusive:",
+    "ctaTrial": "7 Tage kostenlos testen",
+    "trialNotice": "Keine Kreditkarte erforderlich • Jederzeit kündbar",
+    "ctaTitle": "Starte heute mit deinem Trading Journal",
+    "ctaDescription": "Beginne deine 7-tägige kostenlose Testphase und entwickle dich zum konstant profitablen Trader",
+    "footerTitle": "TradeNotes.io",
+    "footerDescription": "Das professionelle Trading Journal für ambitionierte Trader",
+    "footerProduct": "Produkt",
+    "footerFeatures": "Features",
+    "footerPricing": "Pricing",
+    "footerLogin": "Login",
+    "footerSupport": "Support",
+    "footerHelp": "Hilfe Center",
+    "footerContact": "Kontakt",
+    "footerStatus": "Status",
+    "footerLegal": "Legal",
+    "footerPrivacy": "Datenschutz",
+    "footerTerms": "AGB",
+    "footerImprint": "Impressum",
+    "footerCopyright": "© 2025 TradeNotes.io. Alle Rechte vorbehalten.",
+    "features": {
+      "journal": {
+        "title": "Trading Journal",
+        "description": "Dokumentiere jeden Trade mit detaillierten Notizen, Screenshots und Emotionsanalyse für nachhaltigen Lernerfolg"
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Umfassende Statistiken mit Win-Rate, R-Multiple, Profit-Factor, Expectancy und kritischen Risikomanagement-KPIs"
+      },
+      "equity": {
+        "title": "Equity Curve",
+        "description": "Visualisiere deine kumulative Kapitalentwicklung - erkenne Drawdown-Phasen und Wachstumstrends auf einen Blick"
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "GitHub-Style Heatmap deiner Trading-Konsistenz über 12 Wochen - identifiziere profitable Muster und meide Verlusttage"
+      },
+      "calendar": {
+        "title": "Trading Kalender",
+        "description": "Behalte den Überblick über deine Trades im Kalender-Format mit farblicher Kennzeichnung profitabler Tage"
+      },
+      "news": {
+        "title": "Portfolio News",
+        "description": "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
+      },
+      "ai": {
+        "title": "AI Trading Assistant",
+        "description": "Stelle natürliche Fragen zu deiner Performance und erhalte sofortige, datengetriebene Antworten und Insights"
+      },
+      "reports": {
+        "title": "Detaillierte Reports",
+        "description": "Analysiere Performance nach Symbol, Wochentag, Uhrzeit, Holding-Period und Gewinn-/Verlustserien - finde deine profitabelsten Muster"
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Importiere Trades aus deinem Broker via CSV oder exportiere deine Daten für weitere Analysen"
+      },
+      "weekly": {
+        "title": "Weekly Performance",
+        "description": "Wochenweise Übersicht deiner Trading-Performance mit Trades pro Woche und P&L-Entwicklung"
+      },
+      "pnl": {
+        "title": "P&L Charts",
+        "description": "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
+      },
+      "prep": {
+        "title": "Daily Prep",
+        "description": "Bereite dich optimal auf den Trading-Tag vor mit politischen Events, Wirtschaftskalendern und deinen Watchlist-Symbolen"
+      },
+      "glossary": {
+        "title": "Trading Glossar",
+        "description": "Umfangreiches Glossar mit allen wichtigen Trading-Begriffen - von A wie Average True Range bis Z wie Zeitwertverfall"
+      }
+    },
+    "allFeatures": {
+      "unlimited": "Unbegrenzte Trades dokumentieren",
+      "fullAnalytics": "Vollständige Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
+      "journal": "Trading Journal mit Notizen & Screenshots",
+      "equity": "Equity Curve zur Kapitalverfolgung",
+      "consistency": "Consistency Tracker (12-Wochen Heatmap)",
+      "news": "Portfolio News für meist gehandelte Symbole",
+      "ai": "AI Trading Assistant für datengetriebene Insights",
+      "winLoss": "Win/Loss Analytics & Performance Breakdown",
+      "calendar": "Trading Kalender-Ansicht",
+      "pnlCharts": "P&L Charts & Visualisierungen",
+      "csvImport": "CSV Import & Export",
+      "setupReports": "Setup-basierte Performance Reports",
+      "hourAnalysis": "Hour-of-Day Analytics (beste Handelszeiten)",
+      "symbolReports": "Symbol Performance Reports",
+      "streakAnalysis": "Streak Analysis (Gewinn-/Verlustserien)",
+      "holdingPeriod": "Holding Period Analysis",
+      "weeklyTracking": "Weekly Performance Tracking",
+      "dailyPrep": "Daily Prep mit politischen Events",
+      "glossary": "Trading Glossar mit allen wichtigen Begriffen",
+      "darkMode": "Dark/Light Mode",
+      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL)",
+      "futureFeatures": "Alle zukünftigen Features inklusive",
+      "freeTrial": "7 Tage kostenlos testen"
+    }
+  },
   "validation": {
     "emailInvalid": "Ungültiges E-Mail-Format",
     "emailTooLong": "E-Mail muss weniger als 255 Zeichen haben",
