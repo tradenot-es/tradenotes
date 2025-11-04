@@ -419,7 +419,7 @@
       },
       "glossary": {
         "title": "Trading Glossary",
-        "description": "Comprehensive glossary with important trading terms like Average True Range, Kelly Criterion, Sharpe Ratio and Win Rate"
+        "description": "Comprehensive glossary with important trading terms like Win Rate, Profit Factor, Risk/Reward and Equity Curve"
       }
     },
     "allFeatures": {
