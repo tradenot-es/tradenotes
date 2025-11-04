@@ -419,7 +419,7 @@
       },
       "glossary": {
         "title": "Trading Glossary",
-        "description": "Comprehensive glossary with all important trading terms - from A like Average True Range to Z like Time Decay"
+        "description": "Comprehensive glossary with important trading terms like Average True Range, Kelly Criterion, Sharpe Ratio and Win Rate"
       }
     },
     "allFeatures": {

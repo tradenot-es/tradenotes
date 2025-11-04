@@ -409,7 +409,7 @@
       },
       "glossary": {
         "title": "Glossaire de Trading",
-        "description": "Glossaire complet avec tous les termes importants du trading - de A comme Average True Range à Z comme Décroissance Temporelle"
+        "description": "Glossaire complet avec des termes importants du trading comme Average True Range, Critère de Kelly, Ratio de Sharpe et Taux de Gain"
       }
     },
     "allFeatures": {
