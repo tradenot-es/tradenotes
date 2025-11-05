@@ -6,60 +6,40 @@ import { CheckCircle2, AlertCircle, Clock, Activity } from "lucide-react";
 const Status = () => {
   const services = [
     {
-      name: "Web Application",
+      name: "Website",
       status: "operational",
-      uptime: "99.99%",
-      lastIncident: "Keine bekannten Vorfälle"
+      description: "Lovable Hauptwebsite"
     },
     {
-      name: "Database",
+      name: "Login",
       status: "operational",
-      uptime: "99.99%",
-      lastIncident: "Keine bekannten Vorfälle"
+      description: "Authentifizierungssystem"
     },
     {
-      name: "API Services",
+      name: "Editor",
       status: "operational",
-      uptime: "99.98%",
-      lastIncident: "Keine bekannten Vorfälle"
+      description: "Lovable Editor & KI-Funktionen"
     },
     {
-      name: "File Storage",
+      name: "Hosting",
       status: "operational",
-      uptime: "99.97%",
-      lastIncident: "Keine bekannten Vorfälle"
+      description: "App-Hosting & Deployment"
     },
     {
-      name: "Authentication",
+      name: "Supabase",
       status: "operational",
-      uptime: "100%",
-      lastIncident: "Keine bekannten Vorfälle"
+      description: "Datenbank & Backend Services"
     }
   ];
 
-  const statusHistory = [
-    {
-      date: "15. März 2025",
-      type: "maintenance",
-      title: "Geplante Wartung",
-      description: "Routinemäßige Systemwartung durchgeführt. Alle Systeme laufen normal.",
-      duration: "30 Minuten"
-    },
-    {
-      date: "02. März 2025",
-      type: "resolved",
-      title: "Performance-Optimierung",
-      description: "Verbesserungen an der Datenbank-Performance implementiert.",
-      duration: "15 Minuten"
-    },
-    {
-      date: "20. Februar 2025",
-      type: "resolved",
-      title: "Sicherheitsupdate",
-      description: "Sicherheitsrelevante Updates ohne Ausfallzeit eingespielt.",
-      duration: "Keine Downtime"
-    }
-  ];
+  // Status history would be fetched from Lovable's actual status API
+  const statusHistory = [] as Array<{
+    date: string;
+    type: string;
+    title: string;
+    description: string;
+    duration: string;
+  }>;
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -144,14 +124,10 @@ const Status = () => {
                         {getStatusIcon(service.status)}
                         <div className="flex-1">
                           <h3 className="font-semibold">{service.name}</h3>
-                          <p className="text-sm text-muted-foreground">{service.lastIncident}</p>
+                          <p className="text-sm text-muted-foreground">{service.description}</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-4">
-                        <div className="text-right hidden sm:block">
-                          <p className="text-sm font-medium">{service.uptime}</p>
-                          <p className="text-xs text-muted-foreground">Uptime (30 Tage)</p>
-                        </div>
                         {getStatusBadge(service.status)}
                       </div>
                     </div>
@@ -162,28 +138,23 @@ const Status = () => {
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Status Historie</h2>
-            <div className="space-y-4">
-              {statusHistory.map((event, index) => (
-                <Card key={index}>
-                  <CardContent className="pt-6">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        {getHistoryIcon(event.type)}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-start justify-between mb-2">
-                          <h3 className="font-semibold">{event.title}</h3>
-                          <span className="text-sm text-muted-foreground">{event.date}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground mb-2">{event.description}</p>
-                        <p className="text-xs text-muted-foreground">Dauer: {event.duration}</p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold mb-6">Detaillierte Status-Informationen</h2>
+            <Card>
+              <CardContent className="pt-6">
+                <p className="text-muted-foreground mb-4">
+                  Für detaillierte Informationen zu aktuellen und vergangenen Vorfällen, sowie Echtzeit-Updates besuchen Sie bitte die offizielle Lovable Status-Seite:
+                </p>
+                <a 
+                  href="https://status.lovable.dev" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
+                >
+                  status.lovable.dev
+                  <Activity className="h-4 w-4" />
+                </a>
+              </CardContent>
+            </Card>
           </div>
 
           <div className="mt-12 text-center">
