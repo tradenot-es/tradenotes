@@ -16,6 +16,9 @@ import Account from "./pages/Account";
 import Glossary from "./pages/Glossary";
 import Reports from "./pages/Reports";
 import Auth from "./pages/Auth";
+import Kontakt from "./pages/Kontakt";
+import Hilfe from "./pages/Hilfe";
+import Status from "./pages/Status";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +33,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/kontakt" element={<Kontakt />} />
+            <Route path="/hilfe" element={<Hilfe />} />
+            <Route path="/status" element={<Status />} />
             <Route
               path="/dashboard/*"
               element={

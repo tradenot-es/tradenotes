@@ -306,9 +306,9 @@ const Landing = () => {
             <div>
               <h4 className="font-semibold mb-4">{t("landing.footerSupport")}</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">{t("landing.footerHelp")}</a></li>
-                <li><a href="#" className="hover:text-primary">{t("landing.footerContact")}</a></li>
-                <li><a href="#" className="hover:text-primary">{t("landing.footerStatus")}</a></li>
+                <li><Link to="/hilfe" className="hover:text-primary">{t("landing.footerHelp")}</Link></li>
+                <li><Link to="/kontakt" className="hover:text-primary">{t("landing.footerContact")}</Link></li>
+                <li><Link to="/status" className="hover:text-primary">{t("landing.footerStatus")}</Link></li>
               </ul>
             </div>
             <div>
