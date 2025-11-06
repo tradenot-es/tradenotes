@@ -19,6 +19,7 @@ import Auth from "./pages/Auth";
 import Kontakt from "./pages/Kontakt";
 import Hilfe from "./pages/Hilfe";
 import Status from "./pages/Status";
+import Datenschutz from "./pages/Datenschutz";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +37,7 @@ const App = () => (
             <Route path="/kontakt" element={<Kontakt />} />
             <Route path="/hilfe" element={<Hilfe />} />
             <Route path="/status" element={<Status />} />
+            <Route path="/datenschutz" element={<Datenschutz />} />
             <Route
               path="/dashboard/*"
               element={

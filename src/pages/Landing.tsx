@@ -314,7 +314,7 @@ const Landing = () => {
             <div>
               <h4 className="font-semibold mb-4">{t("landing.footerLegal")}</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">{t("landing.footerPrivacy")}</a></li>
+                <li><Link to="/datenschutz" className="hover:text-primary">{t("landing.footerPrivacy")}</Link></li>
                 <li><a href="#" className="hover:text-primary">{t("landing.footerTerms")}</a></li>
                 <li><a href="#" className="hover:text-primary">{t("landing.footerImprint")}</a></li>
               </ul>
