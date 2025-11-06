@@ -4,15 +4,73 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { useTranslation } from "react-i18next";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
 
 const Kontakt = () => {
-  const { t } = useTranslation();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic would go here
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const subject = formData.get('subject') as string;
+    const message = formData.get('message') as string;
+
+    // Basic validation
+    if (!name.trim() || name.length > 100) {
+      toast({
+        title: "Fehler",
+        description: "Bitte geben Sie einen gültigen Namen ein (max. 100 Zeichen).",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!email.trim() || email.length > 255 || !email.includes('@')) {
+      toast({
+        title: "Fehler",
+        description: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!subject.trim() || subject.length > 200) {
+      toast({
+        title: "Fehler",
+        description: "Bitte geben Sie einen gültigen Betreff ein (max. 200 Zeichen).",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!message.trim() || message.length > 2000) {
+      toast({
+        title: "Fehler",
+        description: "Bitte geben Sie eine gültige Nachricht ein (max. 2000 Zeichen).",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Simulate form submission
+    setTimeout(() => {
+      toast({
+        title: "Nachricht gesendet",
+        description: "Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.",
+      });
+      e.currentTarget.reset();
+      setIsSubmitting(false);
+    }, 1000);
   };
 
   return (
@@ -28,7 +86,7 @@ const Kontakt = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <Card>
               <CardHeader>
                 <CardTitle>Senden Sie uns eine Nachricht</CardTitle>
@@ -39,92 +97,57 @@ const Kontakt = () => {
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Name</Label>
-                    <Input id="name" placeholder="Ihr Name" required />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="email">E-Mail</Label>
-                    <Input id="email" type="email" placeholder="ihre@email.de" required />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Betreff</Label>
-                    <Input id="subject" placeholder="Worum geht es?" required />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Nachricht</Label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="Ihre Nachricht..." 
-                      rows={5}
+                    <Label htmlFor="name">Name *</Label>
+                    <Input 
+                      id="name" 
+                      name="name"
+                      placeholder="Ihr Name" 
+                      maxLength={100}
                       required 
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full">
-                    Nachricht senden
+                  <div className="space-y-2">
+                    <Label htmlFor="email">E-Mail *</Label>
+                    <Input 
+                      id="email" 
+                      name="email"
+                      type="email" 
+                      placeholder="ihre@email.de" 
+                      maxLength={255}
+                      required 
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Betreff *</Label>
+                    <Input 
+                      id="subject" 
+                      name="subject"
+                      placeholder="Worum geht es?" 
+                      maxLength={200}
+                      required 
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Nachricht *</Label>
+                    <Textarea 
+                      id="message" 
+                      name="message"
+                      placeholder="Ihre Nachricht..." 
+                      rows={6}
+                      maxLength={2000}
+                      required 
+                    />
+                  </div>
+                  
+                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
                   </Button>
                 </form>
               </CardContent>
             </Card>
-
-            <div className="space-y-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Kontaktinformationen</CardTitle>
-                  <CardDescription>
-                    Weitere Möglichkeiten, uns zu erreichen
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Mail className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">E-Mail</p>
-                      <p className="text-sm text-muted-foreground">support@tradenotes.io</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <Phone className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">Telefon</p>
-                      <p className="text-sm text-muted-foreground">+49 (0) 123 456789</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-3">
-                    <MapPin className="h-5 w-5 text-primary mt-0.5" />
-                    <div>
-                      <p className="font-medium">Adresse</p>
-                      <p className="text-sm text-muted-foreground">
-                        TradeNotes GmbH<br />
-                        Musterstraße 123<br />
-                        10115 Berlin, Deutschland
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Öffnungszeiten</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Montag - Freitag</span>
-                    <span className="font-medium">9:00 - 18:00 Uhr</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Samstag - Sonntag</span>
-                    <span className="font-medium">Geschlossen</span>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
           </div>
         </div>
       </main>
