@@ -1,23 +1,26 @@
 import { Navigation } from "@/components/Navigation";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Server, Lock, Eye, FileText, CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Datenschutz = () => {
+  const { t } = useTranslation();
+
   const certifications = [
     {
-      name: "SOC 2 Type 2",
-      description: "Unabhängig geprüfte Sicherheitskontrollen für Verfügbarkeit, Vertraulichkeit und Datenschutz",
+      name: t('privacy.certifications.soc2.name'),
+      description: t('privacy.certifications.soc2.description'),
       icon: Shield
     },
     {
-      name: "ISO 27001:2022",
-      description: "Internationaler Standard für Informationssicherheits-Managementsysteme",
+      name: t('privacy.certifications.iso.name'),
+      description: t('privacy.certifications.iso.description'),
       icon: CheckCircle2
     },
     {
-      name: "DSGVO-konform",
-      description: "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung",
+      name: t('privacy.certifications.gdpr.name'),
+      description: t('privacy.certifications.gdpr.description'),
       icon: Lock
     }
   ];
@@ -29,9 +32,9 @@ const Datenschutz = () => {
       <main className="pt-24 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Datenschutzerklärung</h1>
+            <h1 className="text-4xl font-bold mb-4">{t('privacy.title')}</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Ihre Daten sind bei uns sicher. Wir nehmen Datenschutz ernst und setzen auf höchste Sicherheitsstandards.
+              {t('privacy.subtitle')}
             </p>
           </div>
 
@@ -39,7 +42,7 @@ const Datenschutz = () => {
           <div className="mb-12">
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
               <Shield className="h-6 w-6 text-primary" />
-              Unsere Zertifizierungen
+              {t('privacy.certifications.title')}
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
@@ -61,27 +64,25 @@ const Datenschutz = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Server className="h-6 w-6 text-primary" />
-                Wo werden Ihre Daten gespeichert?
+                {t('privacy.dataStorage.title')}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-start gap-3">
-                <Badge variant="secondary" className="mt-1">EU-Region</Badge>
+                <Badge variant="secondary" className="mt-1">{t('privacy.dataStorage.euRegion.badge')}</Badge>
                 <div>
-                  <p className="font-medium mb-2">Datenspeicherung in der Europäischen Union</p>
+                  <p className="font-medium mb-2">{t('privacy.dataStorage.euRegion.title')}</p>
                   <p className="text-sm text-muted-foreground">
-                    Alle Ihre Daten werden ausschließlich in europäischen Rechenzentren gespeichert (Frankfurt, Deutschland). 
-                    Dies gewährleistet die Einhaltung der DSGVO und bietet Ihnen maximalen Datenschutz nach EU-Standards.
+                    {t('privacy.dataStorage.euRegion.description')}
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Badge variant="secondary" className="mt-1">Verschlüsselt</Badge>
+                <Badge variant="secondary" className="mt-1">{t('privacy.dataStorage.encrypted.badge')}</Badge>
                 <div>
-                  <p className="font-medium mb-2">Ende-zu-Ende Verschlüsselung</p>
+                  <p className="font-medium mb-2">{t('privacy.dataStorage.encrypted.title')}</p>
                   <p className="text-sm text-muted-foreground">
-                    Ihre Daten werden sowohl bei der Übertragung (TLS 1.3) als auch im Ruhezustand (AES-256) verschlüsselt. 
-                    Nur Sie haben Zugriff auf Ihre Trading-Daten.
+                    {t('privacy.dataStorage.encrypted.description')}
                   </p>
                 </div>
               </div>
@@ -91,54 +92,49 @@ const Datenschutz = () => {
           {/* Datenschutz-Inhalt */}
           <div className="space-y-8">
             <section>
-              <h2 className="text-2xl font-bold mb-4">1. Verantwortlicher</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.controller.title')}</h2>
               <Card>
                 <CardContent className="pt-6">
-                  <p className="mb-2">Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
-                  <p className="text-sm text-muted-foreground">
-                    TradeNotes GmbH<br />
-                    Musterstraße 123<br />
-                    10115 Berlin, Deutschland<br />
-                    E-Mail: datenschutz@tradenotes.io
+                  <p className="mb-2">{t('privacy.sections.controller.content')}</p>
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">
+                    {t('privacy.sections.controller.company')}
                   </p>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">2. Erhebung und Speicherung personenbezogener Daten</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.collection.title')}</h2>
               <Card>
                 <CardContent className="pt-6 space-y-4">
                   <div>
-                    <h3 className="font-semibold mb-2">2.1 Beim Besuch der Website</h3>
+                    <h3 className="font-semibold mb-2">{t('privacy.sections.collection.website.title')}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Beim Aufrufen unserer Website werden automatisch Informationen erfasst:
+                      {t('privacy.sections.collection.website.intro')}
                     </p>
                     <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1 ml-4">
-                      <li>IP-Adresse (anonymisiert nach 24 Stunden)</li>
-                      <li>Datum und Uhrzeit des Zugriffs</li>
-                      <li>Browsertyp und -version</li>
-                      <li>Verwendetes Betriebssystem</li>
+                      {(t('privacy.sections.collection.website.items', { returnObjects: true }) as string[]).map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
                     </ul>
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold mb-2">2.2 Bei der Registrierung</h3>
+                    <h3 className="font-semibold mb-2">{t('privacy.sections.collection.registration.title')}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Für die Nutzung unseres Services erheben wir:
+                      {t('privacy.sections.collection.registration.intro')}
                     </p>
                     <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1 ml-4">
-                      <li>E-Mail-Adresse</li>
-                      <li>Passwort (verschlüsselt gespeichert)</li>
-                      <li>Optionale Profildaten (Name, Währung, Zeitzone)</li>
+                      {(t('privacy.sections.collection.registration.items', { returnObjects: true }) as string[]).map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
                     </ul>
                   </div>
 
                   <div>
-                    <h3 className="font-semibold mb-2">2.3 Trading-Daten</h3>
+                    <h3 className="font-semibold mb-2">{t('privacy.sections.collection.trading.title')}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Ihre Trading-Daten (Trades, Journal-Einträge, Analysen) werden ausschließlich für Sie gespeichert 
-                      und niemals mit Dritten geteilt oder für andere Zwecke verwendet.
+                      {t('privacy.sections.collection.trading.description')}
                     </p>
                   </div>
                 </CardContent>
@@ -146,47 +142,47 @@ const Datenschutz = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">3. Rechtsgrundlage der Verarbeitung</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.legalBasis.title')}</h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground mb-2">
-                    Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf folgenden Rechtsgrundlagen:
+                    {t('privacy.sections.legalBasis.intro')}
                   </p>
                   <ul className="text-sm text-muted-foreground list-disc list-inside space-y-2 ml-4">
-                    <li><strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Vertragserfüllung und vorvertragliche Maßnahmen</li>
-                    <li><strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Berechtigte Interessen (z.B. Websiteanalyse, Sicherheit)</li>
-                    <li><strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Ihre ausdrückliche Einwilligung (z.B. Newsletter)</li>
+                    {(t('privacy.sections.legalBasis.items', { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">4. Weitergabe von Daten</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.dataSharing.title')}</h2>
               <Card>
                 <CardContent className="pt-6 space-y-4">
                   <p className="text-sm text-muted-foreground">
-                    Wir geben Ihre Daten nur in folgenden Fällen weiter:
+                    {t('privacy.sections.dataSharing.intro')}
                   </p>
                   <div>
-                    <h3 className="font-semibold mb-2">4.1 Service-Provider</h3>
+                    <h3 className="font-semibold mb-2">{t('privacy.sections.dataSharing.serviceProviders.title')}</h3>
                     <p className="text-sm text-muted-foreground mb-2">
-                      Wir nutzen zuverlässige Dienstleister für den Betrieb unserer Plattform:
+                      {t('privacy.sections.dataSharing.serviceProviders.intro')}
                     </p>
                     <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1 ml-4">
-                      <li><strong>Lovable Cloud:</strong> Hosting und Backend-Infrastruktur (SOC 2 Type 2, ISO 27001:2022)</li>
-                      <li><strong>EU-Rechenzentren:</strong> Datenspeicherung in Frankfurt, Deutschland</li>
+                      {(t('privacy.sections.dataSharing.serviceProviders.items', { returnObjects: true }) as string[]).map((item, i) => (
+                        <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                      ))}
                     </ul>
                     <p className="text-sm text-muted-foreground mt-2">
-                      Alle Dienstleister sind vertraglich zur Einhaltung der DSGVO verpflichtet und verarbeiten 
-                      Daten ausschließlich nach unseren Weisungen.
+                      {t('privacy.sections.dataSharing.serviceProviders.compliance')}
                     </p>
                   </div>
                   
                   <div>
-                    <h3 className="font-semibold mb-2">4.2 Rechtliche Verpflichtungen</h3>
+                    <h3 className="font-semibold mb-2">{t('privacy.sections.dataSharing.legal.title')}</h3>
                     <p className="text-sm text-muted-foreground">
-                      Datenoffenlegung nur bei gesetzlicher Verpflichtung oder behördlicher Anordnung.
+                      {t('privacy.sections.dataSharing.legal.description')}
                     </p>
                   </div>
                 </CardContent>
@@ -196,131 +192,91 @@ const Datenschutz = () => {
             <section>
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <Eye className="h-6 w-6 text-primary" />
-                5. Ihre Rechte
+                {t('privacy.sections.rights.title')}
               </h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground mb-4">
-                    Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+                    {t('privacy.sections.rights.intro')}
                   </p>
                   <ul className="text-sm text-muted-foreground space-y-3">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Recht auf Auskunft (Art. 15 DSGVO):</strong> Sie können jederzeit Auskunft über 
-                        Ihre gespeicherten Daten verlangen.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Recht auf Berichtigung (Art. 16 DSGVO):</strong> Unrichtige Daten werden 
-                        unverzüglich korrigiert.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Recht auf Löschung (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer Daten 
-                        verlangen, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Recht auf Einschränkung (Art. 18 DSGVO):</strong> Sie können die Einschränkung 
-                        der Verarbeitung verlangen.
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie erhalten Ihre Daten 
-                        in einem strukturierten, gängigen Format (CSV-Export).
-                      </div>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                      <div>
-                        <strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Sie können der Verarbeitung 
-                        Ihrer Daten widersprechen.
-                      </div>
-                    </li>
+                    {Object.entries(t('privacy.sections.rights.items', { returnObjects: true }) as Record<string, string>).map(([key, value]) => (
+                      <li key={key} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                        <div dangerouslySetInnerHTML={{ __html: value }} />
+                      </li>
+                    ))}
                   </ul>
                   <p className="text-sm text-muted-foreground mt-4">
-                    Zur Ausübung Ihrer Rechte kontaktieren Sie uns unter: <strong>datenschutz@tradenotes.io</strong>
+                    {t('privacy.sections.rights.contact')}
                   </p>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">6. Datensicherheit</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.security.title')}</h2>
               <Card>
                 <CardContent className="pt-6 space-y-3">
                   <p className="text-sm text-muted-foreground">
-                    Wir setzen modernste Sicherheitsmaßnahmen ein:
+                    {t('privacy.sections.security.intro')}
                   </p>
                   <ul className="text-sm text-muted-foreground list-disc list-inside space-y-2 ml-4">
-                    <li>TLS 1.3 Verschlüsselung für alle Datenübertragungen</li>
-                    <li>AES-256 Verschlüsselung für gespeicherte Daten</li>
-                    <li>Regelmäßige Sicherheitsaudits durch unabhängige Prüfer (SOC 2)</li>
-                    <li>Automatische Backups und Disaster Recovery Pläne</li>
-                    <li>Strenge Zugriffskontrollen und Authentifizierung</li>
-                    <li>Monitoring und Logging aller sicherheitsrelevanten Ereignisse</li>
+                    {(t('privacy.sections.security.items', { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">7. Cookies und Tracking</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.cookies.title')}</h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground mb-3">
-                    Wir verwenden ausschließlich technisch notwendige Cookies für die Funktionalität der Website:
+                    {t('privacy.sections.cookies.intro')}
                   </p>
                   <ul className="text-sm text-muted-foreground list-disc list-inside space-y-2 ml-4">
-                    <li>Session-Cookies für die Authentifizierung</li>
-                    <li>Präferenz-Cookies (Theme, Sprache)</li>
+                    {(t('privacy.sections.cookies.items', { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-muted-foreground mt-3">
-                    Wir verwenden <strong>keine</strong> Marketing-Cookies oder Third-Party-Tracking.
+                    {t('privacy.sections.cookies.noTracking')}
                   </p>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">8. Speicherdauer</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.retention.title')}</h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground mb-3">
-                    Wir speichern Ihre Daten nur so lange wie nötig:
+                    {t('privacy.sections.retention.intro')}
                   </p>
                   <ul className="text-sm text-muted-foreground list-disc list-inside space-y-2 ml-4">
-                    <li>Account-Daten: Bis zur Löschung Ihres Accounts</li>
-                    <li>Trading-Daten: Bis zur Löschung Ihres Accounts</li>
-                    <li>Log-Daten: Maximal 90 Tage</li>
-                    <li>Backup-Daten: Maximal 30 Tage</li>
+                    {(t('privacy.sections.retention.items', { returnObjects: true }) as string[]).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                   <p className="text-sm text-muted-foreground mt-3">
-                    Nach Account-Löschung werden alle Ihre Daten innerhalb von 30 Tagen vollständig entfernt.
+                    {t('privacy.sections.retention.deletion')}
                   </p>
                 </CardContent>
               </Card>
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-4">9. Änderungen dieser Datenschutzerklärung</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('privacy.sections.changes.title')}</h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground">
-                    Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen 
-                    oder Änderungen unseres Services anzupassen. Die aktuelle Fassung finden Sie stets auf dieser Seite.
+                    {t('privacy.sections.changes.description')}
                   </p>
                   <p className="text-sm text-muted-foreground mt-3">
-                    <strong>Letzte Aktualisierung:</strong> {new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    <strong>{t('privacy.sections.changes.lastUpdated')}</strong> {new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
                   </p>
                 </CardContent>
               </Card>
@@ -329,19 +285,15 @@ const Datenschutz = () => {
             <section>
               <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                 <FileText className="h-6 w-6 text-primary" />
-                10. Beschwerderecht
+                {t('privacy.sections.complaint.title')}
               </h2>
               <Card>
                 <CardContent className="pt-6">
                   <p className="text-sm text-muted-foreground mb-3">
-                    Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren:
+                    {t('privacy.sections.complaint.intro')}
                   </p>
-                  <p className="text-sm text-muted-foreground">
-                    <strong>Die Bundesbeauftragte für den Datenschutz und die Informationsfreiheit</strong><br />
-                    Graurheindorfer Str. 153<br />
-                    53117 Bonn<br />
-                    Telefon: +49 (0)228 997799-0<br />
-                    E-Mail: poststelle@bfdi.bund.de
+                  <p className="text-sm text-muted-foreground whitespace-pre-line">
+                    {t('privacy.sections.complaint.authority')}
                   </p>
                 </CardContent>
               </Card>
