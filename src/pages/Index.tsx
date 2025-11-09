@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TrendingUp, DollarSign, Target, Activity, Info } from "lucide-react";
+import { TrendingUp, TrendingDown, DollarSign, Target, BarChart3, Scale, Award, Calculator, Info } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { RadialKPICard } from "@/components/RadialKPICard";
@@ -237,7 +237,7 @@ const Index = () => {
                 title={t("dashboard.avgRMultiple")}
                 value={Math.min(kpis.avgRMultipleNum * 50, 100)}
                 displayValue={kpis.avgRMultiple}
-                icon={TrendingUp}
+                icon={Scale}
                 tooltip={t("dashboard.avgRMultipleTooltip")}
                 glossaryLink="/glossary#r-multiple"
                 color={getRMultipleColor(kpis.avgRMultipleNum)}
@@ -247,7 +247,7 @@ const Index = () => {
                 title={t("dashboard.avgRMultiple")}
                 value={0}
                 displayValue="N/A"
-                icon={TrendingUp}
+                icon={Scale}
                 tooltip={t("dashboard.avgRMultipleTooltip")}
                 glossaryLink="/glossary#r-multiple"
                 color="primary"
@@ -258,7 +258,7 @@ const Index = () => {
                 title={t("dashboard.profitFactor")}
                 value={Math.min(kpis.profitFactorNum * 20, 100)}
                 displayValue={kpis.profitFactor}
-                icon={TrendingUp}
+                icon={Award}
                 tooltip={t("dashboard.profitFactorTooltip")}
                 glossaryLink="/glossary#profit-factor"
                 color={getProfitFactorColor(kpis.profitFactorNum)}
@@ -268,7 +268,7 @@ const Index = () => {
                 title={t("dashboard.profitFactor")}
                 value={100}
                 displayValue={kpis.profitFactor}
-                icon={TrendingUp}
+                icon={Award}
                 tooltip={t("dashboard.profitFactorTooltip")}
                 glossaryLink="/glossary#profit-factor"
                 color="success"
@@ -281,7 +281,7 @@ const Index = () => {
             <KPICard
               title={t("dashboard.totalTrades")}
               value={kpis.totalTrades}
-              icon={Activity}
+              icon={BarChart3}
             />
             <KPICardWithTooltip
               title={t("dashboard.netPnL")}
@@ -293,7 +293,7 @@ const Index = () => {
             <KPICardWithTooltip
               title={t("dashboard.expectancy")}
               value={formatCurrency(kpis.expectancyNum)}
-              icon={DollarSign}
+              icon={Calculator}
               tooltip={t("dashboard.expectancyTooltip")}
               glossaryLink="/glossary#expectancy"
               valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
@@ -317,7 +317,9 @@ const Index = () => {
                     </HoverCardContent>
                   </HoverCard>
                 </div>
-                <Activity className="h-4 w-4 text-muted-foreground" />
+                <div className="rounded-lg bg-primary/10 p-2">
+                  <Scale className="h-5 w-5 text-primary" />
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
@@ -330,7 +332,7 @@ const Index = () => {
             <KPICardWithTooltip
               title={t("dashboard.maxDrawdown")}
               value={formatCurrencyCompact(parseFloat(kpis.maxDrawdown))}
-              icon={TrendingUp}
+              icon={TrendingDown}
               tooltip={t("dashboard.maxDrawdownTooltip")}
               glossaryLink="/glossary#max-drawdown"
               valueColor="destructive"
