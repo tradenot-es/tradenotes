@@ -805,5 +805,91 @@
     "savePrep": "Tägliche Vorbereitung speichern",
     "saved": "Tägliche Vorbereitung erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der täglichen Vorbereitung"
+  },
+  "terms": {
+    "title": "Allgemeine Geschäftsbedingungen (AGB)",
+    "lastUpdated": "Stand: Januar 2025",
+    "scope": {
+      "title": "1. Geltungsbereich",
+      "content1": "Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Trading-Journal-Plattform (nachfolgend 'Plattform' genannt). Mit der Registrierung und Nutzung stimmen Sie diesen AGB zu.",
+      "content2": "Diese AGB gelten ausschließlich. Abweichende, entgegenstehende oder ergänzende AGB des Nutzers werden nur dann und insoweit Vertragsbestandteil, als ihrer Geltung ausdrücklich zugestimmt wurde."
+    },
+    "parties": {
+      "title": "2. Vertragspartner",
+      "content": "Der Vertrag kommt zustande zwischen dem Nutzer und dem Betreiber der Plattform. Kontaktdaten finden Sie im Impressum."
+    },
+    "contract": {
+      "title": "3. Vertragsschluss",
+      "content1": "Mit der Registrierung gibt der Nutzer ein Angebot zum Abschluss eines Nutzungsvertrages ab. Der Vertrag kommt durch die Bestätigung der Registrierung per E-Mail zustande.",
+      "content2": "Die Registrierung ist nur volljährigen, voll geschäftsfähigen Personen gestattet."
+    },
+    "trial": {
+      "title": "4. Kostenlose Testphase",
+      "content1": "Neue Nutzer erhalten eine 14-tägige kostenlose Testphase mit vollem Funktionsumfang. Eine Kündigung ist jederzeit während der Testphase möglich.",
+      "content2": "Nach Ablauf der Testphase wandelt sich der Account automatisch in ein kostenpflichtiges Abonnement um, sofern keine Kündigung erfolgt ist."
+    },
+    "pricing": {
+      "title": "5. Preise und Zahlungsbedingungen",
+      "content1": "Die aktuellen Preise sind auf der Website ersichtlich. Alle Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer.",
+      "content2": "Die Zahlung erfolgt im Voraus für den gewählten Abrechnungszeitraum (monatlich oder jährlich). Die Abrechnung erfolgt über unseren Zahlungsdienstleister Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Widerrufsrecht (für Verbraucher in der EU)",
+      "content1": "Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsschlusses.",
+      "content2": "Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erklärung (z. B. per E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.",
+      "content3": "Haben Sie die Leistung während der Widerrufsfrist bereits in Anspruch genommen und ausdrücklich zugestimmt, dass wir mit der Leistung beginnen, erlischt Ihr Widerrufsrecht."
+    },
+    "license": {
+      "title": "7. Nutzungsrechte und Lizenz",
+      "content1": "Der Nutzer erhält ein einfaches, nicht übertragbares Nutzungsrecht an der Plattform für die Vertragslaufzeit. Untersagt ist insbesondere:",
+      "restriction1": "Die Weitergabe von Zugangsdaten an Dritte",
+      "restriction2": "Das Reverse Engineering oder Dekompilieren der Software",
+      "restriction3": "Die kommerzielle Weitergabe von Inhalten der Plattform",
+      "restriction4": "Die Nutzung für illegale oder betrügerische Zwecke"
+    },
+    "obligations": {
+      "title": "8. Nutzerpflichten",
+      "content1": "Der Nutzer verpflichtet sich:",
+      "rule1": "Nur wahrheitsgemäße Angaben bei der Registrierung zu machen",
+      "rule2": "Die Zugangsdaten vertraulich zu behandeln und vor dem Zugriff Dritter zu schützen",
+      "rule3": "Keine rechtsverletzenden oder schädlichen Inhalte zu speichern oder zu verbreiten",
+      "rule4": "Die Plattform nicht für automatisierte Massenzugriffe zu nutzen"
+    },
+    "liability": {
+      "title": "9. Haftung",
+      "content1": "Für Schäden haftet der Betreiber nur bei Vorsatz und grober Fahrlässigkeit. Dies gilt nicht für die Verletzung von Leben, Körper und Gesundheit oder die Verletzung wesentlicher Vertragspflichten (Kardinalspflichten).",
+      "content2": "Die Plattform dient ausschließlich zu Dokumentations- und Analysezwecken. Sie stellt keine Anlageberatung dar und ersetzt nicht die Beratung durch einen professionellen Finanzberater.",
+      "content3": "Der Nutzer ist selbst für die Sicherung seiner Daten verantwortlich. Der Betreiber empfiehlt regelmäßige Exporte wichtiger Daten."
+    },
+    "security": {
+      "title": "10. Datensicherheit und Zertifizierungen",
+      "content1": "Die Plattform erfüllt höchste Sicherheitsstandards:",
+      "cert1": "SOC 2 Type 2 Zertifizierung – Nachweis über sichere Datenverarbeitung und -schutz",
+      "cert2": "ISO 27001:2022 Zertifizierung – Internationaler Standard für Informationssicherheits-Managementsysteme",
+      "cert3": "DSGVO-Konformität – Alle Daten werden in EU-Rechenzentren (Frankfurt) gespeichert und verarbeitet"
+    },
+    "termination": {
+      "title": "11. Laufzeit und Kündigung",
+      "content1": "Der Vertrag hat eine Mindestlaufzeit entsprechend dem gewählten Abrechnungszeitraum und verlängert sich automatisch, wenn er nicht vor Ablauf gekündigt wird.",
+      "content2": "Die Kündigung kann jederzeit über die Account-Einstellungen erfolgen und wird zum Ende des bezahlten Zeitraums wirksam. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt."
+    },
+    "changes": {
+      "title": "12. Änderungen der AGB",
+      "content": "Der Betreiber behält sich vor, diese AGB zu ändern. Nutzer werden mindestens 30 Tage vor Inkrafttreten per E-Mail informiert. Widerspricht der Nutzer nicht innerhalb von 30 Tagen, gelten die neuen AGB als angenommen."
+    },
+    "law": {
+      "title": "13. Anwendbares Recht und Gerichtsstand",
+      "content1": "Für Nutzer in der EU gilt das Recht des Landes, in dem der Nutzer seinen gewöhnlichen Aufenthalt hat. Zwingende Verbraucherschutzvorschriften bleiben unberührt.",
+      "content2": "Für Nutzer außerhalb der EU gilt deutsches Recht unter Ausschluss des UN-Kaufrechts (CISG). Gerichtsstand ist bei Kaufleuten der Sitz des Betreibers."
+    },
+    "final": {
+      "title": "14. Schlussbestimmungen",
+      "content": "Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt."
+    },
+    "contact": {
+      "title": "Fragen zu den AGB?",
+      "content": "Bei Fragen zu diesen Geschäftsbedingungen können Sie uns jederzeit kontaktieren.",
+      "button": "Kontakt aufnehmen"
+    }
   }
 }

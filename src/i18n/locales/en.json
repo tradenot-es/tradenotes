@@ -815,5 +815,91 @@
     "savePrep": "Save Daily Preparation",
     "saved": "Daily preparation saved successfully",
     "saveError": "Error saving daily preparation"
+  },
+  "terms": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last Updated: January 2025",
+    "scope": {
+      "title": "1. Scope of Application",
+      "content1": "These Terms and Conditions govern the use of the Trading Journal Platform (hereinafter referred to as 'Platform'). By registering and using the Platform, you agree to these Terms and Conditions.",
+      "content2": "These Terms and Conditions apply exclusively. Deviating, conflicting, or supplementary terms of the user will only become part of the contract if explicitly agreed upon."
+    },
+    "parties": {
+      "title": "2. Contracting Parties",
+      "content": "The contract is concluded between the user and the operator of the Platform. Contact details can be found in the imprint."
+    },
+    "contract": {
+      "title": "3. Conclusion of Contract",
+      "content1": "By registering, the user makes an offer to conclude a usage agreement. The contract is concluded upon confirmation of registration via email.",
+      "content2": "Registration is only permitted for persons of legal age with full legal capacity."
+    },
+    "trial": {
+      "title": "4. Free Trial Period",
+      "content1": "New users receive a 14-day free trial with full access to all features. Cancellation is possible at any time during the trial period.",
+      "content2": "After the trial period expires, the account automatically converts to a paid subscription unless canceled."
+    },
+    "pricing": {
+      "title": "5. Prices and Payment Terms",
+      "content1": "Current prices are displayed on the website. All prices include applicable VAT/sales tax.",
+      "content2": "Payment is made in advance for the selected billing period (monthly or annually). Billing is processed through our payment provider Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Right of Withdrawal (for EU Consumers)",
+      "content1": "Consumers have the right to withdraw from this contract within fourteen days without giving any reason. The withdrawal period is fourteen days from the date of contract conclusion.",
+      "content2": "To exercise your right of withdrawal, you must inform us by means of a clear statement (e.g., by email) of your decision to withdraw from this contract.",
+      "content3": "If you have already used the service during the withdrawal period and expressly agreed that we begin providing the service, your right of withdrawal expires."
+    },
+    "license": {
+      "title": "7. Usage Rights and License",
+      "content1": "The user receives a simple, non-transferable right to use the Platform for the contract duration. Prohibited activities include:",
+      "restriction1": "Sharing login credentials with third parties",
+      "restriction2": "Reverse engineering or decompiling the software",
+      "restriction3": "Commercial redistribution of Platform content",
+      "restriction4": "Use for illegal or fraudulent purposes"
+    },
+    "obligations": {
+      "title": "8. User Obligations",
+      "content1": "The user agrees to:",
+      "rule1": "Provide only truthful information during registration",
+      "rule2": "Keep login credentials confidential and protect them from third-party access",
+      "rule3": "Not store or distribute any illegal or harmful content",
+      "rule4": "Not use the Platform for automated mass access"
+    },
+    "liability": {
+      "title": "9. Liability",
+      "content1": "The operator is only liable for damages in cases of intent and gross negligence. This does not apply to injury to life, body, or health, or the breach of essential contractual obligations (cardinal obligations).",
+      "content2": "The Platform serves solely for documentation and analysis purposes. It does not constitute investment advice and does not replace consultation with a professional financial advisor.",
+      "content3": "The user is responsible for backing up their own data. The operator recommends regular exports of important data."
+    },
+    "security": {
+      "title": "10. Data Security and Certifications",
+      "content1": "The Platform meets the highest security standards:",
+      "cert1": "SOC 2 Type 2 Certification – Proof of secure data processing and protection",
+      "cert2": "ISO 27001:2022 Certification – International standard for information security management systems",
+      "cert3": "GDPR Compliance – All data is stored and processed in EU data centers (Frankfurt)"
+    },
+    "termination": {
+      "title": "11. Term and Termination",
+      "content1": "The contract has a minimum term corresponding to the selected billing period and automatically renews unless canceled before expiration.",
+      "content2": "Cancellation can be made at any time through the account settings and becomes effective at the end of the paid period. The right to extraordinary termination for good cause remains unaffected."
+    },
+    "changes": {
+      "title": "12. Changes to the Terms",
+      "content": "The operator reserves the right to modify these Terms. Users will be notified by email at least 30 days before changes take effect. If the user does not object within 30 days, the new Terms are considered accepted."
+    },
+    "law": {
+      "title": "13. Applicable Law and Jurisdiction",
+      "content1": "For users in the EU, the law of the country in which the user has their habitual residence applies. Mandatory consumer protection provisions remain unaffected.",
+      "content2": "For users outside the EU, German law applies, excluding the UN Convention on Contracts for the International Sale of Goods (CISG). For merchants, the place of jurisdiction is the operator's registered office."
+    },
+    "final": {
+      "title": "14. Final Provisions",
+      "content": "Should individual provisions of these Terms be or become invalid, the validity of the remaining provisions remains unaffected. An effective provision that comes closest to the economic purpose of the invalid provision shall replace the invalid provision."
+    },
+    "contact": {
+      "title": "Questions about the Terms?",
+      "content": "If you have any questions about these Terms and Conditions, please feel free to contact us at any time.",
+      "button": "Contact Us"
+    }
   }
 }

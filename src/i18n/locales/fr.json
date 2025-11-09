@@ -646,5 +646,91 @@
     "inputPlaceholder": "Posez une question...",
     "error": "Erreur de Traitement",
     "errorDescription": "Impossible de traiter la demande. Veuillez réessayer."
+  },
+  "terms": {
+    "title": "Conditions Générales d'Utilisation (CGU)",
+    "lastUpdated": "Dernière mise à jour : Janvier 2025",
+    "scope": {
+      "title": "1. Champ d'application",
+      "content1": "Ces Conditions Générales d'Utilisation (CGU) régissent l'utilisation de la plateforme de journal de trading (ci-après dénommée 'Plateforme'). En vous inscrivant et en utilisant la Plateforme, vous acceptez ces CGU.",
+      "content2": "Ces CGU s'appliquent exclusivement. Les CGU divergentes, contradictoires ou complémentaires de l'utilisateur ne font partie du contrat que si elles ont été expressément acceptées."
+    },
+    "parties": {
+      "title": "2. Parties contractantes",
+      "content": "Le contrat est conclu entre l'utilisateur et l'exploitant de la Plateforme. Les coordonnées se trouvent dans les mentions légales."
+    },
+    "contract": {
+      "title": "3. Conclusion du contrat",
+      "content1": "En s'inscrivant, l'utilisateur fait une offre de conclusion d'un contrat d'utilisation. Le contrat est conclu par la confirmation de l'inscription par e-mail.",
+      "content2": "L'inscription n'est autorisée qu'aux personnes majeures ayant la pleine capacité juridique."
+    },
+    "trial": {
+      "title": "4. Période d'essai gratuite",
+      "content1": "Les nouveaux utilisateurs bénéficient d'une période d'essai gratuite de 14 jours avec accès complet à toutes les fonctionnalités. La résiliation est possible à tout moment pendant la période d'essai.",
+      "content2": "À l'expiration de la période d'essai, le compte se transforme automatiquement en abonnement payant sauf résiliation."
+    },
+    "pricing": {
+      "title": "5. Prix et conditions de paiement",
+      "content1": "Les prix actuels sont affichés sur le site web. Tous les prix incluent la TVA applicable.",
+      "content2": "Le paiement est effectué à l'avance pour la période de facturation choisie (mensuelle ou annuelle). La facturation est traitée via notre prestataire de paiement Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Droit de rétractation (pour les consommateurs de l'UE)",
+      "content1": "Les consommateurs ont le droit de se rétracter de ce contrat dans un délai de quatorze jours sans avoir à motiver leur décision. Le délai de rétractation expire quatorze jours après la conclusion du contrat.",
+      "content2": "Pour exercer votre droit de rétractation, vous devez nous informer par une déclaration claire (par exemple par e-mail) de votre décision de vous rétracter du contrat.",
+      "content3": "Si vous avez déjà utilisé le service pendant la période de rétractation et accepté expressément que nous commencions à fournir le service, votre droit de rétractation expire."
+    },
+    "license": {
+      "title": "7. Droits d'utilisation et licence",
+      "content1": "L'utilisateur reçoit un droit d'utilisation simple et non transférable de la Plateforme pour la durée du contrat. Sont notamment interdits :",
+      "restriction1": "Le partage des identifiants de connexion avec des tiers",
+      "restriction2": "L'ingénierie inverse ou la décompilation du logiciel",
+      "restriction3": "La redistribution commerciale du contenu de la Plateforme",
+      "restriction4": "L'utilisation à des fins illégales ou frauduleuses"
+    },
+    "obligations": {
+      "title": "8. Obligations de l'utilisateur",
+      "content1": "L'utilisateur s'engage à :",
+      "rule1": "Fournir uniquement des informations véridiques lors de l'inscription",
+      "rule2": "Garder les identifiants de connexion confidentiels et les protéger contre l'accès de tiers",
+      "rule3": "Ne pas stocker ou diffuser de contenu illégal ou nuisible",
+      "rule4": "Ne pas utiliser la Plateforme pour des accès automatisés massifs"
+    },
+    "liability": {
+      "title": "9. Responsabilité",
+      "content1": "L'exploitant n'est responsable des dommages qu'en cas d'intention et de négligence grave. Cela ne s'applique pas aux atteintes à la vie, au corps ou à la santé, ni à la violation d'obligations contractuelles essentielles.",
+      "content2": "La Plateforme sert uniquement à des fins de documentation et d'analyse. Elle ne constitue pas un conseil en investissement et ne remplace pas la consultation d'un conseiller financier professionnel.",
+      "content3": "L'utilisateur est responsable de la sauvegarde de ses propres données. L'exploitant recommande des exports réguliers des données importantes."
+    },
+    "security": {
+      "title": "10. Sécurité des données et certifications",
+      "content1": "La Plateforme répond aux normes de sécurité les plus élevées :",
+      "cert1": "Certification SOC 2 Type 2 – Preuve d'un traitement et d'une protection sécurisés des données",
+      "cert2": "Certification ISO 27001:2022 – Norme internationale pour les systèmes de gestion de la sécurité de l'information",
+      "cert3": "Conformité RGPD – Toutes les données sont stockées et traitées dans des centres de données de l'UE (Francfort)"
+    },
+    "termination": {
+      "title": "11. Durée et résiliation",
+      "content1": "Le contrat a une durée minimale correspondant à la période de facturation choisie et se renouvelle automatiquement s'il n'est pas résilié avant l'expiration.",
+      "content2": "La résiliation peut être effectuée à tout moment via les paramètres du compte et prend effet à la fin de la période payée. Le droit à la résiliation extraordinaire pour motif valable reste intact."
+    },
+    "changes": {
+      "title": "12. Modifications des CGU",
+      "content": "L'exploitant se réserve le droit de modifier ces CGU. Les utilisateurs seront informés par e-mail au moins 30 jours avant l'entrée en vigueur. Si l'utilisateur ne s'oppose pas dans les 30 jours, les nouvelles CGU sont considérées comme acceptées."
+    },
+    "law": {
+      "title": "13. Loi applicable et juridiction",
+      "content1": "Pour les utilisateurs de l'UE, la loi du pays dans lequel l'utilisateur a sa résidence habituelle s'applique. Les dispositions impératives de protection des consommateurs restent intactes.",
+      "content2": "Pour les utilisateurs hors UE, le droit allemand s'applique, à l'exclusion de la Convention des Nations Unies sur les contrats de vente internationale de marchandises (CVIM). Pour les commerçants, le lieu de juridiction est le siège de l'exploitant."
+    },
+    "final": {
+      "title": "14. Dispositions finales",
+      "content": "Si des dispositions individuelles de ces CGU sont ou deviennent invalides, la validité des dispositions restantes n'est pas affectée. Une disposition efficace qui se rapproche le plus de l'objectif économique de la disposition invalide remplacera la disposition invalide."
+    },
+    "contact": {
+      "title": "Questions sur les CGU ?",
+      "content": "Si vous avez des questions sur ces Conditions Générales, n'hésitez pas à nous contacter à tout moment.",
+      "button": "Nous contacter"
+    }
   }
 }

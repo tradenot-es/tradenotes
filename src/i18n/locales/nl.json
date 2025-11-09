@@ -646,5 +646,91 @@
     "inputPlaceholder": "Stel een vraag...",
     "error": "Verwerkingsfout",
     "errorDescription": "Kon het verzoek niet verwerken. Probeer het opnieuw."
+  },
+  "terms": {
+    "title": "Algemene Voorwaarden",
+    "lastUpdated": "Laatst bijgewerkt: Januari 2025",
+    "scope": {
+      "title": "1. Toepassingsgebied",
+      "content1": "Deze Algemene Voorwaarden regelen het gebruik van het Trading Journal Platform (hierna 'Platform' genoemd). Door u te registreren en het Platform te gebruiken, gaat u akkoord met deze Algemene Voorwaarden.",
+      "content2": "Deze Algemene Voorwaarden zijn exclusief van toepassing. Afwijkende, tegenstrijdige of aanvullende voorwaarden van de gebruiker maken alleen deel uit van het contract indien uitdrukkelijk overeengekomen."
+    },
+    "parties": {
+      "title": "2. Contractpartijen",
+      "content": "Het contract wordt gesloten tussen de gebruiker en de exploitant van het Platform. Contactgegevens zijn te vinden in het impressum."
+    },
+    "contract": {
+      "title": "3. Contractsluiting",
+      "content1": "Door te registreren doet de gebruiker een aanbod om een gebruiksovereenkomst te sluiten. Het contract wordt gesloten door bevestiging van de registratie per e-mail.",
+      "content2": "Registratie is alleen toegestaan voor meerderjarige personen met volledige handelingsbekwaamheid."
+    },
+    "trial": {
+      "title": "4. Gratis proefperiode",
+      "content1": "Nieuwe gebruikers ontvangen een gratis proefperiode van 14 dagen met volledige toegang tot alle functies. Opzegging is op elk moment mogelijk tijdens de proefperiode.",
+      "content2": "Na afloop van de proefperiode wordt het account automatisch omgezet in een betaald abonnement, tenzij opgezegd."
+    },
+    "pricing": {
+      "title": "5. Prijzen en betalingsvoorwaarden",
+      "content1": "Actuele prijzen worden weergegeven op de website. Alle prijzen zijn inclusief toepasselijke BTW/omzetbelasting.",
+      "content2": "Betaling geschiedt vooraf voor de geselecteerde factureringsperiode (maandelijks of jaarlijks). Facturering wordt verwerkt via onze betalingsprovider Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Herroepingsrecht (voor EU-consumenten)",
+      "content1": "Consumenten hebben het recht om binnen veertien dagen zonder opgave van redenen van dit contract af te zien. De herroepingstermijn bedraagt veertien dagen vanaf de datum van contractsluiting.",
+      "content2": "Om uw herroepingsrecht uit te oefenen, moet u ons door middel van een duidelijke verklaring (bijvoorbeeld per e-mail) informeren over uw beslissing om van dit contract af te zien.",
+      "content3": "Als u de dienst al tijdens de herroepingsperiode heeft gebruikt en uitdrukkelijk heeft ingestemd dat we met het leveren van de dienst beginnen, vervalt uw herroepingsrecht."
+    },
+    "license": {
+      "title": "7. Gebruiksrechten en licentie",
+      "content1": "De gebruiker ontvangt een eenvoudig, niet-overdraagbaar recht om het Platform te gebruiken voor de contractduur. Verboden activiteiten omvatten:",
+      "restriction1": "Het delen van inloggegevens met derden",
+      "restriction2": "Reverse engineering of decompileren van de software",
+      "restriction3": "Commerciële herdistributie van Platform-inhoud",
+      "restriction4": "Gebruik voor illegale of frauduleuze doeleinden"
+    },
+    "obligations": {
+      "title": "8. Verplichtingen van de gebruiker",
+      "content1": "De gebruiker stemt ermee in:",
+      "rule1": "Alleen waarheidsgetrouwe informatie te verstrekken tijdens registratie",
+      "rule2": "Inloggegevens vertrouwelijk te houden en te beschermen tegen toegang door derden",
+      "rule3": "Geen illegale of schadelijke inhoud op te slaan of te verspreiden",
+      "rule4": "Het Platform niet te gebruiken voor geautomatiseerde massa-toegang"
+    },
+    "liability": {
+      "title": "9. Aansprakelijkheid",
+      "content1": "De exploitant is alleen aansprakelijk voor schade in gevallen van opzet en grove nalatigheid. Dit geldt niet voor letsel aan leven, lichaam of gezondheid, of schending van essentiële contractuele verplichtingen.",
+      "content2": "Het Platform dient uitsluitend voor documentatie- en analysedoeleinden. Het vormt geen beleggingsadvies en vervangt geen raadpleging van een professionele financieel adviseur.",
+      "content3": "De gebruiker is verantwoordelijk voor het maken van back-ups van hun eigen gegevens. De exploitant beveelt regelmatige exports van belangrijke gegevens aan."
+    },
+    "security": {
+      "title": "10. Gegevensbeveiliging en certificeringen",
+      "content1": "Het Platform voldoet aan de hoogste beveiligingsnormen:",
+      "cert1": "SOC 2 Type 2 Certificering – Bewijs van veilige gegevensverwerking en -bescherming",
+      "cert2": "ISO 27001:2022 Certificering – Internationale standaard voor informatiebeveiliging managementsystemen",
+      "cert3": "AVG-naleving – Alle gegevens worden opgeslagen en verwerkt in EU-datacenters (Frankfurt)"
+    },
+    "termination": {
+      "title": "11. Looptijd en beëindiging",
+      "content1": "Het contract heeft een minimale looptijd die overeenkomt met de geselecteerde factureringsperiode en wordt automatisch verlengd tenzij opgezegd voor afloop.",
+      "content2": "Opzegging kan op elk moment worden gedaan via de accountinstellingen en wordt van kracht aan het einde van de betaalde periode. Het recht op buitengewone beëindiging om gegronde redenen blijft onaangetast."
+    },
+    "changes": {
+      "title": "12. Wijzigingen in de Voorwaarden",
+      "content": "De exploitant behoudt zich het recht voor om deze Voorwaarden te wijzigen. Gebruikers worden ten minste 30 dagen voor de inwerkingtreding per e-mail geïnformeerd. Als de gebruiker niet binnen 30 dagen bezwaar maakt, worden de nieuwe Voorwaarden als geaccepteerd beschouwd."
+    },
+    "law": {
+      "title": "13. Toepasselijk recht en jurisdictie",
+      "content1": "Voor gebruikers in de EU is het recht van het land waarin de gebruiker zijn gewone verblijfplaats heeft van toepassing. Dwingende consumentenbeschermingsbepalingen blijven onaangetast.",
+      "content2": "Voor gebruikers buiten de EU is het Duitse recht van toepassing, met uitzondering van het VN-Verdrag inzake internationale koopovereenkomsten betreffende roerende zaken (CISG). Voor handelaren is de plaats van jurisdictie de geregistreerde zetel van de exploitant."
+    },
+    "final": {
+      "title": "14. Slotbepalingen",
+      "content": "Mochten individuele bepalingen van deze Voorwaarden ongeldig zijn of worden, dan blijft de geldigheid van de overige bepalingen onaangetast. Een effectieve bepaling die het dichtst bij het economische doel van de ongeldige bepaling komt, zal de ongeldige bepaling vervangen."
+    },
+    "contact": {
+      "title": "Vragen over de Voorwaarden?",
+      "content": "Als u vragen heeft over deze Algemene Voorwaarden, neem dan gerust op elk moment contact met ons op.",
+      "button": "Neem contact op"
+    }
   }
 }

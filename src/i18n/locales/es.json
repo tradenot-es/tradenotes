@@ -646,5 +646,91 @@
     "inputPlaceholder": "Haz una pregunta...",
     "error": "Error de Procesamiento",
     "errorDescription": "No se pudo procesar la solicitud. Por favor, inténtalo de nuevo."
+  },
+  "terms": {
+    "title": "Términos y Condiciones",
+    "lastUpdated": "Última actualización: Enero 2025",
+    "scope": {
+      "title": "1. Ámbito de aplicación",
+      "content1": "Estos Términos y Condiciones rigen el uso de la plataforma de diario de trading (en adelante denominada 'Plataforma'). Al registrarse y utilizar la Plataforma, acepta estos Términos y Condiciones.",
+      "content2": "Estos Términos y Condiciones se aplican exclusivamente. Los términos divergentes, contradictorios o complementarios del usuario solo formarán parte del contrato si se han aceptado expresamente."
+    },
+    "parties": {
+      "title": "2. Partes contratantes",
+      "content": "El contrato se celebra entre el usuario y el operador de la Plataforma. Los datos de contacto se encuentran en el aviso legal."
+    },
+    "contract": {
+      "title": "3. Conclusión del contrato",
+      "content1": "Al registrarse, el usuario hace una oferta para concluir un acuerdo de uso. El contrato se concluye mediante la confirmación del registro por correo electrónico.",
+      "content2": "El registro solo está permitido para personas mayores de edad con plena capacidad legal."
+    },
+    "trial": {
+      "title": "4. Período de prueba gratuito",
+      "content1": "Los nuevos usuarios reciben un período de prueba gratuito de 14 días con acceso completo a todas las funciones. La cancelación es posible en cualquier momento durante el período de prueba.",
+      "content2": "Después de que expire el período de prueba, la cuenta se convierte automáticamente en una suscripción de pago a menos que se cancele."
+    },
+    "pricing": {
+      "title": "5. Precios y condiciones de pago",
+      "content1": "Los precios actuales se muestran en el sitio web. Todos los precios incluyen el IVA/impuesto sobre las ventas aplicable.",
+      "content2": "El pago se realiza por adelantado para el período de facturación seleccionado (mensual o anual). La facturación se procesa a través de nuestro proveedor de pagos Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Derecho de desistimiento (para consumidores de la UE)",
+      "content1": "Los consumidores tienen derecho a desistir de este contrato en un plazo de catorce días sin dar ninguna razón. El plazo de desistimiento es de catorce días desde la fecha de conclusión del contrato.",
+      "content2": "Para ejercer su derecho de desistimiento, debe informarnos mediante una declaración clara (por ejemplo, por correo electrónico) de su decisión de desistir de este contrato.",
+      "content3": "Si ya ha utilizado el servicio durante el período de desistimiento y aceptó expresamente que comenzáramos a proporcionar el servicio, su derecho de desistimiento expira."
+    },
+    "license": {
+      "title": "7. Derechos de uso y licencia",
+      "content1": "El usuario recibe un derecho de uso simple y no transferible de la Plataforma durante la duración del contrato. Las actividades prohibidas incluyen:",
+      "restriction1": "Compartir credenciales de inicio de sesión con terceros",
+      "restriction2": "Ingeniería inversa o descompilación del software",
+      "restriction3": "Redistribución comercial del contenido de la Plataforma",
+      "restriction4": "Uso con fines ilegales o fraudulentos"
+    },
+    "obligations": {
+      "title": "8. Obligaciones del usuario",
+      "content1": "El usuario se compromete a:",
+      "rule1": "Proporcionar solo información veraz durante el registro",
+      "rule2": "Mantener las credenciales de inicio de sesión confidenciales y protegerlas del acceso de terceros",
+      "rule3": "No almacenar ni distribuir ningún contenido ilegal o dañino",
+      "rule4": "No utilizar la Plataforma para accesos masivos automatizados"
+    },
+    "liability": {
+      "title": "9. Responsabilidad",
+      "content1": "El operador solo es responsable de los daños en casos de intención y negligencia grave. Esto no se aplica a lesiones a la vida, el cuerpo o la salud, ni al incumplimiento de obligaciones contractuales esenciales.",
+      "content2": "La Plataforma sirve únicamente con fines de documentación y análisis. No constituye asesoramiento de inversión y no reemplaza la consulta con un asesor financiero profesional.",
+      "content3": "El usuario es responsable de hacer copias de seguridad de sus propios datos. El operador recomienda exportaciones regulares de datos importantes."
+    },
+    "security": {
+      "title": "10. Seguridad de datos y certificaciones",
+      "content1": "La Plataforma cumple con los más altos estándares de seguridad:",
+      "cert1": "Certificación SOC 2 Type 2 – Prueba de procesamiento y protección seguros de datos",
+      "cert2": "Certificación ISO 27001:2022 – Estándar internacional para sistemas de gestión de seguridad de la información",
+      "cert3": "Cumplimiento del RGPD – Todos los datos se almacenan y procesan en centros de datos de la UE (Fráncfort)"
+    },
+    "termination": {
+      "title": "11. Plazo y terminación",
+      "content1": "El contrato tiene un plazo mínimo correspondiente al período de facturación seleccionado y se renueva automáticamente a menos que se cancele antes de su vencimiento.",
+      "content2": "La cancelación se puede realizar en cualquier momento a través de la configuración de la cuenta y entra en vigencia al final del período pagado. El derecho a la terminación extraordinaria por causa justificada permanece intacto."
+    },
+    "changes": {
+      "title": "12. Cambios en los Términos",
+      "content": "El operador se reserva el derecho de modificar estos Términos. Los usuarios serán notificados por correo electrónico al menos 30 días antes de que los cambios entren en vigencia. Si el usuario no se opone dentro de los 30 días, los nuevos Términos se consideran aceptados."
+    },
+    "law": {
+      "title": "13. Ley aplicable y jurisdicción",
+      "content1": "Para los usuarios de la UE, se aplica la ley del país en el que el usuario tiene su residencia habitual. Las disposiciones obligatorias de protección del consumidor permanecen intactas.",
+      "content2": "Para usuarios fuera de la UE, se aplica la ley alemana, excluyendo la Convención de las Naciones Unidas sobre los Contratos de Compraventa Internacional de Mercaderías (CISG). Para comerciantes, el lugar de jurisdicción es la sede registrada del operador."
+    },
+    "final": {
+      "title": "14. Disposiciones finales",
+      "content": "Si las disposiciones individuales de estos Términos son o se vuelven inválidas, la validez de las disposiciones restantes permanece intacta. Una disposición efectiva que se acerque más al propósito económico de la disposición inválida reemplazará a la disposición inválida."
+    },
+    "contact": {
+      "title": "¿Preguntas sobre los Términos?",
+      "content": "Si tiene alguna pregunta sobre estos Términos y Condiciones, no dude en contactarnos en cualquier momento.",
+      "button": "Contáctenos"
+    }
   }
 }
