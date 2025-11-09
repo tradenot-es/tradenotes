@@ -50,7 +50,9 @@ export function RadialKPICard({
             </HoverCard>
           )}
         </div>
-        <Icon className="h-4 w-4 text-muted-foreground" />
+        <div className="rounded-lg bg-primary/10 p-2">
+          <Icon className="h-5 w-5 text-primary" />
+        </div>
       </CardHeader>
       <CardContent className="flex justify-center">
         <RadialProgress
