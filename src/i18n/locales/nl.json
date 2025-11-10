@@ -647,6 +647,160 @@
     "error": "Verwerkingsfout",
     "errorDescription": "Kon het verzoek niet verwerken. Probeer het opnieuw."
   },
+  "privacy": {
+    "title": "Privacybeleid",
+    "subtitle": "We nemen de bescherming van uw persoonlijke gegevens serieus. Lees hoe we uw gegevens verzamelen, gebruiken en beschermen.",
+    "certifications": {
+      "title": "Certificeringen & Naleving",
+      "soc2": {
+        "name": "SOC 2 Type 2",
+        "description": "Onafhankelijk gecontroleerd volgens de hoogste beveiligingsnormen voor clouddiensten"
+      },
+      "iso": {
+        "name": "ISO 27001:2022",
+        "description": "Gecertificeerd informatiebeveiligingsbeheersysteem volgens internationale normen"
+      },
+      "gdpr": {
+        "name": "AVG-conform",
+        "description": "Volledige naleving van de EU Algemene Verordening Gegevensbescherming met gegevensopslag in de EU"
+      }
+    },
+    "dataStorage": {
+      "title": "Gegevensopslag & Beveiliging",
+      "euRegion": {
+        "badge": "EU",
+        "title": "Gegevensopslag in de EU",
+        "description": "Al uw gegevens worden uitsluitend opgeslagen en verwerkt in zeer veilige datacenters in Frankfurt, Duitsland."
+      },
+      "encrypted": {
+        "badge": "Versleuteld",
+        "title": "End-to-end Versleuteling",
+        "description": "Uw gegevens zijn zowel tijdens transport (TLS 1.3) als in rust (AES-256) versleuteld."
+      }
+    },
+    "sections": {
+      "controller": {
+        "title": "Verwerkingsverantwoordelijke",
+        "content": "De verwerkingsverantwoordelijke voor deze website is:",
+        "company": "[Bedrijfsnaam]\n[Straat en nummer]\n[Postcode en plaats]\n[Land]\n\nEmail: [E-mailadres]\nTelefoon: [Telefoonnummer]"
+      },
+      "collection": {
+        "title": "Gegevensverzameling",
+        "website": {
+          "title": "Websitebezoeken",
+          "intro": "De volgende technische gegevens worden automatisch verzameld bij elke toegang tot onze website:",
+          "items": [
+            "IP-adres van de computer die toegang krijgt",
+            "Datum en tijd van toegang",
+            "Naam en URL van het opgehaalde bestand",
+            "Hoeveelheid overgedragen gegevens",
+            "Melding van succesvolle ophaling",
+            "Browsertype en -versie",
+            "Besturingssysteem van de gebruiker",
+            "Verwijzings-URL (eerder bezochte pagina)"
+          ]
+        },
+        "registration": {
+          "title": "Registratie",
+          "intro": "Voor het gebruik van onze diensten verzamelen we de volgende persoonlijke gegevens:",
+          "items": [
+            "E-mailadres (verplicht)",
+            "Naam (optioneel)",
+            "Profielfoto (optioneel)",
+            "Tijdzone-instellingen",
+            "Taalvoorkeuren"
+          ]
+        },
+        "trading": {
+          "title": "Handelsgegevens",
+          "description": "Alle handelsgegevens die u invoert (transacties, dagboekitems, setups, tags) worden versleuteld opgeslagen en zijn alleen voor u toegankelijk."
+        }
+      },
+      "legalBasis": {
+        "title": "Rechtsgrondslag",
+        "intro": "De verwerking van uw persoonlijke gegevens is gebaseerd op de volgende rechtsgronden:",
+        "items": [
+          "<strong>Art. 6(1)(b) AVG:</strong> Verwerking voor de uitvoering van een overeenkomst of precontractuele maatregelen",
+          "<strong>Art. 6(1)(a) AVG:</strong> Verwerking op basis van uw toestemming",
+          "<strong>Art. 6(1)(f) AVG:</strong> Verwerking voor onze legitieme belangen (bijv. om onze diensten te verbeteren)"
+        ]
+      },
+      "dataSharing": {
+        "title": "Gegevens Delen",
+        "intro": "Uw persoonlijke gegevens worden alleen met derden gedeeld in de volgende gevallen:",
+        "serviceProviders": {
+          "title": "Dienstverleners",
+          "intro": "We werken samen met zorgvuldig geselecteerde dienstverleners die ons ondersteunen bij het leveren van onze diensten:",
+          "items": [
+            "<strong>Supabase (Cloud-infrastructuur):</strong> Hosting en databasediensten in EU-datacenters",
+            "<strong>Stripe:</strong> Betalingsverwerking (onderworpen aan eigen privacybeleid)",
+            "<strong>Resend:</strong> E-mailbezorging (transactionele e-mails)"
+          ],
+          "compliance": "Alle dienstverleners zijn AVG-conform en hebben verwerkersovereenkomsten met ons gesloten volgens art. 28 AVG."
+        },
+        "legal": {
+          "title": "Wettelijke Verplichtingen",
+          "description": "We delen uw gegevens wanneer we hiertoe wettelijk verplicht zijn of wanneer dit nodig is om onze rechten te handhaven."
+        }
+      },
+      "rights": {
+        "title": "Uw Rechten",
+        "intro": "U heeft de volgende rechten met betrekking tot uw persoonlijke gegevens:",
+        "items": {
+          "access": "<strong>Recht op Toegang:</strong> U kunt te allen tijde informatie over uw opgeslagen gegevens opvragen",
+          "rectification": "<strong>Recht op Rectificatie:</strong> U kunt correctie van onjuiste gegevens verzoeken",
+          "erasure": "<strong>Recht op Verwijdering:</strong> U kunt verwijdering van uw gegevens verzoeken, tenzij wettelijke bewaarplichten van toepassing zijn",
+          "restriction": "<strong>Recht op Beperking:</strong> U kunt beperking van verwerking verzoeken",
+          "portability": "<strong>Gegevensportabiliteit:</strong> U kunt uw gegevens ontvangen in een gestructureerd, gangbaar en machineleesbaar formaat",
+          "objection": "<strong>Recht van Bezwaar:</strong> U kunt bezwaar maken tegen de verwerking van uw gegevens"
+        },
+        "contact": "Om uw rechten uit te oefenen, neem contact met ons op via de hierboven verstrekte contactgegevens."
+      },
+      "security": {
+        "title": "Beveiligingsmaatregelen",
+        "intro": "We implementeren uitgebreide technische en organisatorische beveiligingsmaatregelen:",
+        "items": [
+          "TLS 1.3-versleuteling voor alle gegevensoverdrachten",
+          "AES-256-versleuteling voor opgeslagen gegevens",
+          "Regelmatige beveiligingsaudits en penetratietests",
+          "Toegangscontrole en authenticatie met moderne standaarden",
+          "Continue monitoring en incidentrespons",
+          "Regelmatige back-ups in geografisch gescheiden datacenters"
+        ]
+      },
+      "cookies": {
+        "title": "Cookies & Tracking",
+        "intro": "We gebruiken cookies en vergelijkbare technologieën voor de volgende doeleinden:",
+        "items": [
+          "Essentiële Cookies: Voor websitefunctionaliteit (bijv. sessiebeheer, authenticatie)",
+          "Voorkeurscookies: Om uw instellingen op te slaan (bijv. taal, thema)",
+          "Prestatiecookies: Om websiteprestaties te verbeteren"
+        ],
+        "noTracking": "We gebruiken geen trackingcookies van derden en verkopen geen gegevens aan derden."
+      },
+      "retention": {
+        "title": "Bewaartermijn",
+        "intro": "We bewaren uw persoonlijke gegevens alleen zo lang als nodig is om de respectieve doelen te bereiken:",
+        "items": [
+          "Accountgegevens: Voor de duur van uw lidmaatschap plus 30 dagen",
+          "Handelsgegevens: Zolang u een actief account heeft of zoals vereist door de Duitse handelswet",
+          "Logbestanden: Maximaal 90 dagen",
+          "Factuurgegevens: 10 jaar (wettelijke bewaarplicht)"
+        ],
+        "deletion": "Na afloop van de bewaartermijn worden gegevens routinematig en automatisch verwijderd, tenzij wettelijke bewaarplichten dit verhinderen."
+      },
+      "changes": {
+        "title": "Wijzigingen in dit Privacybeleid",
+        "description": "We behouden ons het recht voor om dit privacybeleid af en toe bij te werken om ervoor te zorgen dat het altijd voldoet aan de huidige wettelijke vereisten of om wijzigingen in onze diensten door te voeren. Het nieuwe privacybeleid is van toepassing op uw volgende bezoek.",
+        "lastUpdated": "Laatst bijgewerkt:"
+      },
+      "complaint": {
+        "title": "Recht om een Klacht in te Dienen",
+        "intro": "U heeft het recht om een klacht in te dienen bij een toezichthoudende autoriteit voor gegevensbescherming:",
+        "authority": "Verantwoordelijke toezichthoudende autoriteit voor Duitsland:\nDe Federale Commissaris voor Gegevensbescherming en Vrijheid van Informatie (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTelefoon: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+      }
+    }
+  },
   "terms": {
     "title": "Algemene Voorwaarden",
     "lastUpdated": "Laatst bijgewerkt: Januari 2025",

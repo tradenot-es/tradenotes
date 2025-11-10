@@ -806,6 +806,160 @@
     "saved": "Tägliche Vorbereitung erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der täglichen Vorbereitung"
   },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "subtitle": "Wir nehmen den Schutz Ihrer persönlichen Daten ernst. Erfahren Sie, wie wir Ihre Daten sammeln, verwenden und schützen.",
+    "certifications": {
+      "title": "Zertifizierungen & Compliance",
+      "soc2": {
+        "name": "SOC 2 Type 2",
+        "description": "Unabhängig geprüft nach höchsten Sicherheitsstandards für Cloud-Dienste"
+      },
+      "iso": {
+        "name": "ISO 27001:2022",
+        "description": "Zertifiziertes Informationssicherheits-Managementsystem nach internationalen Standards"
+      },
+      "gdpr": {
+        "name": "DSGVO-konform",
+        "description": "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung mit Datenspeicherung in der EU"
+      }
+    },
+    "dataStorage": {
+      "title": "Datenspeicherung & Sicherheit",
+      "euRegion": {
+        "badge": "EU",
+        "title": "Datenspeicherung in der EU",
+        "description": "Alle Ihre Daten werden ausschließlich in hochsicheren Rechenzentren in Frankfurt, Deutschland gespeichert und verarbeitet."
+      },
+      "encrypted": {
+        "badge": "Verschlüsselt",
+        "title": "End-to-End Verschlüsselung",
+        "description": "Ihre Daten sind sowohl bei der Übertragung (TLS 1.3) als auch im Ruhezustand (AES-256) verschlüsselt."
+      }
+    },
+    "sections": {
+      "controller": {
+        "title": "Verantwortlicher",
+        "content": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:",
+        "company": "[Firmenname]\n[Straße und Hausnummer]\n[PLZ und Ort]\n[Land]\n\nE-Mail: [E-Mail-Adresse]\nTelefon: [Telefonnummer]"
+      },
+      "collection": {
+        "title": "Datenerhebung",
+        "website": {
+          "title": "Beim Besuch der Website",
+          "intro": "Bei jedem Zugriff auf unsere Website werden automatisch folgende technische Daten erhoben:",
+          "items": [
+            "IP-Adresse des zugreifenden Rechners",
+            "Datum und Uhrzeit des Zugriffs",
+            "Name und URL der abgerufenen Datei",
+            "Übertragene Datenmenge",
+            "Meldung über erfolgreichen Abruf",
+            "Browsertyp und Browserversion",
+            "Betriebssystem des Nutzers",
+            "Referrer URL (zuvor besuchte Seite)"
+          ]
+        },
+        "registration": {
+          "title": "Bei der Registrierung",
+          "intro": "Für die Nutzung unserer Dienste erheben wir folgende personenbezogene Daten:",
+          "items": [
+            "E-Mail-Adresse (erforderlich)",
+            "Name (optional)",
+            "Profilbild (optional)",
+            "Zeitzone-Einstellungen",
+            "Sprach-Präferenzen"
+          ]
+        },
+        "trading": {
+          "title": "Trading-Daten",
+          "description": "Alle von Ihnen eingegebenen Trading-Daten (Trades, Journal-Einträge, Setups, Tags) werden verschlüsselt gespeichert und sind nur für Sie zugänglich."
+        }
+      },
+      "legalBasis": {
+        "title": "Rechtsgrundlage",
+        "intro": "Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage folgender Rechtsgrundlagen:",
+        "items": [
+          "<strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Verarbeitung zur Erfüllung des Vertrages bzw. zur Durchführung vorvertraglicher Maßnahmen",
+          "<strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Verarbeitung aufgrund Ihrer Einwilligung",
+          "<strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Verarbeitung zur Wahrung unserer berechtigten Interessen (z.B. zur Verbesserung unserer Dienste)"
+        ]
+      },
+      "dataSharing": {
+        "title": "Weitergabe von Daten",
+        "intro": "Ihre personenbezogenen Daten werden nur in folgenden Fällen an Dritte weitergegeben:",
+        "serviceProviders": {
+          "title": "Dienstleister",
+          "intro": "Wir arbeiten mit sorgfältig ausgewählten Dienstleistern zusammen, die uns bei der Erbringung unserer Dienste unterstützen:",
+          "items": [
+            "<strong>Supabase (Cloud-Infrastruktur):</strong> Hosting und Datenbank-Dienste in EU-Rechenzentren",
+            "<strong>Stripe:</strong> Zahlungsabwicklung (unterliegt eigener Datenschutzerklärung)",
+            "<strong>Resend:</strong> E-Mail-Versand (transaktionale E-Mails)"
+          ],
+          "compliance": "Alle Dienstleister sind DSGVO-konform und haben mit uns Auftragsverarbeitungsverträge nach Art. 28 DSGVO geschlossen."
+        },
+        "legal": {
+          "title": "Rechtliche Verpflichtungen",
+          "description": "Wir geben Ihre Daten weiter, wenn wir gesetzlich dazu verpflichtet sind oder dies zur Durchsetzung unserer Rechte erforderlich ist."
+        }
+      },
+      "rights": {
+        "title": "Ihre Rechte",
+        "intro": "Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:",
+        "items": {
+          "access": "<strong>Auskunftsrecht:</strong> Sie können jederzeit Auskunft über die von uns gespeicherten Daten verlangen",
+          "rectification": "<strong>Berichtigungsrecht:</strong> Sie können die Berichtigung unrichtiger Daten verlangen",
+          "erasure": "<strong>Löschungsrecht:</strong> Sie können die Löschung Ihrer Daten verlangen, soweit keine gesetzlichen Aufbewahrungspflichten bestehen",
+          "restriction": "<strong>Einschränkungsrecht:</strong> Sie können die Einschränkung der Verarbeitung verlangen",
+          "portability": "<strong>Datenübertragbarkeit:</strong> Sie können Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format erhalten",
+          "objection": "<strong>Widerspruchsrecht:</strong> Sie können der Verarbeitung Ihrer Daten widersprechen"
+        },
+        "contact": "Zur Ausübung Ihrer Rechte wenden Sie sich bitte an die oben genannten Kontaktdaten."
+      },
+      "security": {
+        "title": "Sicherheitsmaßnahmen",
+        "intro": "Wir setzen umfangreiche technische und organisatorische Sicherheitsmaßnahmen ein:",
+        "items": [
+          "TLS 1.3 Verschlüsselung für alle Datenübertragungen",
+          "AES-256 Verschlüsselung für gespeicherte Daten",
+          "Regelmäßige Sicherheitsaudits und Penetrationstests",
+          "Zugriffskontrolle und Authentifizierung mit modernen Standards",
+          "Kontinuierliches Monitoring und Incident Response",
+          "Regelmäßige Backups in geografisch getrennten Rechenzentren"
+        ]
+      },
+      "cookies": {
+        "title": "Cookies & Tracking",
+        "intro": "Wir verwenden Cookies und ähnliche Technologien für folgende Zwecke:",
+        "items": [
+          "Notwendige Cookies: Für die Funktion der Website (z.B. Session-Management, Authentifizierung)",
+          "Präferenz-Cookies: Zum Speichern Ihrer Einstellungen (z.B. Sprache, Theme)",
+          "Performance-Cookies: Zur Verbesserung der Website-Performance"
+        ],
+        "noTracking": "Wir verwenden keine Tracking-Cookies von Drittanbietern und verkaufen keine Daten an Dritte."
+      },
+      "retention": {
+        "title": "Speicherdauer",
+        "intro": "Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die Erfüllung der jeweiligen Zwecke erforderlich ist:",
+        "items": [
+          "Account-Daten: Für die Dauer Ihrer Mitgliedschaft plus 30 Tage",
+          "Trading-Daten: Solange Sie ein aktives Konto haben oder nach deutschem Handelsrecht erforderlich",
+          "Log-Dateien: Maximal 90 Tage",
+          "Rechnungsdaten: 10 Jahre (gesetzliche Aufbewahrungspflicht)"
+        ],
+        "deletion": "Nach Ablauf der Speicherdauer werden die Daten routinemäßig und automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen."
+      },
+      "changes": {
+        "title": "Änderungen dieser Datenschutzerklärung",
+        "description": "Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.",
+        "lastUpdated": "Stand:"
+      },
+      "complaint": {
+        "title": "Beschwerderecht",
+        "intro": "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren:",
+        "authority": "Zuständige Aufsichtsbehörde für Deutschland:\nDer Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTelefon: +49 (0)228-997799-0\nE-Mail: poststelle@bfdi.bund.de"
+      }
+    }
+  },
   "terms": {
     "title": "Allgemeine Geschäftsbedingungen (AGB)",
     "lastUpdated": "Stand: Januar 2025",

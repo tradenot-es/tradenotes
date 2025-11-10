@@ -647,6 +647,160 @@
     "error": "Erreur de Traitement",
     "errorDescription": "Impossible de traiter la demande. Veuillez réessayer."
   },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "subtitle": "Nous prenons au sérieux la protection de vos données personnelles. Découvrez comment nous collectons, utilisons et protégeons vos données.",
+    "certifications": {
+      "title": "Certifications & Conformité",
+      "soc2": {
+        "name": "SOC 2 Type 2",
+        "description": "Audité indépendamment selon les normes de sécurité les plus élevées pour les services cloud"
+      },
+      "iso": {
+        "name": "ISO 27001:2022",
+        "description": "Système de gestion de la sécurité de l'information certifié selon les normes internationales"
+      },
+      "gdpr": {
+        "name": "Conforme RGPD",
+        "description": "Conformité totale avec le Règlement Général sur la Protection des Données de l'UE avec stockage des données dans l'UE"
+      }
+    },
+    "dataStorage": {
+      "title": "Stockage et Sécurité des Données",
+      "euRegion": {
+        "badge": "UE",
+        "title": "Stockage des Données dans l'UE",
+        "description": "Toutes vos données sont stockées et traitées exclusivement dans des centres de données hautement sécurisés à Francfort, Allemagne."
+      },
+      "encrypted": {
+        "badge": "Chiffré",
+        "title": "Chiffrement de Bout en Bout",
+        "description": "Vos données sont chiffrées à la fois en transit (TLS 1.3) et au repos (AES-256)."
+      }
+    },
+    "sections": {
+      "controller": {
+        "title": "Responsable du Traitement",
+        "content": "Le responsable du traitement des données pour ce site web est:",
+        "company": "[Nom de l'entreprise]\n[Rue et numéro]\n[Code postal et ville]\n[Pays]\n\nEmail: [Adresse email]\nTéléphone: [Numéro de téléphone]"
+      },
+      "collection": {
+        "title": "Collecte de Données",
+        "website": {
+          "title": "Visites du Site Web",
+          "intro": "Les données techniques suivantes sont automatiquement collectées à chaque accès à notre site web:",
+          "items": [
+            "Adresse IP de l'ordinateur accédant",
+            "Date et heure d'accès",
+            "Nom et URL du fichier récupéré",
+            "Quantité de données transférées",
+            "Notification de récupération réussie",
+            "Type et version du navigateur",
+            "Système d'exploitation de l'utilisateur",
+            "URL de référence (page précédemment visitée)"
+          ]
+        },
+        "registration": {
+          "title": "Inscription",
+          "intro": "Pour utiliser nos services, nous collectons les données personnelles suivantes:",
+          "items": [
+            "Adresse email (obligatoire)",
+            "Nom (optionnel)",
+            "Photo de profil (optionnelle)",
+            "Paramètres de fuseau horaire",
+            "Préférences linguistiques"
+          ]
+        },
+        "trading": {
+          "title": "Données de Trading",
+          "description": "Toutes les données de trading que vous saisissez (trades, entrées de journal, setups, tags) sont stockées de manière chiffrée et ne sont accessibles qu'à vous."
+        }
+      },
+      "legalBasis": {
+        "title": "Base Légale",
+        "intro": "Le traitement de vos données personnelles repose sur les bases légales suivantes:",
+        "items": [
+          "<strong>Art. 6(1)(b) RGPD:</strong> Traitement pour l'exécution d'un contrat ou de mesures précontractuelles",
+          "<strong>Art. 6(1)(a) RGPD:</strong> Traitement basé sur votre consentement",
+          "<strong>Art. 6(1)(f) RGPD:</strong> Traitement pour nos intérêts légitimes (par ex., pour améliorer nos services)"
+        ]
+      },
+      "dataSharing": {
+        "title": "Partage des Données",
+        "intro": "Vos données personnelles ne sont partagées avec des tiers que dans les cas suivants:",
+        "serviceProviders": {
+          "title": "Prestataires de Services",
+          "intro": "Nous travaillons avec des prestataires de services soigneusement sélectionnés qui nous aident à fournir nos services:",
+          "items": [
+            "<strong>Supabase (Infrastructure Cloud):</strong> Hébergement et services de base de données dans des centres de données UE",
+            "<strong>Stripe:</strong> Traitement des paiements (soumis à sa propre politique de confidentialité)",
+            "<strong>Resend:</strong> Envoi d'emails (emails transactionnels)"
+          ],
+          "compliance": "Tous les prestataires de services sont conformes au RGPD et ont signé des accords de traitement de données avec nous selon l'art. 28 RGPD."
+        },
+        "legal": {
+          "title": "Obligations Légales",
+          "description": "Nous partageons vos données lorsque nous sommes légalement tenus de le faire ou lorsque cela est nécessaire pour faire valoir nos droits."
+        }
+      },
+      "rights": {
+        "title": "Vos Droits",
+        "intro": "Vous disposez des droits suivants concernant vos données personnelles:",
+        "items": {
+          "access": "<strong>Droit d'Accès:</strong> Vous pouvez demander des informations sur vos données stockées à tout moment",
+          "rectification": "<strong>Droit de Rectification:</strong> Vous pouvez demander la correction de données inexactes",
+          "erasure": "<strong>Droit à l'Effacement:</strong> Vous pouvez demander la suppression de vos données, sauf si des obligations légales de conservation s'appliquent",
+          "restriction": "<strong>Droit à la Limitation:</strong> Vous pouvez demander la limitation du traitement",
+          "portability": "<strong>Portabilité des Données:</strong> Vous pouvez recevoir vos données dans un format structuré, couramment utilisé et lisible par machine",
+          "objection": "<strong>Droit d'Opposition:</strong> Vous pouvez vous opposer au traitement de vos données"
+        },
+        "contact": "Pour exercer vos droits, veuillez nous contacter en utilisant les coordonnées fournies ci-dessus."
+      },
+      "security": {
+        "title": "Mesures de Sécurité",
+        "intro": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles complètes:",
+        "items": [
+          "Chiffrement TLS 1.3 pour toutes les transmissions de données",
+          "Chiffrement AES-256 pour les données stockées",
+          "Audits de sécurité réguliers et tests de pénétration",
+          "Contrôle d'accès et authentification avec des normes modernes",
+          "Surveillance continue et réponse aux incidents",
+          "Sauvegardes régulières dans des centres de données géographiquement séparés"
+        ]
+      },
+      "cookies": {
+        "title": "Cookies & Suivi",
+        "intro": "Nous utilisons des cookies et des technologies similaires aux fins suivantes:",
+        "items": [
+          "Cookies Essentiels: Pour la fonctionnalité du site web (par ex., gestion de session, authentification)",
+          "Cookies de Préférence: Pour stocker vos paramètres (par ex., langue, thème)",
+          "Cookies de Performance: Pour améliorer les performances du site web"
+        ],
+        "noTracking": "Nous n'utilisons pas de cookies de suivi tiers et ne vendons pas de données à des tiers."
+      },
+      "retention": {
+        "title": "Durée de Conservation",
+        "intro": "Nous ne conservons vos données personnelles que le temps nécessaire pour atteindre les objectifs respectifs:",
+        "items": [
+          "Données de compte: Pendant la durée de votre adhésion plus 30 jours",
+          "Données de trading: Tant que vous avez un compte actif ou selon les exigences du droit commercial allemand",
+          "Fichiers journaux: Maximum 90 jours",
+          "Données de facturation: 10 ans (exigence légale de conservation)"
+        ],
+        "deletion": "Après expiration de la période de conservation, les données sont supprimées de manière routinière et automatique, sauf si des obligations légales de conservation l'empêchent."
+      },
+      "changes": {
+        "title": "Modifications de cette Politique de Confidentialité",
+        "description": "Nous nous réservons le droit de mettre à jour occasionnellement cette politique de confidentialité pour nous assurer qu'elle respecte toujours les exigences légales actuelles ou pour mettre en œuvre des modifications de nos services. La nouvelle politique de confidentialité s'appliquera à votre prochaine visite.",
+        "lastUpdated": "Dernière mise à jour:"
+      },
+      "complaint": {
+        "title": "Droit de Plainte",
+        "intro": "Vous avez le droit de déposer une plainte auprès d'une autorité de contrôle de la protection des données:",
+        "authority": "Autorité de contrôle compétente pour l'Allemagne:\nLe Commissaire Fédéral à la Protection des Données et à la Liberté d'Information (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTéléphone: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+      }
+    }
+  },
   "terms": {
     "title": "Conditions Générales d'Utilisation (CGU)",
     "lastUpdated": "Dernière mise à jour : Janvier 2025",
