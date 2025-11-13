@@ -104,6 +104,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
   };
 
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
+  const today = format(new Date(), 'yyyy-MM-dd');
 
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   

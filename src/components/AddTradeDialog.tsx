@@ -51,6 +51,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [loading, setLoading] = useState(false);
   const [loadingPrice, setLoadingPrice] = useState(false);
   const [analyzingChart, setAnalyzingChart] = useState(false);
+  const [entryMode, setEntryMode] = useState<'manual' | 'screenshot'>('manual');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -466,6 +467,28 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         <DialogHeader>
           <DialogTitle>{editTrade ? t("trades.editTrade") : t("trades.newTrade")}</DialogTitle>
         </DialogHeader>
+        
+        {!editTrade && (
+          <div className="flex gap-2 mb-4">
+            <Button
+              type="button"
+              variant={entryMode === 'manual' ? 'default' : 'outline'}
+              onClick={() => setEntryMode('manual')}
+              className="flex-1"
+            >
+              {t('addTrade.manualEntry')}
+            </Button>
+            <Button
+              type="button"
+              variant={entryMode === 'screenshot' ? 'default' : 'outline'}
+              onClick={() => setEntryMode('screenshot')}
+              className="flex-1"
+            >
+              {t('addTrade.screenshotAnalysis')}
+            </Button>
+          </div>
+        )}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
@@ -807,40 +830,95 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </p>
           </div>
 
-          {/* Screenshot Upload */}
-          <div className="space-y-2">
-            <Label htmlFor="screenshot">{t("trades.screenshot")}</Label>
-            <div className="space-y-2">
-              {screenshotPreview && !screenshotFile && (
-                <div className="relative">
-                  <img
-                    src={screenshotPreview}
-                    alt="Current screenshot"
-                    className="w-full h-32 object-cover rounded border"
-                  />
-                </div>
-              )}
-              {screenshotFile && (
-                <div className="relative">
-                  <img
-                    src={URL.createObjectURL(screenshotFile)}
-                    alt="Screenshot preview"
-                    className="w-full h-32 object-cover rounded border"
-                  />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="icon"
-                    className="absolute top-2 right-2 h-6 w-6"
-                    onClick={() => {
-                      setScreenshotFile(null);
+          {/* Screenshot Upload and Analysis */}
+          {entryMode === 'screenshot' ? (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="screenshot">{t('addTrade.screenshot')}</Label>
+                {screenshotFile && (
+                  <div className="relative">
+                    <img
+                      src={URL.createObjectURL(screenshotFile)}
+                      alt="Screenshot preview"
+                      className="w-full h-48 object-contain rounded border"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-6 w-6"
+                      onClick={() => {
+                        setScreenshotFile(null);
+                      }}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+                <div className="flex gap-2">
+                  <Input
+                    id="screenshot"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setScreenshotFile(file);
+                      }
                     }}
-                  >
-                    <X className="h-4 w-4" />
-                  </Button>
+                    className="cursor-pointer flex-1"
+                  />
+                  {screenshotFile && (
+                    <Button
+                      type="button"
+                      variant="default"
+                      onClick={analyzeChartScreenshot}
+                      disabled={analyzingChart}
+                      className="whitespace-nowrap"
+                    >
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      {analyzingChart ? t('addTrade.analyzing') : t('addTrade.analyzeChart')}
+                    </Button>
+                  )}
                 </div>
-              )}
-              <div className="flex gap-2">
+                <p className="text-sm text-muted-foreground">
+                  {t('addTrade.screenshotHint')}
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <Label htmlFor="screenshot">{t('addTrade.screenshot')} ({t('addTrade.optional')})</Label>
+              <div className="space-y-2">
+                {screenshotPreview && !screenshotFile && (
+                  <div className="relative">
+                    <img
+                      src={screenshotPreview}
+                      alt="Current screenshot"
+                      className="w-full h-32 object-cover rounded border"
+                    />
+                  </div>
+                )}
+                {screenshotFile && (
+                  <div className="relative">
+                    <img
+                      src={URL.createObjectURL(screenshotFile)}
+                      alt="Screenshot preview"
+                      className="w-full h-32 object-cover rounded border"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-6 w-6"
+                      onClick={() => {
+                        setScreenshotFile(null);
+                      }}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
                 <Input
                   id="screenshot"
                   type="file"
@@ -851,26 +929,11 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                       setScreenshotFile(file);
                     }
                   }}
-                  className="cursor-pointer flex-1"
+                  className="cursor-pointer"
                 />
-                {screenshotFile && (
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    onClick={analyzeChartScreenshot}
-                    disabled={analyzingChart}
-                    className="whitespace-nowrap"
-                  >
-                    <Sparkles className="h-4 w-4 mr-2" />
-                    {analyzingChart ? t("trades.analyzing") : t("trades.analyzeChart")}
-                  </Button>
-                )}
               </div>
-              <p className="text-xs text-muted-foreground">
-                {t("trades.screenshotHint")}
-              </p>
             </div>
-          </div>
+          )}
 
           <div className="space-y-2">
             <Label htmlFor="note">{t("trades.note")}</Label>
