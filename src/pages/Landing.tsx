@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
-import { 
+  import { 
   TrendingUp, 
   BarChart3, 
   BookOpen, 
@@ -17,7 +17,8 @@ import {
   FileText,
   Activity,
   Target,
-  MessageSquare
+  MessageSquare,
+  ScanLine
 } from "lucide-react";
 
 const Landing = () => {
@@ -58,6 +59,11 @@ const Landing = () => {
       icon: <MessageSquare className="h-6 w-6" />,
       title: t("landing.features.ai.title"),
       description: t("landing.features.ai.description")
+    },
+    {
+      icon: <ScanLine className="h-6 w-6" />,
+      title: t("landing.features.chartAnalysis.title"),
+      description: t("landing.features.chartAnalysis.description")
     },
     {
       icon: <FileText className="h-6 w-6" />,
