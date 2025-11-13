@@ -135,7 +135,15 @@
     "rating": "Calificación de Calidad del Trade",
     "ratingHint": "Califique este trade de 1 (mala ejecución) a 5 (ejecución excelente)",
     "screenshot": "Captura de Pantalla",
-    "screenshotHint": "Suba una captura del gráfico de este trade"
+    "screenshotHint": "Suba una captura del gráfico de este trade",
+    "analyzeChart": "Analizar gráfico",
+    "analyzing": "Analizando...",
+    "chartAnalyzed": "Gráfico analizado correctamente",
+    "chartAnalysisError": "Error al analizar el gráfico",
+    "noScreenshotSelected": "No se seleccionó ninguna captura",
+    "highConfidence": "Alta confianza",
+    "mediumConfidence": "Confianza media",
+    "lowConfidence": "Baja confianza"
   },
   "import": {
     "title": "Importar operaciones",

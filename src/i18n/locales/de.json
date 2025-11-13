@@ -145,7 +145,15 @@
     "rating": "Trade-Qualitätsbewertung",
     "ratingHint": "Bewerten Sie diesen Trade von 1 (schlechte Ausführung) bis 5 (exzellente Ausführung)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Laden Sie einen Chart-Screenshot dieses Trades hoch"
+    "screenshotHint": "Laden Sie einen Chart-Screenshot dieses Trades hoch",
+    "analyzeChart": "Chart analysieren",
+    "analyzing": "Analysiere...",
+    "chartAnalyzed": "Chart erfolgreich analysiert",
+    "chartAnalysisError": "Fehler bei der Chart-Analyse",
+    "noScreenshotSelected": "Kein Screenshot ausgewählt",
+    "highConfidence": "Hohe Genauigkeit",
+    "mediumConfidence": "Mittlere Genauigkeit",
+    "lowConfidence": "Niedrige Genauigkeit"
   },
   "import": {
     "title": "Trades importieren",

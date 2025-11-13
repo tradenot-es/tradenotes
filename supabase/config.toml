@@ -1,5 +1,8 @@
 project_id = "REDACTED"
 
+[functions.analyze-chart]
+verify_jwt = true
+
 [functions.financial-news]
 verify_jwt = true
 

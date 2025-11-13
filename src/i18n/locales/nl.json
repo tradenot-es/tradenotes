@@ -135,7 +135,15 @@
     "rating": "Trade Kwaliteitsbeoordeling",
     "ratingHint": "Beoordeel deze trade van 1 (slechte uitvoering) tot 5 (uitstekende uitvoering)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Upload een grafiek screenshot van deze trade"
+    "screenshotHint": "Upload een grafiek screenshot van deze trade",
+    "analyzeChart": "Grafiek analyseren",
+    "analyzing": "Analyseren...",
+    "chartAnalyzed": "Grafiek succesvol geanalyseerd",
+    "chartAnalysisError": "Fout bij het analyseren van de grafiek",
+    "noScreenshotSelected": "Geen screenshot geselecteerd",
+    "highConfidence": "Hoge betrouwbaarheid",
+    "mediumConfidence": "Gemiddelde betrouwbaarheid",
+    "lowConfidence": "Lage betrouwbaarheid"
   },
   "import": {
     "title": "Transacties importeren",

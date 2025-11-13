@@ -135,7 +135,15 @@
     "rating": "Évaluation de la Qualité du Trade",
     "ratingHint": "Évaluez ce trade de 1 (mauvaise exécution) à 5 (excellente exécution)",
     "screenshot": "Capture d'écran",
-    "screenshotHint": "Téléchargez une capture d'écran du graphique de ce trade"
+    "screenshotHint": "Téléchargez une capture d'écran du graphique de ce trade",
+    "analyzeChart": "Analyser le graphique",
+    "analyzing": "Analyse en cours...",
+    "chartAnalyzed": "Graphique analysé avec succès",
+    "chartAnalysisError": "Erreur lors de l'analyse du graphique",
+    "noScreenshotSelected": "Aucune capture d'écran sélectionnée",
+    "highConfidence": "Haute confiance",
+    "mediumConfidence": "Confiance moyenne",
+    "lowConfidence": "Faible confiance"
   },
   "import": {
     "title": "Importer des transactions",

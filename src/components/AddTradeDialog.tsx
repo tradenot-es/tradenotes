@@ -12,7 +12,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
-import { Star, Upload, X, Info } from "lucide-react";
+import { Star, Upload, X, Info, Sparkles } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
 import { getSymbolInfo, getMarketDefaultFee } from "@/lib/symbolData";
 
@@ -50,6 +50,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [loadingPrice, setLoadingPrice] = useState(false);
+  const [analyzingChart, setAnalyzingChart] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -199,6 +200,77 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       toast.error(t("trades.priceError"));
     } finally {
       setLoadingPrice(false);
+    }
+  };
+
+  // Analyze chart screenshot with AI
+  const analyzeChartScreenshot = async () => {
+    if (!screenshotFile) {
+      toast.error(t("trades.noScreenshotSelected"));
+      return;
+    }
+
+    setAnalyzingChart(true);
+    try {
+      // Convert file to base64
+      const reader = new FileReader();
+      const base64Promise = new Promise<string>((resolve, reject) => {
+        reader.onloadend = () => {
+          if (reader.result && typeof reader.result === 'string') {
+            resolve(reader.result);
+          } else {
+            reject(new Error('Failed to read file'));
+          }
+        };
+        reader.onerror = reject;
+      });
+      
+      reader.readAsDataURL(screenshotFile);
+      const imageBase64 = await base64Promise;
+
+      // Call the analyze-chart edge function
+      const { data, error } = await supabase.functions.invoke("analyze-chart", {
+        body: { imageBase64 },
+      });
+
+      if (error) {
+        console.error("Error analyzing chart:", error);
+        toast.error(t("trades.chartAnalysisError"));
+        return;
+      }
+
+      if (data?.success && data?.data) {
+        const extracted = data.data;
+        
+        // Update form with extracted data
+        setFormData((prev) => ({
+          ...prev,
+          symbol: extracted.symbol || prev.symbol,
+          side: extracted.side || prev.side,
+          market: extracted.market || prev.market,
+          qty: extracted.quantity ? String(extracted.quantity) : prev.qty,
+          entryPrice: extracted.entryPrice ? String(extracted.entryPrice) : prev.entryPrice,
+          exitPrice: extracted.exitPrice ? String(extracted.exitPrice) : prev.exitPrice,
+          stopLossPrice: extracted.stopLossPrice ? String(extracted.stopLossPrice) : prev.stopLossPrice,
+          entryTime: extracted.entryTime || prev.entryTime,
+          exitTime: extracted.exitTime || prev.exitTime,
+          note: extracted.notes ? (prev.note ? `${prev.note}\n\n${extracted.notes}` : extracted.notes) : prev.note,
+        }));
+
+        // Show success message with confidence level
+        const confidenceText = extracted.confidence === 'high' 
+          ? t("trades.highConfidence") 
+          : extracted.confidence === 'medium'
+          ? t("trades.mediumConfidence")
+          : t("trades.lowConfidence");
+        
+        toast.success(`${t("trades.chartAnalyzed")} (${confidenceText})`);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error(t("trades.chartAnalysisError"));
+    } finally {
+      setAnalyzingChart(false);
     }
   };
 
@@ -768,18 +840,32 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                   </Button>
                 </div>
               )}
-              <Input
-                id="screenshot"
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    setScreenshotFile(file);
-                  }
-                }}
-                className="cursor-pointer"
-              />
+              <div className="flex gap-2">
+                <Input
+                  id="screenshot"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setScreenshotFile(file);
+                    }
+                  }}
+                  className="cursor-pointer flex-1"
+                />
+                {screenshotFile && (
+                  <Button
+                    type="button"
+                    variant="secondary"
+                    onClick={analyzeChartScreenshot}
+                    disabled={analyzingChart}
+                    className="whitespace-nowrap"
+                  >
+                    <Sparkles className="h-4 w-4 mr-2" />
+                    {analyzingChart ? t("trades.analyzing") : t("trades.analyzeChart")}
+                  </Button>
+                )}
+              </div>
               <p className="text-xs text-muted-foreground">
                 {t("trades.screenshotHint")}
               </p>

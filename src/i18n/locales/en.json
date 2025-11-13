@@ -145,7 +145,15 @@
     "rating": "Trade Quality Rating",
     "ratingHint": "Rate this trade from 1 (poor execution) to 5 (excellent execution)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Upload a chart screenshot of this trade"
+    "screenshotHint": "Upload a chart screenshot of this trade",
+    "analyzeChart": "Analyze Chart",
+    "analyzing": "Analyzing...",
+    "chartAnalyzed": "Chart analyzed successfully",
+    "chartAnalysisError": "Error analyzing chart",
+    "noScreenshotSelected": "No screenshot selected",
+    "highConfidence": "High Confidence",
+    "mediumConfidence": "Medium Confidence",
+    "lowConfidence": "Low Confidence"
   },
   "import": {
     "title": "Import Trades",
