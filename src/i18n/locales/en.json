@@ -153,7 +153,10 @@
     "noScreenshotSelected": "No screenshot selected",
     "highConfidence": "High Confidence",
     "mediumConfidence": "Medium Confidence",
-    "lowConfidence": "Low Confidence"
+    "lowConfidence": "Low Confidence",
+    "manualEntry": "Manual Entry",
+    "screenshotAnalysis": "Analyze Screenshot",
+    "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details"
   },
   "import": {
     "title": "Import Trades",

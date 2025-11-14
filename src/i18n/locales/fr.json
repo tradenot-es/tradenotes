@@ -143,7 +143,10 @@
     "noScreenshotSelected": "Aucune capture d'écran sélectionnée",
     "highConfidence": "Haute confiance",
     "mediumConfidence": "Confiance moyenne",
-    "lowConfidence": "Faible confiance"
+    "lowConfidence": "Faible confiance",
+    "manualEntry": "Saisie manuelle",
+    "screenshotAnalysis": "Analyser capture d'écran",
+    "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction"
   },
   "import": {
     "title": "Importer des transactions",
