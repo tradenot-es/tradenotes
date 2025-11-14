@@ -26,6 +26,11 @@ const Landing = () => {
 
   const features = [
     {
+      icon: <ScanLine className="h-6 w-6" />,
+      title: t("landing.features.chartAnalysis.title"),
+      description: t("landing.features.chartAnalysis.description")
+    },
+    {
       icon: <BookOpen className="h-6 w-6" />,
       title: t("landing.features.journal.title"),
       description: t("landing.features.journal.description")
@@ -59,11 +64,6 @@ const Landing = () => {
       icon: <MessageSquare className="h-6 w-6" />,
       title: t("landing.features.ai.title"),
       description: t("landing.features.ai.description")
-    },
-    {
-      icon: <ScanLine className="h-6 w-6" />,
-      title: t("landing.features.chartAnalysis.title"),
-      description: t("landing.features.chartAnalysis.description")
     },
     {
       icon: <FileText className="h-6 w-6" />,
