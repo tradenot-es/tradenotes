@@ -153,7 +153,10 @@
     "noScreenshotSelected": "Kein Screenshot ausgewählt",
     "highConfidence": "Hohe Genauigkeit",
     "mediumConfidence": "Mittlere Genauigkeit",
-    "lowConfidence": "Niedrige Genauigkeit"
+    "lowConfidence": "Niedrige Genauigkeit",
+    "manualEntry": "Manuell eingeben",
+    "screenshotAnalysis": "Screenshot analysieren",
+    "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details"
   },
   "import": {
     "title": "Trades importieren",

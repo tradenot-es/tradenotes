@@ -143,7 +143,10 @@
     "noScreenshotSelected": "Geen screenshot geselecteerd",
     "highConfidence": "Hoge betrouwbaarheid",
     "mediumConfidence": "Gemiddelde betrouwbaarheid",
-    "lowConfidence": "Lage betrouwbaarheid"
+    "lowConfidence": "Lage betrouwbaarheid",
+    "manualEntry": "Handmatige invoer",
+    "screenshotAnalysis": "Screenshot analyseren",
+    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails"
   },
   "import": {
     "title": "Transacties importeren",

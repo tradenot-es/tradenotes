@@ -143,7 +143,10 @@
     "noScreenshotSelected": "No se seleccionó ninguna captura",
     "highConfidence": "Alta confianza",
     "mediumConfidence": "Confianza media",
-    "lowConfidence": "Baja confianza"
+    "lowConfidence": "Baja confianza",
+    "manualEntry": "Entrada manual",
+    "screenshotAnalysis": "Analizar captura",
+    "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación"
   },
   "import": {
     "title": "Importar operaciones",
