@@ -146,7 +146,8 @@
     "lowConfidence": "Baja confianza",
     "manualEntry": "Entrada manual",
     "screenshotAnalysis": "Analizar captura",
-    "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación"
+    "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación",
+    "manualEntryDescription": "Introduce todos los detalles de la operación manualmente"
   },
   "import": {
     "title": "Importar operaciones",

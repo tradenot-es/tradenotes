@@ -156,7 +156,8 @@
     "lowConfidence": "Niedrige Genauigkeit",
     "manualEntry": "Manuell eingeben",
     "screenshotAnalysis": "Screenshot analysieren",
-    "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details"
+    "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details",
+    "manualEntryDescription": "Geben Sie alle Trade-Details manuell ein"
   },
   "import": {
     "title": "Trades importieren",

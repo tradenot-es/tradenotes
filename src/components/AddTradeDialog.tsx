@@ -52,6 +52,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [loadingPrice, setLoadingPrice] = useState(false);
   const [analyzingChart, setAnalyzingChart] = useState(false);
   const [entryMode, setEntryMode] = useState<'manual' | 'screenshot'>('manual');
+  const [modeSelected, setModeSelected] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -149,6 +150,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
+      setModeSelected(false);
+      setEntryMode('manual');
     }
   }, [preselectedDate, open, editTrade]);
 
@@ -468,27 +471,52 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           <DialogTitle>{editTrade ? t("trades.editTrade") : t("trades.newTrade")}</DialogTitle>
         </DialogHeader>
         
-        {!editTrade && (
-          <div className="flex gap-2 mb-4">
-            <Button
+        {/* Mode Selection Cards - only show for new trades */}
+        {!editTrade && !modeSelected && (
+          <div className="grid grid-cols-2 gap-6 p-4">
+            <button
               type="button"
-              variant={entryMode === 'manual' ? 'default' : 'outline'}
-              onClick={() => setEntryMode('manual')}
-              className="flex-1"
+              onClick={() => {
+                setEntryMode('manual');
+                setModeSelected(true);
+              }}
+              className="group relative flex flex-col items-center justify-center p-8 rounded-lg border-2 border-border hover:border-primary transition-all hover:shadow-lg bg-card"
             >
-              {t('addTrade.manualEntry')}
-            </Button>
-            <Button
+              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-lg mb-2">{t('addTrade.manualEntry')}</h3>
+              <p className="text-sm text-muted-foreground text-center">
+                {t('addTrade.manualEntryDescription')}
+              </p>
+            </button>
+            
+            <button
               type="button"
-              variant={entryMode === 'screenshot' ? 'default' : 'outline'}
-              onClick={() => setEntryMode('screenshot')}
-              className="flex-1"
+              onClick={() => {
+                setEntryMode('screenshot');
+                setModeSelected(true);
+              }}
+              className="group relative flex flex-col items-center justify-center p-8 rounded-lg border-2 border-border hover:border-primary transition-all hover:shadow-lg bg-card"
             >
-              {t('addTrade.screenshotAnalysis')}
-            </Button>
+              <div className="absolute top-3 right-3">
+                <Badge className="glow-effect text-xs">KI</Badge>
+              </div>
+              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <Sparkles className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2">{t('addTrade.screenshotAnalysis')}</h3>
+              <p className="text-sm text-muted-foreground text-center">
+                {t('addTrade.screenshotHint')}
+              </p>
+            </button>
           </div>
         )}
 
+        {/* Form - only show after mode selection or for edit */}
+        {(editTrade || modeSelected) && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
@@ -961,6 +989,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </Button>
           </div>
         </form>
+        )}
       </DialogContent>
     </Dialog>
   );
