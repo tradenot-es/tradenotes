@@ -428,6 +428,10 @@
       "glossary": {
         "title": "Trading Glossary",
         "description": "All trading terms from tradenotes.io explained - P&L, Win Rate, Equity Curve, Risk/Reward and more"
+      },
+      "chartAnalysis": {
+        "title": "AI Chart Analysis",
+        "description": "Unique: Upload screenshots from TradingView or NinjaTrader and save time – our AI automatically extracts entry, exit, symbol and all trade details. No manual input needed!"
       }
     },
     "allFeatures": {
