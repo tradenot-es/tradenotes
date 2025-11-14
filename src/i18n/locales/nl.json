@@ -146,7 +146,8 @@
     "lowConfidence": "Lage betrouwbaarheid",
     "manualEntry": "Handmatige invoer",
     "screenshotAnalysis": "Screenshot analyseren",
-    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails"
+    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
+    "manualEntryDescription": "Voer alle handelsdetails handmatig in"
   },
   "import": {
     "title": "Transacties importeren",

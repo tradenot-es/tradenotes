@@ -156,7 +156,8 @@
     "lowConfidence": "Low Confidence",
     "manualEntry": "Manual Entry",
     "screenshotAnalysis": "Analyze Screenshot",
-    "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details"
+    "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details",
+    "manualEntryDescription": "Enter all trade details manually"
   },
   "import": {
     "title": "Import Trades",

@@ -146,7 +146,8 @@
     "lowConfidence": "Faible confiance",
     "manualEntry": "Saisie manuelle",
     "screenshotAnalysis": "Analyser capture d'écran",
-    "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction"
+    "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction",
+    "manualEntryDescription": "Saisir tous les détails de la transaction manuellement"
   },
   "import": {
     "title": "Importer des transactions",
