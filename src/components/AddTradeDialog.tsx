@@ -502,9 +502,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                   </div>
                 </div>
                 <div>
-                  <CardTitle className="mb-2">{t('addTrade.manualEntry')}</CardTitle>
+                  <CardTitle className="mb-2">{t('trades.manualEntry')}</CardTitle>
                   <CardDescription>
-                    {t('addTrade.manualEntryDescription')}
+                    {t('trades.manualEntryDescription')}
                   </CardDescription>
                 </div>
               </CardHeader>
@@ -530,9 +530,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                   </div>
                 </div>
                 <div>
-                  <CardTitle className="mb-2">{t('addTrade.screenshotAnalysis')}</CardTitle>
+                  <CardTitle className="mb-2">{t('trades.screenshotAnalysis')}</CardTitle>
                   <CardDescription>
-                    {t('addTrade.screenshotHint')}
+                    {t('trades.screenshotHint')}
                   </CardDescription>
                 </div>
               </CardHeader>
@@ -887,7 +887,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           {entryMode === 'screenshot' ? (
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="screenshot">{t('addTrade.screenshot')}</Label>
+                <Label htmlFor="screenshot">{t('trades.screenshot')}</Label>
                 {screenshotFile && (
                   <div className="relative">
                     <img
@@ -930,18 +930,18 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                       className="whitespace-nowrap"
                     >
                       <Sparkles className="h-4 w-4 mr-2" />
-                      {analyzingChart ? t('addTrade.analyzing') : t('addTrade.analyzeChart')}
+                      {analyzingChart ? t('trades.analyzing') : t('trades.analyzeChart')}
                     </Button>
                   )}
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  {t('addTrade.screenshotHint')}
+                  {t('trades.screenshotHint')}
                 </p>
               </div>
             </div>
           ) : (
             <div className="space-y-2">
-              <Label htmlFor="screenshot">{t('addTrade.screenshot')} ({t('addTrade.optional')})</Label>
+              <Label htmlFor="screenshot">{t('trades.screenshot')} ({t('trades.optional')})</Label>
               <div className="space-y-2">
                 {screenshotPreview && !screenshotFile && (
                   <div className="relative">
