@@ -8,11 +8,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
-import { Star, Upload, X, Info, Sparkles } from "lucide-react";
+import { Star, Upload, X, Info, Sparkles, Edit3, Camera, ArrowLeft } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
 import { getSymbolInfo, getMarketDefaultFee } from "@/lib/symbolData";
 
@@ -468,50 +469,74 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{editTrade ? t("trades.editTrade") : t("trades.newTrade")}</DialogTitle>
+          <DialogTitle className="flex items-center gap-2">
+            {modeSelected && !editTrade && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setModeSelected(false)}
+                className="h-8 w-8"
+                type="button"
+              >
+                <ArrowLeft className="h-4 w-4" />
+              </Button>
+            )}
+            {editTrade ? t("trades.editTrade") : t("trades.newTrade")}
+          </DialogTitle>
         </DialogHeader>
         
         {/* Mode Selection Cards - only show for new trades */}
         {!editTrade && !modeSelected && (
-          <div className="grid grid-cols-2 gap-6 p-4">
-            <button
-              type="button"
+          <div className="grid md:grid-cols-2 gap-6 py-6">
+            <Card 
+              className="cursor-pointer transition-all hover:shadow-lg hover:border-primary/50 group"
               onClick={() => {
                 setEntryMode('manual');
                 setModeSelected(true);
               }}
-              className="group relative flex flex-col items-center justify-center p-8 rounded-lg border-2 border-border hover:border-primary transition-all hover:shadow-lg bg-card"
             >
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{t('addTrade.manualEntry')}</h3>
-              <p className="text-sm text-muted-foreground text-center">
-                {t('addTrade.manualEntryDescription')}
-              </p>
-            </button>
+              <CardHeader className="text-center space-y-4">
+                <div className="flex items-center justify-center">
+                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Edit3 className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="mb-2">{t('addTrade.manualEntry')}</CardTitle>
+                  <CardDescription>
+                    {t('addTrade.manualEntryDescription')}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+            </Card>
             
-            <button
-              type="button"
+            <Card 
+              className="cursor-pointer transition-all hover:shadow-lg hover:border-primary/50 group relative"
               onClick={() => {
                 setEntryMode('screenshot');
                 setModeSelected(true);
               }}
-              className="group relative flex flex-col items-center justify-center p-8 rounded-lg border-2 border-border hover:border-primary transition-all hover:shadow-lg bg-card"
             >
               <div className="absolute top-3 right-3">
-                <Badge className="glow-effect text-xs">KI</Badge>
+                <Badge variant="secondary" className="gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  AI
+                </Badge>
               </div>
-              <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <Sparkles className="h-8 w-8 text-primary" />
-              </div>
-              <h3 className="font-semibold text-lg mb-2">{t('addTrade.screenshotAnalysis')}</h3>
-              <p className="text-sm text-muted-foreground text-center">
-                {t('addTrade.screenshotHint')}
-              </p>
-            </button>
+              <CardHeader className="text-center space-y-4">
+                <div className="flex items-center justify-center">
+                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <Camera className="h-8 w-8 text-primary" />
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="mb-2">{t('addTrade.screenshotAnalysis')}</CardTitle>
+                  <CardDescription>
+                    {t('addTrade.screenshotHint')}
+                  </CardDescription>
+                </div>
+              </CardHeader>
+            </Card>
           </div>
         )}
 
