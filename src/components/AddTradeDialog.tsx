@@ -54,6 +54,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [analyzingChart, setAnalyzingChart] = useState(false);
   const [entryMode, setEntryMode] = useState<'manual' | 'screenshot'>('manual');
   const [modeSelected, setModeSelected] = useState(false);
+  const [screenshotAnalyzed, setScreenshotAnalyzed] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -153,6 +154,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setRating(0);
       setModeSelected(false);
       setEntryMode('manual');
+      setScreenshotAnalyzed(false);
     }
   }, [preselectedDate, open, editTrade]);
 
@@ -270,6 +272,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           : t("trades.lowConfidence");
         
         toast.success(`${t("trades.chartAnalyzed")} (${confidenceText})`);
+        setScreenshotAnalyzed(true);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -458,6 +461,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
+      setModeSelected(false);
+      setScreenshotAnalyzed(false);
     } catch (error: any) {
       toast.error(error.message || t("trades.addError"));
     } finally {
@@ -540,8 +545,79 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           </div>
         )}
 
+        {/* Screenshot Upload Screen - only for screenshot mode before analysis */}
+        {modeSelected && entryMode === 'screenshot' && !screenshotAnalyzed && (
+          <div className="space-y-6 py-4">
+            <div className="space-y-4">
+              <div className="text-center space-y-2">
+                <div className="flex items-center justify-center">
+                  <div className="p-6 rounded-full bg-primary/10">
+                    <Camera className="h-12 w-12 text-primary" />
+                  </div>
+                </div>
+                <h3 className="text-lg font-semibold">{t('trades.screenshotAnalysis')}</h3>
+                <p className="text-sm text-muted-foreground max-w-md mx-auto">
+                  {t('trades.screenshotHint')}
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                {screenshotFile && (
+                  <div className="relative">
+                    <img
+                      src={URL.createObjectURL(screenshotFile)}
+                      alt="Screenshot preview"
+                      className="w-full h-64 object-contain rounded-lg border"
+                    />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      size="icon"
+                      className="absolute top-2 right-2 h-8 w-8"
+                      onClick={() => {
+                        setScreenshotFile(null);
+                      }}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                )}
+                
+                <div className="flex flex-col gap-3">
+                  <Input
+                    id="screenshot"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setScreenshotFile(file);
+                      }
+                    }}
+                    className="cursor-pointer"
+                  />
+                  
+                  {screenshotFile && (
+                    <Button
+                      type="button"
+                      variant="default"
+                      size="lg"
+                      onClick={analyzeChartScreenshot}
+                      disabled={analyzingChart}
+                      className="w-full"
+                    >
+                      <Sparkles className="h-5 w-5 mr-2" />
+                      {analyzingChart ? t('trades.analyzing') : t('trades.analyzeChart')}
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Form - only show after mode selection or for edit */}
-        {(editTrade || modeSelected) && (
+        {(editTrade || (modeSelected && (entryMode === 'manual' || screenshotAnalyzed))) && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
@@ -884,62 +960,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           </div>
 
           {/* Screenshot Upload and Analysis */}
-          {entryMode === 'screenshot' ? (
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="screenshot">{t('trades.screenshot')}</Label>
-                {screenshotFile && (
-                  <div className="relative">
-                    <img
-                      src={URL.createObjectURL(screenshotFile)}
-                      alt="Screenshot preview"
-                      className="w-full h-48 object-contain rounded border"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2 h-6 w-6"
-                      onClick={() => {
-                        setScreenshotFile(null);
-                      }}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-                <div className="flex gap-2">
-                  <Input
-                    id="screenshot"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setScreenshotFile(file);
-                      }
-                    }}
-                    className="cursor-pointer flex-1"
-                  />
-                  {screenshotFile && (
-                    <Button
-                      type="button"
-                      variant="default"
-                      onClick={analyzeChartScreenshot}
-                      disabled={analyzingChart}
-                      className="whitespace-nowrap"
-                    >
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      {analyzingChart ? t('trades.analyzing') : t('trades.analyzeChart')}
-                    </Button>
-                  )}
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t('trades.screenshotHint')}
-                </p>
-              </div>
-            </div>
-          ) : (
+          {entryMode === 'manual' && (
             <div className="space-y-2">
               <Label htmlFor="screenshot">{t('trades.screenshot')} ({t('trades.optional')})</Label>
               <div className="space-y-2">
@@ -984,6 +1005,24 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                   }}
                   className="cursor-pointer"
                 />
+              </div>
+            </div>
+          )}
+          
+          {/* Screenshot Preview for analyzed mode */}
+          {entryMode === 'screenshot' && screenshotFile && (
+            <div className="space-y-2">
+              <Label>{t('trades.screenshot')}</Label>
+              <div className="relative">
+                <img
+                  src={URL.createObjectURL(screenshotFile)}
+                  alt="Analyzed screenshot"
+                  className="w-full h-48 object-contain rounded-lg border"
+                />
+                <Badge className="absolute top-2 left-2 gap-1">
+                  <Sparkles className="h-3 w-3" />
+                  {t('trades.chartAnalyzed')}
+                </Badge>
               </div>
             </div>
           )}
