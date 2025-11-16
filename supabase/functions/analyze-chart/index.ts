@@ -35,14 +35,29 @@ serve(async (req) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
+        model: 'google/gemini-2.5-pro',
         messages: [
           {
             role: 'user',
             content: [
               {
                 type: 'text',
-                text: 'Analyze this trading chart screenshot and extract all visible trade information. Look for: symbol/ticker, entry price, exit price, stop loss, take profit, position side (long/short), market type (stock/futures/crypto/forex), date/time information, profit/loss values, indicators used, chart patterns, and any visible notes or annotations.'
+                text: `Analyze this trading chart screenshot with OCR precision. Extract ALL visible trading data including:
+                
+1. Core Trade Data: symbol, side (long/short), market type, entry/exit prices, quantity, timestamps
+2. Risk Management: stop loss, fees, planned risk calculations
+3. Metadata: setup type, tags, quality rating (1-5), notes
+4. Confidence: Provide field-level confidence (0-1) for EACH extracted field
+5. Diagnostics: raw OCR text, alternatives for uncertain values, reasons for missing data
+
+CRITICAL RULES:
+- Numbers as float with decimal point (no currency symbols)
+- Timestamps in ISO-8601 format with timezone
+- Symbols uppercase without special characters
+- If field is missing: null + reason_missing
+- Calculate planned_risk if stop loss exists: abs(entry_price - stop_loss_price) * quantity
+- Return field_confidence object with 0-1 value for EACH field
+- If multiple interpretations exist, provide alternatives array`
               },
               {
                 type: 'image_url',
@@ -58,63 +73,113 @@ serve(async (req) => {
             type: 'function',
             function: {
               name: 'extract_trade_data',
-              description: 'Extract structured trade data from the chart analysis',
+              description: 'Extract comprehensive structured trade data with confidence tracking',
               parameters: {
                 type: 'object',
                 properties: {
+                  market: { 
+                    type: 'string', 
+                    enum: ['Stock', 'Futures', 'Crypto', 'Option', 'Forex', 'Index'],
+                    description: 'Market type' 
+                  },
                   symbol: { 
                     type: 'string', 
-                    description: 'Trading symbol/ticker (e.g., AAPL, EURUSD, BTC)' 
+                    description: 'Trading symbol uppercase (e.g., AAPL, EURUSD, BTC)' 
                   },
                   side: { 
                     type: 'string', 
                     enum: ['long', 'short'],
                     description: 'Position direction' 
                   },
-                  market: { 
+                  size: { 
+                    type: 'number', 
+                    description: 'Position size/quantity' 
+                  },
+                  size_unit: { 
                     type: 'string', 
-                    enum: ['Stock', 'Futures', 'Crypto', 'Option', 'Forex', 'Index'],
-                    description: 'Market type' 
+                    description: 'Unit of size (shares, contracts, coins, lots)' 
                   },
-                  entryPrice: { 
+                  entry_price: { 
                     type: 'number', 
-                    description: 'Entry price' 
+                    description: 'Entry price as float' 
                   },
-                  exitPrice: { 
+                  exit_price: { 
                     type: 'number', 
-                    description: 'Exit price (if visible)' 
+                    description: 'Exit price as float (null if not closed)' 
                   },
-                  stopLossPrice: { 
-                    type: 'number', 
-                    description: 'Stop loss price (if visible)' 
-                  },
-                  quantity: { 
-                    type: 'number', 
-                    description: 'Position size/quantity (if visible)' 
-                  },
-                  entryTime: { 
+                  entry_time: { 
                     type: 'string', 
-                    description: 'Entry date/time in ISO format (if visible)' 
+                    description: 'Entry timestamp ISO-8601' 
                   },
-                  exitTime: { 
+                  exit_time: { 
                     type: 'string', 
-                    description: 'Exit date/time in ISO format (if visible)' 
+                    description: 'Exit timestamp ISO-8601 (null if not closed)' 
                   },
-                  pnl: { 
+                  fees: { 
                     type: 'number', 
-                    description: 'Profit/Loss value (if visible)' 
+                    description: 'Trading fees' 
+                  },
+                  stop_loss_price: { 
+                    type: 'number', 
+                    description: 'Stop loss price' 
+                  },
+                  planned_risk: { 
+                    type: 'number', 
+                    description: 'Calculated: abs(entry_price - stop_loss_price) * size' 
+                  },
+                  setup: { 
+                    type: 'string', 
+                    description: 'Trading setup type (e.g., Breakout, Pullback)' 
+                  },
+                  tags: { 
+                    type: 'array',
+                    items: { type: 'string' },
+                    description: 'Trade tags/categories' 
+                  },
+                  trade_quality_rating: { 
+                    type: 'integer',
+                    minimum: 1,
+                    maximum: 5,
+                    description: 'Trade execution quality rating 1-5' 
                   },
                   notes: { 
                     type: 'string', 
-                    description: 'Detected patterns, indicators, annotations, or other relevant observations from the chart' 
+                    description: 'Patterns, indicators, annotations observed' 
                   },
-                  confidence: {
-                    type: 'string',
-                    enum: ['high', 'medium', 'low'],
-                    description: 'Confidence level of the extraction'
+                  ocr_raw_text: { 
+                    type: 'string', 
+                    description: 'Raw OCR text extracted from image' 
+                  },
+                  overall_confidence: {
+                    type: 'number',
+                    minimum: 0,
+                    maximum: 1,
+                    description: 'Overall extraction confidence 0-1'
+                  },
+                  field_confidence: {
+                    type: 'object',
+                    description: 'Confidence per field as object with field names as keys and 0-1 values',
+                    additionalProperties: {
+                      type: 'number',
+                      minimum: 0,
+                      maximum: 1
+                    }
+                  },
+                  alternatives: {
+                    type: 'object',
+                    description: 'Alternative interpretations for uncertain fields',
+                    additionalProperties: {
+                      type: 'array',
+                      items: { type: 'string' }
+                    }
+                  },
+                  reason_missing: {
+                    type: 'object',
+                    description: 'Explanation for missing fields',
+                    additionalProperties: { type: 'string' }
                   }
                 },
-                required: ['confidence', 'notes'],
+                required: ['overall_confidence', 'field_confidence'],
                 additionalProperties: false
               }
             }

@@ -65,6 +65,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [rating, setRating] = useState<number>(0);
   const [symbolInfo, setSymbolInfo] = useState<{ pointValue?: number; multiplier?: number; info?: string }>({});
+  const [extractedData, setExtractedData] = useState<any>(null);
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -155,6 +156,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setModeSelected(false);
       setEntryMode('manual');
       setScreenshotAnalyzed(false);
+      setExtractedData(null);
     }
   }, [preselectedDate, open, editTrade]);
 
@@ -248,30 +250,37 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
 
       if (data?.success && data?.data) {
         const extracted = data.data;
+        setExtractedData(extracted);
         
-        // Update form with extracted data
+        // Update form with extracted data using new field names
         setFormData((prev) => ({
           ...prev,
           symbol: extracted.symbol || prev.symbol,
           side: extracted.side || prev.side,
           market: extracted.market || prev.market,
-          qty: extracted.quantity ? String(extracted.quantity) : prev.qty,
-          entryPrice: extracted.entryPrice ? String(extracted.entryPrice) : prev.entryPrice,
-          exitPrice: extracted.exitPrice ? String(extracted.exitPrice) : prev.exitPrice,
-          stopLossPrice: extracted.stopLossPrice ? String(extracted.stopLossPrice) : prev.stopLossPrice,
-          entryTime: extracted.entryTime || prev.entryTime,
-          exitTime: extracted.exitTime || prev.exitTime,
+          qty: extracted.size ? String(extracted.size) : prev.qty,
+          entryPrice: extracted.entry_price ? String(extracted.entry_price) : prev.entryPrice,
+          exitPrice: extracted.exit_price ? String(extracted.exit_price) : prev.exitPrice,
+          stopLossPrice: extracted.stop_loss_price ? String(extracted.stop_loss_price) : prev.stopLossPrice,
+          initialRisk: extracted.planned_risk ? String(extracted.planned_risk) : prev.initialRisk,
+          fees: extracted.fees !== undefined ? String(extracted.fees) : prev.fees,
+          entryTime: extracted.entry_time || prev.entryTime,
+          exitTime: extracted.exit_time || prev.exitTime,
+          setup: extracted.setup || prev.setup,
           note: extracted.notes ? (prev.note ? `${prev.note}\n\n${extracted.notes}` : extracted.notes) : prev.note,
         }));
 
-        // Show success message with confidence level
-        const confidenceText = extracted.confidence === 'high' 
-          ? t("trades.highConfidence") 
-          : extracted.confidence === 'medium'
-          ? t("trades.mediumConfidence")
-          : t("trades.lowConfidence");
+        if (extracted.tags) {
+          setSelectedTags(extracted.tags);
+        }
         
-        toast.success(`${t("trades.chartAnalyzed")} (${confidenceText})`);
+        if (extracted.trade_quality_rating) {
+          setRating(extracted.trade_quality_rating);
+        }
+
+        // Show success message with confidence level
+        const confidencePercent = Math.round((extracted.overall_confidence || 0) * 100);
+        toast.success(`${t("trades.chartAnalyzed")} (${confidencePercent}% Confidence)`);
         setScreenshotAnalyzed(true);
       }
     } catch (error) {
@@ -637,7 +646,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
+                {extractedData?.field_confidence?.symbol !== undefined && (
+                  <Badge variant="outline" className={`text-xs ${
+                    extractedData.field_confidence.symbol >= 0.8 
+                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
+                      : extractedData.field_confidence.symbol >= 0.5
+                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
+                  }`}>
+                    {Math.round(extractedData.field_confidence.symbol * 100)}%
+                  </Badge>
+                )}
+              </div>
               <SymbolCombobox
                 value={formData.symbol}
                 onChange={(value) => {
@@ -676,7 +698,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="qty">{t("trades.qty")} *</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="qty">{t("trades.qty")} *</Label>
+                {extractedData?.field_confidence?.size !== undefined && (
+                  <Badge variant="outline" className={`text-xs ${
+                    extractedData.field_confidence.size >= 0.8 
+                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
+                      : extractedData.field_confidence.size >= 0.5
+                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
+                  }`}>
+                    {Math.round(extractedData.field_confidence.size * 100)}%
+                  </Badge>
+                )}
+              </div>
               <Input
                 id="qty"
                 type="number"
@@ -692,7 +727,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
+                {extractedData?.field_confidence?.entry_price !== undefined && (
+                  <Badge variant="outline" className={`text-xs ${
+                    extractedData.field_confidence.entry_price >= 0.8 
+                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
+                      : extractedData.field_confidence.entry_price >= 0.5
+                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
+                  }`}>
+                    {Math.round(extractedData.field_confidence.entry_price * 100)}%
+                  </Badge>
+                )}
+              </div>
               <div className="flex gap-2">
                 <Input
                   id="entryPrice"
@@ -730,7 +778,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="exitPrice">{t("trades.exitPrice")} *</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="exitPrice">{t("trades.exitPrice")} *</Label>
+                {extractedData?.field_confidence?.exit_price !== undefined && (
+                  <Badge variant="outline" className={`text-xs ${
+                    extractedData.field_confidence.exit_price >= 0.8 
+                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
+                      : extractedData.field_confidence.exit_price >= 0.5
+                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
+                  }`}>
+                    {Math.round(extractedData.field_confidence.exit_price * 100)}%
+                  </Badge>
+                )}
+              </div>
               <Input
                 id="exitPrice"
                 type="number"
@@ -782,7 +843,20 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="fees">{t("trades.fees")} ($)</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="fees">{t("trades.fees")} ($)</Label>
+                {extractedData?.field_confidence?.fees !== undefined && (
+                  <Badge variant="outline" className={`text-xs ${
+                    extractedData.field_confidence.fees >= 0.8 
+                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
+                      : extractedData.field_confidence.fees >= 0.5
+                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
+                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
+                  }`}>
+                    {Math.round(extractedData.field_confidence.fees * 100)}%
+                  </Badge>
+                )}
+              </div>
               <Input
                 id="fees"
                 type="number"
