@@ -205,6 +205,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                 const dayPnL = getDayPnL(day);
                 const isCurrentMonth = isSameMonth(day, currentMonth);
                 const isSelected = selectedDate && format(day, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd');
+                const isToday = format(day, 'yyyy-MM-dd') === today;
                 const politicalEvents = getEventsForDate(day);
                 const hasTrumpEvent = politicalEvents.some(e => e.type === 'trump_speech');
 
@@ -215,13 +216,14 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                     className={`
                       relative border rounded-lg p-3 min-h-[120px] cursor-pointer transition-all
                       ${isCurrentMonth ? 'bg-card' : 'bg-muted/20'}
+                      ${isToday ? 'ring-2 ring-primary bg-primary/5' : ''}
                       ${isSelected ? 'ring-2 ring-primary' : 'hover:bg-accent'}
                       ${dayTrades.length > 0 ? 'border-primary/50' : 'border-border'}
                     `}
                   >
                     <div className="flex justify-between items-start mb-2">
                       <div className="flex items-center gap-1">
-                        <span className={`text-sm font-medium ${isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
+                        <span className={`text-sm font-medium ${isToday ? 'text-primary font-bold' : isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {format(day, 'd')}
                         </span>
                         {hasTrumpEvent && isCurrentMonth && (

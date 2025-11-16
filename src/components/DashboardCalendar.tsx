@@ -59,6 +59,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
 
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
   const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const today = format(new Date(), 'yyyy-MM-dd');
   
   const months = Array.from({ length: 12 }, (_, i) => ({
     value: i.toString(),
@@ -150,6 +151,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
               const dayTrades = getTradesForDate(day);
               const dayPnL = getDayPnL(day);
               const isCurrentMonth = isSameMonth(day, currentMonth);
+              const isToday = format(day, 'yyyy-MM-dd') === today;
 
               return (
                 <div
@@ -157,6 +159,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
                   className={`
                     relative border rounded-lg p-3 min-h-[100px] transition-all group
                     ${isCurrentMonth ? 'bg-card' : 'bg-muted/20'}
+                    ${isToday ? 'ring-2 ring-primary bg-primary/5' : ''}
                     ${dayTrades.length > 0 ? 'border-primary/50 cursor-pointer hover:border-primary' : 'border-border'}
                   `}
                   onClick={() => {
@@ -166,7 +169,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
                   }}
                 >
                   <div className="flex justify-between items-start mb-2">
-                    <span className={`text-sm font-medium ${isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
+                    <span className={`text-sm font-medium ${isToday ? 'text-primary font-bold' : isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
                       {format(day, 'd')}
                     </span>
                   </div>
