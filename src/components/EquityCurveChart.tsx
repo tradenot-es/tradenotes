@@ -21,6 +21,29 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
   const formatYAxis = (value: number) => {
     return `${symbol}${value.toLocaleString()}`;
   };
+
+  const calculateYAxisDomain = () => {
+    if (data.length === 0) return [0, 100];
+    const values = data.map(d => d.equity);
+    const min = Math.min(...values);
+    const max = Math.max(...values);
+    const padding = (max - min) * 0.1;
+    return [Math.floor(min - padding), Math.ceil(max + padding)];
+  };
+
+  const calculateYAxisTicks = () => {
+    const [min, max] = calculateYAxisDomain();
+    const range = max - min;
+    const tickCount = 8;
+    const rawStep = range / (tickCount - 1);
+    const magnitude = Math.pow(10, Math.floor(Math.log10(rawStep)));
+    const step = Math.ceil(rawStep / magnitude) * magnitude;
+    const ticks = [];
+    for (let i = Math.floor(min / step) * step; i <= max; i += step) {
+      ticks.push(i);
+    }
+    return ticks;
+  };
   
   return (
     <Card className="elegant-shadow">
@@ -58,12 +81,20 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
               stroke="hsl(var(--muted-foreground))" 
               fontSize={12}
               tickLine={false}
+              angle={-45}
+              textAnchor="end"
+              height={60}
+              interval="preserveStartEnd"
+              minTickGap={30}
             />
             <YAxis 
               stroke="hsl(var(--muted-foreground))" 
               fontSize={12}
               tickLine={false}
               tickFormatter={formatYAxis}
+              domain={calculateYAxisDomain()}
+              ticks={calculateYAxisTicks()}
+              width={80}
             />
             <Tooltip
               contentStyle={{
