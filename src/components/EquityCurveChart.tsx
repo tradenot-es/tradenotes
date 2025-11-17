@@ -19,7 +19,11 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
   const { symbol } = useCurrency();
 
   const formatYAxis = (value: number) => {
-    return `${symbol}${value.toLocaleString()}`;
+    return `${symbol}${value.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+  };
+
+  const formatTooltipValue = (value: number) => {
+    return `${symbol}${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
   };
 
   const calculateYAxisDomain = () => {
@@ -103,6 +107,7 @@ export function EquityCurveChart({ data }: EquityCurveChartProps) {
                 borderRadius: "0.5rem",
                 boxShadow: "0 4px 12px hsl(var(--primary) / 0.2)",
               }}
+              formatter={(value: number) => formatTooltipValue(value)}
             />
             <Area
               type="monotone"
