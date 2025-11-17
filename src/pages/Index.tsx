@@ -209,20 +209,20 @@ const Index = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">{t("dashboard.title")}</h1>
-        <p className="text-muted-foreground">{t("dashboard.subtitle")}</p>
+    <div className="space-y-8 p-2">
+      <div className="glossy-card p-8 rounded-2xl">
+        <h1 className="text-4xl font-bold gradient-text">{t("dashboard.title")}</h1>
+        <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
       </div>
 
       {trades.length === 0 ? (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">{t("dashboard.noTrades")}</p>
+        <div className="glossy-card p-12 text-center rounded-2xl">
+          <p className="text-muted-foreground text-lg">{t("dashboard.noTrades")}</p>
         </div>
       ) : (
         <>
           {/* Radial Progress KPIs - Featured Metrics */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <RadialKPICard
               title={t("dashboard.winRate")}
               value={kpis.winRateNum}
@@ -277,7 +277,7 @@ const Index = () => {
           </div>
 
           {/* Compact KPIs - Supporting Metrics */}
-          <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             <KPICard
               title={t("dashboard.totalTrades")}
               value={kpis.totalTrades}
