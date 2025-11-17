@@ -14,6 +14,7 @@ interface RadialKPICardProps {
   subtitle?: string;
   tooltip?: string;
   glossaryLink?: string;
+  delay?: number;
 }
 
 export function RadialKPICard({ 
@@ -24,17 +25,18 @@ export function RadialKPICard({
   color = "primary",
   subtitle,
   tooltip,
-  glossaryLink
+  glossaryLink,
+  delay = 0
 }: RadialKPICardProps) {
   return (
-    <Card className="elegant-shadow">
+    <Card className="elegant-shadow animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="flex items-center gap-2">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>
           {tooltip && (
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{tooltip}</p>

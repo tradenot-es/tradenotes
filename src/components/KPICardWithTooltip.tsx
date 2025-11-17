@@ -14,6 +14,7 @@ interface KPICardWithTooltipProps {
     value: string;
     positive: boolean;
   };
+  delay?: number;
 }
 
 export function KPICardWithTooltip({ 
@@ -23,7 +24,8 @@ export function KPICardWithTooltip({
   tooltip, 
   glossaryLink,
   valueColor,
-  trend 
+  trend,
+  delay = 0
 }: KPICardWithTooltipProps) {
   const isNegativeCurrency = typeof value === 'string' && value.startsWith('$-');
   const isPositiveCurrency = typeof value === 'string' && value.startsWith('$') && !value.startsWith('$-');
@@ -40,14 +42,14 @@ export function KPICardWithTooltip({
   };
 
   return (
-    <Card>
+    <Card className="animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="flex items-center gap-2">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>
           {tooltip && (
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{tooltip}</p>
