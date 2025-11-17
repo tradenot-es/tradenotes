@@ -9,9 +9,10 @@ interface KPICardProps {
     value: string;
     positive: boolean;
   };
+  delay?: number;
 }
 
-export function KPICard({ title, value, icon: Icon, trend }: KPICardProps) {
+export function KPICard({ title, value, icon: Icon, trend, delay = 0 }: KPICardProps) {
   // Check if value is a currency string with negative value
   const isNegativeCurrency = typeof value === 'string' && value.startsWith('$-');
   const isPositiveCurrency = typeof value === 'string' && value.startsWith('$') && !value.startsWith('$-');
@@ -23,7 +24,7 @@ export function KPICard({ title, value, icon: Icon, trend }: KPICardProps) {
   };
 
   return (
-    <Card>
+    <Card className="animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
         <div className="rounded-lg bg-primary/10 p-2">
