@@ -198,6 +198,13 @@ Deno.serve(async (req) => {
 
     const finlightData = await finlightResponse.json();
     console.log('Finlight response received, status:', finlightData.status);
+    console.log('Finlight response meta:', JSON.stringify({
+      totalResults: finlightData.totalResults,
+      pageSize: finlightData.pageSize,
+      articlesCount: finlightData.articles?.length || 0,
+      requestDate: date,
+      query: searchQuery
+    }));
 
     // Transform Finlight articles to our format
     const articles: NewsArticle[] = (finlightData.articles || []).map((article: FinlightArticle) => ({
@@ -215,6 +222,12 @@ Deno.serve(async (req) => {
     }));
 
     console.log('News fetched successfully, count:', articles.length);
+
+    // If no articles found, provide more context
+    if (articles.length === 0) {
+      console.warn('No articles found for date:', date, 'query:', searchQuery, 'symbols:', symbols);
+      console.warn('This could mean: 1) No news published for this date, 2) Query too specific, 3) Date in future');
+    }
 
     // Store in cache
     const expiresAt = new Date();
