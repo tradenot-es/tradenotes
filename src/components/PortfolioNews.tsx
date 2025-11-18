@@ -45,6 +45,8 @@ export function PortfolioNews() {
       const topSymbols = frequentSymbols.slice(0, 5).map(s => s.symbol);
       const today = new Date().toISOString().split('T')[0];
       
+      console.log('PortfolioNews: Loading news for date:', today, 'symbols:', topSymbols);
+      
       const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
         body: { 
           action: 'get-articles',
@@ -63,8 +65,14 @@ export function PortfolioNews() {
       }
 
       if (data.success) {
-        setArticles(data.articles.slice(0, 5)); // Limit to 5 articles
+        const articles = data.articles.slice(0, 5); // Limit to 5 articles
+        console.log('PortfolioNews: Received articles:', articles.length, 'cached:', data.meta?.cached);
+        setArticles(articles);
         setIsCached(data.meta?.cached || false);
+        
+        if (articles.length === 0) {
+          setError(t("trades.noNewsAvailable") + ' (Datum: ' + today + ')');
+        }
       } else {
         if (data.error?.includes('rate limit') || data.error?.includes('429')) {
           setError('News temporarily unavailable due to rate limits. Please try again later.');
