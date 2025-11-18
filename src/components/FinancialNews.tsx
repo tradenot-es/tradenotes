@@ -76,6 +76,10 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
 
       if (data.success) {
         setArticles(data.articles);
+        // Show helpful message if no articles found
+        if (data.articles.length === 0) {
+          setError(t("trades.noNewsAvailable") + " (Date: " + dateStr + ")");
+        }
       } else {
         if (data.error?.includes('rate limit') || data.error?.includes('429')) {
           setError('News temporarily unavailable due to rate limits. Please try again later.');
