@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -30,12 +30,25 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [selectedSources, setSelectedSources] = useState<string[]>([]);
+  const loadingRef = useRef(false);
+  const lastRequestRef = useRef<string>("");
 
   useEffect(() => {
+    const requestKey = `${date.toISOString()}-${JSON.stringify(symbols)}-${market}-${JSON.stringify(selectedSources)}`;
+    
+    // Prevent duplicate requests
+    if (loadingRef.current || lastRequestRef.current === requestKey) {
+      return;
+    }
+    
+    lastRequestRef.current = requestKey;
     loadNews();
   }, [date, symbols, market, selectedSources]);
 
   const loadNews = async () => {
+    if (loadingRef.current) return;
+    
+    loadingRef.current = true;
     setLoading(true);
     setError("");
 
@@ -75,6 +88,7 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
       setError(err.message);
     } finally {
       setLoading(false);
+      loadingRef.current = false;
     }
   };
 
