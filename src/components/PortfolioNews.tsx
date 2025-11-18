@@ -41,44 +41,49 @@ export function PortfolioNews() {
     setError("");
 
     try {
-      // Get top 5 most traded symbols
       const topSymbols = frequentSymbols.slice(0, 5).map(s => s.symbol);
-      const today = new Date().toISOString().split('T')[0];
       
-      console.log('PortfolioNews: Loading news for date:', today, 'symbols:', topSymbols);
+      // Try up to 7 days back to find news
+      let articlesFound = false;
+      const maxDaysBack = 7;
       
-      const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
-        body: { 
-          action: 'get-articles',
-          date: today,
-          symbols: topSymbols,
-        }
-      });
-
-      if (functionError) {
-        if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
-          setError('News temporarily unavailable due to rate limits. Please try again later.');
-        } else {
-          throw functionError;
-        }
-        return;
-      }
-
-      if (data.success) {
-        const articles = data.articles.slice(0, 5); // Limit to 5 articles
-        console.log('PortfolioNews: Received articles:', articles.length, 'cached:', data.meta?.cached);
-        setArticles(articles);
-        setIsCached(data.meta?.cached || false);
+      for (let daysBack = 0; daysBack <= maxDaysBack && !articlesFound; daysBack++) {
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() - daysBack);
+        const dateStr = targetDate.toISOString().split('T')[0];
         
-        if (articles.length === 0) {
-          setError(t("trades.noNewsAvailable") + ' (Datum: ' + today + ')');
+        console.log(`PortfolioNews: Trying date ${dateStr} (${daysBack} days back), symbols:`, topSymbols);
+        
+        const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
+          body: { 
+            action: 'get-articles',
+            date: dateStr,
+            symbols: topSymbols,
+          }
+        });
+
+        if (functionError) {
+          console.error(`Error loading news for ${dateStr}:`, functionError);
+          if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
+            setError('News temporarily unavailable due to rate limits. Please try again later.');
+            break;
+          }
+          continue;
         }
-      } else {
-        if (data.error?.includes('rate limit') || data.error?.includes('429')) {
-          setError('News temporarily unavailable due to rate limits. Please try again later.');
+
+        if (data.success && data.articles?.length > 0) {
+          const articles = data.articles.slice(0, 5);
+          console.log(`PortfolioNews: Found ${articles.length} articles for ${dateStr}, cached:`, data.meta?.cached);
+          setArticles(articles);
+          setIsCached(data.meta?.cached || false);
+          articlesFound = true;
         } else {
-          setError(data.error || t("trades.noNewsAvailable"));
+          console.log(`PortfolioNews: No articles for ${dateStr}, trying earlier date...`);
         }
+      }
+      
+      if (!articlesFound && !error) {
+        setError(t("trades.noNewsAvailable"));
       }
     } catch (err: any) {
       console.error('Error loading portfolio news:', err);
