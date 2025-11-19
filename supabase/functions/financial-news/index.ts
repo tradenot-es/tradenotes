@@ -130,20 +130,38 @@ Deno.serve(async (req) => {
     let searchQuery = '';
     
     if (sources && sources.includes('political')) {
-      // Political & economic events
+      // Political & economic events - separate handling
       searchQuery = 'Trump OR Biden OR Fed OR Powell OR "Federal Reserve" OR "interest rate" OR FOMC OR inflation OR CPI OR GDP';
+      console.log('Political news query:', searchQuery);
     } else if (symbols && symbols.length > 0) {
-      // Symbol-specific financial news - prioritize symbols
-      searchQuery = symbols.join(' OR ');
+      // ONLY symbol-specific financial news - NO fallback to general news
+      searchQuery = symbols.map((s: string) => `${s} AND (stock OR shares OR trading OR price OR market OR earnings OR revenue OR financial)`).join(' OR ');
+      console.log('Symbol-specific query for:', symbols, 'Query:', searchQuery);
     } else {
-      // General financial news as fallback
-      searchQuery = 'stock market OR S&P 500 OR Nasdaq OR trading';
+      // Only if explicitly no symbols provided
+      console.log('No symbols provided, skipping news fetch');
+      return new Response(
+        JSON.stringify({
+          success: true,
+          articles: [],
+          meta: {
+            count: 0,
+            date: date,
+            market: market,
+            symbols: symbols,
+            cached: false,
+            message: 'No symbols to fetch news for'
+          }
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        }
+      );
     }
 
-    console.log('Search query:', searchQuery);
-
-    // Call Finlight API - first try with tickers
-    console.log('Attempting API call with tickers:', symbols);
+    // Call Finlight API with tickers parameter for better relevance
+    console.log('Calling Finlight API with tickers:', symbols);
     let finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
       method: 'POST',
       headers: {
@@ -153,7 +171,7 @@ Deno.serve(async (req) => {
       },
       body: JSON.stringify({
         query: searchQuery,
-        tickers: symbols && symbols.length > 0 ? symbols : undefined,
+        tickers: symbols && symbols.length > 0 && !sources?.includes('political') ? symbols : undefined,
         from: date,
         to: date,
         language: 'en',
@@ -162,32 +180,7 @@ Deno.serve(async (req) => {
       }),
     });
     
-    // If no results with tickers, try with broader query but keep symbols
     let finlightData = await finlightResponse.json();
-    if (finlightResponse.ok && (!finlightData.articles || finlightData.articles.length === 0) && symbols && symbols.length > 0) {
-      console.log('No results with tickers, retrying with symbol-focused query...');
-      
-      // Create a more targeted financial query with symbols
-      const symbolQuery = `(${symbols.join(' OR ')}) AND (stock OR shares OR trading OR price OR market OR earnings OR revenue)`;
-      
-      finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
-        method: 'POST',
-        headers: {
-          'X-API-KEY': finlightApiKey,
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify({
-          query: symbolQuery,
-          from: date,
-          to: date,
-          language: 'en',
-          pageSize: 20,
-          includeEntities: true,
-        }),
-      });
-      finlightData = await finlightResponse.json();
-    }
 
     if (!finlightResponse.ok) {
       console.error('Finlight API error:', finlightResponse.status);
