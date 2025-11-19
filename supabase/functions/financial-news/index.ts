@@ -144,8 +144,9 @@ Deno.serve(async (req) => {
 
     console.log('Search query:', searchQuery);
 
-    // Call Finlight API
-    const finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
+    // Call Finlight API - first try with tickers
+    console.log('Attempting API call with tickers:', symbols);
+    let finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
       method: 'POST',
       headers: {
         'X-API-KEY': finlightApiKey,
@@ -162,10 +163,32 @@ Deno.serve(async (req) => {
         includeEntities: true,
       }),
     });
+    
+    // If no results with tickers, try without tickers filter for broader results
+    let finlightData = await finlightResponse.json();
+    if (finlightResponse.ok && (!finlightData.articles || finlightData.articles.length === 0) && symbols && symbols.length > 0) {
+      console.log('No results with tickers, retrying without ticker filter for broader results...');
+      finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
+        method: 'POST',
+        headers: {
+          'X-API-KEY': finlightApiKey,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query: 'stock market OR S&P 500 OR Nasdaq OR trading OR economy',
+          from: date,
+          to: date,
+          language: 'en',
+          pageSize: 20,
+          includeEntities: true,
+        }),
+      });
+      finlightData = await finlightResponse.json();
+    }
 
     if (!finlightResponse.ok) {
-      const errorText = await finlightResponse.text();
-      console.error('Finlight API error:', finlightResponse.status, errorText);
+      console.error('Finlight API error:', finlightResponse.status);
       
       if (finlightResponse.status === 429) {
         return new Response(
@@ -196,7 +219,6 @@ Deno.serve(async (req) => {
       throw new Error(`Failed to fetch news: ${finlightResponse.status}`);
     }
 
-    const finlightData = await finlightResponse.json();
     console.log('Finlight response received, status:', finlightData.status);
     console.log('Finlight response meta:', JSON.stringify({
       totalResults: finlightData.totalResults,
