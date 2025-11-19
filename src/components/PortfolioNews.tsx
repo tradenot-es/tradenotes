@@ -205,7 +205,14 @@ export function PortfolioNews() {
                     {article.description}
                   </p>
                 )}
-                <div className="flex items-center gap-2 flex-wrap">
+                <div className="flex items-center gap-2 flex-wrap mb-2">
+                  <Badge variant="outline" className="text-xs">
+                    {new Date(article.published_at).toLocaleDateString('de-DE', { 
+                      day: '2-digit', 
+                      month: '2-digit', 
+                      year: 'numeric' 
+                    })}
+                  </Badge>
                   <Badge variant="outline" className="text-xs">
                     {article.source}
                   </Badge>
@@ -214,15 +221,15 @@ export function PortfolioNews() {
                       {entity.symbol}
                     </Badge>
                   ))}
-                  <a
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto text-xs text-primary hover:underline flex items-center gap-1"
-                  >
-                    {t("common.readMore")} <ExternalLink className="h-3 w-3" />
-                  </a>
                 </div>
+                <a
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-primary hover:underline flex items-center gap-1"
+                >
+                  {t("common.readMore")} <ExternalLink className="h-3 w-3" />
+                </a>
               </div>
             ))}
           </div>
