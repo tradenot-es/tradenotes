@@ -19,20 +19,27 @@ interface NewsArticle {
   entities?: Array<{ symbol: string; name: string }>;
 }
 
-interface FinlightArticle {
-  link: string;
-  source: string;
+interface AlphaVantageArticle {
   title: string;
-  summary?: string;
-  publishDate: string;
-  language: string;
-  sentiment: string;
-  confidence: number;
-  images?: string[];
-  companies?: Array<{
+  url: string;
+  time_published: string;
+  authors: string[];
+  summary: string;
+  banner_image?: string;
+  source: string;
+  category_within_source: string;
+  source_domain: string;
+  topics: Array<{
+    topic: string;
+    relevance_score: string;
+  }>;
+  overall_sentiment_score: number;
+  overall_sentiment_label: string;
+  ticker_sentiment: Array<{
     ticker: string;
-    name: string;
-    confidence: number;
+    relevance_score: string;
+    ticker_sentiment_score: string;
+    ticker_sentiment_label: string;
   }>;
 }
 
@@ -56,9 +63,9 @@ Deno.serve(async (req) => {
 
     const { date, symbols, market, action, sources } = await req.json();
     
-    const finlightApiKey = Deno.env.get('FINLIGHT_API_KEY');
-    if (!finlightApiKey) {
-      throw new Error('FINLIGHT_API_KEY not configured');
+    const alphaVantageApiKey = Deno.env.get('ALPHAVANTAGE_API_KEY');
+    if (!alphaVantageApiKey) {
+      throw new Error('ALPHAVANTAGE_API_KEY not configured');
     }
 
     // Handle "get-sources" action
@@ -124,19 +131,20 @@ Deno.serve(async (req) => {
       );
     }
 
-    console.log('Cache miss. Fetching from Finlight API...');
+    console.log('Cache miss. Fetching from AlphaVantage API...');
 
-    // Build search query based on sources and symbols
-    let searchQuery = '';
+    // Build parameters for AlphaVantage
+    let topics = '';
+    let tickers = '';
     
     if (sources && sources.includes('political')) {
-      // Political & economic events - separate handling
-      searchQuery = 'Trump OR Biden OR Fed OR Powell OR "Federal Reserve" OR "interest rate" OR FOMC OR inflation OR CPI OR GDP';
-      console.log('Political news query:', searchQuery);
+      // Political & economic events
+      topics = 'economy_fiscal,economy_monetary,financial_markets';
+      console.log('Political news topics:', topics);
     } else if (symbols && symbols.length > 0) {
-      // ONLY symbol-specific financial news - NO fallback to general news
-      searchQuery = symbols.map((s: string) => `${s} AND (stock OR shares OR trading OR price OR market OR earnings OR revenue OR financial)`).join(' OR ');
-      console.log('Symbol-specific query for:', symbols, 'Query:', searchQuery);
+      // ONLY symbol-specific financial news
+      tickers = symbols.join(',');
+      console.log('Symbol-specific query for:', symbols);
     } else {
       // Only if explicitly no symbols provided
       console.log('No symbols provided, skipping news fetch');
@@ -160,32 +168,35 @@ Deno.serve(async (req) => {
       );
     }
 
-    // Call Finlight API with tickers parameter for better relevance
-    console.log('Calling Finlight API with tickers:', symbols);
-    let finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
-      method: 'POST',
-      headers: {
-        'X-API-KEY': finlightApiKey,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        query: searchQuery,
-        tickers: symbols && symbols.length > 0 && !sources?.includes('political') ? symbols : undefined,
-        from: date,
-        to: date,
-        language: 'en',
-        pageSize: 20,
-        includeEntities: true,
-      }),
-    });
-    
-    let finlightData = await finlightResponse.json();
+    // Convert date to AlphaVantage format (YYYYMMDDTHHMM)
+    const timeFrom = `${date.replace(/-/g, '')}T0000`;
+    const timeTo = `${date.replace(/-/g, '')}T2359`;
 
-    if (!finlightResponse.ok) {
-      console.error('Finlight API error:', finlightResponse.status);
+    // Build URL with query parameters
+    const url = new URL('https://www.alphavantage.co/query');
+    url.searchParams.append('function', 'NEWS_SENTIMENT');
+    url.searchParams.append('apikey', alphaVantageApiKey);
+    url.searchParams.append('time_from', timeFrom);
+    url.searchParams.append('time_to', timeTo);
+    url.searchParams.append('limit', '50');
+    url.searchParams.append('sort', 'RELEVANCE');
+    
+    if (tickers) {
+      url.searchParams.append('tickers', tickers);
+    }
+    if (topics) {
+      url.searchParams.append('topics', topics);
+    }
+
+    console.log('Calling AlphaVantage API with URL:', url.toString());
+    let alphaVantageResponse = await fetch(url.toString());
+    
+    let alphaVantageData = await alphaVantageResponse.json();
+
+    if (!alphaVantageResponse.ok) {
+      console.error('AlphaVantage API error:', alphaVantageResponse.status);
       
-      if (finlightResponse.status === 429) {
+      if (alphaVantageResponse.status === 429) {
         return new Response(
           JSON.stringify({
             success: false,
@@ -198,52 +209,60 @@ Deno.serve(async (req) => {
         );
       }
       
-      if (finlightResponse.status === 402) {
-        return new Response(
-          JSON.stringify({
-            success: false,
-            error: 'Payment required. Please check your Finlight API subscription.'
-          }),
-          {
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-            status: 402,
-          }
-        );
-      }
-      
-      throw new Error(`Failed to fetch news: ${finlightResponse.status}`);
+      throw new Error(`Failed to fetch news: ${alphaVantageResponse.status}`);
     }
 
-    console.log('Finlight response received, status:', finlightData.status);
-    console.log('Finlight response meta:', JSON.stringify({
-      totalResults: finlightData.totalResults,
-      pageSize: finlightData.pageSize,
-      articlesCount: finlightData.articles?.length || 0,
+    console.log('AlphaVantage response received');
+    console.log('AlphaVantage response meta:', JSON.stringify({
+      itemsCount: alphaVantageData.items || 0,
+      feedLength: alphaVantageData.feed?.length || 0,
       requestDate: date,
-      query: searchQuery
+      tickers: tickers,
+      topics: topics
     }));
 
-    // Transform Finlight articles to our format
-    const articles: NewsArticle[] = (finlightData.articles || []).map((article: FinlightArticle) => ({
-      uuid: `finlight-${article.link}`,
+    // Check for API error messages
+    if (alphaVantageData.Note) {
+      console.warn('AlphaVantage API Note:', alphaVantageData.Note);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'API rate limit reached. Free tier allows 25 requests per day.'
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 429,
+        }
+      );
+    }
+
+    if (alphaVantageData.Information) {
+      console.warn('AlphaVantage API Information:', alphaVantageData.Information);
+    }
+
+    // Transform AlphaVantage articles to our format
+    const articles: NewsArticle[] = (alphaVantageData.feed || []).map((article: any) => ({
+      uuid: `alphavantage-${article.url}`,
       title: article.title,
       description: article.summary || '',
-      url: article.link,
-      published_at: article.publishDate,
+      url: article.url,
+      published_at: article.time_published,
       source: article.source,
-      sentiment: article.sentiment,
-      entities: (article.companies || []).map(company => ({
-        symbol: company.ticker,
-        name: company.name
-      }))
+      sentiment: article.overall_sentiment_label,
+      entities: (article.ticker_sentiment || [])
+        .filter((ts: any) => parseFloat(ts.relevance_score) > 0.3) // Only include relevant tickers
+        .map((ts: any) => ({
+          symbol: ts.ticker,
+          name: ts.ticker
+        }))
     }));
 
     console.log('News fetched successfully, count:', articles.length);
 
     // If no articles found, provide more context
     if (articles.length === 0) {
-      console.warn('No articles found for date:', date, 'query:', searchQuery, 'symbols:', symbols);
-      console.warn('This could mean: 1) No news published for this date, 2) Query too specific, 3) Date in future');
+      console.warn('No articles found for date:', date, 'tickers:', tickers, 'topics:', topics);
+      console.warn('This could mean: 1) No news published for this date, 2) Symbols not recognized, 3) Rate limit reached');
     }
 
     // Store in cache
