@@ -126,20 +126,18 @@ Deno.serve(async (req) => {
 
     console.log('Cache miss. Fetching from Finlight API...');
 
-    // Build search query based on sources
+    // Build search query based on sources and symbols
     let searchQuery = '';
     
     if (sources && sources.includes('political')) {
       // Political & economic events
       searchQuery = 'Trump OR Biden OR Fed OR Powell OR "Federal Reserve" OR "interest rate" OR FOMC OR inflation OR CPI OR GDP';
+    } else if (symbols && symbols.length > 0) {
+      // Symbol-specific financial news - prioritize symbols
+      searchQuery = symbols.join(' OR ');
     } else {
-      // General financial news
-      searchQuery = 'stock market OR economy OR trading';
-    }
-    
-    // Add symbol-specific keywords
-    if (symbols && symbols.length > 0) {
-      searchQuery += ` OR ${symbols.join(' OR ')}`;
+      // General financial news as fallback
+      searchQuery = 'stock market OR S&P 500 OR Nasdaq OR trading';
     }
 
     console.log('Search query:', searchQuery);
@@ -164,10 +162,14 @@ Deno.serve(async (req) => {
       }),
     });
     
-    // If no results with tickers, try without tickers filter for broader results
+    // If no results with tickers, try with broader query but keep symbols
     let finlightData = await finlightResponse.json();
     if (finlightResponse.ok && (!finlightData.articles || finlightData.articles.length === 0) && symbols && symbols.length > 0) {
-      console.log('No results with tickers, retrying without ticker filter for broader results...');
+      console.log('No results with tickers, retrying with symbol-focused query...');
+      
+      // Create a more targeted financial query with symbols
+      const symbolQuery = `(${symbols.join(' OR ')}) AND (stock OR shares OR trading OR price OR market OR earnings OR revenue)`;
+      
       finlightResponse = await fetch('https://api.finlight.me/v2/articles', {
         method: 'POST',
         headers: {
@@ -176,7 +178,7 @@ Deno.serve(async (req) => {
           'Accept': 'application/json',
         },
         body: JSON.stringify({
-          query: 'stock market OR S&P 500 OR Nasdaq OR trading OR economy',
+          query: symbolQuery,
           from: date,
           to: date,
           language: 'en',
