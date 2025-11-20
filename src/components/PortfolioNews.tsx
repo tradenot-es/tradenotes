@@ -48,8 +48,8 @@ export function PortfolioNews() {
       const maxDaysBack = 7;
       
       for (let daysBack = 0; daysBack <= maxDaysBack && !articlesFound; daysBack++) {
-        // CRITICAL: Use real current date (Nov 2024), not future dates from demo data
-        const now = new Date('2024-11-20'); // Using actual current date instead of system date
+        // CRITICAL: Use real current date (Nov 2025), not future dates from demo data
+        const now = new Date('2025-11-20'); // Using actual current date instead of system date
         const targetDate = new Date(now);
         targetDate.setDate(targetDate.getDate() - daysBack);
         const dateStr = targetDate.toISOString().split('T')[0];
