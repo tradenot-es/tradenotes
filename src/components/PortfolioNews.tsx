@@ -78,6 +78,11 @@ export function PortfolioNews() {
           setArticles(articles);
           setIsCached(data.meta?.cached || false);
           articlesFound = true;
+        } else if (data.meta?.error === 'unsupported_symbols') {
+          // Stop trying if symbols are not supported
+          console.log(`PortfolioNews: Symbols not supported by news provider`);
+          setError('News is only available for stock symbols (like AAPL, GOOGL, TSLA). Futures and indices are not supported.');
+          break;
         } else {
           console.log(`PortfolioNews: No articles for ${dateStr}, trying earlier date...`);
         }

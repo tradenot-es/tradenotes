@@ -5,8 +5,9 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// Cache duration: 6 hours
+// Cache duration: 6 hours for success, 24 hours for failures
 const CACHE_DURATION_HOURS = 6;
+const CACHE_DURATION_HOURS_FAILED = 24;
 
 interface NewsArticle {
   uuid: string;
@@ -236,6 +237,46 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Check for "Invalid inputs" error - means symbols not supported
+    if (alphaVantageData.Information && alphaVantageData.Information.includes('Invalid inputs')) {
+      console.warn('AlphaVantage Invalid Inputs - symbols not supported:', tickers);
+      
+      // Cache this failure for 24 hours to avoid wasting API calls
+      const expiresAt = new Date();
+      expiresAt.setHours(expiresAt.getHours() + CACHE_DURATION_HOURS_FAILED);
+      
+      await supabase
+        .from('news_cache')
+        .upsert({
+          cache_key: cacheKey,
+          articles: [],
+          symbols: sortedSymbols,
+          expires_at: expiresAt.toISOString()
+        }, {
+          onConflict: 'cache_key'
+        });
+      
+      return new Response(
+        JSON.stringify({
+          success: true,
+          articles: [],
+          meta: {
+            count: 0,
+            date: date,
+            market: market,
+            symbols: symbols,
+            cached: false,
+            error: 'unsupported_symbols',
+            message: 'These symbols are not supported by the news provider. Only stock symbols (like AAPL, GOOGL, TSLA) work.'
+          }
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          status: 200,
+        }
+      );
+    }
+
     if (alphaVantageData.Information) {
       console.warn('AlphaVantage API Information:', alphaVantageData.Information);
     }
@@ -265,9 +306,10 @@ Deno.serve(async (req) => {
       console.warn('This could mean: 1) No news published for this date, 2) Symbols not recognized, 3) Rate limit reached');
     }
 
-    // Store in cache
+    // Store in cache - use longer duration for empty results to avoid repeated API calls
     const expiresAt = new Date();
-    expiresAt.setHours(expiresAt.getHours() + CACHE_DURATION_HOURS);
+    const cacheDuration = articles.length === 0 ? CACHE_DURATION_HOURS_FAILED : CACHE_DURATION_HOURS;
+    expiresAt.setHours(expiresAt.getHours() + cacheDuration);
 
     const { error: insertError } = await supabase
       .from('news_cache')
