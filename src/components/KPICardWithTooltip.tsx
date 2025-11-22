@@ -49,7 +49,9 @@ export function KPICardWithTooltip({
           {tooltip && (
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors">
+                  <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                </button>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{tooltip}</p>
