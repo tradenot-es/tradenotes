@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { TrendingUp } from "lucide-react";
+import logo from "@/assets/tradenotes-logo.png";
 
 export const Navigation = () => {
   return (
@@ -8,10 +8,8 @@ export const Navigation = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <TrendingUp className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <span>TradeNotes.io</span>
+            <img src={logo} alt="TradeNotes" className="h-8 w-8" />
+            <span>TradeNotes</span>
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
