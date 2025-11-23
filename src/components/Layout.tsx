@@ -75,7 +75,7 @@ export function Layout({
                   <SidebarMenuButton asChild>
                      <NavLink to={item.url} end={item.url === "/dashboard"} className={({
                   isActive
-                }) => isActive ? "flex items-center gap-3 px-3 py-2 rounded-md !border-l-4 !border-r-4 !border-primary text-sidebar-foreground transition-all" : "flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent transition-all border-0"}>
+                }) => isActive ? "flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground transition-all border-solid border-y-0 border-t-0 border-b-0 border-l-[4px] border-r-[4px] border-primary" : "flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent transition-all border-transparent"}>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
                     </NavLink>
