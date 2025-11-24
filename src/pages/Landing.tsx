@@ -6,126 +6,70 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import heroLogo from "@/assets/tradenotes-logo-hero.png";
-  import { 
-  TrendingUp, 
-  BarChart3, 
-  BookOpen, 
-  LineChart, 
-  Calendar,
-  Check,
-  Star,
-  Import,
-  FileText,
-  Activity,
-  Target,
-  MessageSquare,
-  ScanLine
-} from "lucide-react";
-
+import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, ScanLine } from "lucide-react";
 const Landing = () => {
-  const { t } = useTranslation();
-
-  const features = [
-    {
-      icon: <ScanLine className="h-6 w-6" />,
-      title: t("landing.features.chartAnalysis.title"),
-      description: t("landing.features.chartAnalysis.description")
-    },
-    {
-      icon: <BookOpen className="h-6 w-6" />,
-      title: t("landing.features.journal.title"),
-      description: t("landing.features.journal.description")
-    },
-    {
-      icon: <BarChart3 className="h-6 w-6" />,
-      title: t("landing.features.analytics.title"),
-      description: t("landing.features.analytics.description")
-    },
-    {
-      icon: <LineChart className="h-6 w-6" />,
-      title: t("landing.features.equity.title"),
-      description: t("landing.features.equity.description")
-    },
-    {
-      icon: <Activity className="h-6 w-6" />,
-      title: t("landing.features.consistency.title"),
-      description: t("landing.features.consistency.description")
-    },
-    {
-      icon: <Calendar className="h-6 w-6" />,
-      title: t("landing.features.calendar.title"),
-      description: t("landing.features.calendar.description")
-    },
-    {
-      icon: <Target className="h-6 w-6" />,
-      title: t("landing.features.news.title"),
-      description: t("landing.features.news.description")
-    },
-    {
-      icon: <MessageSquare className="h-6 w-6" />,
-      title: t("landing.features.ai.title"),
-      description: t("landing.features.ai.description")
-    },
-    {
-      icon: <FileText className="h-6 w-6" />,
-      title: t("landing.features.reports.title"),
-      description: t("landing.features.reports.description")
-    },
-    {
-      icon: <Import className="h-6 w-6" />,
-      title: t("landing.features.import.title"),
-      description: t("landing.features.import.description")
-    },
-    {
-      icon: <Activity className="h-6 w-6" />,
-      title: t("landing.features.weekly.title"),
-      description: t("landing.features.weekly.description")
-    },
-    {
-      icon: <TrendingUp className="h-6 w-6" />,
-      title: t("landing.features.pnl.title"),
-      description: t("landing.features.pnl.description")
-    },
-    {
-      icon: <Target className="h-6 w-6" />,
-      title: t("landing.features.prep.title"),
-      description: t("landing.features.prep.description")
-    },
-    {
-      icon: <BookOpen className="h-6 w-6" />,
-      title: t("landing.features.glossary.title"),
-      description: t("landing.features.glossary.description")
-    }
-  ];
-
-  const allFeatures = [
-    t("landing.allFeatures.unlimited"),
-    t("landing.allFeatures.fullAnalytics"),
-    t("landing.allFeatures.journal"),
-    t("landing.allFeatures.equity"),
-    t("landing.allFeatures.consistency"),
-    t("landing.allFeatures.news"),
-    t("landing.allFeatures.ai"),
-    t("landing.allFeatures.winLoss"),
-    t("landing.allFeatures.calendar"),
-    t("landing.allFeatures.pnlCharts"),
-    t("landing.allFeatures.csvImport"),
-    t("landing.allFeatures.setupReports"),
-    t("landing.allFeatures.hourAnalysis"),
-    t("landing.allFeatures.symbolReports"),
-    t("landing.allFeatures.streakAnalysis"),
-    t("landing.allFeatures.holdingPeriod"),
-    t("landing.allFeatures.weeklyTracking"),
-    t("landing.allFeatures.dailyPrep"),
-    t("landing.allFeatures.glossary"),
-    t("landing.allFeatures.darkMode"),
-    t("landing.allFeatures.multiLanguage"),
-    t("landing.allFeatures.futureFeatures"),
-    t("landing.allFeatures.freeTrial")
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
+  const {
+    t
+  } = useTranslation();
+  const features = [{
+    icon: <ScanLine className="h-6 w-6" />,
+    title: t("landing.features.chartAnalysis.title"),
+    description: t("landing.features.chartAnalysis.description")
+  }, {
+    icon: <BookOpen className="h-6 w-6" />,
+    title: t("landing.features.journal.title"),
+    description: t("landing.features.journal.description")
+  }, {
+    icon: <BarChart3 className="h-6 w-6" />,
+    title: t("landing.features.analytics.title"),
+    description: t("landing.features.analytics.description")
+  }, {
+    icon: <LineChart className="h-6 w-6" />,
+    title: t("landing.features.equity.title"),
+    description: t("landing.features.equity.description")
+  }, {
+    icon: <Activity className="h-6 w-6" />,
+    title: t("landing.features.consistency.title"),
+    description: t("landing.features.consistency.description")
+  }, {
+    icon: <Calendar className="h-6 w-6" />,
+    title: t("landing.features.calendar.title"),
+    description: t("landing.features.calendar.description")
+  }, {
+    icon: <Target className="h-6 w-6" />,
+    title: t("landing.features.news.title"),
+    description: t("landing.features.news.description")
+  }, {
+    icon: <MessageSquare className="h-6 w-6" />,
+    title: t("landing.features.ai.title"),
+    description: t("landing.features.ai.description")
+  }, {
+    icon: <FileText className="h-6 w-6" />,
+    title: t("landing.features.reports.title"),
+    description: t("landing.features.reports.description")
+  }, {
+    icon: <Import className="h-6 w-6" />,
+    title: t("landing.features.import.title"),
+    description: t("landing.features.import.description")
+  }, {
+    icon: <Activity className="h-6 w-6" />,
+    title: t("landing.features.weekly.title"),
+    description: t("landing.features.weekly.description")
+  }, {
+    icon: <TrendingUp className="h-6 w-6" />,
+    title: t("landing.features.pnl.title"),
+    description: t("landing.features.pnl.description")
+  }, {
+    icon: <Target className="h-6 w-6" />,
+    title: t("landing.features.prep.title"),
+    description: t("landing.features.prep.description")
+  }, {
+    icon: <BookOpen className="h-6 w-6" />,
+    title: t("landing.features.glossary.title"),
+    description: t("landing.features.glossary.description")
+  }];
+  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
+  return <div className="min-h-screen bg-background">
       <Navigation />
 
       {/* Hero Section */}
@@ -137,11 +81,7 @@ const Landing = () => {
                 {t("landing.badge")}
               </Badge>
               <div className="flex justify-center lg:justify-start my-8">
-                <img 
-                  src={heroLogo} 
-                  alt="TradeNot.es Logo" 
-                  className="h-24 md:h-32 w-auto animate-in fade-in duration-1000"
-                />
+                
               </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
@@ -173,11 +113,7 @@ const Landing = () => {
             </div>
             <div className="relative">
               <div className="aspect-video rounded-2xl border border-primary/20 elegant-shadow overflow-hidden bg-background/50">
-                <img 
-                  src={dashboardPreview} 
-                  alt={t("landing.dashboardAlt")}
-                  className="w-full h-full object-contain"
-                />
+                <img src={dashboardPreview} alt={t("landing.dashboardAlt")} className="w-full h-full object-contain" />
               </div>
             </div>
           </div>
@@ -195,8 +131,7 @@ const Landing = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <Card key={index} className="smooth-transition hover:scale-105">
+            {features.map((feature, index) => <Card key={index} className="smooth-transition hover:scale-105">
                 <CardHeader>
                   <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
                     {feature.icon}
@@ -204,8 +139,7 @@ const Landing = () => {
                   <CardTitle>{feature.title}</CardTitle>
                   <CardDescription>{feature.description}</CardDescription>
                 </CardHeader>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -261,12 +195,10 @@ const Landing = () => {
                 <div className="mb-8">
                   <h3 className="font-semibold text-lg mb-4 text-center">{t("landing.allFeaturesTitle")}</h3>
                   <div className="grid md:grid-cols-2 gap-3">
-                    {allFeatures.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-2">
+                    {allFeatures.map((feature, idx) => <div key={idx} className="flex items-start gap-2">
                         <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                         <span className="text-sm">{feature}</span>
-                      </div>
-                    ))}
+                      </div>)}
                   </div>
                 </div>
 
@@ -304,11 +236,7 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-1 space-y-4">
-              <img 
-                src={heroLogo} 
-                alt="TradeNot.es Logo" 
-                className="h-20 w-auto"
-              />
+              <img src={heroLogo} alt="TradeNot.es Logo" className="h-20 w-auto" />
               <p className="text-sm text-muted-foreground">
                 {t("landing.footerDescription")}
               </p>
@@ -343,8 +271,6 @@ const Landing = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Landing;
