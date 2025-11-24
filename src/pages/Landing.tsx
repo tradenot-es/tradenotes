@@ -89,7 +89,7 @@ const Landing = () => {
                   <span className="gradient-text leading-tight">
                     {t("landing.heroTitleHighlight")}
                   </span>
-                  <img src={heroLogo} alt="TradeNot.es" className="h-[5rem] md:h-[6.5rem] lg:h-[7.5rem] flex-shrink-0" />
+                  
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground">
