@@ -137,7 +137,7 @@ const Trades = () => {
         />
       </div>
 
-      <div className="h-[calc(100vh-14rem)]">
+      <div className="overflow-auto">
         <TradeCalendar
           trades={filteredTrades}
           onDateSelect={handleDateSelect}
