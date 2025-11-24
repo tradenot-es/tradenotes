@@ -85,9 +85,11 @@ const Landing = () => {
               </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
-                <span className="gradient-text block mt-2 flex items-center gap-8 flex-wrap">
-                  {t("landing.heroTitleHighlight")}
-                  <img src={heroLogo} alt="TradeNot.es" className="h-48 md:h-64 inline-block ml-auto lg:ml-8" />
+                <span className="flex items-start gap-6 md:gap-8 mt-2 flex-wrap">
+                  <span className="gradient-text leading-tight">
+                    {t("landing.heroTitleHighlight")}
+                  </span>
+                  <img src={heroLogo} alt="TradeNot.es" className="h-[5rem] md:h-[6.5rem] lg:h-[7.5rem] flex-shrink-0" />
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground">
