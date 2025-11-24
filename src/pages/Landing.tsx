@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
+import heroLogo from "@/assets/tradenotes-logo-hero.png";
   import { 
   TrendingUp, 
   BarChart3, 
@@ -135,6 +136,13 @@ const Landing = () => {
               <Badge className="w-fit glow-effect">
                 {t("landing.badge")}
               </Badge>
+              <div className="flex justify-center lg:justify-start my-8">
+                <img 
+                  src={heroLogo} 
+                  alt="TradeNot.es Logo" 
+                  className="h-24 md:h-32 w-auto animate-in fade-in duration-1000"
+                />
+              </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
                 <span className="gradient-text block mt-2">
@@ -295,8 +303,12 @@ const Landing = () => {
       <footer className="border-t py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">{t("landing.footerTitle")}</h3>
+            <div className="md:col-span-1 space-y-4">
+              <img 
+                src={heroLogo} 
+                alt="TradeNot.es Logo" 
+                className="h-20 w-auto"
+              />
               <p className="text-sm text-muted-foreground">
                 {t("landing.footerDescription")}
               </p>
