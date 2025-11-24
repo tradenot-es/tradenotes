@@ -327,11 +327,11 @@
     "badge": "Professioneel Trading Dagboek",
     "heroTitle": "Word een betere trader door",
     "heroTitleHighlight": "systematisch journaling",
-    "heroDescription": "TradeNotes.io helpt je van elke trade te leren. Analyseer je prestaties, herken patronen en ontwikkel een winstgevende trading strategie met gedetailleerde analytics en grafieken.",
+    "heroDescription": "TradeNot.es helpt je van elke trade te leren. Analyseer je prestaties, herken patronen en ontwikkel een winstgevende trading strategie met gedetailleerde analytics en grafieken.",
     "ctaStart": "Begin Nu",
     "ctaFeatures": "Ontdek Functies",
     "rating": "4.9/5 van 1000+ Traders",
-    "dashboardAlt": "TradeNotes.io Dashboard met Performance Charts, Trading Kalender en Analytics",
+    "dashboardAlt": "TradeNot.es Dashboard met Performance Charts, Trading Kalender en Analytics",
     "featuresBadge": "Functies",
     "featuresTitle": "Alles voor succesvol trading journaling",
     "featuresDescription": "Alle tools die je nodig hebt om van je trades te leren en consistent winstgevend te worden",
@@ -339,7 +339,7 @@
     "pricingTitle": "Één Prijs. Alle Functies.",
     "pricingDescription": "Geen verborgen kosten. Geen ingewikkeld abonnementsmodel. Alleen een eerlijke prijs voor alle functies.",
     "trialBadge": "7 Dagen Gratis Proberen",
-    "premiumTitle": "TradeNotes.io Premium",
+    "premiumTitle": "TradeNot.es Premium",
     "premiumDescription": "Toegang tot alle functies – nu en in de toekomst",
     "monthlyPlan": "Maandelijks",
     "monthlyPrice": "€9,99",
@@ -355,7 +355,7 @@
     "trialNotice": "Geen creditcard vereist • Altijd opzegbaar",
     "ctaTitle": "Start vandaag met je trading dagboek",
     "ctaDescription": "Begin je 7 dagen gratis proefperiode en word een consistent winstgevende trader",
-    "footerTitle": "TradeNotes.io",
+    "footerTitle": "TradeNot.es",
     "footerDescription": "Het professionele trading dagboek voor ambitieuze traders",
     "footerProduct": "Product",
     "footerFeatures": "Functies",
@@ -369,7 +369,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Voorwaarden",
     "footerImprint": "Colofon",
-    "footerCopyright": "© 2025 TradeNotes.io. Alle rechten voorbehouden.",
+    "footerCopyright": "© 2025 TradeNot.es. Alle rechten voorbehouden.",
     "features": {
       "journal": {
         "title": "Trading Dagboek",
@@ -421,7 +421,7 @@
       },
       "glossary": {
         "title": "Trading Woordenlijst",
-        "description": "Alle trading termen van tradenotes.io uitgelegd - P&L, Win Rate, Equity Curve, Risk/Reward en meer"
+        "description": "Alle trading termen van tradenot.es uitgelegd - P&L, Win Rate, Equity Curve, Risk/Reward en meer"
       },
       "chartAnalysis": {
         "title": "AI grafiekanalyse",

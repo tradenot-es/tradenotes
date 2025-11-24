@@ -337,11 +337,11 @@
     "badge": "Professional Trading Journal",
     "heroTitle": "Become a better trader through",
     "heroTitleHighlight": "systematic journaling",
-    "heroDescription": "TradeNotes.io helps you learn from every trade. Analyze your performance, recognize patterns and develop a profitable trading strategy with detailed analytics and charts.",
+    "heroDescription": "TradeNot.es helps you learn from every trade. Analyze your performance, recognize patterns and develop a profitable trading strategy with detailed analytics and charts.",
     "ctaStart": "Get Started",
     "ctaFeatures": "Explore Features",
     "rating": "4.9/5 from 1000+ Traders",
-    "dashboardAlt": "TradeNotes.io Dashboard with Performance Charts, Trading Calendar and Analytics",
+    "dashboardAlt": "TradeNot.es Dashboard with Performance Charts, Trading Calendar and Analytics",
     "featuresBadge": "Features",
     "featuresTitle": "Everything for successful trading journaling",
     "featuresDescription": "All tools you need to learn from your trades and become consistently profitable",
@@ -349,7 +349,7 @@
     "pricingTitle": "One Price. All Features.",
     "pricingDescription": "No hidden costs. No complicated subscription model. Just a fair price for all features.",
     "trialBadge": "7 Days Free Trial",
-    "premiumTitle": "TradeNotes.io Premium",
+    "premiumTitle": "TradeNot.es Premium",
     "premiumDescription": "Access to all features – now and in the future",
     "monthlyPlan": "Monthly",
     "monthlyPrice": "$9.99",
@@ -365,7 +365,7 @@
     "trialNotice": "No credit card required • Cancel anytime",
     "ctaTitle": "Start your trading journal today",
     "ctaDescription": "Begin your 7-day free trial and become a consistently profitable trader",
-    "footerTitle": "TradeNotes.io",
+    "footerTitle": "TradeNot.es",
     "footerDescription": "The professional trading journal for ambitious traders",
     "footerProduct": "Product",
     "footerFeatures": "Features",
@@ -379,7 +379,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Terms",
     "footerImprint": "Imprint",
-    "footerCopyright": "© 2025 TradeNotes.io. All rights reserved.",
+    "footerCopyright": "© 2025 TradeNot.es. All rights reserved.",
     "features": {
       "journal": {
         "title": "Trading Journal",
@@ -431,7 +431,7 @@
       },
       "glossary": {
         "title": "Trading Glossary",
-        "description": "All trading terms from tradenotes.io explained - P&L, Win Rate, Equity Curve, Risk/Reward and more"
+        "description": "All trading terms from tradenot.es explained - P&L, Win Rate, Equity Curve, Risk/Reward and more"
       },
       "chartAnalysis": {
         "title": "AI Chart Analysis",

@@ -337,11 +337,11 @@
     "badge": "Professionelles Trading Journal",
     "heroTitle": "Werde ein besserer Trader durch",
     "heroTitleHighlight": "systematisches Journaling",
-    "heroDescription": "TradeNotes.io hilft dir, aus jedem Trade zu lernen. Analysiere deine Performance, erkenne Muster und entwickle eine profitable Trading-Strategie mit detaillierten Analytics und Charts.",
+    "heroDescription": "TradeNot.es hilft dir, aus jedem Trade zu lernen. Analysiere deine Performance, erkenne Muster und entwickle eine profitable Trading-Strategie mit detaillierten Analytics und Charts.",
     "ctaStart": "Jetzt starten",
     "ctaFeatures": "Features entdecken",
     "rating": "4.9/5 von 1000+ Tradern",
-    "dashboardAlt": "TradeNotes.io Dashboard mit Performance Charts, Trading Kalender und Analytics",
+    "dashboardAlt": "TradeNot.es Dashboard mit Performance Charts, Trading Kalender und Analytics",
     "featuresBadge": "Features",
     "featuresTitle": "Alles für erfolgreiches Trading-Journaling",
     "featuresDescription": "Alle Tools, die du brauchst, um aus deinen Trades zu lernen und konstant profitabel zu werden",
@@ -349,7 +349,7 @@
     "pricingTitle": "Ein Preis. Alle Features.",
     "pricingDescription": "Keine versteckten Kosten. Kein kompliziertes Abo-Modell. Nur ein fairer Preis für alle Funktionen.",
     "trialBadge": "7 Tage kostenlos testen",
-    "premiumTitle": "TradeNotes.io Premium",
+    "premiumTitle": "TradeNot.es Premium",
     "premiumDescription": "Zugriff auf alle Features – jetzt und in Zukunft",
     "monthlyPlan": "Monatlich",
     "monthlyPrice": "9,99€",
@@ -365,7 +365,7 @@
     "trialNotice": "Keine Kreditkarte erforderlich • Jederzeit kündbar",
     "ctaTitle": "Starte heute mit deinem Trading Journal",
     "ctaDescription": "Beginne deine 7-tägige kostenlose Testphase und entwickle dich zum konstant profitablen Trader",
-    "footerTitle": "TradeNotes.io",
+    "footerTitle": "TradeNot.es",
     "footerDescription": "Das professionelle Trading Journal für ambitionierte Trader",
     "footerProduct": "Produkt",
     "footerFeatures": "Features",
@@ -379,7 +379,7 @@
     "footerPrivacy": "Datenschutz",
     "footerTerms": "AGB",
     "footerImprint": "Impressum",
-    "footerCopyright": "© 2025 TradeNotes.io. Alle Rechte vorbehalten.",
+    "footerCopyright": "© 2025 TradeNot.es. Alle Rechte vorbehalten.",
     "features": {
       "journal": {
         "title": "Trading Journal",
@@ -431,7 +431,7 @@
       },
       "glossary": {
         "title": "Trading Glossar",
-        "description": "Alle Trading-Begriffe von tradenotes.io erklärt - P&L, Win Rate, Equity Curve, Risk/Reward und mehr"
+        "description": "Alle Trading-Begriffe von tradenot.es erklärt - P&L, Win Rate, Equity Curve, Risk/Reward und mehr"
       },
       "chartAnalysis": {
         "title": "KI-Chart-Analyse",

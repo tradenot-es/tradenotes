@@ -9,7 +9,7 @@ export const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           <Link to="/" className="flex items-center gap-2 font-bold text-xl">
             <img src={logo} alt="TradeNotes" className="h-8 w-8" />
-            <span>TradeNotes</span>
+            <span>TradeNot.es</span>
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
