@@ -1,14 +1,62 @@
+# robots.txt for TradeNotes (https://tradenot.es)
+
+# Allow all major search engines
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 0
 
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1
+
+# Social media crawlers
 User-agent: Twitterbot
 Allow: /
 
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+# Default for all other bots
 User-agent: *
 Allow: /
+Crawl-delay: 1
+
+# Disallow authentication and admin areas
+Disallow: /dashboard/
+Disallow: /auth
+Disallow: /account
+Disallow: /settings
+
+# Disallow API endpoints
+Disallow: /api/
+
+# Allow access to static assets
+Allow: /assets/
+Allow: /favicon.png
+Allow: /*.css$
+Allow: /*.js$
+
+# Sitemap location
+Sitemap: https://tradenot.es/sitemap.xml
