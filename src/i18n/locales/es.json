@@ -327,11 +327,11 @@
     "badge": "Diario de Trading Profesional",
     "heroTitle": "Conviértete en un mejor trader mediante",
     "heroTitleHighlight": "diario sistemático",
-    "heroDescription": "TradeNotes.io te ayuda a aprender de cada operación. Analiza tu rendimiento, reconoce patrones y desarrolla una estrategia de trading rentable con análisis y gráficos detallados.",
+    "heroDescription": "TradeNot.es te ayuda a aprender de cada operación. Analiza tu rendimiento, reconoce patrones y desarrolla una estrategia de trading rentable con análisis y gráficos detallados.",
     "ctaStart": "Comenzar",
     "ctaFeatures": "Explorar Funciones",
     "rating": "4.9/5 de 1000+ Traders",
-    "dashboardAlt": "Panel de TradeNotes.io con Gráficos de Rendimiento, Calendario de Trading y Analytics",
+    "dashboardAlt": "Panel de TradeNot.es con Gráficos de Rendimiento, Calendario de Trading y Analytics",
     "featuresBadge": "Funciones",
     "featuresTitle": "Todo para un diario de trading exitoso",
     "featuresDescription": "Todas las herramientas que necesitas para aprender de tus operaciones y ser consistentemente rentable",
@@ -339,7 +339,7 @@
     "pricingTitle": "Un Precio. Todas las Funciones.",
     "pricingDescription": "Sin costos ocultos. Sin modelo de suscripción complicado. Solo un precio justo para todas las funciones.",
     "trialBadge": "7 Días de Prueba Gratis",
-    "premiumTitle": "TradeNotes.io Premium",
+    "premiumTitle": "TradeNot.es Premium",
     "premiumDescription": "Acceso a todas las funciones – ahora y en el futuro",
     "monthlyPlan": "Mensual",
     "monthlyPrice": "9,99€",
@@ -355,7 +355,7 @@
     "trialNotice": "No se requiere tarjeta de crédito • Cancelar en cualquier momento",
     "ctaTitle": "Comienza tu diario de trading hoy",
     "ctaDescription": "Inicia tu prueba gratuita de 7 días y conviértete en un trader consistentemente rentable",
-    "footerTitle": "TradeNotes.io",
+    "footerTitle": "TradeNot.es",
     "footerDescription": "El diario de trading profesional para traders ambiciosos",
     "footerProduct": "Producto",
     "footerFeatures": "Funciones",
@@ -369,7 +369,7 @@
     "footerPrivacy": "Privacidad",
     "footerTerms": "Términos",
     "footerImprint": "Aviso Legal",
-    "footerCopyright": "© 2025 TradeNotes.io. Todos los derechos reservados.",
+    "footerCopyright": "© 2025 TradeNot.es. Todos los derechos reservados.",
     "features": {
       "journal": {
         "title": "Diario de Trading",
@@ -421,7 +421,7 @@
       },
       "glossary": {
         "title": "Glosario de Trading",
-        "description": "Todos los términos de trading de tradenotes.io explicados - P&L, Win Rate, Equity Curve, Risk/Reward y más"
+        "description": "Todos los términos de trading de tradenot.es explicados - P&L, Win Rate, Equity Curve, Risk/Reward y más"
       },
       "chartAnalysis": {
         "title": "Análisis IA de gráficos",

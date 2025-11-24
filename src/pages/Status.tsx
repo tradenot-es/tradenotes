@@ -161,7 +161,7 @@ const Status = () => {
             <p className="text-sm text-muted-foreground">
               Bei Problemen oder Fragen kontaktieren Sie uns unter{" "}
               <a href="/kontakt" className="text-primary hover:underline">
-                support@tradenotes.io
+                support@tradenot.es
               </a>
             </p>
           </div>
