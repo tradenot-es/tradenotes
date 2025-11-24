@@ -164,11 +164,11 @@ const Landing = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-video rounded-2xl border border-primary/20 elegant-shadow overflow-hidden">
+              <div className="aspect-video rounded-2xl border border-primary/20 elegant-shadow overflow-hidden bg-background/50">
                 <img 
                   src={dashboardPreview} 
                   alt={t("landing.dashboardAlt")}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               </div>
             </div>
