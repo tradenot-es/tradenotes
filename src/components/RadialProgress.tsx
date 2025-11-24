@@ -93,7 +93,7 @@ export function RadialProgress({
             </span>
           )}
           {label && (
-            <span className="text-xs text-muted-foreground">{label}</span>
+            <span className="text-xs font-medium text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{label}</span>
           )}
         </div>
       </div>
