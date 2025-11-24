@@ -85,9 +85,9 @@ const Landing = () => {
               </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
-                <span className="gradient-text block mt-2 flex items-center gap-4 flex-wrap">
+                <span className="gradient-text block mt-2 flex items-center gap-8 flex-wrap">
                   {t("landing.heroTitleHighlight")}
-                  <img src={heroLogo} alt="TradeNot.es" className="h-24 md:h-32 inline-block" />
+                  <img src={heroLogo} alt="TradeNot.es" className="h-48 md:h-64 inline-block ml-auto lg:ml-8" />
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground">
