@@ -272,7 +272,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                     {dayTrades.length > 0 && (
                       <div className="flex items-center justify-center h-full">
                         <div className={`text-lg font-bold ${dayPnL >= 0 ? 'text-success' : 'text-destructive'}`}>
-                          {dayPnL >= 0 ? '+' : ''}{currency}{Math.abs(dayPnL).toFixed(0)}
+                          {dayPnL >= 0 ? '+' : '-'}{currency}{Math.abs(dayPnL).toFixed(0)}
                         </div>
                       </div>
                     )}
