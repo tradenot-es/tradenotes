@@ -183,7 +183,11 @@
       "return": "Return",
       "returnTooltip": "Net profit or loss after fees",
       "returnPct": "Return %",
-      "returnPctTooltip": "Return percentage relative to invested capital"
+      "returnPctTooltip": "Return percentage relative to invested capital",
+      "totalTrades": "Total Trades",
+      "totalPnL": "Total P&L",
+      "avgReturn": "Avg Return %",
+      "winRate": "Win Rate"
     }
   },
   "import": {
