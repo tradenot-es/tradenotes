@@ -128,6 +128,22 @@ export function getMarketDefaultFee(market: string): number {
   return MARKET_DEFAULT_FEES[market] || 2.00;
 }
 
+// Detect market from symbol
+export function detectMarketFromSymbol(symbol: string): string | null {
+  if (!symbol) return null;
+  
+  const upperSymbol = symbol.toUpperCase();
+  
+  // Check each market for the symbol
+  for (const [market, symbols] of Object.entries(SYMBOL_DATA)) {
+    if (symbols.includes(upperSymbol)) {
+      return market;
+    }
+  }
+  
+  return null;
+}
+
 // Get symbol information
 export function getSymbolInfo(symbol: string, market: string): {
   pointValue?: number;
