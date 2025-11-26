@@ -186,6 +186,13 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     }
   }, [formData.symbol, editTrade]);
 
+  // Auto-fill exit price with entry price
+  useEffect(() => {
+    if (!editTrade && formData.entryPrice && !formData.exitPrice) {
+      setFormData(prev => ({ ...prev, exitPrice: prev.entryPrice }));
+    }
+  }, [formData.entryPrice, editTrade]);
+
   // Update symbol info when symbol or market changes
   useEffect(() => {
     if (formData.symbol && formData.market) {
