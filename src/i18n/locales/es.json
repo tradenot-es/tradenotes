@@ -147,7 +147,8 @@
     "manualEntry": "Entrada manual",
     "screenshotAnalysis": "Analizar captura",
     "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación",
-    "manualEntryDescription": "Introduce todos los detalles de la operación manualmente"
+    "manualEntryDescription": "Introduce todos los detalles de la operación manualmente",
+    "monthlyOverview": "Trades para {{month}}"
   },
   "import": {
     "title": "Importar operaciones",
