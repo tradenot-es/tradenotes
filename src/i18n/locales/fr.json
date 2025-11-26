@@ -29,6 +29,7 @@
   "dashboard": {
     "title": "Tableau de bord",
     "subtitle": "Aperçu de vos performances de trading",
+    "addTrade": "Ajouter un trade",
     "totalTrades": "Total des transactions",
     "winRate": "Taux de réussite",
     "winRateTooltip": "Pourcentage de trades gagnants. Vert à partir de 50%, Jaune 40-50%, Rouge en dessous de 40%. Un taux de réussite plus faible peut être rentable si R-Multiple > 1.",

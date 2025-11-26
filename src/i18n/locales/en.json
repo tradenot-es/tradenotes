@@ -28,6 +28,7 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview of your trading performance",
+    "addTrade": "Add Trade",
     "totalTrades": "Total Trades",
     "winRate": "Win Rate",
     "winRateTooltip": "Percentage of winning trades. Green from 50%, Yellow 40-50%, Red below 40%. A lower win rate can be profitable if R-Multiple > 1.",

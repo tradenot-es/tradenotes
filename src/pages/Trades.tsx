@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
 import { AddTradeFAB } from "@/components/AddTradeFAB";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
@@ -30,6 +31,7 @@ interface Trade {
 const Trades = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [addDialogOpen, setAddDialogOpen] = useState(false);
@@ -44,6 +46,18 @@ const Trades = () => {
       loadTrades();
     }
   }, [user]);
+
+  useEffect(() => {
+    const shouldAddTrade = searchParams.get('addTrade') === 'true';
+    if (shouldAddTrade && !loading) {
+      setEditTrade(null);
+      setPreselectedDate(new Date());
+      setAddDialogOpen(true);
+      // Remove URL parameter to prevent reopening on refresh
+      searchParams.delete('addTrade');
+      setSearchParams(searchParams, { replace: true });
+    }
+  }, [searchParams, loading, setSearchParams]);
 
   const loadTrades = async () => {
     setLoading(true);
