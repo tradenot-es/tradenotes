@@ -31,9 +31,10 @@ interface TradeCalendarProps {
   selectedDate?: Date;
   onAddTrade: (date: Date) => void;
   onEditTrade?: (trade: Trade) => void;
+  onMonthChange?: (date: Date) => void;
 }
 
-export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, onEditTrade }: TradeCalendarProps) {
+export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, onEditTrade, onMonthChange }: TradeCalendarProps) {
   const { t, i18n } = useTranslation();
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [currency, setCurrency] = useState("USD");
@@ -123,12 +124,14 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
     const newDate = new Date(currentMonth);
     newDate.setMonth(parseInt(month));
     setCurrentMonth(newDate);
+    onMonthChange?.(newDate);
   };
 
   const handleYearChange = (year: string) => {
     const newDate = new Date(currentMonth);
     newDate.setFullYear(parseInt(year));
     setCurrentMonth(newDate);
+    onMonthChange?.(newDate);
   };
 
   const getDayPnL = (date: Date) => {
@@ -145,7 +148,11 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
+              onClick={() => {
+                const newMonth = subMonths(currentMonth, 1);
+                setCurrentMonth(newMonth);
+                onMonthChange?.(newMonth);
+              }}
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -181,7 +188,11 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setCurrentMonth(addMonths(currentMonth, 1))}
+              onClick={() => {
+                const newMonth = addMonths(currentMonth, 1);
+                setCurrentMonth(newMonth);
+                onMonthChange?.(newMonth);
+              }}
             >
               <ChevronRight className="h-5 w-5" />
             </Button>

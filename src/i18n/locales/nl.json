@@ -147,7 +147,8 @@
     "manualEntry": "Handmatige invoer",
     "screenshotAnalysis": "Screenshot analyseren",
     "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
-    "manualEntryDescription": "Voer alle handelsdetails handmatig in"
+    "manualEntryDescription": "Voer alle handelsdetails handmatig in",
+    "monthlyOverview": "Trades voor {{month}}"
   },
   "import": {
     "title": "Transacties importeren",

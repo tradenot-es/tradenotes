@@ -157,7 +157,8 @@
     "manualEntry": "Manual Entry",
     "screenshotAnalysis": "Analyze Screenshot",
     "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details",
-    "manualEntryDescription": "Enter all trade details manually"
+    "manualEntryDescription": "Enter all trade details manually",
+    "monthlyOverview": "Trades for {{month}}"
   },
   "import": {
     "title": "Import Trades",

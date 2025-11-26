@@ -4,6 +4,7 @@ import { AddTradeFAB } from "@/components/AddTradeFAB";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
 import { TradeFilters, TradeFilterOptions } from "@/components/TradeFilters";
+import { TradesTable } from "@/components/TradesTable";
 
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -36,6 +37,7 @@ const Trades = () => {
   const [preselectedDate, setPreselectedDate] = useState<Date>();
   const [editTrade, setEditTrade] = useState<Trade | null>(null);
   const [filters, setFilters] = useState<TradeFilterOptions>({});
+  const [currentMonth, setCurrentMonth] = useState(new Date());
 
   useEffect(() => {
     if (user) {
@@ -101,6 +103,17 @@ const Trades = () => {
     return [...new Set(setups)];
   }, [trades]);
 
+  // Get trades for current month
+  const currentMonthTrades = useMemo(() => {
+    const monthStart = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+    const monthEnd = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0, 23, 59, 59);
+    
+    return filteredTrades.filter((trade) => {
+      const tradeDate = new Date(trade.exit_time);
+      return tradeDate >= monthStart && tradeDate <= monthEnd;
+    });
+  }, [filteredTrades, currentMonth]);
+
 
   const handleDateSelect = (date: Date) => {
     setSelectedDate(date);
@@ -143,6 +156,24 @@ const Trades = () => {
           onDateSelect={handleDateSelect}
           selectedDate={selectedDate}
           onAddTrade={handleAddTradeForDate}
+          onEditTrade={handleEditTrade}
+          onMonthChange={setCurrentMonth}
+        />
+      </div>
+
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold">
+            {t("trades.monthlyOverview", { 
+              month: currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+            })}
+          </h2>
+          <p className="text-sm text-muted-foreground">
+            {currentMonthTrades.length} {currentMonthTrades.length === 1 ? 'trade' : 'trades'}
+          </p>
+        </div>
+        <TradesTable 
+          trades={currentMonthTrades} 
           onEditTrade={handleEditTrade}
         />
       </div>
