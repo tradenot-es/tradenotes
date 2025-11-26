@@ -460,6 +460,10 @@
         "title": "Glosario de Trading",
         "description": "Todos los términos de trading de tradenot.es explicados - P&L, Win Rate, Equity Curve, Risk/Reward y más"
       },
+      "easyEntry": {
+        "title": "Entrada de Operaciones Ultra Rápida",
+        "description": "Captura operaciones en segundos con funciones inteligentes: vista previa de P&L en tiempo real muestra ganancias/pérdidas instantáneas, chips rápidos para símbolos frecuentes, botones de alternancia Long/Short intuitivos, autorelleno automático del precio de salida y 'Copiar Última Operación' para máxima eficiencia en el journaling."
+      },
       "chartAnalysis": {
         "title": "Análisis IA de gráficos",
         "description": "Único: Sube capturas de pantalla de TradingView o NinjaTrader y ahorra tiempo – nuestra IA extrae automáticamente entrada, salida, símbolo y todos los detalles de la operación. ¡No es necesaria entrada manual!"

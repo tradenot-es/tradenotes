@@ -460,6 +460,10 @@
         "title": "Trading Woordenlijst",
         "description": "Alle trading termen van tradenot.es uitgelegd - P&L, Win Rate, Equity Curve, Risk/Reward en meer"
       },
+      "easyEntry": {
+        "title": "Bliksemsnelle Trade Invoer",
+        "description": "Leg trades vast in seconden met intelligente functies: live P&L preview toont directe winst/verlies, quick-chips voor frequente symbolen, intuïtieve Long/Short toggle buttons, automatische exit price voorinvulling en 'Kopieer Laatste Trade' voor maximale journaling efficiëntie."
+      },
       "chartAnalysis": {
         "title": "AI grafiekanalyse",
         "description": "Uniek: Upload screenshots van TradingView of NinjaTrader en bespaar tijd – onze AI extraheert automatisch entry, exit, symbool en alle handelsdetails. Geen handmatige invoer meer nodig!"
