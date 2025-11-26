@@ -29,6 +29,7 @@
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overzicht van je trading prestaties",
+    "addTrade": "Trade toevoegen",
     "totalTrades": "Totaal transacties",
     "winRate": "Winstpercentage",
     "winRateTooltip": "Percentage winnende trades. Groen vanaf 50%, Geel 40-50%, Rood onder 40%. Een lager winstpercentage kan winstgevend zijn als R-Multiple > 1.",

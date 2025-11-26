@@ -29,6 +29,7 @@
   "dashboard": {
     "title": "Panel",
     "subtitle": "Resumen de tu rendimiento de trading",
+    "addTrade": "Añadir trade",
     "totalTrades": "Total de operaciones",
     "winRate": "Tasa de éxito",
     "winRateTooltip": "Porcentaje de operaciones ganadoras. Verde desde 50%, Amarillo 40-50%, Rojo por debajo de 40%. Una tasa de ganancia baja puede ser rentable si R-Multiple > 1.",

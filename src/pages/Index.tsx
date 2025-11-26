@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TrendingUp, TrendingDown, DollarSign, Target, BarChart3, Scale, Award, Calculator, Info } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { TrendingUp, TrendingDown, DollarSign, Target, BarChart3, Scale, Award, Calculator, Info, Plus } from "lucide-react";
 import { KPICard } from "@/components/KPICard";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { RadialKPICard } from "@/components/RadialKPICard";
@@ -14,6 +15,7 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Link } from "react-router-dom";
@@ -40,6 +42,7 @@ interface Trade {
 
 const Index = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const { formatCurrency, formatCurrencyCompact } = useCurrency();
   const [trades, setTrades] = useState<Trade[]>([]);
@@ -211,8 +214,20 @@ const Index = () => {
   return (
     <div className="space-y-8 p-2">
       <div className="glossy-card p-8 rounded-2xl">
-        <h1 className="text-4xl font-bold gradient-text">{t("dashboard.title")}</h1>
-        <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-4xl font-bold gradient-text">{t("dashboard.title")}</h1>
+            <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
+          </div>
+          <Button 
+            onClick={() => navigate('/dashboard/trades?addTrade=true')}
+            className="gap-2"
+            size="lg"
+          >
+            <Plus className="h-4 w-4" />
+            {t("dashboard.addTrade")}
+          </Button>
+        </div>
       </div>
 
       {trades.length === 0 ? (
