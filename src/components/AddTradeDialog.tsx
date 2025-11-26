@@ -15,7 +15,7 @@ import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
 import { Star, Upload, X, Info, Sparkles, Edit3, Camera, ArrowLeft } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
-import { getSymbolInfo, getMarketDefaultFee } from "@/lib/symbolData";
+import { getSymbolInfo, getMarketDefaultFee, detectMarketFromSymbol } from "@/lib/symbolData";
 
 interface Trade {
   id: string;
@@ -175,6 +175,16 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setFormData(prev => ({ ...prev, fees: defaultFee.toFixed(2) }));
     }
   }, [formData.market, editTrade]);
+
+  // Auto-detect market when symbol changes (only for new trades)
+  useEffect(() => {
+    if (!editTrade && formData.symbol) {
+      const detectedMarket = detectMarketFromSymbol(formData.symbol);
+      if (detectedMarket) {
+        setFormData(prev => ({ ...prev, market: detectedMarket as any }));
+      }
+    }
+  }, [formData.symbol, editTrade]);
 
   // Update symbol info when symbol or market changes
   useEffect(() => {
