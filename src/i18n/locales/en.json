@@ -470,6 +470,10 @@
         "title": "Trading Glossary",
         "description": "All trading terms from tradenot.es explained - P&L, Win Rate, Equity Curve, Risk/Reward and more"
       },
+      "easyEntry": {
+        "title": "Lightning-Fast Trade Entry",
+        "description": "Capture trades in seconds with intelligent features: live P&L preview shows instant profit/loss, quick-chips for frequently traded symbols, intuitive Long/Short toggle buttons, automatic exit price pre-fill, and 'Copy Last Trade' for maximum journaling efficiency."
+      },
       "chartAnalysis": {
         "title": "AI Chart Analysis",
         "description": "Unique: Upload screenshots from TradingView or NinjaTrader and save time – our AI automatically extracts entry, exit, symbol and all trade details. No manual input needed!"

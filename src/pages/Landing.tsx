@@ -12,6 +12,10 @@ const Landing = () => {
     t
   } = useTranslation();
   const features = [{
+    icon: <TrendingUp className="h-6 w-6" />,
+    title: t("landing.features.easyEntry.title"),
+    description: t("landing.features.easyEntry.description")
+  }, {
     icon: <ScanLine className="h-6 w-6" />,
     title: t("landing.features.chartAnalysis.title"),
     description: t("landing.features.chartAnalysis.description")
