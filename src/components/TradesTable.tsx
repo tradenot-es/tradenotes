@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight, TrendingUp, TrendingDown } from "lucide-react";
+import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface Trade {
   id: string;
@@ -62,23 +63,63 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
     return ((trade.pnl_net / entryTotal) * 100);
   };
 
+  const ColumnHeader = ({ label, tooltip }: { label: string; tooltip: string }) => (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className="flex items-center gap-1 cursor-help">
+            {label}
+            <HelpCircle className="h-3 w-3 text-muted-foreground" />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="max-w-xs">{tooltip}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
+
   return (
     <div className="rounded-lg border border-border bg-card overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow className="border-border hover:bg-transparent">
-            <TableHead className="w-[100px]">Date</TableHead>
-            <TableHead>Symbol</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Side</TableHead>
-            <TableHead className="text-right">Qty</TableHead>
-            <TableHead className="text-right">Entry</TableHead>
-            <TableHead className="text-right">Exit</TableHead>
-            <TableHead className="text-right">Ent Tot</TableHead>
-            <TableHead className="text-right">Ext Tot</TableHead>
-            <TableHead>Hold</TableHead>
-            <TableHead className="text-right">Return</TableHead>
-            <TableHead className="text-right">Return %</TableHead>
+            <TableHead className="w-[100px]">
+              <ColumnHeader label={t("trades.table.date")} tooltip={t("trades.table.dateTooltip")} />
+            </TableHead>
+            <TableHead>
+              <ColumnHeader label={t("trades.table.symbol")} tooltip={t("trades.table.symbolTooltip")} />
+            </TableHead>
+            <TableHead>
+              <ColumnHeader label={t("trades.table.status")} tooltip={t("trades.table.statusTooltip")} />
+            </TableHead>
+            <TableHead>
+              <ColumnHeader label={t("trades.table.side")} tooltip={t("trades.table.sideTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.qty")} tooltip={t("trades.table.qtyTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.entry")} tooltip={t("trades.table.entryTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.exit")} tooltip={t("trades.table.exitTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.entTotal")} tooltip={t("trades.table.entTotalTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.extTotal")} tooltip={t("trades.table.extTotalTooltip")} />
+            </TableHead>
+            <TableHead>
+              <ColumnHeader label={t("trades.table.hold")} tooltip={t("trades.table.holdTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.return")} tooltip={t("trades.table.returnTooltip")} />
+            </TableHead>
+            <TableHead className="text-right">
+              <ColumnHeader label={t("trades.table.returnPct")} tooltip={t("trades.table.returnPctTooltip")} />
+            </TableHead>
             <TableHead className="w-[50px]"></TableHead>
           </TableRow>
         </TableHeader>
