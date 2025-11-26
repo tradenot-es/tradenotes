@@ -151,6 +151,94 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Video Tutorials Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="mb-4">{t("landing.videosBadge")}</Badge>
+            <h2 className="text-4xl font-bold mb-4">{t("landing.videosTitle")}</h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              {t("landing.videosDescription")}
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Trade Entry Video */}
+            <Card className="overflow-hidden smooth-transition hover:scale-102">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <TrendingUp className="h-6 w-6" />
+                </div>
+                <CardTitle>{t("landing.videoTradeEntry")}</CardTitle>
+                <CardDescription>{t("landing.videoTradeEntryDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                {/* Replace this placeholder with your video/GIF */}
+                <div className="aspect-video rounded-lg bg-muted/50 flex items-center justify-center border border-border">
+                  <p className="text-sm text-muted-foreground">Video/GIF Platzhalter</p>
+                  {/* Example for video:
+                  <video controls className="w-full h-full rounded-lg">
+                    <source src="/path-to-your-video.mp4" type="video/mp4" />
+                  </video>
+                  */}
+                  {/* Example for GIF:
+                  <img src="/path-to-your-gif.gif" alt="Trade Entry Demo" className="w-full h-full object-cover rounded-lg" />
+                  */}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Chart Analysis Video */}
+            <Card className="overflow-hidden smooth-transition hover:scale-102">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <ScanLine className="h-6 w-6" />
+                </div>
+                <CardTitle>{t("landing.videoChartAnalysis")}</CardTitle>
+                <CardDescription>{t("landing.videoChartAnalysisDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-video rounded-lg bg-muted/50 flex items-center justify-center border border-border">
+                  <p className="text-sm text-muted-foreground">Video/GIF Platzhalter</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Dashboard Video */}
+            <Card className="overflow-hidden smooth-transition hover:scale-102">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <BarChart3 className="h-6 w-6" />
+                </div>
+                <CardTitle>{t("landing.videoDashboard")}</CardTitle>
+                <CardDescription>{t("landing.videoDashboardDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-video rounded-lg bg-muted/50 flex items-center justify-center border border-border">
+                  <p className="text-sm text-muted-foreground">Video/GIF Platzhalter</p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Journal & Reports Video */}
+            <Card className="overflow-hidden smooth-transition hover:scale-102">
+              <CardHeader>
+                <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  <FileText className="h-6 w-6" />
+                </div>
+                <CardTitle>{t("landing.videoJournal")}</CardTitle>
+                <CardDescription>{t("landing.videoJournalDesc")}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="aspect-video rounded-lg bg-muted/50 flex items-center justify-center border border-border">
+                  <p className="text-sm text-muted-foreground">Video/GIF Platzhalter</p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
         <div className="max-w-7xl mx-auto">
