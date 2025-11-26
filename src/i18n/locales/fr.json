@@ -149,6 +149,11 @@
     "screenshotAnalysis": "Analyser capture d'écran",
     "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction",
     "manualEntryDescription": "Saisir tous les détails de la transaction manuellement",
+    "livePnL": "Aperçu du P&L en direct",
+    "copyLastTrade": "Copier la dernière transaction",
+    "lastTradeCopied": "Dernière transaction copiée avec succès",
+    "copyError": "Erreur lors de la copie de la transaction",
+    "noTradeFound": "Aucune transaction trouvée à copier",
     "monthlyOverview": "Trades pour {{month}}",
     "table": {
       "date": "Date",

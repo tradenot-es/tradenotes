@@ -159,6 +159,11 @@
     "screenshotAnalysis": "Screenshot analysieren",
     "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details",
     "manualEntryDescription": "Geben Sie alle Trade-Details manuell ein",
+    "livePnL": "Live P&L Vorschau",
+    "copyLastTrade": "Letzten Trade kopieren",
+    "lastTradeCopied": "Letzter Trade wurde kopiert",
+    "copyError": "Fehler beim Kopieren des Trades",
+    "noTradeFound": "Kein Trade zum Kopieren gefunden",
     "monthlyOverview": "Trades für {{month}}",
     "table": {
       "date": "Datum",
