@@ -173,7 +173,11 @@
       "return": "Retorno",
       "returnTooltip": "Beneficio o pérdida neta después de comisiones",
       "returnPct": "Retorno %",
-      "returnPctTooltip": "Porcentaje de rendimiento respecto al capital invertido"
+      "returnPctTooltip": "Porcentaje de rendimiento respecto al capital invertido",
+      "totalTrades": "Total Operaciones",
+      "totalPnL": "P&L Total",
+      "avgReturn": "Retorno Promedio %",
+      "winRate": "Tasa de Éxito"
     }
   },
   "import": {

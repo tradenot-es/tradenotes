@@ -44,6 +44,18 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
   const { formatCurrency } = useCurrency();
   const [expandedTrade, setExpandedTrade] = useState<string | null>(null);
 
+  // Calculate summary statistics
+  const totalTrades = trades.length;
+  const totalPnL = trades.reduce((sum, trade) => sum + trade.pnl_net, 0);
+  const avgReturnPercentage = totalTrades > 0
+    ? trades.reduce((sum, trade) => {
+        const entryTotal = trade.entry_price * trade.qty;
+        return sum + (entryTotal === 0 ? 0 : ((trade.pnl_net / entryTotal) * 100));
+      }, 0) / totalTrades
+    : 0;
+  const winningTrades = trades.filter(t => t.pnl_net > 0).length;
+  const winRate = totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0;
+
   const calculateHoldPeriod = (entryTime: string, exitTime: string) => {
     const entry = new Date(entryTime);
     const exit = new Date(exitTime);
@@ -80,8 +92,45 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
   );
 
   return (
-    <div className="rounded-lg border border-border bg-card overflow-hidden">
-      <Table>
+    <div className="space-y-4">
+      {/* Summary Statistics */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground mb-1">{t("trades.table.totalTrades")}</p>
+          <p className="text-2xl font-semibold">{totalTrades}</p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground mb-1">{t("trades.table.totalPnL")}</p>
+          <p className={cn(
+            "text-2xl font-semibold",
+            totalPnL > 0 ? "text-green-500" : totalPnL < 0 ? "text-red-500" : ""
+          )}>
+            {formatCurrency(totalPnL)}
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground mb-1">{t("trades.table.avgReturn")}</p>
+          <p className={cn(
+            "text-2xl font-semibold",
+            avgReturnPercentage > 0 ? "text-green-500" : avgReturnPercentage < 0 ? "text-red-500" : ""
+          )}>
+            {avgReturnPercentage.toFixed(2)}%
+          </p>
+        </div>
+        <div className="rounded-lg border border-border bg-card p-4">
+          <p className="text-sm text-muted-foreground mb-1">{t("trades.table.winRate")}</p>
+          <p className={cn(
+            "text-2xl font-semibold",
+            winRate >= 50 ? "text-green-500" : winRate >= 40 ? "text-yellow-500" : "text-red-500"
+          )}>
+            {winRate.toFixed(1)}%
+          </p>
+        </div>
+      </div>
+
+      {/* Trades Table */}
+      <div className="rounded-lg border border-border bg-card overflow-hidden">
+        <Table>
         <TableHeader>
           <TableRow className="border-border hover:bg-transparent">
             <TableHead className="w-[100px]">
@@ -138,7 +187,9 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                   key={trade.id}
                   className={cn(
                     "border-border cursor-pointer transition-colors",
-                    isExpanded && "bg-muted/50"
+                    isExpanded && "bg-muted/50",
+                    !isExpanded && "hover:bg-muted/30",
+                    trades.indexOf(trade) % 2 === 0 ? "bg-muted/5" : ""
                   )}
                   onClick={() => setExpandedTrade(isExpanded ? null : trade.id)}
                 >
@@ -257,6 +308,7 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
           )}
         </TableBody>
       </Table>
+      </div>
     </div>
   );
 }

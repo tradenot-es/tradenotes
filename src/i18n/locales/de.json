@@ -183,7 +183,11 @@
       "return": "Ertrag",
       "returnTooltip": "Nettogewinn oder -verlust nach Gebühren",
       "returnPct": "Ertrag %",
-      "returnPctTooltip": "Ertragsrendite im Verhältnis zum investierten Kapital"
+      "returnPctTooltip": "Ertragsrendite im Verhältnis zum investierten Kapital",
+      "totalTrades": "Trades Gesamt",
+      "totalPnL": "P&L Gesamt",
+      "avgReturn": "Ø Rendite %",
+      "winRate": "Gewinnrate"
     }
   },
   "import": {

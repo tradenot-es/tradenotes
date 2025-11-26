@@ -173,7 +173,11 @@
       "return": "Rendement",
       "returnTooltip": "Netto winst of verlies na kosten",
       "returnPct": "Rendement %",
-      "returnPctTooltip": "Rendement percentage ten opzichte van geïnvesteerd kapitaal"
+      "returnPctTooltip": "Rendement percentage ten opzichte van geïnvesteerd kapitaal",
+      "totalTrades": "Totaal Trades",
+      "totalPnL": "Totale P&L",
+      "avgReturn": "Gem. Rendement %",
+      "winRate": "Winstpercentage"
     }
   },
   "import": {
