@@ -149,6 +149,11 @@
     "screenshotAnalysis": "Screenshot analyseren",
     "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
     "manualEntryDescription": "Voer alle handelsdetails handmatig in",
+    "livePnL": "Live P&L Preview",
+    "copyLastTrade": "Kopieer laatste trade",
+    "lastTradeCopied": "Laatste trade succesvol gekopieerd",
+    "copyError": "Fout bij kopiëren van trade",
+    "noTradeFound": "Geen trade gevonden om te kopiëren",
     "monthlyOverview": "Trades voor {{month}}",
     "table": {
       "date": "Datum",

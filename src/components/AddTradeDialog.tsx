@@ -9,13 +9,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
-import { Star, Upload, X, Info, Sparkles, Edit3, Camera, ArrowLeft } from "lucide-react";
+import { Star, Upload, X, Info, Sparkles, Edit3, Camera, ArrowLeft, Copy, TrendingUp, TrendingDown } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
 import { getSymbolInfo, getMarketDefaultFee, detectMarketFromSymbol } from "@/lib/symbolData";
+import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
 
 interface Trade {
   id: string;
@@ -82,6 +84,37 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     note: "",
   });
 
+  // Load frequent symbols
+  const { frequentSymbols } = useFrequentSymbols(formData.market);
+
+  // Calculate live P&L
+  const calculateLivePnL = () => {
+    const qty = parseFloat(formData.qty);
+    const entryPrice = parseFloat(formData.entryPrice);
+    const exitPrice = parseFloat(formData.exitPrice);
+    const fees = parseFloat(formData.fees);
+
+    if (!qty || !entryPrice || !exitPrice || !fees) return null;
+
+    const priceDiff = formData.side === "long" 
+      ? exitPrice - entryPrice 
+      : entryPrice - exitPrice;
+    
+    let pnlGross = priceDiff * qty;
+    if (formData.market === "Futures" && symbolInfo.pointValue) {
+      pnlGross = priceDiff * qty * symbolInfo.pointValue;
+    } else if (formData.market === "Option" && symbolInfo.multiplier) {
+      pnlGross = priceDiff * qty * symbolInfo.multiplier;
+    }
+    
+    const pnlNet = pnlGross - fees;
+    const returnPercent = ((exitPrice - entryPrice) / entryPrice) * 100;
+
+    return { pnlNet, returnPercent };
+  };
+
+  const livePnL = calculateLivePnL();
+
   // Load setup definitions and tags
   useEffect(() => {
     const loadSettings = async () => {
@@ -102,6 +135,50 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       loadSettings();
     }
   }, [open]);
+
+  // Copy last trade function
+  const copyLastTrade = async () => {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data, error } = await supabase
+        .from("trades")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("exit_time", { ascending: false })
+        .limit(1)
+        .single();
+
+      if (error || !data) {
+        toast.error(t("trades.noTradeFound"));
+        return;
+      }
+
+      // Copy data from last trade
+      setFormData({
+        symbol: data.symbol,
+        side: data.side as "long" | "short",
+        market: data.market as any,
+        qty: data.qty.toString(),
+        entryPrice: "", // Keep empty for user to fill
+        exitPrice: "",  // Keep empty for user to fill
+        stopLossPrice: data.stop_loss_price?.toString() || "",
+        initialRisk: data.initial_risk?.toString() || "",
+        entryTime: new Date().toISOString().substring(0, 16),
+        exitTime: new Date().toISOString().substring(0, 16),
+        fees: data.fees.toString(),
+        setup: data.setup || "",
+        note: "",
+      });
+      setSelectedTags(data.tags || []);
+      
+      toast.success(t("trades.lastTradeCopied"));
+    } catch (error) {
+      console.error("Error copying last trade:", error);
+      toast.error(t("trades.copyError"));
+    }
+  };
 
   // Set preselected date when dialog opens with a date or load edit data
   useEffect(() => {
@@ -500,19 +577,33 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            {modeSelected && !editTrade && (
+          <DialogTitle className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {modeSelected && !editTrade && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setModeSelected(false)}
+                  className="h-8 w-8"
+                  type="button"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Button>
+              )}
+              {editTrade ? t("trades.editTrade") : t("trades.newTrade")}
+            </div>
+            {!editTrade && modeSelected && (
               <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setModeSelected(false)}
-                className="h-8 w-8"
+                variant="outline"
+                size="sm"
+                onClick={copyLastTrade}
                 type="button"
+                className="gap-2"
               >
-                <ArrowLeft className="h-4 w-4" />
+                <Copy className="h-4 w-4" />
+                {t("trades.copyLastTrade")}
               </Button>
             )}
-            {editTrade ? t("trades.editTrade") : t("trades.newTrade")}
           </DialogTitle>
         </DialogHeader>
         
@@ -645,6 +736,34 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         {/* Form - only show after mode selection or for edit */}
         {(editTrade || (modeSelected && (entryMode === 'manual' || screenshotAnalyzed))) && (
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Live P&L Preview */}
+          {livePnL && (
+            <Card className={`border-2 ${livePnL.pnlNet >= 0 ? 'border-green-500/50 bg-green-500/5' : 'border-red-500/50 bg-red-500/5'}`}>
+              <CardContent className="pt-4 pb-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {livePnL.pnlNet >= 0 ? (
+                      <TrendingUp className="h-5 w-5 text-green-600" />
+                    ) : (
+                      <TrendingDown className="h-5 w-5 text-red-600" />
+                    )}
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {t("trades.livePnL")}
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <div className={`text-2xl font-bold ${livePnL.pnlNet >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      ${livePnL.pnlNet.toFixed(2)}
+                    </div>
+                    <div className={`text-sm ${livePnL.pnlNet >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                      {livePnL.returnPercent >= 0 ? '+' : ''}{livePnL.returnPercent.toFixed(2)}%
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
               <Label htmlFor="market">{t("trades.market")} *</Label>
@@ -677,6 +796,26 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                   </Badge>
                 )}
               </div>
+              
+              {/* Frequent Symbols Quick Chips */}
+              {frequentSymbols.length > 0 && !editTrade && (
+                <div className="flex flex-wrap gap-1.5 mb-2">
+                  {frequentSymbols.slice(0, 5).map((item) => (
+                    <Badge
+                      key={item.symbol}
+                      variant="outline"
+                      className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => {
+                        setFormData({ ...formData, symbol: item.symbol });
+                        fetchCurrentPrice(item.symbol, formData.market);
+                      }}
+                    >
+                      {item.symbol}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+              
               <SymbolCombobox
                 value={formData.symbol}
                 onChange={(value) => {
@@ -701,15 +840,31 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </div>
             <div className="space-y-2">
               <Label htmlFor="side">{t("trades.side")} *</Label>
-              <Select value={formData.side} onValueChange={(v) => setFormData({ ...formData, side: v as "long" | "short" })}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="long">{t("trades.long")}</SelectItem>
-                  <SelectItem value="short">{t("trades.short")}</SelectItem>
-                </SelectContent>
-              </Select>
+              <ToggleGroup 
+                type="single" 
+                value={formData.side} 
+                onValueChange={(v) => {
+                  if (v) setFormData({ ...formData, side: v as "long" | "short" });
+                }}
+                className="justify-start"
+              >
+                <ToggleGroupItem 
+                  value="long" 
+                  aria-label="Long position"
+                  className="flex-1 data-[state=on]:bg-green-500 data-[state=on]:text-white gap-2"
+                >
+                  <TrendingUp className="h-4 w-4" />
+                  {t("trades.long")}
+                </ToggleGroupItem>
+                <ToggleGroupItem 
+                  value="short" 
+                  aria-label="Short position"
+                  className="flex-1 data-[state=on]:bg-red-500 data-[state=on]:text-white gap-2"
+                >
+                  <TrendingDown className="h-4 w-4" />
+                  {t("trades.short")}
+                </ToggleGroupItem>
+              </ToggleGroup>
             </div>
           </div>
 

@@ -149,6 +149,11 @@
     "screenshotAnalysis": "Analizar captura",
     "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación",
     "manualEntryDescription": "Introduce todos los detalles de la operación manualmente",
+    "livePnL": "Vista previa de P&L en vivo",
+    "copyLastTrade": "Copiar última operación",
+    "lastTradeCopied": "Última operación copiada con éxito",
+    "copyError": "Error al copiar la operación",
+    "noTradeFound": "No se encontró operación para copiar",
     "monthlyOverview": "Trades para {{month}}",
     "table": {
       "date": "Fecha",
