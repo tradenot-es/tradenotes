@@ -180,7 +180,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex gap-3 overflow-x-auto pb-2">
+          <div className="flex gap-3 overflow-x-auto pb-2 justify-center">
             {/* Weekday labels - all 7 days */}
             <div className="flex flex-col gap-1 text-xs text-muted-foreground justify-start pt-1">
               <span className="h-6 flex items-center">{t("weekdays.mon")}</span>
