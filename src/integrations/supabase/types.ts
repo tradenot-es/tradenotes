@@ -117,6 +117,7 @@ export type Database = {
           created_at: string
           expires_at: string
           id: string
+          sentiment_data: Json | null
           symbols: string[]
         }
         Insert: {
@@ -125,6 +126,7 @@ export type Database = {
           created_at?: string
           expires_at: string
           id?: string
+          sentiment_data?: Json | null
           symbols: string[]
         }
         Update: {
@@ -133,6 +135,7 @@ export type Database = {
           created_at?: string
           expires_at?: string
           id?: string
+          sentiment_data?: Json | null
           symbols?: string[]
         }
         Relationships: []
@@ -191,6 +194,36 @@ export type Database = {
         }
         Relationships: []
       }
+      sector_sentiments: {
+        Row: {
+          article_count: number | null
+          avg_sentiment: number | null
+          created_at: string | null
+          date: string
+          expires_at: string
+          id: string
+          sector: string
+        }
+        Insert: {
+          article_count?: number | null
+          avg_sentiment?: number | null
+          created_at?: string | null
+          date: string
+          expires_at: string
+          id?: string
+          sector: string
+        }
+        Update: {
+          article_count?: number | null
+          avg_sentiment?: number | null
+          created_at?: string | null
+          date?: string
+          expires_at?: string
+          id?: string
+          sector?: string
+        }
+        Relationships: []
+      }
       trades: {
         Row: {
           created_at: string | null
@@ -202,6 +235,7 @@ export type Database = {
           id: string
           initial_risk: number | null
           market: string | null
+          news_context: Json | null
           note: string | null
           pnl_net: number
           qty: number
@@ -227,6 +261,7 @@ export type Database = {
           id?: string
           initial_risk?: number | null
           market?: string | null
+          news_context?: Json | null
           note?: string | null
           pnl_net: number
           qty: number
@@ -252,6 +287,7 @@ export type Database = {
           id?: string
           initial_risk?: number | null
           market?: string | null
+          news_context?: Json | null
           note?: string | null
           pnl_net?: number
           qty?: number

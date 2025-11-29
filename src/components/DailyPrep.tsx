@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Calendar, CheckCircle2, Target, Brain, TrendingUp, Plus } from "lucide-react";
 import { format } from "date-fns";
+import { SectorSentimentWidget } from "./SectorSentimentWidget";
 
 interface ChecklistItem {
   id: string;
@@ -173,6 +174,9 @@ export function DailyPrep() {
 
   return (
     <div className="space-y-6">
+      {/* Sector Sentiment Widget at top */}
+      <SectorSentimentWidget />
+
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

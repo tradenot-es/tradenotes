@@ -1,0 +1,124 @@
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { TrendingUp, Building2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+
+interface SectorSentiment {
+  sector: string;
+  avg_sentiment: number;
+  article_count: number;
+}
+
+export function SectorSentimentWidget() {
+  const { t } = useTranslation();
+  const [sectors, setSectors] = useState<SectorSentiment[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadSectorSentiments();
+  }, []);
+
+  const loadSectorSentiments = async () => {
+    setLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("marketaux-news", {
+        body: { action: "get-sector-overview" }
+      });
+
+      if (error) throw error;
+
+      if (data?.success && data.sectors) {
+        setSectors(data.sectors);
+      }
+    } catch (err) {
+      console.error("Error loading sector sentiments:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getSentimentColor = (sentiment: number) => {
+    if (sentiment > 0.2) return "text-green-500";
+    if (sentiment < -0.2) return "text-red-500";
+    return "text-yellow-500";
+  };
+
+  const getSentimentIcon = (sentiment: number) => {
+    if (sentiment > 0.2) return "🟢";
+    if (sentiment < -0.2) return "🔴";
+    return "🟡";
+  };
+
+  const getSentimentLabel = (sentiment: number) => {
+    if (sentiment > 0.2) return t("trades.sentiment.bullish");
+    if (sentiment < -0.2) return t("trades.sentiment.bearish");
+    return t("trades.sentiment.neutral");
+  };
+
+  if (loading) {
+    return (
+      <Card className="elegant-shadow">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Building2 className="h-5 w-5" />
+            {t("dashboard.sectorSentiment")}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="flex items-center justify-between">
+              <Skeleton className="h-4 w-24" />
+              <Skeleton className="h-4 w-16" />
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    );
+  }
+
+  if (sectors.length === 0) {
+    return null;
+  }
+
+  return (
+    <Card className="elegant-shadow">
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <Building2 className="h-5 w-5 text-primary" />
+          <CardTitle>{t("dashboard.sectorSentiment")}</CardTitle>
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          {t("dashboard.sectorSentimentDescription")}
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        {sectors.map((sector) => (
+          <div key={sector.sector} className="flex items-center justify-between p-3 rounded-lg border border-border bg-card/50 hover:bg-card/80 transition-colors">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">{getSentimentIcon(sector.avg_sentiment)}</span>
+              <div>
+                <p className="text-sm font-medium">{sector.sector}</p>
+                <p className="text-xs text-muted-foreground">
+                  {sector.article_count} {t("dashboard.articles")}
+                </p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className={cn("text-sm font-semibold", getSentimentColor(sector.avg_sentiment))}>
+                {getSentimentLabel(sector.avg_sentiment)}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                {sector.avg_sentiment.toFixed(2)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
+  );
+}

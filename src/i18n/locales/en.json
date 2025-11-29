@@ -69,7 +69,10 @@
     "pnlChartTooltip": "Monthly Profit & Loss overview. Shows performance for each month and helps identify seasonal patterns and long-term trends.",
     "noTrades": "No trades yet. Add your first trade!",
     "equity": "Equity",
-    "pnl": "P&L"
+    "pnl": "P&L",
+    "sectorSentiment": "Market Sentiment Today",
+    "sectorSentimentDescription": "Daily sector overview helps identify market bias",
+    "articles": "articles"
   },
   "trades": {
     "title": "Trades",
@@ -194,6 +197,24 @@
       "totalPnL": "Total P&L",
       "avgReturn": "Avg Return %",
       "winRate": "Win Rate"
+    },
+    "sentiment": {
+      "label": "News Sentiment",
+      "veryBullish": "Very Bullish",
+      "bullish": "Bullish",
+      "neutral": "Neutral",
+      "bearish": "Bearish",
+      "veryBearish": "Very Bearish",
+      "highRisk": "High Risk",
+      "contraTrade": "Contra-News Trade"
+    },
+    "newsContext": {
+      "match": "Match"
+    },
+    "hype": {
+      "high": "High Buzz Level",
+      "medium": "Medium Buzz Level",
+      "articles": "{{count}} articles in last 12h"
     }
   },
   "import": {

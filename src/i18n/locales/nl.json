@@ -63,7 +63,10 @@
     "pnlByMonth": "P&L per maand",
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
     "equity": "Vermogen",
-    "pnl": "P&L"
+    "pnl": "P&L",
+    "sectorSentiment": "Marktstemming Vandaag",
+    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van bias",
+    "articles": "artikelen"
   },
   "trades": {
     "title": "Transacties",
@@ -184,6 +187,24 @@
       "totalPnL": "Totale P&L",
       "avgReturn": "Gem. Rendement %",
       "winRate": "Winstpercentage"
+    },
+    "sentiment": {
+      "label": "Nieuws Sentiment",
+      "veryBullish": "Zeer Bullish",
+      "bullish": "Bullish",
+      "neutral": "Neutraal",
+      "bearish": "Bearish",
+      "veryBearish": "Zeer Bearish",
+      "highRisk": "Hoog Risico",
+      "contraTrade": "Contra-Nieuws Trade"
+    },
+    "newsContext": {
+      "match": "Overeenkomst"
+    },
+    "hype": {
+      "high": "Hoog Buzz-Niveau",
+      "medium": "Gemiddeld Buzz-Niveau",
+      "articles": "{{count}} artikelen in laatste 12u"
     }
   },
   "import": {
