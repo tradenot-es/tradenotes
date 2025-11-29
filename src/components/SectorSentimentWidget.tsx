@@ -81,8 +81,8 @@ export function SectorSentimentWidget() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[1, 2, 3, 4].map((i) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
               <Skeleton key={i} className="h-28 w-full" />
             ))}
           </div>
@@ -114,7 +114,7 @@ export function SectorSentimentWidget() {
         </div>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {sectors.map((sector) => (
             <div key={sector.sector} className="flex flex-col items-center justify-center p-4 rounded-lg border border-border bg-card/50 hover:bg-card/80 transition-colors text-center">
               <span className="text-3xl mb-2">{getSentimentIcon(sector.avg_sentiment)}</span>

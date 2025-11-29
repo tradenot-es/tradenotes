@@ -235,7 +235,7 @@ serve(async (req) => {
         .gt("expires_at", new Date().toISOString())
         .gt("article_count", 0); // Only get sectors with actual articles
 
-      if (cachedSectors && cachedSectors.length === 4) {
+      if (cachedSectors && cachedSectors.length > 0) {
         console.log("Returning cached sector data:", cachedSectors.length, "sectors");
         return new Response(
           JSON.stringify({ 
@@ -250,7 +250,19 @@ serve(async (req) => {
       console.log("Fetching fresh sector data from Marketaux API");
 
       // Fetch fresh data for main sectors
-      const sectors = ["Technology", "Energy", "Healthcare", "Financials"];
+      const sectors = [
+        "Technology",
+        "Energy", 
+        "Healthcare",
+        "Financials",
+        "Consumer Cyclical",
+        "Consumer Defensive",
+        "Industrials",
+        "Basic Materials",
+        "Real Estate",
+        "Utilities",
+        "Communication Services"
+      ];
       const sectorData = [];
 
       for (const sector of sectors) {
