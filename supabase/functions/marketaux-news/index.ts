@@ -346,12 +346,16 @@ serve(async (req) => {
 
     // GET POLITICAL EVENTS (for calendar) - WEEKLY BATCH
     if (action === "get-political-events") {
-      const { startDate, endDate } = body;
+      const { startDate, endDate, date } = body;
       const eventLimit = body.limit || 50;
       
+      // Use date as fallback for single-day requests
+      const effectiveStartDate = startDate || date;
+      const effectiveEndDate = endDate || date;
+      
       // Weekly cache key based on ISO week
-      const weekKey = startDate ? new Date(startDate).toISOString().slice(0, 10).replace(/-/g, '') : 'current';
-      const cacheKey = `political-weekly-${weekKey}-${keywords}`;
+      const weekKey = effectiveStartDate ? new Date(effectiveStartDate).toISOString().slice(0, 10).replace(/-/g, '') : 'current';
+      const cacheKey = `political-${effectiveStartDate}-${effectiveEndDate || 'single'}-${keywords}`;
       
       const { data: cachedData } = await supabase
         .from("news_cache")
@@ -378,12 +382,14 @@ serve(async (req) => {
       url.searchParams.append("limit", eventLimit.toString());
       
       // Use date range for batch fetching
-      if (startDate && endDate) {
-        url.searchParams.append("published_after", startDate);
-        url.searchParams.append("published_before", endDate);
-      } else if (startDate) {
-        url.searchParams.append("published_on", startDate);
+      if (effectiveStartDate && effectiveEndDate && effectiveStartDate !== effectiveEndDate) {
+        url.searchParams.append("published_after", effectiveStartDate);
+        url.searchParams.append("published_before", effectiveEndDate);
+      } else if (effectiveStartDate) {
+        url.searchParams.append("published_on", effectiveStartDate);
       }
+
+      console.log("Fetching political events with date filter:", effectiveStartDate, url.toString());
 
       console.log("Fetching political events (weekly batch):", url.toString());
 
