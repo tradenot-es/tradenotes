@@ -92,7 +92,10 @@
     "pnl": "P&L",
     "sectorSentiment": "Market Sentiment Today",
     "sectorSentimentDescription": "Daily sector overview helps identify market bias",
-    "articles": "articles"
+    "articles": "articles",
+    "sectorArticles": "{{count}} articles analyzed",
+    "topArticles": "Top Articles",
+    "trend7Days": "7-day trend"
   },
   "calendar": {
     "politicalEvent": "Political Event",

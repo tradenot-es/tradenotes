@@ -91,7 +91,13 @@
     "translationFailed": "Échec de la traduction. Veuillez réessayer.",
     "dynamicDashboard": "Tableau de Bord Dynamique",
     "dynamicDashboardInfo": "Actualités automatiquement filtrées par vos meilleurs résultats",
-    "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes."
+    "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes.",
+    "sectorSentiment": "Sentiment du Marché Aujourd'hui",
+    "sectorSentimentDescription": "Aperçu sectoriel quotidien pour identifier le biais du marché",
+    "articles": "articles",
+    "sectorArticles": "{{count}} articles analysés",
+    "topArticles": "Articles Principaux",
+    "trend7Days": "Tendance sur 7 jours"
   },
   "calendar": {
     "politicalEvent": "Événement Politique",

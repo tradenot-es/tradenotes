@@ -197,6 +197,7 @@ export type Database = {
       sector_sentiments: {
         Row: {
           article_count: number | null
+          articles: Json | null
           avg_sentiment: number | null
           created_at: string | null
           date: string
@@ -206,6 +207,7 @@ export type Database = {
         }
         Insert: {
           article_count?: number | null
+          articles?: Json | null
           avg_sentiment?: number | null
           created_at?: string | null
           date: string
@@ -215,6 +217,7 @@ export type Database = {
         }
         Update: {
           article_count?: number | null
+          articles?: Json | null
           avg_sentiment?: number | null
           created_at?: string | null
           date?: string

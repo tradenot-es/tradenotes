@@ -91,7 +91,13 @@
     "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
     "dynamicDashboard": "Dynamisch Dashboard",
     "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
-    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen."
+    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
+    "sectorSentiment": "Marktsentiment Vandaag",
+    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van marktvooroordeel",
+    "articles": "artikelen",
+    "sectorArticles": "{{count}} artikelen geanalyseerd",
+    "topArticles": "Topartikelen",
+    "trend7Days": "7-daagse trend"
   },
   "calendar": {
     "politicalEvent": "Politieke Gebeurtenis",

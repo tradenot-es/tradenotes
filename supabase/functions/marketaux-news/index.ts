@@ -296,11 +296,32 @@ serve(async (req) => {
           
           console.log(`${sector}: ${articleCount} articles, ${sentimentCount} sentiments, avg: ${avgSentiment}`);
           
+          // Extract top 5 articles with highest sentiment scores (both positive and negative extremes)
+          const articlesWithSentiment = data.data
+            .map((article: any) => {
+              const entitySentiments = article.entities
+                ?.map((e: any) => e.sentiment_score)
+                .filter((s: number) => s != null) || [];
+              const avgArticleSentiment = entitySentiments.length > 0
+                ? entitySentiments.reduce((a: number, b: number) => a + b, 0) / entitySentiments.length
+                : 0;
+              
+              return {
+                title: article.title,
+                url: article.url,
+                sentiment_score: avgArticleSentiment,
+                published_at: article.published_at
+              };
+            })
+            .sort((a: any, b: any) => Math.abs(b.sentiment_score) - Math.abs(a.sentiment_score))
+            .slice(0, 5);
+          
           const sectorInfo = {
             date: today,
             sector,
             avg_sentiment: avgSentiment,
-            article_count: articleCount, // Fixed: now counts articles, not sentiment scores
+            article_count: articleCount,
+            articles: articlesWithSentiment,
             expires_at: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString() // 4h
           };
 
