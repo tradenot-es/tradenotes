@@ -69,7 +69,10 @@
     "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
     "sectorSentiment": "Marktstimmung heute",
     "sectorSentimentDescription": "Tägliche Sektorübersicht hilft bei der Bias-Findung",
-    "articles": "Artikel"
+    "articles": "Artikel",
+    "sectorArticles": "{{count}} Artikel analysiert",
+    "topArticles": "Top-Artikel",
+    "trend7Days": "7-Tage-Trend"
   },
   "calendar": {
     "politicalEvent": "Politisches Event",
