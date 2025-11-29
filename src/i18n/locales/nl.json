@@ -91,6 +91,7 @@
     "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
     "autoTranslated": "Automatisch vertaald",
     "stocksOnlyNews": "Portfolio nieuws is alleen beschikbaar voor aandelensymbolen (bijv. AAPL, GOOGL, TSLA). Futures en indices worden niet ondersteund door de nieuwsaanbieder.",
+    "noNewsProxiesAvailable": "Geen ondersteunde symbolen beschikbaar. Voeg aandelentransacties of populaire futures (NQ, ES, GC) toe om relevant nieuws te zien.",
     "dynamicDashboard": "Dynamisch Dashboard",
     "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
     "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",

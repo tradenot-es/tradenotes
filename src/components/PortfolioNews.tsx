@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
 import { toast } from "sonner";
+import { getNewsProxies } from "@/lib/symbolData";
 
 interface NewsArticle {
   uuid: string;
@@ -33,6 +34,7 @@ export function PortfolioNews() {
   const [isCached, setIsCached] = useState(false);
   const [translating, setTranslating] = useState(false);
   const [showTranslated, setShowTranslated] = useState(false);
+  const [proxyMapping, setProxyMapping] = useState<Record<string, string[]>>({});
 
   useEffect(() => {
     if (!symbolsLoading && frequentSymbols.length > 0) {
@@ -54,19 +56,31 @@ export function PortfolioNews() {
     setError("");
 
     try {
-      // Filter only stock symbols (exclude futures like NQ, GC, ES)
-      const stockSymbols = frequentSymbols
-        .filter(s => s.market === 'Stock' || s.market === 'stock')
-        .slice(0, 5)
-        .map(s => s.symbol);
+      // Smart Fetch: Convert futures/commodities to news-friendly proxies
+      const mapping: Record<string, string[]> = {};
+      const newsSymbols: string[] = [];
       
-      if (stockSymbols.length === 0) {
-        setError(t("dashboard.stocksOnlyNews"));
+      frequentSymbols.slice(0, 5).forEach(s => {
+        const proxies = getNewsProxies(s.symbol, s.market);
+        if (proxies.length > 0) {
+          mapping[s.symbol] = proxies;
+          newsSymbols.push(...proxies);
+        }
+      });
+      
+      // Remove duplicates
+      const topSymbols = [...new Set(newsSymbols)];
+      
+      if (topSymbols.length === 0) {
+        setError(t("dashboard.noNewsProxiesAvailable"));
         setLoading(false);
         return;
       }
       
-      const topSymbols = stockSymbols;
+      setProxyMapping(mapping);
+      console.log('PortfolioNews Smart Fetch - Original symbols:', frequentSymbols.slice(0, 5).map(s => s.symbol));
+      console.log('PortfolioNews Smart Fetch - Proxy symbols:', topSymbols);
+      console.log('PortfolioNews Smart Fetch - Mapping:', mapping);
       
       // Try up to 7 days back to find news
       let articlesFound = false;
@@ -105,7 +119,7 @@ export function PortfolioNews() {
         } else if (data.meta?.error === 'unsupported_symbols') {
           // Stop trying if symbols are not supported
           console.log(`PortfolioNews: Symbols not supported by news provider`);
-          setError('News is only available for stock symbols (like AAPL, GOOGL, TSLA). Futures and indices are not supported.');
+          setError(t("dashboard.noNewsProxiesAvailable"));
           break;
         } else {
           console.log(`PortfolioNews: No articles for ${dateStr}, trying earlier date...`);
@@ -287,11 +301,17 @@ export function PortfolioNews() {
           </p>
         </div>
         <div className="flex gap-1 flex-wrap mt-2">
-          {frequentSymbols.slice(0, 5).map((s) => (
-            <Badge key={s.symbol} variant="secondary" className="text-xs">
-              {s.symbol}
-            </Badge>
-          ))}
+          {frequentSymbols.slice(0, 5).map((s) => {
+            const proxies = proxyMapping[s.symbol];
+            return (
+              <Badge key={s.symbol} variant="secondary" className="text-xs">
+                {s.symbol}
+                {proxies && proxies.length > 0 && proxies[0] !== s.symbol && (
+                  <span className="ml-1 text-primary">→ {proxies.join(', ')}</span>
+                )}
+              </Badge>
+            );
+          })}
         </div>
       </CardHeader>
       <CardContent>

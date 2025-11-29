@@ -84,6 +84,7 @@
     "translationFailed": "Translation failed. Please try again.",
     "autoTranslated": "Auto-translated",
     "stocksOnlyNews": "Portfolio news is only available for stock symbols (e.g., AAPL, GOOGL, TSLA). Futures and indices are not supported by the news provider.",
+    "noNewsProxiesAvailable": "No news-supported symbols available. Add stock trades or popular futures (NQ, ES, GC) to see relevant news.",
     "dynamicDashboard": "Dynamic Dashboard",
     "dynamicDashboardInfo": "News automatically filtered by your top performers",
     "noSymbolsForNews": "No symbols available yet. Add trades to receive relevant news.",
