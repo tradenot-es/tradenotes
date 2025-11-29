@@ -371,7 +371,10 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
               market={getMarketForDate(selectedDate)}
             />
 
-            <PoliticalEvents date={selectedDate} />
+            <PoliticalEvents 
+              date={selectedDate} 
+              events={getEventsForDate(selectedDate)} 
+            />
           </>
         )}
       </div>
