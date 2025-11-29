@@ -49,12 +49,36 @@ const Trades = () => {
 
   useEffect(() => {
     const shouldAddTrade = searchParams.get('addTrade') === 'true';
+    const dateParam = searchParams.get('date');
+    
     if (shouldAddTrade && !loading) {
       setEditTrade(null);
       setPreselectedDate(new Date());
       setAddDialogOpen(true);
       // Remove URL parameter to prevent reopening on refresh
       searchParams.delete('addTrade');
+      setSearchParams(searchParams, { replace: true });
+    }
+    
+    if (dateParam && !loading) {
+      // Set filter for the specific date
+      const selectedDate = new Date(dateParam);
+      const dateStart = new Date(selectedDate);
+      dateStart.setHours(0, 0, 0, 0);
+      const dateEnd = new Date(selectedDate);
+      dateEnd.setHours(23, 59, 59, 999);
+      
+      setFilters({
+        dateFrom: dateStart,
+        dateTo: dateEnd,
+      });
+      
+      // Update calendar view to show that month
+      setCurrentMonth(selectedDate);
+      setSelectedDate(selectedDate);
+      
+      // Remove URL parameter after applying filter
+      searchParams.delete('date');
       setSearchParams(searchParams, { replace: true });
     }
   }, [searchParams, loading, setSearchParams]);

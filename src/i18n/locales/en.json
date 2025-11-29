@@ -63,6 +63,7 @@
     "sat": "Sat",
     "sun": "Sun"
   },
+  "clickToView": "Click to view trades",
   "performanceBreakdown": {
     "title": "Performance Breakdown",
     "performanceBreakdownTooltip": "Detailed performance statistics: Win/Loss ratio, average wins/losses, as well as best and worst trades. Provides insight into the quality of your trading decisions.",

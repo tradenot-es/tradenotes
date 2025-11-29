@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
@@ -17,6 +18,12 @@ interface ConsistencyTrackerProps {
 export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
+  const navigate = useNavigate();
+
+  const handleDateClick = (date: Date) => {
+    const dateStr = date.toISOString().split('T')[0];
+    navigate(`/dashboard/trades?date=${dateStr}`);
+  };
 
   // Get calendar weeks structure (Monday to Sunday)
   const getCalendarWeeks = () => {
@@ -225,6 +232,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                         <Tooltip key={`${weekIdx}-${dayIndex}`}>
                           <TooltipTrigger asChild>
                             <div
+                              onClick={() => handleDateClick(date)}
                               className={`w-6 h-6 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
                             />
                           </TooltipTrigger>
@@ -235,6 +243,11 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                               <div className={data.pnl >= 0 ? "text-success" : "text-destructive"}>
                                 {formatCurrency(data.pnl)}
                               </div>
+                              {data.count > 0 && (
+                                <div className="text-muted-foreground mt-1 italic">
+                                  {t("dashboard.clickToView")}
+                                </div>
+                              )}
                             </div>
                           </TooltipContent>
                         </Tooltip>

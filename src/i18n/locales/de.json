@@ -63,6 +63,7 @@
     "sat": "Sa",
     "sun": "So"
   },
+  "clickToView": "Klicken zum Anzeigen",
   "performanceBreakdown": {
     "title": "Performance Details",
     "performanceBreakdownTooltip": "Detaillierte Performance-Statistiken: Win/Loss Ratio, durchschnittliche Gewinne/Verluste, sowie beste und schlechteste Trades. Gibt Einblick in die Qualität deiner Trading-Entscheidungen.",
