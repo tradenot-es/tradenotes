@@ -97,7 +97,54 @@
     "articles": "artikelen",
     "sectorArticles": "{{count}} artikelen geanalyseerd",
     "topArticles": "Topartikelen",
-    "trend7Days": "7-daagse trend"
+    "trend7Days": "7-daagse trend",
+    "sectors": {
+      "examples_label": "bijv.",
+      "technology": {
+        "description": "Hardware, Software, Halfgeleiders, IT-Diensten",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Media, Advertenties, Telecommunicatie, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Olie, Gas, Hernieuwbare Energie",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Farmaceutica, Biotech, Medische Apparatuur",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banken, Verzekeringen, Vermogensbeheer",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Retail, Automotive, Vrije Tijd, Luxegoederen",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Lucht- & Ruimtevaart, Defensie, Bouw, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Voedsel, Dranken, Huishoudproducten",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalen, Mijnbouw, Chemicaliën",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Vastgoedontwikkeling",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Elektriciteitsbedrijven, Water, Gas",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
   },
   "calendar": {
     "politicalEvent": "Politieke Gebeurtenis",

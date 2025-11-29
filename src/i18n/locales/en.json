@@ -95,7 +95,54 @@
     "articles": "articles",
     "sectorArticles": "{{count}} articles analyzed",
     "topArticles": "Top Articles",
-    "trend7Days": "7-day trend"
+    "trend7Days": "7-day trend",
+    "sectors": {
+      "examples_label": "e.g.",
+      "technology": {
+        "description": "Hardware, Software, Semiconductors, IT Services",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Media, Advertising, Telecommunications, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Oil, Gas, Renewable Energy",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Pharmaceuticals, Biotech, Medical Equipment",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banks, Insurance, Asset Management",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Retail, Automotive, Leisure, Luxury Goods",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Aerospace, Defense, Construction, Transportation",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Food, Beverages, Household Products",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metals, Mining, Chemicals",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Property Development",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Electric, Water, Gas Utilities",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
   },
   "calendar": {
     "politicalEvent": "Political Event",

@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { TrendingUp, Building2, Info, TrendingDown, Minus, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -31,6 +32,15 @@ export function SectorSentimentWidget() {
   const [sectors, setSectors] = useState<SectorSentiment[]>([]);
   const [sectorHistory, setSectorHistory] = useState<Record<string, SectorHistory[]>>({});
   const [loading, setLoading] = useState(true);
+
+  // Sector information with descriptions and example companies
+  const getSectorInfo = (sector: string) => {
+    const sectorKey = sector.toLowerCase().replace(/\s+/g, "_");
+    return {
+      description: t(`dashboard.sectors.${sectorKey}.description`),
+      examples: t(`dashboard.sectors.${sectorKey}.examples`)
+    };
+  };
 
   useEffect(() => {
     loadSectorData();
@@ -172,7 +182,24 @@ export function SectorSentimentWidget() {
                   <div className="flex flex-col items-center justify-center p-4 rounded-lg border border-border bg-card/50 hover:bg-card/80 transition-colors text-center cursor-pointer">
                     <span className="text-3xl mb-2">{getSentimentIcon(sector.avg_sentiment)}</span>
                     <div className="mb-2">
-                      <p className="font-medium text-sm">{sector.sector}</p>
+                      <div className="flex items-center justify-center gap-1">
+                        <p className="font-medium text-sm">{sector.sector}</p>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <button className="inline-flex items-center justify-center h-4 w-4 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                                <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent className="max-w-xs">
+                              <p className="font-medium text-sm mb-1">{getSectorInfo(sector.sector).description}</p>
+                              <p className="text-xs text-muted-foreground">
+                                {t("dashboard.sectors.examples_label")}: {getSectorInfo(sector.sector).examples}
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
                       <p className="text-xs text-muted-foreground">
                         {sector.article_count} {t("dashboard.articles")}
                       </p>
