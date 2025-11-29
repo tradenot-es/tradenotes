@@ -65,18 +65,27 @@ export function SectorSentimentWidget() {
     return (
       <Card className="elegant-shadow">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Building2 className="h-5 w-5" />
-            {t("dashboard.sectorSentiment")}
-          </CardTitle>
+          <div className="flex items-center gap-2">
+            <Building2 className="h-5 w-5 text-primary" />
+            <CardTitle>{t("dashboard.sectorSentiment")}</CardTitle>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                  <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                </button>
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <p className="text-sm">{t("dashboard.sectorSentimentDescription")}</p>
+              </HoverCardContent>
+            </HoverCard>
+          </div>
         </CardHeader>
-        <CardContent className="space-y-3">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="flex items-center justify-between">
-              <Skeleton className="h-4 w-24" />
-              <Skeleton className="h-4 w-16" />
-            </div>
-          ))}
+        <CardContent>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((i) => (
+              <Skeleton key={i} className="h-28 w-full" />
+            ))}
+          </div>
         </CardContent>
       </Card>
     );
@@ -104,28 +113,28 @@ export function SectorSentimentWidget() {
           </HoverCard>
         </div>
       </CardHeader>
-      <CardContent className="space-y-3">
-        {sectors.map((sector) => (
-          <div key={sector.sector} className="flex items-center justify-between p-3 rounded-lg border border-border bg-card/50 hover:bg-card/80 transition-colors">
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">{getSentimentIcon(sector.avg_sentiment)}</span>
-              <div>
-                <p className="text-sm font-medium">{sector.sector}</p>
+      <CardContent>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {sectors.map((sector) => (
+            <div key={sector.sector} className="flex flex-col items-center justify-center p-4 rounded-lg border border-border bg-card/50 hover:bg-card/80 transition-colors text-center">
+              <span className="text-3xl mb-2">{getSentimentIcon(sector.avg_sentiment)}</span>
+              <div className="mb-2">
+                <p className="font-medium text-sm">{sector.sector}</p>
                 <p className="text-xs text-muted-foreground">
                   {sector.article_count} {t("dashboard.articles")}
                 </p>
               </div>
+              <div>
+                <p className={cn("text-xs font-semibold mb-1", getSentimentColor(sector.avg_sentiment))}>
+                  {getSentimentLabel(sector.avg_sentiment)}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {sector.avg_sentiment.toFixed(2)}
+                </p>
+              </div>
             </div>
-            <div className="text-right">
-              <p className={cn("text-sm font-semibold", getSentimentColor(sector.avg_sentiment))}>
-                {getSentimentLabel(sector.avg_sentiment)}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {sector.avg_sentiment.toFixed(2)}
-              </p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </CardContent>
     </Card>
   );

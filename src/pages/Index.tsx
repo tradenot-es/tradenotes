@@ -9,7 +9,6 @@ import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformance } from "@/components/WeeklyPerformance";
-import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
@@ -363,6 +362,9 @@ const Index = () => {
             <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
           </div>
 
+          {/* Sector Sentiment - Prominent placement after charts */}
+          <SectorSentimentWidget />
+
           {/* Calendar and Weekly Performance */}
           <div className="grid gap-6 md:grid-cols-3">
             <div className="md:col-span-2">
@@ -382,20 +384,12 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Consistency Tracker, Portfolio News, and Sector Sentiment - Optimized Layout */}
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="md:col-span-2">
-              <ConsistencyTracker trades={trades} />
-            </div>
-            <div className="space-y-6">
-              <PortfolioNews />
-              <SectorSentimentWidget />
-            </div>
-          </div>
+          {/* Portfolio News - Full width */}
+          <PortfolioNews />
         </>
       )}
 
-      <AddTradeDialog 
+      <AddTradeDialog
         open={editDialogOpen} 
         onOpenChange={(open) => {
           setEditDialogOpen(open);
