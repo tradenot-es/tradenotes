@@ -18,13 +18,13 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
 
-  // Get last 12 weeks
+  // Get last 26 weeks (182 days)
   const getWeeksData = () => {
     const weeks: { [key: string]: { count: number; pnl: number } } = {};
     const today = new Date();
     
-    // Initialize last 12 weeks
-    for (let i = 0; i < 84; i++) {
+    // Initialize last 26 weeks
+    for (let i = 0; i < 182; i++) {
       const date = new Date(today);
       date.setDate(date.getDate() - i);
       const key = date.toISOString().split('T')[0];
@@ -99,11 +99,11 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
             <div className="flex items-center gap-2">
               <span>{t("dashboard.less")}</span>
                 <div className="flex gap-1">
-                  <div className="w-4 h-4 rounded-sm bg-muted border border-border/40" />
-                  <div className="w-4 h-4 rounded-sm bg-success/30 border border-success/30" />
-                  <div className="w-4 h-4 rounded-sm bg-success/50 border border-success/30" />
-                  <div className="w-4 h-4 rounded-sm bg-success/70 border border-success/30" />
-                  <div className="w-4 h-4 rounded-sm bg-success border border-success/30" />
+                  <div className="w-6 h-6 rounded-sm bg-muted border border-border/40" />
+                  <div className="w-6 h-6 rounded-sm bg-success/30 border border-success/30" />
+                  <div className="w-6 h-6 rounded-sm bg-success/50 border border-success/30" />
+                  <div className="w-6 h-6 rounded-sm bg-success/70 border border-success/30" />
+                  <div className="w-6 h-6 rounded-sm bg-success border border-success/30" />
                 </div>
               <span>{t("dashboard.more")}</span>
             </div>
@@ -112,32 +112,61 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex gap-1.5 overflow-x-auto pb-2 justify-center">
-            {weeks.reverse().map((week, weekIdx) => (
-              <div key={weekIdx} className="flex flex-col gap-1.5">
-                {week.map((date) => {
-                  const data = weeksData[date];
+          <div className="flex gap-2 overflow-x-auto pb-2">
+            {/* Weekday labels */}
+            <div className="flex flex-col gap-1 text-xs text-muted-foreground pr-1 justify-around py-0.5">
+              <span className="h-6 flex items-center">Mo</span>
+              <span className="h-6"></span>
+              <span className="h-6 flex items-center">Mi</span>
+              <span className="h-6"></span>
+              <span className="h-6 flex items-center">Fr</span>
+              <span className="h-6"></span>
+              <span className="h-6"></span>
+            </div>
+            
+            {/* Heatmap grid */}
+            <div className="flex flex-col gap-2">
+              <div className="flex gap-1">
+                {weeks.reverse().map((week, weekIdx) => (
+                  <div key={weekIdx} className="flex flex-col gap-1">
+                    {week.map((date) => {
+                      const data = weeksData[date];
+                      return (
+                        <Tooltip key={date}>
+                          <TooltipTrigger asChild>
+                            <div
+                              className={`w-6 h-6 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
+                            />
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <div className="text-xs">
+                              <div className="font-semibold">{new Date(date).toLocaleDateString()}</div>
+                              <div>{data.count} {t("dashboard.trades")}</div>
+                              <div className={data.pnl >= 0 ? "text-success" : "text-destructive"}>
+                                {formatCurrency(data.pnl)}
+                              </div>
+                            </div>
+                          </TooltipContent>
+                        </Tooltip>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+              
+              {/* Month labels */}
+              <div className="flex gap-1 text-xs text-muted-foreground">
+                {weeks.map((week, weekIdx) => {
+                  const firstDate = new Date(week[0]);
+                  const showMonth = weekIdx === 0 || firstDate.getDate() <= 7;
                   return (
-                    <Tooltip key={date}>
-                      <TooltipTrigger asChild>
-                        <div
-                          className={`w-5 h-5 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <div className="text-xs">
-                          <div className="font-semibold">{new Date(date).toLocaleDateString()}</div>
-                          <div>{data.count} {t("dashboard.trades")}</div>
-                          <div className={data.pnl >= 0 ? "text-success" : "text-destructive"}>
-                            {formatCurrency(data.pnl)}
-                          </div>
-                        </div>
-                      </TooltipContent>
-                    </Tooltip>
+                    <div key={weekIdx} className="w-6 text-center">
+                      {showMonth && firstDate.toLocaleDateString('de-DE', { month: 'short' })}
+                    </div>
                   );
                 })}
               </div>
-            ))}
+            </div>
           </div>
         </TooltipProvider>
       </CardContent>
