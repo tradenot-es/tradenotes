@@ -82,6 +82,8 @@
     "portfolioNewsTooltip": "Automatically curated financial news for your most frequently traded symbols. Stay informed about market-moving events and developments that could impact your positions.",
     "newsTranslated": "News translated successfully!",
     "translationFailed": "Translation failed. Please try again.",
+    "autoTranslated": "Auto-translated",
+    "stocksOnlyNews": "Portfolio news is only available for stock symbols (e.g., AAPL, GOOGL, TSLA). Futures and indices are not supported by the news provider.",
     "dynamicDashboard": "Dynamic Dashboard",
     "dynamicDashboardInfo": "News automatically filtered by your top performers",
     "noSymbolsForNews": "No symbols available yet. Add trades to receive relevant news.",

@@ -42,12 +42,31 @@ export function PortfolioNews() {
     }
   }, [frequentSymbols, symbolsLoading]);
 
+  // Auto-translate when language is not English
+  useEffect(() => {
+    if (articles.length > 0 && i18n.language !== 'en' && !articles[0].translatedTitle && !translating) {
+      translateNews();
+    }
+  }, [articles, i18n.language]);
+
   const loadNews = async () => {
     setLoading(true);
     setError("");
 
     try {
-      const topSymbols = frequentSymbols.slice(0, 5).map(s => s.symbol);
+      // Filter only stock symbols (exclude futures like NQ, GC, ES)
+      const stockSymbols = frequentSymbols
+        .filter(s => s.market === 'Stock' || s.market === 'stock')
+        .slice(0, 5)
+        .map(s => s.symbol);
+      
+      if (stockSymbols.length === 0) {
+        setError(t("dashboard.stocksOnlyNews"));
+        setLoading(false);
+        return;
+      }
+      
+      const topSymbols = stockSymbols;
       
       // Try up to 7 days back to find news
       let articlesFound = false;
@@ -223,23 +242,42 @@ export function PortfolioNews() {
   return (
     <Card className="elegant-shadow">
       <CardHeader>
-        <div className="flex items-center gap-2">
-          <Newspaper className="h-5 w-5 text-primary" />
-          <CardTitle>{t("dashboard.portfolioNews")}</CardTitle>
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
-            </HoverCardTrigger>
-            <HoverCardContent className="w-80">
-              <p className="text-sm">{t("dashboard.portfolioNewsTooltip")}</p>
-                <a 
-                  href="/dashboard/glossary#portfolio-news" 
-                  className="text-xs text-primary hover:underline mt-2 block"
-                >
-                  Learn more in glossary →
-                </a>
-            </HoverCardContent>
-          </HoverCard>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Newspaper className="h-5 w-5 text-primary" />
+            <CardTitle>{t("dashboard.portfolioNews")}</CardTitle>
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              </HoverCardTrigger>
+              <HoverCardContent className="w-80">
+                <p className="text-sm">{t("dashboard.portfolioNewsTooltip")}</p>
+                  <a 
+                    href="/dashboard/glossary#portfolio-news" 
+                    className="text-xs text-primary hover:underline mt-2 block"
+                  >
+                    Learn more in glossary →
+                  </a>
+              </HoverCardContent>
+            </HoverCard>
+            {showTranslated && (
+              <Badge variant="secondary" className="text-xs">
+                {t("dashboard.autoTranslated")}
+              </Badge>
+            )}
+          </div>
+          {articles.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={translateNews}
+              disabled={translating}
+              className="gap-2"
+            >
+              <Languages className="h-4 w-4" />
+              {translating ? t("common.translating") : showTranslated ? t("common.showOriginal") : t("common.translate")}
+            </Button>
+          )}
         </div>
         <div className="flex items-center gap-2 mt-3 p-2 rounded-lg bg-primary/5 border border-primary/10">
           <TrendingUp className="h-4 w-4 text-primary" />

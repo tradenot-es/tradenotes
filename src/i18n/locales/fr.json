@@ -89,6 +89,8 @@
     "portfolioNewsTooltip": "Actualités financières automatiquement curées pour vos symboles les plus tradés. Restez informé des événements qui déplacent le marché et des développements qui pourraient impacter vos positions.",
     "newsTranslated": "Actualités traduites avec succès!",
     "translationFailed": "Échec de la traduction. Veuillez réessayer.",
+    "autoTranslated": "Traduit automatiquement",
+    "stocksOnlyNews": "Les actualités du portfolio ne sont disponibles que pour les symboles d'actions (par ex. AAPL, GOOGL, TSLA). Les futures et les indices ne sont pas pris en charge par le fournisseur d'actualités.",
     "dynamicDashboard": "Tableau de Bord Dynamique",
     "dynamicDashboardInfo": "Actualités automatiquement filtrées par vos meilleurs résultats",
     "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes.",

@@ -89,6 +89,8 @@
     "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
     "newsTranslated": "Nieuws succesvol vertaald!",
     "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
+    "autoTranslated": "Automatisch vertaald",
+    "stocksOnlyNews": "Portfolio nieuws is alleen beschikbaar voor aandelensymbolen (bijv. AAPL, GOOGL, TSLA). Futures en indices worden niet ondersteund door de nieuwsaanbieder.",
     "dynamicDashboard": "Dynamisch Dashboard",
     "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
     "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
