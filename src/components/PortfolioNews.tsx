@@ -4,7 +4,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper, Languages } from "lucide-react";
+import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper, Languages, Tag } from "lucide-react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,21 +26,76 @@ interface NewsArticle {
   published_at: string;
   source: string;
   sentiment?: string;
-  entities?: Array<{ symbol: string; name: string }>;
+  entities?: Array<{ symbol: string; name: string; type?: string }>;
   translatedTitle?: string;
   translatedDescription?: string;
+}
+
+interface GroupedNews {
+  originalSymbol: string;
+  market: string;
+  proxySymbols: string[];
+  articles: NewsArticle[];
 }
 
 export function PortfolioNews() {
   const { t, i18n } = useTranslation();
   const { frequentSymbols, loading: symbolsLoading } = useFrequentSymbols();
-  const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const [groupedNews, setGroupedNews] = useState<GroupedNews[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [isCached, setIsCached] = useState(false);
   const [translating, setTranslating] = useState(false);
   const [showTranslated, setShowTranslated] = useState(false);
   const [proxyMapping, setProxyMapping] = useState<Record<string, string[]>>({});
+
+  // Generate smart tags based on article entities
+  const generateSmartTags = (article: NewsArticle): string[] => {
+    const tags: string[] = [];
+    const entityTypes = article.entities?.map(e => e.type).filter(Boolean) || [];
+    
+    if (entityTypes.includes("earnings")) tags.push(t("dashboard.smartTags.earningsPlay"));
+    if (entityTypes.includes("macro")) tags.push(t("dashboard.smartTags.macroEvent"));
+    if (entityTypes.includes("politics")) tags.push(t("dashboard.smartTags.politicalCatalyst"));
+    if (tags.length === 0) tags.push(t("dashboard.smartTags.newsCatalyst"));
+    
+    return tags;
+  };
+
+  // Group news articles by original symbol
+  const groupNewsBySymbol = (
+    articles: NewsArticle[], 
+    mapping: Record<string, string[]>,
+    symbols: Array<{ symbol: string; market: string }>
+  ): GroupedNews[] => {
+    const groups: GroupedNews[] = [];
+    
+    symbols.forEach(({ symbol, market }) => {
+      const proxies = mapping[symbol] || [symbol];
+      const symbolArticles: NewsArticle[] = [];
+      
+      // Find articles that mention any of the proxy symbols
+      articles.forEach(article => {
+        const articleSymbols = article.entities?.map(e => e.symbol.toUpperCase()) || [];
+        const hasMatch = proxies.some(proxy => 
+          articleSymbols.includes(proxy.toUpperCase())
+        );
+        
+        if (hasMatch && symbolArticles.length < 3) {
+          symbolArticles.push(article);
+        }
+      });
+      
+      groups.push({
+        originalSymbol: symbol,
+        market,
+        proxySymbols: proxies,
+        articles: symbolArticles
+      });
+    });
+    
+    return groups;
+  };
 
   useEffect(() => {
     if (!symbolsLoading && frequentSymbols.length > 0) {
@@ -46,10 +107,11 @@ export function PortfolioNews() {
 
   // Auto-translate when language is not English
   useEffect(() => {
-    if (articles.length > 0 && i18n.language !== 'en' && !articles[0].translatedTitle && !translating) {
+    const allArticles = groupedNews.flatMap(g => g.articles);
+    if (allArticles.length > 0 && i18n.language !== 'en' && !allArticles[0]?.translatedTitle && !translating) {
       translateNews();
     }
-  }, [articles, i18n.language]);
+  }, [groupedNews, i18n.language]);
 
   const loadNews = async () => {
     setLoading(true);
@@ -111,9 +173,12 @@ export function PortfolioNews() {
         }
 
         if (data.success && data.articles?.length > 0) {
-          const articles = data.articles.slice(0, 5);
+          const articles = data.articles;
           console.log(`PortfolioNews: Found ${articles.length} articles for ${dateStr}, cached:`, data.meta?.cached);
-          setArticles(articles);
+          
+          // Group articles by original symbols
+          const grouped = groupNewsBySymbol(articles, mapping, frequentSymbols.slice(0, 5));
+          setGroupedNews(grouped);
           setIsCached(data.meta?.cached || false);
           articlesFound = true;
         } else if (data.meta?.error === 'unsupported_symbols') {
@@ -138,7 +203,8 @@ export function PortfolioNews() {
   };
 
   const translateNews = async () => {
-    if (articles.some(a => a.translatedTitle)) {
+    const allArticles = groupedNews.flatMap(g => g.articles);
+    if (allArticles.some(a => a.translatedTitle)) {
       setShowTranslated(!showTranslated);
       return;
     }
@@ -147,30 +213,39 @@ export function PortfolioNews() {
     try {
       const targetLang = i18n.language;
       
-      const translated = await Promise.all(
-        articles.map(async (article) => {
-          const { data, error } = await supabase.functions.invoke('translate-news', {
-            body: { 
-              title: article.title,
-              description: article.description,
-              targetLanguage: targetLang
-            }
-          });
+      const translatedGroups = await Promise.all(
+        groupedNews.map(async (group) => {
+          const translatedArticles = await Promise.all(
+            group.articles.map(async (article) => {
+              const { data, error } = await supabase.functions.invoke('translate-news', {
+                body: { 
+                  title: article.title,
+                  description: article.description,
+                  targetLanguage: targetLang
+                }
+              });
 
-          if (error || !data?.success) {
-            console.error('Translation error:', error);
-            return article;
-          }
+              if (error || !data?.success) {
+                console.error('Translation error:', error);
+                return article;
+              }
+
+              return {
+                ...article,
+                translatedTitle: data.translatedTitle,
+                translatedDescription: data.translatedDescription
+              };
+            })
+          );
 
           return {
-            ...article,
-            translatedTitle: data.translatedTitle,
-            translatedDescription: data.translatedDescription
+            ...group,
+            articles: translatedArticles
           };
         })
       );
 
-      setArticles(translated);
+      setGroupedNews(translatedGroups);
       setShowTranslated(true);
       toast.success(t("dashboard.newsTranslated"));
     } catch (err) {
@@ -232,7 +307,7 @@ export function PortfolioNews() {
               </HoverCardContent>
             </HoverCard>
           </div>
-          {articles.length > 0 && (
+          {groupedNews.some(g => g.articles.length > 0) && (
             <Button
               variant="outline"
               size="sm"
@@ -280,7 +355,7 @@ export function PortfolioNews() {
               </Badge>
             )}
           </div>
-          {articles.length > 0 && (
+          {groupedNews.some(g => g.articles.length > 0) && (
             <Button
               variant="outline"
               size="sm"
@@ -317,51 +392,91 @@ export function PortfolioNews() {
       <CardContent>
         {error ? (
           <p className="text-sm text-muted-foreground">{error}</p>
-        ) : articles.length === 0 ? (
+        ) : groupedNews.length === 0 ? (
           <p className="text-sm text-muted-foreground">{t("trades.noNewsAvailable")}</p>
         ) : (
-          <div className="space-y-4">
-            {articles.map((article, index) => (
-              <div key={`portfolio-${article.uuid}-${article.published_at}-${index}`} className="border-b pb-4 last:border-0">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h4 className="text-sm font-medium line-clamp-2 flex-1">
-                    {showTranslated && article.translatedTitle ? article.translatedTitle : article.title}
-                  </h4>
-                  {article.sentiment && getSentimentIcon(article.sentiment)}
-                </div>
-                {article.description && (
-                  <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                    {showTranslated && article.translatedDescription ? article.translatedDescription : article.description}
-                  </p>
-                )}
-                <div className="flex items-center gap-2 flex-wrap mb-2">
-                  <Badge variant="outline" className="text-xs">
-                    {new Date(article.published_at).toLocaleDateString('de-DE', { 
-                      day: '2-digit', 
-                      month: '2-digit', 
-                      year: 'numeric' 
-                    })}
-                  </Badge>
-                  <Badge variant="outline" className="text-xs">
-                    {article.source}
-                  </Badge>
-                  {article.entities?.slice(0, 3).map((entity) => (
-                    <Badge key={entity.symbol} variant="secondary" className="text-xs">
-                      {entity.symbol}
+          <Accordion type="multiple" defaultValue={[groupedNews[0]?.originalSymbol]} className="w-full">
+            {groupedNews.map((group) => (
+              <AccordionItem key={group.originalSymbol} value={group.originalSymbol}>
+                <AccordionTrigger className="hover:no-underline">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Badge variant="default" className="font-semibold">
+                      {group.originalSymbol}
                     </Badge>
-                  ))}
-                </div>
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-primary hover:underline flex items-center gap-1"
-                >
-                  {t("common.readMore")} <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
+                    {group.proxySymbols[0] !== group.originalSymbol && (
+                      <span className="text-xs text-muted-foreground">
+                        → {t("dashboard.via")} {group.proxySymbols.join(', ')}
+                      </span>
+                    )}
+                    <Badge variant="outline" className="text-xs">
+                      {t("dashboard.newsCount", { count: group.articles.length })}
+                    </Badge>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent>
+                  {group.articles.length === 0 ? (
+                    <p className="text-sm text-muted-foreground py-4">
+                      {t("dashboard.noNewsForSymbol")}
+                    </p>
+                  ) : (
+                    <div className="space-y-4 pt-2">
+                      {group.articles.map((article, index) => {
+                        const smartTags = generateSmartTags(article);
+                        return (
+                          <div key={`${group.originalSymbol}-${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
+                            <div className="flex items-start justify-between gap-2 mb-2">
+                              <h4 className="text-sm font-medium line-clamp-2 flex-1">
+                                {showTranslated && article.translatedTitle ? article.translatedTitle : article.title}
+                              </h4>
+                              {article.sentiment && getSentimentIcon(article.sentiment)}
+                            </div>
+                            
+                            {/* Smart Tags */}
+                            <div className="flex items-center gap-2 mb-2 flex-wrap">
+                              {smartTags.map((tag) => (
+                                <Badge key={tag} variant="secondary" className="text-xs gap-1">
+                                  <Tag className="h-3 w-3" />
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
+
+                            {article.description && (
+                              <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                                {showTranslated && article.translatedDescription ? article.translatedDescription : article.description}
+                              </p>
+                            )}
+                            
+                            <div className="flex items-center gap-2 flex-wrap mb-2">
+                              <Badge variant="outline" className="text-xs">
+                                {new Date(article.published_at).toLocaleDateString('de-DE', { 
+                                  day: '2-digit', 
+                                  month: '2-digit', 
+                                  year: 'numeric' 
+                                })}
+                              </Badge>
+                              <Badge variant="outline" className="text-xs">
+                                {article.source}
+                              </Badge>
+                            </div>
+                            
+                            <a
+                              href={article.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-xs text-primary hover:underline flex items-center gap-1"
+                            >
+                              {t("common.readMore")} <ExternalLink className="h-3 w-3" />
+                            </a>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
         )}
       </CardContent>
     </Card>

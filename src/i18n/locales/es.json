@@ -95,6 +95,15 @@
     "dynamicDashboard": "Panel Dinámico",
     "dynamicDashboardInfo": "Noticias filtradas automáticamente por sus mejores resultados",
     "noSymbolsForNews": "No hay símbolos disponibles aún. Añade operaciones para recibir noticias relevantes.",
+    "newsCount": "{{count}} Noticias",
+    "noNewsForSymbol": "Sin noticias para este símbolo",
+    "via": "vía",
+    "smartTags": {
+      "earningsPlay": "Resultados",
+      "macroEvent": "Evento Macro",
+      "politicalCatalyst": "Catalizador Político",
+      "newsCatalyst": "Catalizador de Noticias"
+    },
     "sectorSentiment": "Sentimiento del Mercado Hoy",
     "sectorSentimentDescription": "Resumen sectorial diario para identificar el sesgo del mercado",
     "articles": "artículos",
