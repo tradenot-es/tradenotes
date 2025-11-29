@@ -69,6 +69,7 @@ export function PortfolioNews() {
     symbols: Array<{ symbol: string; market: string }>
   ): GroupedNews[] => {
     const groups: GroupedNews[] = [];
+    const usedArticleIds = new Set<string>(); // Track which articles have been used
     
     symbols.forEach(({ symbol, market }) => {
       const proxies = mapping[symbol] || [symbol];
@@ -76,6 +77,9 @@ export function PortfolioNews() {
       
       // Find articles that mention any of the proxy symbols
       articles.forEach(article => {
+        // Skip if article already used by another symbol
+        if (usedArticleIds.has(article.uuid)) return;
+        
         const articleSymbols = article.entities?.map(e => e.symbol.toUpperCase()) || [];
         const hasMatch = proxies.some(proxy => 
           articleSymbols.includes(proxy.toUpperCase())
@@ -83,6 +87,7 @@ export function PortfolioNews() {
         
         if (hasMatch && symbolArticles.length < 3) {
           symbolArticles.push(article);
+          usedArticleIds.add(article.uuid); // Mark as used
         }
       });
       
@@ -94,7 +99,8 @@ export function PortfolioNews() {
       });
     });
     
-    return groups;
+    // Sort groups by article count (symbols with more news first)
+    return groups.sort((a, b) => b.articles.length - a.articles.length);
   };
 
   useEffect(() => {
@@ -127,11 +133,22 @@ export function PortfolioNews() {
         if (proxies.length > 0) {
           mapping[s.symbol] = proxies;
           newsSymbols.push(...proxies);
+        } else {
+          // If no proxy, use original symbol
+          mapping[s.symbol] = [s.symbol];
+          newsSymbols.push(s.symbol);
         }
       });
       
-      // Remove duplicates
-      const topSymbols = [...new Set(newsSymbols)];
+      // Remove duplicates (case-insensitive)
+      const uniqueSymbols = new Map<string, string>();
+      newsSymbols.forEach(sym => {
+        const upper = sym.toUpperCase();
+        if (!uniqueSymbols.has(upper)) {
+          uniqueSymbols.set(upper, sym);
+        }
+      });
+      const topSymbols = Array.from(uniqueSymbols.values());
       
       if (topSymbols.length === 0) {
         setError(t("dashboard.noNewsProxiesAvailable"));
@@ -165,8 +182,22 @@ export function PortfolioNews() {
         const articles = data.articles;
         console.log(`PortfolioNews: Found ${articles.length} articles, cached:`, data.meta?.cached);
         
+        // Debug: Log which symbols are mentioned in articles
+        const mentionedSymbols = new Set<string>();
+        articles.forEach(article => {
+          article.entities?.forEach(entity => {
+            mentionedSymbols.add(entity.symbol.toUpperCase());
+          });
+        });
+        console.log('PortfolioNews: Symbols mentioned in articles:', Array.from(mentionedSymbols));
+        console.log('PortfolioNews: Expected symbols:', topSymbols);
+        
         // Group articles by original symbols
         const grouped = groupNewsBySymbol(articles, mapping, frequentSymbols.slice(0, 5));
+        console.log('PortfolioNews: Grouped news:', grouped.map(g => ({ 
+          symbol: g.originalSymbol, 
+          articleCount: g.articles.length 
+        })));
         setGroupedNews(grouped);
         setIsCached(data.meta?.cached || false);
       } else if (data.meta?.error === 'unsupported_symbols') {

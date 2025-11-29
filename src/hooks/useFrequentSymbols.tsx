@@ -34,11 +34,22 @@ export function useFrequentSymbols(market?: string) {
         if (error) throw error;
 
         if (data) {
-          // Count symbol frequency
+          // Normalize common symbol typos
+          const normalizeSymbol = (symbol: string): string => {
+            const upperSymbol = symbol.toUpperCase();
+            // Known typos/variations
+            if (upperSymbol === 'APPL') return 'AAPL';
+            if (upperSymbol === 'GOOGL') return 'GOOGL'; // Already correct
+            if (upperSymbol === 'GOOG') return 'GOOGL'; // Normalize to Class A
+            return upperSymbol;
+          };
+
+          // Count symbol frequency with normalization
           const symbolCounts = data.reduce((acc, trade) => {
-            const key = `${trade.symbol}-${trade.market}`;
+            const normalizedSymbol = normalizeSymbol(trade.symbol);
+            const key = `${normalizedSymbol}-${trade.market}`;
             if (!acc[key]) {
-              acc[key] = { symbol: trade.symbol, count: 0, market: trade.market || "Stock" };
+              acc[key] = { symbol: normalizedSymbol, count: 0, market: trade.market || "Stock" };
             }
             acc[key].count++;
             return acc;
