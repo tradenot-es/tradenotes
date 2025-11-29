@@ -32,6 +32,8 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
       const startStr = format(weekStart, 'yyyy-MM-dd');
       const endStr = format(weekEnd, 'yyyy-MM-dd');
 
+      console.log('usePoliticalEvents: Loading events from', startStr, 'to', endStr);
+
       const { data, error } = await supabase.functions.invoke('marketaux-news', {
         body: { 
           action: 'get-political-events',
@@ -41,6 +43,8 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
           limit: 50
         }
       });
+
+      console.log('usePoliticalEvents: Response', { success: data?.success, articleCount: data?.articles?.length, error });
 
       if (!error && data?.success && data.articles) {
         const fetchedEvents: PoliticalEvent[] = data.articles;
@@ -55,6 +59,8 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
           }
           grouped.get(dateKey)!.push(event);
         });
+        
+        console.log('usePoliticalEvents: Grouped events by date', Array.from(grouped.keys()));
         
         setEventsByDate(grouped);
       }
