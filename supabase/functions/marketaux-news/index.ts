@@ -292,6 +292,74 @@ serve(async (req) => {
       );
     }
 
+    // GET POLITICAL EVENTS (for calendar)
+    if (action === "get-political-events") {
+      const { keywords = "Trump,Fed,Powell", limit = 5 } = await req.json();
+      const cacheKey = `political-${date || "latest"}-${keywords}`;
+      
+      const { data: cachedData } = await supabase
+        .from("news_cache")
+        .select("*")
+        .eq("cache_key", cacheKey)
+        .gt("expires_at", new Date().toISOString())
+        .maybeSingle();
+
+      if (cachedData?.articles) {
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            articles: cachedData.articles,
+            meta: { cached: true }
+          }),
+          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const url = new URL("https://api.marketaux.com/v1/news/all");
+      url.searchParams.append("api_token", marketauxApiKey);
+      url.searchParams.append("search", keywords);
+      url.searchParams.append("filter_entities", "true");
+      url.searchParams.append("limit", limit.toString());
+      
+      if (date) {
+        url.searchParams.append("published_on", date);
+      }
+
+      console.log("Fetching political events:", url.toString());
+
+      const response = await fetch(url.toString());
+      const data = await response.json();
+
+      if (!response.ok || !data.data) {
+        console.error("Political events API error:", data);
+        return new Response(
+          JSON.stringify({ success: false, error: "Failed to fetch political events" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const articles = data.data.slice(0, limit).map((article: any) => ({
+        uuid: article.uuid,
+        title: article.title,
+        snippet: article.snippet || article.description?.substring(0, 200) || "",
+        url: article.url,
+        published_at: article.published_at,
+        source: article.source
+      }));
+
+      await supabase.from("news_cache").insert({
+        cache_key: cacheKey,
+        symbols: [],
+        articles: articles,
+        expires_at: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString()
+      });
+
+      return new Response(
+        JSON.stringify({ success: true, articles, meta: { cached: false } }),
+        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     // GET ARTICLES (Standard + Auto-Tagging)
     if (!symbols || symbols.length === 0) {
       return new Response(

@@ -2,20 +2,24 @@ import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { ExternalLink, TrendingUp, TrendingDown, Minus, Flame } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { NewsSourceFilter } from "./NewsSourceFilter";
+import { cn } from "@/lib/utils";
 
-interface NewsArticle {
+interface MarketauxArticle {
   uuid: string;
   title: string;
-  description: string;
+  snippet: string;
   url: string;
   published_at: string;
   source: string;
-  sentiment?: string;
-  entities?: Array<{ symbol: string; name: string }>;
+  entities: Array<{
+    symbol: string;
+    name: string;
+    sentiment_score: number;
+    match_score: number;
+  }>;
 }
 
 interface FinancialNewsProps {
@@ -26,24 +30,22 @@ interface FinancialNewsProps {
 
 export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
   const { t } = useTranslation();
-  const [articles, setArticles] = useState<NewsArticle[]>([]);
+  const [articles, setArticles] = useState<MarketauxArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
-  const [selectedSources, setSelectedSources] = useState<string[]>([]);
   const loadingRef = useRef(false);
   const lastRequestRef = useRef<string>("");
 
   useEffect(() => {
-    const requestKey = `${date.toISOString()}-${JSON.stringify(symbols)}-${market}-${JSON.stringify(selectedSources)}`;
+    const requestKey = `${date.toISOString()}-${JSON.stringify(symbols)}-${market}`;
     
-    // Prevent duplicate requests
     if (loadingRef.current || lastRequestRef.current === requestKey) {
       return;
     }
     
     lastRequestRef.current = requestKey;
     loadNews();
-  }, [date, symbols, market, selectedSources]);
+  }, [date, symbols, market]);
 
   const loadNews = async () => {
     if (loadingRef.current) return;
@@ -55,17 +57,26 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
     try {
       const dateStr = date.toISOString().split('T')[0];
       
-      const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
+      // Only fetch news if we have symbols (Marketaux requires symbols)
+      if (!symbols || symbols.length === 0) {
+        setError(t("trades.noNewsAvailable"));
+        setLoading(false);
+        loadingRef.current = false;
+        return;
+      }
+
+      console.log("FinancialNews: Fetching from marketaux-news for", dateStr, symbols);
+
+      const { data, error: functionError } = await supabase.functions.invoke('marketaux-news', {
         body: { 
-          action: 'get-articles',
-          date: dateStr, 
           symbols,
-          market,
-          sources: selectedSources.length > 0 ? selectedSources : undefined
+          date: dateStr,
+          limit: 10
         }
       });
 
       if (functionError) {
+        console.error("FinancialNews: Function error", functionError);
         if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
           setError('News temporarily unavailable due to rate limits. Please try again later.');
         } else {
@@ -74,21 +85,23 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
         return;
       }
 
-      if (data.success) {
-        setArticles(data.articles);
-        // Show helpful message if no articles found
+      console.log("FinancialNews: Response", data);
+
+      if (data?.success) {
+        setArticles(data.articles || []);
         if (data.articles.length === 0) {
           setError(t("trades.noNewsAvailable") + " (Date: " + dateStr + ")");
         }
       } else {
-        if (data.error?.includes('rate limit') || data.error?.includes('429')) {
+        console.error("FinancialNews: API error", data);
+        if (data?.error?.includes('rate limit') || data?.error?.includes('429')) {
           setError('News temporarily unavailable due to rate limits. Please try again later.');
         } else {
-          setError(data.error || t("trades.noNewsAvailable"));
+          setError(data?.error || t("trades.noNewsAvailable"));
         }
       }
     } catch (err: any) {
-      console.error('Error loading news:', err);
+      console.error('FinancialNews: Error loading news:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -96,11 +109,16 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
     }
   };
 
-  const getSentimentIcon = (sentiment?: string) => {
-    if (!sentiment) return <Minus className="h-4 w-4" />;
-    if (sentiment.toLowerCase().includes('positive')) return <TrendingUp className="h-4 w-4 text-success" />;
-    if (sentiment.toLowerCase().includes('negative')) return <TrendingDown className="h-4 w-4 text-destructive" />;
-    return <Minus className="h-4 w-4" />;
+  const getSentimentIcon = (sentimentScore: number) => {
+    if (sentimentScore > 0.2) return <TrendingUp className="h-4 w-4 text-green-500" />;
+    if (sentimentScore < -0.2) return <TrendingDown className="h-4 w-4 text-red-500" />;
+    return <Minus className="h-4 w-4 text-muted-foreground" />;
+  };
+
+  const getSentimentColor = (sentimentScore: number) => {
+    if (sentimentScore > 0.2) return "text-green-500";
+    if (sentimentScore < -0.2) return "text-red-500";
+    return "text-muted-foreground";
   };
 
   if (loading) {
@@ -124,10 +142,7 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle>{t("trades.newsOnDate")}</CardTitle>
-          <NewsSourceFilter onSourcesChange={setSelectedSources} />
-        </div>
+        <CardTitle>{t("trades.newsOnDate")}</CardTitle>
         {symbols && symbols.length > 0 && (
           <p className="text-xs text-muted-foreground mt-2">
             {t("trades.newsAnalyzedFor")}: <span className="font-medium">{symbols.join(", ")}</span>
@@ -141,37 +156,58 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
           <p className="text-sm text-muted-foreground">{t("trades.noNewsAvailable")}</p>
         ) : (
           <div className="space-y-4">
-            {articles.map((article, index) => (
-              <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
-                <div className="flex items-start justify-between gap-2 mb-2">
-                  <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
-                  {article.sentiment && getSentimentIcon(article.sentiment)}
-                </div>
-                {article.description && (
-                  <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                    {article.description}
-                  </p>
-                )}
-                <div className="flex items-center gap-2 flex-wrap">
-                  <Badge variant="outline" className="text-xs">
-                    {article.source}
-                  </Badge>
-                  {article.entities?.slice(0, 3).map((entity) => (
-                    <Badge key={entity.symbol} variant="secondary" className="text-xs">
-                      {entity.symbol}
+            {articles.map((article, index) => {
+              const relevantEntity = article.entities?.find(e => symbols?.includes(e.symbol));
+              const matchScore = relevantEntity?.match_score || 0;
+              const sentimentScore = relevantEntity?.sentiment_score || 0;
+
+              return (
+                <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b pb-4 last:border-0">
+                  <div className="flex items-start justify-between gap-2 mb-2">
+                    <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
+                    <div className="flex items-center gap-1">
+                      {matchScore > 50 && (
+                        <Flame className="h-3 w-3 text-orange-500" title={`High relevance: ${matchScore}%`} />
+                      )}
+                      {getSentimentIcon(sentimentScore)}
+                    </div>
+                  </div>
+                  {article.snippet && (
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                      {article.snippet}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Badge variant="outline" className="text-xs">
+                      {article.source}
                     </Badge>
-                  ))}
-                  <a
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-auto text-xs text-primary hover:underline flex items-center gap-1"
-                  >
-                    {t("common.readMore")} <ExternalLink className="h-3 w-3" />
-                  </a>
+                    {matchScore > 0 && (
+                      <Badge variant="secondary" className="text-xs">
+                        Match: {matchScore}%
+                      </Badge>
+                    )}
+                    {sentimentScore !== 0 && (
+                      <Badge variant="outline" className={cn("text-xs", getSentimentColor(sentimentScore))}>
+                        Sentiment: {sentimentScore > 0 ? '+' : ''}{sentimentScore.toFixed(2)}
+                      </Badge>
+                    )}
+                    {article.entities?.slice(0, 3).map((entity) => (
+                      <Badge key={entity.symbol} variant="secondary" className="text-xs">
+                        {entity.symbol}
+                      </Badge>
+                    ))}
+                    <a
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="ml-auto text-xs text-primary hover:underline flex items-center gap-1"
+                    >
+                      {t("common.readMore")} <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </CardContent>
