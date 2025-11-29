@@ -59,7 +59,17 @@
     "equityCurveTooltip": "Zeigt die kumulative Entwicklung Ihres Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konsistente Profitabilität hin. Große Rückgänge zeigen Drawdown-Phasen.",
     "pnlByMonth": "P&L nach Monat",
     "pnlChartTooltip": "Monatliche Profit & Loss Übersicht. Zeigt die Performance für jeden Monat und hilft dabei, saisonale Muster und langfristige Trends zu erkennen.",
-    "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!"
+    "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
+    "portfolioNews": "Portfolio-Nachrichten",
+    "portfolioNewsTooltip": "Automatisch kuratierte Finanznachrichten zu Ihren am häufigsten gehandelten Symbolen. Bleiben Sie über marktbewegende Events und Entwicklungen informiert, die Ihre Positionen beeinflussen könnten.",
+    "newsTranslated": "Nachrichten erfolgreich übersetzt!",
+    "translationFailed": "Übersetzung fehlgeschlagen. Bitte erneut versuchen.",
+    "dynamicDashboard": "Dynamisches Dashboard",
+    "dynamicDashboardInfo": "News automatisch gefiltert nach deinen Top-Performern",
+    "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
+    "sectorSentiment": "Marktstimmung heute",
+    "sectorSentimentDescription": "Tägliche Sektorübersicht hilft bei der Bias-Findung",
+    "articles": "Artikel"
   },
   "weekdays": {
     "mon": "Mo",
@@ -81,18 +91,8 @@
     "avgLoss": "Ø Verlust",
     "bestTrade": "Bester Trade",
     "worstTrade": "Schlechtester Trade",
-    "portfolioNews": "Portfolio-Nachrichten",
-    "portfolioNewsTooltip": "Automatisch kuratierte Finanznachrichten zu Ihren am häufigsten gehandelten Symbolen. Bleiben Sie über marktbewegende Events und Entwicklungen informiert, die Ihre Positionen beeinflussen könnten.",
-    "newsTranslated": "Nachrichten erfolgreich übersetzt!",
-    "translationFailed": "Übersetzung fehlgeschlagen. Bitte erneut versuchen.",
-    "dynamicDashboard": "Dynamisches Dashboard",
-    "dynamicDashboardInfo": "News automatisch gefiltert nach deinen Top-Performern",
-    "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
     "equity": "Equity",
-    "pnl": "P&L",
-    "sectorSentiment": "Marktstimmung heute",
-    "sectorSentimentDescription": "Tägliche Sektorübersicht hilft bei der Bias-Findung",
-    "articles": "Artikel"
+    "pnl": "P&L"
   },
   "trades": {
     "title": "Trades",
