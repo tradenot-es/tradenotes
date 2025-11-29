@@ -316,6 +316,8 @@ serve(async (req) => {
             .sort((a: any, b: any) => Math.abs(b.sentiment_score) - Math.abs(a.sentiment_score))
             .slice(0, 5);
           
+          console.log(`${sector} extracted articles:`, JSON.stringify(articlesWithSentiment, null, 2));
+          
           const sectorInfo = {
             date: today,
             sector,
