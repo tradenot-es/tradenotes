@@ -47,6 +47,61 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const dates = Object.keys(weeksData).sort();
   const maxTrades = Math.max(...Object.values(weeksData).map(d => d.count), 1);
 
+  // Calculate statistics
+  const calculateStats = () => {
+    let longestWinStreak = 0;
+    let longestLossStreak = 0;
+    let currentWinStreak = 0;
+    let currentLossStreak = 0;
+    
+    const dayOfWeekCounts: { [key: number]: number } = {};
+    let totalTrades = 0;
+    let daysWithTrades = 0;
+
+    dates.forEach(date => {
+      const data = weeksData[date];
+      
+      // Count trades by day of week
+      if (data.count > 0) {
+        const dayOfWeek = new Date(date).getDay();
+        dayOfWeekCounts[dayOfWeek] = (dayOfWeekCounts[dayOfWeek] || 0) + data.count;
+        totalTrades += data.count;
+        daysWithTrades++;
+      }
+
+      // Calculate streaks
+      if (data.pnl > 0) {
+        currentWinStreak++;
+        currentLossStreak = 0;
+        longestWinStreak = Math.max(longestWinStreak, currentWinStreak);
+      } else if (data.pnl < 0) {
+        currentLossStreak++;
+        currentWinStreak = 0;
+        longestLossStreak = Math.max(longestLossStreak, currentLossStreak);
+      } else {
+        currentWinStreak = 0;
+        currentLossStreak = 0;
+      }
+    });
+
+    // Find most active day
+    const mostActiveDay = Object.entries(dayOfWeekCounts).reduce(
+      (max, [day, count]) => (count > max.count ? { day: parseInt(day), count } : max),
+      { day: 0, count: 0 }
+    );
+
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    
+    return {
+      longestWinStreak,
+      longestLossStreak,
+      mostActiveDay: dayNames[mostActiveDay.day],
+      avgDailyTrades: daysWithTrades > 0 ? (totalTrades / daysWithTrades).toFixed(1) : '0',
+    };
+  };
+
+  const stats = calculateStats();
+
   const getIntensityColor = (count: number, pnl: number) => {
     if (count === 0) return "bg-muted border border-border/40";
     const intensity = Math.min(count / maxTrades, 1);
@@ -166,6 +221,32 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                   );
                 })}
               </div>
+            </div>
+          </div>
+
+          {/* Statistics Panel */}
+          <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-muted/50 rounded-lg p-4 border border-border/40">
+              <div className="text-xs text-muted-foreground mb-1">{t("dashboard.longestWinStreak")}</div>
+              <div className="text-2xl font-bold text-success">{stats.longestWinStreak}</div>
+              <div className="text-xs text-muted-foreground mt-1">{t("dashboard.days")}</div>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-4 border border-border/40">
+              <div className="text-xs text-muted-foreground mb-1">{t("dashboard.longestLossStreak")}</div>
+              <div className="text-2xl font-bold text-destructive">{stats.longestLossStreak}</div>
+              <div className="text-xs text-muted-foreground mt-1">{t("dashboard.days")}</div>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-4 border border-border/40">
+              <div className="text-xs text-muted-foreground mb-1">{t("dashboard.mostActiveDay")}</div>
+              <div className="text-2xl font-bold text-primary">{stats.mostActiveDay}</div>
+            </div>
+            
+            <div className="bg-muted/50 rounded-lg p-4 border border-border/40">
+              <div className="text-xs text-muted-foreground mb-1">{t("dashboard.avgDailyTrades")}</div>
+              <div className="text-2xl font-bold text-foreground">{stats.avgDailyTrades}</div>
+              <div className="text-xs text-muted-foreground mt-1">{t("dashboard.tradesPerDay")}</div>
             </div>
           </div>
         </TooltipProvider>
