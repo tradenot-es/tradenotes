@@ -225,14 +225,18 @@ serve(async (req) => {
     if (action === "get-sector-overview") {
       const today = new Date().toISOString().split("T")[0];
       
+      console.log("Fetching sector overview for", today);
+      
       // Check DB cache first
       const { data: cachedSectors } = await supabase
         .from("sector_sentiments")
         .select("*")
         .eq("date", today)
-        .gt("expires_at", new Date().toISOString());
+        .gt("expires_at", new Date().toISOString())
+        .gt("article_count", 0); // Only get sectors with actual articles
 
-      if (cachedSectors && cachedSectors.length > 0) {
+      if (cachedSectors && cachedSectors.length === 4) {
+        console.log("Returning cached sector data:", cachedSectors.length, "sectors");
         return new Response(
           JSON.stringify({ 
             success: true, 
@@ -243,6 +247,8 @@ serve(async (req) => {
         );
       }
 
+      console.log("Fetching fresh sector data from Marketaux API");
+
       // Fetch fresh data for main sectors
       const sectors = ["Technology", "Energy", "Healthcare", "Financials"];
       const sectorData = [];
@@ -251,32 +257,38 @@ serve(async (req) => {
         const url = new URL("https://api.marketaux.com/v1/news/all");
         url.searchParams.append("api_token", marketauxApiKey);
         url.searchParams.append("industries", sector);
-        url.searchParams.append("published_after", today);
-        url.searchParams.append("limit", "20");
+        url.searchParams.append("published_on", today); // Changed from published_after to published_on
+        url.searchParams.append("filter_entities", "true");
+        url.searchParams.append("limit", "50");
+
+        console.log(`Fetching ${sector} sector:`, url.toString());
 
         const response = await fetch(url.toString());
         const data = await response.json();
 
-        if (response.ok && data.data) {
+        if (response.ok && data.data && data.data.length > 0) {
           let totalSentiment = 0;
-          let count = 0;
+          let sentimentCount = 0;
+          const articleCount = data.data.length;
 
           data.data.forEach((article: any) => {
             article.entities?.forEach((entity: any) => {
               if (entity.sentiment_score != null) {
                 totalSentiment += entity.sentiment_score;
-                count++;
+                sentimentCount++;
               }
             });
           });
 
-          const avgSentiment = count > 0 ? totalSentiment / count : 0;
+          const avgSentiment = sentimentCount > 0 ? totalSentiment / sentimentCount : 0;
+          
+          console.log(`${sector}: ${articleCount} articles, ${sentimentCount} sentiments, avg: ${avgSentiment}`);
           
           const sectorInfo = {
             date: today,
             sector,
             avg_sentiment: avgSentiment,
-            article_count: count,
+            article_count: articleCount, // Fixed: now counts articles, not sentiment scores
             expires_at: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString() // 4h
           };
 
@@ -284,8 +296,12 @@ serve(async (req) => {
 
           // Store in DB
           await supabase.from("sector_sentiments").insert(sectorInfo);
+        } else {
+          console.error(`No data for ${sector}:`, response.status, data);
         }
       }
+
+      console.log(`Returning ${sectorData.length} sectors with data`);
 
       return new Response(
         JSON.stringify({ success: true, sectors: sectorData, meta: { cached: false } }),
