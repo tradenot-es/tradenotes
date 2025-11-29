@@ -59,7 +59,8 @@ serve(async (req) => {
     }
 
     const supabase = createClient(supabaseUrl, supabaseKey);
-    const { action, date, symbols, market, timeWindow, limit = 10 } = await req.json();
+    const body = await req.json();
+    const { action, date, symbols, market, timeWindow, limit = 10, keywords = "Trump,Fed,Powell" } = body;
 
     // GET SENTIMENT for a symbol in a timeframe (for Trade Validation)
     if (action === "get-sentiment") {
@@ -294,8 +295,8 @@ serve(async (req) => {
 
     // GET POLITICAL EVENTS (for calendar)
     if (action === "get-political-events") {
-      const { keywords = "Trump,Fed,Powell", limit = 5 } = await req.json();
       const cacheKey = `political-${date || "latest"}-${keywords}`;
+      const eventLimit = body.limit || 5;
       
       const { data: cachedData } = await supabase
         .from("news_cache")
@@ -319,7 +320,7 @@ serve(async (req) => {
       url.searchParams.append("api_token", marketauxApiKey);
       url.searchParams.append("search", keywords);
       url.searchParams.append("filter_entities", "true");
-      url.searchParams.append("limit", limit.toString());
+      url.searchParams.append("limit", eventLimit.toString());
       
       if (date) {
         url.searchParams.append("published_on", date);
@@ -338,7 +339,7 @@ serve(async (req) => {
         );
       }
 
-      const articles = data.data.slice(0, limit).map((article: any) => ({
+      const articles = data.data.slice(0, eventLimit).map((article: any) => ({
         uuid: article.uuid,
         title: article.title,
         snippet: article.snippet || article.description?.substring(0, 200) || "",
