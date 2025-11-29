@@ -441,7 +441,7 @@ serve(async (req) => {
       );
     }
 
-    // GET ARTICLES (Standard + Auto-Tagging)
+    // GET ARTICLES (Standard + Auto-Tagging) - PER-SYMBOL FETCHING
     if (!symbols || symbols.length === 0) {
       return new Response(
         JSON.stringify({ success: false, error: "Symbols required" }),
@@ -449,128 +449,150 @@ serve(async (req) => {
       );
     }
 
-    // Use date range for better coverage
-    let dateParam = "latest";
+    // Determine date range for cache key
+    let dateRange = "latest";
+    let publishedAfter = "";
     if (date) {
-      dateParam = date;
+      dateRange = date;
     } else {
-      // Default: Last 3 days for better symbol coverage
       const threeDaysAgo = new Date();
       threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-      dateParam = `range-${threeDaysAgo.toISOString().split('T')[0]}`;
+      dateRange = `range-${threeDaysAgo.toISOString().split('T')[0]}`;
+      publishedAfter = threeDaysAgo.toISOString().split('T')[0];
     }
 
-    const cacheKey = `articles-${symbols.join(",")}-${dateParam}`;
-    
-    // Check cache
-    const { data: cachedData } = await supabase
-      .from("news_cache")
-      .select("*")
-      .eq("cache_key", cacheKey)
-      .gt("expires_at", new Date().toISOString())
-      .maybeSingle();
+    console.log(`Fetching articles for ${symbols.length} symbols with date range: ${dateRange}`);
 
-    if (cachedData?.articles) {
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          articles: cachedData.articles,
-          meta: { cached: true }
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
+    // STEP 1: Check cache for each symbol
+    const allArticles: MarketauxArticle[] = [];
+    const symbolsToFetch: string[] = [];
+    let anyCached = false;
+
+    for (const symbol of symbols) {
+      const symbolCacheKey = `articles-single-${symbol}-${dateRange}`;
+      
+      const { data: cachedData } = await supabase
+        .from("news_cache")
+        .select("*")
+        .eq("cache_key", symbolCacheKey)
+        .gt("expires_at", new Date().toISOString())
+        .maybeSingle();
+
+      if (cachedData?.articles && Array.isArray(cachedData.articles)) {
+        console.log(`✓ Cache hit for ${symbol}: ${cachedData.articles.length} articles`);
+        allArticles.push(...cachedData.articles);
+        anyCached = true;
+      } else {
+        console.log(`✗ Cache miss for ${symbol}, will fetch`);
+        symbolsToFetch.push(symbol);
+      }
     }
 
-    // Build Marketaux API URL
-    const url = new URL("https://api.marketaux.com/v1/news/all");
-    url.searchParams.append("api_token", marketauxApiKey);
-    url.searchParams.append("symbols", symbols.join(","));
-    url.searchParams.append("filter_entities", "true");
-    url.searchParams.append("limit", limit.toString());
-    
-    if (date) {
-      // Specific date requested
-      url.searchParams.append("published_on", date);
-    } else {
-      // Default: Last 3 days
-      const threeDaysAgo = new Date();
-      threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
-      url.searchParams.append("published_after", threeDaysAgo.toISOString().split('T')[0]);
+    // STEP 2: Fetch uncached symbols in parallel
+    if (symbolsToFetch.length > 0) {
+      console.log(`Fetching ${symbolsToFetch.length} symbols from API in parallel...`);
+
+      const fetchSymbol = async (symbol: string) => {
+        const url = new URL("https://api.marketaux.com/v1/news/all");
+        url.searchParams.append("api_token", marketauxApiKey);
+        url.searchParams.append("symbols", symbol);
+        url.searchParams.append("filter_entities", "true");
+        url.searchParams.append("limit", "5"); // 5 articles per symbol
+        
+        if (date) {
+          url.searchParams.append("published_on", date);
+        } else if (publishedAfter) {
+          url.searchParams.append("published_after", publishedAfter);
+        }
+
+        console.log(`Fetching ${symbol}:`, url.toString());
+
+        try {
+          const response = await fetch(url.toString());
+          const data = await response.json();
+
+          if (!response.ok) {
+            console.error(`API error for ${symbol}:`, data);
+            return { symbol, articles: [] };
+          }
+
+          if (!data.data || data.data.length === 0) {
+            console.log(`No articles found for ${symbol}`);
+            return { symbol, articles: [] };
+          }
+
+          // Transform articles
+          const articles: MarketauxArticle[] = data.data.map((article: any) => ({
+            uuid: article.uuid,
+            title: article.title,
+            snippet: article.snippet || article.description?.substring(0, 200) || "",
+            url: article.url,
+            image_url: article.image_url,
+            published_at: article.published_at,
+            source: article.source,
+            entities: article.entities?.map((entity: any) => ({
+              symbol: entity.symbol,
+              name: entity.name,
+              type: entity.type,
+              industry: entity.industry || "",
+              match_score: entity.match_score || 0,
+              sentiment_score: entity.sentiment_score || 0,
+              highlights: entity.highlights?.map((h: any) => ({
+                highlight: h.highlight || "",
+                sentiment: h.sentiment || 0,
+                highlighted_in: h.highlighted_in || "main_text"
+              })) || []
+            })) || []
+          }));
+
+          console.log(`✓ Fetched ${articles.length} articles for ${symbol}`);
+          return { symbol, articles };
+        } catch (error) {
+          console.error(`Error fetching ${symbol}:`, error);
+          return { symbol, articles: [] };
+        }
+      };
+
+      // Fetch all symbols in parallel
+      const results = await Promise.all(symbolsToFetch.map(fetchSymbol));
+
+      // STEP 3: Cache each symbol's results and add to allArticles
+      for (const result of results) {
+        const symbolCacheKey = `articles-single-${result.symbol}-${dateRange}`;
+        
+        // Cache for 6 hours
+        try {
+          await supabase.from("news_cache").insert({
+            cache_key: symbolCacheKey,
+            symbols: [result.symbol],
+            articles: result.articles,
+            sentiment_data: {},
+            expires_at: new Date(Date.now() + CACHE_DURATION_HOURS * 60 * 60 * 1000).toISOString()
+          });
+        } catch (err) {
+          // Ignore duplicate key errors (race condition from parallel requests)
+          console.error(`Error caching ${result.symbol}:`, err);
+        }
+
+        allArticles.push(...result.articles);
+      }
     }
 
-    console.log("Fetching from Marketaux:", url.toString());
+    // STEP 4: Remove duplicates (by uuid) and return
+    const uniqueArticles = Array.from(
+      new Map(allArticles.map(article => [article.uuid, article])).values()
+    );
 
-    const response = await fetch(url.toString());
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("Marketaux API error:", data);
-      return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: data.error?.message || "API request failed" 
-        }),
-        { status: response.status, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    if (!data.data || data.data.length === 0) {
-      // Cache empty result for 24h to prevent repeated calls
-      await supabase.from("news_cache").insert({
-        cache_key: cacheKey,
-        symbols: symbols,
-        articles: [],
-        expires_at: new Date(Date.now() + CACHE_DURATION_HOURS_FAILED * 60 * 60 * 1000).toISOString()
-      });
-
-      return new Response(
-        JSON.stringify({ 
-          success: true, 
-          articles: [],
-          meta: { cached: false, error: "no_articles" }
-        }),
-        { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    // Transform to our format
-    const articles: MarketauxArticle[] = data.data.map((article: any) => ({
-      uuid: article.uuid,
-      title: article.title,
-      snippet: article.snippet || article.description?.substring(0, 200) || "",
-      url: article.url,
-      image_url: article.image_url,
-      published_at: article.published_at,
-      source: article.source,
-      entities: article.entities?.map((entity: any) => ({
-        symbol: entity.symbol,
-        name: entity.name,
-        type: entity.type,
-        industry: entity.industry || "",
-        match_score: entity.match_score || 0,
-        sentiment_score: entity.sentiment_score || 0,
-        highlights: entity.highlights?.map((h: any) => ({
-          highlight: h.highlight || "",
-          sentiment: h.sentiment || 0,
-          highlighted_in: h.highlighted_in || "main_text"
-        })) || []
-      })) || []
-    }));
-
-    // Cache the articles
-    await supabase.from("news_cache").insert({
-      cache_key: cacheKey,
-      symbols: symbols,
-      articles: articles,
-      sentiment_data: {},
-      expires_at: new Date(Date.now() + CACHE_DURATION_HOURS * 60 * 60 * 1000).toISOString()
-    });
+    console.log(`Total articles: ${uniqueArticles.length} (from ${symbols.length} symbols, ${symbolsToFetch.length} fetched, ${symbols.length - symbolsToFetch.length} cached)`);
 
     return new Response(
       JSON.stringify({ 
         success: true, 
-        articles,
-        meta: { cached: false }
+        articles: uniqueArticles,
+        meta: { 
+          cached: symbolsToFetch.length === 0, // All from cache
+          partial_cache: anyCached && symbolsToFetch.length > 0 // Some from cache
+        }
       }),
       { headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
