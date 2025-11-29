@@ -15,6 +15,7 @@ import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
 import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysis";
 import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
+import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { DailyGoalProgress } from "@/components/DailyGoalProgress";
 import { RadialProgress } from "@/components/RadialProgress";
 import { TopSymbols } from "@/components/TopSymbols";
@@ -441,6 +442,9 @@ export default function Reports() {
             <TopSymbols trades={filteredTrades} />
             <MarketBreakdown trades={filteredTrades} />
           </div>
+
+          {/* Trading Activity Heatmap */}
+          <ConsistencyTracker trades={filteredTrades} />
         </TabsContent>
 
         {/* Daily Goals Tab */}
