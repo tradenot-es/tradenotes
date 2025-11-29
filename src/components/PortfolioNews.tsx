@@ -144,54 +144,35 @@ export function PortfolioNews() {
       console.log('PortfolioNews Smart Fetch - Proxy symbols:', topSymbols);
       console.log('PortfolioNews Smart Fetch - Mapping:', mapping);
       
-      // Try up to 7 days back to find news
-      let articlesFound = false;
-      const maxDaysBack = 7;
+      // Fetch news with 3-day range (handled by edge function)
+      console.log('PortfolioNews: Fetching news for symbols:', topSymbols);
       
-      for (let daysBack = 0; daysBack <= maxDaysBack && !articlesFound; daysBack++) {
-        const now = new Date();
-        const targetDate = new Date(now);
-        targetDate.setDate(targetDate.getDate() - daysBack);
-        const dateStr = targetDate.toISOString().split('T')[0];
-        
-        console.log(`PortfolioNews: Trying date ${dateStr} (${daysBack} days back), symbols:`, topSymbols);
-        
-        const { data, error: functionError } = await supabase.functions.invoke('marketaux-news', {
-          body: { 
-            symbols: topSymbols,
-            limit: 5
-          }
-        });
-
-        if (functionError) {
-          console.error(`Error loading news for ${dateStr}:`, functionError);
-          if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
-            setError('News temporarily unavailable due to rate limits. Please try again later.');
-            break;
-          }
-          continue;
+      const { data, error: functionError } = await supabase.functions.invoke('marketaux-news', {
+        body: { 
+          symbols: topSymbols,
+          limit: 25  // Increased for better coverage across multiple symbols
         }
+      });
 
-        if (data.success && data.articles?.length > 0) {
-          const articles = data.articles;
-          console.log(`PortfolioNews: Found ${articles.length} articles for ${dateStr}, cached:`, data.meta?.cached);
-          
-          // Group articles by original symbols
-          const grouped = groupNewsBySymbol(articles, mapping, frequentSymbols.slice(0, 5));
-          setGroupedNews(grouped);
-          setIsCached(data.meta?.cached || false);
-          articlesFound = true;
-        } else if (data.meta?.error === 'unsupported_symbols') {
-          // Stop trying if symbols are not supported
-          console.log(`PortfolioNews: Symbols not supported by news provider`);
-          setError(t("dashboard.noNewsProxiesAvailable"));
-          break;
+      if (functionError) {
+        console.error('Error loading news:', functionError);
+        if (functionError.message?.includes('429') || functionError.message?.includes('rate limit')) {
+          setError('News temporarily unavailable due to rate limits. Please try again later.');
         } else {
-          console.log(`PortfolioNews: No articles for ${dateStr}, trying earlier date...`);
+          setError(functionError.message);
         }
-      }
-      
-      if (!articlesFound && !error) {
+      } else if (data.success && data.articles?.length > 0) {
+        const articles = data.articles;
+        console.log(`PortfolioNews: Found ${articles.length} articles, cached:`, data.meta?.cached);
+        
+        // Group articles by original symbols
+        const grouped = groupNewsBySymbol(articles, mapping, frequentSymbols.slice(0, 5));
+        setGroupedNews(grouped);
+        setIsCached(data.meta?.cached || false);
+      } else if (data.meta?.error === 'unsupported_symbols') {
+        console.log('PortfolioNews: Symbols not supported by news provider');
+        setError(t("dashboard.noNewsProxiesAvailable"));
+      } else {
         setError(t("trades.noNewsAvailable"));
       }
     } catch (err: any) {
