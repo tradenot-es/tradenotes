@@ -167,7 +167,9 @@ export function FinancialNews({ date, symbols, market }: FinancialNewsProps) {
                     <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
                     <div className="flex items-center gap-1">
                       {matchScore > 50 && (
-                        <Flame className="h-3 w-3 text-orange-500" title={`High relevance: ${matchScore}%`} />
+                        <span title={`High relevance: ${matchScore}%`}>
+                          <Flame className="h-3 w-3 text-orange-500" />
+                        </span>
                       )}
                       {getSentimentIcon(sentimentScore)}
                     </div>

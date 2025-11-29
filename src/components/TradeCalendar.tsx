@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, Plus, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FinancialNews } from "./FinancialNews";
+import { PoliticalEvents } from "./PoliticalEvents";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import trumpEmoji from "@/assets/trump-emoji.png";
@@ -354,6 +355,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
               symbols={getSymbolsForDate(selectedDate)}
               market={getMarketForDate(selectedDate)}
             />
+
+            <PoliticalEvents date={selectedDate} />
           </>
         )}
       </div>
