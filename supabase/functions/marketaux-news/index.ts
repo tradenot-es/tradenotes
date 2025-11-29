@@ -293,10 +293,14 @@ serve(async (req) => {
       );
     }
 
-    // GET POLITICAL EVENTS (for calendar)
+    // GET POLITICAL EVENTS (for calendar) - WEEKLY BATCH
     if (action === "get-political-events") {
-      const cacheKey = `political-${date || "latest"}-${keywords}`;
-      const eventLimit = body.limit || 5;
+      const { startDate, endDate } = body;
+      const eventLimit = body.limit || 50;
+      
+      // Weekly cache key based on ISO week
+      const weekKey = startDate ? new Date(startDate).toISOString().slice(0, 10).replace(/-/g, '') : 'current';
+      const cacheKey = `political-weekly-${weekKey}-${keywords}`;
       
       const { data: cachedData } = await supabase
         .from("news_cache")
@@ -322,11 +326,15 @@ serve(async (req) => {
       url.searchParams.append("filter_entities", "true");
       url.searchParams.append("limit", eventLimit.toString());
       
-      if (date) {
-        url.searchParams.append("published_on", date);
+      // Use date range for batch fetching
+      if (startDate && endDate) {
+        url.searchParams.append("published_after", startDate);
+        url.searchParams.append("published_before", endDate);
+      } else if (startDate) {
+        url.searchParams.append("published_on", startDate);
       }
 
-      console.log("Fetching political events:", url.toString());
+      console.log("Fetching political events (weekly batch):", url.toString());
 
       const response = await fetch(url.toString());
       const data = await response.json();
@@ -339,20 +347,22 @@ serve(async (req) => {
         );
       }
 
-      const articles = data.data.slice(0, eventLimit).map((article: any) => ({
+      const articles = data.data.map((article: any) => ({
         uuid: article.uuid,
         title: article.title,
         snippet: article.snippet || article.description?.substring(0, 200) || "",
         url: article.url,
         published_at: article.published_at,
-        source: article.source
+        source: article.source,
+        date: article.published_at.split('T')[0] // Extract YYYY-MM-DD for easy grouping
       }));
 
+      // Cache for 7 days (168 hours)
       await supabase.from("news_cache").insert({
         cache_key: cacheKey,
         symbols: [],
         articles: articles,
-        expires_at: new Date(Date.now() + 6 * 60 * 60 * 1000).toISOString()
+        expires_at: new Date(Date.now() + 168 * 60 * 60 * 1000).toISOString()
       });
 
       return new Response(

@@ -60,9 +60,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
     loadCurrency();
   }, []);
   
-  // Temporarily disabled due to API rate limits
-  // const { getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
-  const getEventsForDate = (date: Date) => [];
+  // Weekly batch fetching of political events
+  const { hasEventsOnDate, getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
 
   const getLocale = () => {
     switch (i18n.language) {
@@ -218,8 +217,14 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                 const isCurrentMonth = isSameMonth(day, currentMonth);
                 const isSelected = selectedDate && format(day, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd');
                 const isToday = format(day, 'yyyy-MM-dd') === today;
+                const hasPoliticalEvents = hasEventsOnDate(day);
                 const politicalEvents = getEventsForDate(day);
-                const hasTrumpEvent = politicalEvents.some(e => e.type === 'trump_speech');
+                const hasTrumpEvent = politicalEvents.some(e => 
+                  e.title.toLowerCase().includes('trump') && 
+                  (e.title.toLowerCase().includes('speech') || 
+                   e.title.toLowerCase().includes('rally') || 
+                   e.title.toLowerCase().includes('address'))
+                );
 
                 return (
                   <div
@@ -238,18 +243,28 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                         <span className={`text-sm font-medium ${isToday ? 'text-primary font-bold' : isCurrentMonth ? 'text-foreground' : 'text-muted-foreground'}`}>
                           {format(day, 'd')}
                         </span>
-                        {hasTrumpEvent && isCurrentMonth && (
+                        {hasPoliticalEvents && isCurrentMonth && (
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                <img 
-                                  src={trumpEmoji} 
-                                  alt="Trump speech" 
-                                  className="h-5 w-5 object-contain" 
-                                />
+                                {hasTrumpEvent ? (
+                                  <img 
+                                    src={trumpEmoji} 
+                                    alt="Political event" 
+                                    className="h-5 w-5 object-contain cursor-help" 
+                                  />
+                                ) : (
+                                  <span className="text-base cursor-help">🔔</span>
+                                )}
                               </TooltipTrigger>
-                              <TooltipContent>
-                                <p className="text-xs">{politicalEvents.find(e => e.type === 'trump_speech')?.title}</p>
+                              <TooltipContent className="max-w-xs">
+                                <p className="font-semibold text-xs mb-1">{t("calendar.politicalEventsToday")}</p>
+                                {politicalEvents.slice(0, 2).map((event, idx) => (
+                                  <p key={idx} className="text-xs opacity-90">• {event.title}</p>
+                                ))}
+                                {politicalEvents.length > 2 && (
+                                  <p className="text-xs opacity-70 mt-1">+{politicalEvents.length - 2} {t("calendar.moreEvents")}</p>
+                                )}
                               </TooltipContent>
                             </Tooltip>
                           </TooltipProvider>

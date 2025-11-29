@@ -93,6 +93,11 @@
     "dynamicDashboardInfo": "Noticias filtradas automáticamente por sus mejores resultados",
     "noSymbolsForNews": "No hay símbolos disponibles aún. Añade operaciones para recibir noticias relevantes."
   },
+  "calendar": {
+    "politicalEvent": "Evento Político",
+    "politicalEventsToday": "Eventos políticos hoy",
+    "moreEvents": "más eventos"
+  },
   "trades": {
     "title": "Operaciones",
     "subtitle": "Gestiona y analiza tu historial de trading",
