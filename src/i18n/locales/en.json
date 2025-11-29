@@ -62,6 +62,8 @@
     "equityCurveTooltip": "Shows the cumulative development of your trading capital over time. A steadily rising curve indicates consistent profitability. Large declines show drawdown phases.",
     "portfolioNews": "Portfolio News",
     "portfolioNewsTooltip": "Automatically curated financial news for your most frequently traded symbols. Stay informed about market-moving events and developments that could impact your positions.",
+    "newsTranslated": "News translated successfully!",
+    "translationFailed": "Translation failed. Please try again.",
     "dynamicDashboard": "Dynamic Dashboard",
     "dynamicDashboardInfo": "News automatically filtered by your top performers",
     "noSymbolsForNews": "No symbols available yet. Add trades to receive relevant news.",
@@ -389,7 +391,10 @@
   },
   "common": {
     "loading": "Loading...",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "translate": "Translate",
+    "translating": "Translating...",
+    "showOriginal": "Show Original"
   },
   "landing": {
     "badge": "Professional Trading Journal",

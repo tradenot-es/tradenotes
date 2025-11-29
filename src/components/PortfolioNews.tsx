@@ -3,11 +3,13 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper, Languages } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
+import { toast } from "sonner";
 
 interface NewsArticle {
   uuid: string;
@@ -18,15 +20,19 @@ interface NewsArticle {
   source: string;
   sentiment?: string;
   entities?: Array<{ symbol: string; name: string }>;
+  translatedTitle?: string;
+  translatedDescription?: string;
 }
 
 export function PortfolioNews() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { frequentSymbols, loading: symbolsLoading } = useFrequentSymbols();
   const [articles, setArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [isCached, setIsCached] = useState(false);
+  const [translating, setTranslating] = useState(false);
+  const [showTranslated, setShowTranslated] = useState(false);
 
   useEffect(() => {
     if (!symbolsLoading && frequentSymbols.length > 0) {
@@ -98,6 +104,50 @@ export function PortfolioNews() {
     }
   };
 
+  const translateNews = async () => {
+    if (articles.some(a => a.translatedTitle)) {
+      setShowTranslated(!showTranslated);
+      return;
+    }
+
+    setTranslating(true);
+    try {
+      const targetLang = i18n.language;
+      
+      const translated = await Promise.all(
+        articles.map(async (article) => {
+          const { data, error } = await supabase.functions.invoke('translate-news', {
+            body: { 
+              title: article.title,
+              description: article.description,
+              targetLanguage: targetLang
+            }
+          });
+
+          if (error || !data?.success) {
+            console.error('Translation error:', error);
+            return article;
+          }
+
+          return {
+            ...article,
+            translatedTitle: data.translatedTitle,
+            translatedDescription: data.translatedDescription
+          };
+        })
+      );
+
+      setArticles(translated);
+      setShowTranslated(true);
+      toast.success(t("dashboard.newsTranslated"));
+    } catch (err) {
+      console.error('Translation failed:', err);
+      toast.error(t("dashboard.translationFailed"));
+    } finally {
+      setTranslating(false);
+    }
+  };
+
   const getSentimentIcon = (sentiment?: string) => {
     if (!sentiment) return <Minus className="h-4 w-4" />;
     if (sentiment.toLowerCase().includes('positive')) return <TrendingUp className="h-4 w-4 text-success" />;
@@ -129,7 +179,8 @@ export function PortfolioNews() {
   if (frequentSymbols.length === 0) {
     return (
       <Card className="elegant-shadow">
-        <CardHeader>
+      <CardHeader>
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Newspaper className="h-5 w-5 text-primary" />
             <CardTitle>{t("dashboard.portfolioNews")}</CardTitle>
@@ -139,15 +190,28 @@ export function PortfolioNews() {
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.portfolioNewsTooltip")}</p>
-                <a 
-                  href="/dashboard/glossary#portfolio-news" 
-                  className="text-xs text-primary hover:underline mt-2 block"
-                >
-                  Learn more in glossary →
-                </a>
+                  <a 
+                    href="/dashboard/glossary#portfolio-news" 
+                    className="text-xs text-primary hover:underline mt-2 block"
+                  >
+                    Learn more in glossary →
+                  </a>
               </HoverCardContent>
             </HoverCard>
           </div>
+          {articles.length > 0 && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={translateNews}
+              disabled={translating}
+              className="gap-2"
+            >
+              <Languages className="h-4 w-4" />
+              {translating ? t("common.translating") : showTranslated ? t("common.showOriginal") : t("common.translate")}
+            </Button>
+          )}
+        </div>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">{t("dashboard.noSymbolsForNews")}</p>
@@ -202,12 +266,14 @@ export function PortfolioNews() {
             {articles.map((article, index) => (
               <div key={`portfolio-${article.uuid}-${article.published_at}-${index}`} className="border-b pb-4 last:border-0">
                 <div className="flex items-start justify-between gap-2 mb-2">
-                  <h4 className="text-sm font-medium line-clamp-2 flex-1">{article.title}</h4>
+                  <h4 className="text-sm font-medium line-clamp-2 flex-1">
+                    {showTranslated && article.translatedTitle ? article.translatedTitle : article.title}
+                  </h4>
                   {article.sentiment && getSentimentIcon(article.sentiment)}
                 </div>
                 {article.description && (
                   <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                    {article.description}
+                    {showTranslated && article.translatedDescription ? article.translatedDescription : article.description}
                   </p>
                 )}
                 <div className="flex items-center gap-2 flex-wrap mb-2">

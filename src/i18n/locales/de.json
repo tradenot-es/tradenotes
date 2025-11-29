@@ -62,6 +62,8 @@
     "equityCurveTooltip": "Zeigt die kumulative Entwicklung Ihres Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konsistente Profitabilität hin. Große Rückgänge zeigen Drawdown-Phasen.",
     "portfolioNews": "Portfolio-Nachrichten",
     "portfolioNewsTooltip": "Automatisch kuratierte Finanznachrichten zu Ihren am häufigsten gehandelten Symbolen. Bleiben Sie über marktbewegende Events und Entwicklungen informiert, die Ihre Positionen beeinflussen könnten.",
+    "newsTranslated": "Nachrichten erfolgreich übersetzt!",
+    "translationFailed": "Übersetzung fehlgeschlagen. Bitte erneut versuchen.",
     "dynamicDashboard": "Dynamisches Dashboard",
     "dynamicDashboardInfo": "News automatisch gefiltert nach deinen Top-Performern",
     "noSymbolsForNews": "Noch keine Symbole verfügbar. Fügen Sie Trades hinzu, um relevante Nachrichten zu erhalten.",
@@ -389,7 +391,10 @@
   },
   "common": {
     "loading": "Lädt...",
-    "readMore": "Weiterlesen"
+    "readMore": "Weiterlesen",
+    "translate": "Übersetzen",
+    "translating": "Übersetze...",
+    "showOriginal": "Original anzeigen"
   },
   "landing": {
     "badge": "Professionelles Trading Journal",

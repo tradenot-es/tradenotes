@@ -66,7 +66,14 @@
     "pnl": "P&L",
     "sectorSentiment": "Sentiment du Marché Aujourd'hui",
     "sectorSentimentDescription": "Aperçu sectoriel quotidien aide à identifier le biais",
-    "articles": "articles"
+    "articles": "articles",
+    "portfolioNews": "Actualités du Portfolio",
+    "portfolioNewsTooltip": "Actualités financières automatiquement curées pour vos symboles les plus tradés. Restez informé des événements qui déplacent le marché et des développements qui pourraient impacter vos positions.",
+    "newsTranslated": "Actualités traduites avec succès!",
+    "translationFailed": "Échec de la traduction. Veuillez réessayer.",
+    "dynamicDashboard": "Tableau de Bord Dynamique",
+    "dynamicDashboardInfo": "Actualités automatiquement filtrées par vos meilleurs résultats",
+    "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes."
   },
   "trades": {
     "title": "Transactions",
@@ -379,7 +386,10 @@
   },
   "common": {
     "loading": "Chargement...",
-    "readMore": "Lire la suite"
+    "readMore": "Lire la suite",
+    "translate": "Traduire",
+    "translating": "Traduction...",
+    "showOriginal": "Afficher l'Original"
   },
   "landing": {
     "badge": "Journal de Trading Professionnel",

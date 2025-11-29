@@ -382,11 +382,15 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Consistency Tracker, Portfolio News, and Sector Sentiment */}
+          {/* Consistency Tracker, Portfolio News, and Sector Sentiment - Optimized Layout */}
           <div className="grid gap-6 md:grid-cols-3">
-            <ConsistencyTracker trades={trades} />
-            <PortfolioNews />
-            <SectorSentimentWidget />
+            <div className="md:col-span-2">
+              <ConsistencyTracker trades={trades} />
+            </div>
+            <div className="space-y-6">
+              <PortfolioNews />
+              <SectorSentimentWidget />
+            </div>
           </div>
         </>
       )}
