@@ -71,6 +71,11 @@
     "sectorSentimentDescription": "Tägliche Sektorübersicht hilft bei der Bias-Findung",
     "articles": "Artikel"
   },
+  "calendar": {
+    "politicalEvent": "Politisches Event",
+    "politicalEventsToday": "Politische Events an diesem Tag",
+    "moreEvents": "weitere Events"
+  },
   "weekdays": {
     "mon": "Mo",
     "tue": "Di",

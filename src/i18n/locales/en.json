@@ -94,6 +94,11 @@
     "sectorSentimentDescription": "Daily sector overview helps identify market bias",
     "articles": "articles"
   },
+  "calendar": {
+    "politicalEvent": "Political Event",
+    "politicalEventsToday": "Political events today",
+    "moreEvents": "more events"
+  },
   "trades": {
     "title": "Trades",
     "subtitle": "Manage and analyze your trading history",

@@ -1,77 +1,63 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { format } from "date-fns";
+import { format, startOfWeek, endOfWeek } from "date-fns";
 
 interface PoliticalEvent {
+  uuid: string;
   date: string;
-  type: 'trump_speech' | 'biden_speech' | 'fed_meeting';
   title: string;
+  snippet: string;
+  url: string;
+  published_at: string;
+  source: string;
 }
 
 export function usePoliticalEvents(startDate: Date, endDate: Date) {
   const [events, setEvents] = useState<PoliticalEvent[]>([]);
   const [loading, setLoading] = useState(false);
+  const [eventsByDate, setEventsByDate] = useState<Map<string, PoliticalEvent[]>>(new Map());
 
   useEffect(() => {
-    loadEvents();
+    loadWeeklyEvents();
   }, [startDate, endDate]);
 
-  const loadEvents = async () => {
+  const loadWeeklyEvents = async () => {
     setLoading(true);
-    const eventsMap = new Map<string, PoliticalEvent>();
-
+    
     try {
-      // Only check every 3rd day to reduce API calls (approximately 10-14 requests per month instead of 30-42)
-      const currentDate = new Date(startDate);
-      const end = new Date(endDate);
-      let dayCount = 0;
+      // Calculate week boundaries for efficient batching
+      const weekStart = startOfWeek(startDate, { weekStartsOn: 0 });
+      const weekEnd = endOfWeek(endDate, { weekStartsOn: 0 });
+      
+      const startStr = format(weekStart, 'yyyy-MM-dd');
+      const endStr = format(weekEnd, 'yyyy-MM-dd');
 
-      while (currentDate <= end) {
-        // Only make request every 3rd day
-        if (dayCount % 3 === 0) {
-          const dateStr = format(currentDate, 'yyyy-MM-dd');
-          
-          try {
-            const { data, error } = await supabase.functions.invoke('financial-news', {
-              body: { 
-                action: 'get-articles',
-                date: dateStr,
-                symbols: []
-              }
-            });
-
-            if (!error && data?.success && data.articles) {
-              // Check for Trump speeches
-              const trumpArticles = data.articles.filter((article: any) => {
-                const text = `${article.title} ${article.description}`.toLowerCase();
-                return (
-                  text.includes('trump') && 
-                  (text.includes('speech') || text.includes('rally') || text.includes('address') || text.includes('statement'))
-                );
-              });
-
-              if (trumpArticles.length > 0) {
-                eventsMap.set(dateStr, {
-                  date: dateStr,
-                  type: 'trump_speech',
-                  title: trumpArticles[0].title
-                });
-              }
-            }
-          } catch (err) {
-            // Silently ignore individual request errors to not break the entire flow
-            console.log('Skipping date due to API limit:', dateStr);
-          }
-
-          // Add a small delay between requests to avoid rate limiting
-          await new Promise(resolve => setTimeout(resolve, 100));
+      const { data, error } = await supabase.functions.invoke('marketaux-news', {
+        body: { 
+          action: 'get-political-events',
+          startDate: startStr,
+          endDate: endStr,
+          keywords: 'Trump,Fed,Powell,Biden,election,policy',
+          limit: 50
         }
+      });
 
-        currentDate.setDate(currentDate.getDate() + 1);
-        dayCount++;
+      if (!error && data?.success && data.articles) {
+        const fetchedEvents: PoliticalEvent[] = data.articles;
+        setEvents(fetchedEvents);
+        
+        // Group events by date for O(1) lookup
+        const grouped = new Map<string, PoliticalEvent[]>();
+        fetchedEvents.forEach(event => {
+          const dateKey = event.date;
+          if (!grouped.has(dateKey)) {
+            grouped.set(dateKey, []);
+          }
+          grouped.get(dateKey)!.push(event);
+        });
+        
+        setEventsByDate(grouped);
       }
-
-      setEvents(Array.from(eventsMap.values()));
     } catch (err) {
       console.error('Error loading political events:', err);
     } finally {
@@ -79,10 +65,20 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
     }
   };
 
-  const getEventsForDate = (date: Date) => {
+  const hasEventsOnDate = (date: Date): boolean => {
     const dateStr = format(date, 'yyyy-MM-dd');
-    return events.filter(e => e.date === dateStr);
+    return eventsByDate.has(dateStr) && eventsByDate.get(dateStr)!.length > 0;
   };
 
-  return { events, loading, getEventsForDate };
+  const getEventsForDate = (date: Date): PoliticalEvent[] => {
+    const dateStr = format(date, 'yyyy-MM-dd');
+    return eventsByDate.get(dateStr) || [];
+  };
+
+  return { 
+    events, 
+    loading, 
+    hasEventsOnDate, 
+    getEventsForDate 
+  };
 }

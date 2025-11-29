@@ -93,6 +93,11 @@
     "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
     "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen."
   },
+  "calendar": {
+    "politicalEvent": "Politieke Gebeurtenis",
+    "politicalEventsToday": "Politieke gebeurtenissen vandaag",
+    "moreEvents": "meer gebeurtenissen"
+  },
   "trades": {
     "title": "Transacties",
     "subtitle": "Beheer en analyseer je trading geschiedenis",
