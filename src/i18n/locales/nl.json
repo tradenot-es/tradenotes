@@ -95,6 +95,15 @@
     "dynamicDashboard": "Dynamisch Dashboard",
     "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
     "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
+    "newsCount": "{{count}} Nieuws",
+    "noNewsForSymbol": "Geen nieuws voor dit symbool",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Resultaten",
+      "macroEvent": "Macro-evenement",
+      "politicalCatalyst": "Politieke Katalysator",
+      "newsCatalyst": "Nieuwskatalysator"
+    },
     "sectorSentiment": "Marktsentiment Vandaag",
     "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van marktvooroordeel",
     "articles": "artikelen",

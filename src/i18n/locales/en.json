@@ -88,6 +88,15 @@
     "dynamicDashboard": "Dynamic Dashboard",
     "dynamicDashboardInfo": "News automatically filtered by your top performers",
     "noSymbolsForNews": "No symbols available yet. Add trades to receive relevant news.",
+    "newsCount": "{{count}} News",
+    "noNewsForSymbol": "No news for this symbol",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Earnings Play",
+      "macroEvent": "Macro Event",
+      "politicalCatalyst": "Political Catalyst",
+      "newsCatalyst": "News Catalyst"
+    },
     "pnlByMonth": "P&L by Month",
     "pnlChartTooltip": "Monthly Profit & Loss overview. Shows performance for each month and helps identify seasonal patterns and long-term trends.",
     "noTrades": "No trades yet. Add your first trade!",
