@@ -52,8 +52,19 @@
     "longestWinStreak": "Längste Gewinnserie",
     "longestLossStreak": "Längste Verlustserie",
     "mostActiveDay": "Aktivster Tag",
-    "avgDailyTrades": "Ø Tägliche Trades",
-    "performanceBreakdown": "Performance Details",
+    "avgDailyTrades": "Ø Tägliche Trades"
+  },
+  "weekdays": {
+    "mon": "Mo",
+    "tue": "Di",
+    "wed": "Mi",
+    "thu": "Do",
+    "fri": "Fr",
+    "sat": "Sa",
+    "sun": "So"
+  },
+  "performanceBreakdown": {
+    "title": "Performance Details",
     "performanceBreakdownTooltip": "Detaillierte Performance-Statistiken: Win/Loss Ratio, durchschnittliche Gewinne/Verluste, sowie beste und schlechteste Trades. Gibt Einblick in die Qualität deiner Trading-Entscheidungen.",
     "winLossRatio": "Win/Loss Verhältnis",
     "wins": "Gewinne",

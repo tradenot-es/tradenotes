@@ -53,8 +53,19 @@
     "longestWinStreak": "Racha de ganancias más larga",
     "longestLossStreak": "Racha de pérdidas más larga",
     "mostActiveDay": "Día más activo",
-    "avgDailyTrades": "Operaciones diarias promedio",
-    "performanceBreakdown": "Desglose de rendimiento",
+    "avgDailyTrades": "Operaciones diarias promedio"
+  },
+  "weekdays": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mié",
+    "thu": "Jue",
+    "fri": "Vie",
+    "sat": "Sáb",
+    "sun": "Dom"
+  },
+  "performanceBreakdown": {
+    "title": "Desglose de rendimiento",
     "performanceBreakdownTooltip": "Estadísticas de rendimiento detalladas: ratio de ganancia/pérdida, ganancias/pérdidas promedio, así como mejores y peores operaciones. Proporciona información sobre la calidad de tus decisiones de trading.",
     "winLossRatio": "Ratio Ganancia/Pérdida",
     "wins": "Ganancias",

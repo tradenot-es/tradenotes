@@ -52,8 +52,19 @@
     "longestWinStreak": "Longest Win Streak",
     "longestLossStreak": "Longest Loss Streak",
     "mostActiveDay": "Most Active Day",
-    "avgDailyTrades": "Avg Daily Trades",
-    "performanceBreakdown": "Performance Breakdown",
+    "avgDailyTrades": "Avg Daily Trades"
+  },
+  "weekdays": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "performanceBreakdown": {
+    "title": "Performance Breakdown",
     "performanceBreakdownTooltip": "Detailed performance statistics: Win/Loss ratio, average wins/losses, as well as best and worst trades. Provides insight into the quality of your trading decisions.",
     "winLossRatio": "Win/Loss Ratio",
     "wins": "Wins",

@@ -53,8 +53,19 @@
     "longestWinStreak": "Langste winstreeks",
     "longestLossStreak": "Langste verliesreeks",
     "mostActiveDay": "Meest actieve dag",
-    "avgDailyTrades": "Gem. dagelijkse transacties",
-    "performanceBreakdown": "Prestatie details",
+    "avgDailyTrades": "Gem. dagelijkse transacties"
+  },
+  "weekdays": {
+    "mon": "Ma",
+    "tue": "Di",
+    "wed": "Wo",
+    "thu": "Do",
+    "fri": "Vr",
+    "sat": "Za",
+    "sun": "Zo"
+  },
+  "performanceBreakdown": {
+    "title": "Prestatie details",
     "performanceBreakdownTooltip": "Gedetailleerde prestatiestatistieken: winst/verlies ratio, gemiddelde winsten/verliezen, evenals beste en slechtste transacties. Geeft inzicht in de kwaliteit van je trading beslissingen.",
     "winLossRatio": "Winst/Verlies Ratio",
     "wins": "Winsten",

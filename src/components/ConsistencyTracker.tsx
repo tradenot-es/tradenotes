@@ -18,34 +18,49 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
 
-  // Get last 26 weeks (182 days)
-  const getWeeksData = () => {
-    const weeks: { [key: string]: { count: number; pnl: number } } = {};
+  // Get calendar weeks structure (Monday to Sunday)
+  const getCalendarWeeks = () => {
     const today = new Date();
+    const weeks: Date[][] = [];
     
-    // Initialize last 26 weeks
-    for (let i = 0; i < 182; i++) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - i);
-      const key = date.toISOString().split('T')[0];
-      weeks[key] = { count: 0, pnl: 0 };
-    }
-
-    // Fill with trade data
-    trades.forEach(trade => {
-      const date = new Date(trade.exit_time).toISOString().split('T')[0];
-      if (weeks[date]) {
-        weeks[date].count++;
-        weeks[date].pnl += trade.pnl_net;
+    // Find the most recent Sunday (end of current week)
+    const currentDay = today.getDay();
+    const daysToSunday = currentDay === 0 ? 0 : 7 - currentDay;
+    const endDate = new Date(today);
+    endDate.setDate(endDate.getDate() + daysToSunday);
+    endDate.setHours(0, 0, 0, 0);
+    
+    // Generate 26 weeks backwards
+    for (let weekIndex = 0; weekIndex < 26; weekIndex++) {
+      const week: Date[] = [];
+      
+      // Each week: Monday (1) to Sunday (7)
+      for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+        const date = new Date(endDate);
+        date.setDate(endDate.getDate() - (weekIndex * 7) - (6 - dayIndex));
+        week.push(date);
       }
-    });
-
+      
+      weeks.unshift(week); // Add to beginning so oldest week is first
+    }
+    
     return weeks;
   };
 
-  const weeksData = getWeeksData();
-  const dates = Object.keys(weeksData).sort();
-  const maxTrades = Math.max(...Object.values(weeksData).map(d => d.count), 1);
+  const weeks = getCalendarWeeks();
+  
+  // Build trade data map
+  const tradeDataMap: { [key: string]: { count: number; pnl: number } } = {};
+  trades.forEach(trade => {
+    const date = new Date(trade.exit_time).toISOString().split('T')[0];
+    if (!tradeDataMap[date]) {
+      tradeDataMap[date] = { count: 0, pnl: 0 };
+    }
+    tradeDataMap[date].count++;
+    tradeDataMap[date].pnl += trade.pnl_net;
+  });
+  
+  const maxTrades = Math.max(...Object.values(tradeDataMap).map(d => d.count), 1);
 
   // Calculate statistics
   const calculateStats = () => {
@@ -58,12 +73,16 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
     let totalTrades = 0;
     let daysWithTrades = 0;
 
-    dates.forEach(date => {
-      const data = weeksData[date];
+    // Flatten all dates from weeks
+    const allDates = weeks.flat();
+    
+    allDates.forEach(date => {
+      const dateKey = date.toISOString().split('T')[0];
+      const data = tradeDataMap[dateKey] || { count: 0, pnl: 0 };
       
       // Count trades by day of week
       if (data.count > 0) {
-        const dayOfWeek = new Date(date).getDay();
+        const dayOfWeek = date.getDay();
         dayOfWeekCounts[dayOfWeek] = (dayOfWeekCounts[dayOfWeek] || 0) + data.count;
         totalTrades += data.count;
         daysWithTrades++;
@@ -120,12 +139,6 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
     return "bg-muted border border-border/40";
   };
 
-  // Group by weeks (7 days)
-  const weeks: string[][] = [];
-  for (let i = 0; i < dates.length; i += 7) {
-    weeks.push(dates.slice(i, i + 7));
-  }
-
   return (
     <Card className="elegant-shadow">
       <CardHeader>
@@ -167,27 +180,49 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex gap-2 overflow-x-auto pb-2 justify-center">
-            {/* Weekday labels */}
-            <div className="flex flex-col gap-1 text-xs text-muted-foreground pr-1 justify-around py-0.5">
-              <span className="h-6 flex items-center">Mo</span>
-              <span className="h-6"></span>
-              <span className="h-6 flex items-center">Mi</span>
-              <span className="h-6"></span>
-              <span className="h-6 flex items-center">Fr</span>
-              <span className="h-6"></span>
-              <span className="h-6"></span>
+          <div className="flex gap-3 overflow-x-auto pb-2">
+            {/* Weekday labels - all 7 days */}
+            <div className="flex flex-col gap-1 text-xs text-muted-foreground justify-start pt-1">
+              <span className="h-6 flex items-center">{t("weekdays.mon")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.tue")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.wed")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.thu")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.fri")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.sat")}</span>
+              <span className="h-6 flex items-center">{t("weekdays.sun")}</span>
             </div>
             
-            {/* Heatmap grid */}
+            {/* Heatmap grid - rows = weekdays, columns = weeks */}
             <div className="flex flex-col gap-2">
-              <div className="flex gap-1">
-                {weeks.reverse().map((week, weekIdx) => (
-                  <div key={weekIdx} className="flex flex-col gap-1">
-                    {week.map((date) => {
-                      const data = weeksData[date];
+              {/* Month labels at top */}
+              <div className="flex gap-1 text-xs text-muted-foreground h-4">
+                {weeks.map((week, weekIdx) => {
+                  const firstDayOfWeek = week[0];
+                  const lastDayOfPrevWeek = weekIdx > 0 ? weeks[weekIdx - 1][0] : null;
+                  
+                  // Show month label if it's the first week or if month changed
+                  const showMonth = weekIdx === 0 || 
+                    (lastDayOfPrevWeek && firstDayOfWeek.getMonth() !== lastDayOfPrevWeek.getMonth());
+                  
+                  return (
+                    <div key={weekIdx} className="w-6 text-center">
+                      {showMonth && firstDayOfWeek.toLocaleDateString(undefined, { month: 'short' })}
+                    </div>
+                  );
+                })}
+              </div>
+              
+              {/* Grid: 7 rows (weekdays) x 26 columns (weeks) */}
+              <div className="flex flex-col gap-1">
+                {[0, 1, 2, 3, 4, 5, 6].map((dayIndex) => (
+                  <div key={dayIndex} className="flex gap-1">
+                    {weeks.map((week, weekIdx) => {
+                      const date = week[dayIndex];
+                      const dateKey = date.toISOString().split('T')[0];
+                      const data = tradeDataMap[dateKey] || { count: 0, pnl: 0 };
+                      
                       return (
-                        <Tooltip key={date}>
+                        <Tooltip key={`${weekIdx}-${dayIndex}`}>
                           <TooltipTrigger asChild>
                             <div
                               className={`w-6 h-6 rounded-sm transition-all hover:ring-2 hover:ring-primary cursor-pointer ${getIntensityColor(data.count, data.pnl)}`}
@@ -195,7 +230,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                           </TooltipTrigger>
                           <TooltipContent>
                             <div className="text-xs">
-                              <div className="font-semibold">{new Date(date).toLocaleDateString()}</div>
+                              <div className="font-semibold">{date.toLocaleDateString()}</div>
                               <div>{data.count} {t("dashboard.trades")}</div>
                               <div className={data.pnl >= 0 ? "text-success" : "text-destructive"}>
                                 {formatCurrency(data.pnl)}
@@ -207,19 +242,6 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                     })}
                   </div>
                 ))}
-              </div>
-              
-              {/* Month labels */}
-              <div className="flex gap-1 text-xs text-muted-foreground">
-                {weeks.map((week, weekIdx) => {
-                  const firstDate = new Date(week[0]);
-                  const showMonth = weekIdx === 0 || firstDate.getDate() <= 7;
-                  return (
-                    <div key={weekIdx} className="w-6 text-center">
-                      {showMonth && firstDate.toLocaleDateString('de-DE', { month: 'short' })}
-                    </div>
-                  );
-                })}
               </div>
             </div>
           </div>
