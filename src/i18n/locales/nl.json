@@ -64,6 +64,7 @@
     "sat": "Za",
     "sun": "Zo"
   },
+  "clickToView": "Klik om transacties te bekijken",
   "performanceBreakdown": {
     "title": "Prestatie details",
     "performanceBreakdownTooltip": "Gedetailleerde prestatiestatistieken: winst/verlies ratio, gemiddelde winsten/verliezen, evenals beste en slechtste transacties. Geeft inzicht in de kwaliteit van je trading beslissingen.",

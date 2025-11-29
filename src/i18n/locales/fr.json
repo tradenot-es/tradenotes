@@ -64,6 +64,7 @@
     "sat": "Sam",
     "sun": "Dim"
   },
+  "clickToView": "Cliquez pour voir les transactions",
   "performanceBreakdown": {
     "title": "Détails de performance",
     "performanceBreakdownTooltip": "Statistiques de performance détaillées : ratio gain/perte, gains/pertes moyens, ainsi que meilleurs et pires trades. Fournit un aperçu de la qualité de vos décisions de trading.",

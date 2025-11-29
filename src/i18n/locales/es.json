@@ -64,6 +64,7 @@
     "sat": "Sáb",
     "sun": "Dom"
   },
+  "clickToView": "Clic para ver operaciones",
   "performanceBreakdown": {
     "title": "Desglose de rendimiento",
     "performanceBreakdownTooltip": "Estadísticas de rendimiento detalladas: ratio de ganancia/pérdida, ganancias/pérdidas promedio, así como mejores y peores operaciones. Proporciona información sobre la calidad de tus decisiones de trading.",
