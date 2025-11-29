@@ -449,7 +449,18 @@ serve(async (req) => {
       );
     }
 
-    const cacheKey = `articles-${symbols.join(",")}-${date || "latest"}`;
+    // Use date range for better coverage
+    let dateParam = "latest";
+    if (date) {
+      dateParam = date;
+    } else {
+      // Default: Last 3 days for better symbol coverage
+      const threeDaysAgo = new Date();
+      threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+      dateParam = `range-${threeDaysAgo.toISOString().split('T')[0]}`;
+    }
+
+    const cacheKey = `articles-${symbols.join(",")}-${dateParam}`;
     
     // Check cache
     const { data: cachedData } = await supabase
@@ -478,7 +489,13 @@ serve(async (req) => {
     url.searchParams.append("limit", limit.toString());
     
     if (date) {
+      // Specific date requested
       url.searchParams.append("published_on", date);
+    } else {
+      // Default: Last 3 days
+      const threeDaysAgo = new Date();
+      threeDaysAgo.setDate(threeDaysAgo.getDate() - 3);
+      url.searchParams.append("published_after", threeDaysAgo.toISOString().split('T')[0]);
     }
 
     console.log("Fetching from Marketaux:", url.toString());
