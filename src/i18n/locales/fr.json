@@ -91,6 +91,7 @@
     "translationFailed": "Échec de la traduction. Veuillez réessayer.",
     "autoTranslated": "Traduit automatiquement",
     "stocksOnlyNews": "Les actualités du portfolio ne sont disponibles que pour les symboles d'actions (par ex. AAPL, GOOGL, TSLA). Les futures et les indices ne sont pas pris en charge par le fournisseur d'actualités.",
+    "noNewsProxiesAvailable": "Aucun symbole pris en charge disponible. Ajoutez des transactions d'actions ou des futures populaires (NQ, ES, GC) pour voir des actualités pertinentes.",
     "dynamicDashboard": "Tableau de Bord Dynamique",
     "dynamicDashboardInfo": "Actualités automatiquement filtrées par vos meilleurs résultats",
     "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes.",
