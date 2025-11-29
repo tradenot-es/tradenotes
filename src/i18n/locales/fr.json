@@ -97,7 +97,54 @@
     "articles": "articles",
     "sectorArticles": "{{count}} articles analysés",
     "topArticles": "Articles Principaux",
-    "trend7Days": "Tendance sur 7 jours"
+    "trend7Days": "Tendance sur 7 jours",
+    "sectors": {
+      "examples_label": "p.ex.",
+      "technology": {
+        "description": "Hardware, Software, Semi-conducteurs, Services IT",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Médias, Publicité, Télécommunications, Réseaux Sociaux",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Pétrole, Gaz, Énergies Renouvelables",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Pharmaceutiques, Biotech, Équipement Médical",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banques, Assurances, Gestion d'Actifs",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Commerce, Automobile, Loisirs, Produits de Luxe",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Aérospatiale, Défense, Construction, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Alimentation, Boissons, Produits Ménagers",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Métaux, Mines, Chimie",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Développement Immobilier",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Services Publics Électricité, Eau, Gaz",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
   },
   "calendar": {
     "politicalEvent": "Événement Politique",

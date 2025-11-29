@@ -72,7 +72,54 @@
     "articles": "Artikel",
     "sectorArticles": "{{count}} Artikel analysiert",
     "topArticles": "Top-Artikel",
-    "trend7Days": "7-Tage-Trend"
+    "trend7Days": "7-Tage-Trend",
+    "sectors": {
+      "examples_label": "z.B.",
+      "technology": {
+        "description": "Hardware, Software, Halbleiter, IT-Services",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Medien, Werbung, Telekommunikation, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Öl, Gas, Erneuerbare Energien",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Pharma, Biotech, Medizintechnik",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banken, Versicherungen, Asset Management",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Einzelhandel, Automotive, Freizeit, Luxusgüter",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Luft- & Raumfahrt, Verteidigung, Bau, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Lebensmittel, Getränke, Haushaltsprodukte",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalle, Bergbau, Chemie",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Immobilienentwicklung",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Strom-, Wasser-, Gasversorger",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
   },
   "calendar": {
     "politicalEvent": "Politisches Event",
