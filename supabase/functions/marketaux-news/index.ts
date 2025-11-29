@@ -337,15 +337,28 @@ serve(async (req) => {
       console.log("Fetching political events (weekly batch):", url.toString());
 
       const response = await fetch(url.toString());
-      const data = await response.json();
-
-      if (!response.ok || !data.data) {
-        console.error("Political events API error:", data);
+      
+      if (!response.ok) {
+        console.error("Political events API error - Status:", response.status);
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Political events API error - Data:", errorData);
         return new Response(
-          JSON.stringify({ success: false, error: "Failed to fetch political events" }),
+          JSON.stringify({ success: false, error: `API request failed with status ${response.status}` }),
           { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
+
+      const data = await response.json();
+
+      if (!data.data || !Array.isArray(data.data)) {
+        console.error("Political events API error: No data array", data);
+        return new Response(
+          JSON.stringify({ success: false, error: "No articles found" }),
+          { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      console.log(`Political events: Received ${data.data.length} articles`);
 
       const articles = data.data.map((article: any) => ({
         uuid: article.uuid,
@@ -354,7 +367,7 @@ serve(async (req) => {
         url: article.url,
         published_at: article.published_at,
         source: article.source,
-        date: article.published_at.split('T')[0] // Extract YYYY-MM-DD for easy grouping
+        date: article.published_at ? article.published_at.split('T')[0] : new Date().toISOString().split('T')[0] // Extract YYYY-MM-DD for easy grouping
       }));
 
       // Cache for 7 days (168 hours)
