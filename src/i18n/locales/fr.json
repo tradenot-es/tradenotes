@@ -53,8 +53,19 @@
     "longestWinStreak": "Plus longue série de gains",
     "longestLossStreak": "Plus longue série de pertes",
     "mostActiveDay": "Jour le plus actif",
-    "avgDailyTrades": "Trades quotidiens moyens",
-    "performanceBreakdown": "Détails de performance",
+    "avgDailyTrades": "Trades quotidiens moyens"
+  },
+  "weekdays": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mer",
+    "thu": "Jeu",
+    "fri": "Ven",
+    "sat": "Sam",
+    "sun": "Dim"
+  },
+  "performanceBreakdown": {
+    "title": "Détails de performance",
     "performanceBreakdownTooltip": "Statistiques de performance détaillées : ratio gain/perte, gains/pertes moyens, ainsi que meilleurs et pires trades. Fournit un aperçu de la qualité de vos décisions de trading.",
     "winLossRatio": "Ratio Gain/Perte",
     "wins": "Gains",
