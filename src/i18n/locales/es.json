@@ -63,7 +63,10 @@
     "pnlByMonth": "P&L por mes",
     "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
     "equity": "Capital",
-    "pnl": "P&L"
+    "pnl": "P&L",
+    "sectorSentiment": "Sentimiento del Mercado Hoy",
+    "sectorSentimentDescription": "Resumen sectorial diario ayuda a identificar sesgo",
+    "articles": "artículos"
   },
   "trades": {
     "title": "Operaciones",
@@ -184,6 +187,24 @@
       "totalPnL": "P&L Total",
       "avgReturn": "Retorno Promedio %",
       "winRate": "Tasa de Éxito"
+    },
+    "sentiment": {
+      "label": "Sentimiento de Noticias",
+      "veryBullish": "Muy Alcista",
+      "bullish": "Alcista",
+      "neutral": "Neutral",
+      "bearish": "Bajista",
+      "veryBearish": "Muy Bajista",
+      "highRisk": "Alto Riesgo",
+      "contraTrade": "Operación Contra-Noticias"
+    },
+    "newsContext": {
+      "match": "Coincidencia"
+    },
+    "hype": {
+      "high": "Nivel de Rumor Alto",
+      "medium": "Nivel de Rumor Medio",
+      "articles": "{{count}} artículos en últimas 12h"
     }
   },
   "import": {

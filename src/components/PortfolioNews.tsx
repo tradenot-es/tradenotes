@@ -55,11 +55,10 @@ export function PortfolioNews() {
         
         console.log(`PortfolioNews: Trying date ${dateStr} (${daysBack} days back), symbols:`, topSymbols);
         
-        const { data, error: functionError } = await supabase.functions.invoke('financial-news', {
+        const { data, error: functionError } = await supabase.functions.invoke('marketaux-news', {
           body: { 
-            action: 'get-articles',
-            date: dateStr,
             symbols: topSymbols,
+            limit: 5
           }
         });
 

@@ -15,6 +15,9 @@ import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { TradeSentimentGauge } from "./TradeSentimentGauge";
+import { TradeNewsContext } from "./TradeNewsContext";
+import { NewsHypeIndicator } from "./NewsHypeIndicator";
 
 interface Trade {
   id: string;
@@ -256,6 +259,31 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                   <TableRow className="border-border bg-muted/30">
                     <TableCell colSpan={13} className="p-6">
                       <div className="space-y-4">
+                        {/* News Intelligence Section */}
+                        <div className="space-y-3 pb-4 border-b border-border">
+                          <h4 className="text-sm font-semibold text-foreground">📰 News Intelligence</h4>
+                          
+                          {/* Sentiment Gauge */}
+                          <TradeSentimentGauge 
+                            symbol={trade.symbol}
+                            side={trade.side as "long" | "short"}
+                            entryTime={trade.entry_time}
+                          />
+
+                          {/* News Context */}
+                          <TradeNewsContext 
+                            symbol={trade.symbol}
+                            entryTime={trade.entry_time}
+                          />
+
+                          {/* Hype Indicator */}
+                          <NewsHypeIndicator 
+                            symbol={trade.symbol}
+                            entryTime={trade.entry_time}
+                          />
+                        </div>
+
+                        {/* Trade Details Section */}
                         {trade.setup && (
                           <div>
                             <h4 className="text-sm font-semibold text-foreground mb-2">Trade Setup</h4>

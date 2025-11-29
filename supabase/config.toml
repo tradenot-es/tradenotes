@@ -14,3 +14,6 @@ verify_jwt = true
 
 [functions.trading-assistant]
 verify_jwt = true
+
+[functions.marketaux-news]
+verify_jwt = false

@@ -12,6 +12,7 @@ import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
+import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -381,10 +382,11 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Consistency Tracker and Portfolio News */}
-          <div className="grid gap-6 md:grid-cols-2">
+          {/* Consistency Tracker, Portfolio News, and Sector Sentiment */}
+          <div className="grid gap-6 md:grid-cols-3">
             <ConsistencyTracker trades={trades} />
             <PortfolioNews />
+            <SectorSentimentWidget />
           </div>
         </>
       )}

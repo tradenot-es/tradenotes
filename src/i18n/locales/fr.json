@@ -63,7 +63,10 @@
     "pnlByMonth": "P&L par mois",
     "noTrades": "Pas encore de transactions. Ajoutez votre première transaction !",
     "equity": "Équité",
-    "pnl": "P&L"
+    "pnl": "P&L",
+    "sectorSentiment": "Sentiment du Marché Aujourd'hui",
+    "sectorSentimentDescription": "Aperçu sectoriel quotidien aide à identifier le biais",
+    "articles": "articles"
   },
   "trades": {
     "title": "Transactions",
@@ -184,6 +187,24 @@
       "totalPnL": "P&L Total",
       "avgReturn": "Retour Moyen %",
       "winRate": "Taux de Réussite"
+    },
+    "sentiment": {
+      "label": "Sentiment des Nouvelles",
+      "veryBullish": "Très Haussier",
+      "bullish": "Haussier",
+      "neutral": "Neutre",
+      "bearish": "Baissier",
+      "veryBearish": "Très Baissier",
+      "highRisk": "Risque Élevé",
+      "contraTrade": "Transaction Contre-Nouvelles"
+    },
+    "newsContext": {
+      "match": "Correspondance"
+    },
+    "hype": {
+      "high": "Niveau de Buzz Élevé",
+      "medium": "Niveau de Buzz Moyen",
+      "articles": "{{count}} articles dans les dernières 12h"
     }
   },
   "import": {
