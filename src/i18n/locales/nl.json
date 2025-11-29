@@ -66,7 +66,14 @@
     "pnl": "P&L",
     "sectorSentiment": "Marktstemming Vandaag",
     "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van bias",
-    "articles": "artikelen"
+    "articles": "artikelen",
+    "portfolioNews": "Portfolio Nieuws",
+    "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
+    "newsTranslated": "Nieuws succesvol vertaald!",
+    "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
+    "dynamicDashboard": "Dynamisch Dashboard",
+    "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
+    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen."
   },
   "trades": {
     "title": "Transacties",
@@ -379,7 +386,10 @@
   },
   "common": {
     "loading": "Laden...",
-    "readMore": "Lees meer"
+    "readMore": "Lees meer",
+    "translate": "Vertalen",
+    "translating": "Vertalen...",
+    "showOriginal": "Toon Origineel"
   },
   "landing": {
     "badge": "Professioneel Trading Dagboek",

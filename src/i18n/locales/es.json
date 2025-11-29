@@ -66,7 +66,14 @@
     "pnl": "P&L",
     "sectorSentiment": "Sentimiento del Mercado Hoy",
     "sectorSentimentDescription": "Resumen sectorial diario ayuda a identificar sesgo",
-    "articles": "artículos"
+    "articles": "artículos",
+    "portfolioNews": "Noticias del Portfolio",
+    "portfolioNewsTooltip": "Noticias financieras curadas automáticamente para sus símbolos más negociados. Manténgase informado sobre eventos que mueven el mercado y desarrollos que podrían impactar sus posiciones.",
+    "newsTranslated": "¡Noticias traducidas con éxito!",
+    "translationFailed": "Traducción fallida. Por favor, inténtalo de nuevo.",
+    "dynamicDashboard": "Panel Dinámico",
+    "dynamicDashboardInfo": "Noticias filtradas automáticamente por sus mejores resultados",
+    "noSymbolsForNews": "No hay símbolos disponibles aún. Añade operaciones para recibir noticias relevantes."
   },
   "trades": {
     "title": "Operaciones",
@@ -379,7 +386,10 @@
   },
   "common": {
     "loading": "Cargando...",
-    "readMore": "Leer más"
+    "readMore": "Leer más",
+    "translate": "Traducir",
+    "translating": "Traduciendo...",
+    "showOriginal": "Mostrar Original"
   },
   "landing": {
     "badge": "Diario de Trading Profesional",

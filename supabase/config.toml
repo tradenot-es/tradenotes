@@ -5,3 +5,6 @@ verify_jwt = true
 
 [functions.marketaux-news]
 verify_jwt = false
+
+[functions.translate-news]
+verify_jwt = true

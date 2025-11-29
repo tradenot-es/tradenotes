@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Building2 } from "lucide-react";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import { TrendingUp, Building2, Info } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -91,10 +92,17 @@ export function SectorSentimentWidget() {
         <div className="flex items-center gap-2">
           <Building2 className="h-5 w-5 text-primary" />
           <CardTitle>{t("dashboard.sectorSentiment")}</CardTitle>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              </button>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("dashboard.sectorSentimentDescription")}</p>
+            </HoverCardContent>
+          </HoverCard>
         </div>
-        <p className="text-xs text-muted-foreground mt-2">
-          {t("dashboard.sectorSentimentDescription")}
-        </p>
       </CardHeader>
       <CardContent className="space-y-3">
         {sectors.map((sector) => (
