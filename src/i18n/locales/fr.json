@@ -561,8 +561,16 @@
         "description": "Gardez une trace de vos transactions au format calendrier avec des jours rentables codés par couleur"
       },
       "news": {
-        "title": "Actualités de Portefeuille",
-        "description": "Flux d'actualités automatique pour vos symboles les plus échangés - restez informé des événements qui font bouger le marché"
+        "title": "Smart Portfolio News Intelligence",
+        "description": "Actualités financières organisées par IA pour votre portefeuille avec mappage intelligent de proxy pour les futures (NQ→QQQ, GC→GLD), balises intelligentes automatiques (Résultats, Macro, Politique), regroupées par symbole et traduction instantanée multilingue - ne manquez jamais les événements qui font bouger le marché"
+      },
+      "politicalEvents": {
+        "title": "Calendrier d'Événements Politiques",
+        "description": "Anticipez les catalyseurs macro avec suivi automatisé des événements politiques - discours de Trump, annonces de la Fed, commentaires de Powell, élections. Les indicateurs visuels du calendrier montrent les événements annoncés et passés pour chronométrer vos trades autour des principaux moteurs du marché"
+      },
+      "newsTranslation": {
+        "title": "Traduction Instantanée des Actualités",
+        "description": "Surmontez les barrières linguistiques avec la traduction d'actualités IA en un clic vers l'allemand, l'anglais, l'espagnol, le français ou le néerlandais - comprenez les actualités des marchés mondiaux dans votre langue préférée pour de meilleures décisions de trading"
       },
       "ai": {
         "title": "Assistant Trading IA",
@@ -585,8 +593,8 @@
         "description": "Développement mensuel du P&L en graphiques à barres clairs - suivez vos progrès au fil du temps"
       },
       "prep": {
-        "title": "Préparation Quotidienne",
-        "description": "Préparez-vous de manière optimale pour la journée de trading avec des événements politiques, des calendriers économiques et vos symboles de watchlist"
+        "title": "Préparation Quotidienne Pré-Marché",
+        "description": "Commencez votre journée de trading préparé : calendrier d'événements politiques, publications de données économiques, analyse du sentiment sectoriel et actualités pour vos symboles de watchlist - tout en une vue"
       },
       "glossary": {
         "title": "Glossaire de Trading",
@@ -607,7 +615,9 @@
       "journal": "Journal de Trading avec notes et captures d'écran",
       "equity": "Courbe de Capital pour suivi du capital",
       "consistency": "Suivi de Cohérence (carte thermique de 12 semaines)",
-      "news": "Actualités de Portefeuille pour symboles les plus échangés",
+      "news": "Smart Portfolio News avec proxy-mapping (futures), smart-tags et traduction",
+      "politicalEvents": "Calendrier d'Événements Politiques (Trump, Fed, Powell, élections)",
+      "sectorSentiment": "Tableau de Bord du Sentiment Sectoriel Quotidien (9 secteurs suivis)",
       "ai": "Assistant Trading IA pour insights basés sur les données",
       "winLoss": "Analytique Gains/Pertes et Répartition des Performances",
       "calendar": "Vue Calendrier de Trading",

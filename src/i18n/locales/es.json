@@ -561,8 +561,16 @@
         "description": "Mantén un seguimiento de tus operaciones en formato de calendario con días rentables codificados por colores"
       },
       "news": {
-        "title": "Noticias de Cartera",
-        "description": "Feed de noticias automático para tus símbolos más operados - mantente informado sobre eventos que mueven el mercado"
+        "title": "Smart Portfolio News Intelligence",
+        "description": "Noticias financieras curadas por IA para tu cartera con mapeo inteligente de proxy para futuros (NQ→QQQ, GC→GLD), etiquetas inteligentes automáticas (Earnings, Macro, Político), agrupadas por símbolo y traducción instantánea multilingüe - nunca te pierdas eventos que mueven el mercado"
+      },
+      "politicalEvents": {
+        "title": "Calendario de Eventos Políticos",
+        "description": "Anticipa catalizadores macro con seguimiento automatizado de eventos políticos - discursos de Trump, anuncios de la Fed, comentarios de Powell, elecciones. Indicadores visuales del calendario muestran eventos anunciados y pasados para cronometrar tus operaciones alrededor de los principales impulsores del mercado"
+      },
+      "newsTranslation": {
+        "title": "Traducción Instantánea de Noticias",
+        "description": "Supera barreras lingüísticas con traducción de noticias IA en un clic a alemán, inglés, español, francés u holandés - comprende noticias del mercado global en tu idioma preferido para mejores decisiones de trading"
       },
       "ai": {
         "title": "Asistente de Trading con IA",
@@ -585,8 +593,8 @@
         "description": "Desarrollo mensual de P&L en gráficos de barras claros - rastrea tu progreso en el tiempo"
       },
       "prep": {
-        "title": "Preparación Diaria",
-        "description": "Prepárate óptimamente para el día de trading con eventos políticos, calendarios económicos y tus símbolos de watchlist"
+        "title": "Preparación Pre-Mercado Diaria",
+        "description": "Comienza tu día de trading preparado: calendario de eventos políticos, publicaciones de datos económicos, análisis de sentimiento sectorial y noticias para tus símbolos de watchlist - todo en una vista"
       },
       "glossary": {
         "title": "Glosario de Trading",
@@ -607,7 +615,9 @@
       "journal": "Diario de Trading con notas y capturas de pantalla",
       "equity": "Curva de Capital para seguimiento de capital",
       "consistency": "Rastreador de Consistencia (mapa de calor de 12 semanas)",
-      "news": "Noticias de Cartera para símbolos más operados",
+      "news": "Smart Portfolio News con proxy-mapping (futuros), smart-tags y traducción",
+      "politicalEvents": "Calendario de Eventos Políticos (Trump, Fed, Powell, elecciones)",
+      "sectorSentiment": "Dashboard de Sentimiento Sectorial Diario (9 sectores rastreados)",
       "ai": "Asistente de Trading con IA para insights basados en datos",
       "winLoss": "Analytics de Ganancias/Pérdidas y Desglose de Rendimiento",
       "calendar": "Vista de Calendario de Trading",

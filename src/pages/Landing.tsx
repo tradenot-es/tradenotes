@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import heroLogo from "@/assets/tradenotes-logo-hero.png";
-import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, ScanLine } from "lucide-react";
+import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, ScanLine, Bell, Globe } from "lucide-react";
 const Landing = () => {
   const {
     t
@@ -44,6 +44,14 @@ const Landing = () => {
     title: t("landing.features.news.title"),
     description: t("landing.features.news.description")
   }, {
+    icon: <Bell className="h-6 w-6" />,
+    title: t("landing.features.politicalEvents.title"),
+    description: t("landing.features.politicalEvents.description")
+  }, {
+    icon: <Globe className="h-6 w-6" />,
+    title: t("landing.features.newsTranslation.title"),
+    description: t("landing.features.newsTranslation.description")
+  }, {
     icon: <MessageSquare className="h-6 w-6" />,
     title: t("landing.features.ai.title"),
     description: t("landing.features.ai.description")
@@ -72,7 +80,7 @@ const Landing = () => {
     title: t("landing.features.glossary.title"),
     description: t("landing.features.glossary.description")
   }];
-  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
+  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
