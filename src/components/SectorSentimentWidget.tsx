@@ -91,32 +91,34 @@ export function SectorSentimentWidget() {
   };
 
   const getSentimentColor = (sentiment: number) => {
-    if (sentiment > 0.2) return "text-green-500";
-    if (sentiment < -0.2) return "text-red-500";
-    return "text-yellow-500";
+    if (sentiment > 0.3) return "text-green-500";      // Strong bullish
+    if (sentiment > 0.1) return "text-green-500";      // Slightly bullish
+    if (sentiment > -0.1) return "text-yellow-500";    // Neutral
+    if (sentiment > -0.3) return "text-red-500";       // Slightly bearish
+    return "text-red-500";                              // Strong bearish
   };
 
   const getSentimentIcon = (sentiment: number) => {
-    if (sentiment > 0.2) return "🟢";
-    if (sentiment < -0.2) return "🔴";
-    return "🟡";
+    if (sentiment > 0.3) return "🟢";       // Strong bullish
+    if (sentiment > 0.1) return "🟢";       // Slightly bullish
+    if (sentiment > -0.1) return "🟡";      // Neutral
+    if (sentiment > -0.3) return "🔴";      // Slightly bearish
+    return "🔴";                             // Strong bearish
   };
 
   const getSentimentLabel = (sentiment: number) => {
-    if (sentiment > 0.2) return t("trades.sentiment.bullish");
-    if (sentiment < -0.2) return t("trades.sentiment.bearish");
-    return t("trades.sentiment.neutral");
+    if (sentiment > 0.3) return t("trades.sentiment.bullish");           // Strong bullish
+    if (sentiment > 0.1) return t("trades.sentiment.slightlyBullish");   // Slightly bullish
+    if (sentiment > -0.1) return t("trades.sentiment.neutral");          // Neutral
+    if (sentiment > -0.3) return t("trades.sentiment.slightlyBearish");  // Slightly bearish
+    return t("trades.sentiment.bearish");                                 // Strong bearish
   };
 
-  const getTrendIcon = (history: SectorHistory[], currentSentiment: number) => {
-    if (!history || history.length < 2) return <Minus className="h-4 w-4 text-muted-foreground" />;
-    
-    const previousAvg = history.slice(0, -1).reduce((sum, h) => sum + h.avg_sentiment, 0) / (history.length - 1);
-    const diff = currentSentiment - previousAvg;
-    
-    if (diff > 0.05) return <TrendingUp className="h-4 w-4 text-green-500" />;
-    if (diff < -0.05) return <TrendingDown className="h-4 w-4 text-red-500" />;
-    return <Minus className="h-4 w-4 text-yellow-500" />;
+  const getTrendIcon = (sentiment: number) => {
+    // Arrow shows current sentiment direction, not historical trend
+    if (sentiment > 0.1) return <TrendingUp className="h-4 w-4 text-green-500" />;    // Positive = green up
+    if (sentiment < -0.1) return <TrendingDown className="h-4 w-4 text-red-500" />;   // Negative = red down
+    return <Minus className="h-4 w-4 text-yellow-500" />;                              // Neutral = yellow horizontal
   };
 
   if (loading) {
@@ -226,7 +228,7 @@ export function SectorSentimentWidget() {
                       <p className={cn("text-xs font-semibold", getSentimentColor(sector.avg_sentiment))}>
                         {getSentimentLabel(sector.avg_sentiment)}
                       </p>
-                      {getTrendIcon(history, sector.avg_sentiment)}
+                      {getTrendIcon(sector.avg_sentiment)}
                     </div>
                     <p className="text-xs text-muted-foreground">
                       {sector.avg_sentiment.toFixed(2)}
@@ -260,15 +262,19 @@ export function SectorSentimentWidget() {
                               <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" />
                             </a>
                             <div className="flex items-center justify-between">
-                              <span className={cn(
+                               <span className={cn(
                                 "text-xs font-semibold",
-                                article.sentiment_score > 0.2 ? "text-green-500" :
-                                article.sentiment_score < -0.2 ? "text-red-500" :
-                                "text-yellow-500"
+                                article.sentiment_score > 0.3 ? "text-green-500" :
+                                article.sentiment_score > 0.1 ? "text-green-500" :
+                                article.sentiment_score > -0.1 ? "text-yellow-500" :
+                                article.sentiment_score > -0.3 ? "text-red-500" :
+                                "text-red-500"
                               )}>
-                                {article.sentiment_score > 0.2 ? t("trades.sentiment.bullish") :
-                                 article.sentiment_score < -0.2 ? t("trades.sentiment.bearish") :
-                                 t("trades.sentiment.neutral")} ({article.sentiment_score.toFixed(2)})
+                                {article.sentiment_score > 0.3 ? t("trades.sentiment.bullish") :
+                                 article.sentiment_score > 0.1 ? t("trades.sentiment.slightlyBullish") :
+                                 article.sentiment_score > -0.1 ? t("trades.sentiment.neutral") :
+                                 article.sentiment_score > -0.3 ? t("trades.sentiment.slightlyBearish") :
+                                 t("trades.sentiment.bearish")} ({article.sentiment_score.toFixed(2)})
                               </span>
                               <span className="text-muted-foreground">
                                 {new Date(article.published_at).toLocaleDateString()}
@@ -282,7 +288,7 @@ export function SectorSentimentWidget() {
                     {history.length > 1 && (
                       <div className="pt-2">
                         <p className="text-xs text-muted-foreground">
-                          {t("dashboard.trend7Days")}: {getTrendIcon(history, sector.avg_sentiment)}
+                          {t("dashboard.trend7Days")}: {getTrendIcon(sector.avg_sentiment)}
                         </p>
                       </div>
                     )}
