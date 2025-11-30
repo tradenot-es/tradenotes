@@ -38,11 +38,8 @@ serve(async (req) => {
 Title: ${title}
 ${description ? `Description: ${description}` : ''}
 
-Provide ONLY the translation in this exact JSON format:
-{
-  "title": "translated title here",
-  "description": "translated description here"
-}`;
+CRITICAL: Return ONLY valid JSON without any markdown formatting, code blocks, or additional text. Use this exact structure:
+{"title": "translated title here", "description": "translated description here"}`;
 
     const lovableResponse = await fetch(LOVABLE_AI_URL, {
       method: 'POST',
@@ -72,21 +69,38 @@ Provide ONLY the translation in this exact JSON format:
     const aiData = await lovableResponse.json();
     const content = aiData.choices?.[0]?.message?.content;
 
+    console.log('AI response content:', content);
+
     if (!content) {
       throw new Error('No translation content received');
     }
 
-    // Extract JSON from the response (handle markdown code blocks)
+    // Extract JSON from the response (handle markdown code blocks and extra text)
     let translationData;
     try {
-      const jsonMatch = content.match(/\{[\s\S]*\}/);
+      let jsonString = content.trim();
+      
+      // Remove markdown code blocks if present
+      jsonString = jsonString.replace(/```json\s*/g, '').replace(/```\s*/g, '');
+      
+      // Try to find JSON object between curly braces (non-greedy)
+      const jsonMatch = jsonString.match(/\{[^{}]*"title"[^{}]*"description"[^{}]*\}/);
+      
       if (jsonMatch) {
         translationData = JSON.parse(jsonMatch[0]);
       } else {
-        translationData = JSON.parse(content);
+        // Fallback: try parsing the whole content
+        translationData = JSON.parse(jsonString);
+      }
+      
+      // Validate the structure
+      if (!translationData.title && !translationData.description) {
+        console.error('Invalid translation structure:', translationData);
+        throw new Error('Translation missing required fields');
       }
     } catch (parseError) {
-      console.error('Failed to parse translation:', content);
+      console.error('Failed to parse translation. Raw content:', content);
+      console.error('Parse error:', parseError);
       throw new Error('Invalid translation format');
     }
 
