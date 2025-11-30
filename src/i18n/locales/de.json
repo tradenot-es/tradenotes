@@ -563,8 +563,16 @@
         "description": "Behalte den Überblick über deine Trades im Kalender-Format mit farblicher Kennzeichnung profitabler Tage"
       },
       "news": {
-        "title": "Portfolio News",
-        "description": "Automatischer News-Feed für deine meist gehandelten Symbole - bleibe über marktbewegende Events informiert"
+        "title": "Smart Portfolio News Intelligence",
+        "description": "KI-kuratierte Finanznachrichten für dein Portfolio mit intelligentem Proxy-Mapping für Futures (NQ→QQQ, GC→GLD), automatischen Smart-Tags (Earnings, Makro, Politik), Gruppierung nach Symbol und Sofortübersetzung in mehrere Sprachen - verpasse nie wieder marktbewegende Events"
+      },
+      "politicalEvents": {
+        "title": "Politischer Event-Kalender",
+        "description": "Bleib Makro-Katalysatoren voraus mit automatisiertem Political Event Tracking - Trump-Reden, Fed-Ankündigungen, Powell-Kommentare, Wahlen. Visuelle Kalender-Indikatoren zeigen angekündigte und vergangene Events, um Trades perfekt zu timen"
+      },
+      "newsTranslation": {
+        "title": "Sofort-Nachrichtenübersetzung",
+        "description": "Überwinde Sprachbarrieren mit Ein-Klick-KI-Übersetzung in Deutsch, Englisch, Spanisch, Französisch oder Niederländisch - verstehe globale Marktnachrichten in deiner bevorzugten Sprache für bessere Trading-Entscheidungen"
       },
       "ai": {
         "title": "AI Trading Assistant",
@@ -587,8 +595,8 @@
         "description": "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
       },
       "prep": {
-        "title": "Daily Prep",
-        "description": "Bereite dich optimal auf den Trading-Tag vor mit politischen Events, Wirtschaftskalendern und deinen Watchlist-Symbolen"
+        "title": "Pre-Market Daily Prep",
+        "description": "Starte deinen Trading-Tag vorbereitet: Politischer Event-Kalender, Wirtschaftsdaten, Sektoren-Sentiment-Analyse und News für deine Watchlist-Symbole - alles auf einen Blick"
       },
       "glossary": {
         "title": "Trading Glossar",
@@ -609,7 +617,9 @@
       "journal": "Trading Journal mit Notizen & Screenshots",
       "equity": "Equity Curve zur Kapitalverfolgung",
       "consistency": "Consistency Tracker (12-Wochen Heatmap)",
-      "news": "Portfolio News für meist gehandelte Symbole",
+      "news": "Smart Portfolio News mit Proxy-Mapping (Futures), Smart-Tags & Übersetzung",
+      "politicalEvents": "Politischer Event-Kalender (Trump, Fed, Powell, Wahlen)",
+      "sectorSentiment": "Tägliches Sektoren-Sentiment Dashboard (9 Sektoren)",
       "ai": "AI Trading Assistant für datengetriebene Insights",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
       "calendar": "Trading Kalender-Ansicht",

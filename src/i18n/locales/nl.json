@@ -561,8 +561,16 @@
         "description": "Houd je trades bij in kalenderformaat met kleurgecodeerde winstgevende dagen"
       },
       "news": {
-        "title": "Portfolio Nieuws",
-        "description": "Automatische nieuwsfeed voor je meest verhandelde symbolen - blijf op de hoogte van marktbewegende evenementen"
+        "title": "Smart Portfolio News Intelligence",
+        "description": "AI-gecureerde financiële nieuws voor je portfolio met intelligente proxy-mapping voor futures (NQ→QQQ, GC→GLD), automatische smart-tags (Earnings, Macro, Politiek), gegroepeerd per symbool en directe meertalige vertaling - mis nooit meer marktbewegende evenementen"
+      },
+      "politicalEvents": {
+        "title": "Politieke Evenementen Kalender",
+        "description": "Blijf macro-katalysatoren voor met geautomatiseerde politieke gebeurtenis tracking - Trump-toespraken, Fed-aankondigingen, Powell-opmerkingen, verkiezingen. Visuele kalender indicatoren tonen aangekondigde en eerdere evenementen om je trades perfect te timen rond belangrijke marktdrijvers"
+      },
+      "newsTranslation": {
+        "title": "Directe Nieuwsvertaling",
+        "description": "Doorbreek taalbarrières met één-klik AI nieuwsvertaling naar Duits, Engels, Spaans, Frans of Nederlands - begrijp wereldwijd marktnieuws in je voorkeurstaal voor betere trading beslissingen"
       },
       "ai": {
         "title": "AI Trading Assistent",
@@ -585,8 +593,8 @@
         "description": "Maandelijkse P&L ontwikkeling in duidelijke staafdiagrammen - volg je vooruitgang in de tijd"
       },
       "prep": {
-        "title": "Dagelijkse Voorbereiding",
-        "description": "Bereid je optimaal voor op de trading dag met politieke evenementen, economische kalenders en je watchlist symbolen"
+        "title": "Pre-Markt Dagelijkse Voorbereiding",
+        "description": "Start je trading dag voorbereid: politieke evenementen kalender, economische data publicaties, sector sentiment analyse en nieuws voor je watchlist symbolen - alles in één overzicht"
       },
       "glossary": {
         "title": "Trading Woordenlijst",
@@ -607,7 +615,9 @@
       "journal": "Trading Dagboek met notities & screenshots",
       "equity": "Equity Curve voor kapitaalvolging",
       "consistency": "Consistency Tracker (12-weken heatmap)",
-      "news": "Portfolio Nieuws voor meest verhandelde symbolen",
+      "news": "Smart Portfolio Nieuws met proxy-mapping (futures), smart-tags & vertaling",
+      "politicalEvents": "Politieke Evenementen Kalender (Trump, Fed, Powell, verkiezingen)",
+      "sectorSentiment": "Dagelijks Sector Sentiment Dashboard (9 sectoren gevolgd)",
       "ai": "AI Trading Assistent voor datagestuurde inzichten",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
       "calendar": "Trading Kalender Weergave",
