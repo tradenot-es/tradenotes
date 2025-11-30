@@ -344,7 +344,7 @@ serve(async (req) => {
       );
     }
 
-    // GET POLITICAL EVENTS (for calendar) - WEEKLY BATCH
+    // GET POLITICAL EVENTS (for calendar) - FUTURE & PAST AWARE
     if (action === "get-political-events") {
       const { startDate, endDate, date } = body;
       const eventLimit = body.limit || 50;
@@ -353,10 +353,12 @@ serve(async (req) => {
       const effectiveStartDate = startDate || date;
       const effectiveEndDate = endDate || date;
       
-      // Weekly cache key based on ISO week
-      const weekKey = effectiveStartDate ? new Date(effectiveStartDate).toISOString().slice(0, 10).replace(/-/g, '') : 'current';
+      const today = new Date().toISOString().split('T')[0];
+      const isFutureRequest = effectiveStartDate > today;
+      
       const cacheKey = `political-${effectiveStartDate}-${effectiveEndDate || 'single'}-${keywords}`;
       
+      // Check cache
       const { data: cachedData } = await supabase
         .from("news_cache")
         .select("*")
@@ -365,10 +367,12 @@ serve(async (req) => {
         .maybeSingle();
 
       if (cachedData?.articles) {
+        console.log(`✓ Political events cache hit: ${cachedData.articles.length} articles`);
         return new Response(
           JSON.stringify({ 
             success: true, 
             articles: cachedData.articles,
+            eventType: isFutureRequest ? 'announced' : 'past',
             meta: { cached: true }
           }),
           { headers: { ...corsHeaders, "Content-Type": "application/json" } }
@@ -381,17 +385,25 @@ serve(async (req) => {
       url.searchParams.append("filter_entities", "true");
       url.searchParams.append("limit", eventLimit.toString());
       
-      // Use date range for batch fetching
-      if (effectiveStartDate && effectiveEndDate && effectiveStartDate !== effectiveEndDate) {
-        url.searchParams.append("published_after", effectiveStartDate);
-        url.searchParams.append("published_before", effectiveEndDate);
-      } else if (effectiveStartDate) {
-        url.searchParams.append("published_on", effectiveStartDate);
+      // CRITICAL: Different date logic for future vs past
+      if (isFutureRequest) {
+        // For future dates: fetch recent announcements (last 7 days)
+        const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        url.searchParams.append("published_after", sevenDaysAgo);
+        url.searchParams.append("published_before", today);
+        console.log(`Fetching ANNOUNCED events (future request): ${sevenDaysAgo} to ${today}`);
+      } else {
+        // For past dates: fetch from the specific timeframe
+        if (effectiveStartDate && effectiveEndDate && effectiveStartDate !== effectiveEndDate) {
+          url.searchParams.append("published_after", effectiveStartDate);
+          url.searchParams.append("published_before", effectiveEndDate);
+        } else if (effectiveStartDate) {
+          url.searchParams.append("published_on", effectiveStartDate);
+        }
+        console.log(`Fetching PAST events: ${effectiveStartDate} to ${effectiveEndDate || effectiveStartDate}`);
       }
 
-      console.log("Fetching political events with date filter:", effectiveStartDate, url.toString());
-
-      console.log("Fetching political events (weekly batch):", url.toString());
+      console.log("Political events URL:", url.toString());
 
       const response = await fetch(url.toString());
       
@@ -415,7 +427,7 @@ serve(async (req) => {
         );
       }
 
-      console.log(`Political events: Received ${data.data.length} articles`);
+      console.log(`Political events: Received ${data.data.length} articles (${isFutureRequest ? 'announced' : 'past'})`);
 
       const articles = data.data.map((article: any) => ({
         uuid: article.uuid,
@@ -424,19 +436,34 @@ serve(async (req) => {
         url: article.url,
         published_at: article.published_at,
         source: article.source,
-        date: article.published_at ? article.published_at.split('T')[0] : new Date().toISOString().split('T')[0] // Extract YYYY-MM-DD for easy grouping
+        date: article.published_at ? article.published_at.split('T')[0] : new Date().toISOString().split('T')[0]
       }));
 
-      // Cache for 7 days (168 hours)
-      await supabase.from("news_cache").insert({
-        cache_key: cacheKey,
-        symbols: [],
-        articles: articles,
-        expires_at: new Date(Date.now() + 168 * 60 * 60 * 1000).toISOString()
-      });
+      // CACHE LOGIC: Only cache if we have articles
+      if (articles.length > 0) {
+        const cacheDurationMs = isFutureRequest 
+          ? 24 * 60 * 60 * 1000   // 24h for announced events (check daily)
+          : 168 * 60 * 60 * 1000; // 7 days for past events (stable data)
+        
+        await supabase.from("news_cache").insert({
+          cache_key: cacheKey,
+          symbols: [],
+          articles: articles,
+          expires_at: new Date(Date.now() + cacheDurationMs).toISOString()
+        });
+        
+        console.log(`✓ Cached ${articles.length} political events for ${isFutureRequest ? '24h' : '7 days'}`);
+      } else {
+        console.log('⚠ No articles to cache (empty result, won\'t cache)');
+      }
 
       return new Response(
-        JSON.stringify({ success: true, articles, meta: { cached: false } }),
+        JSON.stringify({ 
+          success: true, 
+          articles, 
+          eventType: isFutureRequest ? 'announced' : 'past',
+          meta: { cached: false }
+        }),
         { headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
