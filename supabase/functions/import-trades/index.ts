@@ -177,10 +177,13 @@ serve(async (req) => {
       
       console.log(`NinjaTrader execution: ${execution.action} ${symbol} (${market}) @ ${execution.price} x ${execution.quantity}`);
       
+      // Normalize action: "Buy", "BuyToCover" → "Buy" | "Sell", "SellShort" → "Sell"
+      const normalizedAction = execution.action.toUpperCase().startsWith('BUY') ? 'Buy' : 'Sell';
+      
       // FIFO Logic: Look for existing open execution with opposite action
       // Buy can close a Short OR open a Long
       // Sell can close a Long OR open a Short
-      const oppositeAction = execution.action.toUpperCase() === 'BUY' ? 'Sell' : 'Buy';
+      const oppositeAction = normalizedAction === 'Buy' ? 'Sell' : 'Buy';
       
       const { data: openExecutions, error: queryError } = await supabase
         .from('ninjatrader_executions')
@@ -262,7 +265,7 @@ serve(async (req) => {
             instrument: execution.instrument,
             symbol: symbol,
             market: market,
-            action: execution.action,
+            action: normalizedAction, // Store normalized action for consistent matching
             quantity: execution.quantity,
             price: execution.price,
             timestamp: execution.timestamp,
