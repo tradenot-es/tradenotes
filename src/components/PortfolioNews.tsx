@@ -111,7 +111,7 @@ export function PortfolioNews() {
     }
   }, [frequentSymbols, symbolsLoading]);
 
-  // Auto-translate when language changes (not on every mount, only when language switches)
+  // Auto-translate when new news arrive or language changes
   useEffect(() => {
     const allArticles = groupedNews.flatMap(g => g.articles);
     const needsTranslation = allArticles.length > 0 && 
@@ -119,9 +119,10 @@ export function PortfolioNews() {
                             !allArticles.some(a => a.translatedTitle);
     
     if (needsTranslation && !translating) {
+      console.log(`PortfolioNews: Auto-translating ${allArticles.length} articles to ${i18n.language}`);
       translateNews();
     }
-  }, [i18n.language]); // Only trigger on language change, not on groupedNews updates
+  }, [groupedNews.length, i18n.language]); // Trigger when news count changes or language changes
 
   const loadNews = async () => {
     setLoading(true);
