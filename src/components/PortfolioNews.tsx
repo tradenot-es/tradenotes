@@ -111,13 +111,17 @@ export function PortfolioNews() {
     }
   }, [frequentSymbols, symbolsLoading]);
 
-  // Auto-translate when language is not English
+  // Auto-translate when language changes (not on every mount, only when language switches)
   useEffect(() => {
     const allArticles = groupedNews.flatMap(g => g.articles);
-    if (allArticles.length > 0 && i18n.language !== 'en' && !allArticles[0]?.translatedTitle && !translating) {
+    const needsTranslation = allArticles.length > 0 && 
+                            i18n.language !== 'en' && 
+                            !allArticles.some(a => a.translatedTitle);
+    
+    if (needsTranslation && !translating) {
       translateNews();
     }
-  }, [groupedNews, i18n.language]);
+  }, [i18n.language]); // Only trigger on language change, not on groupedNews updates
 
   const loadNews = async () => {
     setLoading(true);
@@ -225,41 +229,61 @@ export function PortfolioNews() {
     try {
       const targetLang = i18n.language;
       
-      const translatedGroups = await Promise.all(
-        groupedNews.map(async (group) => {
-          const translatedArticles = await Promise.all(
-            group.articles.map(async (article) => {
-              const { data, error } = await supabase.functions.invoke('translate-news', {
-                body: { 
-                  title: article.title,
-                  description: article.description,
-                  targetLanguage: targetLang
-                }
-              });
+      // Batch translate all articles in one API call
+      const articlesToTranslate = allArticles.map(article => ({
+        uuid: article.uuid,
+        title: article.title,
+        description: article.description || ''
+      }));
 
-              if (error || !data?.success) {
-                console.error('Translation error:', error);
-                return article;
-              }
+      console.log(`PortfolioNews: Batch translating ${articlesToTranslate.length} articles to ${targetLang}`);
 
-              return {
-                ...article,
-                translatedTitle: data.translatedTitle,
-                translatedDescription: data.translatedDescription
-              };
-            })
-          );
+      const { data, error } = await supabase.functions.invoke('translate-news', {
+        body: { 
+          articles: articlesToTranslate,
+          targetLanguage: targetLang
+        }
+      });
 
-          return {
-            ...group,
-            articles: translatedArticles
-          };
+      if (error || !data?.success) {
+        console.error('Batch translation error:', error);
+        toast.error(t("dashboard.translationFailed"));
+        setTranslating(false);
+        return;
+      }
+
+      // Map translations back to articles by UUID
+      const translationMap = new Map<string, any>();
+      data.translations.forEach((t: any) => {
+        translationMap.set(t.uuid, t);
+      });
+
+      console.log(`PortfolioNews: Translation complete - ${data.meta.cached} cached, ${data.meta.fresh} fresh`);
+
+      // Apply translations to grouped news
+      const translatedGroups = groupedNews.map(group => ({
+        ...group,
+        articles: group.articles.map(article => {
+          const translation = translationMap.get(article.uuid);
+          if (translation) {
+            return {
+              ...article,
+              translatedTitle: translation.translatedTitle,
+              translatedDescription: translation.translatedDescription
+            };
+          }
+          return article;
         })
-      );
+      }));
 
       setGroupedNews(translatedGroups);
       setShowTranslated(true);
-      toast.success(t("dashboard.newsTranslated"));
+      
+      if (data.meta.cached > 0) {
+        toast.success(t("dashboard.newsTranslated") + ` (${data.meta.cached} cached)`);
+      } else {
+        toast.success(t("dashboard.newsTranslated"));
+      }
     } catch (err) {
       console.error('Translation failed:', err);
       toast.error(t("dashboard.translationFailed"));
