@@ -134,12 +134,37 @@ const Import = () => {
     setTimeout(() => setApiKeyCopied(false), 2000);
   };
 
-  const downloadNinjaScript = () => {
-    const link = document.createElement('a');
-    link.href = '/WebhookJournalSync.cs';
-    link.download = 'WebhookJournalSync.cs';
-    link.click();
-    toast.success(t("import.ntScriptDownloaded"));
+  const downloadNinjaScript = async () => {
+    if (!apiKey) {
+      toast.error(t("import.ntNoApiKeyError"));
+      return;
+    }
+    
+    try {
+      // 1. Load template file
+      const response = await fetch('/WebhookJournalSync.cs');
+      let content = await response.text();
+      
+      // 2. Replace placeholder with actual API key
+      content = content.replace(
+        'ApiKey = "YOUR_API_KEY_HERE"',
+        `ApiKey = "${apiKey}"`
+      );
+      
+      // 3. Create blob and download
+      const blob = new Blob([content], { type: 'text/plain' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'WebhookJournalSync.cs';
+      a.click();
+      window.URL.revokeObjectURL(url);
+      
+      toast.success(t("import.ntScriptDownloadedWithKey"));
+    } catch (error) {
+      console.error('Error downloading NinjaScript:', error);
+      toast.error(t("import.ntScriptDownloadError"));
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -355,9 +380,18 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                     <AlertDialogContent>
                       <AlertDialogHeader>
                         <AlertDialogTitle>{t("import.ntRegenerateKeyConfirm")}</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          {t("import.ntRegenerateKeyWarning")}
-                        </AlertDialogDescription>
+              <AlertDialogDescription>
+                {t("import.ntRegenerateKeyWarning")}
+                <div className="mt-3 p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                  <p className="text-amber-600 dark:text-amber-400 text-sm font-medium">
+                    {t("import.ntRegenerateKeyNinjaTraderNote")}
+                  </p>
+                  <ul className="mt-2 text-xs text-muted-foreground list-disc list-inside space-y-1">
+                    <li>{t("import.ntRegenerateKeyOptionA")}</li>
+                    <li>{t("import.ntRegenerateKeyOptionB")}</li>
+                  </ul>
+                </div>
+              </AlertDialogDescription>
                       </AlertDialogHeader>
                       <AlertDialogFooter>
                         <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
@@ -405,10 +439,26 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold">{t("import.ntScriptTitle")}</h3>
                 <p className="text-sm text-muted-foreground">{t("import.ntScriptDescription")}</p>
-                <Button onClick={downloadNinjaScript} variant="outline" className="w-full">
-                  <Download className="mr-2 h-4 w-4" />
-                  {t("import.ntDownloadScript")}
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button 
+                    onClick={downloadNinjaScript} 
+                    variant="outline" 
+                    className="flex-1"
+                    disabled={!apiKey}
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    {t("import.ntDownloadScript")}
+                  </Button>
+                  {apiKey && (
+                    <Badge variant="secondary" className="text-xs shrink-0">
+                      <Key className="h-3 w-3 mr-1" />
+                      {t("import.ntScriptIncludesKey")}
+                    </Badge>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {t("import.ntScriptKeyEmbeddedInfo")}
+                </p>
               </div>
 
               {/* Pending Executions */}
