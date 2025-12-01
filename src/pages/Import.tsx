@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, HelpCircle, Copy, Check } from "lucide-react";
+import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { Badge } from "@/components/ui/badge";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import {
   Dialog,
   DialogContent,
@@ -23,8 +35,108 @@ const Import = () => {
   const [file, setFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [apiKeyCopied, setApiKeyCopied] = useState(false);
+  const [apiKey, setApiKey] = useState<string>('');
+  const [showApiKey, setShowApiKey] = useState(false);
+  const [pendingExecutions, setPendingExecutions] = useState<any[]>([]);
+  const [loadingApiKey, setLoadingApiKey] = useState(false);
   
   const webhookUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-trades`;
+
+  // Load API key and pending executions
+  useEffect(() => {
+    if (session?.user) {
+      loadApiKey();
+      loadPendingExecutions();
+    }
+  }, [session]);
+
+  const loadApiKey = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('user_settings')
+        .select('webhook_api_key')
+        .eq('user_id', session?.user.id)
+        .single();
+      
+      if (error) throw error;
+      if (data?.webhook_api_key) {
+        setApiKey(data.webhook_api_key);
+      }
+    } catch (error) {
+      console.error('Error loading API key:', error);
+    }
+  };
+
+  const loadPendingExecutions = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('ninjatrader_executions')
+        .select('*')
+        .eq('user_id', session?.user.id)
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      setPendingExecutions(data || []);
+    } catch (error) {
+      console.error('Error loading pending executions:', error);
+    }
+  };
+
+  const regenerateApiKey = async () => {
+    setLoadingApiKey(true);
+    try {
+      const { data, error } = await supabase
+        .from('user_settings')
+        .update({ webhook_api_key: null })
+        .eq('user_id', session?.user.id)
+        .select('webhook_api_key')
+        .single();
+      
+      if (error) throw error;
+      
+      // The database will auto-generate a new key
+      await loadApiKey();
+      toast.success(t("import.ntApiKeyRegenerated"));
+    } catch (error: any) {
+      console.error('Error regenerating API key:', error);
+      toast.error(t("import.ntApiKeyRegenerateError"));
+    } finally {
+      setLoadingApiKey(false);
+    }
+  };
+
+  const deletePendingExecution = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from('ninjatrader_executions')
+        .delete()
+        .eq('id', id);
+      
+      if (error) throw error;
+      
+      await loadPendingExecutions();
+      toast.success(t("import.ntExecutionDeleted"));
+    } catch (error) {
+      console.error('Error deleting execution:', error);
+      toast.error(t("import.ntExecutionDeleteError"));
+    }
+  };
+
+  const copyApiKey = () => {
+    navigator.clipboard.writeText(apiKey);
+    setApiKeyCopied(true);
+    toast.success(t("import.ntApiKeyCopied"));
+    setTimeout(() => setApiKeyCopied(false), 2000);
+  };
+
+  const downloadNinjaScript = () => {
+    const link = document.createElement('a');
+    link.href = '/WebhookJournalSync.cs';
+    link.download = 'WebhookJournalSync.cs';
+    link.click();
+    toast.success(t("import.ntScriptDownloaded"));
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -214,25 +326,157 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
       </div>
 
       {session && (
-        <Card className="mb-6 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-background to-primary/5">
-          <CardHeader>
-            <CardTitle className="text-xl">{t("import.webhookTitle")}</CardTitle>
-            <CardDescription className="text-base">{t("import.webhookDescription")}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center gap-2 p-4 bg-background rounded-lg border-2">
-              <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all font-mono">
-                {webhookUrl}
-              </code>
-              <Button onClick={copyWebhookUrl} size="icon" variant="default">
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-              </Button>
-            </div>
-            <p className="text-sm text-muted-foreground font-medium">
-              {t("import.webhookInstructions")}
-            </p>
-          </CardContent>
-        </Card>
+        <>
+          {/* NinjaTrader Integration Card */}
+          <Card className="mb-6 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-background to-primary/5">
+            <CardHeader>
+              <CardTitle className="text-xl flex items-center gap-2">
+                <Key className="h-5 w-5" />
+                {t("import.ntTitle")}
+              </CardTitle>
+              <CardDescription className="text-base">{t("import.ntDescription")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* API Key Section */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-semibold">{t("import.ntApiKeyTitle")}</h3>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="outline" size="sm" disabled={loadingApiKey}>
+                        <RefreshCw className={`h-4 w-4 mr-2 ${loadingApiKey ? 'animate-spin' : ''}`} />
+                        {t("import.ntRegenerateKey")}
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>{t("import.ntRegenerateKeyConfirm")}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {t("import.ntRegenerateKeyWarning")}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                        <AlertDialogAction onClick={regenerateApiKey}>
+                          {t("import.ntRegenerateKey")}
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </div>
+                <div className="flex items-center gap-2 p-4 bg-background rounded-lg border-2">
+                  <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all font-mono">
+                    {showApiKey ? apiKey : '•'.repeat(48)}
+                  </code>
+                  <Button onClick={() => setShowApiKey(!showApiKey)} size="icon" variant="ghost">
+                    {showApiKey ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </Button>
+                  <Button onClick={copyApiKey} size="icon" variant="default">
+                    {apiKeyCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                  </Button>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  {t("import.ntApiKeyInfo")}
+                </p>
+              </div>
+
+              <Separator />
+
+              {/* Webhook URL Section */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold">{t("import.ntWebhookUrlTitle")}</h3>
+                <div className="flex items-center gap-2 p-4 bg-background rounded-lg border-2">
+                  <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all font-mono">
+                    {webhookUrl}
+                  </code>
+                  <Button onClick={copyWebhookUrl} size="icon" variant="default">
+                    {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                  </Button>
+                </div>
+              </div>
+
+              <Separator />
+
+              {/* Download NinjaScript */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold">{t("import.ntScriptTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("import.ntScriptDescription")}</p>
+                <Button onClick={downloadNinjaScript} variant="outline" className="w-full">
+                  <Download className="mr-2 h-4 w-4" />
+                  {t("import.ntDownloadScript")}
+                </Button>
+              </div>
+
+              {/* Pending Executions */}
+              {pendingExecutions.length > 0 && (
+                <>
+                  <Separator />
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-sm font-semibold">{t("import.ntPendingTitle")}</h3>
+                      <Badge variant="secondary">{pendingExecutions.length}</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{t("import.ntPendingDescription")}</p>
+                    <div className="space-y-2">
+                      {pendingExecutions.map((exec) => (
+                        <div key={exec.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                          <div className="flex-1">
+                            <p className="text-sm font-medium">{exec.symbol} ({exec.market})</p>
+                            <p className="text-xs text-muted-foreground">
+                              {exec.action} {exec.quantity} @ {exec.price} • {new Date(exec.timestamp).toLocaleString()}
+                            </p>
+                          </div>
+                          <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                              <Button variant="ghost" size="icon">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>{t("import.ntDeleteExecutionConfirm")}</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  {t("import.ntDeleteExecutionWarning")}
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deletePendingExecution(exec.id)}>
+                                  {t("common.delete")}
+                                </AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </CardContent>
+          </Card>
+
+          {/* Generic Webhook Card (for other platforms) */}
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="text-lg">{t("import.webhookTitle")}</CardTitle>
+              <CardDescription>{t("import.webhookDescription")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex items-center gap-2 p-3 bg-muted rounded-lg">
+                <code className="flex-1 text-xs break-all font-mono">
+                  {webhookUrl}
+                </code>
+                <Button onClick={copyWebhookUrl} size="icon" variant="ghost" className="h-8 w-8">
+                  {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {t("import.webhookInstructions")}
+              </p>
+            </CardContent>
+          </Card>
+        </>
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
