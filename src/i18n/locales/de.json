@@ -542,73 +542,73 @@
     "footerImprint": "Impressum",
     "footerCopyright": "© 2025 TradeNot.es. Alle Rechte vorbehalten.",
     "features": {
-      "journal": {
-        "title": "Trading Journal",
-        "description": "Dokumentiere jeden Trade mit detaillierten Notizen, Screenshots und Emotionsanalyse für nachhaltigen Lernerfolg"
-      },
-      "analytics": {
-        "title": "Performance Analytics",
-        "description": "Umfassende Statistiken mit Win-Rate, R-Multiple, Profit-Factor, Expectancy und kritischen Risikomanagement-KPIs"
-      },
-      "equity": {
-        "title": "Equity Curve",
-        "description": "Visualisiere deine kumulative Kapitalentwicklung - erkenne Drawdown-Phasen und Wachstumstrends auf einen Blick"
-      },
-      "consistency": {
-        "title": "Consistency Tracker",
-        "description": "GitHub-Style Heatmap deiner Trading-Konsistenz über 12 Wochen - identifiziere profitable Muster und meide Verlusttage"
-      },
-      "calendar": {
-        "title": "Trading Kalender",
-        "description": "Behalte den Überblick über deine Trades im Kalender-Format mit farblicher Kennzeichnung profitabler Tage"
-      },
-      "news": {
-        "title": "Smart Portfolio News Intelligence",
-        "description": "KI-kuratierte Finanznachrichten für dein Portfolio mit intelligentem Proxy-Mapping für Futures (NQ→QQQ, GC→GLD), automatischen Smart-Tags (Earnings, Makro, Politik), Gruppierung nach Symbol und Sofortübersetzung in mehrere Sprachen - verpasse nie wieder marktbewegende Events"
-      },
-      "politicalEvents": {
-        "title": "Politischer Event-Kalender",
-        "description": "Bleib Makro-Katalysatoren voraus mit automatisiertem Political Event Tracking - Trump-Reden, Fed-Ankündigungen, Powell-Kommentare, Wahlen. Visuelle Kalender-Indikatoren zeigen angekündigte und vergangene Events, um Trades perfekt zu timen"
-      },
-      "newsTranslation": {
-        "title": "Sofort-Nachrichtenübersetzung",
-        "description": "Überwinde Sprachbarrieren mit Ein-Klick-KI-Übersetzung in Deutsch, Englisch, Spanisch, Französisch oder Niederländisch - verstehe globale Marktnachrichten in deiner bevorzugten Sprache für bessere Trading-Entscheidungen"
-      },
-      "ai": {
-        "title": "AI Trading Assistant",
-        "description": "Stelle natürliche Fragen zu deiner Performance und erhalte sofortige, datengetriebene Antworten und Insights"
-      },
-      "reports": {
-        "title": "Detaillierte Reports",
-        "description": "Analysiere Performance nach Symbol, Wochentag, Uhrzeit, Holding-Period und Gewinn-/Verlustserien - finde deine profitabelsten Muster"
-      },
-      "import": {
-        "title": "CSV Import/Export",
-        "description": "Importiere Trades aus deinem Broker via CSV oder exportiere deine Daten für weitere Analysen"
-      },
-      "weekly": {
-        "title": "Weekly Performance",
-        "description": "Wochenweise Übersicht deiner Trading-Performance mit Trades pro Woche und P&L-Entwicklung"
-      },
-      "pnl": {
-        "title": "P&L Charts",
-        "description": "Monatliche P&L-Entwicklung in übersichtlichen Bar-Charts - verfolge deinen Fortschritt über Zeit"
-      },
-      "prep": {
-        "title": "Pre-Market Daily Prep",
-        "description": "Starte deinen Trading-Tag vorbereitet: Politischer Event-Kalender, Wirtschaftsdaten, Sektoren-Sentiment-Analyse und News für deine Watchlist-Symbole - alles auf einen Blick"
-      },
-      "glossary": {
-        "title": "Trading Glossar",
-        "description": "Alle Trading-Begriffe von tradenot.es erklärt - P&L, Win Rate, Equity Curve, Risk/Reward und mehr"
-      },
       "easyEntry": {
-        "title": "Blitzschnelle Trade-Eingabe",
-        "description": "Trades in Sekunden erfassen mit intelligenten Features: Live P&L-Vorschau zeigt sofort Gewinn/Verlust, Quick-Chips für häufig gehandelte Symbole, intuitive Long/Short Toggle-Buttons, automatische Exit-Price-Vorausfüllung und 'Letzten Trade kopieren' für maximale Effizienz beim Journaling."
+        "title": "Schnelle Trade-Eingabe",
+        "description": "Trades in Sekunden erfassen mit Live P&L-Vorschau, Symbol-Quick-Chips und Auto-Fill. Letzten Trade kopieren für sofortiges Journaling."
       },
       "chartAnalysis": {
         "title": "KI-Chart-Analyse",
-        "description": "Einzigartig: Lade Screenshots von TradingView oder NinjaTrader hoch und spare Zeit – unsere KI extrahiert automatisch Entry, Exit, Symbol und alle Trade-Details. Keine manuelle Eingabe mehr nötig!"
+        "description": "TradingView oder NinjaTrader Screenshots hochladen—KI extrahiert Entry, Exit und Trade-Details automatisch. Keine manuelle Eingabe nötig."
+      },
+      "journal": {
+        "title": "Trading Journal",
+        "description": "Trades mit Notizen, Screenshots und Bewertungen dokumentieren. Aus jedem Trade lernen für konstante Verbesserung."
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Win Rate, R-Multiple, Profit Factor und Expectancy tracken. Deinen Trading-Edge mit umfassenden Statistiken verstehen."
+      },
+      "equity": {
+        "title": "Equity Curve",
+        "description": "Kapitalwachstum über Zeit visualisieren. Drawdowns und Wachstumstrends sofort mit kumulativen Performance-Charts erkennen."
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "12-Wochen Trading-Heatmap zeigt profitable Muster und Verlustserien. Konsistente Gewinngewohnheiten entwickeln."
+      },
+      "news": {
+        "title": "Portfolio News Intelligence",
+        "description": "Auto-kuratierte News für deine Symbole mit Futures-Proxy-Mapping (NQ→QQQ), Smart-Tags (Earnings, Makro) und KI-Übersetzung."
+      },
+      "politicalEvents": {
+        "title": "Politisches Event-Tracking",
+        "description": "Trump-Reden, Fed-Ankündigungen, Powell-Kommentare und Wahlen tracken. Trades um Makro-Katalysatoren timen mit visuellem Kalender."
+      },
+      "newsTranslation": {
+        "title": "KI-Nachrichtenübersetzung",
+        "description": "Ein-Klick-Übersetzung in 5 Sprachen (EN, DE, ES, FR, NL). Globale Marktnachrichten sofort verstehen."
+      },
+      "calendar": {
+        "title": "Trading Kalender",
+        "description": "Kalenderansicht mit farbcodierten Gewinn-/Verlusttagen. Trading-Aktivität schnell auf einen Blick überprüfen."
+      },
+      "ai": {
+        "title": "AI Trading Assistant",
+        "description": "Fragen zu deiner Performance stellen. Sofortige datengetriebene Insights und Analysen aus deiner Trading-Historie erhalten."
+      },
+      "reports": {
+        "title": "Erweiterte Reports",
+        "description": "Nach Setup, Symbol, Tageszeit, Haltedauer und Serien analysieren. Deine profitabelsten Trading-Muster finden."
+      },
+      "pnl": {
+        "title": "P&L Charts",
+        "description": "Monatliche Gewinn-/Verlust-Visualisierung mit Bar-Charts. Fortschritt tracken und saisonale Muster identifizieren."
+      },
+      "weekly": {
+        "title": "Wöchentliche Performance",
+        "description": "Wochenweise Aufschlüsselung von Trades und P&L. Kurzfristige Performance-Trends effektiv monitoren."
+      },
+      "prep": {
+        "title": "Tägliche Markt-Vorbereitung",
+        "description": "Pre-Market Prep mit politischen Events, Sektoren-Sentiment und News für deine Watchlist. Informiert ins Trading starten."
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Trades vom Broker importieren oder Daten zur Analyse exportieren. Nahtlose Integration in bestehende Workflows."
+      },
+      "glossary": {
+        "title": "Trading Glossar",
+        "description": "Trading-Begriffe lernen: Win Rate, R-Multiple, Profit Factor, Expectancy und mehr. Trading-Wissen aufbauen."
       }
     },
     "allFeatures": {

@@ -542,73 +542,73 @@
     "footerImprint": "Imprint",
     "footerCopyright": "© 2025 TradeNot.es. All rights reserved.",
     "features": {
-      "journal": {
-        "title": "Trading Journal",
-        "description": "Document every trade with detailed notes, screenshots and emotion analysis for sustainable learning success"
-      },
-      "analytics": {
-        "title": "Performance Analytics",
-        "description": "Comprehensive statistics with Win Rate, R-Multiple, Profit Factor, Expectancy and critical risk management KPIs"
-      },
-      "equity": {
-        "title": "Equity Curve",
-        "description": "Visualize your cumulative capital development - recognize drawdown phases and growth trends at a glance"
-      },
-      "consistency": {
-        "title": "Consistency Tracker",
-        "description": "GitHub-style heatmap of your trading consistency over 12 weeks - identify profitable patterns and avoid losing days"
-      },
-      "calendar": {
-        "title": "Trading Calendar",
-        "description": "Keep track of your trades in calendar format with color-coded profitable days"
-      },
-      "news": {
-        "title": "Smart Portfolio News Intelligence",
-        "description": "AI-curated financial news for your portfolio with intelligent proxy-mapping for futures (NQ→QQQ, GC→GLD), automatic smart-tags (Earnings, Macro, Political), grouped by symbol, and instant multi-language translation - never miss market-moving events again"
-      },
-      "politicalEvents": {
-        "title": "Political Event Calendar",
-        "description": "Stay ahead of macro catalysts with automated political event tracking - Trump speeches, Fed announcements, Powell remarks, elections. Visual calendar indicators show both announced and past events to time your trades around major market drivers"
-      },
-      "newsTranslation": {
-        "title": "Instant News Translation",
-        "description": "Break language barriers with one-click AI news translation to German, English, Spanish, French, or Dutch - understand global market news in your preferred language for better trading decisions"
-      },
-      "ai": {
-        "title": "AI Trading Assistant",
-        "description": "Ask natural questions about your performance and receive instant, data-driven answers and insights"
-      },
-      "reports": {
-        "title": "Detailed Reports",
-        "description": "Analyze performance by symbol, weekday, time, holding period and win/loss streaks - find your most profitable patterns"
-      },
-      "import": {
-        "title": "CSV Import/Export",
-        "description": "Import trades from your broker via CSV or export your data for further analysis"
-      },
-      "weekly": {
-        "title": "Weekly Performance",
-        "description": "Week-by-week overview of your trading performance with trades per week and P&L development"
-      },
-      "pnl": {
-        "title": "P&L Charts",
-        "description": "Monthly P&L development in clear bar charts - track your progress over time"
-      },
-      "prep": {
-        "title": "Pre-Market Daily Prep",
-        "description": "Start your trading day prepared: political event calendar, economic data releases, sector sentiment analysis, and news for your watchlist symbols - all in one view"
-      },
-      "glossary": {
-        "title": "Trading Glossary",
-        "description": "All trading terms from tradenot.es explained - P&L, Win Rate, Equity Curve, Risk/Reward and more"
-      },
       "easyEntry": {
-        "title": "Lightning-Fast Trade Entry",
-        "description": "Capture trades in seconds with intelligent features: live P&L preview shows instant profit/loss, quick-chips for frequently traded symbols, intuitive Long/Short toggle buttons, automatic exit price pre-fill, and 'Copy Last Trade' for maximum journaling efficiency."
+        "title": "Fast Trade Entry",
+        "description": "Log trades in seconds with live P&L preview, quick symbol selection, and auto-fill. Copy last trade for instant journaling."
       },
       "chartAnalysis": {
         "title": "AI Chart Analysis",
-        "description": "Unique: Upload screenshots from TradingView or NinjaTrader and save time – our AI automatically extracts entry, exit, symbol and all trade details. No manual input needed!"
+        "description": "Upload TradingView or NinjaTrader screenshots—AI extracts entry, exit, and trade details automatically. No manual input needed."
+      },
+      "journal": {
+        "title": "Trading Journal",
+        "description": "Document trades with notes, screenshots, and ratings. Learn from every trade for consistent improvement."
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Track Win Rate, R-Multiple, Profit Factor, and Expectancy. Understand your edge with comprehensive trading statistics."
+      },
+      "equity": {
+        "title": "Equity Curve",
+        "description": "Visualize capital growth over time. Spot drawdowns and growth trends instantly with cumulative performance charts."
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "12-week trading heatmap shows profitable patterns and losing streaks. Develop consistent winning habits."
+      },
+      "news": {
+        "title": "Portfolio News Intelligence",
+        "description": "Auto-curated news for your traded symbols with futures proxy-mapping (NQ→QQQ), smart-tags (Earnings, Macro), and AI translation."
+      },
+      "politicalEvents": {
+        "title": "Political Event Tracking",
+        "description": "Track Trump speeches, Fed announcements, Powell remarks, and elections. Time trades around macro catalysts with visual calendar."
+      },
+      "newsTranslation": {
+        "title": "AI News Translation",
+        "description": "One-click translation into 5 languages (EN, DE, ES, FR, NL). Understand global market news instantly."
+      },
+      "calendar": {
+        "title": "Trading Calendar",
+        "description": "Calendar view with color-coded profit/loss days. Quickly review your trading activity at a glance."
+      },
+      "ai": {
+        "title": "AI Trading Assistant",
+        "description": "Ask questions about your performance. Get instant data-driven insights and analysis from your trading history."
+      },
+      "reports": {
+        "title": "Advanced Reports",
+        "description": "Analyze by setup, symbol, time-of-day, holding period, and streaks. Find your most profitable trading patterns."
+      },
+      "pnl": {
+        "title": "P&L Charts",
+        "description": "Monthly profit/loss visualization with bar charts. Track your progress and identify seasonal patterns."
+      },
+      "weekly": {
+        "title": "Weekly Performance",
+        "description": "Week-by-week breakdown of trades and P&L. Monitor short-term performance trends effectively."
+      },
+      "prep": {
+        "title": "Daily Market Prep",
+        "description": "Pre-market prep with political events, sector sentiment, and news for your watchlist. Start trading informed."
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Import trades from your broker or export data for analysis. Seamless integration with existing workflows."
+      },
+      "glossary": {
+        "title": "Trading Glossary",
+        "description": "Learn trading terms: Win Rate, R-Multiple, Profit Factor, Expectancy, and more. Build your trading knowledge."
       }
     },
     "allFeatures": {
