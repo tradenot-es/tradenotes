@@ -44,7 +44,8 @@ serve(async (req) => {
       'de': 'German',
       'fr': 'French',
       'es': 'Spanish',
-      'nl': 'Dutch'
+      'nl': 'Dutch',
+      'it': 'Italian'
     };
 
     const targetLangName = languageMap[targetLanguage] || 'English';
