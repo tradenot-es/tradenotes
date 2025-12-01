@@ -5,11 +5,12 @@ import de from './locales/de.json';
 import fr from './locales/fr.json';
 import es from './locales/es.json';
 import nl from './locales/nl.json';
+import it from './locales/it.json';
 
 // Detect browser language
 const getBrowserLanguage = (): string => {
   const browserLang = navigator.language.split('-')[0]; // Get language code without region
-  const supportedLanguages = ['en', 'de', 'fr', 'es', 'nl'];
+  const supportedLanguages = ['en', 'de', 'fr', 'es', 'nl', 'it'];
   return supportedLanguages.includes(browserLang) ? browserLang : 'en';
 };
 
@@ -23,6 +24,7 @@ const initI18n = async () => {
         fr: { translation: fr },
         es: { translation: es },
         nl: { translation: nl },
+        it: { translation: it },
       },
       lng: getBrowserLanguage(),
       fallbackLng: 'en',

@@ -8,6 +8,7 @@ const languages = [
   { code: "fr", name: "Français" },
   { code: "es", name: "Español" },
   { code: "nl", name: "Nederlands" },
+  { code: "it", name: "Italiano" },
 ];
 
 export function LanguageSwitcher() {
