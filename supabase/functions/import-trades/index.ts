@@ -3,7 +3,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.1";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-api-key',
 };
 
 interface TradingViewAlert {
@@ -28,6 +28,89 @@ interface NinjaTraderExecution {
   time: string;
 }
 
+interface NinjaTraderSingleExecution {
+  source: 'ninjatrader';
+  account: string;
+  instrument: string;
+  action: string;
+  quantity: number;
+  price: number;
+  timestamp: string;
+  executionId: string;
+  orderId?: string;
+  marketPosition: string;
+}
+
+// Futures point values (value of 1 point movement)
+const FUTURES_POINT_VALUES: Record<string, number> = {
+  ES: 50, MES: 5, NQ: 20, MNQ: 2, YM: 5, MYM: 0.5,
+  RTY: 50, M2K: 5,
+  GC: 100, MGC: 10, SI: 5000, SIL: 1000, HG: 25000, QC: 12500,
+  CL: 1000, MCL: 100, NG: 10000, QG: 2500, RB: 42000, HO: 42000,
+  ZB: 1000, ZN: 1000, ZF: 1000, ZT: 2000, UB: 1000,
+  ZC: 50, ZS: 50, ZW: 50, ZL: 600, ZM: 100,
+  "6E": 125000, "6B": 62500, "6J": 12500000, "6A": 100000, "6C": 100000, "6S": 125000,
+};
+
+const OPTIONS_MULTIPLIER = 100;
+
+// Parse NinjaTrader instrument format to extract symbol and market
+function parseNinjaTraderInstrument(instrument: string): { symbol: string; market: string } {
+  let normalized = instrument
+    .replace(/\s+\d{2}-\d{2}$/, '')  // "NQ 03-25" → "NQ"
+    .replace(/\s+/g, '')              // Remove spaces
+    .replace(/\//g, '')               // "EUR/USD" → "EURUSD"
+    .toUpperCase();
+  
+  // Check for futures contract format (e.g., "ESH25" → "ES")
+  const futuresMatch = normalized.match(/^([A-Z]{1,3})[FGHJKMNQUVXZ]\d{2}$/);
+  if (futuresMatch) {
+    return { symbol: futuresMatch[1], market: 'Futures' };
+  }
+  
+  // Check if it's a known futures symbol
+  if (FUTURES_POINT_VALUES[normalized]) {
+    return { symbol: normalized, market: 'Futures' };
+  }
+  
+  // Check for forex format
+  if (normalized.length === 6 && (normalized.includes('USD') || normalized.includes('EUR') || normalized.includes('GBP'))) {
+    return { symbol: normalized, market: 'Forex' };
+  }
+  
+  // Check for crypto
+  if (normalized.includes('BTC') || normalized.includes('ETH') || normalized.endsWith('USD') && normalized.length <= 7) {
+    return { symbol: normalized, market: 'Crypto' };
+  }
+  
+  // Default to Stock
+  return { symbol: normalized, market: 'Stock' };
+}
+
+// Calculate PnL with correct multipliers
+function calculatePnL(
+  symbol: string,
+  market: string,
+  side: 'long' | 'short',
+  entryPrice: number,
+  exitPrice: number,
+  quantity: number,
+  fees: number
+): number {
+  let multiplier = 1;
+  
+  if (market === 'Futures') {
+    multiplier = FUTURES_POINT_VALUES[symbol] || 1;
+  } else if (market === 'Option') {
+    multiplier = OPTIONS_MULTIPLIER;
+  }
+  
+  const direction = side === 'long' ? 1 : -1;
+  const priceDiff = exitPrice - entryPrice;
+  
+  return (priceDiff * quantity * multiplier * direction) - fees;
+}
+
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -36,16 +119,49 @@ serve(async (req) => {
   try {
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY')!;
-    const authHeader = req.headers.get('Authorization')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
     
-    const supabase = createClient(supabaseUrl, supabaseKey, {
-      global: { headers: { Authorization: authHeader } }
-    });
+    // Check for API key authentication (for external webhooks like NinjaTrader)
+    const apiKey = req.headers.get('X-API-Key');
+    let userId: string;
+    
+    if (apiKey) {
+      // External webhook authentication via API key
+      const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey);
+      const { data: settings, error: settingsError } = await supabaseAdmin
+        .from('user_settings')
+        .select('user_id')
+        .eq('webhook_api_key', apiKey)
+        .single();
+      
+      if (settingsError || !settings) {
+        console.error('Invalid API key:', apiKey);
+        return new Response(
+          JSON.stringify({ error: 'Invalid API key' }),
+          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      }
+      userId = settings.user_id;
+    } else {
+      // Standard JWT authentication
+      const authHeader = req.headers.get('Authorization');
+      if (!authHeader) {
+        throw new Error('No authorization provided');
+      }
+      
+      const supabase = createClient(supabaseUrl, supabaseKey, {
+        global: { headers: { Authorization: authHeader } }
+      });
 
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
-    if (userError || !user) {
-      throw new Error('Unauthorized');
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      if (userError || !user) {
+        throw new Error('Unauthorized');
+      }
+      userId = user.id;
     }
+    
+    // Create admin client for database operations
+    const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     const payload = await req.json();
     console.log('Received payload:', payload);
@@ -56,7 +172,7 @@ serve(async (req) => {
     if (payload.symbol && payload.entryPrice && payload.exitPrice) {
       const trade = payload as TradingViewAlert;
       tradesToInsert.push({
-        user_id: user.id,
+        user_id: userId,
         symbol: trade.symbol,
         side: trade.side,
         qty: trade.qty,
@@ -76,7 +192,7 @@ serve(async (req) => {
       const [entry, exit] = payload as NinjaTraderExecution[];
       
       tradesToInsert.push({
-        user_id: user.id,
+        user_id: userId,
         symbol: entry.instrument,
         side: entry.action === 'BUY' ? 'long' : 'short',
         qty: entry.quantity,
@@ -92,7 +208,7 @@ serve(async (req) => {
     // Batch import (array of trades)
     else if (Array.isArray(payload)) {
       tradesToInsert = payload.map((trade: any) => ({
-        user_id: user.id,
+        user_id: userId,
         symbol: trade.symbol,
         side: trade.side,
         market: trade.market,

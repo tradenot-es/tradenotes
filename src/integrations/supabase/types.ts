@@ -170,6 +170,57 @@ export type Database = {
         }
         Relationships: []
       }
+      ninjatrader_executions: {
+        Row: {
+          account: string
+          action: string
+          created_at: string | null
+          execution_id: string
+          id: string
+          instrument: string
+          market: string
+          market_position: string | null
+          order_id: string | null
+          price: number
+          quantity: number
+          symbol: string
+          timestamp: string
+          user_id: string
+        }
+        Insert: {
+          account: string
+          action: string
+          created_at?: string | null
+          execution_id: string
+          id?: string
+          instrument: string
+          market: string
+          market_position?: string | null
+          order_id?: string | null
+          price: number
+          quantity: number
+          symbol: string
+          timestamp: string
+          user_id: string
+        }
+        Update: {
+          account?: string
+          action?: string
+          created_at?: string | null
+          execution_id?: string
+          id?: string
+          instrument?: string
+          market?: string
+          market_position?: string | null
+          order_id?: string | null
+          price?: number
+          quantity?: number
+          symbol?: string
+          timestamp?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
@@ -324,6 +375,7 @@ export type Database = {
           timezone: string | null
           updated_at: string | null
           user_id: string
+          webhook_api_key: string | null
         }
         Insert: {
           base_currency?: string | null
@@ -340,6 +392,7 @@ export type Database = {
           timezone?: string | null
           updated_at?: string | null
           user_id: string
+          webhook_api_key?: string | null
         }
         Update: {
           base_currency?: string | null
@@ -356,6 +409,7 @@ export type Database = {
           timezone?: string | null
           updated_at?: string | null
           user_id?: string
+          webhook_api_key?: string | null
         }
         Relationships: []
       }
@@ -365,6 +419,7 @@ export type Database = {
     }
     Functions: {
       clean_expired_news_cache: { Args: never; Returns: undefined }
+      cleanup_old_ninjatrader_executions: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
