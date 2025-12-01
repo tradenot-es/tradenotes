@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper, Languages, Tag } from "lucide-react";
+import { ExternalLink, TrendingUp, TrendingDown, Minus, Info, Newspaper, Languages, Tag, Clock } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -460,12 +460,22 @@ export function PortfolioNews() {
                             )}
                             
                             <div className="flex items-center gap-2 flex-wrap mb-2">
-                              <Badge variant="outline" className="text-xs">
-                                {new Date(article.published_at).toLocaleDateString('de-DE', { 
-                                  day: '2-digit', 
-                                  month: '2-digit', 
-                                  year: 'numeric' 
-                                })}
+                              <Badge variant="outline" className="text-xs flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                {new Date(article.published_at).toLocaleString(
+                                  i18n.language === 'de' ? 'de-DE' : 
+                                  i18n.language === 'es' ? 'es-ES' : 
+                                  i18n.language === 'fr' ? 'fr-FR' : 
+                                  i18n.language === 'nl' ? 'nl-NL' : 
+                                  'en-US', 
+                                  { 
+                                    day: '2-digit', 
+                                    month: '2-digit', 
+                                    year: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                  }
+                                )}
                               </Badge>
                               <Badge variant="outline" className="text-xs">
                                 {article.source}
