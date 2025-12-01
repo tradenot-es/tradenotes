@@ -23,6 +23,7 @@ import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { startOfDay, endOfDay } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
+import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 
 interface Trade {
   id: string;
@@ -38,6 +39,7 @@ interface Trade {
   qty: number;
   entry_price: number;
   exit_price: number;
+  account_type?: string | null;
 }
 
 export default function Reports() {
@@ -271,13 +273,22 @@ export default function Reports() {
       </div>
 
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3 lg:grid-cols-7">
+        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
           <HoverCard>
             <HoverCardTrigger asChild>
               <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("reports.overviewTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="accounts">{t("reports.accountTypes")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.accountTypesTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
           
@@ -445,6 +456,11 @@ export default function Reports() {
 
           {/* Trading Activity Heatmap */}
           <ConsistencyTracker trades={filteredTrades} />
+        </TabsContent>
+
+        {/* Account Types Tab */}
+        <TabsContent value="accounts" className="space-y-6">
+          <AccountTypeAnalysis trades={filteredTrades} />
         </TabsContent>
 
         {/* Daily Goals Tab */}

@@ -79,6 +79,9 @@
     "maxDrawdownTooltip": "Grootste kapitaaldaling van piek tot dal. Altijd negatief - meet maximaal risico en emotionele belasting van je strategie.",
     "equityCurve": "Vermogenscurve",
     "pnlByMonth": "P&L per maand",
+    "accountPerformance": "Account prestaties",
+    "accountPerformanceTooltip": "Prestatie-overzicht per accounttype (Sim, Evaluatie, Gefinancierd, Live). Klik voor details.",
+    "clickForDetails": "Klik voor details",
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
     "equity": "Vermogen",
     "pnl": "P&L",
@@ -313,6 +316,12 @@
       "medium": "Gemiddeld Buzz-Niveau",
       "articles": "{{count}} artikelen in laatste 12u"
     }
+  },
+  "accountTypes": {
+    "sim": "Simulatie",
+    "evaluation": "Evaluatie",
+    "performance": "Gefinancierd",
+    "live": "Live"
   },
   "import": {
     "title": "Transacties importeren",
@@ -766,6 +775,17 @@
     "bySetup": "Per Setup",
     "timeAnalysis": "Tijd Analyse",
     "riskAnalysis": "Risico Analyse",
+    "accountTypes": "Accounts",
+    "accountTypesTooltip": "Vergelijk prestaties tussen verschillende accounttypen (Sim, Evaluatie, Gefinancierd, Live)",
+    "accountTypesComparison": "Accounttype vergelijking",
+    "accountType": "Accounttype",
+    "pnlByAccountType": "P&L per accounttype",
+    "tradesByAccountType": "Trades per accounttype",
+    "equityCurvesByAccountType": "Kapitaalcurves per accounttype",
+    "avgTrade": "Gemiddelde trade",
+    "trades": "Trades",
+    "profitFactor": "Winstfactor",
+    "totalPnL": "Totaal P&L",
     "allTime": "Alle Tijd",
     "thisWeek": "Deze Week",
     "thisMonth": "Deze Maand",

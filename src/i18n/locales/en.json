@@ -99,6 +99,9 @@
     },
     "pnlByMonth": "P&L by Month",
     "pnlChartTooltip": "Monthly Profit & Loss overview. Shows performance for each month and helps identify seasonal patterns and long-term trends.",
+    "accountPerformance": "Account Performance",
+    "accountPerformanceTooltip": "Performance breakdown by account type (Sim, Evaluation, Funded, Live). Click to view detailed analysis.",
+    "clickForDetails": "Click for details",
     "noTrades": "No trades yet. Add your first trade!",
     "equity": "Equity",
     "pnl": "P&L",
@@ -295,6 +298,12 @@
     "live": "LIVE",
     "filter": "Filter by Account Type",
     "all": "All Accounts"
+  },
+  "accountTypes": {
+    "sim": "Simulation",
+    "evaluation": "Evaluation",
+    "performance": "Funded",
+    "live": "Live"
   },
   "import": {
     "sentiment": {
@@ -888,6 +897,17 @@
     "behavior": "Behavior",
     "symbols": "Symbols",
     "riskAnalysis": "Risk Analysis",
+    "accountTypes": "Accounts",
+    "accountTypesTooltip": "Compare performance across different account types (Sim, Evaluation, Funded, Live)",
+    "accountTypesComparison": "Account Type Comparison",
+    "accountType": "Account Type",
+    "pnlByAccountType": "P&L by Account Type",
+    "tradesByAccountType": "Trades by Account Type",
+    "equityCurvesByAccountType": "Equity Curves by Account Type",
+    "avgTrade": "Avg Trade",
+    "trades": "Trades",
+    "profitFactor": "Profit Factor",
+    "totalPnL": "Total P&L",
     "goalAchievementRate": "Goal Achievement Rate",
     "daysAchieved": "{{achieved}} of {{total}} days",
     "currentGoal": "Current Goal",

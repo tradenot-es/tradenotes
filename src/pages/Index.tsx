@@ -12,6 +12,7 @@ import { WeeklyPerformance } from "@/components/WeeklyPerformance";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
+import { AccountPerformanceWidget } from "@/components/AccountPerformanceWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -28,6 +29,7 @@ interface Trade {
   market: string;
   qty: number;
   entry_price: number;
+  account_type?: string | null;
   exit_price: number;
   entry_time: string;
   exit_time: string;
@@ -361,6 +363,9 @@ const Index = () => {
             <EquityCurveChart data={equityData} />
             <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
           </div>
+
+          {/* Account Performance Widget - Conditional */}
+          <AccountPerformanceWidget trades={trades} />
 
           {/* Sector Sentiment - Prominent placement after charts */}
           <SectorSentimentWidget />

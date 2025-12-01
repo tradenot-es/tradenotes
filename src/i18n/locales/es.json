@@ -79,6 +79,9 @@
     "maxDrawdownTooltip": "Mayor caída de capital de pico a valle. Siempre negativo - mide el riesgo máximo y la carga emocional de su estrategia.",
     "equityCurve": "Curva de capital",
     "pnlByMonth": "P&L por mes",
+    "accountPerformance": "Rendimiento de cuenta",
+    "accountPerformanceTooltip": "Desglose de rendimiento por tipo de cuenta (Sim, Evaluación, Financiada, Real). Haz clic para detalles.",
+    "clickForDetails": "Clic para detalles",
     "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
     "equity": "Capital",
     "pnl": "P&L",
@@ -313,6 +316,12 @@
       "medium": "Nivel de Rumor Medio",
       "articles": "{{count}} artículos en últimas 12h"
     }
+  },
+  "accountTypes": {
+    "sim": "Simulación",
+    "evaluation": "Evaluación",
+    "performance": "Financiada",
+    "live": "Real"
   },
   "import": {
     "title": "Importar operaciones",
@@ -766,6 +775,17 @@
     "bySetup": "Por Setup",
     "timeAnalysis": "Análisis Temporal",
     "riskAnalysis": "Análisis de Riesgo",
+    "accountTypes": "Cuentas",
+    "accountTypesTooltip": "Compara el rendimiento entre diferentes tipos de cuenta (Sim, Evaluación, Financiada, Real)",
+    "accountTypesComparison": "Comparación de tipos de cuenta",
+    "accountType": "Tipo de cuenta",
+    "pnlByAccountType": "P&L por tipo de cuenta",
+    "tradesByAccountType": "Operaciones por tipo de cuenta",
+    "equityCurvesByAccountType": "Curvas de capital por tipo de cuenta",
+    "avgTrade": "Operación promedio",
+    "trades": "Operaciones",
+    "profitFactor": "Factor de beneficio",
+    "totalPnL": "P&L Total",
     "allTime": "Todo el tiempo",
     "thisWeek": "Esta semana",
     "thisMonth": "Este mes",

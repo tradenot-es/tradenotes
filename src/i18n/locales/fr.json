@@ -79,6 +79,9 @@
     "maxDrawdownTooltip": "Plus grande baisse de capital du pic au creux. Toujours négatif - mesure le risque maximal et le fardeau émotionnel de votre stratégie.",
     "equityCurve": "Courbe d'équité",
     "pnlByMonth": "P&L par mois",
+    "accountPerformance": "Performance du compte",
+    "accountPerformanceTooltip": "Répartition des performances par type de compte (Sim, Évaluation, Financé, Réel). Cliquez pour détails.",
+    "clickForDetails": "Cliquez pour détails",
     "noTrades": "Pas encore de transactions. Ajoutez votre première transaction !",
     "equity": "Équité",
     "pnl": "P&L",
@@ -313,6 +316,12 @@
       "medium": "Niveau de Buzz Moyen",
       "articles": "{{count}} articles dans les dernières 12h"
     }
+  },
+  "accountTypes": {
+    "sim": "Simulation",
+    "evaluation": "Évaluation",
+    "performance": "Financé",
+    "live": "Réel"
   },
   "import": {
     "title": "Importer des transactions",
@@ -766,6 +775,17 @@
     "bySetup": "Par Setup",
     "timeAnalysis": "Analyse Temporelle",
     "riskAnalysis": "Analyse des Risques",
+    "accountTypes": "Comptes",
+    "accountTypesTooltip": "Comparez les performances entre différents types de compte (Sim, Évaluation, Financé, Réel)",
+    "accountTypesComparison": "Comparaison des types de compte",
+    "accountType": "Type de compte",
+    "pnlByAccountType": "P&L par type de compte",
+    "tradesByAccountType": "Trades par type de compte",
+    "equityCurvesByAccountType": "Courbes d'équité par type de compte",
+    "avgTrade": "Trade moyen",
+    "trades": "Trades",
+    "profitFactor": "Facteur de profit",
+    "totalPnL": "P&L Total",
     "allTime": "Tout le temps",
     "thisWeek": "Cette semaine",
     "thisMonth": "Ce mois-ci",
