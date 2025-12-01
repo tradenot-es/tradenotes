@@ -28,7 +28,8 @@ using System.Net.Http;
 namespace NinjaTrader.NinjaScript.Strategies
 {
 	/// <summary>
-	/// TradeNotes Webhook Integration for NinjaTrader 8
+	/// TradeNot.es Sync for NinjaTrader 8
+	/// Automatically syncs all account trades to your TradeNot.es journal
 	/// 
 	/// Installation:
 	/// 1. Open NinjaScript Editor
@@ -38,12 +39,12 @@ namespace NinjaTrader.NinjaScript.Strategies
 	/// 5. Press F5 to compile
 	/// 
 	/// Configuration:
-	/// 1. Get your API Key from TradeNotes Import page
+	/// 1. Get your API Key from TradeNot.es Import page
 	/// 2. Add this strategy to your chart (does not trade, only listens)
 	/// 3. Enter your API Key in the strategy parameters
-	/// 4. All your trades will be automatically sent to TradeNotes
+	/// 4. All your trades will be automatically synced to TradeNot.es
 	/// </summary>
-	public class WebhookJournalSync : Strategy
+	public class TradeNotesSync : Strategy
 	{
 		private static readonly HttpClient httpClient = new HttpClient();
 		private object lockObject = new object();
@@ -52,8 +53,8 @@ namespace NinjaTrader.NinjaScript.Strategies
 		{
 			if (State == State.SetDefaults)
 			{
-				Description = @"Sends ALL account trades to TradeNotes. Install by adding System.Net.Http.dll reference.";
-				Name = "WebhookJournalSync";
+				Description = @"Automatically syncs ALL account trades to TradeNot.es. Install by adding System.Net.Http.dll reference.";
+				Name = "TradeNotesSync";
 				Calculate = Calculate.OnBarClose;
 				EntriesPerDirection = 1;
 				EntryHandling = EntryHandling.AllEntries;
@@ -72,7 +73,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 				
 				// Default values (must be configured by user)
 				WebhookUrl = "https://REDACTED.supabase.co/functions/v1/import-trades";
-				ApiKey = "YOUR_API_KEY_HERE"; // Get from TradeNotes Import page
+				ApiKey = "YOUR_API_KEY_HERE"; // Get from TradeNot.es Import page
 			}
 		else if (State == State.Configure)
 		{
@@ -84,7 +85,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 				if (Account != null && Account.Executions != null)
 				{
 					Account.ExecutionUpdate += OnAccountExecutionUpdate;
-					Print("TradeNotes Webhook: Subscribed to account executions");
+					Print("TradeNot.es Sync: Subscribed to account executions");
 				}
 			}
 			else if (State == State.Terminated)
@@ -237,7 +238,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 			// ISO 8601 timestamp format
 			string timeStr = time.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
-			// Build JSON payload for TradeNotes with accountType
+			// Build JSON payload with accountType
 			string jsonPayload = string.Format(
 				"{{" +
 				"\"source\": \"ninjatrader\"," +
@@ -277,35 +278,35 @@ namespace NinjaTrader.NinjaScript.Strategies
 					request.Headers.Add("X-API-Key", ApiKey);
 				}
 				
-				// Send webhook to TradeNotes
+				// Send webhook to TradeNot.es
 				HttpResponseMessage response = await httpClient.SendAsync(request);
 				
 				if (!response.IsSuccessStatusCode)
 				{
 					string errorBody = await response.Content.ReadAsStringAsync();
-					Print(string.Format("TradeNotes Webhook Error: {0} - {1}", response.StatusCode, errorBody));
+					Print(string.Format("TradeNot.es Sync Error: {0} - {1}", response.StatusCode, errorBody));
 				}
 				else 
 				{
 					string responseBody = await response.Content.ReadAsStringAsync();
-					Print(string.Format("Trade sent to TradeNotes: {0} {1} @ {2} - Response: {3}", 
+					Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} - Response: {3}", 
 						action, instrument, price, responseBody));
 				}
 			}
 			}
 			catch (Exception ex)
 			{
-				Print("TradeNotes Webhook Exception: " + ex.Message);
+				Print("TradeNot.es Sync Exception: " + ex.Message);
 			}
 		}
 
 		#region Properties
 		[NinjaScriptProperty]
-		[Display(Name="Webhook URL", Description="The TradeNotes webhook endpoint (do not change)", Order=1, GroupName="TradeNotes")]
+		[Display(Name="Webhook URL", Description="The TradeNot.es webhook endpoint (do not change)", Order=1, GroupName="TradeNot.es")]
 		public string WebhookUrl { get; set; }
 
 		[NinjaScriptProperty]
-		[Display(Name="API Key", Description="Your personal TradeNotes API Key (get from Import page)", Order=2, GroupName="TradeNotes")]
+		[Display(Name="API Key", Description="Your personal TradeNot.es API Key (get from Import page)", Order=2, GroupName="TradeNot.es")]
 		public string ApiKey { get; set; }
 		#endregion
 	}
