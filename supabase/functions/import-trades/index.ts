@@ -135,7 +135,9 @@ serve(async (req) => {
         .single();
       
       if (settingsError || !settings) {
-        console.error('Invalid API key:', apiKey);
+        // Mask API key in logs for security (only show first 8 chars)
+        const maskedKey = apiKey ? `${apiKey.substring(0, 8)}...` : 'empty';
+        console.error('Invalid API key:', maskedKey);
         return new Response(
           JSON.stringify({ error: 'Invalid API key' }),
           { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
