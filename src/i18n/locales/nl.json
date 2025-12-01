@@ -540,74 +540,76 @@
     "footerImprint": "Colofon",
     "footerCopyright": "© 2025 TradeNot.es. Alle rechten voorbehouden.",
     "features": {
+    "features": {
+      "easyEntry": {
+        "title": "Snelle Trade Invoer",
+        "description": "Leg trades vast in seconden met live P&L preview, snelle symbool selectie en auto-invulling. Kopieer laatste trade voor direct journaling."
+      },
+      "chartAnalysis": {
+        "title": "AI Grafiekanalyse",
+        "description": "Upload TradingView of NinjaTrader screenshots—AI extraheert entry, exit en details automatisch. Geen handmatige invoer nodig."
+      },
       "journal": {
         "title": "Trading Dagboek",
-        "description": "Documenteer elke trade met gedetailleerde notities, screenshots en emotie-analyse voor duurzaam leersucces"
+        "description": "Documenteer trades met notities, screenshots en beoordelingen. Leer van elke trade voor constante verbetering."
       },
       "analytics": {
         "title": "Performance Analytics",
-        "description": "Uitgebreide statistieken met Win Rate, R-Multiple, Profit Factor, Expectancy en kritieke risicomanagement KPI's"
+        "description": "Volg Win Rate, R-Multiple, Profit Factor en Expectancy. Begrijp je edge met uitgebreide trading statistieken."
       },
       "equity": {
         "title": "Equity Curve",
-        "description": "Visualiseer je cumulatieve kapitaalontwikkeling - herken drawdown fases en groeitrends in één oogopslag"
+        "description": "Visualiseer kapitaalgroei in de tijd. Spot drawdowns en groeitrends direct met cumulatieve performance grafieken."
       },
       "consistency": {
         "title": "Consistency Tracker",
-        "description": "GitHub-stijl heatmap van je trading consistentie over 12 weken - identificeer winstgevende patronen en vermijd verliezende dagen"
+        "description": "12-weken trading heatmap toont winstgevende patronen en verliezende streaks. Ontwikkel consistente winnende gewoontes."
+      },
+      "news": {
+        "title": "Portfolio News Intelligence",
+        "description": "Auto-gecureerde nieuws voor je symbolen met futures proxy-mapping (NQ→QQQ), smart-tags (Earnings, Macro) en AI vertaling."
+      },
+      "politicalEvents": {
+        "title": "Politieke Event Tracking",
+        "description": "Volg Trump-toespraken, Fed-aankondigingen, Powell-opmerkingen en verkiezingen. Time trades rond macro katalysatoren met visuele kalender."
+      },
+      "newsTranslation": {
+        "title": "AI Nieuwsvertaling",
+        "description": "Één-klik vertaling naar 5 talen (EN, DE, ES, FR, NL). Begrijp wereldwijd marktnieuws direct."
       },
       "calendar": {
         "title": "Trading Kalender",
-        "description": "Houd je trades bij in kalenderformaat met kleurgecodeerde winstgevende dagen"
-      },
-      "news": {
-        "title": "Smart Portfolio News Intelligence",
-        "description": "AI-gecureerde financiële nieuws voor je portfolio met intelligente proxy-mapping voor futures (NQ→QQQ, GC→GLD), automatische smart-tags (Earnings, Macro, Politiek), gegroepeerd per symbool en directe meertalige vertaling - mis nooit meer marktbewegende evenementen"
-      },
-      "politicalEvents": {
-        "title": "Politieke Evenementen Kalender",
-        "description": "Blijf macro-katalysatoren voor met geautomatiseerde politieke gebeurtenis tracking - Trump-toespraken, Fed-aankondigingen, Powell-opmerkingen, verkiezingen. Visuele kalender indicatoren tonen aangekondigde en eerdere evenementen om je trades perfect te timen rond belangrijke marktdrijvers"
-      },
-      "newsTranslation": {
-        "title": "Directe Nieuwsvertaling",
-        "description": "Doorbreek taalbarrières met één-klik AI nieuwsvertaling naar Duits, Engels, Spaans, Frans of Nederlands - begrijp wereldwijd marktnieuws in je voorkeurstaal voor betere trading beslissingen"
+        "description": "Kalenderweergave met kleurgecodeerde winst/verlies dagen. Bekijk snel je trading activiteit in één oogopslag."
       },
       "ai": {
         "title": "AI Trading Assistent",
-        "description": "Stel natuurlijke vragen over je prestaties en ontvang directe, datagestuurde antwoorden en inzichten"
+        "description": "Stel vragen over je prestaties. Krijg directe datagestuurde inzichten en analyses van je trading geschiedenis."
       },
       "reports": {
-        "title": "Gedetailleerde Rapporten",
-        "description": "Analyseer prestaties per symbool, weekdag, tijd, houdperiode en winst/verlies series - vind je meest winstgevende patronen"
-      },
-      "import": {
-        "title": "CSV Import/Export",
-        "description": "Importeer trades van je broker via CSV of exporteer je gegevens voor verdere analyse"
-      },
-      "weekly": {
-        "title": "Wekelijkse Prestaties",
-        "description": "Week-voor-week overzicht van je trading prestaties met trades per week en P&L ontwikkeling"
+        "title": "Geavanceerde Rapporten",
+        "description": "Analyseer per setup, symbool, tijdstip, houdperiode en reeksen. Vind je meest winstgevende trading patronen."
       },
       "pnl": {
         "title": "P&L Grafieken",
-        "description": "Maandelijkse P&L ontwikkeling in duidelijke staafdiagrammen - volg je vooruitgang in de tijd"
+        "description": "Maandelijkse winst/verlies visualisatie met staafdiagrammen. Volg voortgang en identificeer seizoenspatronen."
+      },
+      "weekly": {
+        "title": "Wekelijkse Prestaties",
+        "description": "Week-voor-week uitsplitsing van trades en P&L. Monitor effectief kortetermijn prestatie trends."
       },
       "prep": {
-        "title": "Pre-Markt Dagelijkse Voorbereiding",
-        "description": "Start je trading dag voorbereid: politieke evenementen kalender, economische data publicaties, sector sentiment analyse en nieuws voor je watchlist symbolen - alles in één overzicht"
+        "title": "Dagelijkse Markt Voorbereiding",
+        "description": "Pre-markt prep met politieke events, sector sentiment en nieuws voor je watchlist. Start geïnformeerd met traden."
+      },
+      "import": {
+        "title": "CSV Import/Export",
+        "description": "Importeer trades van je broker of exporteer data voor analyse. Naadloze integratie met bestaande workflows."
       },
       "glossary": {
         "title": "Trading Woordenlijst",
-        "description": "Alle trading termen van tradenot.es uitgelegd - P&L, Win Rate, Equity Curve, Risk/Reward en meer"
-      },
-      "easyEntry": {
-        "title": "Bliksemsnelle Trade Invoer",
-        "description": "Leg trades vast in seconden met intelligente functies: live P&L preview toont directe winst/verlies, quick-chips voor frequente symbolen, intuïtieve Long/Short toggle buttons, automatische exit price voorinvulling en 'Kopieer Laatste Trade' voor maximale journaling efficiëntie."
-      },
-      "chartAnalysis": {
-        "title": "AI grafiekanalyse",
-        "description": "Uniek: Upload screenshots van TradingView of NinjaTrader en bespaar tijd – onze AI extraheert automatisch entry, exit, symbool en alle handelsdetails. Geen handmatige invoer meer nodig!"
+        "description": "Leer trading termen: Win Rate, R-Multiple, Profit Factor, Expectancy en meer. Bouw je trading kennis op."
       }
+    },
     },
     "allFeatures": {
       "unlimited": "Onbeperkt trades documenteren",

@@ -540,74 +540,76 @@
     "footerImprint": "Mentions Légales",
     "footerCopyright": "© 2025 TradeNot.es. Tous droits réservés.",
     "features": {
+    "features": {
+      "easyEntry": {
+        "title": "Saisie Rapide de Trades",
+        "description": "Enregistrez des trades en secondes avec aperçu P&L en direct, sélection rapide de symboles et remplissage automatique. Copiez le dernier trade pour un journaling instantané."
+      },
+      "chartAnalysis": {
+        "title": "Analyse IA de Graphiques",
+        "description": "Téléchargez des captures TradingView ou NinjaTrader—IA extrait entrée, sortie et détails automatiquement. Aucune saisie manuelle requise."
+      },
       "journal": {
         "title": "Journal de Trading",
-        "description": "Documentez chaque transaction avec des notes détaillées, des captures d'écran et une analyse des émotions pour un apprentissage durable"
+        "description": "Documentez trades avec notes, captures et évaluations. Apprenez de chaque trade pour une amélioration constante."
       },
       "analytics": {
         "title": "Analytique de Performance",
-        "description": "Statistiques complètes avec Win Rate, R-Multiple, Profit Factor, Expectancy et KPIs critiques de gestion des risques"
+        "description": "Suivez Win Rate, R-Multiple, Profit Factor et Expectancy. Comprenez votre avantage avec des statistiques complètes de trading."
       },
       "equity": {
         "title": "Courbe de Capital",
-        "description": "Visualisez le développement cumulatif de votre capital - reconnaissez les phases de drawdown et les tendances de croissance en un coup d'œil"
+        "description": "Visualisez la croissance du capital dans le temps. Repérez drawdowns et tendances de croissance instantanément avec graphiques cumulatifs."
       },
       "consistency": {
         "title": "Suivi de Cohérence",
-        "description": "Carte thermique de style GitHub de votre cohérence de trading sur 12 semaines - identifiez les modèles rentables et évitez les jours perdants"
+        "description": "Carte thermique de trading de 12 semaines montre modèles rentables et séries perdantes. Développez des habitudes gagnantes cohérentes."
+      },
+      "news": {
+        "title": "Intelligence Actualités Portfolio",
+        "description": "Actualités auto-curées pour vos symboles avec proxy-mapping futures (NQ→QQQ), smart-tags (Résultats, Macro) et traduction IA."
+      },
+      "politicalEvents": {
+        "title": "Suivi Événements Politiques",
+        "description": "Suivez discours Trump, annonces Fed, commentaires Powell et élections. Chronométrez trades autour de catalyseurs macro avec calendrier visuel."
+      },
+      "newsTranslation": {
+        "title": "Traduction IA d'Actualités",
+        "description": "Traduction en un clic vers 5 langues (EN, DE, ES, FR, NL). Comprenez actualités des marchés mondiaux instantanément."
       },
       "calendar": {
         "title": "Calendrier de Trading",
-        "description": "Gardez une trace de vos transactions au format calendrier avec des jours rentables codés par couleur"
-      },
-      "news": {
-        "title": "Smart Portfolio News Intelligence",
-        "description": "Actualités financières organisées par IA pour votre portefeuille avec mappage intelligent de proxy pour les futures (NQ→QQQ, GC→GLD), balises intelligentes automatiques (Résultats, Macro, Politique), regroupées par symbole et traduction instantanée multilingue - ne manquez jamais les événements qui font bouger le marché"
-      },
-      "politicalEvents": {
-        "title": "Calendrier d'Événements Politiques",
-        "description": "Anticipez les catalyseurs macro avec suivi automatisé des événements politiques - discours de Trump, annonces de la Fed, commentaires de Powell, élections. Les indicateurs visuels du calendrier montrent les événements annoncés et passés pour chronométrer vos trades autour des principaux moteurs du marché"
-      },
-      "newsTranslation": {
-        "title": "Traduction Instantanée des Actualités",
-        "description": "Surmontez les barrières linguistiques avec la traduction d'actualités IA en un clic vers l'allemand, l'anglais, l'espagnol, le français ou le néerlandais - comprenez les actualités des marchés mondiaux dans votre langue préférée pour de meilleures décisions de trading"
+        "description": "Vue calendrier avec jours gain/perte codés par couleur. Examinez rapidement votre activité de trading d'un coup d'œil."
       },
       "ai": {
         "title": "Assistant Trading IA",
-        "description": "Posez des questions naturelles sur vos performances et recevez des réponses instantanées basées sur les données et des insights"
+        "description": "Posez des questions sur vos performances. Obtenez insights et analyses instantanés basés sur données de votre historique de trading."
       },
       "reports": {
-        "title": "Rapports Détaillés",
-        "description": "Analysez les performances par symbole, jour de la semaine, heure, période de détention et séries de gains/pertes - trouvez vos modèles les plus rentables"
-      },
-      "import": {
-        "title": "Import/Export CSV",
-        "description": "Importez des transactions de votre courtier via CSV ou exportez vos données pour une analyse plus approfondie"
-      },
-      "weekly": {
-        "title": "Performance Hebdomadaire",
-        "description": "Vue hebdomadaire de vos performances de trading avec transactions par semaine et développement P&L"
+        "title": "Rapports Avancés",
+        "description": "Analysez par setup, symbole, heure de la journée, période de détention et séries. Trouvez vos modèles de trading les plus rentables."
       },
       "pnl": {
         "title": "Graphiques P&L",
-        "description": "Développement mensuel du P&L en graphiques à barres clairs - suivez vos progrès au fil du temps"
+        "description": "Visualisation mensuelle gains/pertes avec graphiques à barres. Suivez progrès et identifiez modèles saisonniers."
+      },
+      "weekly": {
+        "title": "Performance Hebdomadaire",
+        "description": "Répartition hebdomadaire des trades et P&L. Surveillez efficacement tendances de performance à court terme."
       },
       "prep": {
-        "title": "Préparation Quotidienne Pré-Marché",
-        "description": "Commencez votre journée de trading préparé : calendrier d'événements politiques, publications de données économiques, analyse du sentiment sectoriel et actualités pour vos symboles de watchlist - tout en une vue"
+        "title": "Préparation Marché Quotidienne",
+        "description": "Prep pré-marché avec événements politiques, sentiment sectoriel et actualités pour votre watchlist. Commencez à trader informé."
+      },
+      "import": {
+        "title": "Import/Export CSV",
+        "description": "Importez trades de votre courtier ou exportez données pour analyse. Intégration transparente avec workflows existants."
       },
       "glossary": {
         "title": "Glossaire de Trading",
-        "description": "Tous les termes de trading de tradenot.es expliqués - P&L, Win Rate, Equity Curve, Risk/Reward et plus"
-      },
-      "easyEntry": {
-        "title": "Saisie de Trades Ultra-Rapide",
-        "description": "Capturez des trades en quelques secondes avec des fonctionnalités intelligentes : aperçu P&L en temps réel affiche gain/perte instantané, puces rapides pour symboles fréquents, boutons bascule Long/Short intuitifs, pré-remplissage automatique du prix de sortie et 'Copier le Dernier Trade' pour une efficacité maximale du journaling."
-      },
-      "chartAnalysis": {
-        "title": "Analyse IA de graphiques",
-        "description": "Unique : Téléchargez des captures d'écran de TradingView ou NinjaTrader et gagnez du temps – notre IA extrait automatiquement l'entrée, la sortie, le symbole et tous les détails des transactions. Aucune saisie manuelle nécessaire !"
+        "description": "Apprenez termes de trading: Win Rate, R-Multiple, Profit Factor, Expectancy et plus. Construisez vos connaissances en trading."
       }
+    },
     },
     "allFeatures": {
       "unlimited": "Documenter des transactions illimitées",
