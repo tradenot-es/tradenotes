@@ -53,7 +53,91 @@
     "longestWinStreak": "Plus longue série de gains",
     "longestLossStreak": "Plus longue série de pertes",
     "mostActiveDay": "Jour le plus actif",
-    "avgDailyTrades": "Trades quotidiens moyens"
+    "avgDailyTrades": "Trades quotidiens moyens",
+    "maxDrawdown": "Drawdown max",
+    "maxDrawdownTooltip": "Plus grande baisse de capital du pic au creux. Toujours négatif - mesure le risque maximal et le fardeau émotionnel de votre stratégie.",
+    "equityCurve": "Courbe d'équité",
+    "equityCurveTooltip": "Montre le développement cumulatif de votre capital de trading au fil du temps. Une courbe en hausse régulière indique une rentabilité constante. Les grandes baisses montrent des phases de drawdown.",
+    "pnlByMonth": "P&L par mois",
+    "pnlChartTooltip": "Aperçu mensuel des profits et pertes. Montre les performances pour chaque mois et aide à identifier les modèles saisonniers et les tendances à long terme.",
+    "accountPerformance": "Performance du compte",
+    "accountPerformanceTooltip": "Répartition des performances par type de compte (Sim, Évaluation, Financé, Réel). Cliquez pour une analyse détaillée.",
+    "clickForDetails": "Cliquez pour détails",
+    "noTrades": "Pas encore de transactions. Ajoutez votre première transaction !",
+    "equity": "Équité",
+    "pnl": "P&L",
+    "portfolioNews": "Actualités du Portfolio",
+    "portfolioNewsTooltip": "Actualités financières automatiquement curées pour vos symboles les plus tradés. Restez informé des événements qui déplacent le marché et des développements qui pourraient impacter vos positions.",
+    "newsTranslated": "Actualités traduites avec succès!",
+    "translationFailed": "Échec de la traduction. Veuillez réessayer.",
+    "autoTranslated": "Traduit automatiquement",
+    "stocksOnlyNews": "Les actualités du portfolio ne sont disponibles que pour les symboles d'actions (par ex. AAPL, GOOGL, TSLA). Les futures et les indices ne sont pas pris en charge par le fournisseur d'actualités.",
+    "noNewsProxiesAvailable": "Aucun symbole pris en charge disponible. Ajoutez des transactions d'actions ou des futures populaires (NQ, ES, GC) pour voir des actualités pertinentes.",
+    "dynamicDashboard": "Tableau de Bord Dynamique",
+    "dynamicDashboardInfo": "Actualités automatiquement filtrées par vos meilleurs résultats",
+    "noSymbolsForNews": "Aucun symbole disponible encore. Ajoutez des transactions pour recevoir des actualités pertinentes.",
+    "newsCount": "{{count}} Actualités",
+    "noNewsForSymbol": "Aucune actualité pour ce symbole",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Earnings Play",
+      "macroEvent": "Événement Macro",
+      "politicalCatalyst": "Catalyseur Politique",
+      "newsCatalyst": "Catalyseur Actualités"
+    },
+    "sectorSentiment": "Sentiment du Marché Aujourd'hui",
+    "sectorSentimentDescription": "Aperçu sectoriel quotidien aide à identifier le biais",
+    "articles": "articles",
+    "sectorArticles": "{{count}} articles analysés",
+    "topArticles": "Meilleurs Articles",
+    "trend7Days": "Tendance 7 jours",
+    "sectors": {
+      "examples_label": "par ex.",
+      "technology": {
+        "description": "Matériel, Logiciels, Semi-conducteurs, Services IT",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Médias, Publicité, Télécommunications, Réseaux Sociaux",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Pétrole, Gaz, Énergies Renouvelables",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Pharmaceutique, Biotech, Équipements Médicaux",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banques, Assurances, Gestion d'Actifs",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Commerce de détail, Automobile, Loisirs, Produits de Luxe",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Aérospatiale, Défense, Construction, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Alimentation, Boissons, Produits Ménagers",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Métaux, Mines, Produits Chimiques",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REIT, Gestion Immobilière, Développement",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Services Publics Électriques, Eau, Gaz",
+        "examples": "NextEra Energy, Duke Energy, Southern Company"
+      }
+    }
   },
   "weekdays": {
     "mon": "Lun",

@@ -53,7 +53,91 @@
     "longestWinStreak": "Langste winstreeks",
     "longestLossStreak": "Langste verliesreeks",
     "mostActiveDay": "Meest actieve dag",
-    "avgDailyTrades": "Gem. dagelijkse transacties"
+    "avgDailyTrades": "Gem. dagelijkse transacties",
+    "maxDrawdown": "Max drawdown",
+    "maxDrawdownTooltip": "Grootste kapitaaldaling van piek tot dal. Altijd negatief - meet maximaal risico en emotionele belasting van je strategie.",
+    "equityCurve": "Vermogenscurve",
+    "equityCurveTooltip": "Toont de cumulatieve ontwikkeling van je trading kapitaal over tijd. Een gestaag stijgende curve wijst op consistente winstgevendheid. Grote dalingen tonen drawdown fases.",
+    "pnlByMonth": "P&L per maand",
+    "pnlChartTooltip": "Maandelijks winst- en verliesoverzicht. Toont prestaties voor elke maand en helpt bij het identificeren van seizoenspatronen en langetermijntrends.",
+    "accountPerformance": "Account prestaties",
+    "accountPerformanceTooltip": "Prestatie-overzicht per accounttype (Sim, Evaluatie, Gefinancierd, Live). Klik voor gedetailleerde analyse.",
+    "clickForDetails": "Klik voor details",
+    "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
+    "equity": "Vermogen",
+    "pnl": "P&L",
+    "portfolioNews": "Portfolio Nieuws",
+    "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
+    "newsTranslated": "Nieuws succesvol vertaald!",
+    "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
+    "autoTranslated": "Automatisch vertaald",
+    "stocksOnlyNews": "Portfolio nieuws is alleen beschikbaar voor aandelensymbolen (bijv. AAPL, GOOGL, TSLA). Futures en indices worden niet ondersteund door de nieuwsaanbieder.",
+    "noNewsProxiesAvailable": "Geen ondersteunde symbolen beschikbaar. Voeg aandelentransacties of populaire futures (NQ, ES, GC) toe om relevant nieuws te zien.",
+    "dynamicDashboard": "Dynamisch Dashboard",
+    "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
+    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
+    "newsCount": "{{count}} Nieuws",
+    "noNewsForSymbol": "Geen nieuws voor dit symbool",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Earnings Play",
+      "macroEvent": "Macro Gebeurtenis",
+      "politicalCatalyst": "Politieke Katalysator",
+      "newsCatalyst": "Nieuws Katalysator"
+    },
+    "sectorSentiment": "Marktstemming Vandaag",
+    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van bias",
+    "articles": "artikelen",
+    "sectorArticles": "{{count}} artikelen geanalyseerd",
+    "topArticles": "Top Artikelen",
+    "trend7Days": "7-dagen trend",
+    "sectors": {
+      "examples_label": "bijv.",
+      "technology": {
+        "description": "Hardware, Software, Halfgeleiders, IT Diensten",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Media, Reclame, Telecommunicatie, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Olie, Gas, Hernieuwbare Energie",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Farmaceutica, Biotech, Medische Apparatuur",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banken, Verzekeringen, Vermogensbeheer",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Detailhandel, Auto, Vrije tijd, Luxe Goederen",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Lucht- en ruimtevaart, Defensie, Bouw, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Voeding, Dranken, Huishoudelijke Producten",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalen, Mijnbouw, Chemicaliën",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Vastgoedbeheer, Ontwikkeling",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Elektriciteit, Water, Gas Voorzieningen",
+        "examples": "NextEra Energy, Duke Energy, Southern Company"
+      }
+    }
   },
   "weekdays": {
     "mon": "Ma",
