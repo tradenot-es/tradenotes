@@ -1,0 +1,1389 @@
+{
+  "nav": {
+    "dashboard": "Dashboard",
+    "trades": "Operazioni",
+    "import": "Importa",
+    "reports": "Report",
+    "journal": "Diario",
+    "glossary": "Glossario",
+    "account": "Account",
+    "settings": "Impostazioni",
+    "logout": "Esci",
+    "welcome": "Benvenuto, {{name}}!"
+  },
+  "auth": {
+    "login": "Accedi",
+    "register": "Registrati",
+    "email": "Email",
+    "password": "Password",
+    "loginDesc": "Accedi per accedere al tuo diario di trading",
+    "registerDesc": "Crea un account per il tuo diario di trading",
+    "loading": "Caricamento...",
+    "noAccount": "Non hai ancora un account? Registrati",
+    "hasAccount": "Già registrato? Accedi",
+    "loginSuccess": "Accesso effettuato con successo!",
+    "accountCreated": "Account creato! Ora puoi accedere.",
+    "error": "Si è verificato un errore"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Panoramica delle tue performance di trading",
+    "addTrade": "Aggiungi Operazione",
+    "totalTrades": "Operazioni Totali",
+    "winRate": "Win Rate",
+    "winRateTooltip": "Percentuale di operazioni vincenti. Verde dal 50%, Giallo 40-50%, Rosso sotto 40%. Un win rate più basso può essere redditizio se R-Multiple > 1.",
+    "netPnL": "P&L Netto",
+    "netPnLTooltip": "Profitto o perdita totale di tutte le operazioni dopo le commissioni. Verde = Redditizio, Rosso = Perdite.",
+    "avgRMultiple": "R-Multiple Medio",
+    "avgRMultipleTooltip": "Rapporto medio guadagno/rischio. Verde da 1.0 (profitti > rischio), Giallo 0.5-1.0, Rosso sotto 0.5. Critico per la redditività con win rate più bassi.",
+    "expectancy": "Aspettativa",
+    "expectancyTooltip": "Profitto atteso per operazione basato su Win Rate, Avg Win e Avg Loss. Positivo = sistema redditizio, Negativo = sistema in perdita.",
+    "profitFactor": "Profit Factor",
+    "profitFactorTooltip": "Profitti lordi / Perdite lorde. Verde da 1.5 (molto redditizio), Giallo 1.0-1.5 (redditizio), Rosso sotto 1.0 (perdite). Un valore sopra 1 indica redditività.",
+    "avgWinLoss": "Guadagno / Perdita Media",
+    "avgWinLossTooltip": "Mostra il rapporto tra guadagno medio e perdita media. Un Avg Win più alto consente redditività nonostante un win rate più basso.",
+    "consistencyTracker": "Consistenza del Trading",
+    "consistencyTrackerTooltip": "Visualizza la tua attività di trading quotidiana e le performance nelle ultime 12 settimane. I quadrati verdi mostrano giorni redditizi, i quadrati rossi giorni in perdita. Più intenso è il colore, più operazioni sono state eseguite.",
+    "less": "Meno",
+    "more": "Più",
+    "trades": "operazioni",
+    "days": "giorni",
+    "tradesPerDay": "operazioni/giorno",
+    "longestWinStreak": "Serie Vincente Più Lunga",
+    "longestLossStreak": "Serie Perdente Più Lunga",
+    "mostActiveDay": "Giorno Più Attivo",
+    "avgDailyTrades": "Operazioni Giornaliere Medie",
+    "maxDrawdown": "Drawdown Massimo",
+    "maxDrawdownTooltip": "Maggiore calo di capitale da picco a valle. Sempre negativo - misura il rischio massimo e il carico emotivo della tua strategia.",
+    "equityCurve": "Curva di Equity",
+    "equityCurveTooltip": "Mostra lo sviluppo cumulativo del tuo capitale di trading nel tempo. Una curva costantemente in salita indica redditività consistente. I grandi cali mostrano fasi di drawdown.",
+    "pnlByMonth": "P&L per Mese",
+    "pnlChartTooltip": "Panoramica mensile Profitti e Perdite. Mostra le performance per ogni mese e aiuta a identificare pattern stagionali e tendenze a lungo termine.",
+    "accountPerformance": "Performance Account",
+    "accountPerformanceTooltip": "Ripartizione performance per tipo di account (Sim, Valutazione, Finanziato, Live). Clicca per analisi dettagliata.",
+    "clickForDetails": "Clicca per dettagli",
+    "noTrades": "Nessuna operazione ancora. Aggiungi la tua prima operazione!",
+    "equity": "Equity",
+    "pnl": "P&L",
+    "portfolioNews": "Notizie Portfolio",
+    "portfolioNewsTooltip": "Notizie finanziarie curate automaticamente per i tuoi simboli più scambiati. Resta informato sugli eventi che muovono il mercato e sugli sviluppi che potrebbero impattare le tue posizioni.",
+    "newsTranslated": "Notizie tradotte con successo!",
+    "translationFailed": "Traduzione fallita. Riprova.",
+    "autoTranslated": "Tradotto automaticamente",
+    "stocksOnlyNews": "Le notizie del portfolio sono disponibili solo per simboli azionari (es. AAPL, GOOGL, TSLA). Futures e indici non sono supportati dal fornitore di notizie.",
+    "noNewsProxiesAvailable": "Nessun simbolo supportato disponibile. Aggiungi operazioni su azioni o futures popolari (NQ, ES, GC) per vedere notizie rilevanti.",
+    "dynamicDashboard": "Dashboard Dinamica",
+    "dynamicDashboardInfo": "Notizie filtrate automaticamente dai tuoi migliori performer",
+    "noSymbolsForNews": "Nessun simbolo disponibile ancora. Aggiungi operazioni per ricevere notizie rilevanti.",
+    "newsCount": "{{count}} Notizie",
+    "noNewsForSymbol": "Nessuna notizia per questo simbolo",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Earnings Play",
+      "macroEvent": "Evento Macro",
+      "politicalCatalyst": "Catalizzatore Politico",
+      "newsCatalyst": "Catalizzatore Notizie"
+    },
+    "sectorSentiment": "Sentiment di Mercato Oggi",
+    "sectorSentimentDescription": "Panoramica settoriale giornaliera aiuta a identificare bias",
+    "articles": "articoli",
+    "sectorArticles": "{{count}} articoli analizzati",
+    "topArticles": "Articoli Principali",
+    "trend7Days": "Trend 7 giorni",
+    "sectors": {
+      "examples_label": "es.",
+      "technology": {
+        "description": "Hardware, Software, Semiconduttori, Servizi IT",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Media, Pubblicità, Telecomunicazioni, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Petrolio, Gas, Energie Rinnovabili",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Farmaceutica, Biotech, Attrezzature Medicali",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banche, Assicurazioni, Gestione Patrimoniale",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Retail, Automotive, Tempo Libero, Beni di Lusso",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Aerospaziale, Difesa, Costruzioni, Trasporti",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Alimentari, Bevande, Prodotti per la Casa",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalli, Miniere, Prodotti Chimici",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REIT, Gestione Immobiliare, Sviluppo",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Servizi Elettrici, Acqua, Gas",
+        "examples": "NextEra Energy, Duke Energy, Southern Company"
+      }
+    }
+  },
+  "weekdays": {
+    "mon": "Lun",
+    "tue": "Mar",
+    "wed": "Mer",
+    "thu": "Gio",
+    "fri": "Ven",
+    "sat": "Sab",
+    "sun": "Dom"
+  },
+  "clickToView": "Clicca per visualizzare operazioni",
+  "performanceBreakdown": {
+    "title": "Dettaglio Performance",
+    "performanceBreakdownTooltip": "Statistiche dettagliate delle performance: rapporto Vincite/Perdite, guadagni/perdite medie, migliori e peggiori operazioni. Fornisce insight sulla qualità delle tue decisioni di trading.",
+    "winLossRatio": "Rapporto Vincite/Perdite",
+    "wins": "Vincite",
+    "losses": "Perdite",
+    "avgWin": "Guadagno Medio",
+    "avgLoss": "Perdita Media",
+    "bestTrade": "Operazione Migliore",
+    "worstTrade": "Operazione Peggiore",
+    "maxDrawdown": "Drawdown Massimo",
+    "maxDrawdownTooltip": "Maggiore calo di capitale da picco a valle. Sempre negativo - misura il rischio massimo e il carico emotivo della tua strategia.",
+    "equityCurve": "Curva di Equity",
+    "equityCurveTooltip": "Mostra lo sviluppo cumulativo del tuo capitale di trading nel tempo. Una curva costantemente in salita indica redditività consistente. I grandi cali mostrano fasi di drawdown.",
+    "portfolioNews": "Notizie Portfolio",
+    "portfolioNewsTooltip": "Notizie finanziarie curate automaticamente per i tuoi simboli più scambiati. Resta informato sugli eventi che muovono il mercato.",
+    "newsTranslated": "Notizie tradotte con successo!",
+    "translationFailed": "Traduzione fallita. Riprova.",
+    "autoTranslated": "Tradotto automaticamente",
+    "stocksOnlyNews": "Le notizie del portfolio sono disponibili solo per simboli azionari (es. AAPL, GOOGL, TSLA). Futures e indici non sono supportati.",
+    "noNewsProxiesAvailable": "Nessun simbolo supportato disponibile. Aggiungi operazioni su azioni o futures popolari (NQ, ES, GC).",
+    "dynamicDashboard": "Dashboard Dinamica",
+    "dynamicDashboardInfo": "Notizie filtrate automaticamente dai tuoi migliori performer",
+    "noSymbolsForNews": "Nessun simbolo disponibile ancora. Aggiungi operazioni per ricevere notizie rilevanti.",
+    "newsCount": "{{count}} Notizie",
+    "noNewsForSymbol": "Nessuna notizia per questo simbolo",
+    "via": "via",
+    "smartTags": {
+      "earningsPlay": "Earnings Play",
+      "macroEvent": "Evento Macro",
+      "politicalCatalyst": "Catalizzatore Politico",
+      "newsCatalyst": "Catalizzatore Notizie"
+    },
+    "pnlByMonth": "P&L per Mese",
+    "pnlChartTooltip": "Panoramica mensile Profitti e Perdite. Mostra le performance per ogni mese e aiuta a identificare pattern stagionali.",
+    "accountPerformance": "Performance Account",
+    "accountPerformanceTooltip": "Ripartizione performance per tipo di account (Sim, Valutazione, Finanziato, Live). Clicca per dettagli.",
+    "clickForDetails": "Clicca per dettagli",
+    "noTrades": "Nessuna operazione ancora. Aggiungi la tua prima operazione!",
+    "equity": "Equity",
+    "pnl": "P&L",
+    "sectorSentiment": "Sentiment di Mercato Oggi",
+    "sectorSentimentDescription": "Panoramica settoriale giornaliera aiuta a identificare bias",
+    "articles": "articoli",
+    "sectorArticles": "{{count}} articoli analizzati",
+    "topArticles": "Articoli Principali",
+    "trend7Days": "Trend 7 giorni",
+    "sectors": {
+      "examples_label": "es.",
+      "technology": {
+        "description": "Hardware, Software, Semiconduttori, Servizi IT",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Media, Pubblicità, Telecomunicazioni, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Petrolio, Gas, Energie Rinnovabili",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Farmaceutica, Biotech, Attrezzature Medicali",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banche, Assicurazioni, Gestione Patrimoniale",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Retail, Automotive, Tempo Libero, Beni di Lusso",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Aerospaziale, Difesa, Costruzioni, Trasporti",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Alimentari, Bevande, Prodotti per la Casa",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalli, Miniere, Prodotti Chimici",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REIT, Gestione Immobiliare, Sviluppo",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Servizi Elettrici, Acqua, Gas",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
+  },
+  "calendar": {
+    "politicalEvent": "Evento Politico",
+    "politicalEventsToday": "Eventi politici oggi",
+    "moreEvents": "altri eventi"
+  },
+  "trades": {
+    "title": "Operazioni",
+    "subtitle": "Gestisci e analizza la tua cronologia di trading",
+    "addTrade": "Aggiungi Operazione",
+    "filter": "Filtro",
+    "filterBy": "Filtra per",
+    "symbol": "Simbolo",
+    "priceUpdated": "Prezzo aggiornato: {{price}}",
+    "priceNotAvailable": "Prezzo non disponibile",
+    "priceError": "Errore caricamento prezzo",
+    "selectSymbolFirst": "Seleziona prima il simbolo",
+    "refreshPrice": "Aggiorna prezzo",
+    "side": "Lato",
+    "qty": "Quantità",
+    "entryPrice": "Prezzo Entrata",
+    "exitPrice": "Prezzo Uscita",
+    "pnl": "P&L",
+    "fees": "Commissioni",
+    "entryTime": "Orario Entrata",
+    "exitTime": "Orario Uscita",
+    "setup": "Setup",
+    "tags": "Tag",
+    "tagsSelected": "selezionati",
+    "searchTags": "Cerca tag...",
+    "note": "Nota",
+    "actions": "Azioni",
+    "view": "Visualizza",
+    "noTrades": "Nessuna operazione ancora. Aggiungi la tua prima operazione!",
+    "tradeDetails": "Dettagli Operazione",
+    "long": "Long",
+    "short": "Short",
+    "newTrade": "Nuova Operazione",
+    "editTrade": "Modifica Operazione",
+    "addTrade": "Aggiungi Operazione",
+    "updateTrade": "Aggiorna Operazione",
+    "tradeUpdated": "Operazione aggiornata con successo",
+    "tradeDeleted": "Operazione eliminata con successo",
+    "confirmDelete": "Sei sicuro di voler eliminare questa operazione?",
+    "deleteError": "Errore eliminazione operazione",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "close": "Chiudi",
+    "optional": "opzionale",
+    "selectSetup": "Seleziona un setup...",
+    "setupChecklist": "Checklist Setup",
+    "checklistCompleted": "completato",
+    "tradeAdded": "Operazione aggiunta con successo",
+    "addError": "Errore aggiunta operazione",
+    "required": "Tutti i campi obbligatori devono essere compilati",
+    "calendarView": "Vista Calendario",
+    "selectDate": "Seleziona una data per aggiungere o visualizzare operazioni",
+    "tradesOnDate": "Operazioni il",
+    "newsOnDate": "Notizie Finanziarie",
+    "noTradesOnDate": "Nessuna operazione in questa data",
+    "noNewsAvailable": "Nessuna notizia disponibile",
+    "newsAnalyzedFor": "Analizzato per i tuoi simboli scambiati",
+    "loadingNews": "Caricamento notizie...",
+    "selectCurrency": "Seleziona Valuta",
+    "market": "Mercato",
+    "stock": "Azioni",
+    "futures": "Futures",
+    "crypto": "Crypto",
+    "option": "Opzioni",
+    "forex": "Forex",
+    "index": "Indice",
+    "stopLossPrice": "Prezzo Stop Loss",
+    "initialRisk": "Rischio Iniziale",
+    "initialRiskHint": "Per calcolo R-Multiple: (Entrata - Stop Loss) × Qty",
+    "rating": "Valutazione Qualità Operazione",
+    "ratingHint": "Valuta questa operazione da 1 (esecuzione scarsa) a 5 (esecuzione eccellente)",
+    "screenshot": "Screenshot",
+    "screenshotHint": "Carica uno screenshot del grafico di questa operazione",
+    "analyzeChart": "Analizza Grafico",
+    "analyzing": "Analizzando...",
+    "chartAnalyzed": "Grafico analizzato con successo",
+    "chartAnalysisError": "Errore analisi grafico",
+    "noScreenshotSelected": "Nessuno screenshot selezionato",
+    "highConfidence": "Alta Confidenza",
+    "mediumConfidence": "Media Confidenza",
+    "lowConfidence": "Bassa Confidenza",
+    "manualEntry": "Inserimento Manuale",
+    "screenshotAnalysis": "Analizza Screenshot",
+    "screenshotHint": "Carica uno screenshot del grafico e la nostra AI estrarrà automaticamente tutti i dettagli dell'operazione",
+    "manualEntryDescription": "Inserisci tutti i dettagli dell'operazione manualmente",
+    "livePnL": "Anteprima P&L Live",
+    "copyLastTrade": "Copia Ultima Operazione",
+    "lastTradeCopied": "Ultima operazione copiata con successo",
+    "copyError": "Errore copia operazione",
+    "noTradeFound": "Nessuna operazione trovata da copiare",
+    "monthlyOverview": "Operazioni per {{month}}",
+    "table": {
+      "date": "Data",
+      "dateTooltip": "La data in cui l'operazione è stata chiusa",
+      "symbol": "Simbolo",
+      "symbolTooltip": "Lo strumento di trading o ticker symbol",
+      "status": "Stato",
+      "statusTooltip": "Vincita o Perdita - se l'operazione è stata redditizia",
+      "side": "Lato",
+      "sideTooltip": "Posizione Long (acquisto) o Short (vendita)",
+      "qty": "Qty",
+      "qtyTooltip": "Quantità - numero di azioni/contratti scambiati",
+      "entry": "Entrata",
+      "entryTooltip": "Prezzo di entrata per azione/contratto",
+      "exit": "Uscita",
+      "exitTooltip": "Prezzo di uscita per azione/contratto",
+      "entTotal": "Tot Entr",
+      "entTotalTooltip": "Totale Entrata - capitale totale investito (Prezzo Entrata × Quantità)",
+      "extTotal": "Tot Usc",
+      "extTotalTooltip": "Totale Uscita - capitale totale ricevuto (Prezzo Uscita × Quantità)",
+      "hold": "Durata",
+      "holdTooltip": "Periodo di detenzione - quanto tempo è stata mantenuta la posizione",
+      "return": "Rendimento",
+      "returnTooltip": "Profitto o perdita netta dopo le commissioni",
+      "returnPct": "Rendim. %",
+      "returnPctTooltip": "Percentuale di rendimento rispetto al capitale investito",
+      "totalTrades": "Operazioni Totali",
+      "totalPnL": "P&L Totale",
+      "avgReturn": "Rendimento Medio %",
+      "winRate": "Win Rate"
+    }
+  },
+  "accountType": {
+    "label": "Account",
+    "tooltip": "Tipo di account: Sim (pratica), Evaluation (test prop firm), Performance (finanziato), o Live (capitale personale)",
+    "sim": "SIM",
+    "evaluation": "EVAL",
+    "performance": "FINANZIATO",
+    "live": "LIVE",
+    "filter": "Filtra per Tipo Account",
+    "all": "Tutti gli Account"
+  },
+  "accountTypes": {
+    "sim": "Simulazione",
+    "evaluation": "Valutazione",
+    "performance": "Finanziato",
+    "live": "Live"
+  },
+  "import": {
+    "sentiment": {
+      "label": "Sentiment Notizie",
+      "veryBullish": "Molto Rialzista",
+      "bullish": "Rialzista",
+      "slightlyBullish": "Leggermente Rialzista",
+      "neutral": "Neutrale",
+      "slightlyBearish": "Leggermente Ribassista",
+      "bearish": "Ribassista",
+      "veryBearish": "Molto Ribassista",
+      "highRisk": "Alto Rischio",
+      "contraTrade": "Operazione Contro-Notizie"
+    },
+    "newsContext": {
+      "match": "Corrispondenza"
+    },
+    "hype": {
+      "high": "Livello Alto di Buzz",
+      "medium": "Livello Medio di Buzz",
+      "articles": "{{count}} articoli nelle ultime 12h"
+    },
+    "title": "Importa Operazioni",
+    "subtitle": "Importa le tue operazioni da file CSV o webhook",
+    "uploadCSV": "Carica File CSV",
+    "uploadDesc": "Importa le tue operazioni da un file CSV",
+    "clickUpload": "Clicca per caricare",
+    "dragDrop": "o trascina e rilascia",
+    "csvOnly": "Solo file CSV",
+    "selected": "Selezionato",
+    "importTrades": "Importa Operazioni",
+    "importing": "Importazione...",
+    "selectFile": "Seleziona prima un file",
+    "importSuccess": "Importate con successo {{count}} operazioni",
+    "importError": "Importazione fallita",
+    "noTradesFound": "Nessuna operazione valida trovata nel CSV",
+    "notAuthenticated": "Accedi per importare operazioni",
+    "webhookTitle": "Importazione Automatica via Webhook",
+    "webhookDescription": "Usa questo URL per importare automaticamente operazioni da TradingView o NinjaTrader",
+    "webhookCopied": "URL Webhook copiato negli appunti",
+    "webhookInstructions": "Copia questo URL e configuralo nella tua piattaforma di trading. Vedi l'aiuto (?) per istruzioni dettagliate.",
+    "csvTemplate": "Template CSV",
+    "templateDesc": "Scarica un template per vedere il formato richiesto",
+    "requiredFields": "Campi Obbligatori:",
+    "optionalFields": "Campi Opzionali:",
+    "downloadTemplate": "Scarica Template",
+    "templateDownloaded": "Template scaricato con successo",
+    "fileSelected": "File selezionato:",
+    "helpTitle": "Guida Importazione",
+    "helpDescription": "Scopri come importare le tue operazioni da diverse piattaforme",
+    "helpCsvTitle": "📄 Importazione CSV",
+    "helpCsvStep1": "Scarica il template CSV cliccando 'Scarica Template'",
+    "helpCsvStep2": "Compila i dati delle tue operazioni seguendo il formato del template",
+    "helpCsvStep3": "Carica il file CSV completato usando l'area di caricamento",
+    "helpTvTitle": "📊 Webhook TradingView",
+    "helpTvIntro": "Importa automaticamente operazioni dagli alert di TradingView:",
+    "helpTvStep1": "Crea un alert in TradingView per la tua strategia",
+    "helpTvStep2": "Nelle impostazioni dell'alert, abilita 'Webhook URL'",
+    "helpTvStep3": "Copia il tuo URL webhook dalla sezione 'Importazione Automatica via Webhook' sopra",
+    "helpTvStep4": "Incolla l'URL webhook e configura il formato del messaggio con i dettagli dell'operazione",
+    "helpNtTitle": "🔷 Integrazione NinjaTrader",
+    "helpNtIntro": "Sincronizza automaticamente le operazioni da NinjaTrader:",
+    "helpNtStep1": "Scarica lo script webhook NinjaTrader (prossimamente)",
+    "helpNtStep2": "Importa lo script in NinjaTrader (Strumenti > Importa > NinjaScript)",
+    "helpNtStep3": "Abilita la strategia e configura il tuo URL webhook",
+    "helpNtStep4": "Le operazioni saranno inviate automaticamente al tuo diario dopo ogni esecuzione",
+    "helpWebhookTitle": "🔗 URL Webhook",
+    "helpWebhookInfo": "Il tuo URL webhook personale è mostrato sopra. Mantieni questo URL privato poiché fornisce accesso diretto al tuo diario di trading.",
+    "ntTitle": "Integrazione NinjaTrader",
+    "ntDescription": "Sincronizza automaticamente le tue operazioni NinjaTrader 8 in tempo reale su TradeNot.es",
+    "ntApiKeyTitle": "La Tua Chiave API Personale",
+    "ntApiKeyInfo": "Mantieni questa chiave sicura. Inseriscila nei parametri della strategia NinjaScript.",
+    "ntApiKeyCopied": "Chiave API copiata negli appunti",
+    "ntRegenerateKey": "Rigenera Chiave",
+    "ntRegenerateKeyConfirm": "Rigenerare Chiave API?",
+    "ntRegenerateKeyWarning": "La tua chiave API attuale smetterà di funzionare. Dovrai aggiornarla in NinjaTrader.",
+    "ntApiKeyRegenerated": "Nuova chiave API generata con successo",
+    "ntApiKeyRegenerateError": "Errore rigenerazione chiave API",
+    "ntWebhookUrlTitle": "URL Webhook",
+    "ntScriptTitle": "Strategia NinjaScript",
+    "ntScriptDescription": "Scarica la strategia TradeNotesSync e installala in NinjaTrader 8",
+    "ntDownloadScript": "Scarica NinjaScript (.cs)",
+    "ntScriptDownloaded": "NinjaScript scaricato con successo",
+    "ntScriptDownloadedWithKey": "NinjaScript scaricato con la tua chiave API integrata",
+    "ntScriptDownloadError": "Errore download NinjaScript",
+    "ntNoApiKeyError": "Nessuna chiave API disponibile. Generane prima una.",
+    "ntScriptIncludesKey": "Include la tua chiave",
+    "ntScriptKeyEmbeddedInfo": "Il download include già la tua chiave API personale - nessun inserimento manuale necessario!",
+    "ntRegenerateKeyNinjaTraderNote": "Importante per NinjaTrader:",
+    "ntRegenerateKeyOptionA": "Scarica di nuovo NinjaScript (consigliato)",
+    "ntRegenerateKeyOptionB": "Oppure aggiorna manualmente la chiave API nella strategia",
+    "ntPendingTitle": "Entrate in Sospeso",
+    "ntPendingDescription": "Queste entrate sono in attesa di un'esecuzione di uscita per creare un'operazione completa",
+    "ntExecutionDeleted": "Esecuzione in sospeso eliminata",
+    "ntExecutionDeleteError": "Errore eliminazione esecuzione",
+    "ntDeleteExecutionConfirm": "Eliminare esecuzione in sospeso?",
+    "ntDeleteExecutionWarning": "Questa entrata sarà rimossa permanentemente e non sarà abbinata a future uscite."
+  },
+  "journal": {
+    "title": "Diario di Trading",
+    "subtitle": "Documenta le tue intuizioni di trading",
+    "dailyPrep": "Preparazione Giornaliera",
+    "journalEntries": "Voci Diario",
+    "newEntry": "Nuova Voce",
+    "placeholder": "Cosa hai imparato oggi? Documenta i tuoi pensieri di trading...",
+    "addEntry": "Aggiungi Voce",
+    "noEntries": "Nessuna voce nel diario ancora. Crea la tua prima voce!",
+    "entryAdded": "Voce diario aggiunta",
+    "addError": "Errore aggiunta voce",
+    "notLoggedIn": "Non sei connesso"
+  },
+  "account": {
+    "title": "Account",
+    "subtitle": "Gestisci email, password e impostazioni di sicurezza",
+    "accountInfo": "Informazioni Account",
+    "accountInfoDesc": "Aggiorna le tue impostazioni email e autenticazione",
+    "subscription": "Abbonamento",
+    "subscriptionDesc": "Gestisci il tuo abbonamento e accedi a tutte le funzionalità premium",
+    "loadingSubscription": "Caricamento stato abbonamento...",
+    "activeSubscription": "Abbonamento Attivo",
+    "plan": "Piano",
+    "validUntil": "Valido fino al",
+    "allFeaturesUnlocked": "✓ Tutte le funzionalità sbloccate",
+    "manageSubscription": "Gestisci Abbonamento",
+    "trialActive": "Prova Gratuita 7 Giorni Attiva",
+    "trialDescription": "Testa TradeNotes gratis per 7 giorni con la maggior parte delle funzionalità. Aggiorna in qualsiasi momento per accesso completo.",
+    "availablePlans": "Piani Disponibili:",
+    "monthlyPlan": "Abbonamento Mensile - Massima Flessibilità",
+    "yearlyPlan": "Abbonamento Annuale - Risparmia fino al 20%",
+    "trialLimitations": "Limitazioni Prova:",
+    "limitationAI": "Assistente Trading AI bloccato",
+    "limitationMetrics": "Metriche Performance Avanzate bloccate",
+    "allOtherFeatures": "Tutte le altre funzionalità disponibili"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "subtitle": "Gestisci le tue preferenze di trading e impostazioni account",
+    "account": "Account",
+    "accountDesc": "Gestisci email e impostazioni account",
+    "security": "Sicurezza",
+    "securityDesc": "Cambia password e impostazioni di sicurezza",
+    "general": "Generale",
+    "theme": "Tema",
+    "themeDescription": "Scegli tra tema Chiaro, Scuro o Sistema",
+    "setups": "Setup di Trading",
+    "setupsDesc": "Definisci le tue strategie e setup di trading",
+    "setupsChecklistDesc": "Definisci i tuoi setup di trading con checklist per tracciare i criteri del setup",
+    "newSetupName": "Nome nuovo setup",
+    "checklistItems": "elementi",
+    "newChecklistItem": "Aggiungi criterio checklist...",
+    "deleteSetup": "Elimina Setup",
+    "tags": "Tag",
+    "tagsDesc": "Crea tag per organizzare le tue operazioni",
+    "currency": "Valuta Base",
+    "timezone": "Fuso Orario",
+    "defaultFees": "Commissioni Predefinite",
+    "defaultSlippage": "Slippage Predefinito",
+    "save": "Salva Impostazioni",
+    "settingsSaved": "Impostazioni salvate con successo",
+    "saveError": "Errore salvataggio impostazioni",
+    "email": "Indirizzo Email",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "firstNamePlaceholder": "Il tuo nome",
+    "lastNamePlaceholder": "Il tuo cognome",
+    "updateProfile": "Aggiorna Profilo",
+    "profileUpdated": "Profilo aggiornato con successo",
+    "emailHelp": "Il tuo indirizzo email di accesso. Un link di conferma sarà inviato per verificare il tuo nuovo indirizzo email.",
+    "updateEmail": "Aggiorna Email",
+    "emailUpdateSuccess": "Aggiornamento email avviato. Controlla la tua nuova email per confermare.",
+    "emailUpdateError": "Errore aggiornamento email",
+    "newPassword": "Nuova Password",
+    "newPasswordPlaceholder": "Inserisci nuova password",
+    "confirmPassword": "Conferma Password",
+    "confirmPasswordPlaceholder": "Conferma nuova password",
+    "passwordHelp": "Deve essere di almeno 10 caratteri. Usa una password forte e unica con maiuscole, minuscole, numeri e caratteri speciali.",
+    "passwordStrength": {
+      "weak": "Debole - Aggiungi più caratteri e varietà",
+      "medium": "Media - Considera l'aggiunta di caratteri speciali",
+      "strong": "Password forte"
+    },
+    "updatePassword": "Aggiorna Password",
+    "passwordUpdateSuccess": "Password aggiornata con successo",
+    "passwordUpdateError": "Errore aggiornamento password",
+    "passwordMismatch": "Le password non corrispondono",
+    "passwordTooShort": "La password deve essere di almeno 10 caratteri",
+    "twoFactor": "Autenticazione a Due Fattori",
+    "twoFactorHelp": "Aggiunge un livello extra di sicurezza richiedendo un codice a 6 cifre dalla tua app di autenticazione al login",
+    "enable2FA": "Abilita 2FA",
+    "disable2FA": "Disabilita 2FA",
+    "scanQRCode": "Configura Autenticazione a Due Fattori",
+    "scanQRCodeDesc": "Scansiona questo codice QR con la tua app di autenticazione (Google Authenticator, Authy, ecc.)",
+    "manualCode": "Oppure inserisci questo codice manualmente:",
+    "enterCode": "Inserisci codice di verifica a 6 cifre",
+    "verify": "Verifica & Abilita",
+    "mfaEnabled": "Autenticazione a due fattori abilitata con successo",
+    "mfaDisabled": "Autenticazione a due fattori disabilitata con successo",
+    "mfaEnableError": "Errore abilitazione autenticazione a due fattori",
+    "mfaVerifyError": "Codice di verifica non valido",
+    "mfaDisableError": "Errore disabilitazione autenticazione a due fattori",
+    "currencyHelp": "Imposta la valuta base per tutti i calcoli P&L e visualizzazioni nel tuo diario. Cambiare questo influenzerà come vengono mostrati i tuoi risultati di trading.",
+    "timezoneHelp": "Determina come vengono visualizzati i timestamp delle operazioni. Seleziona il tuo fuso orario locale o il fuso orario del mercato che stai scambiando. Questo non cambia gli orari effettivi delle operazioni, solo come vengono mostrati.",
+    "feesHelp": "Commissioni predefinite applicate automaticamente alle nuove operazioni. Questo aiuta a calcolare il tuo P&L netto in modo più accurato. Puoi sovrascrivere questo valore per singole operazioni se necessario.",
+    "slippageHelp": "Differenza di prezzo attesa tra piazzamento ordine ed esecuzione (in percentuale). Usato per backtesting e analisi delle performance più realistici. Valori tipici: 0.1-1% a seconda del tuo mercato e strumento.",
+    "setupsHelp": "Strategie di trading o pattern che usi (es. 'Breakout', 'Mean Reversion', 'Momentum'). Questi ti aiutano ad analizzare quali setup funzionano meglio per te nel tempo.",
+    "tagsHelp": "Etichette personalizzate per categorizzare le operazioni (es. 'Alta Convinzione', 'News Play', 'Settore Tech'). Usa i tag per filtrare e analizzare le tue performance secondo criteri diversi.",
+    "trading": "Trading",
+    "language": "Lingua",
+    "selectLanguage": "Seleziona lingua",
+    "dailyGoal": "Obiettivo Operazioni Giornaliero",
+    "dailyGoalTooltip": "Imposta un obiettivo di profitto giornaliero e numero massimo di operazioni al giorno",
+    "dailyGoalDesc": "Definisci il tuo obiettivo di trading giornaliero e traccialo nei Report",
+    "dailyGoalAmount": "Obiettivo Profitto Giornaliero ($)",
+    "dailyGoalMaxTrades": "Operazioni Massime al Giorno"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Ops! Pagina non trovata",
+    "returnHome": "Torna alla Home"
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "readMore": "Leggi di più",
+    "translate": "Traduci",
+    "translating": "Traduzione...",
+    "showOriginal": "Mostra Originale"
+  },
+  "landing": {
+    "badge": "Diario di Trading Professionale",
+    "heroTitle": "Diventa un trader migliore attraverso",
+    "heroTitleHighlight": "il diario sistematico",
+    "heroDescription": "TradeNot.es ti aiuta a imparare da ogni operazione. Analizza le tue performance, riconosci i pattern e sviluppa una strategia di trading redditizia con analisi dettagliate e grafici.",
+    "ctaStart": "Inizia",
+    "ctaFeatures": "Esplora Funzionalità",
+    "rating": "4.9/5 da oltre 1000 Trader",
+    "dashboardAlt": "Dashboard TradeNot.es con Grafici Performance, Calendario Trading e Analytics",
+    "videosBadge": "Guarda Come Funziona",
+    "videosTitle": "Guarda TradeNotes In Azione",
+    "videosDescription": "Scopri quanto può essere semplice il diario di trading professionale",
+    "videoTradeEntry": "Inserimento Operazioni Ultra-Veloce",
+    "videoTradeEntryDesc": "Cattura le tue operazioni in secondi con anteprima P&L live, quick-chips per simboli frequenti e pre-compilazione automatica del prezzo",
+    "videoChartAnalysis": "Analisi Grafici AI",
+    "videoChartAnalysisDesc": "Carica i tuoi grafici di trading e ricevi analisi AI istantanea con riconoscimento pattern e identificazione setup",
+    "videoDashboard": "Dashboard Intelligente",
+    "videoDashboardDesc": "Resta aggiornato con KPI in tempo reale, curva equity, statistiche performance e calendario operazioni interattivo",
+    "videoJournal": "Diario & Report Dettagliati",
+    "videoJournalDesc": "Analizza le tue performance con report setup, analisi serie, performance simboli e statistiche periodo detenzione",
+    "featuresBadge": "Funzionalità",
+    "featuresTitle": "Tutto per il diario di trading di successo",
+    "featuresDescription": "Tutti gli strumenti necessari per imparare dalle tue operazioni e diventare costantemente redditizio",
+    "pricingBadge": "Prezzi Semplici",
+    "pricingTitle": "Un Prezzo. Tutte le Funzionalità.",
+    "pricingDescription": "Nessun costo nascosto. Nessun modello di abbonamento complicato. Solo un prezzo equo per tutte le funzionalità.",
+    "trialBadge": "7 Giorni Prova Gratuita",
+    "premiumTitle": "TradeNot.es Premium",
+    "premiumDescription": "Accesso a tutte le funzionalità – ora e in futuro",
+    "monthlyPlan": "Mensile",
+    "monthlyPrice": "$9.99",
+    "monthlyPeriod": "/mese",
+    "monthlyCancel": "Disdici in qualsiasi momento",
+    "yearlyPlan": "Annuale",
+    "yearlyBadge": "Risparmia 17%",
+    "yearlyPrice": "$99",
+    "yearlyPeriod": "/anno",
+    "yearlyDiscount": "Solo $8.25 al mese",
+    "allFeaturesTitle": "Tutte le Funzionalità Incluse:",
+    "ctaTrial": "Inizia Prova Gratuita 7 Giorni",
+    "trialNotice": "Nessuna carta di credito richiesta • Disdici in qualsiasi momento",
+    "ctaTitle": "Inizia il tuo diario di trading oggi",
+    "ctaDescription": "Inizia la tua prova gratuita di 7 giorni e diventa un trader costantemente redditizio",
+    "footerTitle": "TradeNot.es",
+    "footerDescription": "Il diario di trading professionale per trader ambiziosi",
+    "footerProduct": "Prodotto",
+    "footerFeatures": "Funzionalità",
+    "footerPricing": "Prezzi",
+    "footerLogin": "Accedi",
+    "footerSupport": "Supporto",
+    "footerHelp": "Centro Assistenza",
+    "footerContact": "Contatto",
+    "footerStatus": "Stato",
+    "footerLegal": "Legale",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Termini",
+    "footerImprint": "Note Legali",
+    "footerCopyright": "© 2025 TradeNot.es. Tutti i diritti riservati.",
+    "features": {
+      "easyEntry": {
+        "title": "Inserimento Rapido Operazioni",
+        "description": "Registra operazioni in secondi con anteprima P&L live, selezione rapida simboli e auto-compilazione. Copia l'ultima operazione per diario istantaneo."
+      },
+      "chartAnalysis": {
+        "title": "Analisi Grafici AI",
+        "description": "Carica screenshot TradingView o NinjaTrader—l'AI estrae automaticamente entrata, uscita e dettagli operazione. Nessun inserimento manuale necessario."
+      },
+      "journal": {
+        "title": "Diario di Trading",
+        "description": "Documenta operazioni con note, screenshot e valutazioni. Impara da ogni operazione per miglioramento costante."
+      },
+      "analytics": {
+        "title": "Analytics Performance",
+        "description": "Traccia Win Rate, R-Multiple, Profit Factor ed Expectancy. Comprendi il tuo vantaggio con statistiche di trading complete."
+      },
+      "equity": {
+        "title": "Curva Equity",
+        "description": "Visualizza la crescita del capitale nel tempo. Individua drawdown e trend di crescita istantaneamente con grafici performance cumulativi."
+      },
+      "consistency": {
+        "title": "Tracker Consistenza",
+        "description": "Mappa termica trading 12 settimane mostra pattern redditizi e serie perdenti. Sviluppa abitudini vincenti consistenti."
+      },
+      "news": {
+        "title": "Intelligence Notizie Portfolio",
+        "description": "Notizie auto-curate per i tuoi simboli scambiati con proxy-mapping futures (NQ→QQQ), smart-tags (Earnings, Macro) e traduzione AI."
+      },
+      "politicalEvents": {
+        "title": "Tracking Eventi Politici",
+        "description": "Traccia discorsi Trump, annunci Fed, osservazioni Powell ed elezioni. Temporizza operazioni attorno a catalizzatori macro con calendario visuale."
+      },
+      "newsTranslation": {
+        "title": "Traduzione Notizie AI",
+        "description": "Traduzione con un clic in 5 lingue (EN, DE, ES, FR, NL, IT). Comprendi notizie di mercato globali istantaneamente."
+      },
+      "calendar": {
+        "title": "Calendario Trading",
+        "description": "Vista calendario con giorni profitto/perdita codificati a colori. Rivedi rapidamente la tua attività di trading a colpo d'occhio."
+      },
+      "ai": {
+        "title": "Assistente Trading AI",
+        "description": "Fai domande sulla tua performance. Ottieni insight e analisi istantanei basati sui dati dalla tua cronologia di trading."
+      },
+      "reports": {
+        "title": "Report Avanzati",
+        "description": "Analizza per setup, simbolo, ora del giorno, periodo detenzione e serie. Trova i tuoi pattern di trading più redditizi."
+      },
+      "pnl": {
+        "title": "Grafici P&L",
+        "description": "Visualizzazione profitto/perdita mensile con grafici a barre. Traccia il tuo progresso e identifica pattern stagionali."
+      },
+      "weekly": {
+        "title": "Performance Settimanale",
+        "description": "Ripartizione settimana per settimana di operazioni e P&L. Monitora trend performance a breve termine efficacemente."
+      },
+      "prep": {
+        "title": "Preparazione Mercato Giornaliera",
+        "description": "Preparazione pre-mercato con eventi politici, sentiment settori e notizie per la tua watchlist. Inizia trading informato."
+      },
+      "import": {
+        "title": "Importa/Esporta CSV",
+        "description": "Importa operazioni dal tuo broker o esporta dati per analisi. Integrazione fluida con flussi di lavoro esistenti."
+      },
+      "glossary": {
+        "title": "Glossario Trading",
+        "description": "Impara termini trading: Win Rate, R-Multiple, Profit Factor, Expectancy e altro. Costruisci la tua conoscenza di trading."
+      }
+    },
+    "allFeatures": {
+      "unlimited": "Documenta operazioni illimitate",
+      "fullAnalytics": "Analytics Performance Complete (Win Rate, R-Multiple, Profit Factor, Expectancy)",
+      "journal": "Diario Trading con note & screenshot",
+      "equity": "Curva Equity per tracking capitale",
+      "consistency": "Tracker Consistenza (mappa termica 12 settimane)",
+      "news": "Notizie Portfolio Smart con proxy-mapping (futures), smart-tags & traduzione",
+      "politicalEvents": "Calendario Eventi Politici (Trump, Fed, Powell, elezioni)",
+      "sectorSentiment": "Dashboard Sentiment Settori Giornaliero (9 settori tracciati)",
+      "ai": "Assistente Trading AI per insight basati su dati",
+      "winLoss": "Analytics Vincite/Perdite & Ripartizione Performance",
+      "calendar": "Vista Calendario Trading",
+      "pnlCharts": "Grafici P&L & Visualizzazioni",
+      "csvImport": "Importa & Esporta CSV",
+      "setupReports": "Report Performance basati su Setup",
+      "hourAnalysis": "Analytics Ora del Giorno (migliori orari trading)",
+      "symbolReports": "Report Performance Simboli",
+      "streakAnalysis": "Analisi Serie (serie vincite/perdite)",
+      "holdingPeriod": "Analisi Periodo Detenzione",
+      "weeklyTracking": "Tracking Performance Settimanale",
+      "dailyPrep": "Preparazione Giornaliera con eventi politici",
+      "glossary": "Glossario Trading con tutti i termini importanti",
+      "darkMode": "Modalità Scuro/Chiaro",
+      "multiLanguage": "Supporto Multi-Lingua (DE, EN, ES, FR, NL, IT)",
+      "futureFeatures": "Tutte le funzionalità future incluse",
+      "freeTrial": "7 Giorni Prova Gratuita"
+    }
+  },
+  "validation": {
+    "emailInvalid": "Formato email non valido",
+    "emailTooLong": "L'email deve essere meno di 255 caratteri",
+    "passwordMin": "La password deve essere di almeno 8 caratteri",
+    "passwordUppercase": "La password deve contenere una lettera maiuscola",
+    "passwordNumber": "La password deve contenere un numero",
+    "symbolRequired": "Il simbolo è obbligatorio",
+    "symbolInvalid": "Solo lettere maiuscole e numeri consentiti",
+    "symbolTooLong": "Il simbolo deve essere di 10 caratteri o meno",
+    "qtyPositive": "La quantità deve essere positiva",
+    "qtyMax": "La quantità deve essere meno di 1.000.000",
+    "pricePositive": "Il prezzo deve essere positivo",
+    "priceMax": "Il prezzo deve essere meno di 1.000.000",
+    "feesNonNegative": "Le commissioni non possono essere negative",
+    "feesMax": "Le commissioni devono essere meno di 10.000",
+    "exitTimeAfterEntry": "L'orario di uscita deve essere dopo l'orario di entrata",
+    "setupTooLong": "Il nome del setup deve essere di 100 caratteri o meno",
+    "noteTooLong": "La nota deve essere di 1.000 caratteri o meno",
+    "journalContentRequired": "Il contenuto non può essere vuoto",
+    "journalContentTooLong": "Il contenuto deve essere meno di 10.000 caratteri",
+    "currencyInvalid": "La valuta deve essere un codice di 3 lettere",
+    "feesInvalid": "Le commissioni predefinite devono essere non negative e meno di 1.000",
+    "setupItemTooLong": "Il nome del setup deve essere di 50 caratteri o meno",
+    "setupMaxReached": "Massimo 20 setup consentiti",
+    "tagItemTooLong": "Il tag deve essere di 30 caratteri o meno",
+    "tagMaxReached": "Massimo 30 tag consentiti",
+    "checklistMaxReached": "Massimo 10 elementi checklist per setup",
+    "slippageInvalid": "Lo slippage deve essere tra 0 e 100%"
+  },
+  "glossary": {
+    "rMultiple": {
+      "term": "R-Multiple",
+      "definition": "R-Multiple è una metrica fondamentale di gestione del rischio che misura il rapporto tra profitto/perdita e rischio iniziale. Normalizza ogni operazione in base al rischio assunto, consentendo un confronto equo tra diverse operazioni indipendentemente dalla dimensione della posizione o dagli importi assoluti. Un R-Multiple positivo mostra un guadagno, uno negativo mostra una perdita rispetto al rischio.",
+      "formula": "R-Multiple = (Prezzo Uscita - Prezzo Entrata) / Rischio Iniziale\n\nPer posizioni Short: R-Multiple = (Prezzo Entrata - Prezzo Uscita) / Rischio Iniziale",
+      "example": "Entrata a $100, Stop-Loss a $95 ($5 rischio = 1R), Uscita a $110: R-Multiple = (110 - 100) / 5 = 2R (doppio rischio guadagnato). Uscita a $92.50: R-Multiple = (92.50 - 100) / 5 = -1.5R (1.5x rischio perso)"
+    },
+    "initialRisk": {
+      "term": "Rischio Iniziale",
+      "definition": "L'importo di denaro che sei disposto a perdere su un'operazione, calcolato dal prezzo di entrata al prezzo di stop loss.",
+      "formula": "Rischio Iniziale = (Prezzo Entrata - Prezzo Stop Loss) × Quantità",
+      "example": "Entrata $50, Stop Loss $48, Qty 100 → Rischio = $200"
+    },
+    "expectancy": {
+      "term": "Aspettativa",
+      "definition": "L'importo medio che puoi aspettarti di vincere (o perdere) per operazione nel tempo. Considera sia il win rate che il guadagno/perdita media.",
+      "formula": "Aspettativa = (Win Rate × Guadagno Medio) - (Loss Rate × Perdita Media)",
+      "example": "60% win rate, $150 guadagno medio, $100 perdita media → Aspettativa = $50"
+    },
+    "tradeRating": {
+      "term": "Valutazione Qualità Operazione",
+      "definition": "Una valutazione soggettiva (1-5 stelle) che riflette la qualità dell'esecuzione dell'operazione. Considera fattori come: seguire il tuo piano, timing entrata/uscita, controllo emotivo e gestione del rischio. Questo aiuta a identificare operazioni ben eseguite indipendentemente dal risultato P&L."
+    },
+    "winRate": {
+      "term": "Win Rate",
+      "definition": "Percentuale di operazioni redditizie.",
+      "formula": "Win Rate = (Operazioni Vincenti / Operazioni Totali) × 100%",
+      "example": "60 vincite su 100 operazioni → Win Rate = 60%"
+    },
+    "winRateRiskReward": {
+      "term": "Relazione Win Rate & Rischio-Rendimento",
+      "definition": "Win Rate e rapporto Rischio-Rendimento (R-Multiple) sono i due pilastri fondamentali della redditività del trading. Sono inversamente correlati: più alto è il tuo R-Multiple medio, più basso può essere il tuo win rate pur rimanendo redditizio. Questo è essenziale da capire, poiché molti trader si concentrano erroneamente solo su win rate elevati. Le strategie momentum hanno spesso solo 30-40% di win rate ma sono altamente redditizie attraverso R-Multiple elevati (3R+). Le strategie mean-reversion hanno spesso 60-70% di win rate ma R-Multiple più bassi (0.5-1.5R).",
+      "example": "Scenario A (Momentum): 35% win rate, guadagno medio 4R, perdita media 1R → Aspettativa = (0.35 × 4R) - (0.65 × 1R) = 0.75R per operazione (altamente redditizio).\n\nScenario B (Mean-Reversion): 65% win rate, guadagno medio 0.8R, perdita media 1R → Aspettativa = (0.65 × 0.8R) - (0.35 × 1R) = 0.17R per operazione (redditizio ma meno).\n\nScenario C (perdente): 60% win rate, guadagno medio 0.5R, perdita media 1R → Aspettativa = (0.6 × 0.5R) - (0.4 × 1R) = -0.1R per operazione (perdente nonostante win rate alto!).\n\nFormula pareggio: Con R-Multiple medio di X, hai bisogno di minimo 1/(1+X) win rate. A 2R: 33.3%, a 1R: 50%, a 0.5R: 66.7%"
+    },
+    "profitFactor": {
+      "term": "Profit Factor",
+      "definition": "Rapporto tra profitti lordi e perdite lorde. Sopra 1.0 significa redditizio, sopra 2.0 è eccellente.",
+      "formula": "Profit Factor = Profitto Lordo Totale / Perdita Lorda Totale",
+      "example": "$10.000 profitto, $5.000 perdite → Profit Factor = 2.0"
+    },
+    "riskReward": {
+      "term": "Rapporto Rischio-Rendimento",
+      "definition": "Confronta il potenziale profitto con la potenziale perdita prima di entrare in un'operazione.",
+      "formula": "Rischio-Rendimento = (Target - Entrata) / (Entrata - Stop Loss)",
+      "example": "Entrata $50, Target $56, Stop $48 → R:R = 3:1"
+    },
+    "maxDrawdown": {
+      "term": "Drawdown Massimo",
+      "definition": "Il più grande calo picco-valle nell'equity dell'account.",
+      "formula": "Max DD = (Picco - Minimo) / Picco × 100%",
+      "example": "Picco $10.000, minimo $8.000 → Max DD = 20%"
+    },
+    "avgWinLoss": {
+      "term": "Guadagno / Perdita Media",
+      "definition": "Profitto medio delle operazioni vincenti vs. perdita media delle operazioni perdenti.",
+      "formula": "Guadagno Medio = Profitto Totale / # Vincite",
+      "example": "5 vincite per un totale di $500 → Guadagno Medio = $100"
+    },
+    "pnl": {
+      "term": "P&L (Profitto & Perdita)",
+      "definition": "Il guadagno o la perdita netti da un'operazione dopo le commissioni.",
+      "formula": "P&L = (Uscita - Entrata) × Qty - Commissioni",
+      "example": "Acquisto 100 @ $50, vendita @ $55, $2 commissioni → P&L = $498"
+    },
+    "setup": {
+      "term": "Setup",
+      "definition": "Un pattern specifico che segnala un'opportunità di trading.",
+      "example": "Breakout, Rally Fallito, Gap Fill"
+    },
+    "stopLoss": {
+      "term": "Stop Loss",
+      "definition": "Livello di prezzo predeterminato per uscire e limitare le perdite.",
+      "example": "Long $50, stop a $48 limita il rischio a $2/azione"
+    },
+    "equityCurve": {
+      "term": "Curva Equity",
+      "definition": "La Curva Equity è una rappresentazione grafica della performance cumulativa del tuo account di trading nel tempo. Mostra lo sviluppo del tuo capitale da operazione a operazione e visualizza fasi di crescita e periodi di drawdown. Una curva equity ideale sale continuamente con cali moderati. L'analisi della curva equity aiuta a identificare pattern: La tua performance è consistente o dipendente da pochi grandi vincitori? La curva mostra lunghe fasi laterali o drawdown profondi? Questo è essenziale per la gestione psicologica del trading.",
+      "example": "Inizio con $10.000: Dopo 5 operazioni (Vincite: +$200, +$150, Perdite: -$100, -$80, +$300) la curva equity mostra: $10.000 → $10.200 → $10.350 → $10.250 → $10.170 → $10.470. La visualizzazione mostra immediatamente che nonostante 3 su 5 operazioni vincenti (60% win rate), la vincita più grande (+$300) è stata cruciale. Una curva equity piatta o in calo per un periodo prolungato segnala la necessità di aggiustamento strategia."
+    },
+    "consistencyTracker": {
+      "term": "Tracker Consistenza / Mappa Termica Attività Trading",
+      "definition": "Il Tracker Consistenza è una mappa termica visuale della tua attività di trading quotidiana su più settimane/mesi. Ogni tessera rappresenta un giorno: Verde = giorno redditizio, Rosso = giorno in perdita, Intensità = numero di operazioni. Questo strumento rivela pattern nel tuo comportamento di trading: Stai facendo trading troppo frequentemente? Ci sono pattern specifici del giorno della settimana? Sei consistentemente attivo o sporadico? La consistenza è critica per risultati statisticamente significativi. Se fai solo 5 operazioni al mese, hai bisogno di 100+ operazioni per una valutazione valida della strategia - ci vogliono 20 mesi. Più consistenza = curva di apprendimento più veloce.",
+      "example": "La mappa termica mostra: Lunedì-Mercoledì per lo più verde con alta intensità (molte operazioni redditizie), Giovedì-Venerdì misto o vuoto (meno/nessuna attività). Questo potrebbe significare: Perfor mi meglio all'inizio della settimana quando il mercato stabilisce trend. Oppure: Divento meno disciplinato verso il weekend. L'analisi porta all'aggiustamento: Focus su trading Lunedì-Mercoledì, pausa rigorosa Giovedì-Venerdì → miglioramento immediato delle performance attraverso eliminazione dei giorni deboli."
+    },
+    "portfolioNews": {
+      "term": "Notizie Portfolio / Feed Notizie Simboli",
+      "definition": "Notizie Portfolio è una funzionalità intelligente che cura e mostra automaticamente notizie finanziarie rilevanti per i tuoi simboli più scambiati. Il sistema analizza la tua cronologia di trading, identifica i top 5-10 simboli per frequenza di trading, e poi filtra le notizie di mercato correnti che influenzano questi simboli. Questo ti permette di rimanere focalizzato ed efficientemente informato su eventi che muovono il mercato, report earnings, cambiamenti normativi o sviluppi macroeconomici che potrebbero impattare direttamente i tuoi strumenti di trading preferiti. A differenza dei feed di notizie generici che ti travolgono con informazioni, questo feed è personalizzato sul tuo comportamento di trading effettivo.",
+      "example": "Supponiamo che scambi principalmente AAPL, TSLA, SPY, QQQ e NVDA. Il Feed Notizie Portfolio mostra automaticamente notizie come: 'Apple annuncia nuova lineup iPhone', 'Tesla supera obiettivi consegne', 'Decisione Fed impatta l'Indice S&P 500', 'Settore tech sotto pressione da regolamentazione'. Ignori notizie irrilevanti su azioni petrolifere o aziende farmaceutiche che non scambi. Questo risparmia tempo e aumenta l'efficienza del trading poiché devi solo reagire a eventi che influenzano direttamente le tue posizioni."
+    },
+    "dailyTradeGoal": {
+      "term": "Obiettivo Operazioni Giornaliero",
+      "definition": "L'Obiettivo Operazioni Giornaliero è uno strumento di gestione del rischio che definisce due parametri critici: (1) Un obiettivo di profitto giornaliero in dollari e (2) un numero massimo di operazioni al giorno. Questa funzionalità ti aiuta a rimanere disciplinato ed evitare due errori comuni di trading: Overtrading (troppe operazioni da noia o 'revenge trading' dopo perdite) e mancanza di obiettivi (trading infinito senza chiari criteri di uscita). Una volta raggiunto il tuo obiettivo giornaliero O superato il tuo limite di operazioni, dovresti terminare la giornata di trading. Questo promuove qualità rispetto a quantità e protegge da decisioni emotive.",
+      "example": "Imposti un Obiettivo Giornaliero di $500 con massimo 10 operazioni. Scenario 1: Dopo 6 operazioni hai $520 profitto → Ti fermi per la giornata, prendi il profitto ed eviti di restituirlo attraverso overtrading. Scenario 2: Dopo 10 operazioni hai $200 profitto → Ti fermi nonostante non abbia raggiunto l'obiettivo perché hai raggiunto il limite di operazioni. Questo previene revenge trading o inseguimento disperato dell'obiettivo. Il sistema traccia il tuo tasso di successo: Quanto spesso raggiungi il tuo obiettivo? Quanto spesso superi il limite di operazioni? Questi dati rivelano pattern e aiutano a ottimizzare la tua strategia di trading."
+    },
+    "breakout": {
+      "term": "Breakout",
+      "definition": "Un breakout si verifica quando il prezzo rompe attraverso un livello definito di resistenza o supporto, segnalando un potenziale nuovo movimento di trend.",
+      "example": "L'azione scambia a $45-50 per settimane. Rottura sopra $50 con alto volume = breakout rialzista"
+    },
+    "consolidation": {
+      "term": "Consolidamento",
+      "definition": "Una fase laterale dove il prezzo scambia in un range stretto, tipicamente dopo un movimento forte. Mostra equilibrio tra acquirenti e venditori.",
+      "example": "Dopo rally del 20%, l'azione scambia in range 5% per 2 settimane – consolidamento prima del prossimo potenziale movimento"
+    },
+    "edge": {
+      "term": "Vantaggio / Vantaggio Trading",
+      "definition": "Un vantaggio è un vantaggio statistico o informativo che aumenta la tua probabilità di vincere oltre il caso. Può venire da strategia, timing, informazioni o esecuzione.",
+      "example": "Il tuo vantaggio: Fare trading solo su pattern grafici specifici con 55% win rate e 2R guadagno medio → aspettativa positiva"
+    },
+    "gap": {
+      "term": "Gap / Gap di Prezzo",
+      "definition": "Un gap si verifica quando il prezzo di apertura è significativamente sopra o sotto il prezzo di chiusura precedente, spesso a causa di notizie durante ore di chiusura.",
+      "example": "L'azione chiude a $50, apre a $55 il giorno successivo dopo earnings positivi – gap up di $5"
+    },
+    "leverage": {
+      "term": "Leva",
+      "definition": "La leva permette di controllare posizioni più grandi con capitale preso in prestito rispetto a quanto permetta il tuo capitale effettivo. Amplifica sia guadagni che perdite proporzionalmente.",
+      "formula": "Rapporto Leva = Valore Posizione / Equity\n\nMargine Richiesto = Valore Posizione / Leva",
+      "example": "Account $10.000, leva 2:1 → può tenere posizione $20.000. 5% guadagno: $1.000 (10% su equity). 5% perdita: -$1.000 (-10% su equity)"
+    },
+    "liquidity": {
+      "term": "Liquidità",
+      "definition": "La liquidità misura quanto velocemente e a che prezzo un asset può essere comprato o venduto senza influenzare significativamente il prezzo di mercato. Alta liquidità = spread stretti, esecuzione veloce.",
+      "example": "Apple (AAPL): Milioni azioni giornaliere, spread $0.01 = altamente liquido. Penny stock: 1000 azioni/giorno, spread 5% = illiquido"
+    },
+    "positionSizing": {
+      "term": "Dimensionamento Posizione",
+      "definition": "Il dimensionamento posizione definisce quanto capitale investire in una singola operazione basato su rischio, dimensione account e setup operazione. Critico per sopravvivenza e crescita a lungo termine.",
+      "formula": "Dimensione Posizione = Importo Rischio / Rischio per Unità\n\nImporto Rischio = Dimensione Account × Rischio% (es. 1-2%)",
+      "example": "Account $10.000, 2% rischio ($200), entrata $50, stop $47 ($3 rischio): Dimensione Posizione = $200 / $3 = 66 azioni"
+    },
+    "scalping": {
+      "term": "Scalping",
+      "definition": "Lo scalping è una strategia di trading a breve termine che mira a profittare da piccoli movimenti di prezzo attraverso molte operazioni giornaliere (secondi a minuti periodo detenzione).",
+      "example": "Acquisto a $50.10, vendita a $50.20 per $0.10 profitto × 1000 azioni = $100. 50+ tali operazioni giornaliere"
+    },
+    "slippage": {
+      "term": "Slippage",
+      "definition": "Lo slippage è la differenza tra il prezzo di operazione atteso e il prezzo di esecuzione effettivo. Si verifica con ordini di mercato in mercati veloci/illiquidi.",
+      "example": "Vuoi acquistare a $50 (ordine di mercato), ma vieni riempito a $50.15 = $0.15 slippage per azione (0.3%)"
+    },
+    "supportResistance": {
+      "term": "Supporto & Resistenza",
+      "definition": "Il supporto è un livello di prezzo dove la pressione d'acquisto storicamente è stata abbastanza forte da fermare i downtrend. La resistenza è dove la pressione di vendita ferma gli uptrend. Diventano profezie che si autoavverano.",
+      "example": "L'azione scende a $45 tre volte e si riprende = supporto a $45. Raggiunge $55 tre volte e scende = resistenza a $55"
+    },
+    "takeProfit": {
+      "term": "Take Profit",
+      "definition": "Il take profit è un punto di uscita predefinito dove realizzi automaticamente i guadagni. Dovrebbe basarsi sull'analisi tecnica (resistenza, Fibonacci, ecc.) non sull'avidità.",
+      "example": "Entrata $50, take profit a $56 (resistenza precedente). Con stop $3 = rischio-rendimento 2:1"
+    },
+    "trend": {
+      "term": "Trend",
+      "definition": "Un trend è la direzione generale del movimento dei prezzi nel tempo. Uptrend = massimi e minimi più alti, downtrend = massimi e minimi più bassi, sideways = nessuna direzione chiara.",
+      "example": "Azione: $40 → $45 → $43 → $48 → $46 → $51 = uptrend (minimi crescenti a $43, $46)"
+    },
+    "volatility": {
+      "term": "Volatilità",
+      "definition": "La volatilità misura l'entità delle oscillazioni di prezzo. Alta volatilità = grandi movimenti di prezzo (alto rischio & opportunità), bassa volatilità = piccoli movimenti (basso rischio & opportunità).",
+      "example": "Azione A: $50 ±$0.50/giorno (1% volatilità), Azione B: $50 ±$2.50/giorno (5% volatilità) = 5x più volatile"
+    },
+    "volume": {
+      "term": "Volume di Trading",
+      "definition": "Il volume misura il numero di azioni/contratti scambiati in un periodo. Alto volume conferma movimenti di prezzo (convinzione), basso volume = movimenti deboli/questionabili.",
+      "example": "Breakout sopra $50: Con volume 10x normale = segnale forte. Con volume sotto media = probabile falso breakout"
+    },
+    "subtitle": "Termini essenziali di trading e concetti di gestione del rischio",
+    "formula": "Formula",
+    "example": "Esempio"
+  },
+  "reports": {
+    "title": "Report",
+    "subtitle": "Analisi dettagliata delle tue performance di trading",
+    "overview": "Panoramica",
+    "bySetup": "Per Setup",
+    "timeAnalysis": "Analisi Tempo",
+    "behavior": "Comportamento",
+    "symbols": "Simboli",
+    "riskAnalysis": "Analisi Rischio",
+    "accountTypes": "Account",
+    "accountTypesTooltip": "Confronta performance tra diversi tipi di account (Sim, Valutazione, Finanziato, Live)",
+    "accountTypesComparison": "Confronto Tipo Account",
+    "accountType": "Tipo Account",
+    "pnlByAccountType": "P&L per Tipo Account",
+    "tradesByAccountType": "Operazioni per Tipo Account",
+    "equityCurvesByAccountType": "Curve Equity per Tipo Account",
+    "avgTrade": "Operazione Media",
+    "trades": "Operazioni",
+    "profitFactor": "Profit Factor",
+    "totalPnL": "P&L Totale",
+    "goalAchievementRate": "Tasso Raggiungimento Obiettivi",
+    "daysAchieved": "{{achieved}} di {{total}} giorni",
+    "currentGoal": "Obiettivo Corrente",
+    "maxTradesPerDay": "Max {{trades}} operazioni al giorno",
+    "bestDay": "Giorno Migliore",
+    "bestTradingDay": "Miglior giorno di trading",
+    "noData": "Nessun dato",
+    "goalAchievementRateTooltip": "Mostra la percentuale di giorni in cui hai raggiunto il tuo obiettivo giornaliero. Puoi regolare i tuoi obiettivi giornalieri nelle Impostazioni.",
+    "currentGoalTooltip": "Il tuo obiettivo di profitto giornaliero corrente e numero massimo di operazioni al giorno. Puoi cambiare queste impostazioni nelle Impostazioni.",
+    "bestDayTooltip": "Il tuo giorno di trading più redditizio nel periodo selezionato.",
+    "overviewTooltip": "Panoramica generale delle tue performance di trading con metriche chiave, analisi giorno della settimana e simboli top.",
+    "dailyGoalsTooltip": "Traccia il tuo progresso verso obiettivi di profitto giornaliero e operazioni massime al giorno. Configura i tuoi obiettivi nelle Impostazioni.",
+    "bySetupTooltip": "Analizza performance per setup/strategia di trading. Vedi quali setup sono più redditizi e quali necessitano miglioramento.",
+    "timeAnalysisTooltip": "Scopri pattern nel tuo trading basati sul tempo: performance giorno della settimana e analisi ora del giorno.",
+    "behaviorTooltip": "Analizza i pattern del tuo comportamento di trading includendo serie vincite/perdite e periodi medi di detenzione.",
+    "symbolsTooltip": "Ripartizione performance per singoli simboli. Identifica quali asset scambi con più successo.",
+    "riskAnalysisTooltip": "Analisi dettagliata gestione rischio includendo distribuzione R-Multiple, rapporti medi vincite/perdite e profit factor. Comprendere queste metriche è cruciale per redditività a lungo termine. Vedi Glossario per spiegazioni dettagliate di R-Multiple e Profit Factor.",
+    "dailyGoalHistory": "Cronologia Obiettivo Giornaliero",
+    "noTradesInPeriod": "Nessuna operazione nel periodo selezionato",
+    "dailyPnl": "P&L Giornaliero",
+    "tradesToday": "Operazioni oggi",
+    "tradesRemaining": "{{remaining}} operazioni rimanenti",
+    "tradesOverLimit": "{{over}} operazioni oltre il limite",
+    "limitReached": "Limite raggiunto",
+    "goalAchievedPerfect": "Perfetto! Obiettivo raggiunto senza overtrading",
+    "goalNotAchievedOvertraded": "Limite operazioni superato",
+    "goalAchieved": "Obiettivo raggiunto",
+    "overtraded": "Overtrading",
+    "allTime": "Tutto il Tempo",
+    "thisWeek": "Questa Settimana",
+    "thisMonth": "Questo Mese",
+    "last3Months": "Ultimi 3 Mesi",
+    "thisYear": "Quest'Anno",
+    "dayOfWeekDistribution": "Distribuzione Operazioni per Giorno Settimana",
+    "dayOfWeekDistributionTooltip": "Mostra quante operazioni hai eseguito in ogni giorno della settimana. Aiuta a identificare i tuoi giorni di trading più attivi e potenziali pattern nel tuo comportamento di trading.",
+    "performanceByDay": "Performance per Giorno Settimana",
+    "performanceByDayTooltip": "Mostra la tua redditività per ogni giorno della settimana. Barre verdi indicano giorni redditizi, barre rosse mostrano perdite. Aiuta a identificare quali giorni sono più di successo per la tua strategia di trading.",
+    "summary": "Riepilogo",
+    "totalTrades": "Operazioni Totali",
+    "winningTrades": "Operazioni Vincenti",
+    "losingTrades": "Operazioni Perdenti",
+    "setupPerformance": "Performance Setup",
+    "trades": "operazioni",
+    "winRate": "win rate",
+    "noSetupData": "Nessun dato setup disponibile per il periodo selezionato",
+    "dayOfWeekSummary": "Riepilogo Giorno Settimana",
+    "day": "Giorno",
+    "wins": "Vincite",
+    "losses": "Perdite",
+    "totalPnl": "P&L Totale",
+    "sunday": "Domenica",
+    "monday": "Lunedì",
+    "tuesday": "Martedì",
+    "wednesday": "Mercoledì",
+    "thursday": "Giovedì",
+    "friday": "Venerdì",
+    "saturday": "Sabato",
+    "rMultipleDistribution": "Distribuzione R-Multiple",
+    "riskMetrics": "Metriche Rischio",
+    "avgRMultiple": "R-Multiple Medio",
+    "tradesWithRisk": "Operazioni con Dati Rischio",
+    "avgWin": "Guadagno Medio",
+    "avgLoss": "Perdita Media",
+    "profitFactor": "Profit Factor",
+    "totalTradesTooltip": "Numero totale di operazioni eseguite nel periodo selezionato",
+    "winningTradesTooltip": "Numero di operazioni redditizie",
+    "losingTradesTooltip": "Numero di operazioni in perdita",
+    "tradesWithRiskTooltip": "Numero di operazioni con rischio definito (R)",
+    "avgWinTooltip": "Profitto medio su operazioni vincenti",
+    "avgLossTooltip": "Perdita media su operazioni perdenti",
+    "noRiskData": "Nessun dato rischio disponibile. Aggiungi rischio iniziale e stop loss alle tue operazioni.",
+    "streakAnalysis": "Analisi Serie",
+    "longestWinStreak": "Serie Vincente Più Lunga",
+    "longestLossStreak": "Serie Perdente Più Lunga",
+    "currentStreak": "Serie Corrente",
+    "avgStreak": "Serie Media",
+    "winStreak": "Serie vincente attiva",
+    "lossStreak": "Serie perdente attiva",
+    "noActiveStreak": "Nessuna serie attiva",
+    "streakInsight": "💡 Una serie vincente più lunga mostra consistenza. Dopo serie perdenti, rivedi la tua strategia e considera di prenderti una pausa per evitare 'revenge trading'.",
+    "holdingPeriodAnalysis": "Analisi Periodo Detenzione",
+    "avgWinHold": "Detenzione Media Vincita",
+    "avgLossHold": "Detenzione Media Perdita",
+    "holdRatio": "Rapporto Detenzione",
+    "days": "giorni",
+    "optimal": "Ottimale ✓",
+    "good": "Buono",
+    "needsImprovement": "Necessita Miglioramento",
+    "holdingPeriodInsight": "💡 L'ideale è un rapporto detenzione > 1.0: Tieni i vincitori più a lungo dei perdenti. Un rapporto < 1.0 indica 'taglia vincitori corti, lascia correre perdite' - un errore comune.",
+    "holdingPeriodDistribution": "Distribuzione per Periodo Detenzione",
+    "topProfitableSymbols": "Top 5 Simboli Redditizi",
+    "topUnprofitableSymbols": "Top 5 Simboli Non Redditizi",
+    "mostTradedSymbols": "Simboli Più Scambiati",
+    "totalSymbols": "Simboli Totali",
+    "noData": "Nessun dato disponibile",
+    "hourOfDayPerformance": "Performance per Ora del Giorno",
+    "bestTradingHours": "Migliori Ore Trading",
+    "worstTradingHours": "Peggiori Ore Trading",
+    "hourOfDayInsight": "💡 Identifica i tuoi orari di trading più redditizi e concentrati su quelli. Evita di fare trading durante orari con performance scarse (es. pausa pranzo, ultima ora di trading)."
+  },
+  "filters": {
+    "filters": "Filtri",
+    "active": "attivo",
+    "symbol": "Simbolo",
+    "symbolPlaceholder": "es. AAPL",
+    "market": "Mercato",
+    "allMarkets": "Tutti i Mercati",
+    "side": "Lato",
+    "allSides": "Tutti i Lati",
+    "setup": "Setup",
+    "allSetups": "Tutti i Setup",
+    "minRating": "Valutazione Minima",
+    "anyRating": "Qualsiasi Valutazione",
+    "withScreenshot": "Con Screenshot",
+    "all": "Tutti",
+    "yes": "Sì",
+    "no": "No",
+    "dateFrom": "Data Da",
+    "dateTo": "Data A",
+    "pickDate": "Scegli una data",
+    "minPnl": "P&L Min ($)",
+    "maxPnl": "P&L Max ($)",
+    "clearFilters": "Cancella Filtri"
+  },
+  "assistant": {
+    "title": "Assistente Trading AI",
+    "subtitle": "Fai domande sulla tua performance di trading e ottieni risposte basate sui dati",
+    "welcome": "Benvenuto nell'Assistente AI",
+    "welcomeDescription": "Fammi domande sulla tua performance di trading, setup, simboli o qualsiasi altra analisi.",
+    "suggestedQuestions": "Domande Suggerite:",
+    "inputPlaceholder": "Fai una domanda...",
+    "error": "Errore",
+    "errorDescription": "Impossibile elaborare la richiesta. Riprova.",
+    "creditsExhausted": "Crediti Lovable AI esauriti. Aggiungi crediti in Impostazioni → Workspace → Utilizzo.",
+    "dailyLimitReached": "Limite giornaliero raggiunto. Aggiorna per più domande o riprova domani.",
+    "questionsRemaining": "domande rimanenti oggi",
+    "upgradeForMore": "Aggiorna per più domande"
+  },
+  "dailyPrep": {
+    "title": "Preparazione Giornaliera",
+    "checklistProgress": "Progresso Checklist",
+    "reviewedNews": "Riviste notizie di mercato e titoli",
+    "checkedEconomicCalendar": "Controllato calendario economico per oggi",
+    "identifiedKeyLevels": "Identificati livelli chiave supporto/resistenza",
+    "reviewedYesterday": "Riviste operazioni di ieri",
+    "setDailyGoals": "Impostati obiettivi trading giornalieri",
+    "checkedRiskManagement": "Riviste regole gestione rischio",
+    "addChecklistItem": "Aggiungi elemento checklist...",
+    "marketOutlook": "Prospettiva Mercato",
+    "marketOutlookPlaceholder": "Qual è la tua visione sul mercato oggi? Rialzista, ribassista o neutrale?",
+    "keyLevels": "Livelli Chiave",
+    "keyLevelsPlaceholder": "Elenca livelli importanti di supporto e resistenza da osservare...",
+    "tradingPlan": "Piano Trading",
+    "tradingPlanPlaceholder": "Qual è il tuo piano per oggi? Setup che stai cercando, strategie da usare...",
+    "mindset": "Mentalità & Obiettivi",
+    "mindsetPlaceholder": "Come ti senti? Quali sono i tuoi obiettivi per oggi?",
+    "savePrep": "Salva Preparazione Giornaliera",
+    "saved": "Preparazione giornaliera salvata con successo",
+    "saveError": "Errore salvataggio preparazione giornaliera"
+  },
+  "privacy": {
+    "title": "Informativa Privacy",
+    "subtitle": "Prendiamo sul serio la protezione dei tuoi dati personali. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati.",
+    "certifications": {
+      "title": "Certificazioni & Conformità",
+      "soc2": {
+        "name": "SOC 2 Type 2",
+        "description": "Auditato indipendentemente ai più alti standard di sicurezza per servizi cloud"
+      },
+      "iso": {
+        "name": "ISO 27001:2022",
+        "description": "Sistema di gestione sicurezza informazioni certificato secondo standard internazionali"
+      },
+      "gdpr": {
+        "name": "Conforme GDPR",
+        "description": "Piena conformità al Regolamento Generale sulla Protezione dei Dati UE con archiviazione dati nell'UE"
+      }
+    },
+    "dataStorage": {
+      "title": "Archiviazione & Sicurezza Dati",
+      "euRegion": {
+        "badge": "UE",
+        "title": "Archiviazione Dati nell'UE",
+        "description": "Tutti i tuoi dati sono archiviati ed elaborati esclusivamente in data center altamente sicuri a Francoforte, Germania."
+      },
+      "encrypted": {
+        "badge": "Crittografato",
+        "title": "Crittografia End-to-End",
+        "description": "I tuoi dati sono crittografati sia in transito (TLS 1.3) che a riposo (AES-256)."
+      }
+    },
+    "sections": {
+      "controller": {
+        "title": "Titolare del Trattamento",
+        "content": "Il titolare del trattamento per questo sito web è:",
+        "company": "[Nome Azienda]\n[Via e Numero]\n[CAP e Città]\n[Paese]\n\nEmail: [Indirizzo Email]\nTelefono: [Numero Telefono]"
+      },
+      "collection": {
+        "title": "Raccolta Dati",
+        "website": {
+          "title": "Visite Sito Web",
+          "intro": "I seguenti dati tecnici vengono raccolti automaticamente con ogni accesso al nostro sito web:",
+          "items": [
+            "Indirizzo IP del computer di accesso",
+            "Data e ora dell'accesso",
+            "Nome e URL del file recuperato",
+            "Quantità di dati trasferiti",
+            "Notifica di recupero riuscito",
+            "Tipo e versione browser",
+            "Sistema operativo utente",
+            "URL Referrer (pagina visitata precedentemente)"
+          ]
+        },
+        "registration": {
+          "title": "Registrazione",
+          "intro": "Per utilizzare i nostri servizi, raccogliamo i seguenti dati personali:",
+          "items": [
+            "Indirizzo email (obbligatorio)",
+            "Nome (opzionale)",
+            "Immagine profilo (opzionale)",
+            "Impostazioni fuso orario",
+            "Preferenze lingua"
+          ]
+        },
+        "trading": {
+          "title": "Dati Trading",
+          "description": "Tutti i dati di trading che inserisci (operazioni, voci diario, setup, tag) sono archiviati crittografati e accessibili solo a te."
+        }
+      },
+      "legalBasis": {
+        "title": "Base Giuridica",
+        "intro": "Il trattamento dei tuoi dati personali si basa sulle seguenti basi giuridiche:",
+        "items": [
+          "<strong>Art. 6(1)(b) GDPR:</strong> Trattamento per l'esecuzione di un contratto o misure precontrattuali",
+          "<strong>Art. 6(1)(a) GDPR:</strong> Trattamento basato sul tuo consenso",
+          "<strong>Art. 6(1)(f) GDPR:</strong> Trattamento per i nostri interessi legittimi (es. per migliorare i nostri servizi)"
+        ]
+      },
+      "dataSharing": {
+        "title": "Condivisione Dati",
+        "intro": "I tuoi dati personali sono condivisi con terze parti solo nei seguenti casi:",
+        "serviceProviders": {
+          "title": "Fornitori Servizi",
+          "intro": "Lavoriamo con fornitori di servizi selezionati che ci supportano nella fornitura dei nostri servizi:",
+          "items": [
+            "<strong>Supabase (Infrastruttura Cloud):</strong> Servizi hosting e database in data center UE",
+            "<strong>Stripe:</strong> Elaborazione pagamenti (soggetto alla propria informativa privacy)",
+            "<strong>Resend:</strong> Consegna email (email transazionali)"
+          ],
+          "compliance": "Tutti i fornitori di servizi sono conformi GDPR e hanno firmato accordi di trattamento dati con noi secondo l'Art. 28 GDPR."
+        },
+        "legal": {
+          "title": "Obblighi Legali",
+          "description": "Condividiamo i tuoi dati quando siamo legalmente tenuti a farlo o quando necessario per far valere i nostri diritti."
+        }
+      },
+      "rights": {
+        "title": "I Tuoi Diritti",
+        "intro": "Hai i seguenti diritti riguardo ai tuoi dati personali:",
+        "items": {
+          "access": "<strong>Diritto di Accesso:</strong> Puoi richiedere informazioni sui tuoi dati archiviati in qualsiasi momento",
+          "rectification": "<strong>Diritto di Rettifica:</strong> Puoi richiedere correzione di dati inesatti",
+          "erasure": "<strong>Diritto alla Cancellazione:</strong> Puoi richiedere cancellazione dei tuoi dati, salvo obblighi legali di conservazione",
+          "restriction": "<strong>Diritto di Limitazione:</strong> Puoi richiedere limitazione del trattamento",
+          "portability": "<strong>Portabilità Dati:</strong> Puoi ricevere i tuoi dati in formato strutturato, comune e leggibile da macchina",
+          "objection": "<strong>Diritto di Opposizione:</strong> Puoi opporti al trattamento dei tuoi dati"
+        },
+        "contact": "Per esercitare i tuoi diritti, contattaci usando i dettagli forniti sopra."
+      },
+      "security": {
+        "title": "Misure di Sicurezza",
+        "intro": "Implementiamo misure di sicurezza tecniche e organizzative complete:",
+        "items": [
+          "Crittografia TLS 1.3 per tutte le trasmissioni dati",
+          "Crittografia AES-256 per dati archiviati",
+          "Audit di sicurezza regolari e test di penetrazione",
+          "Controllo accessi e autenticazione con standard moderni",
+          "Monitoraggio continuo e risposta incidenti",
+          "Backup regolari in data center geograficamente separati"
+        ]
+      },
+      "cookies": {
+        "title": "Cookie & Tracking",
+        "intro": "Utilizziamo cookie e tecnologie simili per i seguenti scopi:",
+        "items": [
+          "Cookie Essenziali: Per funzionalità sito web (es. gestione sessione, autenticazione)",
+          "Cookie Preferenze: Per archiviare le tue impostazioni (es. lingua, tema)",
+          "Cookie Performance: Per migliorare performance sito web"
+        ],
+        "noTracking": "Non utilizziamo cookie di tracking di terze parti e non vendiamo dati a terze parti."
+      },
+      "retention": {
+        "title": "Periodo di Conservazione",
+        "intro": "Archiviamo i tuoi dati personali solo per il tempo necessario a soddisfare i rispettivi scopi:",
+        "items": [
+          "Dati account: Per la durata della tua iscrizione più 30 giorni",
+          "Dati trading: Finché hai un account attivo o come richiesto dalla legge commerciale tedesca",
+          "File log: Massimo 90 giorni",
+          "Dati fattura: 10 anni (requisito conservazione legale)"
+        ],
+        "deletion": "Dopo scadenza del periodo di conservazione, i dati vengono eliminati routinariamente e automaticamente salvo obblighi legali di conservazione che impediscano ciò."
+      },
+      "changes": {
+        "title": "Modifiche a questa Informativa Privacy",
+        "description": "Ci riserviamo il diritto di aggiornare occasionalmente questa informativa privacy per garantire che sia sempre conforme ai requisiti legali attuali o per implementare modifiche ai nostri servizi. La nuova informativa privacy si applicherà alla tua prossima visita.",
+        "lastUpdated": "Ultimo aggiornamento:"
+      },
+      "complaint": {
+        "title": "Diritto di Reclamo",
+        "intro": "Hai il diritto di presentare reclamo a un'autorità di vigilanza protezione dati:",
+        "authority": "Autorità di vigilanza responsabile per la Germania:\nIl Commissario Federale per la Protezione dei Dati e la Libertà di Informazione (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTelefono: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+      }
+    }
+  },
+  "terms": {
+    "title": "Termini e Condizioni",
+    "lastUpdated": "Ultimo Aggiornamento: Gennaio 2025",
+    "scope": {
+      "title": "1. Ambito di Applicazione",
+      "content1": "Questi Termini e Condizioni regolano l'uso della Piattaforma Diario di Trading (di seguito 'Piattaforma'). Registrandoti e utilizzando la Piattaforma, accetti questi Termini e Condizioni.",
+      "content2": "Questi Termini e Condizioni si applicano esclusivamente. Termini divergenti, contrastanti o supplementari dell'utente diventeranno parte del contratto solo se esplicitamente concordati."
+    },
+    "parties": {
+      "title": "2. Parti Contraenti",
+      "content": "Il contratto è concluso tra l'utente e l'operatore della Piattaforma. I dettagli di contatto si trovano nell'impronta."
+    },
+    "contract": {
+      "title": "3. Conclusione Contratto",
+      "content1": "Registrandoti, l'utente fa un'offerta per concludere un accordo di utilizzo. Il contratto è concluso con la conferma della registrazione via email.",
+      "content2": "La registrazione è consentita solo a persone maggiorenni con piena capacità legale."
+    },
+    "trial": {
+      "title": "4. Periodo Prova Gratuita",
+      "content1": "I nuovi utenti ricevono una prova gratuita di 14 giorni con accesso completo a tutte le funzionalità. La disdetta è possibile in qualsiasi momento durante il periodo di prova.",
+      "content2": "Dopo scadenza del periodo di prova, l'account si converte automaticamente in abbonamento a pagamento salvo disdetta."
+    },
+    "pricing": {
+      "title": "5. Prezzi e Termini Pagamento",
+      "content1": "I prezzi attuali sono mostrati sul sito web. Tutti i prezzi includono IVA/tasse vendite applicabili.",
+      "content2": "Il pagamento è effettuato in anticipo per il periodo di fatturazione selezionato (mensile o annuale). La fatturazione è elaborata tramite il nostro fornitore pagamenti Stripe."
+    },
+    "withdrawal": {
+      "title": "6. Diritto di Recesso (per Consumatori UE)",
+      "content1": "I consumatori hanno il diritto di recedere da questo contratto entro quattordici giorni senza fornire alcuna motivazione. Il periodo di recesso è di quattordici giorni dalla data di conclusione del contratto.",
+      "content2": "Per esercitare il tuo diritto di recesso, devi informarci mediante dichiarazione chiara (es. per email) della tua decisione di recedere da questo contratto.",
+      "content3": "Se hai già utilizzato il servizio durante il periodo di recesso e hai espressamente accettato che iniziassimo a fornire il servizio, il tuo diritto di recesso scade."
+    },
+    "license": {
+      "title": "7. Diritti di Utilizzo e Licenza",
+      "content1": "L'utente riceve un diritto semplice e non trasferibile di utilizzare la Piattaforma per la durata del contratto. Attività vietate includono:",
+      "restriction1": "Condivisione credenziali login con terze parti",
+      "restriction2": "Reverse engineering o decompilazione del software",
+      "restriction3": "Ridistribuzione commerciale di contenuti Piattaforma",
+      "restriction4": "Utilizzo per scopi illegali o fraudolenti"
+    },
+    "obligations": {
+      "title": "8. Obblighi Utente",
+      "content1": "L'utente si impegna a:",
+      "rule1": "Fornire solo informazioni veritiere durante la registrazione",
+      "rule2": "Mantenere credenziali login confidenziali e proteggerle da accesso terze parti",
+      "rule3": "Non archiviare o distribuire contenuti illegali o dannosi",
+      "rule4": "Non utilizzare la Piattaforma per accesso automatizzato di massa"
+    },
+    "liability": {
+      "title": "9. Responsabilità",
+      "content1": "L'operatore è responsabile solo per danni in casi di intenzione e negligenza grave. Questo non si applica a lesioni alla vita, corpo o salute, o violazione di obblighi contrattuali essenziali (obblighi cardinali).",
+      "content2": "La Piattaforma serve esclusivamente a scopi di documentazione e analisi. Non costituisce consulenza investimenti e non sostituisce consultazione con consulente finanziario professionale.",
+      "content3": "L'utente è responsabile del backup dei propri dati. L'operatore raccomanda esportazioni regolari di dati importanti."
+    },
+    "security": {
+      "title": "10. Sicurezza Dati e Certificazioni",
+      "content1": "La Piattaforma soddisfa i più alti standard di sicurezza:",
+      "cert1": "Certificazione SOC 2 Type 2 – Prova di elaborazione e protezione dati sicuri",
+      "cert2": "Certificazione ISO 27001:2022 – Standard internazionale per sistemi gestione sicurezza informazioni",
+      "cert3": "Conformità GDPR – Tutti i dati sono archiviati ed elaborati in data center UE (Francoforte)"
+    },
+    "termination": {
+      "title": "11. Durata e Risoluzione",
+      "content1": "Il contratto ha una durata minima corrispondente al periodo di fatturazione selezionato e si rinnova automaticamente salvo disdetta prima della scadenza.",
+      "content2": "La disdetta può essere effettuata in qualsiasi momento tramite le impostazioni account e diventa effettiva alla fine del periodo pagato. Il diritto a risoluzione straordinaria per giusta causa rimane inalterato."
+    },
+    "changes": {
+      "title": "12. Modifiche ai Termini",
+      "content": "L'operatore si riserva il diritto di modificare questi Termini. Gli utenti saranno notificati via email almeno 30 giorni prima che le modifiche diventino effettive. Se l'utente non obietta entro 30 giorni, i nuovi Termini sono considerati accettati."
+    },
+    "law": {
+      "title": "13. Legge Applicabile e Giurisdizione",
+      "content1": "Per utenti nell'UE, si applica la legge del paese in cui l'utente ha la propria residenza abituale. Le disposizioni obbligatorie di protezione consumatori rimangono inalterate.",
+      "content2": "Per utenti fuori dall'UE, si applica la legge tedesca, escludendo la Convenzione ONU sui Contratti per la Vendita Internazionale di Merci (CISG). Per commercianti, il luogo di giurisdizione è la sede legale dell'operatore."
+    },
+    "final": {
+      "title": "14. Disposizioni Finali",
+      "content": "Qualora singole disposizioni di questi Termini siano o diventino invalide, la validità delle restanti disposizioni rimane inalterata. Una disposizione efficace che si avvicini maggiormente allo scopo economico della disposizione invalida sostituirà la disposizione invalida."
+    },
+    "contact": {
+      "title": "Domande sui Termini?",
+      "content": "Se hai domande su questi Termini e Condizioni, non esitare a contattarci in qualsiasi momento.",
+      "button": "Contattaci"
+    }
+  }
+}
