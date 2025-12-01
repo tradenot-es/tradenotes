@@ -74,15 +74,10 @@ namespace NinjaTrader.NinjaScript.Strategies
 				WebhookUrl = "https://REDACTED.supabase.co/functions/v1/import-trades";
 				ApiKey = "YOUR_API_KEY_HERE"; // Get from TradeNotes Import page
 			}
-			else if (State == State.Configure)
-			{
-				// Configure HttpClient headers
-				httpClient.DefaultRequestHeaders.Clear();
-				if (!string.IsNullOrEmpty(ApiKey) && ApiKey != "YOUR_API_KEY_HERE")
-				{
-					httpClient.DefaultRequestHeaders.Add("X-API-Key", ApiKey);
-				}
-			}
+		else if (State == State.Configure)
+		{
+			// Configuration is done per-request in SendWebhookAsync
+		}
 			else if (State == State.Realtime)
 			{
 				// Subscribe to account executions to capture ALL trades (not just strategy trades)
@@ -141,46 +136,57 @@ namespace NinjaTrader.NinjaScript.Strategies
 			}
 		}
 
-		private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition)
+	private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition)
+	{
+		try 
 		{
-			try 
+			string action = execution.Order.OrderAction.ToString(); // "Buy" or "Sell"
+			string instrument = execution.Order.Instrument.FullName;
+			string account = execution.Order.Account.Name;
+			
+			// ISO 8601 timestamp format
+			string timeStr = time.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
+
+			// Build JSON payload for TradeNotes
+			string jsonPayload = string.Format(
+				"{{" +
+				"\"source\": \"ninjatrader\"," +
+				"\"account\": \"{0}\"," +
+				"\"instrument\": \"{1}\"," +
+				"\"action\": \"{2}\"," +
+				"\"quantity\": {3}," +
+				"\"price\": {4}," +
+				"\"timestamp\": \"{5}\"," +
+				"\"executionId\": \"{6}\"," +
+				"\"orderId\": \"{7}\"," +
+				"\"marketPosition\": \"{8}\"" +
+				"}}",
+				account,
+				instrument,
+				action,
+				quantity,
+				price.ToString(CultureInfo.InvariantCulture),
+				timeStr,
+				execution.ExecutionId,
+				execution.Order.OrderId,
+				marketPosition.ToString() // "Long", "Short", or "Flat"
+			);
+
+			var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+			
+			// Create request with explicit API key header
+			using (var request = new HttpRequestMessage(HttpMethod.Post, WebhookUrl))
 			{
-				string action = execution.Order.OrderAction.ToString(); // "Buy" or "Sell"
-				string instrument = execution.Order.Instrument.FullName;
-				string account = execution.Order.Account.Name;
+				request.Content = content;
 				
-				// ISO 8601 timestamp format
-				string timeStr = time.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
-
-				// Build JSON payload for TradeNotes
-				string jsonPayload = string.Format(
-					"{{" +
-					"\"source\": \"ninjatrader\"," +
-					"\"account\": \"{0}\"," +
-					"\"instrument\": \"{1}\"," +
-					"\"action\": \"{2}\"," +
-					"\"quantity\": {3}," +
-					"\"price\": {4}," +
-					"\"timestamp\": \"{5}\"," +
-					"\"executionId\": \"{6}\"," +
-					"\"orderId\": \"{7}\"," +
-					"\"marketPosition\": \"{8}\"" +
-					"}}",
-					account,
-					instrument,
-					action,
-					quantity,
-					price.ToString(CultureInfo.InvariantCulture),
-					timeStr,
-					execution.ExecutionId,
-					execution.Order.OrderId,
-					marketPosition.ToString() // "Long", "Short", or "Flat"
-				);
-
-				var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+				// Add API key header for authentication
+				if (!string.IsNullOrEmpty(ApiKey) && ApiKey != "YOUR_API_KEY_HERE")
+				{
+					request.Headers.Add("X-API-Key", ApiKey);
+				}
 				
 				// Send webhook to TradeNotes
-				HttpResponseMessage response = await httpClient.PostAsync(WebhookUrl, content);
+				HttpResponseMessage response = await httpClient.SendAsync(request);
 				
 				if (!response.IsSuccessStatusCode)
 				{
@@ -193,6 +199,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 					Print(string.Format("Trade sent to TradeNotes: {0} {1} @ {2} - Response: {3}", 
 						action, instrument, price, responseBody));
 				}
+			}
 			}
 			catch (Exception ex)
 			{
