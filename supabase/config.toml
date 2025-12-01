@@ -3,6 +3,9 @@ project_id = "REDACTED"
 [functions.analyze-chart]
 verify_jwt = true
 
+[functions.import-trades]
+verify_jwt = false
+
 [functions.marketaux-news]
 verify_jwt = false
 
