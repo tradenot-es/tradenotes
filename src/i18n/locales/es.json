@@ -533,6 +533,8 @@
     "resetConfirmCheckbox": "Entiendo que esta acción no se puede deshacer",
     "enterPasswordToConfirm": "Introduce tu contraseña para confirmar",
     "resetSuccess": "Todos los datos han sido eliminados exitosamente",
+    "resetSuccessMessage": "Tus datos de trading han sido completamente restablecidos. La página se recargará...",
+    "reloadingPage": "Recargando página...",
     "resetError": "Error al restablecer datos",
     "incorrectPassword": "Contraseña incorrecta",
     "mustConfirmReset": "Por favor confirma que entiendes las consecuencias",

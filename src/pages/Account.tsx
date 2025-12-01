@@ -48,6 +48,7 @@ const Account = () => {
   const [resetPassword, setResetPassword] = useState("");
   const [resetConfirmed, setResetConfirmed] = useState(false);
   const [resetting, setResetting] = useState(false);
+  const [resetSuccess, setResetSuccess] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -291,13 +292,14 @@ const Account = () => {
         return;
       }
 
-      toast.success(t("account.resetSuccess"));
+      // Show success screen
+      setResetSuccess(true);
       setShowResetDialog(false);
       setResetPassword("");
       setResetConfirmed(false);
       
-      // Reload page to reflect changes
-      setTimeout(() => window.location.reload(), 1500);
+      // Reload page after showing success animation
+      setTimeout(() => window.location.reload(), 2500);
     } catch (error: any) {
       console.error("Reset error:", error);
       toast.error(t("account.resetError"));
@@ -684,6 +686,34 @@ const Account = () => {
               <Button onClick={handleVerifyMFA} className="w-full">
                 {t("settings.verify")}
               </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Success Screen Dialog */}
+        <Dialog open={resetSuccess} onOpenChange={setResetSuccess}>
+          <DialogContent className="sm:max-w-md">
+            <div className="flex flex-col items-center justify-center py-8 space-y-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-500/20 rounded-full blur-xl animate-pulse" />
+                <div className="relative bg-green-500/10 border-2 border-green-500 rounded-full p-6 animate-scale-in">
+                  <CheckCircle className="h-16 w-16 text-green-500" />
+                </div>
+              </div>
+              
+              <div className="text-center space-y-2 animate-fade-in">
+                <DialogTitle className="text-2xl font-bold text-green-600">
+                  {t("account.resetSuccess")}
+                </DialogTitle>
+                <DialogDescription className="text-base">
+                  {t("account.resetSuccessMessage")}
+                </DialogDescription>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-muted-foreground animate-fade-in">
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent" />
+                <span>{t("account.reloadingPage")}</span>
+              </div>
             </div>
           </DialogContent>
         </Dialog>

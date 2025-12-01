@@ -533,6 +533,8 @@
     "resetConfirmCheckbox": "Je comprends que cette action ne peut pas être annulée",
     "enterPasswordToConfirm": "Entrez votre mot de passe pour confirmer",
     "resetSuccess": "Toutes les données ont été supprimées avec succès",
+    "resetSuccessMessage": "Vos données de trading ont été complètement réinitialisées. La page va se recharger...",
+    "reloadingPage": "Rechargement de la page...",
     "resetError": "Erreur lors de la réinitialisation des données",
     "incorrectPassword": "Mot de passe incorrect",
     "mustConfirmReset": "Veuillez confirmer que vous comprenez les conséquences",
