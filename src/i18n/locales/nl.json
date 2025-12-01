@@ -540,7 +540,6 @@
     "footerImprint": "Colofon",
     "footerCopyright": "© 2025 TradeNot.es. Alle rechten voorbehouden.",
     "features": {
-    "features": {
       "easyEntry": {
         "title": "Snelle Trade Invoer",
         "description": "Leg trades vast in seconden met live P&L preview, snelle symbool selectie en auto-invulling. Kopieer laatste trade voor direct journaling."
@@ -609,7 +608,6 @@
         "title": "Trading Woordenlijst",
         "description": "Leer trading termen: Win Rate, R-Multiple, Profit Factor, Expectancy en meer. Bouw je trading kennis op."
       }
-    },
     },
     "allFeatures": {
       "unlimited": "Onbeperkt trades documenteren",
