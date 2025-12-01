@@ -540,7 +540,6 @@
     "footerImprint": "Mentions Légales",
     "footerCopyright": "© 2025 TradeNot.es. Tous droits réservés.",
     "features": {
-    "features": {
       "easyEntry": {
         "title": "Saisie Rapide de Trades",
         "description": "Enregistrez des trades en secondes avec aperçu P&L en direct, sélection rapide de symboles et remplissage automatique. Copiez le dernier trade pour un journaling instantané."
@@ -609,7 +608,6 @@
         "title": "Glossaire de Trading",
         "description": "Apprenez termes de trading: Win Rate, R-Multiple, Profit Factor, Expectancy et plus. Construisez vos connaissances en trading."
       }
-    },
     },
     "allFeatures": {
       "unlimited": "Documenter des transactions illimitées",
