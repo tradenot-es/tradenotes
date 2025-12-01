@@ -168,8 +168,114 @@ serve(async (req) => {
 
     let tradesToInsert: any[] = [];
 
+    // NinjaTrader Single Execution Format
+    if (payload.source === 'ninjatrader' && payload.executionId) {
+      const execution = payload as NinjaTraderSingleExecution;
+      const { symbol, market } = parseNinjaTraderInstrument(execution.instrument);
+      
+      console.log(`NinjaTrader execution: ${execution.action} ${symbol} (${market}) @ ${execution.price}, Position: ${execution.marketPosition}`);
+      
+      // Determine if this is an entry or exit
+      const isEntry = execution.marketPosition === 'Long' || execution.marketPosition === 'Short';
+      const isFlat = execution.marketPosition === 'Flat';
+      
+      if (isEntry) {
+        // Store entry execution for pairing later
+        const { error: insertError } = await supabase
+          .from('ninjatrader_executions')
+          .insert({
+            user_id: userId,
+            account: execution.account,
+            instrument: execution.instrument,
+            symbol: symbol,
+            market: market,
+            action: execution.action,
+            quantity: execution.quantity,
+            price: execution.price,
+            timestamp: execution.timestamp,
+            execution_id: execution.executionId,
+            order_id: execution.orderId,
+            market_position: execution.marketPosition,
+          });
+        
+        if (insertError) {
+          console.error('Error storing entry execution:', insertError);
+          throw insertError;
+        }
+        
+        console.log(`Stored entry execution: ${execution.executionId}`);
+        
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            message: 'Entry execution stored',
+            executionId: execution.executionId 
+          }),
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      } 
+      else if (isFlat) {
+        // Find matching entry execution
+        const { data: entryExecution, error: queryError } = await supabase
+          .from('ninjatrader_executions')
+          .select('*')
+          .eq('user_id', userId)
+          .eq('symbol', symbol)
+          .eq('account', execution.account)
+          .order('timestamp', { ascending: false })
+          .limit(1)
+          .single();
+        
+        if (queryError || !entryExecution) {
+          console.error('No matching entry found for exit:', execution.executionId);
+          throw new Error('No matching entry execution found');
+        }
+        
+        // Determine side based on entry action
+        const side = entryExecution.action === 'Buy' ? 'long' : 'short';
+        
+        // Calculate PnL
+        const pnl = calculatePnL(
+          symbol,
+          market,
+          side,
+          entryExecution.price,
+          execution.price,
+          entryExecution.quantity,
+          0 // fees can be configured later
+        );
+        
+        console.log(`Creating trade: ${side} ${symbol} Entry: ${entryExecution.price} Exit: ${execution.price} PnL: ${pnl}`);
+        
+        // Create complete trade
+        tradesToInsert.push({
+          user_id: userId,
+          symbol: symbol,
+          market: market,
+          side: side,
+          qty: entryExecution.quantity,
+          entry_price: entryExecution.price,
+          exit_price: execution.price,
+          entry_time: entryExecution.timestamp,
+          exit_time: execution.timestamp,
+          fees: 0,
+          pnl_net: pnl,
+          tags: ['NinjaTrader'],
+        });
+        
+        // Delete the paired entry execution
+        const { error: deleteError } = await supabase
+          .from('ninjatrader_executions')
+          .delete()
+          .eq('id', entryExecution.id);
+        
+        if (deleteError) {
+          console.error('Error deleting entry execution:', deleteError);
+        }
+      }
+    }
     // TradingView Alert Format
-    if (payload.symbol && payload.entryPrice && payload.exitPrice) {
+    else if (payload.symbol && payload.entryPrice && payload.exitPrice) {
       const trade = payload as TradingViewAlert;
       tradesToInsert.push({
         user_id: userId,
@@ -227,6 +333,17 @@ serve(async (req) => {
     }
     else {
       throw new Error('Unsupported payload format');
+    }
+    
+    // Only insert trades if we have any
+    if (tradesToInsert.length === 0) {
+      return new Response(
+        JSON.stringify({ 
+          success: true, 
+          message: 'No trades to insert' 
+        }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
     }
 
     const { data, error } = await supabase
