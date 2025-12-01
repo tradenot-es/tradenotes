@@ -142,7 +142,7 @@ const Import = () => {
     
     try {
       // 1. Load template file
-      const response = await fetch('/WebhookJournalSync.cs');
+      const response = await fetch('/TradeNotesSync.cs');
       let content = await response.text();
       
       // 2. Replace placeholder with actual API key
@@ -156,7 +156,7 @@ const Import = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'WebhookJournalSync.cs';
+      a.download = 'TradeNotesSync.cs';
       a.click();
       window.URL.revokeObjectURL(url);
       
