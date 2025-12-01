@@ -1,3 +1,5 @@
+export type AccountType = 'sim' | 'evaluation' | 'performance' | 'live';
+
 export interface Trade {
   id: string;
   symbol: string;
@@ -15,6 +17,8 @@ export interface Trade {
   setup?: string;
   note?: string;
   screenshotUrl?: string;
+  accountType?: AccountType;
+  accountName?: string;
 }
 
 export interface JournalEntry {
