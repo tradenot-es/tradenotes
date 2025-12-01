@@ -52,7 +52,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 		{
 			if (State == State.SetDefaults)
 			{
-				Description = @"Sends trades to TradeNotes after each fill. Install by adding System.Net.Http.dll reference.";
+				Description = @"Sends ALL account trades to TradeNotes. Install by adding System.Net.Http.dll reference.";
 				Name = "WebhookJournalSync";
 				Calculate = Calculate.OnBarClose;
 				EntriesPerDirection = 1;
@@ -83,6 +83,23 @@ namespace NinjaTrader.NinjaScript.Strategies
 					httpClient.DefaultRequestHeaders.Add("X-API-Key", ApiKey);
 				}
 			}
+			else if (State == State.Realtime)
+			{
+				// Subscribe to account executions to capture ALL trades (not just strategy trades)
+				if (Account != null && Account.Executions != null)
+				{
+					Account.ExecutionUpdate += OnAccountExecutionUpdate;
+					Print("TradeNotes Webhook: Subscribed to account executions");
+				}
+			}
+			else if (State == State.Terminated)
+			{
+				// Unsubscribe when strategy is disabled
+				if (Account != null)
+				{
+					Account.ExecutionUpdate -= OnAccountExecutionUpdate;
+				}
+			}
 		}
 
 		protected override void OnBarUpdate()
@@ -91,17 +108,36 @@ namespace NinjaTrader.NinjaScript.Strategies
 			// OnBarUpdate must be implemented but can be empty
 		}
 
-		protected override void OnExecutionUpdate(Execution execution, string executionId, double price, int quantity, MarketPosition marketPosition, string orderId, DateTime time)
+		private void OnAccountExecutionUpdate(object sender, ExecutionEventArgs e)
 		{
-			// Only send data in realtime mode (not historical fills)
-			if (execution.Order == null || State != State.Realtime)
+			// This captures ALL executions from the account, not just strategy orders
+			if (e.Execution == null || e.Execution.Order == null)
 				return;
 
 			// Only send on actual fills (not working orders)
-			if (execution.Order.OrderState == OrderState.Filled || execution.Order.OrderState == OrderState.PartFilled)
+			if (e.Execution.Order.OrderState == OrderState.Filled || e.Execution.Order.OrderState == OrderState.PartFilled)
 			{
+				// Determine market position from execution
+				MarketPosition marketPosition = MarketPosition.Flat;
+				
+				// Check if this is an entry or exit based on order action
+				if (e.Execution.Order.OrderAction == OrderAction.Buy)
+				{
+					marketPosition = MarketPosition.Long;
+				}
+				else if (e.Execution.Order.OrderAction == OrderAction.Sell)
+				{
+					marketPosition = MarketPosition.Short;
+				}
+				
 				// Send webhook asynchronously to avoid blocking UI
-				Task.Run(() => SendWebhookAsync(execution, price, quantity, time, marketPosition));
+				Task.Run(() => SendWebhookAsync(
+					e.Execution, 
+					e.Execution.Price, 
+					e.Execution.Quantity, 
+					e.Execution.Time,
+					marketPosition
+				));
 			}
 		}
 
