@@ -59,7 +59,7 @@ serve(async (req) => {
     
     const supabase = createClient(supabaseUrl, supabaseKey);
     
-    // Check rate limit (3 requests per minute)
+    // Check rate limit (10 requests per minute)
     const oneMinuteAgo = new Date(Date.now() - 60 * 1000).toISOString();
     
     // Clean up old entries first
@@ -76,12 +76,12 @@ serve(async (req) => {
       .gte("window_start", oneMinuteAgo)
       .maybeSingle();
     
-    if (rateLimitData && rateLimitData.request_count >= 3) {
+    if (rateLimitData && rateLimitData.request_count >= 10) {
       console.log(`Rate limit exceeded for IP: ${clientIp}`);
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Rate limit exceeded. Maximum 3 requests per minute.",
+          error: "Rate limit exceeded. Maximum 10 requests per minute.",
           retryAfter: 60 
         }),
         { 
@@ -111,7 +111,7 @@ serve(async (req) => {
         });
     }
     
-    console.log(`Request from IP ${clientIp} - count: ${(rateLimitData?.request_count || 0) + 1}/3`);
+    console.log(`Request from IP ${clientIp} - count: ${(rateLimitData?.request_count || 0) + 1}/10`);
     // === END RATE LIMITING ===
 
     if (!marketauxApiKey) {
