@@ -435,6 +435,8 @@
     "resetConfirmCheckbox": "Ich verstehe, dass diese Aktion nicht rückgängig gemacht werden kann",
     "enterPasswordToConfirm": "Gib dein Passwort ein, um zu bestätigen",
     "resetSuccess": "Alle Daten wurden erfolgreich gelöscht",
+    "resetSuccessMessage": "Deine Trading-Daten wurden vollständig zurückgesetzt. Die Seite wird neu geladen...",
+    "reloadingPage": "Seite wird neu geladen...",
     "resetError": "Fehler beim Zurücksetzen der Daten",
     "incorrectPassword": "Falsches Passwort",
     "mustConfirmReset": "Bitte bestätige, dass du die Konsequenzen verstehst",

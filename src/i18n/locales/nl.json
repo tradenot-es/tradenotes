@@ -533,6 +533,8 @@
     "resetConfirmCheckbox": "Ik begrijp dat deze actie niet ongedaan gemaakt kan worden",
     "enterPasswordToConfirm": "Voer je wachtwoord in om te bevestigen",
     "resetSuccess": "Alle data is succesvol verwijderd",
+    "resetSuccessMessage": "Je trading data is volledig gereset. De pagina wordt herladen...",
+    "reloadingPage": "Pagina herladen...",
     "resetError": "Fout bij het resetten van data",
     "incorrectPassword": "Onjuist wachtwoord",
     "mustConfirmReset": "Bevestig alsjeblieft dat je de consequenties begrijpt",

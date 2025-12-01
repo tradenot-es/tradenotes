@@ -537,6 +537,8 @@
     "resetConfirmCheckbox": "I understand that this action cannot be undone",
     "enterPasswordToConfirm": "Enter your password to confirm",
     "resetSuccess": "All data has been successfully deleted",
+    "resetSuccessMessage": "Your trading data has been completely reset. The page will reload...",
+    "reloadingPage": "Reloading page...",
     "resetError": "Error resetting data",
     "incorrectPassword": "Incorrect password",
     "mustConfirmReset": "Please confirm that you understand the consequences",
