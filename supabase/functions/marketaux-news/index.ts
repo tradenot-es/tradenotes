@@ -50,6 +50,69 @@ serve(async (req) => {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const marketauxApiKey = Deno.env.get("MARKETAUX_API_KEY");
+    
+    // === RATE LIMITING ===
+    // Get client IP address from request headers
+    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || 
+                     req.headers.get("x-real-ip") || 
+                     "unknown";
+    
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    // Check rate limit (3 requests per minute)
+    const oneMinuteAgo = new Date(Date.now() - 60 * 1000).toISOString();
+    
+    // Clean up old entries first
+    await supabase
+      .from("rate_limits")
+      .delete()
+      .lt("window_start", oneMinuteAgo);
+    
+    // Check current rate limit for this IP
+    const { data: rateLimitData } = await supabase
+      .from("rate_limits")
+      .select("*")
+      .eq("ip_address", clientIp)
+      .gte("window_start", oneMinuteAgo)
+      .maybeSingle();
+    
+    if (rateLimitData && rateLimitData.request_count >= 3) {
+      console.log(`Rate limit exceeded for IP: ${clientIp}`);
+      return new Response(
+        JSON.stringify({ 
+          success: false, 
+          error: "Rate limit exceeded. Maximum 3 requests per minute.",
+          retryAfter: 60 
+        }),
+        { 
+          status: 429, 
+          headers: { 
+            ...corsHeaders, 
+            "Content-Type": "application/json",
+            "Retry-After": "60"
+          } 
+        }
+      );
+    }
+    
+    // Update or insert rate limit entry
+    if (rateLimitData) {
+      await supabase
+        .from("rate_limits")
+        .update({ request_count: rateLimitData.request_count + 1 })
+        .eq("id", rateLimitData.id);
+    } else {
+      await supabase
+        .from("rate_limits")
+        .insert({ 
+          ip_address: clientIp, 
+          request_count: 1,
+          window_start: new Date().toISOString()
+        });
+    }
+    
+    console.log(`Request from IP ${clientIp} - count: ${(rateLimitData?.request_count || 0) + 1}/3`);
+    // === END RATE LIMITING ===
 
     if (!marketauxApiKey) {
       return new Response(
@@ -58,7 +121,6 @@ serve(async (req) => {
       );
     }
 
-    const supabase = createClient(supabaseUrl, supabaseKey);
     const body = await req.json();
     const { action, date, symbols, market, timeWindow, limit = 10, keywords = "Trump,Fed,Powell" } = body;
 
