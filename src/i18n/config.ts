@@ -13,24 +13,36 @@ const getBrowserLanguage = (): string => {
   return supportedLanguages.includes(browserLang) ? browserLang : 'en';
 };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      de: { translation: de },
-      fr: { translation: fr },
-      es: { translation: es },
-      nl: { translation: nl },
-    },
-    lng: getBrowserLanguage(),
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-    // Force reload of translations
-    load: 'languageOnly',
-    debug: false,
-  });
+const initI18n = async () => {
+  await i18n
+    .use(initReactI18next)
+    .init({
+      resources: {
+        en: { translation: en },
+        de: { translation: de },
+        fr: { translation: fr },
+        es: { translation: es },
+        nl: { translation: nl },
+      },
+      lng: getBrowserLanguage(),
+      fallbackLng: 'en',
+      interpolation: {
+        escapeValue: false,
+      },
+      returnEmptyString: false,
+      returnNull: false,
+      keySeparator: '.',
+      react: {
+        useSuspense: true,
+      },
+    });
+  
+  console.log('i18n initialized:', i18n.isInitialized);
+  console.log('Current language:', i18n.language);
+  console.log('Available resources:', Object.keys(i18n.store.data));
+  console.log('Test translation:', i18n.t('dashboard.maxDrawdown'));
+};
+
+initI18n();
 
 export default i18n;
