@@ -220,8 +220,8 @@ serve(async (req) => {
         
         console.log(`EXIT matched: ${side} ${symbol} Entry: ${entryExecution.price} Exit: ${execution.price} PnL: ${pnl}`);
         
-        // Create complete trade
-        tradesToInsert.push({
+        // Create complete trade and insert immediately
+        const completedTrade = {
           user_id: userId,
           symbol: symbol,
           market: market,
@@ -234,9 +234,23 @@ serve(async (req) => {
           fees: 0,
           pnl_net: pnl,
           tags: ['NinjaTrader'],
-        });
+        };
         
-        // Delete the paired entry execution
+        // Insert trade to database immediately
+        const { data: insertedTrade, error: insertTradeError } = await supabase
+          .from('trades')
+          .insert(completedTrade)
+          .select()
+          .single();
+        
+        if (insertTradeError) {
+          console.error('Error inserting trade:', insertTradeError);
+          throw insertTradeError;
+        }
+        
+        console.log('Trade successfully inserted:', insertedTrade.id);
+        
+        // Delete the paired entry execution ONLY after successful trade insert
         const { error: deleteError } = await supabase
           .from('ninjatrader_executions')
           .delete()
@@ -250,11 +264,11 @@ serve(async (req) => {
           JSON.stringify({ 
             success: true, 
             message: 'Trade completed and stored',
-            trade: tradesToInsert[0]
+            trade: insertedTrade
           }),
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
-      } 
+      }
       else {
         // No opposite execution found, this is an ENTRY
         const { error: insertError } = await supabase
