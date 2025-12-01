@@ -170,6 +170,36 @@ export type Database = {
         }
         Relationships: []
       }
+      news_translations: {
+        Row: {
+          article_uuid: string
+          created_at: string | null
+          expires_at: string | null
+          id: string
+          language: string
+          translated_description: string | null
+          translated_title: string
+        }
+        Insert: {
+          article_uuid: string
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          language: string
+          translated_description?: string | null
+          translated_title: string
+        }
+        Update: {
+          article_uuid?: string
+          created_at?: string | null
+          expires_at?: string | null
+          id?: string
+          language?: string
+          translated_description?: string | null
+          translated_title?: string
+        }
+        Relationships: []
+      }
       ninjatrader_executions: {
         Row: {
           account: string
