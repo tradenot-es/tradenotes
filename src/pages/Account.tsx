@@ -4,12 +4,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle } from "lucide-react";
+import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 
@@ -40,6 +42,12 @@ const Account = () => {
     subscription_end?: string;
   } | null>(null);
   const [loadingSubscription, setLoadingSubscription] = useState(true);
+
+  // Reset states
+  const [showResetDialog, setShowResetDialog] = useState(false);
+  const [resetPassword, setResetPassword] = useState("");
+  const [resetConfirmed, setResetConfirmed] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -247,6 +255,54 @@ const Account = () => {
       }
     } catch (error: any) {
       toast.error(error.message || "Fehler beim Öffnen des Kundenportals");
+    }
+  };
+
+  const handleResetAllData = async () => {
+    if (!resetConfirmed) {
+      toast.error(t("account.mustConfirmReset"));
+      return;
+    }
+    if (!resetPassword) {
+      toast.error(t("account.passwordRequired"));
+      return;
+    }
+
+    setResetting(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
+
+      const { data, error } = await supabase.functions.invoke('reset-user-data', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: { password: resetPassword },
+      });
+
+      if (error) throw error;
+
+      if (data?.error) {
+        if (data.error === "Incorrect password") {
+          toast.error(t("account.incorrectPassword"));
+        } else {
+          throw new Error(data.error);
+        }
+        return;
+      }
+
+      toast.success(t("account.resetSuccess"));
+      setShowResetDialog(false);
+      setResetPassword("");
+      setResetConfirmed(false);
+      
+      // Reload page to reflect changes
+      setTimeout(() => window.location.reload(), 1500);
+    } catch (error: any) {
+      console.error("Reset error:", error);
+      toast.error(t("account.resetError"));
+    } finally {
+      setResetting(false);
     }
   };
 
@@ -500,7 +556,98 @@ const Account = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Danger Zone */}
+          <Card className="border-destructive">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-destructive">
+                <AlertTriangle className="h-5 w-5" />
+                {t("account.dangerZone")}
+              </CardTitle>
+              <CardDescription>{t("account.dangerZoneDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg space-y-3">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="h-5 w-5 text-destructive mt-0.5" />
+                  <div className="flex-1 space-y-2">
+                    <p className="font-medium text-destructive">{t("account.resetAll")}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("account.resetAllDesc")}
+                    </p>
+                  </div>
+                </div>
+                <Button 
+                  variant="destructive" 
+                  onClick={() => setShowResetDialog(true)}
+                  className="w-full"
+                >
+                  <AlertTriangle className="h-4 w-4 mr-2" />
+                  {t("account.resetAll")}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
+
+        {/* Reset Confirmation Dialog */}
+        <AlertDialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="flex items-center gap-2 text-destructive">
+                <AlertTriangle className="h-5 w-5" />
+                {t("account.resetConfirmTitle")}
+              </AlertDialogTitle>
+              <AlertDialogDescription className="space-y-4 pt-2">
+                <p className="text-destructive font-medium">
+                  {t("account.resetConfirmDesc")}
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>{t("account.resetItemTrades")}</li>
+                  <li>{t("account.resetItemJournal")}</li>
+                  <li>{t("account.resetItemPrep")}</li>
+                  <li>{t("account.resetItemStats")}</li>
+                  <li>{t("account.resetItemExecutions")}</li>
+                </ul>
+                <div className="flex items-start gap-2 p-3 bg-muted rounded-lg">
+                  <Checkbox 
+                    id="confirm-reset" 
+                    checked={resetConfirmed}
+                    onCheckedChange={(checked) => setResetConfirmed(checked === true)}
+                  />
+                  <label htmlFor="confirm-reset" className="text-sm cursor-pointer">
+                    {t("account.resetConfirmCheckbox")}
+                  </label>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="reset-password">{t("account.enterPasswordToConfirm")}</Label>
+                  <Input
+                    id="reset-password"
+                    type="password"
+                    value={resetPassword}
+                    onChange={(e) => setResetPassword(e.target.value)}
+                    placeholder={t("auth.password")}
+                  />
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => {
+                setResetPassword("");
+                setResetConfirmed(false);
+              }}>
+                {t("trades.cancel")}
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleResetAllData}
+                disabled={!resetConfirmed || !resetPassword || resetting}
+                className="bg-destructive hover:bg-destructive/90"
+              >
+                {resetting ? t("account.resetting") : t("account.deleteForever")}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
 
         {/* 2FA QR Code Dialog */}
         <Dialog open={showQRDialog} onOpenChange={setShowQRDialog}>
