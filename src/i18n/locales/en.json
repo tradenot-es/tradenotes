@@ -284,7 +284,19 @@
       "totalPnL": "Total P&L",
       "avgReturn": "Avg Return %",
       "winRate": "Win Rate"
-    },
+    }
+  },
+  "accountType": {
+    "label": "Account",
+    "tooltip": "Account type: Sim (practice), Evaluation (prop firm test), Performance (funded), or Live (personal capital)",
+    "sim": "SIM",
+    "evaluation": "EVAL",
+    "performance": "FUNDED",
+    "live": "LIVE",
+    "filter": "Filter by Account Type",
+    "all": "All Accounts"
+  },
+  "import": {
     "sentiment": {
       "label": "News Sentiment",
       "veryBullish": "Very Bullish",

@@ -283,6 +283,16 @@
       "avgReturn": "Retorno Promedio %",
       "winRate": "Tasa de Éxito"
     },
+    "accountType": {
+      "label": "Cuenta",
+      "tooltip": "Tipo de cuenta: Sim (práctica), Evaluation (prueba prop firm), Performance (financiado), o Live (capital personal)",
+      "sim": "SIM",
+      "evaluation": "EVAL",
+      "performance": "FUNDED",
+      "live": "LIVE",
+      "filter": "Filtrar por Tipo de Cuenta",
+      "all": "Todas las Cuentas"
+    },
     "sentiment": {
       "label": "Sentimiento de Noticias",
       "veryBullish": "Muy Alcista",

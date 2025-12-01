@@ -283,6 +283,16 @@
       "avgReturn": "Gem. Rendement %",
       "winRate": "Winstpercentage"
     },
+    "accountType": {
+      "label": "Account",
+      "tooltip": "Accounttype: Sim (oefenen), Evaluation (prop firma test), Performance (gefinancierd), of Live (eigen kapitaal)",
+      "sim": "SIM",
+      "evaluation": "EVAL",
+      "performance": "FUNDED",
+      "live": "LIVE",
+      "filter": "Filteren op Accounttype",
+      "all": "Alle Accounts"
+    },
     "sentiment": {
       "label": "Nieuws Sentiment",
       "veryBullish": "Zeer Bullish",

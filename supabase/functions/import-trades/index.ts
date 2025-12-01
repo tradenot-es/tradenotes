@@ -39,6 +39,7 @@ interface NinjaTraderSingleExecution {
   executionId: string;
   orderId?: string;
   marketPosition: string;
+  accountType?: 'sim' | 'evaluation' | 'performance' | 'live';
 }
 
 // Futures point values (value of 1 point movement)
@@ -234,6 +235,8 @@ serve(async (req) => {
           fees: 0,
           pnl_net: pnl,
           tags: ['NinjaTrader'],
+          account_type: entryExecution.account_type || execution.accountType || 'live',
+          account_name: execution.account,
         };
         
         // Insert trade to database immediately
@@ -286,6 +289,7 @@ serve(async (req) => {
             execution_id: execution.executionId,
             order_id: execution.orderId,
             market_position: execution.marketPosition,
+            account_type: execution.accountType || 'live',
           });
         
         if (insertError) {

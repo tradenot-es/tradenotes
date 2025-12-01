@@ -136,6 +136,95 @@ namespace NinjaTrader.NinjaScript.Strategies
 			}
 		}
 
+	private string DetectAccountType(string accountName)
+	{
+		string accName = accountName.ToUpper();
+		
+		// 1. Simulation (Standard NT8)
+		if (accName.StartsWith("SIM") || accName.Contains("REPLAY") || accName.Contains("DEMO") || accName.Contains("PAPER"))
+			return "sim";
+		
+		// 2. Apex Trader Funding
+		if (accName.Contains("APEX"))
+		{
+			if (accName.Contains("PA") || accName.Contains("FUNDED")) return "performance";
+			return "evaluation";
+		}
+		
+		// 3. Topstep
+		if (accName.Contains("TOPSTEP") || accName.StartsWith("TS"))
+		{
+			if (accName.Contains("XFA") || accName.Contains("FUNDED") || accName.Contains("PRO")) return "performance";
+			return "evaluation";
+		}
+		
+		// 4. Tradeify
+		if (accName.Contains("TRADEIFY") || accName.StartsWith("TF"))
+		{
+			if (accName.Contains("PA") || accName.Contains("FUNDED")) return "performance";
+			return "evaluation";
+		}
+		
+		// 5. MyFundedFutures (MFF)
+		if (accName.Contains("MFF") || accName.Contains("MYFUNDEDFUTURES"))
+		{
+			if (accName.Contains("PRO") || accName.Contains("LIVE")) return "performance";
+			return "evaluation";
+		}
+		
+		// 6. TakeProfitTrader
+		if (accName.Contains("TPT") || accName.Contains("TAKEPROFIT"))
+		{
+			if (accName.Contains("PRO")) return "performance";
+			return "evaluation";
+		}
+		
+		// 7. Bulenox
+		if (accName.Contains("BULENOX"))
+		{
+			if (accName.Contains("MASTER")) return "performance";
+			return "evaluation";
+		}
+		
+		// 8. Earn2Trade
+		if (accName.Contains("E2T") || accName.Contains("EARN2TRADE"))
+		{
+			if (accName.Contains("FUNDED") || accName.Contains("GAUNTLET")) return "performance";
+			return "evaluation";
+		}
+		
+		// 9. Leeloo Trading
+		if (accName.Contains("LEELOO"))
+		{
+			if (accName.Contains("INVESTOR")) return "performance";
+			return "evaluation";
+		}
+		
+		// 10. TradeDay
+		if (accName.Contains("TRADEDAY") || accName.StartsWith("TD"))
+		{
+			if (accName.Contains("FUNDED") || accName.Contains("LIVE")) return "performance";
+			return "evaluation";
+		}
+		
+		// 11. Uprofit
+		if (accName.Contains("UPROFIT"))
+		{
+			if (accName.Contains("FUNDED")) return "performance";
+			return "evaluation";
+		}
+		
+		// 12. TheTradingPit
+		if (accName.Contains("TRADINGPIT") || accName.Contains("TTP"))
+		{
+			if (accName.Contains("FUNDED")) return "performance";
+			return "evaluation";
+		}
+		
+		// Default: Live broker account
+		return "live";
+	}
+
 	private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition)
 	{
 		try 
@@ -143,11 +232,12 @@ namespace NinjaTrader.NinjaScript.Strategies
 			string action = execution.Order.OrderAction.ToString(); // "Buy" or "Sell"
 			string instrument = execution.Order.Instrument.FullName;
 			string account = execution.Order.Account.Name;
+			string accountType = DetectAccountType(account); // Detect account type
 			
 			// ISO 8601 timestamp format
 			string timeStr = time.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
-			// Build JSON payload for TradeNotes
+			// Build JSON payload for TradeNotes with accountType
 			string jsonPayload = string.Format(
 				"{{" +
 				"\"source\": \"ninjatrader\"," +
@@ -159,7 +249,8 @@ namespace NinjaTrader.NinjaScript.Strategies
 				"\"timestamp\": \"{5}\"," +
 				"\"executionId\": \"{6}\"," +
 				"\"orderId\": \"{7}\"," +
-				"\"marketPosition\": \"{8}\"" +
+				"\"marketPosition\": \"{8}\"," +
+				"\"accountType\": \"{9}\"" +
 				"}}",
 				account,
 				instrument,
@@ -169,7 +260,8 @@ namespace NinjaTrader.NinjaScript.Strategies
 				timeStr,
 				execution.ExecutionId,
 				execution.Order.OrderId,
-				marketPosition.ToString() // "Long", "Short", or "Flat"
+				marketPosition.ToString(),
+				accountType // "sim", "evaluation", "performance", or "live"
 			);
 
 			var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");

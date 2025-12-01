@@ -203,6 +203,7 @@ export type Database = {
       ninjatrader_executions: {
         Row: {
           account: string
+          account_type: string | null
           action: string
           created_at: string | null
           execution_id: string
@@ -219,6 +220,7 @@ export type Database = {
         }
         Insert: {
           account: string
+          account_type?: string | null
           action: string
           created_at?: string | null
           execution_id: string
@@ -235,6 +237,7 @@ export type Database = {
         }
         Update: {
           account?: string
+          account_type?: string | null
           action?: string
           created_at?: string | null
           execution_id?: string
@@ -334,6 +337,8 @@ export type Database = {
       }
       trades: {
         Row: {
+          account_name: string | null
+          account_type: string | null
           created_at: string | null
           entry_price: number
           entry_time: string
@@ -360,6 +365,8 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          account_name?: string | null
+          account_type?: string | null
           created_at?: string | null
           entry_price: number
           entry_time: string
@@ -386,6 +393,8 @@ export type Database = {
           user_id: string
         }
         Update: {
+          account_name?: string | null
+          account_type?: string | null
           created_at?: string | null
           entry_price?: number
           entry_time?: string

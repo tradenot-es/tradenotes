@@ -12,12 +12,13 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle } from "lucide-react";
+import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle, Circle, Award, TrendingUpIcon, DollarSign } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { TradeSentimentGauge } from "./TradeSentimentGauge";
 import { TradeNewsContext } from "./TradeNewsContext";
 import { NewsHypeIndicator } from "./NewsHypeIndicator";
+import type { AccountType } from "@/types/trade";
 
 interface Trade {
   id: string;
@@ -35,6 +36,8 @@ interface Trade {
   screenshot_url?: string;
   setup?: string;
   note?: string;
+  account_type?: AccountType;
+  account_name?: string;
 }
 
 interface TradesTableProps {
@@ -94,6 +97,53 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
     </TooltipProvider>
   );
 
+  const AccountTypeBadge = ({ type, accountName }: { type?: string; accountName?: string }) => {
+    if (!type) return null;
+    
+    const config = {
+      sim: { 
+        label: t("accountType.sim"), 
+        color: "bg-blue-500/20 text-blue-500 border-blue-500/30", 
+        icon: Circle 
+      },
+      evaluation: { 
+        label: t("accountType.evaluation"), 
+        color: "bg-yellow-500/20 text-yellow-500 border-yellow-500/30", 
+        icon: TrendingUpIcon 
+      },
+      performance: { 
+        label: t("accountType.performance"), 
+        color: "bg-green-500/20 text-green-500 border-green-500/30", 
+        icon: Award 
+      },
+      live: { 
+        label: t("accountType.live"), 
+        color: "bg-red-500/20 text-red-500 border-red-500/30", 
+        icon: DollarSign 
+      },
+    };
+    
+    const { label, color, icon: Icon } = config[type as keyof typeof config] || config.live;
+    
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Badge variant="outline" className={cn("font-medium border", color)}>
+              <Icon className="h-3 w-3 mr-1" />
+              {label}
+            </Badge>
+          </TooltipTrigger>
+          {accountName && (
+            <TooltipContent>
+              <p className="text-xs">{accountName}</p>
+            </TooltipContent>
+          )}
+        </Tooltip>
+      </TooltipProvider>
+    );
+  };
+
   return (
     <div className="space-y-4">
       {/* Summary Statistics */}
@@ -141,6 +191,9 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
             </TableHead>
             <TableHead>
               <ColumnHeader label={t("trades.table.symbol")} tooltip={t("trades.table.symbolTooltip")} />
+            </TableHead>
+            <TableHead>
+              <ColumnHeader label={t("accountType.label")} tooltip={t("accountType.tooltip")} />
             </TableHead>
             <TableHead>
               <ColumnHeader label={t("trades.table.status")} tooltip={t("trades.table.statusTooltip")} />
@@ -207,7 +260,10 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                     <span className="text-primary font-semibold">{trade.symbol}</span>
                   </TableCell>
                   <TableCell>
-                    <Badge 
+                    <AccountTypeBadge type={trade.account_type} accountName={trade.account_name} />
+                  </TableCell>
+                  <TableCell>
+                    <Badge
                       variant={isWin ? "default" : "destructive"}
                       className={cn(
                         "font-semibold",
@@ -257,7 +313,7 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                 </TableRow>
                 {isExpanded && (trade.note || trade.setup || trade.screenshot_url) && (
                   <TableRow className="border-border bg-muted/30">
-                    <TableCell colSpan={13} className="p-6">
+                    <TableCell colSpan={14} className="p-6">
                       <div className="space-y-4">
                         {/* News Intelligence Section */}
                         <div className="space-y-3 pb-4 border-b border-border">
@@ -329,7 +385,7 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
           })}
           {trades.length === 0 && (
             <TableRow>
-              <TableCell colSpan={13} className="text-center py-8 text-muted-foreground">
+              <TableCell colSpan={14} className="text-center py-8 text-muted-foreground">
                 No trades found for this period
               </TableCell>
             </TableRow>
