@@ -540,7 +540,6 @@
     "footerImprint": "Aviso Legal",
     "footerCopyright": "© 2025 TradeNot.es. Todos los derechos reservados.",
     "features": {
-    "features": {
       "easyEntry": {
         "title": "Entrada Rápida de Operaciones",
         "description": "Registra operaciones en segundos con vista previa P&L en vivo, selección rápida de símbolos y autocompletado. Copia última operación para journaling instantáneo."
@@ -609,7 +608,6 @@
         "title": "Glosario de Trading",
         "description": "Aprende términos de trading: Win Rate, R-Multiple, Profit Factor, Expectancy y más. Construye tu conocimiento de trading."
       }
-    },
     },
     "allFeatures": {
       "unlimited": "Documentar operaciones ilimitadas",
