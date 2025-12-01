@@ -170,19 +170,90 @@ serve(async (req) => {
 
     let tradesToInsert: any[] = [];
 
-    // NinjaTrader Single Execution Format
+    // NinjaTrader Single Execution Format (FIFO matching)
     if (payload.source === 'ninjatrader' && payload.executionId) {
       const execution = payload as NinjaTraderSingleExecution;
       const { symbol, market } = parseNinjaTraderInstrument(execution.instrument);
       
-      console.log(`NinjaTrader execution: ${execution.action} ${symbol} (${market}) @ ${execution.price}, Position: ${execution.marketPosition}`);
+      console.log(`NinjaTrader execution: ${execution.action} ${symbol} (${market}) @ ${execution.price} x ${execution.quantity}`);
       
-      // Determine if this is an entry or exit
-      const isEntry = execution.marketPosition === 'Long' || execution.marketPosition === 'Short';
-      const isFlat = execution.marketPosition === 'Flat';
+      // FIFO Logic: Look for existing open execution with opposite action
+      // Buy can close a Short OR open a Long
+      // Sell can close a Long OR open a Short
+      const oppositeAction = execution.action.toUpperCase() === 'BUY' ? 'Sell' : 'Buy';
       
-      if (isEntry) {
-        // Store entry execution for pairing later
+      const { data: openExecutions, error: queryError } = await supabase
+        .from('ninjatrader_executions')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('symbol', symbol)
+        .eq('account', execution.account)
+        .eq('action', oppositeAction)
+        .order('timestamp', { ascending: true }) // FIFO: oldest first
+        .limit(1);
+      
+      if (queryError) {
+        console.error('Error querying open executions:', queryError);
+        throw queryError;
+      }
+      
+      // If we found an opposite execution, this is an EXIT
+      if (openExecutions && openExecutions.length > 0) {
+        const entryExecution = openExecutions[0];
+        
+        // Determine side based on entry action
+        const side = entryExecution.action === 'Buy' ? 'long' : 'short';
+        
+        // Calculate PnL
+        const pnl = calculatePnL(
+          symbol,
+          market,
+          side,
+          entryExecution.price,
+          execution.price,
+          Math.min(entryExecution.quantity, execution.quantity), // Handle partial fills
+          0 // fees can be configured later
+        );
+        
+        console.log(`EXIT matched: ${side} ${symbol} Entry: ${entryExecution.price} Exit: ${execution.price} PnL: ${pnl}`);
+        
+        // Create complete trade
+        tradesToInsert.push({
+          user_id: userId,
+          symbol: symbol,
+          market: market,
+          side: side,
+          qty: Math.min(entryExecution.quantity, execution.quantity),
+          entry_price: entryExecution.price,
+          exit_price: execution.price,
+          entry_time: entryExecution.timestamp,
+          exit_time: execution.timestamp,
+          fees: 0,
+          pnl_net: pnl,
+          tags: ['NinjaTrader'],
+        });
+        
+        // Delete the paired entry execution
+        const { error: deleteError } = await supabase
+          .from('ninjatrader_executions')
+          .delete()
+          .eq('id', entryExecution.id);
+        
+        if (deleteError) {
+          console.error('Error deleting entry execution:', deleteError);
+        }
+        
+        return new Response(
+          JSON.stringify({ 
+            success: true, 
+            message: 'Trade completed and stored',
+            trade: tradesToInsert[0]
+          }),
+          { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        );
+      } 
+      else {
+        // No opposite execution found, this is an ENTRY
         const { error: insertError } = await supabase
           .from('ninjatrader_executions')
           .insert({
@@ -205,7 +276,7 @@ serve(async (req) => {
           throw insertError;
         }
         
-        console.log(`Stored entry execution: ${execution.executionId}`);
+        console.log(`ENTRY stored: ${execution.action} ${symbol} @ ${execution.price} (waiting for exit)`);
         
         return new Response(
           JSON.stringify({ 
@@ -215,65 +286,6 @@ serve(async (req) => {
           }),
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
-      } 
-      else if (isFlat) {
-        // Find matching entry execution
-        const { data: entryExecution, error: queryError } = await supabase
-          .from('ninjatrader_executions')
-          .select('*')
-          .eq('user_id', userId)
-          .eq('symbol', symbol)
-          .eq('account', execution.account)
-          .order('timestamp', { ascending: false })
-          .limit(1)
-          .single();
-        
-        if (queryError || !entryExecution) {
-          console.error('No matching entry found for exit:', execution.executionId);
-          throw new Error('No matching entry execution found');
-        }
-        
-        // Determine side based on entry action
-        const side = entryExecution.action === 'Buy' ? 'long' : 'short';
-        
-        // Calculate PnL
-        const pnl = calculatePnL(
-          symbol,
-          market,
-          side,
-          entryExecution.price,
-          execution.price,
-          entryExecution.quantity,
-          0 // fees can be configured later
-        );
-        
-        console.log(`Creating trade: ${side} ${symbol} Entry: ${entryExecution.price} Exit: ${execution.price} PnL: ${pnl}`);
-        
-        // Create complete trade
-        tradesToInsert.push({
-          user_id: userId,
-          symbol: symbol,
-          market: market,
-          side: side,
-          qty: entryExecution.quantity,
-          entry_price: entryExecution.price,
-          exit_price: execution.price,
-          entry_time: entryExecution.timestamp,
-          exit_time: execution.timestamp,
-          fees: 0,
-          pnl_net: pnl,
-          tags: ['NinjaTrader'],
-        });
-        
-        // Delete the paired entry execution
-        const { error: deleteError } = await supabase
-          .from('ninjatrader_executions')
-          .delete()
-          .eq('id', entryExecution.id);
-        
-        if (deleteError) {
-          console.error('Error deleting entry execution:', deleteError);
-        }
       }
     }
     // TradingView Alert Format
