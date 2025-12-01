@@ -250,11 +250,20 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                   onClick={() => setExpandedTrade(isExpanded ? null : trade.id)}
                 >
                   <TableCell className="font-medium text-muted-foreground">
-                    {new Date(trade.exit_time).toLocaleDateString('en-US', { 
-                      month: 'numeric',
-                      day: 'numeric',
-                      year: 'numeric'
-                    })}
+                    <div className="flex flex-col">
+                      <span>{new Date(trade.exit_time).toLocaleDateString('en-US', { 
+                        month: 'numeric',
+                        day: 'numeric',
+                        year: 'numeric'
+                      })}</span>
+                      <span className="text-xs text-muted-foreground/70">
+                        {new Date(trade.exit_time).toLocaleTimeString('en-US', { 
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          hour12: false
+                        })}
+                      </span>
+                    </div>
                   </TableCell>
                   <TableCell>
                     <span className="text-primary font-semibold">{trade.symbol}</span>
