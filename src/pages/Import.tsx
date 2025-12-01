@@ -86,17 +86,21 @@ const Import = () => {
   const regenerateApiKey = async () => {
     setLoadingApiKey(true);
     try {
-      const { data, error } = await supabase
+      // Generate a new API key (48 hex characters = 24 random bytes)
+      const randomBytes = new Uint8Array(24);
+      crypto.getRandomValues(randomBytes);
+      const newApiKey = Array.from(randomBytes)
+        .map(b => b.toString(16).padStart(2, '0'))
+        .join('');
+      
+      const { error } = await supabase
         .from('user_settings')
-        .update({ webhook_api_key: null })
-        .eq('user_id', session?.user.id)
-        .select('webhook_api_key')
-        .single();
+        .update({ webhook_api_key: newApiKey })
+        .eq('user_id', session?.user.id);
       
       if (error) throw error;
       
-      // The database will auto-generate a new key
-      await loadApiKey();
+      setApiKey(newApiKey);
       toast.success(t("import.ntApiKeyRegenerated"));
     } catch (error: any) {
       console.error('Error regenerating API key:', error);
