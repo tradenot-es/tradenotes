@@ -186,6 +186,10 @@ serve(async (req) => {
       // Sell can close a Long OR open a Short
       const oppositeAction = normalizedAction === 'Buy' ? 'Sell' : 'Buy';
       
+      // Calculate time window: only match entries within 4 hours
+      const executionTime = new Date(execution.timestamp);
+      const minTime = new Date(executionTime.getTime() - 4 * 60 * 60 * 1000); // 4 hours before
+      
       const { data: openExecutions, error: queryError } = await supabase
         .from('ninjatrader_executions')
         .select('*')
@@ -193,6 +197,7 @@ serve(async (req) => {
         .eq('symbol', symbol)
         .eq('account', execution.account)
         .eq('action', oppositeAction)
+        .gte('timestamp', minTime.toISOString()) // Only entries within 4h window
         .order('timestamp', { ascending: true }) // FIFO: oldest first
         .limit(1);
       
