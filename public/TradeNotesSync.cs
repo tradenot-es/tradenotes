@@ -235,8 +235,8 @@ namespace NinjaTrader.NinjaScript.Strategies
 			string account = execution.Order.Account.Name;
 			string accountType = DetectAccountType(account); // Detect account type
 			
-			// ISO 8601 timestamp format
-			string timeStr = time.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
+			// ISO 8601 timestamp format - convert local time to UTC
+			string timeStr = time.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
 			// Build JSON payload with accountType
 			string jsonPayload = string.Format(
