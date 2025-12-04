@@ -6,6 +6,20 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
 import { TradeFilters, TradeFilterOptions } from "@/components/TradeFilters";
 import { TradesTable } from "@/components/TradesTable";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { toast } from "sonner";
 
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -26,6 +40,7 @@ interface Trade {
   screenshot_url?: string;
   setup?: string;
   note?: string;
+  account_name?: string;
 }
 
 const Trades = () => {
@@ -169,6 +184,37 @@ const Trades = () => {
     setAddDialogOpen(true);
   };
 
+  const handleDeleteTrade = async (tradeId: string) => {
+    const { error } = await supabase.from("trades").delete().eq("id", tradeId);
+    if (error) {
+      toast.error(t("trades.deleteError"));
+    } else {
+      toast.success(t("trades.deleteSuccess"));
+      loadTrades();
+    }
+  };
+
+  const webhookTrades = useMemo(() => {
+    return trades.filter((trade) => trade.account_name);
+  }, [trades]);
+
+  const handleDeleteAllWebhookTrades = async () => {
+    if (!user) return;
+    
+    const { error } = await supabase
+      .from("trades")
+      .delete()
+      .eq("user_id", user.id)
+      .not("account_name", "is", null);
+    
+    if (error) {
+      toast.error(t("trades.deleteAllWebhookError"));
+    } else {
+      toast.success(t("trades.deleteAllWebhookSuccess", { count: webhookTrades.length }));
+      loadTrades();
+    }
+  };
+
 
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
@@ -176,16 +222,45 @@ const Trades = () => {
 
   return (
     <div className="space-y-6 pb-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-3xl font-bold">{t("trades.title")}</h1>
           <p className="text-muted-foreground">{t("trades.subtitle")}</p>
         </div>
-        <TradeFilters
-          onFilterChange={setFilters}
-          availableSetups={availableSetups}
-          compact
-        />
+        <div className="flex items-center gap-2">
+          {webhookTrades.length > 0 && (
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="destructive" size="sm">
+                  <Trash2 className="h-4 w-4 mr-1" />
+                  {t("trades.deleteAllWebhook", { count: webhookTrades.length })}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{t("trades.deleteAllWebhookDialog.title")}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t("trades.deleteAllWebhookDialog.description", { count: webhookTrades.length })}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                  <AlertDialogAction
+                    onClick={handleDeleteAllWebhookTrades}
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                  >
+                    {t("common.delete")}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          )}
+          <TradeFilters
+            onFilterChange={setFilters}
+            availableSetups={availableSetups}
+            compact
+          />
+        </div>
       </div>
 
       <div className="overflow-auto">
@@ -213,6 +288,7 @@ const Trades = () => {
         <TradesTable 
           trades={currentMonthTrades} 
           onEditTrade={handleEditTrade}
+          onDeleteTrade={handleDeleteTrade}
         />
       </div>
 

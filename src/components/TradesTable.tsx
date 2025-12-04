@@ -12,12 +12,23 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle, Circle, Award, TrendingUpIcon, DollarSign } from "lucide-react";
+import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle, Circle, Award, TrendingUpIcon, DollarSign, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { TradeSentimentGauge } from "./TradeSentimentGauge";
 import { TradeNewsContext } from "./TradeNewsContext";
 import { NewsHypeIndicator } from "./NewsHypeIndicator";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import type { AccountType } from "@/types/trade";
 
 interface Trade {
@@ -43,9 +54,10 @@ interface Trade {
 interface TradesTableProps {
   trades: Trade[];
   onEditTrade?: (trade: Trade) => void;
+  onDeleteTrade?: (tradeId: string) => void;
 }
 
-export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
+export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableProps) {
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
   const [expandedTrade, setExpandedTrade] = useState<string | null>(null);
@@ -373,18 +385,51 @@ export function TradesTable({ trades, onEditTrade }: TradesTableProps) {
                             />
                           </div>
                         )}
-                        {onEditTrade && (
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onEditTrade(trade);
-                            }}
-                          >
-                            Edit Trade
-                          </Button>
-                        )}
+                        <div className="flex gap-2">
+                          {onEditTrade && (
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onEditTrade(trade);
+                              }}
+                            >
+                              Edit Trade
+                            </Button>
+                          )}
+                          {onDeleteTrade && (
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button 
+                                  variant="destructive" 
+                                  size="sm"
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <Trash2 className="h-4 w-4 mr-1" />
+                                  {t("common.delete")}
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent onClick={(e) => e.stopPropagation()}>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>{t("trades.deleteDialog.title")}</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    {t("trades.deleteDialog.description", { symbol: trade.symbol })}
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    onClick={() => onDeleteTrade(trade.id)}
+                                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                  >
+                                    {t("common.delete")}
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          )}
+                        </div>
                       </div>
                     </TableCell>
                   </TableRow>

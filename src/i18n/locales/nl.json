@@ -370,6 +370,18 @@
       "avgReturn": "Gem. Rendement %",
       "winRate": "Winstpercentage"
     },
+    "deleteAllWebhook": "Webhook Trades Verwijderen ({{count}})",
+    "deleteAllWebhookDialog": {
+      "title": "Alle webhook trades verwijderen?",
+      "description": "Dit verwijdert permanent {{count}} via webhook (NinjaTrader) geïmporteerde trades. Deze actie kan niet ongedaan worden gemaakt."
+    },
+    "deleteAllWebhookSuccess": "{{count}} webhook trades succesvol verwijderd",
+    "deleteAllWebhookError": "Fout bij verwijderen van webhook trades",
+    "deleteDialog": {
+      "title": "Trade verwijderen?",
+      "description": "Weet u zeker dat u deze {{symbol}} trade wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
+    },
+    "deleteSuccess": "Trade succesvol verwijderd",
     "accountType": {
       "label": "Account",
       "tooltip": "Accounttype: Sim (oefenen), Evaluation (prop firma test), Performance (gefinancierd), of Live (eigen kapitaal)",

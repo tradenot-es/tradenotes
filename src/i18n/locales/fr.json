@@ -370,6 +370,18 @@
       "avgReturn": "Retour Moyen %",
       "winRate": "Taux de Réussite"
     },
+    "deleteAllWebhook": "Supprimer Trades Webhook ({{count}})",
+    "deleteAllWebhookDialog": {
+      "title": "Supprimer tous les trades webhook ?",
+      "description": "Cela supprimera définitivement {{count}} transactions importées via webhook (NinjaTrader). Cette action ne peut pas être annulée."
+    },
+    "deleteAllWebhookSuccess": "{{count}} trades webhook supprimés avec succès",
+    "deleteAllWebhookError": "Erreur lors de la suppression des trades webhook",
+    "deleteDialog": {
+      "title": "Supprimer la transaction ?",
+      "description": "Êtes-vous sûr de vouloir supprimer cette transaction {{symbol}} ? Cette action ne peut pas être annulée."
+    },
+    "deleteSuccess": "Transaction supprimée avec succès",
     "accountType": {
       "label": "Compte",
       "tooltip": "Type de compte: Sim (pratique), Evaluation (test prop firm), Performance (financé), ou Live (capital personnel)",

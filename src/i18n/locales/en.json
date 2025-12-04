@@ -371,7 +371,19 @@
       "totalPnL": "Total P&L",
       "avgReturn": "Avg Return %",
       "winRate": "Win Rate"
-    }
+    },
+    "deleteAllWebhook": "Delete Webhook Trades ({{count}})",
+    "deleteAllWebhookDialog": {
+      "title": "Delete all webhook trades?",
+      "description": "This will permanently delete {{count}} trades imported via webhook (NinjaTrader). This action cannot be undone."
+    },
+    "deleteAllWebhookSuccess": "{{count}} webhook trades deleted successfully",
+    "deleteAllWebhookError": "Error deleting webhook trades",
+    "deleteDialog": {
+      "title": "Delete trade?",
+      "description": "Are you sure you want to delete this {{symbol}} trade? This action cannot be undone."
+    },
+    "deleteSuccess": "Trade deleted successfully"
   },
   "accountType": {
     "label": "Account",
