@@ -113,17 +113,43 @@ namespace NinjaTrader.NinjaScript.Strategies
 			// Only send on actual fills (not working orders)
 			if (e.Execution.Order.OrderState == OrderState.Filled || e.Execution.Order.OrderState == OrderState.PartFilled)
 			{
-				// Determine market position from execution
-				MarketPosition marketPosition = MarketPosition.Flat;
+				// Get the ACTUAL account position for this instrument AFTER the execution
+				// This is the key fix - we query the real position, not derive it from the action
+				MarketPosition actualPosition = MarketPosition.Flat;
 				
-				// Check if this is an entry or exit based on order action
-				if (e.Execution.Order.OrderAction == OrderAction.Buy)
+				try
 				{
-					marketPosition = MarketPosition.Long;
+					// Access the account's positions collection to get the real position
+					var instrument = e.Execution.Order.Instrument;
+					var account = e.Execution.Order.Account;
+					
+					// Get the actual position from the account
+					// This reflects the position AFTER the execution has been processed
+					if (account != null && account.Positions != null)
+					{
+						foreach (var position in account.Positions)
+						{
+							if (position.Instrument == instrument)
+							{
+								actualPosition = position.MarketPosition;
+								break;
+							}
+						}
+					}
+					
+					Print(string.Format("TradeNot.es: Execution {0} {1}, Actual Position: {2}", 
+						e.Execution.Order.OrderAction, 
+						instrument.FullName, 
+						actualPosition));
 				}
-				else if (e.Execution.Order.OrderAction == OrderAction.Sell)
+				catch (Exception ex)
 				{
-					marketPosition = MarketPosition.Short;
+					Print("TradeNot.es: Error getting position: " + ex.Message);
+					// Fallback: derive from action (less reliable but better than nothing)
+					if (e.Execution.Order.OrderAction == OrderAction.Buy || e.Execution.Order.OrderAction == OrderAction.BuyToCover)
+						actualPosition = MarketPosition.Long;
+					else if (e.Execution.Order.OrderAction == OrderAction.Sell || e.Execution.Order.OrderAction == OrderAction.SellShort)
+						actualPosition = MarketPosition.Short;
 				}
 				
 				// Send webhook asynchronously to avoid blocking UI
@@ -132,7 +158,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 					e.Execution.Price, 
 					e.Execution.Quantity, 
 					e.Execution.Time,
-					marketPosition
+					actualPosition
 				));
 			}
 		}
@@ -230,7 +256,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 	{
 		try 
 		{
-			string action = execution.Order.OrderAction.ToString(); // "Buy" or "Sell"
+			string action = execution.Order.OrderAction.ToString(); // "Buy", "Sell", "BuyToCover", "SellShort"
 			string instrument = execution.Order.Instrument.FullName;
 			string account = execution.Order.Account.Name;
 			string accountType = DetectAccountType(account); // Detect account type
@@ -238,7 +264,11 @@ namespace NinjaTrader.NinjaScript.Strategies
 			// ISO 8601 timestamp format - convert local time to UTC
 			string timeStr = time.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
-			// Build JSON payload with accountType
+			// Build JSON payload with accountType and actual marketPosition
+			// marketPosition now reflects the ACTUAL position after execution:
+			// - "Flat" = position was closed (this is an EXIT)
+			// - "Long" = position is long (this is an ENTRY or add-on)
+			// - "Short" = position is short (this is an ENTRY or add-on)
 			string jsonPayload = string.Format(
 				"{{" +
 				"\"source\": \"ninjatrader\"," +
@@ -261,7 +291,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 				timeStr,
 				execution.ExecutionId,
 				execution.Order.OrderId,
-				marketPosition.ToString(),
+				marketPosition.ToString(), // Now contains the ACTUAL position: "Flat", "Long", or "Short"
 				accountType // "sim", "evaluation", "performance", or "live"
 			);
 
@@ -289,8 +319,8 @@ namespace NinjaTrader.NinjaScript.Strategies
 				else 
 				{
 					string responseBody = await response.Content.ReadAsStringAsync();
-					Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} - Response: {3}", 
-						action, instrument, price, responseBody));
+					Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}) - Response: {4}", 
+						action, instrument, price, marketPosition, responseBody));
 				}
 			}
 			}
