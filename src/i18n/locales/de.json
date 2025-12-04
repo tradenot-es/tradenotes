@@ -288,6 +288,18 @@
       "avgReturn": "Ø Rendite %",
       "winRate": "Gewinnrate"
     },
+    "deleteAllWebhook": "Webhook-Trades löschen ({{count}})",
+    "deleteAllWebhookDialog": {
+      "title": "Alle Webhook-Trades löschen?",
+      "description": "Dadurch werden {{count}} über Webhook (NinjaTrader) importierte Trades dauerhaft gelöscht. Diese Aktion kann nicht rückgängig gemacht werden."
+    },
+    "deleteAllWebhookSuccess": "{{count}} Webhook-Trades erfolgreich gelöscht",
+    "deleteAllWebhookError": "Fehler beim Löschen der Webhook-Trades",
+    "deleteDialog": {
+      "title": "Trade löschen?",
+      "description": "Möchten Sie diesen {{symbol}} Trade wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+    },
+    "deleteSuccess": "Trade erfolgreich gelöscht",
     "sentiment": {
       "label": "News-Stimmung",
       "veryBullish": "Sehr Bullish",

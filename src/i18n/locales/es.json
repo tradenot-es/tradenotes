@@ -370,6 +370,18 @@
       "avgReturn": "Retorno Promedio %",
       "winRate": "Tasa de Éxito"
     },
+    "deleteAllWebhook": "Eliminar Trades Webhook ({{count}})",
+    "deleteAllWebhookDialog": {
+      "title": "¿Eliminar todos los trades webhook?",
+      "description": "Esto eliminará permanentemente {{count}} operaciones importadas via webhook (NinjaTrader). Esta acción no se puede deshacer."
+    },
+    "deleteAllWebhookSuccess": "{{count}} trades webhook eliminados exitosamente",
+    "deleteAllWebhookError": "Error al eliminar trades webhook",
+    "deleteDialog": {
+      "title": "¿Eliminar operación?",
+      "description": "¿Está seguro de eliminar esta operación de {{symbol}}? Esta acción no se puede deshacer."
+    },
+    "deleteSuccess": "Operación eliminada exitosamente",
     "accountType": {
       "label": "Cuenta",
       "tooltip": "Tipo de cuenta: Sim (práctica), Evaluation (prueba prop firm), Performance (financiado), o Live (capital personal)",
