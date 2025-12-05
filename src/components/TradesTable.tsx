@@ -332,7 +332,7 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                     )}
                   </TableCell>
                 </TableRow>
-                {isExpanded && (trade.note || trade.setup || trade.screenshot_url) && (
+                {isExpanded && (
                   <TableRow className="border-border bg-muted/30">
                     <TableCell colSpan={14} className="p-6">
                       <div className="space-y-4">
