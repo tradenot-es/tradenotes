@@ -19,6 +19,8 @@ import { SymbolCombobox } from "./SymbolCombobox";
 import { getSymbolInfo, getMarketDefaultFee, detectMarketFromSymbol } from "@/lib/symbolData";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
 
+import { AccountType } from "@/types/trade";
+
 interface Trade {
   id: string;
   symbol: string;
@@ -39,6 +41,8 @@ interface Trade {
   note?: string;
   setup_checklist_completed?: boolean[];
   tags?: string[];
+  account_type?: string;
+  account_name?: string;
 }
 
 interface AddTradeDialogProps {
@@ -68,6 +72,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [rating, setRating] = useState<number>(0);
   const [symbolInfo, setSymbolInfo] = useState<{ pointValue?: number; multiplier?: number; info?: string }>({});
   const [extractedData, setExtractedData] = useState<any>(null);
+  const [accountType, setAccountType] = useState<AccountType>('live');
+  const [accountName, setAccountName] = useState('');
   const [formData, setFormData] = useState({
     symbol: "",
     side: "long" as "long" | "short",
@@ -204,6 +210,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         setSelectedTags(editTrade.tags || []);
         setRating(editTrade.rating || 0);
         setScreenshotPreview(editTrade.screenshot_url || null);
+        setAccountType((editTrade.account_type as AccountType) || 'live');
+        setAccountName(editTrade.account_name || '');
       } else if (preselectedDate) {
         // Set preselected date for new trade
         const dateStr = preselectedDate.toISOString().split('T')[0];
@@ -233,6 +241,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setModeSelected(false);
       setEntryMode('manual');
       setScreenshotAnalyzed(false);
+      setAccountType('live');
+      setAccountName('');
       setExtractedData(null);
     }
   }, [preselectedDate, open, editTrade]);
@@ -518,6 +528,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         note: formData.note || null,
         setup_checklist_completed: checklistCompleted.length > 0 ? checklistCompleted : null,
         tags: selectedTags.length > 0 ? selectedTags : null,
+        account_type: accountType,
+        account_name: accountName || null,
       };
 
       let error;
@@ -566,6 +578,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setRating(0);
       setModeSelected(false);
       setScreenshotAnalyzed(false);
+      setAccountType('live');
+      setAccountName('');
     } catch (error: any) {
       toast.error(error.message || t("trades.addError"));
     } finally {
@@ -848,24 +862,54 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                 }}
                 className="justify-start"
               >
-                <ToggleGroupItem 
-                  value="long" 
-                  aria-label="Long position"
-                  className="flex-1 data-[state=on]:bg-green-500 data-[state=on]:text-white gap-2"
-                >
-                  <TrendingUp className="h-4 w-4" />
+                <ToggleGroupItem value="long" className="data-[state=on]:bg-green-600 data-[state=on]:text-white">
                   {t("trades.long")}
                 </ToggleGroupItem>
-                <ToggleGroupItem 
-                  value="short" 
-                  aria-label="Short position"
-                  className="flex-1 data-[state=on]:bg-red-500 data-[state=on]:text-white gap-2"
-                >
-                  <TrendingDown className="h-4 w-4" />
+                <ToggleGroupItem value="short" className="data-[state=on]:bg-red-600 data-[state=on]:text-white">
                   {t("trades.short")}
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>
+          </div>
+
+          {/* Account Type Selection */}
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label>{t("trades.accountType")}</Label>
+              <ToggleGroup 
+                type="single" 
+                value={accountType} 
+                onValueChange={(v) => {
+                  if (v) setAccountType(v as AccountType);
+                }}
+                className="justify-start flex-wrap"
+              >
+                <ToggleGroupItem value="sim" className="data-[state=on]:bg-blue-500 data-[state=on]:text-white text-xs px-2">
+                  🔵 {t("trades.accountTypes.sim")}
+                </ToggleGroupItem>
+                <ToggleGroupItem value="evaluation" className="data-[state=on]:bg-yellow-500 data-[state=on]:text-white text-xs px-2">
+                  🟡 {t("trades.accountTypes.evaluation")}
+                </ToggleGroupItem>
+                <ToggleGroupItem value="performance" className="data-[state=on]:bg-green-500 data-[state=on]:text-white text-xs px-2">
+                  🟢 {t("trades.accountTypes.funded")}
+                </ToggleGroupItem>
+                <ToggleGroupItem value="live" className="data-[state=on]:bg-red-500 data-[state=on]:text-white text-xs px-2">
+                  🔴 {t("trades.accountTypes.live")}
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
+            
+            {accountType !== 'live' && (
+              <div className="space-y-2">
+                <Label htmlFor="accountName">{t("trades.accountName")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span></Label>
+                <Input 
+                  id="accountName"
+                  placeholder={t("trades.accountNamePlaceholder")}
+                  value={accountName}
+                  onChange={(e) => setAccountName(e.target.value)}
+                />
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">

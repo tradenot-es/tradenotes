@@ -411,6 +411,15 @@
       "high": "Hoog Buzz-Niveau",
       "medium": "Gemiddeld Buzz-Niveau",
       "articles": "{{count}} artikelen in laatste 12u"
+    },
+    "accountType": "Account Type",
+    "accountName": "Account Naam",
+    "accountNamePlaceholder": "bv. Apex Eval 1, Topstep PA",
+    "accountTypes": {
+      "sim": "Sim",
+      "evaluation": "Eval",
+      "funded": "Funded",
+      "live": "Live"
     }
   },
   "accountTypes": {
