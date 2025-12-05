@@ -418,6 +418,17 @@
       "medium": "Livello Medio di Buzz",
       "articles": "{{count}} articoli nelle ultime 12h"
     },
+    "accountType": "Tipo Account",
+    "accountName": "Nome Account",
+    "accountNamePlaceholder": "es. Apex Eval 1, Topstep PA",
+    "accountTypes": {
+      "sim": "Sim",
+      "evaluation": "Eval",
+      "funded": "Funded",
+      "live": "Live"
+    }
+  },
+  "import": {
     "title": "Importa Operazioni",
     "subtitle": "Importa le tue operazioni da file CSV o webhook",
     "uploadCSV": "Carica File CSV",

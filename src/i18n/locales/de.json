@@ -319,6 +319,15 @@
       "high": "Hohes Buzz-Level",
       "medium": "Mittleres Buzz-Level",
       "articles": "{{count}} Artikel in letzten 12h"
+    },
+    "accountType": "Account-Typ",
+    "accountName": "Account-Name",
+    "accountNamePlaceholder": "z.B. Apex Eval 1, Topstep PA",
+    "accountTypes": {
+      "sim": "Sim",
+      "evaluation": "Eval",
+      "funded": "Funded",
+      "live": "Live"
     }
   },
   "import": {

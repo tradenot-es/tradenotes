@@ -411,6 +411,15 @@
       "high": "Nivel de Rumor Alto",
       "medium": "Nivel de Rumor Medio",
       "articles": "{{count}} artículos en últimas 12h"
+    },
+    "accountType": "Tipo de Cuenta",
+    "accountName": "Nombre de Cuenta",
+    "accountNamePlaceholder": "ej. Apex Eval 1, Topstep PA",
+    "accountTypes": {
+      "sim": "Sim",
+      "evaluation": "Eval",
+      "funded": "Funded",
+      "live": "Live"
     }
   },
   "accountTypes": {
