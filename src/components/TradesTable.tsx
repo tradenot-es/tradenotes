@@ -333,102 +333,100 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                   </TableCell>
                 </TableRow>
                 {isExpanded && (
-                  <TableRow className="border-border bg-muted/30">
-                    <TableCell colSpan={14} className="p-6">
-                      <div className="space-y-4">
-                        {/* News Intelligence Section */}
-                        <div className="space-y-3 pb-4 border-b border-border">
-                          <h4 className="text-sm font-semibold text-foreground">📰 News Intelligence</h4>
-                          
-                          {/* Sentiment Gauge */}
-                          <TradeSentimentGauge 
-                            symbol={trade.symbol}
-                            side={trade.side as "long" | "short"}
-                            entryTime={trade.entry_time}
-                          />
-
-                          {/* News Context */}
-                          <TradeNewsContext 
-                            symbol={trade.symbol}
-                            entryTime={trade.entry_time}
-                          />
-
-                          {/* Hype Indicator */}
-                          <NewsHypeIndicator 
-                            symbol={trade.symbol}
-                            entryTime={trade.entry_time}
-                          />
-                        </div>
-
-                        {/* Trade Details Section */}
-                        {trade.setup && (
-                          <div>
-                            <h4 className="text-sm font-semibold text-foreground mb-2">Trade Setup</h4>
-                            <Badge variant="outline" className="text-primary border-primary/50">
-                              {trade.setup}
-                            </Badge>
-                          </div>
-                        )}
-                        {trade.note && (
-                          <div>
-                            <h4 className="text-sm font-semibold text-foreground mb-2">Notes</h4>
-                            <p className="text-sm text-muted-foreground whitespace-pre-wrap">{trade.note}</p>
-                          </div>
-                        )}
-                        {trade.screenshot_url && (
-                          <div>
-                            <h4 className="text-sm font-semibold text-foreground mb-2">Chart Screenshot</h4>
-                            <img 
-                              src={trade.screenshot_url} 
-                              alt="Trade chart"
-                              className="rounded-lg border border-border max-w-2xl"
+                  <TableRow className="border-border bg-muted/20">
+                    <TableCell colSpan={14} className="p-4">
+                      <div className="flex flex-col gap-3">
+                        {/* Header with Actions */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            {trade.setup && (
+                              <Badge variant="outline" className="text-primary border-primary/50">
+                                {trade.setup}
+                              </Badge>
+                            )}
+                            {/* Compact Sentiment Inline */}
+                            <TradeSentimentGauge 
+                              symbol={trade.symbol}
+                              side={trade.side as "long" | "short"}
+                              entryTime={trade.entry_time}
                             />
                           </div>
-                        )}
-                        <div className="flex gap-2">
-                          {onEditTrade && (
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                onEditTrade(trade);
-                              }}
-                            >
-                              Edit Trade
-                            </Button>
-                          )}
-                          {onDeleteTrade && (
-                            <AlertDialog>
-                              <AlertDialogTrigger asChild>
-                                <Button 
-                                  variant="destructive" 
-                                  size="sm"
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <Trash2 className="h-4 w-4 mr-1" />
-                                  {t("common.delete")}
-                                </Button>
-                              </AlertDialogTrigger>
-                              <AlertDialogContent onClick={(e) => e.stopPropagation()}>
-                                <AlertDialogHeader>
-                                  <AlertDialogTitle>{t("trades.deleteDialog.title")}</AlertDialogTitle>
-                                  <AlertDialogDescription>
-                                    {t("trades.deleteDialog.description", { symbol: trade.symbol })}
-                                  </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
-                                  <AlertDialogAction
-                                    onClick={() => onDeleteTrade(trade.id)}
-                                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                          <div className="flex gap-2">
+                            {onEditTrade && (
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onEditTrade(trade);
+                                }}
+                              >
+                                {t("common.edit")}
+                              </Button>
+                            )}
+                            {onDeleteTrade && (
+                              <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                  <Button 
+                                    variant="ghost" 
+                                    size="sm"
+                                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                                    onClick={(e) => e.stopPropagation()}
                                   >
-                                    {t("common.delete")}
-                                  </AlertDialogAction>
-                                </AlertDialogFooter>
-                              </AlertDialogContent>
-                            </AlertDialog>
-                          )}
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent onClick={(e) => e.stopPropagation()}>
+                                  <AlertDialogHeader>
+                                    <AlertDialogTitle>{t("trades.deleteDialog.title")}</AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                      {t("trades.deleteDialog.description", { symbol: trade.symbol })}
+                                    </AlertDialogDescription>
+                                  </AlertDialogHeader>
+                                  <AlertDialogFooter>
+                                    <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                                    <AlertDialogAction
+                                      onClick={() => onDeleteTrade(trade.id)}
+                                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                    >
+                                      {t("common.delete")}
+                                    </AlertDialogAction>
+                                  </AlertDialogFooter>
+                                </AlertDialogContent>
+                              </AlertDialog>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* Content Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {/* Left: Notes & Screenshot */}
+                          <div className="space-y-3">
+                            {trade.note && (
+                              <div className="text-sm text-muted-foreground bg-muted/30 rounded-md p-3">
+                                {trade.note}
+                              </div>
+                            )}
+                            {trade.screenshot_url && (
+                              <img 
+                                src={trade.screenshot_url} 
+                                alt="Trade chart"
+                                className="rounded-lg border border-border max-h-48 object-cover"
+                              />
+                            )}
+                          </div>
+
+                          {/* Right: News Context & Hype */}
+                          <div className="space-y-2">
+                            <TradeNewsContext 
+                              symbol={trade.symbol}
+                              entryTime={trade.entry_time}
+                            />
+                            <NewsHypeIndicator 
+                              symbol={trade.symbol}
+                              entryTime={trade.entry_time}
+                            />
+                          </div>
                         </div>
                       </div>
                     </TableCell>
