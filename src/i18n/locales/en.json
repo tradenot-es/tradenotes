@@ -383,7 +383,33 @@
       "title": "Delete trade?",
       "description": "Are you sure you want to delete this {{symbol}} trade? This action cannot be undone."
     },
-    "deleteSuccess": "Trade deleted successfully"
+    "deleteSuccess": "Trade deleted successfully",
+    "sentiment": {
+      "label": "News Sentiment",
+      "veryBullish": "Very Bullish",
+      "bullish": "Bullish",
+      "slightlyBullish": "Slightly Bullish",
+      "neutral": "Neutral",
+      "slightlyBearish": "Slightly Bearish",
+      "bearish": "Bearish",
+      "veryBearish": "Very Bearish",
+      "highRisk": "High Risk",
+      "contraTrade": "Contra-News Trade",
+      "contraTradeShort": "Trade against news sentiment",
+      "noNews": "no news",
+      "tooltipTitle": "News Sentiment Analysis",
+      "tooltipDescription": "Average sentiment of news articles about this symbol in the 24 hours before your trade entry. Sentiment ranges from -1 (very bearish) to +1 (very bullish). A 'Contra-News Trade' warning appears when your trade direction conflicts with market sentiment.",
+      "score": "Score",
+      "articles": "articles"
+    },
+    "newsContext": {
+      "match": "Match"
+    },
+    "hype": {
+      "high": "High Buzz Level",
+      "medium": "Medium Buzz Level",
+      "articles": "{{count}} articles in last 12h"
+    }
   },
   "accountType": {
     "label": "Account",
@@ -1014,6 +1040,11 @@
       "term": "Trading Volume",
       "definition": "Volume measures the number of shares/contracts traded in a period. High volume confirms price moves (conviction), low volume = weak/questionable moves.",
       "example": "Breakout above $50: With 10x normal volume = strong signal. With below-average volume = likely false breakout"
+    },
+    "newsSentiment": {
+      "term": "News Sentiment",
+      "definition": "News Sentiment analyzes the mood of news articles about a specific symbol. It calculates an average of all news in the 24 hours before your trade entry. The value ranges from -1 (very bearish/negative) through 0 (neutral) to +1 (very bullish/positive). A value of 0.00 means either neutral sentiment or no news articles found in that time window.",
+      "example": "Entry on NQ Long at 2:30 PM. System analyzes all news from 2:30 PM yesterday to 2:30 PM today. Result: 0.35 (bullish) - matches Long position. If it were -0.35, a 'Contra-News Trade' warning appears since you're trading against market sentiment."
     },
     "subtitle": "Essential trading terms and risk management concepts",
     "formula": "Formula",

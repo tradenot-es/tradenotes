@@ -379,7 +379,33 @@
       "title": "Eliminare operazione?",
       "description": "Sei sicuro di voler eliminare questa operazione {{symbol}}? Questa azione non può essere annullata."
     },
-    "deleteSuccess": "Operazione eliminata con successo"
+    "deleteSuccess": "Operazione eliminata con successo",
+    "sentiment": {
+      "label": "Sentiment Notizie",
+      "veryBullish": "Molto Rialzista",
+      "bullish": "Rialzista",
+      "slightlyBullish": "Leggermente Rialzista",
+      "neutral": "Neutrale",
+      "slightlyBearish": "Leggermente Ribassista",
+      "bearish": "Ribassista",
+      "veryBearish": "Molto Ribassista",
+      "highRisk": "Alto Rischio",
+      "contraTrade": "Operazione Contro-Notizie",
+      "contraTradeShort": "Operazione contro il sentiment",
+      "noNews": "nessuna news",
+      "tooltipTitle": "Analisi del Sentiment",
+      "tooltipDescription": "Sentiment medio degli articoli su questo simbolo nelle 24 ore prima del tuo ingresso. Il sentiment va da -1 (molto ribassista) a +1 (molto rialzista). Un avviso appare quando la direzione della tua operazione contraddice il sentiment del mercato.",
+      "score": "Punteggio",
+      "articles": "articoli"
+    },
+    "newsContext": {
+      "match": "Corrispondenza"
+    },
+    "hype": {
+      "high": "Livello Alto di Buzz",
+      "medium": "Livello Medio di Buzz",
+      "articles": "{{count}} articoli nelle ultime 12h"
+    }
   },
   "accountType": {
     "label": "Account",

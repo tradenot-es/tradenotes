@@ -402,7 +402,13 @@
       "bearish": "Bearish",
       "veryBearish": "Zeer Bearish",
       "highRisk": "Hoog Risico",
-      "contraTrade": "Contra-Nieuws Trade"
+      "contraTrade": "Contra-Nieuws Trade",
+      "contraTradeShort": "Trade tegen nieuwssentiment",
+      "noNews": "geen nieuws",
+      "tooltipTitle": "Nieuws Sentiment Analyse",
+      "tooltipDescription": "Gemiddeld sentiment van nieuwsartikelen over dit symbool in de 24 uur voor je entry. Sentiment varieert van -1 (zeer bearish) tot +1 (zeer bullish). Een waarschuwing verschijnt wanneer je traderichting het marktsentiment tegenspreekt.",
+      "score": "Score",
+      "articles": "artikelen"
     },
     "newsContext": {
       "match": "Overeenkomst"
