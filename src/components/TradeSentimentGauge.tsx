@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { AlertTriangle, TrendingUp, TrendingDown, Minus, HelpCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface SentimentGaugeProps {
   symbol: string;
@@ -14,6 +15,7 @@ interface SentimentGaugeProps {
 export function TradeSentimentGauge({ symbol, side, entryTime, className }: SentimentGaugeProps) {
   const { t } = useTranslation();
   const [sentiment, setSentiment] = useState<number | null>(null);
+  const [articleCount, setArticleCount] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
 
@@ -43,6 +45,7 @@ export function TradeSentimentGauge({ symbol, side, entryTime, className }: Sent
 
       if (data?.success && data.sentiment) {
         setSentiment(data.sentiment.avg_sentiment);
+        setArticleCount(data.sentiment.article_count || 0);
       }
     } catch (err: any) {
       console.error("Error loading sentiment:", err);
@@ -55,7 +58,7 @@ export function TradeSentimentGauge({ symbol, side, entryTime, className }: Sent
   if (loading) {
     return (
       <div className={cn("animate-pulse", className)}>
-        <div className="h-2 bg-muted rounded-full w-full" />
+        <div className="h-2 bg-muted rounded-full w-24" />
       </div>
     );
   }
@@ -77,42 +80,60 @@ export function TradeSentimentGauge({ symbol, side, entryTime, className }: Sent
   };
 
   const getSentimentIcon = () => {
-    if (sentiment < -0.1) return <TrendingDown className="h-4 w-4 text-red-500" />;
-    if (sentiment > 0.1) return <TrendingUp className="h-4 w-4 text-green-500" />;
-    return <Minus className="h-4 w-4 text-muted-foreground" />;
+    if (sentiment < -0.1) return <TrendingDown className="h-3 w-3 text-red-500" />;
+    if (sentiment > 0.1) return <TrendingUp className="h-3 w-3 text-green-500" />;
+    return <Minus className="h-3 w-3 text-muted-foreground" />;
+  };
+
+  const getSentimentColor = () => {
+    if (sentiment < -0.1) return "text-red-500";
+    if (sentiment > 0.1) return "text-green-500";
+    return "text-muted-foreground";
   };
 
   return (
-    <div className={cn("space-y-2", className)}>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          {getSentimentIcon()}
-          <span className="text-sm font-medium">
-            {t("trades.sentiment.label")}: {getSentimentLabel()}
-          </span>
-        </div>
-        <span className="text-xs text-muted-foreground">
-          {sentiment.toFixed(2)}
-        </span>
-      </div>
-
-      {/* Sentiment Gauge */}
-      <div className="relative w-full h-2 bg-gradient-to-r from-red-500 via-gray-300 to-green-500 rounded-full overflow-hidden">
-        <div
-          className="absolute top-0 w-1 h-full bg-foreground/80 shadow-lg"
-          style={{ left: `${sentimentPercent}%`, transform: "translateX(-50%)" }}
-        />
-      </div>
-
-      {/* Contra-Trade Warning */}
-      {isContraTrade && (
-        <div className="flex items-center gap-2 p-2 rounded-md bg-amber-500/10 border border-amber-500/30">
-          <AlertTriangle className="h-4 w-4 text-amber-500 flex-shrink-0" />
-          <p className="text-xs text-amber-600 dark:text-amber-400">
-            <strong>{t("trades.sentiment.highRisk")}:</strong> {t("trades.sentiment.contraTrade")}
-          </p>
-        </div>
-      )}
-    </div>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <div className={cn("flex items-center gap-2 cursor-help", className)}>
+            {getSentimentIcon()}
+            <span className={cn("text-xs font-medium", getSentimentColor())}>
+              {getSentimentLabel()}
+            </span>
+            {articleCount === 0 && (
+              <span className="text-xs text-muted-foreground/50">
+                ({t("trades.sentiment.noNews")})
+              </span>
+            )}
+            <HelpCircle className="h-3 w-3 text-muted-foreground/50" />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent side="bottom" className="max-w-xs">
+          <div className="space-y-2">
+            <p className="font-semibold">{t("trades.sentiment.tooltipTitle")}</p>
+            <p className="text-xs text-muted-foreground">
+              {t("trades.sentiment.tooltipDescription")}
+            </p>
+            <div className="flex items-center gap-2 pt-1 border-t border-border">
+              <span className="text-xs">{t("trades.sentiment.score")}: <strong>{sentiment.toFixed(2)}</strong></span>
+              <span className="text-xs text-muted-foreground">({articleCount} {t("trades.sentiment.articles")})</span>
+            </div>
+            {/* Mini Gauge */}
+            <div className="relative w-full h-1.5 bg-gradient-to-r from-red-500 via-gray-300 to-green-500 rounded-full">
+              <div
+                className="absolute top-0 w-0.5 h-full bg-foreground shadow"
+                style={{ left: `${sentimentPercent}%`, transform: "translateX(-50%)" }}
+              />
+            </div>
+            {isContraTrade && (
+              <p className="text-xs text-amber-500 flex items-center gap-1">
+                <AlertTriangle className="h-3 w-3" />
+                {t("trades.sentiment.contraTradeShort")}
+              </p>
+            )}
+          </div>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

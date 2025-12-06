@@ -402,7 +402,13 @@
       "bearish": "Baissier",
       "veryBearish": "Très Baissier",
       "highRisk": "Risque Élevé",
-      "contraTrade": "Transaction Contre-Nouvelles"
+      "contraTrade": "Transaction Contre-Nouvelles",
+      "contraTradeShort": "Trade contre le sentiment",
+      "noNews": "pas de news",
+      "tooltipTitle": "Analyse de Sentiment",
+      "tooltipDescription": "Sentiment moyen des articles de presse sur ce symbole dans les 24 heures avant votre entrée. Le sentiment va de -1 (très baissier) à +1 (très haussier). Un avertissement apparaît lorsque la direction de votre trade contredit le sentiment du marché.",
+      "score": "Score",
+      "articles": "articles"
     },
     "newsContext": {
       "match": "Correspondance"

@@ -207,6 +207,12 @@ export default function Glossary() {
       example: t("glossary.volume.example")
     },
     {
+      id: "news-sentiment",
+      term: t("glossary.newsSentiment.term"),
+      definition: t("glossary.newsSentiment.definition"),
+      example: t("glossary.newsSentiment.example")
+    },
+    {
       id: "win-rate",
       term: t("glossary.winRate.term"),
       definition: t("glossary.winRate.definition"),

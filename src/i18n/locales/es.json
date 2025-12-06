@@ -402,7 +402,13 @@
       "bearish": "Bajista",
       "veryBearish": "Muy Bajista",
       "highRisk": "Alto Riesgo",
-      "contraTrade": "Operación Contra-Noticias"
+      "contraTrade": "Operación Contra-Noticias",
+      "contraTradeShort": "Operación contra el sentimiento",
+      "noNews": "sin noticias",
+      "tooltipTitle": "Análisis de Sentimiento",
+      "tooltipDescription": "Sentimiento promedio de los artículos de noticias sobre este símbolo en las 24 horas antes de tu entrada. El sentimiento va de -1 (muy bajista) a +1 (muy alcista). Aparece una advertencia de 'Operación Contra-Noticias' cuando tu dirección de operación contradice el sentimiento del mercado.",
+      "score": "Puntuación",
+      "articles": "artículos"
     },
     "newsContext": {
       "match": "Coincidencia"
