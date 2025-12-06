@@ -155,12 +155,16 @@ serve(async (req) => {
         );
       }
 
+      // Convert ISO timestamps to YYYY-MM-DD format for Marketaux API
+      const startDate = timeWindow.start.split("T")[0];
+      const endDate = timeWindow.end.split("T")[0];
+
       // Fetch from API
       const url = new URL("https://api.marketaux.com/v1/news/all");
       url.searchParams.append("api_token", marketauxApiKey);
       url.searchParams.append("symbols", symbol);
-      url.searchParams.append("published_after", timeWindow.start);
-      url.searchParams.append("published_before", timeWindow.end);
+      url.searchParams.append("published_after", startDate);
+      url.searchParams.append("published_before", endDate);
       url.searchParams.append("filter_entities", "true");
       url.searchParams.append("limit", "50");
 
@@ -241,11 +245,14 @@ serve(async (req) => {
         );
       }
 
+      // Convert ISO timestamp to YYYY-MM-DD format for Marketaux API
+      const startDate = timeWindow.start.split("T")[0];
+
       // Fetch from API (last 12 hours)
       const url = new URL("https://api.marketaux.com/v1/news/all");
       url.searchParams.append("api_token", marketauxApiKey);
       url.searchParams.append("symbols", symbol);
-      url.searchParams.append("published_after", timeWindow.start);
+      url.searchParams.append("published_after", startDate);
       url.searchParams.append("limit", "100");
 
       const response = await fetch(url.toString());
