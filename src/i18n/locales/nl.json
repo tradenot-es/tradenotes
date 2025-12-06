@@ -654,7 +654,11 @@
     "readMore": "Lees meer",
     "translate": "Vertalen",
     "translating": "Vertalen...",
-    "showOriginal": "Toon Origineel"
+    "showOriginal": "Toon Origineel",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "cancel": "Annuleren",
+    "confirm": "Bevestigen"
   },
   "landing": {
     "badge": "Professioneel Trading Dagboek",

@@ -556,7 +556,11 @@
     "readMore": "Weiterlesen",
     "translate": "Übersetzen",
     "translating": "Übersetze...",
-    "showOriginal": "Original anzeigen"
+    "showOriginal": "Original anzeigen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen"
   },
   "landing": {
     "badge": "Professionelles Trading Journal",
