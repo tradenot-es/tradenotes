@@ -654,7 +654,11 @@
     "readMore": "Leggi di più",
     "translate": "Traduci",
     "translating": "Traduzione...",
-    "showOriginal": "Mostra Originale"
+    "showOriginal": "Mostra Originale",
+    "delete": "Elimina",
+    "edit": "Modifica",
+    "cancel": "Annulla",
+    "confirm": "Conferma"
   },
   "landing": {
     "badge": "Diario di Trading Professionale",

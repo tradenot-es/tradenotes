@@ -654,7 +654,11 @@
     "readMore": "Lire la suite",
     "translate": "Traduire",
     "translating": "Traduction...",
-    "showOriginal": "Afficher l'Original"
+    "showOriginal": "Afficher l'Original",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "cancel": "Annuler",
+    "confirm": "Confirmer"
   },
   "landing": {
     "badge": "Journal de Trading Professionnel",
