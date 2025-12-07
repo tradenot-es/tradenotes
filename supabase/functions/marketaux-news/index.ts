@@ -41,6 +41,34 @@ interface NewsResponse {
   };
 }
 
+// Futures/Commodities → News-searchable proxies
+// Financial news rarely mentions futures tickers directly
+const NEWS_PROXY_MAPPING: Record<string, string[]> = {
+  // Index Futures
+  "NQ": ["QQQ", "NDX"],
+  "ES": ["SPY", "SPX"],
+  "YM": ["DIA", "DJI"],
+  "RTY": ["IWM", "RUT"],
+  "MNQ": ["QQQ", "NDX"],
+  "MES": ["SPY", "SPX"],
+  "MYM": ["DIA", "DJI"],
+  "M2K": ["IWM", "RUT"],
+  // Commodities
+  "GC": ["GLD"],
+  "SI": ["SLV"],
+  "CL": ["USO"],
+  "NG": ["UNG"],
+  // Crypto Futures
+  "BTC": ["COIN", "MSTR"],
+  "ETH": ["ETHE"],
+};
+
+// Get proxy symbols for a given symbol
+function getProxySymbols(symbol: string): string[] {
+  const upper = symbol.toUpperCase();
+  return NEWS_PROXY_MAPPING[upper] || [symbol];
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -134,6 +162,12 @@ serve(async (req) => {
         );
       }
 
+      // Apply proxy mapping for futures/commodities
+      const proxySymbols = getProxySymbols(symbol);
+      const symbolsToQuery = proxySymbols.join(",");
+      
+      console.log(`Sentiment lookup: ${symbol} → querying proxies: ${symbolsToQuery}`);
+      
       const cacheKey = `sentiment-${symbol}-${timeWindow.start}-${timeWindow.end}`;
       
       // Check cache
@@ -159,14 +193,16 @@ serve(async (req) => {
       const startDate = timeWindow.start.split("T")[0];
       const endDate = timeWindow.end.split("T")[0];
 
-      // Fetch from API
+      // Fetch from API using proxy symbols
       const url = new URL("https://api.marketaux.com/v1/news/all");
       url.searchParams.append("api_token", marketauxApiKey);
-      url.searchParams.append("symbols", symbol);
+      url.searchParams.append("symbols", symbolsToQuery);
       url.searchParams.append("published_after", startDate);
       url.searchParams.append("published_before", endDate);
       url.searchParams.append("filter_entities", "true");
       url.searchParams.append("limit", "50");
+
+      console.log(`Fetching sentiment:`, url.toString().replace(marketauxApiKey, "***"));
 
       const response = await fetch(url.toString());
       const data = await response.json();
@@ -179,13 +215,14 @@ serve(async (req) => {
         );
       }
 
-      // Calculate average sentiment
+      // Calculate average sentiment from ALL proxy symbols
       let totalSentiment = 0;
       let articleCount = 0;
 
       data.data.forEach((article: any) => {
         article.entities?.forEach((entity: any) => {
-          if (entity.symbol === symbol && entity.sentiment_score != null) {
+          // Match any of the proxy symbols
+          if (proxySymbols.includes(entity.symbol) && entity.sentiment_score != null) {
             totalSentiment += entity.sentiment_score;
             articleCount++;
           }
@@ -225,6 +262,12 @@ serve(async (req) => {
         );
       }
 
+      // Apply proxy mapping for futures/commodities
+      const proxySymbols = getProxySymbols(symbol);
+      const symbolsToQuery = proxySymbols.join(",");
+      
+      console.log(`News volume lookup: ${symbol} → querying proxies: ${symbolsToQuery}`);
+      
       const cacheKey = `volume-${symbol}-${timeWindow.start}`;
       
       const { data: cachedData } = await supabase
@@ -248,10 +291,10 @@ serve(async (req) => {
       // Convert ISO timestamp to YYYY-MM-DD format for Marketaux API
       const startDate = timeWindow.start.split("T")[0];
 
-      // Fetch from API (last 12 hours)
+      // Fetch from API using proxy symbols (last 12 hours)
       const url = new URL("https://api.marketaux.com/v1/news/all");
       url.searchParams.append("api_token", marketauxApiKey);
-      url.searchParams.append("symbols", symbol);
+      url.searchParams.append("symbols", symbolsToQuery);
       url.searchParams.append("published_after", startDate);
       url.searchParams.append("limit", "100");
 
