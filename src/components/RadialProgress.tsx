@@ -35,7 +35,7 @@ export function RadialProgress({
   const colorMap = {
     success: "hsl(var(--success))",
     primary: "hsl(var(--primary))",
-    warning: "hsl(142, 76%, 36%)", // yellow-green gradient
+    warning: "hsl(45, 93%, 47%)", // amber/yellow
     destructive: "hsl(var(--destructive))",
   };
 
@@ -54,8 +54,8 @@ export function RadialProgress({
         >
           <defs>
             <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="hsl(142, 76%, 36%)" />
-              <stop offset="100%" stopColor="hsl(84, 81%, 44%)" />
+              <stop offset="0%" stopColor="hsl(45, 93%, 47%)" />
+              <stop offset="100%" stopColor="hsl(38, 92%, 50%)" />
             </linearGradient>
           </defs>
           
@@ -84,7 +84,7 @@ export function RadialProgress({
             style={{
               transition: "stroke-dashoffset 1s ease-in-out",
             }}
-            className="drop-shadow-[0_0_8px_rgba(142,195,82,0.5)]"
+            className={`drop-shadow-[0_0_8px_${color === "success" ? "rgba(34,197,94,0.5)" : color === "warning" ? "rgba(234,179,8,0.5)" : color === "destructive" ? "rgba(239,68,68,0.5)" : "rgba(142,195,82,0.5)"}]`}
           />
         </svg>
         
