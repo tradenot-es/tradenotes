@@ -42,7 +42,10 @@ export function RadialProgress({
   const gradientId = `gradient-${Math.random().toString(36).substr(2, 9)}`;
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-1">
+      {label && (
+        <span className="text-xs font-medium text-muted-foreground">{label}</span>
+      )}
       <div className="relative" style={{ width: size, height: size }}>
         <svg
           width={size}
@@ -85,15 +88,12 @@ export function RadialProgress({
           />
         </svg>
         
-        {/* Center content */}
+        {/* Center content - only percentage */}
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           {showPercentage && (
             <span className="text-2xl font-bold tabular-nums text-foreground">
               {Math.round(animatedValue)}%
             </span>
-          )}
-          {label && (
-            <span className="text-xs font-medium text-foreground drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{label}</span>
           )}
         </div>
       </div>
