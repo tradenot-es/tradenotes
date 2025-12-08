@@ -34,14 +34,14 @@ export function PerformanceStats({
         <div className="flex items-center gap-2">
           <CardTitle className="flex items-center gap-2">
             <BarChart3 className="h-5 w-5 text-primary" />
-            {t("dashboard.performanceBreakdown")}
+            {t("performanceBreakdown.title")}
           </CardTitle>
           <HoverCard>
             <HoverCardTrigger asChild>
               <Info className="h-4 w-4 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
-              <p className="text-sm">{t("dashboard.performanceBreakdownTooltip")}</p>
+              <p className="text-sm">{t("performanceBreakdown.performanceBreakdownTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
         </div>
@@ -50,13 +50,13 @@ export function PerformanceStats({
         <div className="grid md:grid-cols-[auto_1fr] gap-6 items-center">
           {/* Left: Radial Progress */}
           <div className="flex flex-col items-center">
-            <RadialProgress
-              value={winRate}
-              size={120}
-              strokeWidth={10}
-              color={winRate >= 50 ? "success" : winRate >= 40 ? "warning" : "destructive"}
-              label={t("dashboard.winLossRatio")}
-            />
+              <RadialProgress
+                value={winRate}
+                size={120}
+                strokeWidth={10}
+                color={winRate >= 50 ? "success" : winRate >= 40 ? "warning" : "destructive"}
+                label={t("performanceBreakdown.winLossRatio")}
+              />
             <div className="mt-2 text-center">
               <span className="text-sm font-medium">
                 <span className="text-success">{winningTrades}</span>
@@ -69,19 +69,19 @@ export function PerformanceStats({
           {/* Right: Stats Grid */}
           <div className="grid grid-cols-2 gap-3">
             <div className="p-3 rounded-lg bg-success/10 border border-success/20">
-              <p className="text-xs text-muted-foreground mb-1">{t("dashboard.avgWin")}</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.avgWin")}</p>
               <p className="text-lg font-bold text-success">{formatCurrency(avgWin)}</p>
             </div>
             <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
-              <p className="text-xs text-muted-foreground mb-1">{t("dashboard.avgLoss")}</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.avgLoss")}</p>
               <p className="text-lg font-bold text-destructive">{formatCurrency(avgLoss)}</p>
             </div>
             <div className="p-3 rounded-lg bg-success/10 border border-success/20">
-              <p className="text-xs text-muted-foreground mb-1">{t("dashboard.bestTrade")}</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.bestTrade")}</p>
               <p className="text-lg font-bold text-success">{formatCurrency(bestTrade)}</p>
             </div>
             <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
-              <p className="text-xs text-muted-foreground mb-1">{t("dashboard.worstTrade")}</p>
+              <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.worstTrade")}</p>
               <p className="text-lg font-bold text-destructive">{formatCurrency(worstTrade)}</p>
             </div>
           </div>
