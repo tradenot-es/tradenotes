@@ -1469,5 +1469,37 @@
       "content": "If you have any questions about these Terms and Conditions, please feel free to contact us at any time.",
       "button": "Contact Us"
     }
+  },
+  "alerts": {
+    "title": "AI Trading Alerts",
+    "allClear": "All Clear",
+    "allClearDescription": "No warnings detected. Your trading patterns look healthy!",
+    "urgent": "Urgent",
+    "caution": "Caution",
+    "insight": "Insight",
+    "lossStreakTitle": "{{count}} Losses in a Row",
+    "lossStreakDescription": "Consider taking a break. Emotional trading after losses often leads to more losses.",
+    "revengeTradingTitle": "Revenge Trading Pattern",
+    "revengeTradingDescription": "You're trading too quickly after losses. Wait at least 15 minutes before the next trade.",
+    "weakHourNowTitle": "Weak Hour Active ({{hour}})",
+    "weakHourTitle": "Your Weakest Hour: {{hour}}",
+    "weakHourDescription": "Win rate at this hour: {{winRate}}% ({{trades}} trades). Consider avoiding trades during this time.",
+    "weakDayTodayTitle": "Today is Your Weakest Day",
+    "weakDayTitle": "Weakest Day: {{day}}",
+    "weakDayDescription": "Win rate on this day: {{winRate}}% ({{trades}} trades). Trade more cautiously.",
+    "overtradingTitle": "{{count}} Trades Today",
+    "overtradingDescription": "You may be overtrading. Quality over quantity leads to better results."
+  },
+  "common": {
+    "loading": "Loading...",
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    }
   }
 }

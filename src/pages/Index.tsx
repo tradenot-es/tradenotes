@@ -13,6 +13,7 @@ import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { AccountPerformanceWidget } from "@/components/AccountPerformanceWidget";
+import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -21,7 +22,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Link } from "react-router-dom";
 import { useCurrency } from "@/hooks/useCurrency";
-
 interface Trade {
   id: string;
   symbol: string;
@@ -363,6 +363,9 @@ const Index = () => {
             <EquityCurveChart data={equityData} />
             <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
           </div>
+
+          {/* AI Trading Alerts - Proactive Warnings */}
+          <TradingAlertsWidget trades={trades} />
 
           {/* Account Performance Widget - Conditional */}
           <AccountPerformanceWidget trades={trades} />
