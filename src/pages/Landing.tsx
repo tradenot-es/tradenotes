@@ -56,6 +56,10 @@ const Landing = () => {
     title: t("landing.features.ai.title"),
     description: t("landing.features.ai.description")
   }, {
+    icon: <Bell className="h-6 w-6" />,
+    title: t("landing.features.aiAlerts.title"),
+    description: t("landing.features.aiAlerts.description")
+  }, {
     icon: <FileText className="h-6 w-6" />,
     title: t("landing.features.reports.title"),
     description: t("landing.features.reports.description")

@@ -785,9 +785,13 @@
         "title": "Calendario Trading",
         "description": "Vista calendario con giorni profitto/perdita codificati a colori. Rivedi rapidamente la tua attività di trading a colpo d'occhio."
       },
-      "ai": {
+"ai": {
         "title": "Assistente Trading AI",
         "description": "Fai domande sulla tua performance. Ottieni insight e analisi istantanei basati sui dati dalla tua cronologia di trading."
+      },
+      "aiAlerts": {
+        "title": "Avvisi AI Proattivi",
+        "description": "Avvisi in tempo reale per serie di perdite, orari di trading deboli e trade contro-notizie. Prevenzione rischi basata su AI."
       },
       "reports": {
         "title": "Report Avanzati",

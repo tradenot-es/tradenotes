@@ -667,9 +667,13 @@
         "title": "Trading Kalender",
         "description": "Kalenderansicht mit farbcodierten Gewinn-/Verlusttagen. Trading-Aktivität schnell auf einen Blick überprüfen."
       },
-      "ai": {
-        "title": "AI Trading Assistant",
+"ai": {
+        "title": "KI Trading Assistant",
         "description": "Fragen zu deiner Performance stellen. Sofortige datengetriebene Insights und Analysen aus deiner Trading-Historie erhalten."
+      },
+      "aiAlerts": {
+        "title": "Proaktive KI-Warnungen",
+        "description": "Echtzeit-Alerts bei Verlustserien, schwachen Handelszeiten und Contra-News-Trades. KI-gestützte Risikoproävention."
       },
       "reports": {
         "title": "Erweiterte Reports",

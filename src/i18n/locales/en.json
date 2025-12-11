@@ -789,9 +789,13 @@
         "title": "Trading Calendar",
         "description": "Calendar view with color-coded profit/loss days. Quickly review your trading activity at a glance."
       },
-      "ai": {
+"ai": {
         "title": "AI Trading Assistant",
         "description": "Ask questions about your performance. Get instant data-driven insights and analysis from your trading history."
+      },
+      "aiAlerts": {
+        "title": "Proactive AI Alerts",
+        "description": "Real-time warnings for loss streaks, weak trading hours, and contra-news trades. AI-powered risk prevention."
       },
       "reports": {
         "title": "Advanced Reports",

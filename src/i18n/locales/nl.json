@@ -765,9 +765,13 @@
         "title": "Trading Kalender",
         "description": "Kalenderweergave met kleurgecodeerde winst/verlies dagen. Bekijk snel je trading activiteit in één oogopslag."
       },
-      "ai": {
+"ai": {
         "title": "AI Trading Assistent",
         "description": "Stel vragen over je prestaties. Krijg directe datagestuurde inzichten en analyses van je trading geschiedenis."
+      },
+      "aiAlerts": {
+        "title": "Proactieve AI Waarschuwingen",
+        "description": "Realtime waarschuwingen voor verliesreeksen, zwakke handelsuren en contra-nieuws trades. AI-gestuurde risicopreventie."
       },
       "reports": {
         "title": "Geavanceerde Rapporten",
