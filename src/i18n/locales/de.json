@@ -1337,5 +1337,37 @@
       "content": "Bei Fragen zu diesen Geschäftsbedingungen können Sie uns jederzeit kontaktieren.",
       "button": "Kontakt aufnehmen"
     }
+  },
+  "alerts": {
+    "title": "KI Trading-Warnungen",
+    "allClear": "Alles in Ordnung",
+    "allClearDescription": "Keine Warnungen erkannt. Deine Trading-Muster sehen gesund aus!",
+    "urgent": "Dringend",
+    "caution": "Vorsicht",
+    "insight": "Hinweis",
+    "lossStreakTitle": "{{count}} Verluste in Folge",
+    "lossStreakDescription": "Erwäge eine Pause. Emotionales Trading nach Verlusten führt oft zu weiteren Verlusten.",
+    "revengeTradingTitle": "Revenge-Trading-Muster erkannt",
+    "revengeTradingDescription": "Du tradest zu schnell nach Verlusten. Warte mindestens 15 Minuten vor dem nächsten Trade.",
+    "weakHourNowTitle": "Schwache Stunde aktiv ({{hour}})",
+    "weakHourTitle": "Deine schwächste Stunde: {{hour}}",
+    "weakHourDescription": "Win Rate zu dieser Stunde: {{winRate}}% ({{trades}} Trades). Erwäge, zu dieser Zeit nicht zu traden.",
+    "weakDayTodayTitle": "Heute ist dein schwächster Tag",
+    "weakDayTitle": "Schwächster Tag: {{day}}",
+    "weakDayDescription": "Win Rate an diesem Tag: {{winRate}}% ({{trades}} Trades). Trade mit mehr Vorsicht.",
+    "overtradingTitle": "{{count}} Trades heute",
+    "overtradingDescription": "Du tradest möglicherweise zu viel. Qualität statt Quantität führt zu besseren Ergebnissen."
+  },
+  "common": {
+    "loading": "Lädt...",
+    "days": {
+      "sunday": "Sonntag",
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag"
+    }
   }
 }
