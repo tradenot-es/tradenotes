@@ -5,12 +5,19 @@ import {
   AlertTriangle, 
   TrendingDown, 
   Clock, 
-  Flame, 
   AlertCircle,
   CheckCircle2,
-  Brain
+  Brain,
+  Info
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface Trade {
   id: string;
@@ -30,6 +37,13 @@ interface Alert {
   priority: number;
 }
 
+interface RevengeScore {
+  score: number;
+  postLossTrades: number;
+  quickReentries: number;
+  postLossWinRate: number;
+}
+
 interface TradingAlertsWidgetProps {
   trades: Trade[];
 }
@@ -37,12 +51,67 @@ interface TradingAlertsWidgetProps {
 export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
   const { t } = useTranslation();
 
+  // Revenge Trading Score Calculation
+  const revengeScore = useMemo((): RevengeScore | null => {
+    if (trades.length < 10) return null;
+
+    const sortedTrades = [...trades].sort((a, b) => 
+      new Date(a.exit_time).getTime() - new Date(b.exit_time).getTime()
+    );
+
+    let postLossTrades = 0;
+    let postLossLosses = 0;
+    let quickReentries = 0;
+
+    for (let i = 1; i < sortedTrades.length; i++) {
+      const prevTrade = sortedTrades[i - 1];
+      const currTrade = sortedTrades[i];
+
+      if (prevTrade.pnl_net < 0) {
+        postLossTrades++;
+        const timeDiff = (new Date(currTrade.entry_time).getTime() - new Date(prevTrade.exit_time).getTime()) / 60000;
+
+        if (timeDiff < 10) quickReentries++;
+        if (currTrade.pnl_net < 0) postLossLosses++;
+      }
+    }
+
+    if (postLossTrades === 0) {
+      return { score: 0, postLossTrades: 0, quickReentries: 0, postLossWinRate: 100 };
+    }
+
+    // Score calculation (0-100, lower = better)
+    const timingScore = (quickReentries / postLossTrades) * 50;
+    const performanceScore = (postLossLosses / postLossTrades) * 50;
+    const totalScore = Math.min(100, Math.round(timingScore + performanceScore));
+    const postLossWinRate = ((postLossTrades - postLossLosses) / postLossTrades) * 100;
+
+    return {
+      score: totalScore,
+      postLossTrades,
+      quickReentries,
+      postLossWinRate
+    };
+  }, [trades]);
+
+  const getScoreColor = (score: number): "success" | "warning" | "destructive" => {
+    if (score <= 25) return "success";
+    if (score <= 50) return "warning";
+    return "destructive";
+  };
+
+  const getScoreLabel = (score: number): string => {
+    if (score <= 25) return t("alerts.revengeScoreExcellent");
+    if (score <= 50) return t("alerts.revengeScoreGood");
+    if (score <= 75) return t("alerts.revengeScoreWarning");
+    return t("alerts.revengeScoreCritical");
+  };
+
   const alerts = useMemo(() => {
-    if (trades.length < 5) return []; // Need minimum data
+    if (trades.length < 5) return [];
 
     const alertsList: Alert[] = [];
     
-    // Sort trades by exit time (newest first)
     const sortedTrades = [...trades].sort((a, b) => 
       new Date(b.exit_time).getTime() - new Date(a.exit_time).getTime()
     );
@@ -66,36 +135,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
       });
     }
 
-    // 2. Revenge Trading Detection (trading too quickly after a loss)
-    const last5Trades = sortedTrades.slice(0, 5);
-    let revengeTradingScore = 0;
-    for (let i = 1; i < last5Trades.length; i++) {
-      const prevTrade = last5Trades[i];
-      const currTrade = last5Trades[i - 1];
-      
-      if (prevTrade.pnl_net < 0) {
-        const timeDiff = new Date(currTrade.entry_time).getTime() - new Date(prevTrade.exit_time).getTime();
-        const minutesDiff = timeDiff / (1000 * 60);
-        
-        // Trade within 10 minutes of a loss
-        if (minutesDiff < 10 && currTrade.pnl_net < 0) {
-          revengeTradingScore++;
-        }
-      }
-    }
-
-    if (revengeTradingScore >= 2) {
-      alertsList.push({
-        id: "revenge-trading",
-        type: "warning",
-        icon: Flame,
-        title: t("alerts.revengeTradingTitle"),
-        description: t("alerts.revengeTradingDescription"),
-        priority: 2
-      });
-    }
-
-    // 3. Time-of-Day Performance Analysis
+    // 2. Time-of-Day Performance Analysis
     const hourlyPerformance: { [hour: number]: { wins: number; losses: number; pnl: number } } = {};
     
     trades.forEach(trade => {
@@ -108,14 +148,13 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
       else hourlyPerformance[hour].losses++;
     });
 
-    // Find worst performing hour with enough data
     let worstHour = -1;
     let worstWinRate = 1;
     let worstHourTrades = 0;
     
     Object.entries(hourlyPerformance).forEach(([hour, data]) => {
       const totalTrades = data.wins + data.losses;
-      if (totalTrades >= 5) { // Need at least 5 trades at that hour
+      if (totalTrades >= 5) {
         const winRate = data.wins / totalTrades;
         if (winRate < worstWinRate) {
           worstWinRate = winRate;
@@ -144,7 +183,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
       });
     }
 
-    // 4. Day-of-Week Performance
+    // 3. Day-of-Week Performance
     const dayPerformance: { [day: number]: { wins: number; losses: number; pnl: number } } = {};
     const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     
@@ -193,7 +232,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
       });
     }
 
-    // 5. Overtrading Warning (too many trades today)
+    // 4. Overtrading Warning
     const today = new Date().toDateString();
     const tradesToday = trades.filter(t => 
       new Date(t.exit_time).toDateString() === today
@@ -210,11 +249,11 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
       });
     }
 
-    // Sort by priority
-    return alertsList.sort((a, b) => a.priority - b.priority).slice(0, 4);
+    return alertsList.sort((a, b) => a.priority - b.priority).slice(0, 3);
   }, [trades, t]);
 
   const MIN_TRADES_REQUIRED = 5;
+  const MIN_TRADES_FOR_SCORE = 10;
   const needsMoreData = trades.length < MIN_TRADES_REQUIRED;
 
   const getAlertStyles = (type: Alert["type"]) => {
@@ -239,6 +278,22 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
     }
   };
 
+  const scoreColorClass = revengeScore 
+    ? getScoreColor(revengeScore.score) === "success" 
+      ? "text-success" 
+      : getScoreColor(revengeScore.score) === "warning"
+        ? "text-warning"
+        : "text-destructive"
+    : "text-muted-foreground";
+
+  const scoreBgClass = revengeScore 
+    ? getScoreColor(revengeScore.score) === "success" 
+      ? "bg-success/10 border-success/30" 
+      : getScoreColor(revengeScore.score) === "warning"
+        ? "bg-warning/10 border-warning/30"
+        : "bg-destructive/10 border-destructive/30"
+    : "bg-muted/50 border-border";
+
   return (
     <Card className="elegant-shadow">
       <CardHeader className="pb-3">
@@ -247,7 +302,80 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
           {t("alerts.title")}
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
+        {/* Revenge Trading Score Section */}
+        <div className={`p-4 rounded-lg border ${scoreBgClass}`}>
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-foreground">{t("alerts.revengeScore")}</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-[250px]">
+                    <p>{t("alerts.revengeScoreTooltip")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+            {revengeScore && (
+              <Badge variant={getScoreColor(revengeScore.score) === "success" ? "default" : getScoreColor(revengeScore.score) === "warning" ? "secondary" : "destructive"}>
+                {getScoreLabel(revengeScore.score)}
+              </Badge>
+            )}
+          </div>
+
+          {revengeScore ? (
+            <div className="space-y-3">
+              {/* Score Display */}
+              <div className="flex items-center gap-4">
+                <div className={`text-4xl font-bold tabular-nums ${scoreColorClass}`}>
+                  {revengeScore.score}
+                </div>
+                <div className="flex-1">
+                  <div className="h-3 bg-muted rounded-full overflow-hidden">
+                    <div 
+                      className={`h-full transition-all duration-700 ${
+                        getScoreColor(revengeScore.score) === "success" 
+                          ? "bg-success" 
+                          : getScoreColor(revengeScore.score) === "warning"
+                            ? "bg-warning"
+                            : "bg-destructive"
+                      }`}
+                      style={{ width: `${revengeScore.score}%` }}
+                    />
+                  </div>
+                  <div className="flex justify-between text-xs text-muted-foreground mt-1">
+                    <span>0</span>
+                    <span className="text-center">{t("alerts.lowerIsBetter")}</span>
+                    <span>100</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="text-center p-2 rounded bg-background/50">
+                  <div className="text-lg font-semibold text-foreground">{revengeScore.postLossWinRate.toFixed(0)}%</div>
+                  <div className="text-xs text-muted-foreground">{t("alerts.postLossWinRate")}</div>
+                </div>
+                <div className="text-center p-2 rounded bg-background/50">
+                  <div className="text-lg font-semibold text-foreground">{revengeScore.quickReentries}</div>
+                  <div className="text-xs text-muted-foreground">{t("alerts.quickReentries")}</div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-sm text-muted-foreground">
+              {t("alerts.scoreNeedsMoreData", { current: trades.length, required: MIN_TRADES_FOR_SCORE })}
+            </div>
+          )}
+        </div>
+
+        <Separator />
+
+        {/* Alerts Section */}
         {needsMoreData ? (
           <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border">
             <AlertCircle className="h-5 w-5 text-muted-foreground" />
