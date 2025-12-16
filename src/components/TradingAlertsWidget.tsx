@@ -214,9 +214,8 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
     return alertsList.sort((a, b) => a.priority - b.priority).slice(0, 4);
   }, [trades, t]);
 
-  if (trades.length < 5) {
-    return null; // Don't show widget with insufficient data
-  }
+  const MIN_TRADES_REQUIRED = 5;
+  const needsMoreData = trades.length < MIN_TRADES_REQUIRED;
 
   const getAlertStyles = (type: Alert["type"]) => {
     switch (type) {
@@ -249,7 +248,20 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {alerts.length === 0 ? (
+        {needsMoreData ? (
+          <div className="flex items-center gap-3 p-4 rounded-lg bg-muted/50 border border-border">
+            <AlertCircle className="h-5 w-5 text-muted-foreground" />
+            <div>
+              <p className="font-medium text-foreground">{t("alerts.needsMoreData")}</p>
+              <p className="text-sm text-muted-foreground">
+                {t("alerts.needsMoreDataDescription", { 
+                  current: trades.length, 
+                  required: MIN_TRADES_REQUIRED 
+                })}
+              </p>
+            </div>
+          </div>
+        ) : alerts.length === 0 ? (
           <div className="flex items-center gap-3 p-4 rounded-lg bg-success/10 border border-success/20">
             <CheckCircle2 className="h-5 w-5 text-success" />
             <div>

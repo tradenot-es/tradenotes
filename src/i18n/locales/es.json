@@ -1285,5 +1285,39 @@
       "content": "Si tiene alguna pregunta sobre estos Términos y Condiciones, no dude en contactarnos en cualquier momento.",
       "button": "Contáctenos"
     }
+  },
+  "alerts": {
+    "title": "Alertas IA Trading",
+    "allClear": "Todo bien",
+    "allClearDescription": "No se detectaron advertencias. ¡Tus patrones de trading se ven saludables!",
+    "needsMoreData": "Se necesitan más trades",
+    "needsMoreDataDescription": "Añade al menos {{required}} trades para activar las alertas IA. Actualmente: {{current}} trades.",
+    "urgent": "Urgente",
+    "caution": "Precaución",
+    "insight": "Info",
+    "lossStreakTitle": "{{count}} pérdidas consecutivas",
+    "lossStreakDescription": "Considera tomar un descanso. El trading emocional después de pérdidas suele llevar a más pérdidas.",
+    "revengeTradingTitle": "Patrón de revenge trading",
+    "revengeTradingDescription": "Estás operando demasiado rápido después de pérdidas. Espera al menos 15 minutos antes del próximo trade.",
+    "weakHourNowTitle": "Hora débil activa ({{hour}})",
+    "weakHourTitle": "Tu hora más débil: {{hour}}",
+    "weakHourDescription": "Tasa de éxito a esta hora: {{winRate}}% ({{trades}} trades). Considera evitar operar durante este período.",
+    "weakDayTodayTitle": "Hoy es tu día más débil",
+    "weakDayTitle": "Día más débil: {{day}}",
+    "weakDayDescription": "Tasa de éxito este día: {{winRate}}% ({{trades}} trades). Opera con más cautela.",
+    "overtradingTitle": "{{count}} trades hoy",
+    "overtradingDescription": "Puede que estés operando demasiado. La calidad sobre la cantidad lleva a mejores resultados."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "days": {
+      "sunday": "Domingo",
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado"
+    }
   }
 }
