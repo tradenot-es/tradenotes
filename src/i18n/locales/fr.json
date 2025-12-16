@@ -1285,5 +1285,39 @@
       "content": "Si vous avez des questions sur ces Conditions Générales, n'hésitez pas à nous contacter à tout moment.",
       "button": "Nous contacter"
     }
+  },
+  "alerts": {
+    "title": "Alertes IA Trading",
+    "allClear": "Tout va bien",
+    "allClearDescription": "Aucun avertissement détecté. Vos schémas de trading semblent sains !",
+    "needsMoreData": "Plus de trades nécessaires",
+    "needsMoreDataDescription": "Ajoutez au moins {{required}} trades pour activer les alertes IA. Actuellement : {{current}} trades.",
+    "urgent": "Urgent",
+    "caution": "Attention",
+    "insight": "Info",
+    "lossStreakTitle": "{{count}} pertes consécutives",
+    "lossStreakDescription": "Envisagez une pause. Le trading émotionnel après des pertes mène souvent à plus de pertes.",
+    "revengeTradingTitle": "Pattern de revenge trading",
+    "revengeTradingDescription": "Vous tradez trop vite après des pertes. Attendez au moins 15 minutes avant le prochain trade.",
+    "weakHourNowTitle": "Heure faible active ({{hour}})",
+    "weakHourTitle": "Votre heure la plus faible : {{hour}}",
+    "weakHourDescription": "Taux de réussite à cette heure : {{winRate}}% ({{trades}} trades). Évitez de trader pendant cette période.",
+    "weakDayTodayTitle": "Aujourd'hui est votre jour le plus faible",
+    "weakDayTitle": "Jour le plus faible : {{day}}",
+    "weakDayDescription": "Taux de réussite ce jour : {{winRate}}% ({{trades}} trades). Tradez avec plus de prudence.",
+    "overtradingTitle": "{{count}} trades aujourd'hui",
+    "overtradingDescription": "Vous tradez peut-être trop. La qualité prime sur la quantité."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "days": {
+      "sunday": "Dimanche",
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi"
+    }
   }
 }

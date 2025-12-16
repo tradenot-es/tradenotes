@@ -1285,5 +1285,39 @@
       "content": "Als u vragen heeft over deze Algemene Voorwaarden, neem dan gerust op elk moment contact met ons op.",
       "button": "Neem contact op"
     }
+  },
+  "alerts": {
+    "title": "AI Trading Alerts",
+    "allClear": "Alles goed",
+    "allClearDescription": "Geen waarschuwingen gedetecteerd. Je tradingpatronen zien er gezond uit!",
+    "needsMoreData": "Meer trades nodig",
+    "needsMoreDataDescription": "Voeg minimaal {{required}} trades toe om AI-alerts te activeren. Huidig: {{current}} trades.",
+    "urgent": "Urgent",
+    "caution": "Voorzichtig",
+    "insight": "Inzicht",
+    "lossStreakTitle": "{{count}} verliezen op rij",
+    "lossStreakDescription": "Overweeg een pauze. Emotioneel traden na verliezen leidt vaak tot meer verliezen.",
+    "revengeTradingTitle": "Revenge trading patroon",
+    "revengeTradingDescription": "Je tradt te snel na verliezen. Wacht minimaal 15 minuten voor de volgende trade.",
+    "weakHourNowTitle": "Zwak uur actief ({{hour}})",
+    "weakHourTitle": "Je zwakste uur: {{hour}}",
+    "weakHourDescription": "Winstpercentage op dit uur: {{winRate}}% ({{trades}} trades). Overweeg niet te traden tijdens deze periode.",
+    "weakDayTodayTitle": "Vandaag is je zwakste dag",
+    "weakDayTitle": "Zwakste dag: {{day}}",
+    "weakDayDescription": "Winstpercentage op deze dag: {{winRate}}% ({{trades}} trades). Trade voorzichtiger.",
+    "overtradingTitle": "{{count}} trades vandaag",
+    "overtradingDescription": "Je tradt misschien te veel. Kwaliteit boven kwantiteit leidt tot betere resultaten."
+  },
+  "common": {
+    "loading": "Laden...",
+    "days": {
+      "sunday": "Zondag",
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag"
+    }
   }
 }
