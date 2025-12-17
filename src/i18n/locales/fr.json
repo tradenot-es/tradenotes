@@ -988,7 +988,18 @@
     "tradesWithRiskTooltip": "Nombre de trades avec risque défini (R)",
     "avgWinTooltip": "Gain moyen sur les trades gagnants",
     "avgLossTooltip": "Perte moyenne sur les trades perdants",
-    "noRiskData": "Aucune donnée de risque disponible. Ajoutez le risque initial et le stop loss à vos trades."
+    "noRiskData": "Aucune donnée de risque disponible. Ajoutez le risque initial et le stop loss à vos trades.",
+    "dailyPnl": "P&L Quotidien",
+    "tradesToday": "Trades aujourd'hui",
+    "tradesThisDay": "Trades ce jour-là",
+    "tradesRemaining": "{{remaining}} trades restants",
+    "tradesUsed": "{{used}} sur {{max}} trades utilisés",
+    "tradesOverLimit": "{{over}} trades au-delà de la limite",
+    "limitReached": "Limite atteinte",
+    "goalAchievedPerfect": "Parfait! Objectif atteint sans overtrading",
+    "goalNotAchievedOvertraded": "Limite de trades dépassée",
+    "goalAchieved": "Objectif atteint",
+    "overtraded": "Overtrading"
   },
   "filters": {
     "filters": "Filtres",

@@ -988,7 +988,18 @@
     "tradesWithRiskTooltip": "Aantal trades met gedefinieerd risico (R)",
     "avgWinTooltip": "Gemiddelde winst bij winnende trades",
     "avgLossTooltip": "Gemiddeld verlies bij verliezende trades",
-    "noRiskData": "Geen risico gegevens beschikbaar. Voeg initieel risico en stop loss toe aan uw trades."
+    "noRiskData": "Geen risico gegevens beschikbaar. Voeg initieel risico en stop loss toe aan uw trades.",
+    "dailyPnl": "Dagelijkse P&L",
+    "tradesToday": "Trades vandaag",
+    "tradesThisDay": "Trades op deze dag",
+    "tradesRemaining": "{{remaining}} trades resterend",
+    "tradesUsed": "{{used}} van {{max}} trades gebruikt",
+    "tradesOverLimit": "{{over}} trades boven limiet",
+    "limitReached": "Limiet bereikt",
+    "goalAchievedPerfect": "Perfect! Doel bereikt zonder overtrading",
+    "goalNotAchievedOvertraded": "Handelslimiet overschreden",
+    "goalAchieved": "Doel bereikt",
+    "overtraded": "Overtrade"
   },
   "filters": {
     "filters": "Filters",
