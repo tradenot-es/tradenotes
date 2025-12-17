@@ -566,7 +566,16 @@
     "delete": "Löschen",
     "edit": "Bearbeiten",
     "cancel": "Abbrechen",
-    "confirm": "Bestätigen"
+    "confirm": "Bestätigen",
+    "days": {
+      "sunday": "Sonntag",
+      "monday": "Montag",
+      "tuesday": "Dienstag",
+      "wednesday": "Mittwoch",
+      "thursday": "Donnerstag",
+      "friday": "Freitag",
+      "saturday": "Samstag"
+    }
   },
   "landing": {
     "badge": "Professionelles Trading Journal",
@@ -1375,17 +1384,5 @@
     "quickReentries": "Schnelle Wiedereinstiege",
     "lowerIsBetter": "Niedriger ist besser",
     "scoreNeedsMoreData": "{{current}} von {{required}} Trades für Score-Berechnung benötigt."
-  },
-  "common": {
-    "loading": "Lädt...",
-    "days": {
-      "sunday": "Sonntag",
-      "monday": "Montag",
-      "tuesday": "Dienstag",
-      "wednesday": "Mittwoch",
-      "thursday": "Donnerstag",
-      "friday": "Freitag",
-      "saturday": "Samstag"
-    }
   }
 }
