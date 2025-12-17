@@ -529,7 +529,12 @@
     "ntExecutionDeleted": "Esecuzione in sospeso eliminata",
     "ntExecutionDeleteError": "Errore eliminazione esecuzione",
     "ntDeleteExecutionConfirm": "Eliminare esecuzione in sospeso?",
-    "ntDeleteExecutionWarning": "Questa entrata sarà rimossa permanentemente e non sarà abbinata a future uscite."
+    "ntDeleteExecutionWarning": "Questa entrata sarà rimossa permanentemente e non sarà abbinata a future uscite.",
+    "ntSelectAll": "Seleziona tutto",
+    "ntDeleteSelected": "Elimina {{count}} selezionati",
+    "ntDeleteSelectedConfirm": "Eliminare {{count}} esecuzioni?",
+    "ntDeleteSelectedWarning": "Tutte le voci selezionate verranno rimosse definitivamente.",
+    "ntExecutionsDeleted": "{{count}} esecuzioni eliminate"
   },
   "journal": {
     "title": "Diario di Trading",

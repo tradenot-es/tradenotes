@@ -509,7 +509,12 @@
     "ntExecutionDeleted": "Exécution en attente supprimée",
     "ntExecutionDeleteError": "Échec de la suppression de l'exécution",
     "ntDeleteExecutionConfirm": "Supprimer l'exécution en attente ?",
-    "ntDeleteExecutionWarning": "Cette entrée sera définitivement supprimée et ne sera pas appariée aux sorties futures."
+    "ntDeleteExecutionWarning": "Cette entrée sera définitivement supprimée et ne sera pas appariée aux sorties futures.",
+    "ntSelectAll": "Tout sélectionner",
+    "ntDeleteSelected": "Supprimer {{count}} sélectionné(s)",
+    "ntDeleteSelectedConfirm": "Supprimer {{count}} exécutions ?",
+    "ntDeleteSelectedWarning": "Toutes les entrées sélectionnées seront définitivement supprimées.",
+    "ntExecutionsDeleted": "{{count}} exécutions supprimées"
   },
   "journal": {
     "title": "Journal de trading",

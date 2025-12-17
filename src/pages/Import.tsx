@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -40,6 +41,7 @@ const Import = () => {
   const [showApiKey, setShowApiKey] = useState(false);
   const [pendingExecutions, setPendingExecutions] = useState<any[]>([]);
   const [loadingApiKey, setLoadingApiKey] = useState(false);
+  const [selectedExecutions, setSelectedExecutions] = useState<Set<string>>(new Set());
   
   const webhookUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-trades`;
 
@@ -119,11 +121,57 @@ const Import = () => {
       
       if (error) throw error;
       
+      setSelectedExecutions(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(id);
+        return newSet;
+      });
       await loadPendingExecutions();
       toast.success(t("import.ntExecutionDeleted"));
     } catch (error) {
       console.error('Error deleting execution:', error);
       toast.error(t("import.ntExecutionDeleteError"));
+    }
+  };
+
+  const deleteSelectedExecutions = async () => {
+    if (selectedExecutions.size === 0) return;
+    
+    try {
+      const { error } = await supabase
+        .from('ninjatrader_executions')
+        .delete()
+        .in('id', Array.from(selectedExecutions));
+      
+      if (error) throw error;
+      
+      const count = selectedExecutions.size;
+      setSelectedExecutions(new Set());
+      await loadPendingExecutions();
+      toast.success(t("import.ntExecutionsDeleted", { count }));
+    } catch (error) {
+      console.error('Error deleting executions:', error);
+      toast.error(t("import.ntExecutionDeleteError"));
+    }
+  };
+
+  const toggleSelectExecution = (id: string) => {
+    setSelectedExecutions(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) {
+        newSet.delete(id);
+      } else {
+        newSet.add(id);
+      }
+      return newSet;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedExecutions.size === pendingExecutions.length) {
+      setSelectedExecutions(new Set());
+    } else {
+      setSelectedExecutions(new Set(pendingExecutions.map(e => e.id)));
     }
   };
 
@@ -467,13 +515,56 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                   <Separator />
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <h3 className="text-sm font-semibold">{t("import.ntPendingTitle")}</h3>
-                      <Badge variant="secondary">{pendingExecutions.length}</Badge>
+                      <div className="flex items-center gap-3">
+                        <h3 className="text-sm font-semibold">{t("import.ntPendingTitle")}</h3>
+                        <Badge variant="secondary">{pendingExecutions.length}</Badge>
+                      </div>
+                      {selectedExecutions.size > 0 && (
+                        <AlertDialog>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="destructive" size="sm">
+                              <Trash2 className="h-4 w-4 mr-1" />
+                              {t("import.ntDeleteSelected", { count: selectedExecutions.size })}
+                            </Button>
+                          </AlertDialogTrigger>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>{t("import.ntDeleteSelectedConfirm", { count: selectedExecutions.size })}</AlertDialogTitle>
+                              <AlertDialogDescription>
+                                {t("import.ntDeleteSelectedWarning")}
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                              <AlertDialogAction onClick={deleteSelectedExecutions}>
+                                {t("common.delete")}
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      )}
                     </div>
                     <p className="text-xs text-muted-foreground">{t("import.ntPendingDescription")}</p>
+                    
+                    {/* Select All Header */}
+                    <div className="flex items-center gap-2 px-3 py-2 bg-muted/50 rounded-lg border">
+                      <Checkbox
+                        id="select-all"
+                        checked={selectedExecutions.size === pendingExecutions.length && pendingExecutions.length > 0}
+                        onCheckedChange={toggleSelectAll}
+                      />
+                      <label htmlFor="select-all" className="text-xs font-medium cursor-pointer">
+                        {t("import.ntSelectAll")}
+                      </label>
+                    </div>
+                    
                     <div className="space-y-2">
                       {pendingExecutions.map((exec) => (
-                        <div key={exec.id} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                        <div key={exec.id} className="flex items-center gap-3 p-3 bg-muted rounded-lg">
+                          <Checkbox
+                            checked={selectedExecutions.has(exec.id)}
+                            onCheckedChange={() => toggleSelectExecution(exec.id)}
+                          />
                           <div className="flex-1">
                             <p className="text-sm font-medium">{exec.symbol} ({exec.market})</p>
                             <p className="text-xs text-muted-foreground">

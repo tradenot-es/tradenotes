@@ -533,7 +533,12 @@
     "ntExecutionDeleted": "Pending execution deleted",
     "ntExecutionDeleteError": "Failed to delete execution",
     "ntDeleteExecutionConfirm": "Delete pending execution?",
-    "ntDeleteExecutionWarning": "This entry will be permanently removed and won't be paired with future exits."
+    "ntDeleteExecutionWarning": "This entry will be permanently removed and won't be paired with future exits.",
+    "ntSelectAll": "Select all",
+    "ntDeleteSelected": "Delete {{count}} selected",
+    "ntDeleteSelectedConfirm": "Delete {{count}} executions?",
+    "ntDeleteSelectedWarning": "All selected entries will be permanently removed.",
+    "ntExecutionsDeleted": "{{count}} executions deleted"
   },
   "journal": {
     "title": "Trading Journal",

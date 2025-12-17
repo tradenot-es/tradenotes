@@ -509,7 +509,12 @@
     "ntExecutionDeleted": "Ejecución pendiente eliminada",
     "ntExecutionDeleteError": "Error al eliminar la ejecución",
     "ntDeleteExecutionConfirm": "¿Eliminar ejecución pendiente?",
-    "ntDeleteExecutionWarning": "Esta entrada se eliminará permanentemente y no se emparejará con salidas futuras."
+    "ntDeleteExecutionWarning": "Esta entrada se eliminará permanentemente y no se emparejará con salidas futuras.",
+    "ntSelectAll": "Seleccionar todo",
+    "ntDeleteSelected": "Eliminar {{count}} seleccionados",
+    "ntDeleteSelectedConfirm": "¿Eliminar {{count}} ejecuciones?",
+    "ntDeleteSelectedWarning": "Todas las entradas seleccionadas se eliminarán permanentemente.",
+    "ntExecutionsDeleted": "{{count}} ejecuciones eliminadas"
   },
   "journal": {
     "title": "Diario de trading",

@@ -411,7 +411,12 @@
     "ntExecutionDeleted": "Wartende Ausführung gelöscht",
     "ntExecutionDeleteError": "Fehler beim Löschen der Ausführung",
     "ntDeleteExecutionConfirm": "Wartende Ausführung löschen?",
-    "ntDeleteExecutionWarning": "Dieser Eintrag wird dauerhaft entfernt und nicht mit zukünftigen Exits gepaart."
+    "ntDeleteExecutionWarning": "Dieser Eintrag wird dauerhaft entfernt und nicht mit zukünftigen Exits gepaart.",
+    "ntSelectAll": "Alle auswählen",
+    "ntDeleteSelected": "{{count}} ausgewählte löschen",
+    "ntDeleteSelectedConfirm": "{{count}} Ausführungen löschen?",
+    "ntDeleteSelectedWarning": "Alle ausgewählten Einträge werden dauerhaft entfernt.",
+    "ntExecutionsDeleted": "{{count}} Ausführungen gelöscht"
   },
   "journal": {
     "title": "Trading Journal",
