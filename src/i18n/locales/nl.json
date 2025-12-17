@@ -509,7 +509,12 @@
     "ntExecutionDeleted": "In behandeling zijnde uitvoering verwijderd",
     "ntExecutionDeleteError": "Fout bij verwijderen van uitvoering",
     "ntDeleteExecutionConfirm": "In behandeling zijnde uitvoering verwijderen?",
-    "ntDeleteExecutionWarning": "Deze invoer wordt permanent verwijderd en wordt niet gekoppeld aan toekomstige exits."
+    "ntDeleteExecutionWarning": "Deze invoer wordt permanent verwijderd en wordt niet gekoppeld aan toekomstige exits.",
+    "ntSelectAll": "Alles selecteren",
+    "ntDeleteSelected": "{{count}} geselecteerde verwijderen",
+    "ntDeleteSelectedConfirm": "{{count}} uitvoeringen verwijderen?",
+    "ntDeleteSelectedWarning": "Alle geselecteerde invoeren worden permanent verwijderd.",
+    "ntExecutionsDeleted": "{{count}} uitvoeringen verwijderd"
   },
   "journal": {
     "title": "Trading dagboek",
