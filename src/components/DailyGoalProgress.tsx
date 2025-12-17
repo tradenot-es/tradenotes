@@ -2,9 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { RadialProgress } from "@/components/RadialProgress";
-import { Target, TrendingUp, CheckCircle2, XCircle } from "lucide-react";
+import { Target, CheckCircle2, XCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "@/hooks/useCurrency";
+import { isToday as checkIsToday, parseISO } from "date-fns";
 
 interface DailyGoalProgressProps {
   dailyPnL: number;
@@ -24,6 +25,7 @@ export function DailyGoalProgress({
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
   
+  const isToday = checkIsToday(parseISO(date));
   const goalProgress = Math.min((dailyPnL / goalAmount) * 100, 100);
   const tradesProgress = (dailyTrades / maxTrades) * 100;
   const goalAchieved = dailyPnL >= goalAmount && dailyTrades <= maxTrades;
@@ -89,7 +91,9 @@ export function DailyGoalProgress({
           <div className="space-y-4">
             <div className="space-y-2">
               <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground">{t("reports.tradesToday")}</span>
+                <span className="text-muted-foreground">
+                  {isToday ? t("reports.tradesToday") : t("reports.tradesThisDay")}
+                </span>
                 <span className={`font-bold ${overTraded ? 'text-destructive' : 'text-foreground'}`}>
                   {dailyTrades} / {maxTrades}
                 </span>
@@ -99,12 +103,15 @@ export function DailyGoalProgress({
                 className={`h-3 ${overTraded ? '[&>div]:bg-destructive' : ''}`}
               />
               <div className="text-xs text-muted-foreground">
-                {maxTrades - dailyTrades > 0 
-                  ? t("reports.tradesRemaining", { remaining: maxTrades - dailyTrades })
-                  : overTraded 
-                    ? t("reports.tradesOverLimit", { over: dailyTrades - maxTrades })
-                    : t("reports.limitReached")
-                }
+                {isToday ? (
+                  maxTrades - dailyTrades > 0 
+                    ? t("reports.tradesRemaining", { remaining: maxTrades - dailyTrades })
+                    : overTraded 
+                      ? t("reports.tradesOverLimit", { over: dailyTrades - maxTrades })
+                      : t("reports.limitReached")
+                ) : (
+                  t("reports.tradesUsed", { used: dailyTrades, max: maxTrades })
+                )}
               </div>
             </div>
 
