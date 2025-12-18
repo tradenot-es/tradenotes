@@ -391,24 +391,38 @@ serve(async (req) => {
         const data = await response.json();
 
         if (response.ok && data.data && data.data.length > 0) {
-          let totalSentiment = 0;
-          let sentimentCount = 0;
+          const allSentiments: number[] = [];
           const articleCount = data.data.length;
 
+          // Collect all sentiment scores
           data.data.forEach((article: any) => {
             article.entities?.forEach((entity: any) => {
               if (entity.sentiment_score != null) {
-                totalSentiment += entity.sentiment_score;
-                sentimentCount++;
+                allSentiments.push(entity.sentiment_score);
               }
             });
           });
 
-          const avgSentiment = sentimentCount > 0 ? totalSentiment / sentimentCount : 0;
+          // Calculate statistics
+          const avgSentiment = allSentiments.length > 0 
+            ? allSentiments.reduce((a, b) => a + b, 0) / allSentiments.length 
+            : 0;
+          const minSentiment = allSentiments.length > 0 ? Math.min(...allSentiments) : 0;
+          const maxSentiment = allSentiments.length > 0 ? Math.max(...allSentiments) : 0;
           
-          console.log(`${sector}: ${articleCount} articles, ${sentimentCount} sentiments, avg: ${avgSentiment}`);
+          // Calculate standard deviation (volatility)
+          const variance = allSentiments.length > 0
+            ? allSentiments.reduce((sum, s) => sum + Math.pow(s - avgSentiment, 2), 0) / allSentiments.length
+            : 0;
+          const volatility = Math.sqrt(variance);
           
-          // Extract top 5 articles with highest sentiment scores (both positive and negative extremes)
+          // Count negative articles (sentiment < -0.3) and strongly negative (< -0.5)
+          const negativeCount = allSentiments.filter(s => s < -0.3).length;
+          const stronglyNegativeCount = allSentiments.filter(s => s < -0.5).length;
+          
+          console.log(`${sector}: ${articleCount} articles, ${allSentiments.length} sentiments, avg: ${avgSentiment.toFixed(2)}, min: ${minSentiment.toFixed(2)}, max: ${maxSentiment.toFixed(2)}, volatility: ${volatility.toFixed(2)}, negative: ${negativeCount}, strongly_negative: ${stronglyNegativeCount}`);
+          
+          // Extract articles with sentiment scores
           const articlesWithSentiment = data.data
             .map((article: any) => {
               const entitySentiments = article.entities
@@ -424,25 +438,45 @@ serve(async (req) => {
                 sentiment_score: avgArticleSentiment,
                 published_at: article.published_at
               };
-            })
-            .sort((a: any, b: any) => Math.abs(b.sentiment_score) - Math.abs(a.sentiment_score))
-            .slice(0, 5);
+            });
           
-          console.log(`${sector} extracted articles:`, JSON.stringify(articlesWithSentiment, null, 2));
+          // Get top 3 most positive and top 3 most negative articles
+          const sortedByPositive = [...articlesWithSentiment].sort((a, b) => b.sentiment_score - a.sentiment_score).slice(0, 3);
+          const sortedByNegative = [...articlesWithSentiment].sort((a, b) => a.sentiment_score - b.sentiment_score).slice(0, 3);
+          
+          // Combine and deduplicate, keeping strongest sentiments (positive and negative)
+          const topArticles = [...sortedByPositive, ...sortedByNegative]
+            .filter((article, index, self) => 
+              index === self.findIndex(a => a.url === article.url)
+            )
+            .sort((a, b) => Math.abs(b.sentiment_score) - Math.abs(a.sentiment_score))
+            .slice(0, 6);
           
           const sectorInfo = {
             date: today,
             sector,
             avg_sentiment: avgSentiment,
+            min_sentiment: minSentiment,
+            max_sentiment: maxSentiment,
+            volatility,
+            negative_count: negativeCount,
+            strongly_negative_count: stronglyNegativeCount,
             article_count: articleCount,
-            articles: articlesWithSentiment,
+            articles: topArticles,
             expires_at: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString() // 4h
           };
 
           sectorData.push(sectorInfo);
 
-          // Store in DB
-          await supabase.from("sector_sentiments").insert(sectorInfo);
+          // Store in DB (note: DB schema may need migration for new fields)
+          await supabase.from("sector_sentiments").insert({
+            date: today,
+            sector,
+            avg_sentiment: avgSentiment,
+            article_count: articleCount,
+            articles: topArticles,
+            expires_at: new Date(Date.now() + 4 * 60 * 60 * 1000).toISOString()
+          });
         } else {
           console.error(`No data for ${sector}:`, response.status, data);
         }

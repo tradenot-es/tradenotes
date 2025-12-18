@@ -90,7 +90,15 @@
     "articles": "artículos",
     "sectorArticles": "{{count}} artículos analizados",
     "topArticles": "Artículos Principales",
+    "negativeArticles": "Noticias Negativas",
     "trend7Days": "Tendencia 7 días",
+    "sentiment": {
+      "mixed": "Mixto",
+      "average": "Promedio",
+      "warningTooltip": "Contiene noticias fuertemente negativas a pesar del promedio positivo",
+      "highVolatility": "Alta volatilidad: El sentimiento varía ampliamente entre artículos",
+      "negativeWarning": "{{count}} artículo(s) fuertemente negativo(s) a pesar del promedio positivo"
+    },
     "sectors": {
       "examples_label": "p. ej.",
       "technology": {
