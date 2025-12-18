@@ -90,7 +90,15 @@
     "articles": "articles",
     "sectorArticles": "{{count}} articles analysés",
     "topArticles": "Meilleurs Articles",
+    "negativeArticles": "Nouvelles Négatives",
     "trend7Days": "Tendance 7 jours",
+    "sentiment": {
+      "mixed": "Mixte",
+      "average": "Moyenne",
+      "warningTooltip": "Contient des nouvelles fortement négatives malgré une moyenne positive",
+      "highVolatility": "Haute volatilité: Le sentiment varie considérablement entre les articles",
+      "negativeWarning": "{{count}} article(s) fortement négatif(s) malgré une moyenne positive"
+    },
     "sectors": {
       "examples_label": "par ex.",
       "technology": {
