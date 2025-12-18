@@ -1388,6 +1388,7 @@
     "postLossWinRate": "Win-Rate nach Verlusten",
     "quickReentries": "Schnelle Wiedereinstiege",
     "lowerIsBetter": "Niedriger ist besser",
-    "scoreNeedsMoreData": "{{current}} von {{required}} Trades für Score-Berechnung benötigt."
+    "scoreNeedsMoreData": "{{current}} von {{required}} Trades für Score-Berechnung benötigt.",
+    "scoreNeedsMoreDataTooltip": "Der Revenge Trading Score analysiert dein Verhalten nach Verlusttrades. Mindestens 10 Trades werden benötigt, um statistische Muster zu erkennen."
   }
 }

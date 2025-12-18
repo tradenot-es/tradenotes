@@ -313,7 +313,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
                   <TooltipTrigger asChild>
                     <Info className="h-4 w-4 text-muted-foreground cursor-help" />
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-[250px]">
+                  <TooltipContent className="max-w-[250px] z-[100]">
                     <p>{t("alerts.revengeScoreTooltip")}</p>
                   </TooltipContent>
                 </Tooltip>
@@ -367,8 +367,18 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
               </div>
             </div>
           ) : (
-            <div className="text-sm text-muted-foreground">
-              {t("alerts.scoreNeedsMoreData", { current: trades.length, required: MIN_TRADES_FOR_SCORE })}
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <span>{t("alerts.scoreNeedsMoreData", { current: trades.length, required: MIN_TRADES_FOR_SCORE })}</span>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-[250px] z-[100]">
+                    <p>{t("alerts.scoreNeedsMoreDataTooltip")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           )}
         </div>
