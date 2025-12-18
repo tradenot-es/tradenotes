@@ -1332,7 +1332,8 @@
     "postLossWinRate": "Taux de réussite après pertes",
     "quickReentries": "Réentrées rapides",
     "lowerIsBetter": "Plus bas = mieux",
-    "scoreNeedsMoreData": "{{current}} sur {{required}} trades nécessaires pour calculer le score."
+    "scoreNeedsMoreData": "{{current}} sur {{required}} trades nécessaires pour calculer le score.",
+    "scoreNeedsMoreDataTooltip": "Le score Revenge Trading analyse votre comportement après les trades perdants. Au moins 10 trades sont nécessaires pour identifier des schémas statistiques."
   },
   "common": {
     "loading": "Chargement...",

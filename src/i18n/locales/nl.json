@@ -1332,7 +1332,8 @@
     "postLossWinRate": "Winstpercentage na verliezen",
     "quickReentries": "Snelle herintrede",
     "lowerIsBetter": "Lager is beter",
-    "scoreNeedsMoreData": "{{current}} van {{required}} trades nodig voor scoreberekening."
+    "scoreNeedsMoreData": "{{current}} van {{required}} trades nodig voor scoreberekening.",
+    "scoreNeedsMoreDataTooltip": "De Revenge Trading Score analyseert je gedrag na verliezende trades. Minimaal 10 trades zijn nodig om statistische patronen te identificeren."
   },
   "common": {
     "loading": "Laden...",

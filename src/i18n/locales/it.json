@@ -1502,7 +1502,8 @@
     "postLossWinRate": "Tasso di successo dopo perdite",
     "quickReentries": "Rientri rapidi",
     "lowerIsBetter": "Più basso = meglio",
-    "scoreNeedsMoreData": "{{current}} di {{required}} operazioni necessarie per calcolare il punteggio."
+    "scoreNeedsMoreData": "{{current}} di {{required}} operazioni necessarie per calcolare il punteggio.",
+    "scoreNeedsMoreDataTooltip": "Il punteggio Revenge Trading analizza il tuo comportamento dopo le operazioni in perdita. Sono necessarie almeno 10 operazioni per identificare pattern statistici."
   },
   "common": {
     "loading": "Caricamento...",
