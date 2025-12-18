@@ -311,9 +311,15 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                    <button
+                      type="button"
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      aria-label={t("alerts.revengeScoreTooltipAria", { defaultValue: "Info" })}
+                    >
+                      <Info className="h-4 w-4" />
+                    </button>
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-[250px] z-[100]">
+                  <TooltipContent className="max-w-[250px] z-[1000]">
                     <p>{t("alerts.revengeScoreTooltip")}</p>
                   </TooltipContent>
                 </Tooltip>
@@ -372,9 +378,15 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                    <button
+                      type="button"
+                      className="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                      aria-label={t("alerts.scoreNeedsMoreDataTooltipAria", { defaultValue: "Info" })}
+                    >
+                      <Info className="h-4 w-4" />
+                    </button>
                   </TooltipTrigger>
-                  <TooltipContent className="max-w-[250px] z-[100]">
+                  <TooltipContent className="max-w-[250px] z-[1000]">
                     <p>{t("alerts.scoreNeedsMoreDataTooltip")}</p>
                   </TooltipContent>
                 </Tooltip>
