@@ -48,6 +48,17 @@
     "more": "Mehr",
     "trades": "Trades",
     "days": "Tage",
+    "thisWeek": "Diese Woche",
+    "tradingDays": "Handelstage",
+    "avgTrade": "Ø/Trade",
+    "dailyBreakdown": "Tagesübersicht",
+    "featured": {
+      "totalBalance": "Gesamtsaldo",
+      "netProfit": "Nettogewinn",
+      "tradingDays": "Handelstage",
+      "winRate": "Win Rate",
+      "avgTrade": "Ø/Trade"
+    },
     "tradesPerDay": "Trades/Tag",
     "longestWinStreak": "Längste Gewinnserie",
     "longestLossStreak": "Längste Verlustserie",

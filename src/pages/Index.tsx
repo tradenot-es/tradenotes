@@ -5,10 +5,11 @@ import { TrendingUp, TrendingDown, DollarSign, Target, BarChart3, Scale, Award, 
 import { KPICard } from "@/components/KPICard";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { RadialKPICard } from "@/components/RadialKPICard";
+import { FeaturedKPIBar } from "@/components/FeaturedKPIBar";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
-import { WeeklyPerformance } from "@/components/WeeklyPerformance";
+import { WeeklyPerformanceEnhanced } from "@/components/WeeklyPerformanceEnhanced";
 import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
@@ -136,6 +137,14 @@ const Index = () => {
       if (drawdown > maxDrawdown) maxDrawdown = drawdown;
     });
     
+    // Calculate trading days
+    const uniqueTradingDays = new Set(
+      trades.map(t => new Date(t.exit_time).toDateString())
+    ).size;
+
+    // Calculate average per trade
+    const avgTrade = totalTrades > 0 ? totalPnL / totalTrades : 0;
+    
     return {
       totalTrades,
       winningTrades,
@@ -155,6 +164,8 @@ const Index = () => {
       avgLoss,
       bestTrade,
       worstTrade,
+      tradingDays: uniqueTradingDays,
+      avgTrade,
     };
   };
 
@@ -238,6 +249,15 @@ const Index = () => {
         </div>
       ) : (
         <>
+          {/* Featured KPI Bar - Top Overview */}
+          <FeaturedKPIBar
+            totalBalance={kpis.netPnLNum}
+            netProfit={kpis.netPnLNum}
+            tradingDays={kpis.tradingDays}
+            winRate={kpis.winRateNum}
+            avgTrade={kpis.avgTrade}
+          />
+
           {/* Radial Progress KPIs - Featured Metrics */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             <RadialKPICard
@@ -385,10 +405,7 @@ const Index = () => {
               />
             </div>
             <div>
-              <WeeklyPerformance 
-                trades={trades}
-                currentMonth={currentMonth}
-              />
+              <WeeklyPerformanceEnhanced trades={trades} />
             </div>
           </div>
 
