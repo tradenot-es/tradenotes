@@ -49,6 +49,17 @@
     "more": "Más",
     "trades": "operaciones",
     "days": "días",
+    "thisWeek": "Esta semana",
+    "tradingDays": "Días de trading",
+    "avgTrade": "Prom/Trade",
+    "dailyBreakdown": "Desglose diario",
+    "featured": {
+      "totalBalance": "Saldo total",
+      "netProfit": "Beneficio neto",
+      "tradingDays": "Días de trading",
+      "winRate": "Tasa de éxito",
+      "avgTrade": "Prom/Trade"
+    },
     "tradesPerDay": "operaciones/día",
     "longestWinStreak": "Racha de ganancias más larga",
     "longestLossStreak": "Racha de pérdidas más larga",

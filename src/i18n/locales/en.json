@@ -48,6 +48,17 @@
     "more": "More",
     "trades": "trades",
     "days": "days",
+    "thisWeek": "This Week",
+    "tradingDays": "Trading Days",
+    "avgTrade": "Avg/Trade",
+    "dailyBreakdown": "Daily Breakdown",
+    "featured": {
+      "totalBalance": "Total Balance",
+      "netProfit": "Net Profit",
+      "tradingDays": "Trading Days",
+      "winRate": "Win Rate",
+      "avgTrade": "Avg/Trade"
+    },
     "tradesPerDay": "trades/day",
     "longestWinStreak": "Longest Win Streak",
     "longestLossStreak": "Longest Loss Streak",

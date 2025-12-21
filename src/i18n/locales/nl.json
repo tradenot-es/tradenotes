@@ -49,6 +49,17 @@
     "more": "Meer",
     "trades": "transacties",
     "days": "dagen",
+    "thisWeek": "Deze week",
+    "tradingDays": "Handelsdagen",
+    "avgTrade": "Gem/Trade",
+    "dailyBreakdown": "Dagelijkse uitsplitsing",
+    "featured": {
+      "totalBalance": "Totale balans",
+      "netProfit": "Nettowinst",
+      "tradingDays": "Handelsdagen",
+      "winRate": "Winstpercentage",
+      "avgTrade": "Gem/Trade"
+    },
     "tradesPerDay": "transacties/dag",
     "longestWinStreak": "Langste winstreeks",
     "longestLossStreak": "Langste verliesreeks",
