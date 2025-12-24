@@ -90,7 +90,6 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
           transformStyle: "preserve-3d",
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transition: isDragging ? "none" : "transform 0.1s ease-out",
-          overflow: "hidden",
         }}
         className="relative flex items-center justify-center"
       >
@@ -102,7 +101,7 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            transform: "scale(2.0)",
+            transform: "scale(2.0) translateY(8px)",
             transformOrigin: "50% 55%",
             filter: "drop-shadow(0 0 15px hsl(var(--primary) / 0.5))",
           }}
