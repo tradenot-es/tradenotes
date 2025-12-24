@@ -11,6 +11,7 @@ import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
+import { Logo3DViewer } from "@/components/Logo3DViewer";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -206,6 +207,9 @@ const Index = () => {
           <div>
             <h1 className="text-4xl font-bold gradient-text">{t("dashboard.title")}</h1>
             <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
+          </div>
+          <div className="flex-1 flex justify-center">
+            <Logo3DViewer size={100} />
           </div>
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
