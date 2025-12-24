@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import logo3d from "@/assets/tradenotes-logo-3d-transparent.png";
+import logo3d from "@/assets/tradenotes-logo-3d.png";
 
 interface Logo3DViewerProps {
   size?: number;
@@ -96,8 +96,8 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
         <img
           src={logo3d}
           alt="TradeNotes 3D Logo"
-          className="h-full w-full object-contain"
-          style={{ filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.4))" }}
+          className="h-full w-full object-contain mix-blend-lighten"
+          style={{ filter: "drop-shadow(0 0 15px hsl(var(--primary) / 0.5))" }}
           draggable={false}
           onLoad={() => {
             console.log("[Logo3DViewer] image loaded");
