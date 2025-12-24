@@ -32,7 +32,7 @@ export function RadialKPICard({
     if (color === 'destructive') return 'bg-destructive/10 border-destructive/20';
     if (color === 'success') return 'bg-success/10 border-success/20';
     if (color === 'warning') return 'bg-warning/10 border-warning/20';
-    return 'bg-card border-border/30';
+    return 'bg-primary/10 border-primary/20';
   };
 
   const getIconBgClass = () => {
