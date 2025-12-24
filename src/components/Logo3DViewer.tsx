@@ -96,8 +96,13 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
         <img
           src={logo3d}
           alt="TradeNotes 3D Logo"
-          className="h-full w-full object-contain mix-blend-lighten"
-          style={{ filter: "drop-shadow(0 0 15px hsl(var(--primary) / 0.5))" }}
+          className="mix-blend-lighten"
+          style={{ 
+            width: "180%",
+            height: "180%",
+            objectFit: "contain",
+            filter: "drop-shadow(0 0 15px hsl(var(--primary) / 0.5))",
+          }}
           draggable={false}
           onLoad={() => {
             console.log("[Logo3DViewer] image loaded");
