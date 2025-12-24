@@ -173,10 +173,7 @@ All colors MUST be HSL.
   }
 
   /* Allow dynamic backgrounds to override glossy-card */
-  .glossy-card.bg-success\/10,
-  .glossy-card.bg-destructive\/10,
-  .glossy-card.bg-warning\/10,
-  .glossy-card.bg-primary\/10 {
+  .glossy-card.dynamic-bg {
     background: none;
   }
 

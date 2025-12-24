@@ -72,7 +72,7 @@ export function KPICardWithTooltip({
 
   return (
     <Card 
-      className={`animate-fade-in border ${getBgClass()} transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`} 
+      className={`animate-fade-in border dynamic-bg ${getBgClass()} transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`} 
       style={{ animationDelay: `${delay * 0.1}s` }}
     >
       <CardHeader className="flex flex-row items-center justify-between pb-2">
