@@ -55,11 +55,16 @@
     "featured": {
       "totalBalance": "Total Balance",
       "netProfit": "Net Profit",
+      "netProfitTooltip": "Total profit minus all losses and fees.",
       "tradingDays": "Trading Days",
+      "tradingDaysTooltip": "Number of days with at least one executed trade.",
       "winRate": "Win Rate",
       "avgTrade": "Avg/Trade",
+      "avgTradeTooltip": "Average profit or loss per trade.",
       "totalTrades": "Trades",
-      "expectancy": "Expectancy"
+      "totalTradesTooltip": "Total number of all executed trades.",
+      "expectancy": "Expectancy",
+      "expectancyTooltip": "Expected profit per trade based on win rate and average win/loss."
     },
     "bestWorstTrade": "Best / Worst Trade",
     "bestWorstTradeTooltip": "Shows your most profitable and most losing trade. Helps analyze outliers and risk management.",
