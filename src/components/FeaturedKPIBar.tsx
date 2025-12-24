@@ -1,4 +1,4 @@
-import { LucideIcon, TrendingUp, Calendar, Target, BarChart3, Calculator, Info } from "lucide-react";
+import { LucideIcon, TrendingUp, Calendar, Target, BarChart3, Calculator, HelpCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "@/hooks/useCurrency";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
@@ -102,7 +102,7 @@ export function FeaturedKPIBar({
                 <p className="text-xs text-muted-foreground truncate">{kpi.label}</p>
                 <HoverCard>
                   <HoverCardTrigger asChild>
-                    <Info className="h-3 w-3 text-muted-foreground cursor-help flex-shrink-0" />
+                    <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help flex-shrink-0" />
                   </HoverCardTrigger>
                   <HoverCardContent className="w-64">
                     <p className="text-sm">{kpi.tooltip}</p>

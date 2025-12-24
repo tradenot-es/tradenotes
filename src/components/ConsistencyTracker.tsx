@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { TrendingUp, Info } from "lucide-react";
+import { TrendingUp, HelpCircle } from "lucide-react";
 import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
@@ -157,7 +157,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
             </CardTitle>
             <HoverCard>
               <HoverCardTrigger asChild>
-                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
                 <p className="text-sm">{t("dashboard.consistencyTrackerTooltip")}</p>

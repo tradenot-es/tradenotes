@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { RadialProgress } from "@/components/RadialProgress";
-import { PieChart, Info } from "lucide-react";
+import { PieChart, HelpCircle } from "lucide-react";
 import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
@@ -46,7 +46,7 @@ export function MarketBreakdown({ trades }: MarketBreakdownProps) {
           </CardTitle>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">

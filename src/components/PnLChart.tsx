@@ -1,7 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LabelList } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { Info } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "@/hooks/useCurrency";
 
@@ -53,7 +53,7 @@ export function PnLChart({ data, title }: PnLChartProps) {
           <CardTitle>{title}</CardTitle>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("dashboard.pnlChartTooltip")}</p>
