@@ -172,6 +172,14 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
+  /* Allow dynamic backgrounds to override glossy-card */
+  .glossy-card.bg-success\/10,
+  .glossy-card.bg-destructive\/10,
+  .glossy-card.bg-warning\/10,
+  .glossy-card.bg-primary\/10 {
+    background: none;
+  }
+
   .glossy-card::before {
     content: '';
     position: absolute;
