@@ -172,9 +172,9 @@ All colors MUST be HSL.
     overflow: hidden;
   }
 
-  /* Allow dynamic backgrounds to override glossy-card */
+  /* Allow dynamic backgrounds to override glossy-card's gradient but keep bg-* colors */
   .glossy-card.dynamic-bg {
-    background: none;
+    background-image: none;
   }
 
   .glossy-card::before {
