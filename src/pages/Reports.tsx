@@ -6,9 +6,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend, LabelList } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
-import { Calendar, Info } from "lucide-react";
+import { Calendar, Info, TrendingDown } from "lucide-react";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
@@ -24,6 +24,7 @@ import { PerformanceStats } from "@/components/PerformanceStats";
 import { startOfDay, endOfDay } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
+import { PnLChart } from "@/components/PnLChart";
 
 interface Trade {
   id: string;
@@ -243,6 +244,50 @@ export default function Reports() {
     return { days: result, totalDays, daysAchieved, achievementRate };
   }, [filteredTrades, dailyGoalAmount, dailyGoalMaxTrades]);
 
+  // P&L by Month for Chart
+  const pnlByMonth = useMemo(() => {
+    const monthlyPnL: { [key: string]: number } = {};
+    
+    // Sort trades by exit_time ascending for chronological order
+    const sortedTrades = [...filteredTrades].sort((a, b) => 
+      new Date(a.exit_time).getTime() - new Date(b.exit_time).getTime()
+    );
+    
+    sortedTrades.forEach((trade) => {
+      const month = new Date(trade.exit_time).toLocaleDateString("de-DE", { 
+        year: "numeric", 
+        month: "short" 
+      });
+      monthlyPnL[month] = (monthlyPnL[month] || 0) + trade.pnl_net;
+    });
+    
+    return Object.entries(monthlyPnL).map(([period, pnl]) => ({
+      period,
+      pnl,
+    }));
+  }, [filteredTrades]);
+
+  // Max Drawdown Calculation
+  const maxDrawdown = useMemo(() => {
+    let cumulative = 0;
+    let peak = 0;
+    let maxDD = 0;
+    
+    // Sort trades by exit_time ascending
+    const sortedTrades = [...filteredTrades].sort((a, b) => 
+      new Date(a.exit_time).getTime() - new Date(b.exit_time).getTime()
+    );
+    
+    sortedTrades.forEach((trade) => {
+      cumulative += trade.pnl_net;
+      if (cumulative > peak) peak = cumulative;
+      const drawdown = peak - cumulative;
+      if (drawdown > maxDD) maxDD = drawdown;
+    });
+    
+    return maxDD;
+  }, [filteredTrades]);
+
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
@@ -420,7 +465,7 @@ export default function Reports() {
             </Card>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
             <KPICardWithTooltip
               title={t("reports.totalTrades")}
               value={filteredTrades.length}
@@ -446,7 +491,18 @@ export default function Reports() {
               tooltip={t("dashboard.winRateTooltip")}
               glossaryLink="/glossary#win-rate"
             />
+            <KPICardWithTooltip
+              title={t("dashboard.maxDrawdown")}
+              value={formatCurrencyCompact(maxDrawdown)}
+              icon={TrendingDown}
+              tooltip={t("dashboard.maxDrawdownTooltip")}
+              glossaryLink="/glossary#max-drawdown"
+              valueColor="destructive"
+            />
           </div>
+
+          {/* P&L by Month Chart */}
+          <PnLChart data={pnlByMonth} title={t("dashboard.pnlByMonth")} />
 
           {/* Top Symbols and Market Breakdown */}
           <div className="grid gap-6 md:grid-cols-2">

@@ -1,27 +1,19 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { TrendingUp, TrendingDown, DollarSign, Target, BarChart3, Scale, Award, Calculator, Info, Plus } from "lucide-react";
-import { KPICard } from "@/components/KPICard";
-import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
+import { Target, Scale, Award, Plus } from "lucide-react";
 import { RadialKPICard } from "@/components/RadialKPICard";
 import { FeaturedKPIBar } from "@/components/FeaturedKPIBar";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
-import { PnLChart } from "@/components/PnLChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformanceEnhanced } from "@/components/WeeklyPerformanceEnhanced";
-import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
-import { AccountPerformanceWidget } from "@/components/AccountPerformanceWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { Link } from "react-router-dom";
 import { useCurrency } from "@/hooks/useCurrency";
 interface Trade {
   id: string;
@@ -180,30 +172,12 @@ const Index = () => {
     });
   };
 
-  const generatePnLByMonth = () => {
-    const monthlyPnL: { [key: string]: number } = {};
-    
-    trades.forEach((trade) => {
-      const month = new Date(trade.exit_time).toLocaleDateString("de-DE", { 
-        year: "numeric", 
-        month: "short" 
-      });
-      monthlyPnL[month] = (monthlyPnL[month] || 0) + trade.pnl_net;
-    });
-    
-    return Object.entries(monthlyPnL).map(([period, pnl]) => ({
-      period,
-      pnl,
-    }));
-  };
-
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">{t("common.loading")}</div>;
   }
 
   const kpis = calculateKPIs();
   const equityData = generateEquityCurve();
-  const pnlData = generatePnLByMonth();
 
   // Color logic for KPIs
   const getWinRateColor = (winRate: number): "success" | "warning" | "destructive" => {
@@ -256,7 +230,7 @@ const Index = () => {
             totalLosses={Math.abs(trades.filter((t) => t.pnl_net < 0).reduce((sum, t) => sum + t.pnl_net, 0))}
             totalTrades={kpis.totalTrades}
             tradingDays={kpis.tradingDays}
-            winRate={kpis.winRateNum}
+            avgTrade={kpis.avgTrade}
             expectancy={kpis.expectancyNum}
           />
 
@@ -315,92 +289,11 @@ const Index = () => {
             )}
           </div>
 
-          {/* Compact KPIs - Supporting Metrics (no duplicates) */}
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-3">
-            <Card className="elegant-shadow">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-sm font-medium">{t("dashboard.avgWinLoss")}</CardTitle>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                        <Info className="h-4 w-4 text-muted-foreground cursor-help" />
-                      </button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <p className="text-sm">{t("dashboard.avgWinLossTooltip")}</p>
-                      <Link 
-                        to="/glossary#avg-win-loss" 
-                        className="text-xs text-primary hover:underline mt-2 block"
-                      >
-                        Learn more in glossary →
-                      </Link>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-                <div className="rounded-lg bg-primary/10 p-2">
-                  <Scale className="h-5 w-5 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
-                  <span className="text-success">{formatCurrency(kpis.avgWin)}</span>
-                  <span className="text-muted-foreground">/</span>
-                  <span className="text-destructive">{formatCurrency(kpis.avgLoss)}</span>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="elegant-shadow">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-sm font-medium">{t("dashboard.bestWorstTrade")}</CardTitle>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                        <Info className="h-4 w-4 text-muted-foreground cursor-help" />
-                      </button>
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <p className="text-sm">{t("dashboard.bestWorstTradeTooltip")}</p>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-                <div className="rounded-lg bg-primary/10 p-2">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
-                  <span className="text-success">{formatCurrency(kpis.bestTrade)}</span>
-                  <span className="text-muted-foreground">/</span>
-                  <span className="text-destructive">{formatCurrency(kpis.worstTrade)}</span>
-                </div>
-              </CardContent>
-            </Card>
-            <KPICardWithTooltip
-              title={t("dashboard.maxDrawdown")}
-              value={formatCurrencyCompact(parseFloat(kpis.maxDrawdown))}
-              icon={TrendingDown}
-              tooltip={t("dashboard.maxDrawdownTooltip")}
-              glossaryLink="/glossary#max-drawdown"
-              valueColor="destructive"
-            />
-          </div>
-
-          {/* Charts Grid */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <EquityCurveChart data={equityData} />
-            <PnLChart data={pnlData} title={t("dashboard.pnlByMonth")} />
-          </div>
+          {/* Equity Curve Chart - Full width */}
+          <EquityCurveChart data={equityData} />
 
           {/* AI Trading Alerts - Proactive Warnings */}
           <TradingAlertsWidget trades={trades} />
-
-          {/* Account Performance Widget - Conditional */}
-          <AccountPerformanceWidget trades={trades} />
-
-          {/* Sector Sentiment - Prominent placement after charts */}
-          <SectorSentimentWidget />
 
           {/* Calendar and Weekly Performance */}
           <div className="grid gap-6 md:grid-cols-3">
@@ -418,8 +311,8 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Portfolio News - Full width */}
-          <PortfolioNews />
+          {/* Sector Sentiment - AI powered */}
+          <SectorSentimentWidget />
         </>
       )}
 

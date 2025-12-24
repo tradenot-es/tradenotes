@@ -17,7 +17,7 @@ interface FeaturedKPIBarProps {
   totalLosses: number;
   totalTrades: number;
   tradingDays: number;
-  winRate: number;
+  avgTrade: number;
   expectancy: number;
 }
 
@@ -27,7 +27,7 @@ export function FeaturedKPIBar({
   totalLosses,
   totalTrades,
   tradingDays, 
-  winRate,
+  avgTrade,
   expectancy,
 }: FeaturedKPIBarProps) {
   const { t } = useTranslation();
@@ -57,16 +57,16 @@ export function FeaturedKPIBar({
       bgClass: "bg-primary/10",
     },
     {
-      label: t("dashboard.featured.winRate"),
-      value: `${winRate.toFixed(1)}%`,
-      icon: Target,
-      colorClass: winRate >= 50 ? "text-success" : winRate >= 40 ? "text-warning" : "text-destructive",
-      bgClass: winRate >= 50 ? "bg-success/10" : winRate >= 40 ? "bg-warning/10" : "bg-destructive/10",
+      label: t("dashboard.featured.avgTrade"),
+      value: formatCurrency(avgTrade),
+      icon: Calculator,
+      colorClass: avgTrade >= 0 ? "text-success" : "text-destructive",
+      bgClass: avgTrade >= 0 ? "bg-success/10" : "bg-destructive/10",
     },
     {
       label: t("dashboard.featured.expectancy"),
       value: formatCurrency(expectancy),
-      icon: Calculator,
+      icon: Target,
       colorClass: expectancy >= 0 ? "text-success" : "text-destructive",
       bgClass: expectancy >= 0 ? "bg-success/10" : "bg-destructive/10",
     },
