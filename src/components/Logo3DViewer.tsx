@@ -102,8 +102,8 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
             width: "100%",
             height: "100%",
             objectFit: "contain",
-            transform: "scale(2.2)",
-            transformOrigin: "50% 50%",
+            transform: "scale(2.0)",
+            transformOrigin: "50% 55%",
             filter: "drop-shadow(0 0 15px hsl(var(--primary) / 0.5))",
           }}
           draggable={false}
