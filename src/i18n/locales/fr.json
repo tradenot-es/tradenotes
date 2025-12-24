@@ -58,8 +58,12 @@
       "netProfit": "Profit net",
       "tradingDays": "Jours de trading",
       "winRate": "Taux de réussite",
-      "avgTrade": "Moy/Trade"
+      "avgTrade": "Moy/Trade",
+      "totalTrades": "Trades",
+      "expectancy": "Espérance"
     },
+    "bestWorstTrade": "Meilleur / Pire Trade",
+    "bestWorstTradeTooltip": "Affiche votre trade le plus rentable et le plus perdant. Aide à analyser les valeurs extrêmes et la gestion des risques.",
     "tradesPerDay": "trades/jour",
     "longestWinStreak": "Plus longue série de gains",
     "longestLossStreak": "Plus longue série de pertes",

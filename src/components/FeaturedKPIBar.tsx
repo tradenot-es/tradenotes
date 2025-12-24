@@ -1,47 +1,53 @@
-import { LucideIcon, DollarSign, TrendingUp, Calendar, Target, BarChart3 } from "lucide-react";
+import { LucideIcon, TrendingUp, Calendar, Target, BarChart3, Calculator } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useCurrency } from "@/hooks/useCurrency";
 
 interface FeaturedKPI {
   label: string;
   value: string | number;
+  subValue?: { wins: string; losses: string };
   icon: LucideIcon;
   colorClass: string;
   bgClass: string;
 }
 
 interface FeaturedKPIBarProps {
-  totalBalance: number;
   netProfit: number;
+  totalWins: number;
+  totalLosses: number;
+  totalTrades: number;
   tradingDays: number;
   winRate: number;
-  avgTrade: number;
+  expectancy: number;
 }
 
 export function FeaturedKPIBar({ 
-  totalBalance, 
-  netProfit, 
+  netProfit,
+  totalWins,
+  totalLosses,
+  totalTrades,
   tradingDays, 
-  winRate, 
-  avgTrade 
+  winRate,
+  expectancy,
 }: FeaturedKPIBarProps) {
   const { t } = useTranslation();
-  const { formatCurrency, formatCurrencyCompact } = useCurrency();
+  const { formatCurrencyCompact, formatCurrency } = useCurrency();
 
   const kpis: FeaturedKPI[] = [
     {
-      label: t("dashboard.featured.totalBalance"),
-      value: formatCurrencyCompact(totalBalance),
-      icon: DollarSign,
-      colorClass: "text-primary",
-      bgClass: "bg-primary/10",
-    },
-    {
       label: t("dashboard.featured.netProfit"),
       value: formatCurrencyCompact(netProfit),
+      subValue: { wins: formatCurrencyCompact(totalWins), losses: formatCurrencyCompact(totalLosses) },
       icon: TrendingUp,
       colorClass: netProfit >= 0 ? "text-success" : "text-destructive",
       bgClass: netProfit >= 0 ? "bg-success/10" : "bg-destructive/10",
+    },
+    {
+      label: t("dashboard.featured.totalTrades"),
+      value: totalTrades,
+      icon: BarChart3,
+      colorClass: "text-primary",
+      bgClass: "bg-primary/10",
     },
     {
       label: t("dashboard.featured.tradingDays"),
@@ -58,11 +64,11 @@ export function FeaturedKPIBar({
       bgClass: winRate >= 50 ? "bg-success/10" : winRate >= 40 ? "bg-warning/10" : "bg-destructive/10",
     },
     {
-      label: t("dashboard.featured.avgTrade"),
-      value: formatCurrency(avgTrade),
-      icon: BarChart3,
-      colorClass: avgTrade >= 0 ? "text-success" : "text-destructive",
-      bgClass: avgTrade >= 0 ? "bg-success/10" : "bg-destructive/10",
+      label: t("dashboard.featured.expectancy"),
+      value: formatCurrency(expectancy),
+      icon: Calculator,
+      colorClass: expectancy >= 0 ? "text-success" : "text-destructive",
+      bgClass: expectancy >= 0 ? "bg-success/10" : "bg-destructive/10",
     },
   ];
 
@@ -89,6 +95,13 @@ export function FeaturedKPIBar({
               <p className={`text-lg font-bold ${kpi.colorClass} truncate`}>
                 {kpi.value}
               </p>
+              {kpi.subValue && (
+                <p className="text-xs truncate">
+                  <span className="text-success">{kpi.subValue.wins}</span>
+                  <span className="text-muted-foreground"> / </span>
+                  <span className="text-destructive">{kpi.subValue.losses}</span>
+                </p>
+              )}
             </div>
           </div>
         </div>

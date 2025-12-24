@@ -58,8 +58,12 @@
       "netProfit": "Nettowinst",
       "tradingDays": "Handelsdagen",
       "winRate": "Winstpercentage",
-      "avgTrade": "Gem/Trade"
+      "avgTrade": "Gem/Trade",
+      "totalTrades": "Transacties",
+      "expectancy": "Verwachting"
     },
+    "bestWorstTrade": "Beste / Slechtste Trade",
+    "bestWorstTradeTooltip": "Toont uw meest winstgevende en meest verliesgevende trade. Helpt bij het analyseren van uitschieters en risicobeheer.",
     "tradesPerDay": "transacties/dag",
     "longestWinStreak": "Langste winstreeks",
     "longestLossStreak": "Langste verliesreeks",

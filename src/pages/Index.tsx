@@ -251,11 +251,13 @@ const Index = () => {
         <>
           {/* Featured KPI Bar - Top Overview */}
           <FeaturedKPIBar
-            totalBalance={kpis.netPnLNum}
             netProfit={kpis.netPnLNum}
+            totalWins={trades.filter((t) => t.pnl_net > 0).reduce((sum, t) => sum + t.pnl_net, 0)}
+            totalLosses={Math.abs(trades.filter((t) => t.pnl_net < 0).reduce((sum, t) => sum + t.pnl_net, 0))}
+            totalTrades={kpis.totalTrades}
             tradingDays={kpis.tradingDays}
             winRate={kpis.winRateNum}
-            avgTrade={kpis.avgTrade}
+            expectancy={kpis.expectancyNum}
           />
 
           {/* Radial Progress KPIs - Featured Metrics */}
@@ -313,28 +315,8 @@ const Index = () => {
             )}
           </div>
 
-          {/* Compact KPIs - Supporting Metrics */}
-          <div className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            <KPICard
-              title={t("dashboard.totalTrades")}
-              value={kpis.totalTrades}
-              icon={BarChart3}
-            />
-            <KPICardWithTooltip
-              title={t("dashboard.netPnL")}
-              value={formatCurrencyCompact(kpis.netPnLNum)}
-              icon={DollarSign}
-              tooltip={t("dashboard.netPnLTooltip")}
-              valueColor={kpis.netPnLNum >= 0 ? "success" : "destructive"}
-            />
-            <KPICardWithTooltip
-              title={t("dashboard.expectancy")}
-              value={formatCurrency(kpis.expectancyNum)}
-              icon={Calculator}
-              tooltip={t("dashboard.expectancyTooltip")}
-              glossaryLink="/glossary#expectancy"
-              valueColor={kpis.expectancyNum >= 0 ? "success" : "destructive"}
-            />
+          {/* Compact KPIs - Supporting Metrics (no duplicates) */}
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-3">
             <Card className="elegant-shadow">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div className="flex items-center gap-2">
@@ -365,6 +347,33 @@ const Index = () => {
                   <span className="text-success">{formatCurrency(kpis.avgWin)}</span>
                   <span className="text-muted-foreground">/</span>
                   <span className="text-destructive">{formatCurrency(kpis.avgLoss)}</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card className="elegant-shadow">
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <div className="flex items-center gap-2">
+                  <CardTitle className="text-sm font-medium">{t("dashboard.bestWorstTrade")}</CardTitle>
+                  <HoverCard>
+                    <HoverCardTrigger asChild>
+                      <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
+                        <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                      </button>
+                    </HoverCardTrigger>
+                    <HoverCardContent className="w-80">
+                      <p className="text-sm">{t("dashboard.bestWorstTradeTooltip")}</p>
+                    </HoverCardContent>
+                  </HoverCard>
+                </div>
+                <div className="rounded-lg bg-primary/10 p-2">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="flex items-baseline gap-1 sm:gap-2 text-lg sm:text-2xl font-bold flex-wrap">
+                  <span className="text-success">{formatCurrency(kpis.bestTrade)}</span>
+                  <span className="text-muted-foreground">/</span>
+                  <span className="text-destructive">{formatCurrency(kpis.worstTrade)}</span>
                 </div>
               </CardContent>
             </Card>
