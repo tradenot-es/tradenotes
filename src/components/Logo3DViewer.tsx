@@ -71,7 +71,7 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
     <div
       style={{ width: size, height: size, perspective: "800px" }}
       className={
-        "select-none rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm " +
+        "select-none " +
         (isDragging ? "cursor-grabbing" : "cursor-grab")
       }
       onMouseDown={handleMouseDown}
