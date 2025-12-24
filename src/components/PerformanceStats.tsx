@@ -72,17 +72,17 @@ export function PerformanceStats({
               <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.avgWin")}</p>
               <p className="text-lg font-bold text-success">{formatCurrency(avgWin)}</p>
             </div>
-            <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+            <div className={`p-3 rounded-lg ${avgLoss < 0 ? "bg-destructive/10 border border-destructive/20" : "bg-muted/50 border border-border"}`}>
               <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.avgLoss")}</p>
-              <p className="text-lg font-bold text-destructive">{formatCurrency(avgLoss)}</p>
+              <p className={`text-lg font-bold ${avgLoss < 0 ? "text-destructive" : "text-muted-foreground"}`}>{formatCurrency(avgLoss)}</p>
             </div>
             <div className="p-3 rounded-lg bg-success/10 border border-success/20">
               <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.bestTrade")}</p>
               <p className="text-lg font-bold text-success">{formatCurrency(bestTrade)}</p>
             </div>
-            <div className="p-3 rounded-lg bg-destructive/10 border border-destructive/20">
+            <div className={`p-3 rounded-lg ${worstTrade < 0 ? "bg-destructive/10 border border-destructive/20" : "bg-success/10 border border-success/20"}`}>
               <p className="text-xs text-muted-foreground mb-1">{t("performanceBreakdown.worstTrade")}</p>
-              <p className="text-lg font-bold text-destructive">{formatCurrency(worstTrade)}</p>
+              <p className={`text-lg font-bold ${worstTrade < 0 ? "text-destructive" : "text-success"}`}>{formatCurrency(worstTrade)}</p>
             </div>
           </div>
         </div>
