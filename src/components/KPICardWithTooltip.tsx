@@ -28,21 +28,53 @@ export function KPICardWithTooltip({
   delay = 0
 }: KPICardWithTooltipProps) {
   const isNegativeCurrency = typeof value === 'string' && value.startsWith('$-');
-  const isPositiveCurrency = typeof value === 'string' && value.startsWith('$') && !value.startsWith('$-');
+  const isPositiveCurrency = typeof value === 'string' && value.startsWith('$') && !value.startsWith('$-') && parseFloat(value.substring(1)) > 0;
   
+  const getEffectiveColor = () => {
+    if (valueColor === "success") return 'success';
+    if (valueColor === "destructive") return 'destructive';
+    if (valueColor === "warning") return 'warning';
+    if (valueColor === "default") return 'neutral';
+    if (isNegativeCurrency) return 'destructive';
+    if (isPositiveCurrency) return 'success';
+    return 'neutral';
+  };
+
+  const effectiveColor = getEffectiveColor();
+
   const getValueColor = () => {
-    if (valueColor === "success") return 'text-success';
-    if (valueColor === "warning") return 'text-warning';
-    if (valueColor === "destructive") return 'text-destructive';
-    if (valueColor === "default") return '';
-    
-    if (isNegativeCurrency) return 'text-destructive';
-    if (isPositiveCurrency && parseFloat(value.substring(1)) > 0) return 'text-success';
+    if (effectiveColor === 'success') return 'text-success';
+    if (effectiveColor === 'destructive') return 'text-destructive';
+    if (effectiveColor === 'warning') return 'text-warning';
     return '';
   };
 
+  const getBgClass = () => {
+    if (effectiveColor === 'destructive') return 'bg-destructive/10 border-destructive/20';
+    if (effectiveColor === 'success') return 'bg-success/10 border-success/20';
+    if (effectiveColor === 'warning') return 'bg-warning/10 border-warning/20';
+    return 'bg-card border-border/30';
+  };
+
+  const getIconBgClass = () => {
+    if (effectiveColor === 'destructive') return 'bg-destructive/10';
+    if (effectiveColor === 'success') return 'bg-success/10';
+    if (effectiveColor === 'warning') return 'bg-warning/10';
+    return 'bg-primary/10';
+  };
+
+  const getIconColor = () => {
+    if (effectiveColor === 'destructive') return 'text-destructive';
+    if (effectiveColor === 'success') return 'text-success';
+    if (effectiveColor === 'warning') return 'text-warning';
+    return 'text-primary';
+  };
+
   return (
-    <Card className="animate-fade-in" style={{ animationDelay: `${delay * 0.1}s` }}>
+    <Card 
+      className={`animate-fade-in border ${getBgClass()} transition-all duration-300 hover:scale-[1.02] hover:shadow-lg`} 
+      style={{ animationDelay: `${delay * 0.1}s` }}
+    >
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <div className="flex items-center gap-2">
           <CardTitle className="text-sm font-medium">{title}</CardTitle>
@@ -67,8 +99,8 @@ export function KPICardWithTooltip({
             </HoverCard>
           )}
         </div>
-        <div className="rounded-lg bg-primary/10 p-2">
-          <Icon className="h-5 w-5 text-primary" />
+        <div className={`rounded-lg ${getIconBgClass()} p-2`}>
+          <Icon className={`h-5 w-5 ${getIconColor()}`} />
         </div>
       </CardHeader>
       <CardContent>
