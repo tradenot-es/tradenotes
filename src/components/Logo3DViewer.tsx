@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import logo3d from "@/assets/tradenotes-logo-3d.png";
+import logo3d from "@/assets/tradenotes-logo-3d-transparent.png";
 
 interface Logo3DViewerProps {
   size?: number;
