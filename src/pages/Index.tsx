@@ -7,6 +7,7 @@ import { FeaturedKPIBar } from "@/components/FeaturedKPIBar";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformanceEnhanced } from "@/components/WeeklyPerformanceEnhanced";
+import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
@@ -313,6 +314,9 @@ const Index = () => {
 
           {/* Sector Sentiment - AI powered */}
           <SectorSentimentWidget />
+
+          {/* Portfolio News - Full width */}
+          <PortfolioNews />
         </>
       )}
 
