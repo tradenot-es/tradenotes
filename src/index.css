@@ -164,7 +164,8 @@ All colors MUST be HSL.
 
   /* Hochglanz/Ceranfeld-Effekte */
   .glossy-card {
-    background: var(--gradient-glossy);
+    background-color: hsl(var(--card));
+    background-image: var(--gradient-glossy);
     box-shadow: var(--shadow-glossy);
     border: 1px solid hsl(var(--border) / 0.3);
     backdrop-filter: blur(12px);
