@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { startOfWeek, endOfWeek, format, eachWeekOfInterval, startOfMonth, endOfMonth } from "date-fns";
 import { useTranslation } from "react-i18next";
-import { Calendar, Info } from "lucide-react";
+import { Calendar, HelpCircle } from "lucide-react";
 import { useCurrency } from "@/hooks/useCurrency";
 
 interface Trade {
@@ -59,7 +59,7 @@ export function WeeklyPerformance({ trades, currentMonth }: WeeklyPerformancePro
           </CardTitle>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">

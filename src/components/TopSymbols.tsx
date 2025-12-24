@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { TrendingUp, TrendingDown, Info } from "lucide-react";
+import { TrendingUp, TrendingDown, HelpCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { useCurrency } from "@/hooks/useCurrency";
 
@@ -49,7 +49,7 @@ export function TopSymbols({ trades }: TopSymbolsProps) {
           </CardTitle>
           <HoverCard>
             <HoverCardTrigger asChild>
-              <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+              <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">

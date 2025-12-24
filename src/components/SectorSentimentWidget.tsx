@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { TrendingUp, Building2, Info, TrendingDown, Minus, ExternalLink, AlertTriangle } from "lucide-react";
+import { TrendingUp, Building2, HelpCircle, TrendingDown, Minus, ExternalLink, AlertTriangle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -151,7 +151,7 @@ export function SectorSentimentWidget() {
             <HoverCard>
               <HoverCardTrigger asChild>
                 <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                  <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                 </button>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">
@@ -184,7 +184,7 @@ export function SectorSentimentWidget() {
           <HoverCard>
             <HoverCardTrigger asChild>
               <button className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
               </button>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
@@ -232,7 +232,7 @@ export function SectorSentimentWidget() {
                           <Tooltip>
                             <TooltipTrigger asChild>
                               <button className="inline-flex items-center justify-center h-4 w-4 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
-                                <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                               </button>
                             </TooltipTrigger>
                             <TooltipContent className="max-w-xs">

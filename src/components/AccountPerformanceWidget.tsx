@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useAccountTypeStats } from "@/hooks/useAccountTypeStats";
 import { useCurrency } from "@/hooks/useCurrency";
 import { AccountType } from "@/types/trade";
-import { Info } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 interface Trade {
@@ -60,7 +60,7 @@ export function AccountPerformanceWidget({ trades }: AccountPerformanceWidgetPro
                   className="inline-flex items-center justify-center h-5 w-5 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <Info className="h-4 w-4 text-muted-foreground cursor-help" />
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                 </button>
               </HoverCardTrigger>
               <HoverCardContent className="w-80">

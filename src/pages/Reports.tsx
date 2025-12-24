@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend, LabelList } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
-import { Calendar, Info, TrendingDown } from "lucide-react";
+import { Calendar, HelpCircle, TrendingDown } from "lucide-react";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
 import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
 import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
@@ -412,7 +412,7 @@ export default function Reports() {
                   <CardTitle>{t("reports.dayOfWeekDistribution")}</CardTitle>
                   <HoverCard>
                     <HoverCardTrigger asChild>
-                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm">{t("reports.dayOfWeekDistributionTooltip")}</p>
@@ -439,7 +439,7 @@ export default function Reports() {
                   <CardTitle>{t("reports.performanceByDay")}</CardTitle>
                   <HoverCard>
                     <HoverCardTrigger asChild>
-                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm">{t("reports.performanceByDayTooltip")}</p>
@@ -528,7 +528,7 @@ export default function Reports() {
                   <CardTitle className="text-lg">{t("reports.goalAchievementRate")}</CardTitle>
                   <HoverCard>
                     <HoverCardTrigger asChild>
-                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm">{t("reports.goalAchievementRateTooltip")}</p>
@@ -556,7 +556,7 @@ export default function Reports() {
                   <CardTitle className="text-lg">{t("reports.currentGoal")}</CardTitle>
                   <HoverCard>
                     <HoverCardTrigger asChild>
-                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm">{t("reports.currentGoalTooltip")}</p>
@@ -580,7 +580,7 @@ export default function Reports() {
                   <CardTitle className="text-lg">{t("reports.bestDay")}</CardTitle>
                   <HoverCard>
                     <HoverCardTrigger asChild>
-                      <Info className="h-3 w-3 text-muted-foreground cursor-help" />
+                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                     </HoverCardTrigger>
                     <HoverCardContent className="w-80">
                       <p className="text-sm">{t("reports.bestDayTooltip")}</p>
