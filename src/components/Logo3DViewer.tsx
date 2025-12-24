@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import logo3d from "@/assets/tradenotes-logo-3d.png";
 
 interface Logo3DViewerProps {
@@ -8,33 +8,37 @@ interface Logo3DViewerProps {
 export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+  const [imgStatus, setImgStatus] = useState<"loading" | "loaded" | "error">("loading");
   const lastPosition = useRef({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Debug signal (visible in console)
+    console.log("[Logo3DViewer] mounted", { size, src: logo3d });
+  }, [size]);
 
   const handleMouseDown = useCallback((e: React.MouseEvent) => {
     setIsDragging(true);
     lastPosition.current = { x: e.clientX, y: e.clientY };
   }, []);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!isDragging) return;
-    
-    const deltaX = e.clientX - lastPosition.current.x;
-    const deltaY = e.clientY - lastPosition.current.y;
-    
-    setRotation(prev => ({
-      x: prev.x + deltaY * 0.5,
-      y: prev.y + deltaX * 0.5,
-    }));
-    
-    lastPosition.current = { x: e.clientX, y: e.clientY };
-  }, [isDragging]);
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      if (!isDragging) return;
 
-  const handleMouseUp = useCallback(() => {
-    setIsDragging(false);
-  }, []);
+      const deltaX = e.clientX - lastPosition.current.x;
+      const deltaY = e.clientY - lastPosition.current.y;
 
-  const handleMouseLeave = useCallback(() => {
+      setRotation((prev) => ({
+        x: prev.x + deltaY * 0.5,
+        y: prev.y + deltaX * 0.5,
+      }));
+
+      lastPosition.current = { x: e.clientX, y: e.clientY };
+    },
+    [isDragging],
+  );
+
+  const stopDragging = useCallback(() => {
     setIsDragging(false);
   }, []);
 
@@ -45,41 +49,39 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
     lastPosition.current = { x: touch.clientX, y: touch.clientY };
   }, []);
 
-  const handleTouchMove = useCallback((e: React.TouchEvent) => {
-    if (!isDragging) return;
-    
-    const touch = e.touches[0];
-    const deltaX = touch.clientX - lastPosition.current.x;
-    const deltaY = touch.clientY - lastPosition.current.y;
-    
-    setRotation(prev => ({
-      x: prev.x + deltaY * 0.5,
-      y: prev.y + deltaX * 0.5,
-    }));
-    
-    lastPosition.current = { x: touch.clientX, y: touch.clientY };
-  }, [isDragging]);
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      if (!isDragging) return;
 
-  const handleTouchEnd = useCallback(() => {
-    setIsDragging(false);
-  }, []);
+      const touch = e.touches[0];
+      const deltaX = touch.clientX - lastPosition.current.x;
+      const deltaY = touch.clientY - lastPosition.current.y;
+
+      setRotation((prev) => ({
+        x: prev.x + deltaY * 0.5,
+        y: prev.y + deltaX * 0.5,
+      }));
+
+      lastPosition.current = { x: touch.clientX, y: touch.clientY };
+    },
+    [isDragging],
+  );
 
   return (
     <div
-      ref={containerRef}
-      style={{ 
-        width: size, 
-        height: size,
-        perspective: "800px",
-      }}
-      className={`select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      style={{ width: size, height: size, perspective: "800px" }}
+      className={
+        "select-none rounded-xl border border-border/30 bg-card/20 backdrop-blur-sm " +
+        (isDragging ? "cursor-grabbing" : "cursor-grab")
+      }
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseLeave}
+      onMouseUp={stopDragging}
+      onMouseLeave={stopDragging}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
+      onTouchEnd={stopDragging}
+      aria-label="3D Logo (klicken & ziehen zum Drehen)"
     >
       <div
         style={{
@@ -89,20 +91,31 @@ export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
           transition: isDragging ? "none" : "transform 0.1s ease-out",
         }}
-        className="flex items-center justify-center"
+        className="relative flex items-center justify-center"
       >
         <img
           src={logo3d}
-          alt="TradeNotes Logo"
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.4))",
-          }}
+          alt="TradeNotes 3D Logo"
+          className="h-full w-full object-contain"
+          style={{ filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.4))" }}
           draggable={false}
+          onLoad={() => {
+            console.log("[Logo3DViewer] image loaded");
+            setImgStatus("loaded");
+          }}
+          onError={(e) => {
+            console.error("[Logo3DViewer] image failed to load", e);
+            setImgStatus("error");
+          }}
         />
+
+        {imgStatus === "error" && (
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-muted-foreground">
+            Logo nicht geladen
+          </div>
+        )}
       </div>
     </div>
   );
 }
+
