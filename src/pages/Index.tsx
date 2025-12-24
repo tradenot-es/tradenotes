@@ -209,7 +209,7 @@ const Index = () => {
             <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
           </div>
           <div className="flex-1 flex justify-center">
-            <Logo3DViewer size={100} />
+            <Logo3DViewer size={140} />
           </div>
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
