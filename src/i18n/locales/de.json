@@ -55,11 +55,16 @@
     "featured": {
       "totalBalance": "Gesamtsaldo",
       "netProfit": "Nettogewinn",
+      "netProfitTooltip": "Gesamtgewinn abzüglich aller Verluste und Gebühren.",
       "tradingDays": "Handelstage",
+      "tradingDaysTooltip": "Anzahl der Tage, an denen Sie mindestens einen Trade ausgeführt haben.",
       "winRate": "Win Rate",
       "avgTrade": "Ø/Trade",
+      "avgTradeTooltip": "Durchschnittlicher Gewinn oder Verlust pro Trade.",
       "totalTrades": "Trades",
-      "expectancy": "Erwartungswert"
+      "totalTradesTooltip": "Gesamtanzahl aller ausgeführten Trades.",
+      "expectancy": "Erwartungswert",
+      "expectancyTooltip": "Erwarteter Gewinn pro Trade basierend auf Win Rate und durchschnittlichem Gewinn/Verlust."
     },
     "bestWorstTrade": "Bester / Schlechtester",
     "bestWorstTradeTooltip": "Zeigt Ihren profitabelsten und verlustreichsten Trade. Hilft bei der Analyse von Extremwerten und Risk Management.",
