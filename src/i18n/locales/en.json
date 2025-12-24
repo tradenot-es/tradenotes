@@ -57,8 +57,12 @@
       "netProfit": "Net Profit",
       "tradingDays": "Trading Days",
       "winRate": "Win Rate",
-      "avgTrade": "Avg/Trade"
+      "avgTrade": "Avg/Trade",
+      "totalTrades": "Trades",
+      "expectancy": "Expectancy"
     },
+    "bestWorstTrade": "Best / Worst Trade",
+    "bestWorstTradeTooltip": "Shows your most profitable and most losing trade. Helps analyze outliers and risk management.",
     "tradesPerDay": "trades/day",
     "longestWinStreak": "Longest Win Streak",
     "longestLossStreak": "Longest Loss Streak",
