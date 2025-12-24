@@ -1,60 +1,108 @@
-import { Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useTexture } from "@react-three/drei";
-import * as THREE from "three";
+import { useState, useRef, useCallback } from "react";
 import logo3d from "@/assets/tradenotes-logo-3d.png";
-
-function LogoPlane() {
-  const texture = useTexture(logo3d);
-
-  return (
-    <mesh>
-      <planeGeometry args={[3, 3]} />
-      <meshBasicMaterial 
-        map={texture} 
-        transparent={true}
-        side={THREE.DoubleSide}
-      />
-    </mesh>
-  );
-}
-
-function FallbackLogo() {
-  return (
-    <mesh>
-      <boxGeometry args={[1.5, 1.5, 0.1]} />
-      <meshStandardMaterial color="#22c55e" />
-    </mesh>
-  );
-}
 
 interface Logo3DViewerProps {
   size?: number;
 }
 
 export function Logo3DViewer({ size = 120 }: Logo3DViewerProps) {
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const lastPosition = useRef({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    setIsDragging(true);
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isDragging) return;
+    
+    const deltaX = e.clientX - lastPosition.current.x;
+    const deltaY = e.clientY - lastPosition.current.y;
+    
+    setRotation(prev => ({
+      x: prev.x + deltaY * 0.5,
+      y: prev.y + deltaX * 0.5,
+    }));
+    
+    lastPosition.current = { x: e.clientX, y: e.clientY };
+  }, [isDragging]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // Touch support
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    setIsDragging(true);
+    const touch = e.touches[0];
+    lastPosition.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    if (!isDragging) return;
+    
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - lastPosition.current.x;
+    const deltaY = touch.clientY - lastPosition.current.y;
+    
+    setRotation(prev => ({
+      x: prev.x + deltaY * 0.5,
+      y: prev.y + deltaX * 0.5,
+    }));
+    
+    lastPosition.current = { x: touch.clientX, y: touch.clientY };
+  }, [isDragging]);
+
+  const handleTouchEnd = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
   return (
-    <div style={{ width: size, height: size }} className="cursor-grab active:cursor-grabbing">
-      <Canvas
-        camera={{ position: [0, 0, 4], fov: 50 }}
-        gl={{ alpha: true, antialias: true }}
-        style={{ background: "transparent" }}
+    <div
+      ref={containerRef}
+      style={{ 
+        width: size, 
+        height: size,
+        perspective: "800px",
+      }}
+      className={`select-none ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          transformStyle: "preserve-3d",
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          transition: isDragging ? "none" : "transform 0.1s ease-out",
+        }}
+        className="flex items-center justify-center"
       >
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[5, 5, 5]} intensity={1.5} />
-        <directionalLight position={[-5, -5, -5]} intensity={0.5} />
-        <Suspense fallback={<FallbackLogo />}>
-          <LogoPlane />
-        </Suspense>
-        <OrbitControls
-          enableRotate={true}
-          enableZoom={false}
-          enablePan={false}
-          autoRotate={false}
-          minPolarAngle={Math.PI / 4}
-          maxPolarAngle={Math.PI * 3 / 4}
+        <img
+          src={logo3d}
+          alt="TradeNotes Logo"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            filter: "drop-shadow(0 0 20px hsl(var(--primary) / 0.4))",
+          }}
+          draggable={false}
         />
-      </Canvas>
+      </div>
     </div>
   );
 }
