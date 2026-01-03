@@ -6,6 +6,7 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
 import { TradeFilters, TradeFilterOptions } from "@/components/TradeFilters";
 import { TradesTable } from "@/components/TradesTable";
+import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 import {
@@ -262,6 +263,9 @@ const Trades = () => {
           />
         </div>
       </div>
+
+      {/* Trading Alerts */}
+      <TradingAlertsWidget trades={trades} />
 
       <div className="overflow-auto">
         <TradeCalendar
