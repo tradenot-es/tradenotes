@@ -202,6 +202,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                    e.title.toLowerCase().includes('rally') || 
                    e.title.toLowerCase().includes('address'))
                 );
+                const hasHighImpact = politicalEvents.some(e => e.impact_level === 'high');
+                const hasMediumImpact = politicalEvents.some(e => e.impact_level === 'medium');
 
                 return (
                   <div
@@ -230,6 +232,10 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                                     alt="Political event" 
                                     className="h-5 w-5 object-contain cursor-help" 
                                   />
+                                ) : hasHighImpact ? (
+                                  <span className="text-base cursor-help">🔴</span>
+                                ) : hasMediumImpact ? (
+                                  <span className="text-base cursor-help">🟡</span>
                                 ) : (
                                   <span className="text-base cursor-help">🔔</span>
                                 )}
@@ -348,6 +354,18 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
               loading={politicalEventsLoading}
               hasAnyEventsInPeriod={allPoliticalEvents.length > 0}
             />
+
+            {/* Impact Legend */}
+            <Card className="border-muted">
+              <CardContent className="p-3">
+                <p className="text-xs font-medium mb-2">{t("calendar.impactLegend")}</p>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  <span className="flex items-center gap-1">🔴 {t("calendar.highImpact")}</span>
+                  <span className="flex items-center gap-1">🟡 {t("calendar.mediumImpact")}</span>
+                  <span className="flex items-center gap-1">🔔 {t("calendar.political")}</span>
+                </div>
+              </CardContent>
+            </Card>
           </>
         )}
       </div>

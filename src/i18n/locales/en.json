@@ -273,11 +273,15 @@
   },
   "calendar": {
     "politicalEvent": "Political Event",
-    "politicalEventsToday": "Political events today",
+    "politicalEventsToday": "Impact events today",
     "moreEvents": "more events",
-    "loadingPoliticalEvents": "Loading political events...",
-    "noPoliticalEventsOnDate": "No political/impact news for this day",
-    "noPoliticalEventsInPeriod": "No political/impact news found in this period"
+    "loadingPoliticalEvents": "Loading impact events...",
+    "noPoliticalEventsOnDate": "No impact events for this day",
+    "noPoliticalEventsInPeriod": "No impact events in current period",
+    "highImpact": "High Impact",
+    "mediumImpact": "Medium",
+    "political": "Political",
+    "impactLegend": "Legend"
   },
   "trades": {
     "title": "Trades",

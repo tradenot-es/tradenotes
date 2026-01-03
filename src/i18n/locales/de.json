@@ -166,11 +166,15 @@
   },
   "calendar": {
     "politicalEvent": "Politisches Event",
-    "politicalEventsToday": "Politische Events an diesem Tag",
+    "politicalEventsToday": "Impact Events an diesem Tag",
     "moreEvents": "weitere Events",
-    "loadingPoliticalEvents": "Lade politische Events...",
-    "noPoliticalEventsOnDate": "Keine Political/Impact News für diesen Tag",
-    "noPoliticalEventsInPeriod": "Keine Political/Impact News in diesem Zeitraum gefunden"
+    "loadingPoliticalEvents": "Lade Impact Events...",
+    "noPoliticalEventsOnDate": "Keine Impact Events für diesen Tag",
+    "noPoliticalEventsInPeriod": "Keine Impact Events im aktuellen Zeitraum",
+    "highImpact": "High Impact",
+    "mediumImpact": "Medium",
+    "political": "Political",
+    "impactLegend": "Legende"
   },
   "weekdays": {
     "mon": "Mo",
