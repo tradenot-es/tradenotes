@@ -90,7 +90,7 @@ const Status = () => {
               <h1 className="text-4xl font-bold">System Status</h1>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Aktuelle Verfügbarkeit und Performance aller TradeNotes Services
+              Aktuelle Verfügbarkeit und Performance aller TradeNot.es Services
             </p>
           </div>
 
