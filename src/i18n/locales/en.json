@@ -274,7 +274,10 @@
   "calendar": {
     "politicalEvent": "Political Event",
     "politicalEventsToday": "Political events today",
-    "moreEvents": "more events"
+    "moreEvents": "more events",
+    "loadingPoliticalEvents": "Loading political events...",
+    "noPoliticalEventsOnDate": "No political/impact news for this day",
+    "noPoliticalEventsInPeriod": "No political/impact news found in this period"
   },
   "trades": {
     "title": "Trades",

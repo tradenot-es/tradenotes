@@ -271,7 +271,10 @@
   "calendar": {
     "politicalEvent": "Politieke Gebeurtenis",
     "politicalEventsToday": "Politieke gebeurtenissen vandaag",
-    "moreEvents": "meer gebeurtenissen"
+    "moreEvents": "meer gebeurtenissen",
+    "loadingPoliticalEvents": "Politieke events laden...",
+    "noPoliticalEventsOnDate": "Geen politiek/impact nieuws voor deze dag",
+    "noPoliticalEventsInPeriod": "Geen politiek/impact nieuws gevonden in deze periode"
   },
   "trades": {
     "title": "Transacties",
