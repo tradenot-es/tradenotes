@@ -791,6 +791,17 @@
     "footerTerms": "Terms",
     "footerImprint": "Imprint",
     "footerCopyright": "© 2025 TradeNot.es. All rights reserved.",
+    "whySection": {
+      "badge": "Why a Trading Journal?",
+      "title": "Successful traders document every trade",
+      "description": "92% of profitable day traders keep a trading journal. TradeNot.es makes it simple.",
+      "benefit1Title": "Spot Patterns",
+      "benefit1Desc": "Automatic analysis of your best setups, times and symbols",
+      "benefit2Title": "Build Discipline",
+      "benefit2Desc": "Daily prep, consistency tracking and AI alerts for emotional trading",
+      "benefit3Title": "Track Performance",
+      "benefit3Desc": "Equity curve, R-multiple, expectancy and 20+ KPIs at a glance"
+    },
     "features": {
       "easyEntry": {
         "title": "Fast Trade Entry",

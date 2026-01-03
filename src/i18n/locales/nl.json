@@ -759,6 +759,17 @@
     "footerTerms": "Voorwaarden",
     "footerImprint": "Colofon",
     "footerCopyright": "© 2025 TradeNot.es. Alle rechten voorbehouden.",
+    "whySection": {
+      "badge": "Waarom een trading journal?",
+      "title": "Succesvolle traders documenteren elke trade",
+      "description": "92% van de winstgevende daytraders houdt een trading journal bij. TradeNot.es maakt het eenvoudig.",
+      "benefit1Title": "Patronen herkennen",
+      "benefit1Desc": "Automatische analyse van je beste setups, tijden en symbolen",
+      "benefit2Title": "Discipline versterken",
+      "benefit2Desc": "Dagelijkse voorbereiding, consistentie-tracking en AI-waarschuwingen bij emotioneel traden",
+      "benefit3Title": "Prestaties meten",
+      "benefit3Desc": "Equity curve, R-multiple, verwachting en 20+ KPI's in één oogopslag"
+    },
     "features": {
       "easyEntry": {
         "title": "Snelle Trade Invoer",

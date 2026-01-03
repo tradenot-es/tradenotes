@@ -139,6 +139,45 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Why Section - SEO optimiert */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-5xl mx-auto text-center">
+          <Badge className="mb-4">{t("landing.whySection.badge")}</Badge>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {t("landing.whySection.title")}
+          </h2>
+          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+            {t("landing.whySection.description")}
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="space-y-3">
+              <div className="h-12 w-12 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+                <TrendingUp className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg">{t("landing.whySection.benefit1Title")}</h3>
+              <p className="text-muted-foreground text-sm">{t("landing.whySection.benefit1Desc")}</p>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="h-12 w-12 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+                <Target className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg">{t("landing.whySection.benefit2Title")}</h3>
+              <p className="text-muted-foreground text-sm">{t("landing.whySection.benefit2Desc")}</p>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="h-12 w-12 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
+                <BarChart3 className="h-6 w-6 text-primary" />
+              </div>
+              <h3 className="font-semibold text-lg">{t("landing.whySection.benefit3Title")}</h3>
+              <p className="text-muted-foreground text-sm">{t("landing.whySection.benefit3Desc")}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">

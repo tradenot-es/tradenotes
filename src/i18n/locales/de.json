@@ -778,6 +778,17 @@
       "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL)",
       "futureFeatures": "Alle zukünftigen Features inklusive",
       "freeTrial": "7 Tage kostenlos testen"
+    },
+    "whySection": {
+      "badge": "Warum ein Trading Journal?",
+      "title": "Erfolgreiche Trader dokumentieren jeden Trade",
+      "description": "92% der profitablen Daytrader führen ein Trading Journal. TradeNot.es macht es einfach.",
+      "benefit1Title": "Muster erkennen",
+      "benefit1Desc": "Automatische Analyse deiner besten Setups, Uhrzeiten und Symbole",
+      "benefit2Title": "Disziplin stärken",
+      "benefit2Desc": "Daily Prep, Konsistenz-Tracking und AI-Warnungen bei emotionalem Trading",
+      "benefit3Title": "Performance messen",
+      "benefit3Desc": "Equity Curve, R-Multiple, Expectancy und 20+ KPIs auf einen Blick"
     }
   },
   "validation": {
