@@ -528,7 +528,8 @@ serve(async (req) => {
       const url = new URL("https://api.marketaux.com/v1/news/all");
       url.searchParams.append("api_token", marketauxApiKey);
       url.searchParams.append("search", keywords);
-      url.searchParams.append("filter_entities", "true");
+      // Removed filter_entities=true to get geopolitical news without stock entity references
+      url.searchParams.append("language", "en");
       url.searchParams.append("limit", eventLimit.toString());
       
       // CRITICAL: Different date logic for future vs past
