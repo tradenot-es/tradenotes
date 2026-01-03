@@ -269,12 +269,16 @@
     }
   },
   "calendar": {
-    "politicalEvent": "Politieke Gebeurtenis",
-    "politicalEventsToday": "Politieke gebeurtenissen vandaag",
+    "politicalEvent": "Impact Gebeurtenis",
+    "politicalEventsToday": "Impact events vandaag",
     "moreEvents": "meer gebeurtenissen",
-    "loadingPoliticalEvents": "Politieke events laden...",
-    "noPoliticalEventsOnDate": "Geen politiek/impact nieuws voor deze dag",
-    "noPoliticalEventsInPeriod": "Geen politiek/impact nieuws gevonden in deze periode"
+    "loadingPoliticalEvents": "Impact events laden...",
+    "noPoliticalEventsOnDate": "Geen impact events voor deze dag",
+    "noPoliticalEventsInPeriod": "Geen impact events in de huidige periode",
+    "highImpact": "Hoge impact",
+    "mediumImpact": "Medium",
+    "political": "Politiek",
+    "impactLegend": "Legenda"
   },
   "trades": {
     "title": "Transacties",

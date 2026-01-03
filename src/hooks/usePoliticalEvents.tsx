@@ -10,6 +10,19 @@ interface PoliticalEvent {
   url: string;
   published_at: string;
   source: string;
+  impact_level?: 'high' | 'medium' | 'political';
+}
+
+// Impact-Level Keywords
+const HIGH_IMPACT_KEYWORDS = ['FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 'Federal Reserve', 'Fed rate'];
+const MEDIUM_IMPACT_KEYWORDS = ['GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 'housing'];
+const POLITICAL_KEYWORDS = ['Trump', 'Biden', 'election', 'tariff', 'policy', 'Congress', 'Senate', 'White House'];
+
+function categorizeEvent(title: string): 'high' | 'medium' | 'political' {
+  const lowerTitle = title.toLowerCase();
+  if (HIGH_IMPACT_KEYWORDS.some(kw => lowerTitle.includes(kw.toLowerCase()))) return 'high';
+  if (MEDIUM_IMPACT_KEYWORDS.some(kw => lowerTitle.includes(kw.toLowerCase()))) return 'medium';
+  return 'political';
 }
 
 export function usePoliticalEvents(startDate: Date, endDate: Date) {
@@ -43,7 +56,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
             action: 'get-political-events',
             startDate: dateRange.start,
             endDate: dateRange.end,
-            keywords: 'Trump,Fed,Powell,Biden,election,policy',
+            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut',
             limit: 50
           }
         });
@@ -53,7 +66,11 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
         console.log('usePoliticalEvents: Response', { success: data?.success, articleCount: data?.articles?.length, error });
 
         if (!error && data?.success && data.articles) {
-          const fetchedEvents: PoliticalEvent[] = data.articles;
+          // Add impact level categorization to each event
+          const fetchedEvents: PoliticalEvent[] = data.articles.map((article: any) => ({
+            ...article,
+            impact_level: categorizeEvent(article.title)
+          }));
           setEvents(fetchedEvents);
           
           // Group events by date for O(1) lookup

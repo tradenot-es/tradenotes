@@ -11,6 +11,7 @@ interface PoliticalArticle {
   published_at: string;
   source: string;
   date?: string;
+  impact_level?: 'high' | 'medium' | 'political';
 }
 
 interface PoliticalEventsProps {
@@ -22,6 +23,17 @@ interface PoliticalEventsProps {
 
 export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
+
+  const getImpactBadge = (impact?: 'high' | 'medium' | 'political') => {
+    switch (impact) {
+      case 'high':
+        return <Badge variant="destructive" className="text-xs">{t("calendar.highImpact")}</Badge>;
+      case 'medium':
+        return <Badge variant="secondary" className="text-xs bg-amber-500/20 text-amber-700 dark:text-amber-300">{t("calendar.mediumImpact")}</Badge>;
+      default:
+        return <Badge variant="outline" className="text-xs">{t("calendar.political")}</Badge>;
+    }
+  };
 
   // Show loading state
   if (loading) {
@@ -74,6 +86,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                 </p>
               )}
               <div className="flex items-center gap-2 flex-wrap">
+                {getImpactBadge(article.impact_level)}
                 <Badge variant="outline" className="text-xs border-amber-300 dark:border-amber-800">
                   {article.source}
                 </Badge>

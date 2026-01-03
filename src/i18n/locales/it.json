@@ -267,12 +267,16 @@
     }
   },
   "calendar": {
-    "politicalEvent": "Evento Politico",
-    "politicalEventsToday": "Eventi politici oggi",
+    "politicalEvent": "Evento di Impatto",
+    "politicalEventsToday": "Eventi di impatto oggi",
     "moreEvents": "altri eventi",
-    "loadingPoliticalEvents": "Caricamento eventi politici...",
-    "noPoliticalEventsOnDate": "Nessuna notizia politica/di impatto per questo giorno",
-    "noPoliticalEventsInPeriod": "Nessuna notizia politica/di impatto trovata in questo periodo"
+    "loadingPoliticalEvents": "Caricamento eventi di impatto...",
+    "noPoliticalEventsOnDate": "Nessun evento di impatto per questo giorno",
+    "noPoliticalEventsInPeriod": "Nessun evento di impatto nel periodo attuale",
+    "highImpact": "Alto impatto",
+    "mediumImpact": "Medio",
+    "political": "Politico",
+    "impactLegend": "Legenda"
   },
   "trades": {
     "title": "Operazioni",
