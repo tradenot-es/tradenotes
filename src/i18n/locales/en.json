@@ -281,7 +281,10 @@
     "highImpact": "High Impact",
     "mediumImpact": "Medium",
     "political": "Political",
-    "impactLegend": "Legend"
+    "impactLegend": "Legend",
+    "scheduledEvents": "Scheduled Events",
+    "relatedNews": "Related News",
+    "confirmed": "Confirmed"
   },
   "trades": {
     "title": "Trades",

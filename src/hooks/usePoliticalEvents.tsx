@@ -1,8 +1,9 @@
 import { useState, useEffect, useMemo } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { format, startOfWeek, endOfWeek } from "date-fns";
+import { getEconomicEventsInRange, type EconomicEvent } from "@/lib/economicCalendar";
 
-interface PoliticalEvent {
+export interface PoliticalEvent {
   uuid: string;
   date: string;
   title: string;
@@ -11,6 +12,9 @@ interface PoliticalEvent {
   published_at: string;
   source: string;
   impact_level?: 'high' | 'medium' | 'political';
+  isScheduled?: boolean;
+  category?: EconomicEvent['category'];
+  time?: string;
 }
 
 // Impact-Level Keywords - expanded to include geopolitical events
@@ -37,7 +41,7 @@ function categorizeEvent(title: string): 'high' | 'medium' | 'political' {
 }
 
 export function usePoliticalEvents(startDate: Date, endDate: Date) {
-  const [events, setEvents] = useState<PoliticalEvent[]>([]);
+  const [newsEvents, setNewsEvents] = useState<PoliticalEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [eventsByDate, setEventsByDate] = useState<Map<string, PoliticalEvent[]>>(new Map());
 
@@ -47,10 +51,65 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
     const weekEnd = endOfWeek(endDate, { weekStartsOn: 0 });
     return {
       start: format(weekStart, 'yyyy-MM-dd'),
-      end: format(weekEnd, 'yyyy-MM-dd')
+      end: format(weekEnd, 'yyyy-MM-dd'),
+      startDate: weekStart,
+      endDate: weekEnd
     };
   }, [startDate.getTime(), endDate.getTime()]);
 
+  // Get static economic events for the date range
+  const scheduledEvents = useMemo((): PoliticalEvent[] => {
+    const economicEvents = getEconomicEventsInRange(dateRange.startDate, dateRange.endDate);
+    return economicEvents.map(event => ({
+      uuid: event.id,
+      date: event.date,
+      title: event.title,
+      snippet: event.description,
+      url: '', // No external link for scheduled events
+      published_at: event.date,
+      source: 'Economic Calendar',
+      impact_level: event.impact as 'high' | 'medium' | 'political',
+      isScheduled: true,
+      category: event.category,
+      time: event.time
+    }));
+  }, [dateRange.startDate, dateRange.endDate]);
+
+  // Combine scheduled + news events
+  const allEvents = useMemo(() => {
+    // Merge scheduled events with news events
+    const combined = [...scheduledEvents, ...newsEvents];
+    
+    // Sort by date, then scheduled events first
+    combined.sort((a, b) => {
+      if (a.date !== b.date) {
+        return a.date.localeCompare(b.date);
+      }
+      // Scheduled events come first
+      if (a.isScheduled && !b.isScheduled) return -1;
+      if (!a.isScheduled && b.isScheduled) return 1;
+      return 0;
+    });
+    
+    return combined;
+  }, [scheduledEvents, newsEvents]);
+
+  // Group all events by date
+  useEffect(() => {
+    const grouped = new Map<string, PoliticalEvent[]>();
+    
+    allEvents.forEach(event => {
+      const dateKey = event.date;
+      if (!grouped.has(dateKey)) {
+        grouped.set(dateKey, []);
+      }
+      grouped.get(dateKey)!.push(event);
+    });
+    
+    setEventsByDate(grouped);
+  }, [allEvents]);
+
+  // Fetch news events from API
   useEffect(() => {
     let isMounted = true;
 
@@ -60,7 +119,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
       setLoading(true);
       
       try {
-        console.log('usePoliticalEvents: Loading events from', dateRange.start, 'to', dateRange.end);
+        console.log('usePoliticalEvents: Loading news from', dateRange.start, 'to', dateRange.end);
 
         const { data, error } = await supabase.functions.invoke('marketaux-news', {
           body: { 
@@ -77,26 +136,13 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
         console.log('usePoliticalEvents: Response', { success: data?.success, articleCount: data?.articles?.length, error });
 
         if (!error && data?.success && data.articles) {
-          // Add impact level categorization to each event
+          // Add impact level categorization to each news event
           const fetchedEvents: PoliticalEvent[] = data.articles.map((article: any) => ({
             ...article,
-            impact_level: categorizeEvent(article.title)
+            impact_level: categorizeEvent(article.title),
+            isScheduled: false
           }));
-          setEvents(fetchedEvents);
-          
-          // Group events by date for O(1) lookup
-          const grouped = new Map<string, PoliticalEvent[]>();
-          fetchedEvents.forEach(event => {
-            const dateKey = event.date;
-            if (!grouped.has(dateKey)) {
-              grouped.set(dateKey, []);
-            }
-            grouped.get(dateKey)!.push(event);
-          });
-          
-          console.log('usePoliticalEvents: Grouped events by date', Array.from(grouped.keys()));
-          
-          setEventsByDate(grouped);
+          setNewsEvents(fetchedEvents);
         }
       } catch (err) {
         console.error('Error loading political events:', err);
@@ -124,10 +170,16 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
     return eventsByDate.get(dateStr) || [];
   };
 
+  const hasScheduledEventsOnDate = (date: Date): boolean => {
+    const events = getEventsForDate(date);
+    return events.some(e => e.isScheduled);
+  };
+
   return { 
-    events, 
+    events: allEvents, 
     loading, 
     hasEventsOnDate, 
-    getEventsForDate 
+    getEventsForDate,
+    hasScheduledEventsOnDate
   };
 }

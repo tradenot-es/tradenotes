@@ -1,22 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, UserCircle } from "lucide-react";
-
-interface PoliticalArticle {
-  uuid: string;
-  title: string;
-  snippet: string;
-  url: string;
-  published_at: string;
-  source: string;
-  date?: string;
-  impact_level?: 'high' | 'medium' | 'political';
-}
+import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp } from "lucide-react";
+import { getCategoryIcon, getCategoryLabel } from "@/lib/economicCalendar";
+import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
 interface PoliticalEventsProps {
   date: Date;
-  events: PoliticalArticle[];
+  events: PoliticalEvent[];
   loading?: boolean;
   hasAnyEventsInPeriod?: boolean;
 }
@@ -35,6 +26,21 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
     }
   };
 
+  const getCategoryIconComponent = (category?: string) => {
+    switch (category) {
+      case 'fomc':
+        return <Landmark className="h-4 w-4 text-blue-600" />;
+      case 'cpi':
+        return <BarChart3 className="h-4 w-4 text-purple-600" />;
+      case 'nfp':
+        return <Users className="h-4 w-4 text-green-600" />;
+      case 'gdp':
+        return <TrendingUp className="h-4 w-4 text-orange-600" />;
+      default:
+        return <Calendar className="h-4 w-4 text-muted-foreground" />;
+    }
+  };
+
   // Show loading state
   if (loading) {
     return (
@@ -47,6 +53,10 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
       </Card>
     );
   }
+
+  // Separate scheduled events from news
+  const scheduledEvents = events.filter(e => e.isScheduled);
+  const newsEvents = events.filter(e => !e.isScheduled);
 
   // Show message when no events for this specific day
   if (!events || events.length === 0) {
@@ -65,47 +75,102 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
   }
 
   return (
-    <Card className="border-amber-200 dark:border-amber-900 bg-amber-50/30 dark:bg-amber-950/10">
-      <CardHeader>
-        <div className="flex items-center gap-2">
-          <UserCircle className="h-5 w-5 text-amber-600" />
-          <CardTitle className="text-amber-900 dark:text-amber-100">Political Events</CardTitle>
-        </div>
-        <p className="text-xs text-muted-foreground mt-2">
-          Key political and policy events that may impact markets
-        </p>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {events.map((article, index) => (
-            <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b border-amber-200/50 dark:border-amber-900/50 pb-4 last:border-0">
-              <h4 className="text-sm font-medium line-clamp-2 mb-2">{article.title}</h4>
-              {article.snippet && (
-                <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                  {article.snippet}
-                </p>
-              )}
-              <div className="flex items-center gap-2 flex-wrap">
-                {getImpactBadge(article.impact_level)}
-                <Badge variant="outline" className="text-xs border-amber-300 dark:border-amber-800">
-                  {article.source}
-                </Badge>
-                <Badge variant="secondary" className="text-xs bg-amber-100 dark:bg-amber-900/30">
-                  {new Date(article.published_at).toLocaleDateString()}
-                </Badge>
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="ml-auto text-xs text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1"
-                >
-                  Read More <ExternalLink className="h-3 w-3" />
-                </a>
-              </div>
+    <div className="space-y-4">
+      {/* Scheduled Economic Events */}
+      {scheduledEvents.length > 0 && (
+        <Card className="border-blue-200 dark:border-blue-900 bg-blue-50/30 dark:bg-blue-950/10">
+          <CardHeader className="pb-2">
+            <div className="flex items-center gap-2">
+              <Calendar className="h-5 w-5 text-blue-600" />
+              <CardTitle className="text-blue-900 dark:text-blue-100 text-base">
+                {t("calendar.scheduledEvents")}
+              </CardTitle>
+              <Badge variant="outline" className="ml-auto text-xs bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 border-blue-300 dark:border-blue-700">
+                {t("calendar.confirmed")}
+              </Badge>
             </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="space-y-3">
+              {scheduledEvents.map((event, index) => (
+                <div key={`${date.toISOString()}-${event.uuid}-${index}`} className="border-b border-blue-200/50 dark:border-blue-900/50 pb-3 last:border-0 last:pb-0">
+                  <div className="flex items-start gap-2">
+                    {getCategoryIconComponent(event.category)}
+                    <div className="flex-1">
+                      <h4 className="text-sm font-medium">{event.title}</h4>
+                      {event.snippet && (
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {event.snippet}
+                        </p>
+                      )}
+                      <div className="flex items-center gap-2 mt-2 flex-wrap">
+                        {getImpactBadge(event.impact_level)}
+                        {event.category && (
+                          <Badge variant="outline" className="text-xs border-blue-300 dark:border-blue-800">
+                            {getCategoryLabel(event.category)}
+                          </Badge>
+                        )}
+                        {event.time && (
+                          <Badge variant="secondary" className="text-xs bg-blue-100 dark:bg-blue-900/30">
+                            {event.time} EST
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* News Events */}
+      {newsEvents.length > 0 && (
+        <Card className="border-amber-200 dark:border-amber-900 bg-amber-50/30 dark:bg-amber-950/10">
+          <CardHeader className="pb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-lg">📰</span>
+              <CardTitle className="text-amber-900 dark:text-amber-100 text-base">
+                {t("calendar.relatedNews")}
+              </CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <div className="space-y-3">
+              {newsEvents.map((article, index) => (
+                <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b border-amber-200/50 dark:border-amber-900/50 pb-3 last:border-0 last:pb-0">
+                  <h4 className="text-sm font-medium line-clamp-2 mb-1">{article.title}</h4>
+                  {article.snippet && (
+                    <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
+                      {article.snippet}
+                    </p>
+                  )}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {getImpactBadge(article.impact_level)}
+                    <Badge variant="outline" className="text-xs border-amber-300 dark:border-amber-800">
+                      {article.source}
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs bg-amber-100 dark:bg-amber-900/30">
+                      {new Date(article.published_at).toLocaleDateString()}
+                    </Badge>
+                    {article.url && (
+                      <a
+                        href={article.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto text-xs text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1"
+                      >
+                        {t("common.readMore")} <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+    </div>
   );
 }
