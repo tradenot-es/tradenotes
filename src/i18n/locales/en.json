@@ -821,8 +821,8 @@
         "description": "Auto-curated news for your traded symbols with futures proxy-mapping (NQ→QQQ), smart-tags (Earnings, Macro), and AI translation."
       },
       "politicalEvents": {
-        "title": "Political Event Tracking",
-        "description": "Track Trump speeches, Fed announcements, Powell remarks, and elections. Time trades around macro catalysts with visual calendar."
+        "title": "Economic Calendar & Events",
+        "description": "FOMC, CPI, NFP, GDP dates pre-loaded. Plus real-time political news for Fed, Trump, Powell. Never miss market-moving events."
       },
       "newsTranslation": {
         "title": "AI News Translation",
@@ -872,7 +872,7 @@
       "equity": "Equity Curve for capital tracking",
       "consistency": "Consistency Tracker (12-week heatmap)",
       "news": "Smart Portfolio News with proxy-mapping (futures), smart-tags & translation",
-      "politicalEvents": "Political Event Calendar (Trump, Fed, Powell, elections)",
+      "politicalEvents": "Economic Calendar (FOMC, CPI, NFP, GDP) + Political News",
       "sectorSentiment": "Daily Sector Sentiment Dashboard (9 sectors tracked)",
       "ai": "AI Trading Assistant for data-driven insights",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
