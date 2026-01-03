@@ -13,10 +13,21 @@ interface PoliticalEvent {
   impact_level?: 'high' | 'medium' | 'political';
 }
 
-// Impact-Level Keywords
-const HIGH_IMPACT_KEYWORDS = ['FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 'Federal Reserve', 'Fed rate'];
-const MEDIUM_IMPACT_KEYWORDS = ['GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 'housing'];
-const POLITICAL_KEYWORDS = ['Trump', 'Biden', 'election', 'tariff', 'policy', 'Congress', 'Senate', 'White House'];
+// Impact-Level Keywords - expanded to include geopolitical events
+const HIGH_IMPACT_KEYWORDS = [
+  'FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 
+  'Federal Reserve', 'Fed rate', 'war', 'invasion', 'military', 'sanctions', 
+  'crash', 'default', 'debt ceiling', 'shutdown', 'recession'
+];
+const MEDIUM_IMPACT_KEYWORDS = [
+  'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 
+  'housing', 'oil', 'OPEC', 'China trade', 'tariff', 'stimulus', 'volatility',
+  'VIX', 'selloff', 'rally'
+];
+const POLITICAL_KEYWORDS = [
+  'Trump', 'Biden', 'election', 'policy', 'Congress', 'Senate', 'White House',
+  'geopolitical', 'NATO', 'Europe', 'Russia', 'China', 'conflict', 'nuclear'
+];
 
 function categorizeEvent(title: string): 'high' | 'medium' | 'political' {
   const lowerTitle = title.toLowerCase();
@@ -56,7 +67,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
             action: 'get-political-events',
             startDate: dateRange.start,
             endDate: dateRange.end,
-            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut',
+            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus',
             limit: 50
           }
         });
