@@ -61,7 +61,7 @@ export function Layout({
           <SidebarContent>
           <div className="p-4 border-b border-sidebar-border">
             <div className="flex items-center gap-3 mb-2">
-              <img src={logo} alt="TradeNotes Logo" className="h-10 w-10" />
+              <img src={logo} alt="TradeNot.es Logo" className="h-10 w-10" />
               <h1 className="text-xl font-bold text-sidebar-foreground">TradeNot.es</h1>
             </div>
             <p className="text-sm text-muted-foreground">
