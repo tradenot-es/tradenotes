@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+import { format } from "date-fns";
+import { de, enUS, fr, es, nl } from "date-fns/locale";
 import { AddTradeFAB } from "@/components/AddTradeFAB";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
@@ -45,8 +47,18 @@ interface Trade {
 }
 
 const Trades = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user } = useAuth();
+
+  const getLocale = () => {
+    switch (i18n.language) {
+      case 'de': return de;
+      case 'fr': return fr;
+      case 'es': return es;
+      case 'nl': return nl;
+      default: return enUS;
+    }
+  };
   const [searchParams, setSearchParams] = useSearchParams();
   const [trades, setTrades] = useState<Trade[]>([]);
   const [selectedDate, setSelectedDate] = useState<Date>();
@@ -280,7 +292,7 @@ const Trades = () => {
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold">
             {t("trades.monthlyOverview", { 
-              month: currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })
+              month: format(currentMonth, 'MMMM yyyy', { locale: getLocale() })
             })}
           </h2>
           <p className="text-sm text-muted-foreground">
