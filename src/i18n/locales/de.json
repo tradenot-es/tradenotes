@@ -708,8 +708,8 @@
         "description": "Auto-kuratierte News für deine Symbole mit Futures-Proxy-Mapping (NQ→QQQ), Smart-Tags (Earnings, Makro) und KI-Übersetzung."
       },
       "politicalEvents": {
-        "title": "Politisches Event-Tracking",
-        "description": "Trump-Reden, Fed-Ankündigungen, Powell-Kommentare und Wahlen tracken. Trades um Makro-Katalysatoren timen mit visuellem Kalender."
+        "title": "Wirtschaftskalender & Events",
+        "description": "FOMC, CPI, NFP, GDP Termine vorgeladen. Plus Echtzeit-News zu Fed, Trump, Powell. Marktbewegende Events nie verpassen."
       },
       "newsTranslation": {
         "title": "KI-Nachrichtenübersetzung",
@@ -759,7 +759,7 @@
       "equity": "Equity Curve zur Kapitalverfolgung",
       "consistency": "Consistency Tracker (12-Wochen Heatmap)",
       "news": "Smart Portfolio News mit Proxy-Mapping (Futures), Smart-Tags & Übersetzung",
-      "politicalEvents": "Politischer Event-Kalender (Trump, Fed, Powell, Wahlen)",
+      "politicalEvents": "Wirtschaftskalender (FOMC, CPI, NFP, GDP) + Politische News",
       "sectorSentiment": "Tägliches Sektoren-Sentiment Dashboard (9 Sektoren)",
       "ai": "AI Trading Assistant für datengetriebene Insights",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
