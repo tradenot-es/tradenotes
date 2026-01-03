@@ -167,7 +167,10 @@
   "calendar": {
     "politicalEvent": "Politisches Event",
     "politicalEventsToday": "Politische Events an diesem Tag",
-    "moreEvents": "weitere Events"
+    "moreEvents": "weitere Events",
+    "loadingPoliticalEvents": "Lade politische Events...",
+    "noPoliticalEventsOnDate": "Keine Political/Impact News für diesen Tag",
+    "noPoliticalEventsInPeriod": "Keine Political/Impact News in diesem Zeitraum gefunden"
   },
   "weekdays": {
     "mon": "Mo",

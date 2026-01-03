@@ -60,7 +60,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
   }, []);
   
   // Weekly batch fetching of political events
-  const { hasEventsOnDate, getEventsForDate } = usePoliticalEvents(calendarStart, calendarEnd);
+  const { hasEventsOnDate, getEventsForDate, loading: politicalEventsLoading, events: allPoliticalEvents } = usePoliticalEvents(calendarStart, calendarEnd);
 
   const getLocale = () => {
     switch (i18n.language) {
@@ -344,7 +344,9 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
 
             <PoliticalEvents
               date={selectedDate} 
-              events={getEventsForDate(selectedDate)} 
+              events={getEventsForDate(selectedDate)}
+              loading={politicalEventsLoading}
+              hasAnyEventsInPeriod={allPoliticalEvents.length > 0}
             />
           </>
         )}

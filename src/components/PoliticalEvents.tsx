@@ -16,13 +16,40 @@ interface PoliticalArticle {
 interface PoliticalEventsProps {
   date: Date;
   events: PoliticalArticle[];
+  loading?: boolean;
+  hasAnyEventsInPeriod?: boolean;
 }
 
-export function PoliticalEvents({ date, events }: PoliticalEventsProps) {
+export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
 
+  // Show loading state
+  if (loading) {
+    return (
+      <Card className="border-muted">
+        <CardContent className="p-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            {t("calendar.loadingPoliticalEvents")}
+          </p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  // Show message when no events for this specific day
   if (!events || events.length === 0) {
-    return null; // Don't show card if no events
+    return (
+      <Card className="border-muted">
+        <CardContent className="p-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            {hasAnyEventsInPeriod 
+              ? t("calendar.noPoliticalEventsOnDate")
+              : t("calendar.noPoliticalEventsInPeriod")
+            }
+          </p>
+        </CardContent>
+      </Card>
+    );
   }
 
   return (
