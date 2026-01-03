@@ -779,6 +779,17 @@
     "footerTerms": "Termini",
     "footerImprint": "Note Legali",
     "footerCopyright": "© 2025 TradeNot.es. Tutti i diritti riservati.",
+    "whySection": {
+      "badge": "Perché un diario di trading?",
+      "title": "I trader di successo documentano ogni operazione",
+      "description": "Il 92% dei day trader profittevoli tiene un diario di trading. TradeNot.es lo rende semplice.",
+      "benefit1Title": "Riconoscere pattern",
+      "benefit1Desc": "Analisi automatica dei tuoi migliori setup, orari e simboli",
+      "benefit2Title": "Rafforzare la disciplina",
+      "benefit2Desc": "Preparazione giornaliera, tracking della costanza e avvisi AI per il trading emotivo",
+      "benefit3Title": "Misurare le performance",
+      "benefit3Desc": "Curva equity, R-multiplo, aspettativa e oltre 20 KPI a colpo d'occhio"
+    },
     "features": {
       "easyEntry": {
         "title": "Inserimento Rapido Operazioni",

@@ -759,6 +759,17 @@
     "footerTerms": "Conditions",
     "footerImprint": "Mentions Légales",
     "footerCopyright": "© 2025 TradeNot.es. Tous droits réservés.",
+    "whySection": {
+      "badge": "Pourquoi un journal de trading?",
+      "title": "Les traders performants documentent chaque trade",
+      "description": "92% des day traders rentables tiennent un journal de trading. TradeNot.es le simplifie.",
+      "benefit1Title": "Identifier les patterns",
+      "benefit1Desc": "Analyse automatique de vos meilleurs setups, horaires et symboles",
+      "benefit2Title": "Renforcer la discipline",
+      "benefit2Desc": "Préparation quotidienne, suivi de cohérence et alertes IA pour le trading émotionnel",
+      "benefit3Title": "Mesurer la performance",
+      "benefit3Desc": "Courbe d'équité, R-multiple, espérance et plus de 20 KPIs en un coup d'œil"
+    },
     "features": {
       "easyEntry": {
         "title": "Saisie Rapide de Trades",
