@@ -14,6 +14,7 @@ import trumpEmoji from "@/assets/trump-emoji.png";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect } from "react";
 import { getCurrencySymbol } from "@/lib/utils";
+import { getCategoryIcon } from "@/lib/economicCalendar";
 
 interface Trade {
   id: string;
@@ -60,7 +61,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
   }, []);
   
   // Weekly batch fetching of political events
-  const { hasEventsOnDate, getEventsForDate, loading: politicalEventsLoading, events: allPoliticalEvents } = usePoliticalEvents(calendarStart, calendarEnd);
+  // Weekly batch fetching of political events + scheduled economic events
+  const { hasEventsOnDate, getEventsForDate, loading: politicalEventsLoading, events: allPoliticalEvents, hasScheduledEventsOnDate } = usePoliticalEvents(calendarStart, calendarEnd);
 
   const getLocale = () => {
     switch (i18n.language) {
@@ -196,6 +198,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                 const isToday = format(day, 'yyyy-MM-dd') === today;
                 const hasPoliticalEvents = hasEventsOnDate(day);
                 const politicalEvents = getEventsForDate(day);
+                const hasScheduledEvent = politicalEvents.some(e => e.isScheduled);
                 const hasTrumpEvent = politicalEvents.some(e => 
                   e.title.toLowerCase().includes('trump') && 
                   (e.title.toLowerCase().includes('speech') || 
@@ -204,6 +207,10 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                 );
                 const hasHighImpact = politicalEvents.some(e => e.impact_level === 'high');
                 const hasMediumImpact = politicalEvents.some(e => e.impact_level === 'medium');
+                
+                // Get category for scheduled events (for icon display)
+                const scheduledEvent = politicalEvents.find(e => e.isScheduled);
+                const scheduledCategory = scheduledEvent?.category;
 
                 return (
                   <div
@@ -232,6 +239,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                                     alt="Political event" 
                                     className="h-5 w-5 object-contain cursor-help" 
                                   />
+                                ) : hasScheduledEvent && scheduledCategory ? (
+                                  <span className="text-base cursor-help">{getCategoryIcon(scheduledCategory)}</span>
                                 ) : hasHighImpact ? (
                                   <span className="text-base cursor-help">🔴</span>
                                 ) : hasMediumImpact ? (

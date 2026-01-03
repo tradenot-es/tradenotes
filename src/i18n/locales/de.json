@@ -174,7 +174,10 @@
     "highImpact": "High Impact",
     "mediumImpact": "Medium",
     "political": "Political",
-    "impactLegend": "Legende"
+    "impactLegend": "Legende",
+    "scheduledEvents": "Geplante Events",
+    "relatedNews": "Verwandte News",
+    "confirmed": "Bestätigt"
   },
   "weekdays": {
     "mon": "Mo",
