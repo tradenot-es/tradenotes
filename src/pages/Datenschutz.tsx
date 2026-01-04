@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Server, Lock, Eye, FileText, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import DOMPurify from "dompurify";
 
 const Datenschutz = () => {
   const { t } = useTranslation();
@@ -150,7 +151,7 @@ const Datenschutz = () => {
                   </p>
                   <ul className="text-sm text-muted-foreground list-disc list-inside space-y-2 ml-4">
                     {(t('privacy.sections.legalBasis.items', { returnObjects: true }) as string[]).map((item, i) => (
-                      <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                      <li key={i} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item) }} />
                     ))}
                   </ul>
                 </CardContent>
@@ -171,7 +172,7 @@ const Datenschutz = () => {
                     </p>
                     <ul className="text-sm text-muted-foreground list-disc list-inside space-y-1 ml-4">
                       {(t('privacy.sections.dataSharing.serviceProviders.items', { returnObjects: true }) as string[]).map((item, i) => (
-                        <li key={i} dangerouslySetInnerHTML={{ __html: item }} />
+                        <li key={i} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item) }} />
                       ))}
                     </ul>
                     <p className="text-sm text-muted-foreground mt-2">
@@ -203,7 +204,7 @@ const Datenschutz = () => {
                     {Object.entries(t('privacy.sections.rights.items', { returnObjects: true }) as Record<string, string>).map(([key, value]) => (
                       <li key={key} className="flex items-start gap-2">
                         <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                        <div dangerouslySetInnerHTML={{ __html: value }} />
+                        <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }} />
                       </li>
                     ))}
                   </ul>
