@@ -80,14 +80,36 @@ serve(async (req) => {
     const marketauxApiKey = Deno.env.get("MARKETAUX_API_KEY");
     
     // === RATE LIMITING ===
-    // Get client IP address from request headers
-    const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || 
+    // Get client IP from Supabase's built-in connection info (more reliable than headers)
+    // Fallback to headers for backwards compatibility
+    const clientIp = req.headers.get("cf-connecting-ip") || 
+                     req.headers.get("x-forwarded-for")?.split(",")[0].trim() || 
                      req.headers.get("x-real-ip") || 
                      "unknown";
     
     const supabase = createClient(supabaseUrl, supabaseKey);
     
-    // Check rate limit (10 requests per minute)
+    // Check for authenticated user to implement user-based rate limiting
+    const authHeader = req.headers.get("authorization");
+    let userId: string | null = null;
+    
+    if (authHeader?.startsWith("Bearer ")) {
+      const token = authHeader.substring(7);
+      try {
+        const { data: { user } } = await supabase.auth.getUser(token);
+        userId = user?.id || null;
+      } catch (e) {
+        // Token invalid, continue with IP-based limiting
+      }
+    }
+    
+    // Rate limit key: prefer user_id for authenticated requests, fallback to IP
+    const rateLimitKey = userId ? `user:${userId}` : `ip:${clientIp}`;
+    
+    // Different limits for authenticated vs unauthenticated users
+    const maxRequests = userId ? 30 : 10; // 30/min for authenticated, 10/min for anonymous
+    
+    // Check rate limit
     const oneMinuteAgo = new Date(Date.now() - 60 * 1000).toISOString();
     
     // Clean up old entries first
@@ -96,20 +118,20 @@ serve(async (req) => {
       .delete()
       .lt("window_start", oneMinuteAgo);
     
-    // Check current rate limit for this IP
+    // Check current rate limit
     const { data: rateLimitData } = await supabase
       .from("rate_limits")
       .select("*")
-      .eq("ip_address", clientIp)
+      .eq("ip_address", rateLimitKey)
       .gte("window_start", oneMinuteAgo)
       .maybeSingle();
     
-    if (rateLimitData && rateLimitData.request_count >= 10) {
-      console.log(`Rate limit exceeded for IP: ${clientIp}`);
+    if (rateLimitData && rateLimitData.request_count >= maxRequests) {
+      console.log(`Rate limit exceeded for ${rateLimitKey} (limit: ${maxRequests}/min)`);
       return new Response(
         JSON.stringify({ 
           success: false, 
-          error: "Rate limit exceeded. Maximum 10 requests per minute.",
+          error: `Rate limit exceeded. Maximum ${maxRequests} requests per minute.`,
           retryAfter: 60 
         }),
         { 
@@ -133,13 +155,13 @@ serve(async (req) => {
       await supabase
         .from("rate_limits")
         .insert({ 
-          ip_address: clientIp, 
+          ip_address: rateLimitKey, 
           request_count: 1,
           window_start: new Date().toISOString()
         });
     }
     
-    console.log(`Request from IP ${clientIp} - count: ${(rateLimitData?.request_count || 0) + 1}/10`);
+    console.log(`Request from ${rateLimitKey} - count: ${(rateLimitData?.request_count || 0) + 1}/${maxRequests}`);
     // === END RATE LIMITING ===
 
     if (!marketauxApiKey) {
