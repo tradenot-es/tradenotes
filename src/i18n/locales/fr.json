@@ -1387,5 +1387,93 @@
       "friday": "Vendredi",
       "saturday": "Samedi"
     }
+  },
+  "achievements": {
+    "title": "Réalisations",
+    "subtitle": "Vos jalons de trading",
+    "newAchievement": "Nouvelle réalisation débloquée !",
+    "progress": "Progression",
+    "check": "Vérifier",
+    "noAchievements": "Commencez à trader pour débloquer des réalisations !",
+    "first_trade": "Premier Trade",
+    "first_trade_desc": "Vous avez enregistré votre premier trade",
+    "streak_3_wins": "Série Gagnante",
+    "streak_3_wins_desc": "3 trades gagnants d'affilée",
+    "streak_5_wins": "En Feu",
+    "streak_5_wins_desc": "5 trades gagnants d'affilée",
+    "streak_10_wins": "Inarrêtable",
+    "streak_10_wins_desc": "10 trades gagnants d'affilée",
+    "consistency_7_days": "Roi de la Consistance",
+    "consistency_7_days_desc": "Tradé 7 jours d'affilée",
+    "consistency_30_days": "Discipline de Fer",
+    "consistency_30_days_desc": "Tradé 30 jours d'affilée",
+    "profitable_week": "Semaine Profitable",
+    "profitable_week_desc": "Première semaine avec un P&L positif",
+    "journal_hero": "Héros du Journal",
+    "journal_hero_desc": "7 entrées de journal créées",
+    "risk_manager": "Gestionnaire de Risque",
+    "risk_manager_desc": "10 trades avec stop-loss",
+    "r_master": "Maître du R",
+    "r_master_desc": "R-Multiple moyen > 1.5 avec 20+ trades",
+    "century_club": "Club des 100",
+    "century_club_desc": "100 trades atteints",
+    "thousand_club": "Club des 1000",
+    "thousand_club_desc": "1000 trades atteints"
+  },
+  "positionCalculator": {
+    "title": "Calculateur de Taille de Position",
+    "accountSize": "Taille du Compte",
+    "riskPercent": "Risque par Trade",
+    "stopDistance": "Distance du Stop",
+    "riskAmount": "Montant à Risque",
+    "calculatedSize": "Position Calculée",
+    "positionValue": "Valeur de la Position",
+    "shares": "Actions",
+    "applySize": "Appliquer la Taille",
+    "autoCalculated": "Calculé automatiquement à partir de l'Entrée et du Stop-Loss",
+    "enterStopLoss": "Entrez un Stop-Loss pour calculer la taille de la position"
+  },
+  "mfeMAE": {
+    "title": "Analyse MFE/MAE",
+    "mfePrice": "Prix le Plus Haut (MFE)",
+    "maePrice": "Prix le Plus Bas (MAE)",
+    "avgMFE": "MFE Moyen",
+    "avgMAE": "MAE Moyen",
+    "missedProfit": "Moyenne Manquée",
+    "optimalStop": "Stop Optimal",
+    "optimalStopHint": "80% de vos trades gagnants avaient un MAE en dessous de cette valeur",
+    "scatterTitle": "Graphique de Dispersion MFE vs MAE",
+    "scatterDesc": "Chaque point est un trade. Vert = Profit, Rouge = Perte.",
+    "maeDistribution": "Distribution MAE",
+    "maeDistributionDesc": "Jusqu'où vos trades vont-ils contre vous avant de tourner ?",
+    "missedProfitTitle": "Plus Grand Profit Manqué",
+    "missedProfitDesc": "Trades où vous êtes sorti trop tôt",
+    "couldHaveGained": "manqué",
+    "noData": "Aucun trade avec données MFE/MAE disponible.",
+    "noDataHint": "Ajoutez les prix MFE et MAE à vos trades pour utiliser cette analyse.",
+    "insight1Title": "Optimisation du Stop-Loss",
+    "insight1": "80% de vos trades gagnants avaient un drawdown maximum (MAE) de moins de {{value}}%. Ajustez votre stop-loss en conséquence.",
+    "insight2Title": "Take-Profit",
+    "insight2": "En moyenne, vos trades montent de {{value}}% (MFE) avant que vous sortiez. Vous laissez {{missed}}% sur la table."
+  },
+  "glossary": {
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "Le profit non réalisé le plus élevé qu'un trade atteint avant sa clôture. Montre le meilleur niveau de prix pendant le trade.",
+      "formula": "MFE = Meilleur Prix pendant le Trade - Prix d'Entrée (pour Long)",
+      "example": "Vous entrez long à 100€. Le prix monte à 112€ avant de redescendre à 108€ où vous sortez. MFE = 12€ (ou 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "La perte non réalisée maximale qu'un trade atteint avant sa clôture. Montre le pire niveau de prix pendant le trade.",
+      "formula": "MAE = Prix d'Entrée - Pire Prix pendant le Trade (pour Long)",
+      "example": "Vous entrez long à 100€. Le prix chute à 95€ avant de monter à 108€. MAE = 5€ (ou 5%)."
+    },
+    "positionSizing": {
+      "term": "Dimensionnement de Position",
+      "definition": "Déterminer combien d'actions/contrats trader basé sur la taille du compte, la tolérance au risque et la distance du stop-loss.",
+      "formula": "Taille de Position = (Taille du Compte × Risque %) / Distance du Stop",
+      "example": "Avec un compte de 10 000€, 1% de risque (100€), et une distance de stop de 2€: 100/2 = 50 actions."
+    }
   }
 }
