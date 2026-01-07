@@ -12,6 +12,7 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { Logo3DViewer } from "@/components/Logo3DViewer";
+import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
@@ -238,6 +239,9 @@ const Index = () => {
             avgTrade={kpis.avgTrade}
             expectancy={kpis.expectancyNum}
           />
+
+          {/* Achievements Widget */}
+          <AchievementsWidget />
 
           {/* Radial Progress KPIs - Featured Metrics */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
