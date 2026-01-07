@@ -85,8 +85,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     exitPrice: "",
     stopLossPrice: "",
     initialRisk: "",
-    mfePrice: "",
-    maePrice: "",
     entryTime: "",
     exitTime: "",
     fees: "2.00",
@@ -175,8 +173,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         exitPrice: "",  // Keep empty for user to fill
         stopLossPrice: data.stop_loss_price?.toString() || "",
         initialRisk: data.initial_risk?.toString() || "",
-        mfePrice: "",
-        maePrice: "",
         entryTime: new Date().toISOString().substring(0, 16),
         exitTime: new Date().toISOString().substring(0, 16),
         fees: data.fees.toString(),
@@ -206,8 +202,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           exitPrice: editTrade.exit_price.toString(),
           stopLossPrice: editTrade.stop_loss_price?.toString() || "",
           initialRisk: editTrade.initial_risk?.toString() || "",
-          mfePrice: editTrade.mfe_price?.toString() || "",
-          maePrice: editTrade.mae_price?.toString() || "",
           entryTime: editTrade.entry_time.substring(0, 16),
           exitTime: editTrade.exit_time.substring(0, 16),
           fees: editTrade.fees.toString(),
@@ -509,8 +503,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
 
       const stopLossPrice = formData.stopLossPrice ? parseFloat(formData.stopLossPrice) : null;
       const initialRisk = formData.initialRisk ? parseFloat(formData.initialRisk) : null;
-      const mfePrice = formData.mfePrice ? parseFloat(formData.mfePrice) : null;
-      const maePrice = formData.maePrice ? parseFloat(formData.maePrice) : null;
       
       // Calculate R-Multiple if initial_risk is provided
       let rMultiple = null;
@@ -531,8 +523,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         pnl_net: pnlNet,
         stop_loss_price: stopLossPrice,
         initial_risk: initialRisk,
-        mfe_price: mfePrice,
-        mae_price: maePrice,
         r: rMultiple,
         rating: rating > 0 ? rating : null,
         screenshot_url: screenshotUrl,
@@ -577,8 +567,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         exitPrice: "",
         stopLossPrice: "",
         initialRisk: "",
-        mfePrice: "",
-        maePrice: "",
         entryTime: "",
         exitTime: "",
         fees: "2.00",
@@ -1111,38 +1099,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                 onChange={(e) => setFormData({ ...formData, stopLossPrice: e.target.value })}
                 placeholder="Optional"
               />
-            </div>
-          </div>
-
-          {/* MFE/MAE Fields */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="mfePrice">{t("trades.mfePrice")} ($)</Label>
-              <Input
-                id="mfePrice"
-                type="number"
-                step="0.01"
-                value={formData.mfePrice}
-                onChange={(e) => setFormData({ ...formData, mfePrice: e.target.value })}
-                placeholder="Optional"
-              />
-              <p className="text-xs text-muted-foreground">
-                {t("trades.mfePriceHint")}
-              </p>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="maePrice">{t("trades.maePrice")} ($)</Label>
-              <Input
-                id="maePrice"
-                type="number"
-                step="0.01"
-                value={formData.maePrice}
-                onChange={(e) => setFormData({ ...formData, maePrice: e.target.value })}
-                placeholder="Optional"
-              />
-              <p className="text-xs text-muted-foreground">
-                {t("trades.maePriceHint")}
-              </p>
             </div>
           </div>
 
