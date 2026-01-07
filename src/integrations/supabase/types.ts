@@ -338,6 +338,7 @@ export type Database = {
       trades: {
         Row: {
           account_name: string | null
+          account_size_at_trade: number | null
           account_type: string | null
           created_at: string | null
           entry_price: number
@@ -347,7 +348,9 @@ export type Database = {
           fees: number | null
           id: string
           initial_risk: number | null
+          mae_price: number | null
           market: string | null
+          mfe_price: number | null
           news_context: Json | null
           note: string | null
           pnl_net: number
@@ -366,6 +369,7 @@ export type Database = {
         }
         Insert: {
           account_name?: string | null
+          account_size_at_trade?: number | null
           account_type?: string | null
           created_at?: string | null
           entry_price: number
@@ -375,7 +379,9 @@ export type Database = {
           fees?: number | null
           id?: string
           initial_risk?: number | null
+          mae_price?: number | null
           market?: string | null
+          mfe_price?: number | null
           news_context?: Json | null
           note?: string | null
           pnl_net: number
@@ -394,6 +400,7 @@ export type Database = {
         }
         Update: {
           account_name?: string | null
+          account_size_at_trade?: number | null
           account_type?: string | null
           created_at?: string | null
           entry_price?: number
@@ -403,7 +410,9 @@ export type Database = {
           fees?: number | null
           id?: string
           initial_risk?: number | null
+          mae_price?: number | null
           market?: string | null
+          mfe_price?: number | null
           news_context?: Json | null
           note?: string | null
           pnl_net?: number
@@ -418,6 +427,33 @@ export type Database = {
           symbol?: string
           tags?: string[] | null
           updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_achievements: {
+        Row: {
+          achieved_at: string | null
+          achievement_type: string
+          id: string
+          metadata: Json | null
+          notified: boolean | null
+          user_id: string
+        }
+        Insert: {
+          achieved_at?: string | null
+          achievement_type: string
+          id?: string
+          metadata?: Json | null
+          notified?: boolean | null
+          user_id: string
+        }
+        Update: {
+          achieved_at?: string | null
+          achievement_type?: string
+          id?: string
+          metadata?: Json | null
+          notified?: boolean | null
           user_id?: string
         }
         Relationships: []
