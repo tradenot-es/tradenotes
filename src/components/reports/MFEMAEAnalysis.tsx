@@ -213,15 +213,17 @@ export function MFEMAEAnalysis({ trades }: MFEMAEAnalysisProps) {
               {t('mfeMAE.requiresData', 'Diese Analyse benötigt High/Low-Preisdaten während des Trades, die nur deine Trading-Plattform automatisch tracken kann.')}
             </p>
             
-            <div className="p-4 rounded-lg bg-muted/50 border">
-              <p className="font-medium text-sm mb-2">{t('mfeMAE.ninjaTraderTitle', 'NinjaTrader Benutzer')}</p>
+            <div className="p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                <p className="font-medium text-sm text-emerald-600 dark:text-emerald-400">{t('mfeMAE.ninjaTraderTitle', 'NinjaTrader Benutzer')}</p>
+              </div>
               <p className="text-xs text-muted-foreground mb-3">
-                {t('mfeMAE.ninjaTraderHint', 'Erweitere dein TradeNotesSync Script um highDuringTrade und lowDuringTrade Felder zu senden. Diese werden automatisch zu MFE/MAE konvertiert.')}
+                {t('mfeMAE.ninjaTraderAutomatic', 'Das aktuelle TradeNotesSync Script erfasst MFE/MAE automatisch! Lade die neueste Version herunter und installiere sie in NinjaTrader.')}
               </p>
               <div className="p-2 rounded bg-background font-mono text-xs overflow-x-auto">
-                <code className="text-muted-foreground">
-                  {'"highDuringTrade": 112.50,'}<br/>
-                  {'"lowDuringTrade": 98.75'}
+                <code className="text-emerald-600 dark:text-emerald-400">
+                  {t('mfeMAE.automaticTracking', '✓ Automatisches High/Low Tracking während offener Positionen')}
                 </code>
               </div>
             </div>
