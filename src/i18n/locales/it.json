@@ -1657,25 +1657,5 @@
     "insight1": "L'80% delle tue operazioni vincenti aveva un drawdown massimo (MAE) inferiore al {{value}}%. Imposta il tuo stop-loss di conseguenza.",
     "insight2Title": "Take-Profit",
     "insight2": "In media, le tue operazioni salgono del {{value}}% (MFE) prima che tu esca. Stai lasciando il {{missed}}% sul tavolo."
-  },
-  "glossary": {
-    "mfe": {
-      "term": "MFE (Maximum Favorable Excursion)",
-      "definition": "Il profitto non realizzato più alto che un'operazione raggiunge prima della chiusura. Mostra il miglior livello di prezzo durante l'operazione.",
-      "formula": "MFE = Miglior Prezzo durante l'Operazione - Prezzo di Entrata (per Long)",
-      "example": "Entri long a €100. Il prezzo sale a €112 prima di scendere a €108 dove esci. MFE = €12 (o 12%)."
-    },
-    "mae": {
-      "term": "MAE (Maximum Adverse Excursion)",
-      "definition": "La perdita non realizzata massima che un'operazione raggiunge prima della chiusura. Mostra il peggior livello di prezzo durante l'operazione.",
-      "formula": "MAE = Prezzo di Entrata - Peggior Prezzo durante l'Operazione (per Long)",
-      "example": "Entri long a €100. Il prezzo scende a €95 prima di salire a €108. MAE = €5 (o 5%)."
-    },
-    "positionSizing": {
-      "term": "Dimensionamento della Posizione",
-      "definition": "Determinare quante azioni/contratti tradare basandosi sulla dimensione dell'account, tolleranza al rischio e distanza dello stop-loss.",
-      "formula": "Dimensione Posizione = (Dimensione Account × Rischio %) / Distanza Stop",
-      "example": "Con un account di €10.000, 1% di rischio (€100), e distanza stop di €2: 100/2 = 50 azioni."
-    }
   }
 }
