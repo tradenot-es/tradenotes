@@ -1387,5 +1387,93 @@
       "friday": "Vrijdag",
       "saturday": "Zaterdag"
     }
+  },
+  "achievements": {
+    "title": "Prestaties",
+    "subtitle": "Jouw Trading Mijlpalen",
+    "newAchievement": "Nieuwe prestatie ontgrendeld!",
+    "progress": "Voortgang",
+    "check": "Controleren",
+    "noAchievements": "Begin met traden om prestaties te ontgrendelen!",
+    "first_trade": "Eerste Trade",
+    "first_trade_desc": "Je hebt je eerste trade gelogd",
+    "streak_3_wins": "Winnende Reeks",
+    "streak_3_wins_desc": "3 winnende trades op rij",
+    "streak_5_wins": "In Vuur en Vlam",
+    "streak_5_wins_desc": "5 winnende trades op rij",
+    "streak_10_wins": "Onstuitbaar",
+    "streak_10_wins_desc": "10 winnende trades op rij",
+    "consistency_7_days": "Consistentie Koning",
+    "consistency_7_days_desc": "7 dagen achter elkaar gehandeld",
+    "consistency_30_days": "IJzeren Discipline",
+    "consistency_30_days_desc": "30 dagen achter elkaar gehandeld",
+    "profitable_week": "Winstgevende Week",
+    "profitable_week_desc": "Eerste week met positieve P&L",
+    "journal_hero": "Dagboek Held",
+    "journal_hero_desc": "7 dagboek entries gemaakt",
+    "risk_manager": "Risicobeheerder",
+    "risk_manager_desc": "10 trades met stop-loss",
+    "r_master": "R-Meester",
+    "r_master_desc": "Gem. R-Multiple > 1.5 met 20+ trades",
+    "century_club": "100 Club",
+    "century_club_desc": "100 trades bereikt",
+    "thousand_club": "1000 Club",
+    "thousand_club_desc": "1000 trades bereikt"
+  },
+  "positionCalculator": {
+    "title": "Positiegrootte Calculator",
+    "accountSize": "Accountgrootte",
+    "riskPercent": "Risico per Trade",
+    "stopDistance": "Stop Afstand",
+    "riskAmount": "Risicobedrag",
+    "calculatedSize": "Berekende Positie",
+    "positionValue": "Positiewaarde",
+    "shares": "Aandelen",
+    "applySize": "Grootte Toepassen",
+    "autoCalculated": "Automatisch berekend uit Entry en Stop-Loss",
+    "enterStopLoss": "Voer een Stop-Loss in om de positiegrootte te berekenen"
+  },
+  "mfeMAE": {
+    "title": "MFE/MAE Analyse",
+    "mfePrice": "Hoogste Prijs (MFE)",
+    "maePrice": "Laagste Prijs (MAE)",
+    "avgMFE": "Gem. MFE",
+    "avgMAE": "Gem. MAE",
+    "missedProfit": "Gem. Gemist",
+    "optimalStop": "Optimale Stop",
+    "optimalStopHint": "80% van je winnende trades had een MAE onder deze waarde",
+    "scatterTitle": "MFE vs MAE Scatter Plot",
+    "scatterDesc": "Elk punt is een trade. Groen = Winst, Rood = Verlies.",
+    "maeDistribution": "MAE Verdeling",
+    "maeDistributionDesc": "Hoe ver lopen je trades tegen je voordat ze keren?",
+    "missedProfitTitle": "Hoogste Gemiste Winst",
+    "missedProfitDesc": "Trades waarbij je te vroeg bent uitgestapt",
+    "couldHaveGained": "gemist",
+    "noData": "Geen trades met MFE/MAE-gegevens beschikbaar.",
+    "noDataHint": "Voeg MFE en MAE prijzen toe aan je trades om deze analyse te gebruiken.",
+    "insight1Title": "Stop-Loss Optimalisatie",
+    "insight1": "80% van je winnende trades had een maximale drawdown (MAE) van minder dan {{value}}%. Pas je stop-loss dienovereenkomstig aan.",
+    "insight2Title": "Take-Profit",
+    "insight2": "Gemiddeld lopen je trades {{value}}% in de plus (MFE) voordat je uitstapt. Je laat {{missed}}% op tafel liggen."
+  },
+  "glossary": {
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "De hoogste ongerealiseerde winst die een trade bereikt voor sluiting. Toont het beste prijsniveau tijdens de trade.",
+      "formula": "MFE = Beste Prijs tijdens Trade - Instapprijs (voor Long)",
+      "example": "Je gaat long op €100. De prijs stijgt naar €112 voordat het terugzakt naar €108 waar je uitstapt. MFE = €12 (of 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "Het maximale ongerealiseerde verlies dat een trade bereikt voor sluiting. Toont het slechtste prijsniveau tijdens de trade.",
+      "formula": "MAE = Instapprijs - Slechtste Prijs tijdens Trade (voor Long)",
+      "example": "Je gaat long op €100. De prijs daalt naar €95 voordat het stijgt naar €108. MAE = €5 (of 5%)."
+    },
+    "positionSizing": {
+      "term": "Positiegrootte Bepalen",
+      "definition": "Bepalen hoeveel aandelen/contracten te handelen op basis van accountgrootte, risicotolerantie en stop-loss afstand.",
+      "formula": "Positiegrootte = (Accountgrootte × Risico %) / Stop Afstand",
+      "example": "Met een €10.000 account, 1% risico (€100), en €2 stop afstand: 100/2 = 50 aandelen."
+    }
   }
 }

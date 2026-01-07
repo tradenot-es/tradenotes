@@ -112,6 +112,20 @@ export default function Glossary() {
       example: t("glossary.maxDrawdown.example")
     },
     {
+      id: "mfe",
+      term: t("glossary.mfe.term"),
+      definition: t("glossary.mfe.definition"),
+      formula: t("glossary.mfe.formula"),
+      example: t("glossary.mfe.example")
+    },
+    {
+      id: "mae",
+      term: t("glossary.mae.term"),
+      definition: t("glossary.mae.definition"),
+      formula: t("glossary.mae.formula"),
+      example: t("glossary.mae.example")
+    },
+    {
       id: "pnl",
       term: t("glossary.pnl.term"),
       definition: t("glossary.pnl.definition"),

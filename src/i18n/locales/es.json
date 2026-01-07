@@ -1387,5 +1387,93 @@
       "friday": "Viernes",
       "saturday": "Sábado"
     }
+  },
+  "achievements": {
+    "title": "Logros",
+    "subtitle": "Tus hitos de trading",
+    "newAchievement": "¡Nuevo logro desbloqueado!",
+    "progress": "Progreso",
+    "check": "Verificar",
+    "noAchievements": "¡Comienza a operar para desbloquear logros!",
+    "first_trade": "Primera Operación",
+    "first_trade_desc": "Has registrado tu primera operación",
+    "streak_3_wins": "Racha Caliente",
+    "streak_3_wins_desc": "3 operaciones ganadoras seguidas",
+    "streak_5_wins": "En Llamas",
+    "streak_5_wins_desc": "5 operaciones ganadoras seguidas",
+    "streak_10_wins": "Imparable",
+    "streak_10_wins_desc": "10 operaciones ganadoras seguidas",
+    "consistency_7_days": "Rey de la Consistencia",
+    "consistency_7_days_desc": "Operaste 7 días seguidos",
+    "consistency_30_days": "Disciplina de Hierro",
+    "consistency_30_days_desc": "Operaste 30 días seguidos",
+    "profitable_week": "Semana Rentable",
+    "profitable_week_desc": "Primera semana con P&L positivo",
+    "journal_hero": "Héroe del Diario",
+    "journal_hero_desc": "7 entradas de diario creadas",
+    "risk_manager": "Gestor de Riesgos",
+    "risk_manager_desc": "10 operaciones con stop-loss",
+    "r_master": "Maestro del R",
+    "r_master_desc": "R-Multiple promedio > 1.5 con 20+ operaciones",
+    "century_club": "Club de los 100",
+    "century_club_desc": "100 operaciones alcanzadas",
+    "thousand_club": "Club de los 1000",
+    "thousand_club_desc": "1000 operaciones alcanzadas"
+  },
+  "positionCalculator": {
+    "title": "Calculadora de Tamaño de Posición",
+    "accountSize": "Tamaño de Cuenta",
+    "riskPercent": "Riesgo por Operación",
+    "stopDistance": "Distancia del Stop",
+    "riskAmount": "Monto en Riesgo",
+    "calculatedSize": "Posición Calculada",
+    "positionValue": "Valor de la Posición",
+    "shares": "Acciones",
+    "applySize": "Aplicar Tamaño",
+    "autoCalculated": "Calculado automáticamente desde Entrada y Stop-Loss",
+    "enterStopLoss": "Ingresa un Stop-Loss para calcular el tamaño de la posición"
+  },
+  "mfeMAE": {
+    "title": "Análisis MFE/MAE",
+    "mfePrice": "Precio Más Alto (MFE)",
+    "maePrice": "Precio Más Bajo (MAE)",
+    "avgMFE": "MFE Promedio",
+    "avgMAE": "MAE Promedio",
+    "missedProfit": "Promedio Perdido",
+    "optimalStop": "Stop Óptimo",
+    "optimalStopHint": "El 80% de tus operaciones ganadoras tuvieron un MAE por debajo de este valor",
+    "scatterTitle": "Gráfico de Dispersión MFE vs MAE",
+    "scatterDesc": "Cada punto es una operación. Verde = Ganancia, Rojo = Pérdida.",
+    "maeDistribution": "Distribución MAE",
+    "maeDistributionDesc": "¿Cuánto van tus operaciones en tu contra antes de girar?",
+    "missedProfitTitle": "Mayor Ganancia Perdida",
+    "missedProfitDesc": "Operaciones donde saliste demasiado pronto",
+    "couldHaveGained": "perdido",
+    "noData": "No hay operaciones con datos MFE/MAE disponibles.",
+    "noDataHint": "Añade precios MFE y MAE a tus operaciones para usar este análisis.",
+    "insight1Title": "Optimización del Stop-Loss",
+    "insight1": "El 80% de tus operaciones ganadoras tuvieron un drawdown máximo (MAE) de menos del {{value}}%. Ajusta tu stop-loss en consecuencia.",
+    "insight2Title": "Take-Profit",
+    "insight2": "En promedio, tus operaciones suben {{value}}% (MFE) antes de que salgas. Estás dejando {{missed}}% sobre la mesa."
+  },
+  "glossary": {
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "La ganancia no realizada más alta que alcanza una operación antes del cierre. Muestra el mejor nivel de precio durante la operación.",
+      "formula": "MFE = Mejor Precio durante la Operación - Precio de Entrada (para Long)",
+      "example": "Entras en largo a $100. El precio sube a $112 antes de bajar a $108 donde sales. MFE = $12 (o 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "La pérdida no realizada máxima que alcanza una operación antes del cierre. Muestra el peor nivel de precio durante la operación.",
+      "formula": "MAE = Precio de Entrada - Peor Precio durante la Operación (para Long)",
+      "example": "Entras en largo a $100. El precio cae a $95 antes de subir a $108. MAE = $5 (o 5%)."
+    },
+    "positionSizing": {
+      "term": "Dimensionamiento de Posición",
+      "definition": "Determinar cuántas acciones/contratos operar basándose en el tamaño de la cuenta, tolerancia al riesgo y distancia del stop-loss.",
+      "formula": "Tamaño de Posición = (Tamaño de Cuenta × Riesgo %) / Distancia del Stop",
+      "example": "Con una cuenta de $10,000, 1% de riesgo ($100), y distancia de stop de $2: 100/2 = 50 acciones."
+    }
   }
 }

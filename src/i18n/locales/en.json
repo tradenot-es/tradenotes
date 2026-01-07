@@ -1569,6 +1569,74 @@
     "scoreNeedsMoreData": "{{current}} of {{required}} trades needed for score calculation.",
     "scoreNeedsMoreDataTooltip": "The Revenge Trading Score analyzes your behavior after losing trades. At least 10 trades are needed to identify statistical patterns."
   },
+  "achievements": {
+    "title": "Achievements",
+    "subtitle": "Your Trading Milestones",
+    "newAchievement": "New Achievement Unlocked!",
+    "progress": "Progress",
+    "check": "Check",
+    "noAchievements": "Start trading to unlock achievements!",
+    "first_trade": "First Trade",
+    "first_trade_desc": "You logged your first trade",
+    "streak_3_wins": "Hot Streak",
+    "streak_3_wins_desc": "3 winning trades in a row",
+    "streak_5_wins": "On Fire",
+    "streak_5_wins_desc": "5 winning trades in a row",
+    "streak_10_wins": "Unstoppable",
+    "streak_10_wins_desc": "10 winning trades in a row",
+    "consistency_7_days": "Consistency King",
+    "consistency_7_days_desc": "Traded 7 days in a row",
+    "consistency_30_days": "Iron Discipline",
+    "consistency_30_days_desc": "Traded 30 days in a row",
+    "profitable_week": "Profitable Week",
+    "profitable_week_desc": "First week with positive P&L",
+    "journal_hero": "Journal Hero",
+    "journal_hero_desc": "Created 7 journal entries",
+    "risk_manager": "Risk Manager",
+    "risk_manager_desc": "10 trades with stop-loss",
+    "r_master": "R-Master",
+    "r_master_desc": "Avg R-Multiple > 1.5 with 20+ trades",
+    "century_club": "Century Club",
+    "century_club_desc": "Reached 100 trades",
+    "thousand_club": "Thousand Club",
+    "thousand_club_desc": "Reached 1000 trades"
+  },
+  "positionCalculator": {
+    "title": "Position Size Calculator",
+    "accountSize": "Account Size",
+    "riskPercent": "Risk per Trade",
+    "stopDistance": "Stop Distance",
+    "riskAmount": "Risk Amount",
+    "calculatedSize": "Calculated Position",
+    "positionValue": "Position Value",
+    "shares": "Shares",
+    "applySize": "Apply Size",
+    "autoCalculated": "Automatically calculated from Entry and Stop-Loss",
+    "enterStopLoss": "Enter a Stop-Loss to calculate position size"
+  },
+  "mfeMAE": {
+    "title": "MFE/MAE Analysis",
+    "mfePrice": "Highest Price (MFE)",
+    "maePrice": "Lowest Price (MAE)",
+    "avgMFE": "Avg MFE",
+    "avgMAE": "Avg MAE",
+    "missedProfit": "Avg Missed",
+    "optimalStop": "Optimal Stop",
+    "optimalStopHint": "80% of your winning trades had an MAE below this value",
+    "scatterTitle": "MFE vs MAE Scatter Plot",
+    "scatterDesc": "Each point is a trade. Green = Profit, Red = Loss.",
+    "maeDistribution": "MAE Distribution",
+    "maeDistributionDesc": "How far do your trades run against you before turning?",
+    "missedProfitTitle": "Highest Missed Profit",
+    "missedProfitDesc": "Trades where you exited too early",
+    "couldHaveGained": "missed",
+    "noData": "No trades with MFE/MAE data available.",
+    "noDataHint": "Add MFE and MAE prices to your trades to use this analysis.",
+    "insight1Title": "Stop-Loss Optimization",
+    "insight1": "80% of your winning trades had a maximum drawdown (MAE) of less than {{value}}%. Set your stop-loss accordingly.",
+    "insight2Title": "Take-Profit",
+    "insight2": "On average, your trades run {{value}}% into profit (MFE) before you exit. You're leaving {{missed}}% on the table."
+  },
   "common": {
     "loading": "Loading...",
     "days": {
@@ -1579,6 +1647,26 @@
       "thursday": "Thursday",
       "friday": "Friday",
       "saturday": "Saturday"
+    }
+  },
+  "glossary": {
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "The highest unrealized profit a trade reaches before closing. Shows the best price level during the trade.",
+      "formula": "MFE = Best Price during Trade - Entry Price (for Long)",
+      "example": "You enter a long at $100. The price rises to $112 before falling back to $108, where you exit. MFE = $12 (or 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "The maximum unrealized loss a trade reaches before closing. Shows the worst price level during the trade.",
+      "formula": "MAE = Entry Price - Worst Price during Trade (for Long)",
+      "example": "You enter a long at $100. The price drops to $95 before rising to $108. MAE = $5 (or 5%)."
+    },
+    "positionSizing": {
+      "term": "Position Sizing",
+      "definition": "Determining how many shares/contracts to trade based on account size, risk tolerance, and stop-loss distance.",
+      "formula": "Position Size = (Account Size × Risk %) / Stop Distance",
+      "example": "With $10,000 account, 1% risk ($100), and $2 stop distance: 100/2 = 50 shares."
     }
   }
 }
