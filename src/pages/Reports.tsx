@@ -8,9 +8,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend, LabelList } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
-import { Calendar, HelpCircle, TrendingDown } from "lucide-react";
+import { Calendar, HelpCircle, TrendingDown, Target } from "lucide-react";
 import { KPICardWithTooltip } from "@/components/KPICardWithTooltip";
-import { TrendingUp, DollarSign, Target, Activity } from "lucide-react";
+import { TrendingUp, DollarSign, Activity } from "lucide-react";
 import { StreakAnalysis } from "@/components/reports/StreakAnalysis";
 import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysis";
 import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
@@ -725,6 +725,19 @@ export default function Reports() {
 
         {/* Risk Analysis Tab */}
         <TabsContent value="risk" className="space-y-6">
+          {/* R-Multiple Section Header */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Target className="h-5 w-5 text-primary" />
+                {t("reports.rMultipleSection", "R-Multiple Analyse")}
+              </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                {t("reports.rMultipleSectionDesc", "Analysiere dein Risiko-Reward-Verhältnis basierend auf dem initialen Risiko deiner Trades. Erfasse Stop-Loss bei jedem Trade um R-Werte zu berechnen.")}
+              </p>
+            </CardHeader>
+          </Card>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
               <CardHeader>
