@@ -8,7 +8,7 @@ import { Tooltip as UITooltip, TooltipContent, TooltipTrigger, TooltipProvider }
 interface Trade {
   id: string;
   symbol: string;
-  side: 'long' | 'short';
+  side: string;
   entry_price: number;
   exit_price: number;
   mfe_price?: number | null;

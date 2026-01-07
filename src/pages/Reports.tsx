@@ -25,6 +25,7 @@ import { startOfDay, endOfDay } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 import { PnLChart } from "@/components/PnLChart";
+import { MFEMAEAnalysis } from "@/components/reports/MFEMAEAnalysis";
 
 interface Trade {
   id: string;
@@ -388,6 +389,15 @@ export default function Reports() {
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("reports.riskAnalysisTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="mfemae">{t("reports.mfemae")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.mfemaeTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
         </TabsList>
@@ -788,6 +798,11 @@ export default function Reports() {
               </CardContent>
             </Card>
           </div>
+        </TabsContent>
+
+        {/* MFE/MAE Analysis Tab */}
+        <TabsContent value="mfemae" className="space-y-6">
+          <MFEMAEAnalysis trades={filteredTrades} />
         </TabsContent>
       </Tabs>
     </div>
