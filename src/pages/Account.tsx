@@ -4,7 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle } from "lucide-react";
+import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle, Trophy } from "lucide-react";
+import { AchievementsOverview } from "@/components/AchievementsOverview";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -317,6 +318,9 @@ const Account = () => {
         </div>
 
         <div className="grid gap-6">
+          {/* Achievements Section */}
+          <AchievementsOverview />
+
           {/* Account Section */}
           <Card>
             <CardHeader>
