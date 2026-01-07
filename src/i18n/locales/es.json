@@ -951,6 +951,18 @@
     "trend": { "term": "Tendencia", "definition": "Dirección general del movimiento de precios en el tiempo.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = tendencia alcista (mínimos crecientes)" },
     "volatility": { "term": "Volatilidad", "definition": "Magnitud de las fluctuaciones de precio. Alta = grandes movimientos.", "example": "Acción A: $50 ±$0.50/día (1%), Acción B: $50 ±$2.50/día (5%) = 5x más volátil" },
     "volume": { "term": "Volumen", "definition": "Número de acciones/contratos negociados en un período. Alto volumen confirma movimientos.", "example": "Breakout sobre $50 con 10x volumen normal = señal fuerte. Con volumen bajo = probable falso" },
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "El mayor beneficio no realizado que alcanza una operación antes de cerrar. Muestra el mejor nivel de precio durante la operación.",
+      "formula": "MFE = Mejor Precio durante la Operación - Precio de Entrada (para Long)",
+      "example": "Entrada long a $100. El precio sube a $112 antes de caer a $108, donde sales. MFE = $12 (o 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "La pérdida no realizada máxima que alcanza una operación antes de cerrar. Muestra el peor nivel de precio durante la operación.",
+      "formula": "MAE = Precio de Entrada - Peor Precio durante la Operación (para Long)",
+      "example": "Entrada long a $100. El precio cae a $95 antes de subir a $108. MAE = $5 (o 5%)."
+    },
     "subtitle": "Términos esenciales de trading y gestión de riesgo",
     "formula": "Fórmula",
     "example": "Ejemplo"
@@ -1475,25 +1487,5 @@
     "insight1": "El 80% de tus operaciones ganadoras tuvieron un drawdown máximo (MAE) de menos del {{value}}%. Ajusta tu stop-loss en consecuencia.",
     "insight2Title": "Take-Profit",
     "insight2": "En promedio, tus operaciones suben {{value}}% (MFE) antes de que salgas. Estás dejando {{missed}}% sobre la mesa."
-  },
-  "glossary": {
-    "mfe": {
-      "term": "MFE (Maximum Favorable Excursion)",
-      "definition": "La ganancia no realizada más alta que alcanza una operación antes del cierre. Muestra el mejor nivel de precio durante la operación.",
-      "formula": "MFE = Mejor Precio durante la Operación - Precio de Entrada (para Long)",
-      "example": "Entras en largo a $100. El precio sube a $112 antes de bajar a $108 donde sales. MFE = $12 (o 12%)."
-    },
-    "mae": {
-      "term": "MAE (Maximum Adverse Excursion)",
-      "definition": "La pérdida no realizada máxima que alcanza una operación antes del cierre. Muestra el peor nivel de precio durante la operación.",
-      "formula": "MAE = Precio de Entrada - Peor Precio durante la Operación (para Long)",
-      "example": "Entras en largo a $100. El precio cae a $95 antes de subir a $108. MAE = $5 (o 5%)."
-    },
-    "positionSizing": {
-      "term": "Dimensionamiento de Posición",
-      "definition": "Determinar cuántas acciones/contratos operar basándose en el tamaño de la cuenta, tolerancia al riesgo y distancia del stop-loss.",
-      "formula": "Tamaño de Posición = (Tamaño de Cuenta × Riesgo %) / Distancia del Stop",
-      "example": "Con una cuenta de $10,000, 1% de riesgo ($100), y distancia de stop de $2: 100/2 = 50 acciones."
-    }
   }
 }

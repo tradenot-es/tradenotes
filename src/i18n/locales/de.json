@@ -985,6 +985,18 @@
       "definition": "News-Sentiment analysiert die Stimmung von Nachrichtenartikeln über ein bestimmtes Symbol. Die Analyse berechnet einen Durchschnittswert aller Nachrichten in den 24 Stunden vor deinem Trade-Einstieg. Der Wert reicht von -1 (sehr bearish/negativ) über 0 (neutral) bis +1 (sehr bullish/positiv). Ein Wert von 0.00 bedeutet entweder neutrale Stimmung oder keine Nachrichtenartikel im Zeitfenster gefunden.",
       "example": "Entry bei NQ Long um 14:30 Uhr. System analysiert alle Nachrichten von 14:30 Uhr des Vortags bis 14:30 Uhr heute. Ergebnis: 0.35 (bullish) - passt zu Long-Position. Wäre es -0.35 gewesen, erscheint eine 'Contra-News Trade'-Warnung, da du gegen die Marktstimmung handelst."
     },
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "Die maximale positive Kursbewegung während eines Trades, bevor die Position geschlossen wird. Zeigt den besten erreichbaren Preis während des Trades.",
+      "formula": "MFE = Höchstpreis während des Trades - Einstiegspreis (für Long)",
+      "example": "Long-Einstieg bei 100€. Der Kurs steigt auf 112€, bevor er auf 108€ fällt, wo du aussteigst. MFE = 12€ (oder 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "Der maximale unrealisierte Verlust während eines Trades, bevor die Position geschlossen wird. Zeigt den schlechtesten Preis während des Trades.",
+      "formula": "MAE = Einstiegspreis - Tiefstpreis während des Trades (für Long)",
+      "example": "Long-Einstieg bei 100€. Der Kurs fällt auf 95€, bevor er auf 108€ steigt. MAE = 5€ (oder 5%)."
+    },
     "subtitle": "Wichtige Trading-Begriffe und Risikomanagement-Konzepte",
     "formula": "Formel",
     "example": "Beispiel"

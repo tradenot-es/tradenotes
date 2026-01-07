@@ -1087,6 +1087,18 @@
       "definition": "Il volume misura il numero di azioni/contratti scambiati in un periodo. Alto volume conferma movimenti di prezzo (convinzione), basso volume = movimenti deboli/questionabili.",
       "example": "Breakout sopra $50: Con volume 10x normale = segnale forte. Con volume sotto media = probabile falso breakout"
     },
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "Il massimo profitto non realizzato che un'operazione raggiunge prima della chiusura. Mostra il miglior livello di prezzo durante l'operazione.",
+      "formula": "MFE = Miglior Prezzo durante l'Operazione - Prezzo di Entrata (per Long)",
+      "example": "Entrata long a $100. Il prezzo sale a $112 prima di scendere a $108, dove esci. MFE = $12 (o 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "La massima perdita non realizzata che un'operazione raggiunge prima della chiusura. Mostra il peggior livello di prezzo durante l'operazione.",
+      "formula": "MAE = Prezzo di Entrata - Peggior Prezzo durante l'Operazione (per Long)",
+      "example": "Entrata long a $100. Il prezzo scende a $95 prima di salire a $108. MAE = $5 (o 5%)."
+    },
     "subtitle": "Termini essenziali di trading e concetti di gestione del rischio",
     "formula": "Formula",
     "example": "Esempio"
