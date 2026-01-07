@@ -951,6 +951,18 @@
     "trend": { "term": "Trend", "definition": "Algemene richting van prijsbeweging over tijd.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = uptrend (stijgende dieptepunten)" },
     "volatility": { "term": "Volatiliteit", "definition": "Grootte van prijsschommelingen. Hoge = grote bewegingen.", "example": "Aandeel A: $50 ±$0.50/dag (1%), Aandeel B: $50 ±$2.50/dag (5%) = 5x volatieler" },
     "volume": { "term": "Handelsvolume", "definition": "Aantal verhandelde aandelen/contracten in periode. Hoog volume bevestigt bewegingen.", "example": "Breakout boven $50 met 10x normaal volume = sterk signaal. Met laag volume = waarschijnlijk vals" },
+    "mfe": {
+      "term": "MFE (Maximum Favorable Excursion)",
+      "definition": "De hoogste niet-gerealiseerde winst die een trade bereikt voordat deze wordt gesloten. Toont het beste prijsniveau tijdens de trade.",
+      "formula": "MFE = Beste Prijs tijdens Trade - Entry Prijs (voor Long)",
+      "example": "Long entry op €100. De prijs stijgt naar €112 voordat deze terugvalt naar €108, waar je uitstapt. MFE = €12 (of 12%)."
+    },
+    "mae": {
+      "term": "MAE (Maximum Adverse Excursion)",
+      "definition": "Het maximale niet-gerealiseerde verlies dat een trade bereikt voordat deze wordt gesloten. Toont het slechtste prijsniveau tijdens de trade.",
+      "formula": "MAE = Entry Prijs - Slechtste Prijs tijdens Trade (voor Long)",
+      "example": "Long entry op €100. De prijs daalt naar €95 voordat deze stijgt naar €108. MAE = €5 (of 5%)."
+    },
     "subtitle": "Essentiële trading termen en risicobeheer concepten",
     "formula": "Formule",
     "example": "Voorbeeld"
@@ -1475,25 +1487,5 @@
     "insight1": "80% van je winnende trades had een maximale drawdown (MAE) van minder dan {{value}}%. Pas je stop-loss dienovereenkomstig aan.",
     "insight2Title": "Take-Profit",
     "insight2": "Gemiddeld lopen je trades {{value}}% in de plus (MFE) voordat je uitstapt. Je laat {{missed}}% op tafel liggen."
-  },
-  "glossary": {
-    "mfe": {
-      "term": "MFE (Maximum Favorable Excursion)",
-      "definition": "De hoogste ongerealiseerde winst die een trade bereikt voor sluiting. Toont het beste prijsniveau tijdens de trade.",
-      "formula": "MFE = Beste Prijs tijdens Trade - Instapprijs (voor Long)",
-      "example": "Je gaat long op €100. De prijs stijgt naar €112 voordat het terugzakt naar €108 waar je uitstapt. MFE = €12 (of 12%)."
-    },
-    "mae": {
-      "term": "MAE (Maximum Adverse Excursion)",
-      "definition": "Het maximale ongerealiseerde verlies dat een trade bereikt voor sluiting. Toont het slechtste prijsniveau tijdens de trade.",
-      "formula": "MAE = Instapprijs - Slechtste Prijs tijdens Trade (voor Long)",
-      "example": "Je gaat long op €100. De prijs daalt naar €95 voordat het stijgt naar €108. MAE = €5 (of 5%)."
-    },
-    "positionSizing": {
-      "term": "Positiegrootte Bepalen",
-      "definition": "Bepalen hoeveel aandelen/contracten te handelen op basis van accountgrootte, risicotolerantie en stop-loss afstand.",
-      "formula": "Positiegrootte = (Accountgrootte × Risico %) / Stop Afstand",
-      "example": "Met een €10.000 account, 1% risico (€100), en €2 stop afstand: 100/2 = 50 aandelen."
-    }
   }
 }
