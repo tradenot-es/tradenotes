@@ -48,14 +48,26 @@ namespace NinjaTrader.NinjaScript.Strategies
 	{
 		private static readonly HttpClient httpClient = new HttpClient();
 		private object lockObject = new object();
+		
+		// MFE/MAE Tracking: Track high/low prices during open positions
+		private Dictionary<string, PositionTracker> positionTrackers = new Dictionary<string, PositionTracker>();
+		
+		private class PositionTracker
+		{
+			public double EntryPrice { get; set; }
+			public double HighPrice { get; set; }
+			public double LowPrice { get; set; }
+			public DateTime EntryTime { get; set; }
+			public string Side { get; set; } // "Long" or "Short"
+		}
 
 		protected override void OnStateChange()
 		{
 			if (State == State.SetDefaults)
 			{
-				Description = @"Automatically syncs ALL account trades to TradeNot.es. Install by adding System.Net.Http.dll reference.";
+				Description = @"Automatically syncs ALL account trades to TradeNot.es with MFE/MAE tracking. Install by adding System.Net.Http.dll reference.";
 				Name = "TradeNotesSync";
-				Calculate = Calculate.OnBarClose;
+				Calculate = Calculate.OnEachTick; // Changed to OnEachTick for MFE/MAE tracking
 				EntriesPerDirection = 1;
 				EntryHandling = EntryHandling.AllEntries;
 				IsExitOnSessionCloseStrategy = true;
@@ -85,7 +97,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 				if (Account != null && Account.Executions != null)
 				{
 					Account.ExecutionUpdate += OnAccountExecutionUpdate;
-					Print("TradeNot.es Sync: Subscribed to account executions");
+					Print("TradeNot.es Sync: Subscribed to account executions (with MFE/MAE tracking)");
 				}
 			}
 			else if (State == State.Terminated)
@@ -95,13 +107,51 @@ namespace NinjaTrader.NinjaScript.Strategies
 				{
 					Account.ExecutionUpdate -= OnAccountExecutionUpdate;
 				}
+				positionTrackers.Clear();
 			}
 		}
 
 		protected override void OnBarUpdate()
 		{
-			// This strategy does not trade, it only listens to executions
-			// OnBarUpdate must be implemented but can be empty
+			// MFE/MAE Tracking: Update high/low prices for all open positions
+			if (State != State.Realtime)
+				return;
+			
+			lock (lockObject)
+			{
+				foreach (var kvp in positionTrackers)
+				{
+					var tracker = kvp.Value;
+					double currentPrice = Close[0];
+					
+					if (currentPrice > tracker.HighPrice)
+						tracker.HighPrice = currentPrice;
+					if (currentPrice < tracker.LowPrice)
+						tracker.LowPrice = currentPrice;
+				}
+			}
+		}
+		
+		protected override void OnMarketData(MarketDataEventArgs marketDataUpdate)
+		{
+			// More granular MFE/MAE tracking on every tick
+			if (marketDataUpdate.MarketDataType != MarketDataType.Last)
+				return;
+			
+			double currentPrice = marketDataUpdate.Price;
+			
+			lock (lockObject)
+			{
+				foreach (var kvp in positionTrackers)
+				{
+					var tracker = kvp.Value;
+					
+					if (currentPrice > tracker.HighPrice)
+						tracker.HighPrice = currentPrice;
+					if (currentPrice < tracker.LowPrice)
+						tracker.LowPrice = currentPrice;
+				}
+			}
 		}
 
 		private void OnAccountExecutionUpdate(object sender, ExecutionEventArgs e)
@@ -122,6 +172,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 					// Access the account's positions collection to get the real position
 					var instrument = e.Execution.Order.Instrument;
 					var account = e.Execution.Order.Account;
+					string positionKey = account.Name + "_" + instrument.FullName;
 					
 					// Get the actual position from the account
 					// This reflects the position AFTER the execution has been processed
@@ -137,10 +188,60 @@ namespace NinjaTrader.NinjaScript.Strategies
 						}
 					}
 					
+					// MFE/MAE Tracking Logic
+					double highDuringTrade = 0;
+					double lowDuringTrade = 0;
+					
+					if (actualPosition == MarketPosition.Flat)
+					{
+						// Position closed - get MFE/MAE data and clean up tracker
+						lock (lockObject)
+						{
+							if (positionTrackers.ContainsKey(positionKey))
+							{
+								var tracker = positionTrackers[positionKey];
+								highDuringTrade = tracker.HighPrice;
+								lowDuringTrade = tracker.LowPrice;
+								positionTrackers.Remove(positionKey);
+								Print(string.Format("TradeNot.es MFE/MAE: High={0}, Low={1}", highDuringTrade, lowDuringTrade));
+							}
+						}
+					}
+					else
+					{
+						// Position opened or added to - start or update tracking
+						lock (lockObject)
+						{
+							if (!positionTrackers.ContainsKey(positionKey))
+							{
+								positionTrackers[positionKey] = new PositionTracker
+								{
+									EntryPrice = e.Execution.Price,
+									HighPrice = e.Execution.Price,
+									LowPrice = e.Execution.Price,
+									EntryTime = e.Execution.Time,
+									Side = actualPosition.ToString()
+								};
+								Print(string.Format("TradeNot.es: Started MFE/MAE tracking for {0}", positionKey));
+							}
+						}
+					}
+					
 					Print(string.Format("TradeNot.es: Execution {0} {1}, Actual Position: {2}", 
 						e.Execution.Order.OrderAction, 
 						instrument.FullName, 
 						actualPosition));
+					
+					// Send webhook asynchronously with MFE/MAE data
+					Task.Run(() => SendWebhookAsync(
+						e.Execution, 
+						e.Execution.Price, 
+						e.Execution.Quantity, 
+						e.Execution.Time,
+						actualPosition,
+						highDuringTrade,
+						lowDuringTrade
+					));
 				}
 				catch (Exception ex)
 				{
@@ -150,16 +251,17 @@ namespace NinjaTrader.NinjaScript.Strategies
 						actualPosition = MarketPosition.Long;
 					else if (e.Execution.Order.OrderAction == OrderAction.Sell || e.Execution.Order.OrderAction == OrderAction.SellShort)
 						actualPosition = MarketPosition.Short;
+					
+					Task.Run(() => SendWebhookAsync(
+						e.Execution, 
+						e.Execution.Price, 
+						e.Execution.Quantity, 
+						e.Execution.Time,
+						actualPosition,
+						0,
+						0
+					));
 				}
-				
-				// Send webhook asynchronously to avoid blocking UI
-				Task.Run(() => SendWebhookAsync(
-					e.Execution, 
-					e.Execution.Price, 
-					e.Execution.Quantity, 
-					e.Execution.Time,
-					actualPosition
-				));
 			}
 		}
 
@@ -252,7 +354,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 		return "live";
 	}
 
-	private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition)
+	private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition, double highDuringTrade, double lowDuringTrade)
 	{
 		try 
 		{
@@ -264,9 +366,9 @@ namespace NinjaTrader.NinjaScript.Strategies
 			// ISO 8601 timestamp format - convert local time to UTC
 			string timeStr = time.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
 
-			// Build JSON payload with accountType and actual marketPosition
+			// Build JSON payload with accountType, actual marketPosition, and MFE/MAE data
 			// marketPosition now reflects the ACTUAL position after execution:
-			// - "Flat" = position was closed (this is an EXIT)
+			// - "Flat" = position was closed (this is an EXIT) → includes highDuringTrade/lowDuringTrade
 			// - "Long" = position is long (this is an ENTRY or add-on)
 			// - "Short" = position is short (this is an ENTRY or add-on)
 			string jsonPayload = string.Format(
@@ -281,7 +383,9 @@ namespace NinjaTrader.NinjaScript.Strategies
 				"\"executionId\": \"{6}\"," +
 				"\"orderId\": \"{7}\"," +
 				"\"marketPosition\": \"{8}\"," +
-				"\"accountType\": \"{9}\"" +
+				"\"accountType\": \"{9}\"," +
+				"\"highDuringTrade\": {10}," +
+				"\"lowDuringTrade\": {11}" +
 				"}}",
 				account,
 				instrument,
@@ -292,7 +396,9 @@ namespace NinjaTrader.NinjaScript.Strategies
 				execution.ExecutionId,
 				execution.Order.OrderId,
 				marketPosition.ToString(), // Now contains the ACTUAL position: "Flat", "Long", or "Short"
-				accountType // "sim", "evaluation", "performance", or "live"
+				accountType, // "sim", "evaluation", "performance", or "live"
+				highDuringTrade.ToString(CultureInfo.InvariantCulture), // MFE/MAE: Highest price during trade
+				lowDuringTrade.ToString(CultureInfo.InvariantCulture)   // MFE/MAE: Lowest price during trade
 			);
 
 			var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
@@ -319,8 +425,17 @@ namespace NinjaTrader.NinjaScript.Strategies
 				else 
 				{
 					string responseBody = await response.Content.ReadAsStringAsync();
-					Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}) - Response: {4}", 
-						action, instrument, price, marketPosition, responseBody));
+					// Include MFE/MAE in log if available
+					if (highDuringTrade > 0 || lowDuringTrade > 0)
+					{
+						Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}, High: {4}, Low: {5}) - Response: {6}", 
+							action, instrument, price, marketPosition, highDuringTrade, lowDuringTrade, responseBody));
+					}
+					else
+					{
+						Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}) - Response: {4}", 
+							action, instrument, price, marketPosition, responseBody));
+					}
 				}
 			}
 			}

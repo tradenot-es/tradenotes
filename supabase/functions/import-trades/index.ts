@@ -40,6 +40,9 @@ interface NinjaTraderSingleExecution {
   orderId?: string;
   marketPosition: string;
   accountType?: 'sim' | 'evaluation' | 'performance' | 'live';
+  // MFE/MAE tracking: High and low prices during the trade
+  highDuringTrade?: number;
+  lowDuringTrade?: number;
 }
 
 // Futures point values (value of 1 point movement)
@@ -224,9 +227,29 @@ serve(async (req) => {
             0
           );
           
+          // Calculate MFE/MAE prices from high/low during trade
+          // MFE (Maximum Favorable Excursion): Best price in your favor
+          // MAE (Maximum Adverse Excursion): Worst price against you
+          let mfePrice: number | null = null;
+          let maePrice: number | null = null;
+          
+          if (execution.highDuringTrade && execution.lowDuringTrade && 
+              execution.highDuringTrade > 0 && execution.lowDuringTrade > 0) {
+            if (side === 'long') {
+              // Long trade: MFE = highest price, MAE = lowest price
+              mfePrice = execution.highDuringTrade;
+              maePrice = execution.lowDuringTrade;
+            } else {
+              // Short trade: MFE = lowest price, MAE = highest price
+              mfePrice = execution.lowDuringTrade;
+              maePrice = execution.highDuringTrade;
+            }
+            console.log(`MFE/MAE calculated: MFE=${mfePrice}, MAE=${maePrice} (High: ${execution.highDuringTrade}, Low: ${execution.lowDuringTrade})`);
+          }
+          
           console.log(`EXIT (Flat) matched: ${side} ${symbol} Entry: ${entryExecution.price} Exit: ${execution.price} PnL: ${pnl}`);
           
-          const completedTrade = {
+          const completedTrade: Record<string, unknown> = {
             user_id: userId,
             symbol: symbol,
             market: market,
@@ -242,6 +265,10 @@ serve(async (req) => {
             account_type: entryExecution.account_type || execution.accountType || 'live',
             account_name: execution.account,
           };
+          
+          // Add MFE/MAE if available
+          if (mfePrice !== null) completedTrade.mfe_price = mfePrice;
+          if (maePrice !== null) completedTrade.mae_price = maePrice;
           
           const { data: insertedTrade, error: insertTradeError } = await supabase
             .from('trades')
