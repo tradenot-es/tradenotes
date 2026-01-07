@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { TrendingUp, Building2, HelpCircle, TrendingDown, Minus, ExternalLink, AlertTriangle } from "lucide-react";
+import { TrendingUp, Building2, HelpCircle, TrendingDown, Minus, ExternalLink, AlertTriangle, RefreshCw } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
@@ -37,6 +37,7 @@ export function SectorSentimentWidget() {
   const [sectors, setSectors] = useState<SectorSentiment[]>([]);
   const [sectorHistory, setSectorHistory] = useState<Record<string, SectorHistory[]>>({});
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   // Sector information with descriptions and example companies
   const getSectorInfo = (sector: string) => {
@@ -51,13 +52,17 @@ export function SectorSentimentWidget() {
     loadSectorData();
   }, []);
 
-  const loadSectorData = async () => {
-    setLoading(true);
+  const loadSectorData = async (forceRefresh = false) => {
+    if (forceRefresh) {
+      setRefreshing(true);
+    } else {
+      setLoading(true);
+    }
 
     try {
       // Load today's sectors
       const { data, error } = await supabase.functions.invoke("marketaux-news", {
-        body: { action: "get-sector-overview" }
+        body: { action: "get-sector-overview", forceRefresh }
       });
 
       if (error) throw error;
@@ -92,7 +97,12 @@ export function SectorSentimentWidget() {
       console.error("Error loading sector data:", err);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
+  };
+
+  const handleRefresh = () => {
+    loadSectorData(true);
   };
 
   // Determine if sector has mixed signals
@@ -191,6 +201,14 @@ export function SectorSentimentWidget() {
               <p className="text-sm">{t("dashboard.sectorSentimentDescription")}</p>
             </HoverCardContent>
           </HoverCard>
+          <button
+            onClick={handleRefresh}
+            disabled={refreshing}
+            className="ml-auto inline-flex items-center justify-center h-7 w-7 rounded hover:bg-muted/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50"
+            title={t("common.refresh")}
+          >
+            <RefreshCw className={cn("h-4 w-4 text-muted-foreground", refreshing && "animate-spin")} />
+          </button>
         </div>
       </CardHeader>
       <CardContent>
