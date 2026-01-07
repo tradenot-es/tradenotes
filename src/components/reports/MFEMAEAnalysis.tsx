@@ -108,25 +108,131 @@ export function MFEMAEAnalysis({ trades }: MFEMAEAnalysisProps) {
 
   if (tradesWithData.length === 0) {
     return (
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5" />
-            {t('mfeMAE.title', 'MFE/MAE Analyse')}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <AlertTriangle className="h-12 w-12 text-muted-foreground mb-4" />
-            <p className="text-muted-foreground">
-              {t('mfeMAE.noData', 'Keine Trades mit MFE/MAE-Daten vorhanden.')}
+      <div className="space-y-6">
+        {/* Header Card */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Target className="h-5 w-5 text-primary" />
+              {t('mfeMAE.title', 'MFE/MAE Analyse')}
+            </CardTitle>
+            <CardDescription>
+              {t('mfeMAE.setupSubtitle', 'Optimiere deine Stop-Loss und Take-Profit Strategien mit datenbasierter Analyse')}
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        {/* What is MFE/MAE */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card className="border-emerald-500/20 bg-emerald-500/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base flex items-center gap-2">
+                <TrendingUp className="h-4 w-4 text-emerald-500" />
+                {t('mfeMAE.whatIsMFE', 'Was ist MFE?')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                <strong className="text-emerald-500">Maximum Favorable Excursion</strong> – {t('mfeMAE.mfeExplanation', 'Wie weit lief dein Trade maximal ins Plus, bevor du ausgestiegen bist?')}
+              </p>
+              <div className="mt-3 p-2 rounded bg-background/50 text-xs">
+                <span className="text-muted-foreground">{t('mfeMAE.example', 'Beispiel')}:</span> {t('mfeMAE.mfeExample', 'Entry bei $100, Höchststand $112, Exit bei $108 → MFE = 12%')}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-red-500/20 bg-red-500/5">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base flex items-center gap-2">
+                <TrendingDown className="h-4 w-4 text-red-500" />
+                {t('mfeMAE.whatIsMAE', 'Was ist MAE?')}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                <strong className="text-red-500">Maximum Adverse Excursion</strong> – {t('mfeMAE.maeExplanation', 'Wie weit lief dein Trade maximal gegen dich?')}
+              </p>
+              <div className="mt-3 p-2 rounded bg-background/50 text-xs">
+                <span className="text-muted-foreground">{t('mfeMAE.example', 'Beispiel')}:</span> {t('mfeMAE.maeExample', 'Entry bei $100, Tiefststand $95, Exit bei $108 → MAE = 5%')}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Why is it important */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Info className="h-4 w-4 text-primary" />
+              {t('mfeMAE.whyImportant', 'Warum ist das wichtig?')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="flex gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Target className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <p className="font-medium text-sm">{t('mfeMAE.benefit1Title', 'Stop-Loss optimieren')}</p>
+                  <p className="text-xs text-muted-foreground">{t('mfeMAE.benefit1', 'Finde den optimalen Stop-Loss basierend auf echten Daten')}</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center">
+                  <TrendingUp className="h-4 w-4 text-emerald-500" />
+                </div>
+                <div>
+                  <p className="font-medium text-sm">{t('mfeMAE.benefit2Title', 'Take-Profit verbessern')}</p>
+                  <p className="text-xs text-muted-foreground">{t('mfeMAE.benefit2', 'Sieh wie viel Gewinn du "auf dem Tisch lässt"')}</p>
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center">
+                  <AlertTriangle className="h-4 w-4 text-amber-500" />
+                </div>
+                <div>
+                  <p className="font-medium text-sm">{t('mfeMAE.benefit3Title', 'Verhalten analysieren')}</p>
+                  <p className="text-xs text-muted-foreground">{t('mfeMAE.benefit3', 'Steigst du zu früh aus oder hältst du Verlierer zu lange?')}</p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* How to enable */}
+        <Card className="border-primary/20">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2">
+              <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold">!</span>
+              {t('mfeMAE.howToEnable', 'So aktivierst du diese Funktion')}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <p className="text-sm text-muted-foreground">
+              {t('mfeMAE.requiresData', 'Diese Analyse benötigt High/Low-Preisdaten während des Trades, die nur deine Trading-Plattform automatisch tracken kann.')}
             </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              {t('mfeMAE.noDataHint', 'Füge MFE und MAE Preise zu deinen Trades hinzu, um diese Analyse zu nutzen.')}
-            </p>
-          </div>
-        </CardContent>
-      </Card>
+            
+            <div className="p-4 rounded-lg bg-muted/50 border">
+              <p className="font-medium text-sm mb-2">{t('mfeMAE.ninjaTraderTitle', 'NinjaTrader Benutzer')}</p>
+              <p className="text-xs text-muted-foreground mb-3">
+                {t('mfeMAE.ninjaTraderHint', 'Erweitere dein TradeNotesSync Script um highDuringTrade und lowDuringTrade Felder zu senden. Diese werden automatisch zu MFE/MAE konvertiert.')}
+              </p>
+              <div className="p-2 rounded bg-background font-mono text-xs overflow-x-auto">
+                <code className="text-muted-foreground">
+                  {'"highDuringTrade": 112.50,'}<br/>
+                  {'"lowDuringTrade": 98.75'}
+                </code>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
+              <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+              {t('mfeMAE.comingSoon', 'Feature verfügbar sobald Trades mit High/Low-Daten importiert werden')}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     );
   }
 
