@@ -358,27 +358,33 @@ serve(async (req) => {
     // GET SECTOR OVERVIEW (Dashboard Widget)
     if (action === "get-sector-overview") {
       const today = new Date().toISOString().split("T")[0];
+      const forceRefresh = body.forceRefresh === true;
       
-      console.log("Fetching sector overview for", today);
+      console.log("Fetching sector overview for", today, forceRefresh ? "(forced refresh)" : "");
       
-      // Check DB cache first
-      const { data: cachedSectors } = await supabase
-        .from("sector_sentiments")
-        .select("*")
-        .eq("date", today)
-        .gt("expires_at", new Date().toISOString())
-        .gt("article_count", 0); // Only get sectors with actual articles
+      // Check DB cache first (skip if force refresh)
+      if (!forceRefresh) {
+        const { data: cachedSectors } = await supabase
+          .from("sector_sentiments")
+          .select("*")
+          .eq("date", today)
+          .gt("expires_at", new Date().toISOString())
+          .gt("article_count", 0); // Only get sectors with actual articles
 
-      if (cachedSectors && cachedSectors.length > 0) {
-        console.log("Returning cached sector data:", cachedSectors.length, "sectors");
-        return new Response(
-          JSON.stringify({ 
-            success: true, 
-            sectors: cachedSectors,
-            meta: { cached: true }
-          }),
-          { headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
+        // Only use cache if we have at least 3 sectors (otherwise likely incomplete data)
+        if (cachedSectors && cachedSectors.length >= 3) {
+          console.log("Returning cached sector data:", cachedSectors.length, "sectors");
+          return new Response(
+            JSON.stringify({ 
+              success: true, 
+              sectors: cachedSectors,
+              meta: { cached: true }
+            }),
+            { headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        } else {
+          console.log("Insufficient cached sectors:", cachedSectors?.length || 0, "- fetching fresh data");
+        }
       }
 
       console.log("Fetching fresh sector data from Marketaux API");
