@@ -391,15 +391,6 @@ export default function Reports() {
               <p className="text-sm">{t("reports.riskAnalysisTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
-          
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <TabsTrigger value="mfemae">{t("reports.mfemae")}</TabsTrigger>
-            </HoverCardTrigger>
-            <HoverCardContent className="w-80">
-              <p className="text-sm">{t("reports.mfemaeTooltip")}</p>
-            </HoverCardContent>
-          </HoverCard>
         </TabsList>
 
         {/* Overview Tab */}
@@ -798,10 +789,8 @@ export default function Reports() {
               </CardContent>
             </Card>
           </div>
-        </TabsContent>
 
-        {/* MFE/MAE Analysis Tab */}
-        <TabsContent value="mfemae" className="space-y-6">
+          {/* MFE/MAE Analysis integrated into Risk Tab */}
           <MFEMAEAnalysis trades={filteredTrades} />
         </TabsContent>
       </Tabs>
