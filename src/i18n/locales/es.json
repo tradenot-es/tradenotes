@@ -515,6 +515,7 @@
     "ntDescription": "Sincronice sus operaciones de NinjaTrader 8 automáticamente en tiempo real con TradeNot.es",
     "ntApiKeyTitle": "Su clave API personal",
     "ntApiKeyInfo": "Mantenga esta clave segura. Introdúzcala en los parámetros de la estrategia NinjaScript.",
+    "ntApiKeySecurityWarning": "Mantenga esta clave segura. Cualquier persona con esta clave puede importar operaciones a su cuenta. Nunca la comparta en capturas de pantalla o canales públicos.",
     "ntApiKeyCopied": "Clave API copiada al portapapeles",
     "ntRegenerateKey": "Regenerar clave",
     "ntRegenerateKeyConfirm": "¿Regenerar clave API?",

@@ -515,6 +515,7 @@
     "ntDescription": "Synchroniseer uw NinjaTrader 8-trades automatisch in realtime met TradeNot.es",
     "ntApiKeyTitle": "Uw persoonlijke API-sleutel",
     "ntApiKeyInfo": "Houd deze sleutel veilig. Voer deze in bij de NinjaScript-strategie-parameters.",
+    "ntApiKeySecurityWarning": "Houd deze sleutel veilig. Iedereen met deze sleutel kan trades naar uw account importeren. Deel hem nooit in screenshots of openbare kanalen.",
     "ntApiKeyCopied": "API-sleutel gekopieerd naar klembord",
     "ntRegenerateKey": "Sleutel regenereren",
     "ntRegenerateKeyConfirm": "API-sleutel regenereren?",

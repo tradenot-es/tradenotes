@@ -429,6 +429,7 @@
     "ntDescription": "Synchronisieren Sie Ihre NinjaTrader 8 Trades automatisch in Echtzeit mit TradeNot.es",
     "ntApiKeyTitle": "Ihr persönlicher API-Schlüssel",
     "ntApiKeyInfo": "Bewahren Sie diesen Schlüssel sicher auf. Geben Sie ihn in den NinjaScript-Strategie-Parametern ein.",
+    "ntApiKeySecurityWarning": "Halten Sie diesen Schlüssel geheim. Jeder mit diesem Schlüssel kann Trades in Ihr Konto importieren. Teilen Sie ihn niemals in Screenshots oder öffentlichen Kanälen.",
     "ntApiKeyCopied": "API-Schlüssel in Zwischenablage kopiert",
     "ntRegenerateKey": "Schlüssel neu generieren",
     "ntRegenerateKeyConfirm": "API-Schlüssel neu generieren?",

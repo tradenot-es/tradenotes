@@ -466,7 +466,7 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                 </p>
                 <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg mt-2">
                   <p className="text-amber-600 dark:text-amber-400 text-xs font-medium">
-                    ⚠️ {t("import.ntApiKeySecurityWarning", { defaultValue: "Keep this key secure. Anyone with this key can import trades to your account. Never share it in screenshots or public channels." })}
+                    ⚠️ {t("import.ntApiKeySecurityWarning")}
                   </p>
                 </div>
               </div>
