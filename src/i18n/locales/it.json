@@ -623,7 +623,20 @@
     "mustConfirmReset": "Si prega di confermare di aver compreso le conseguenze",
     "passwordRequired": "Password richiesta",
     "resetting": "Eliminazione dati...",
-    "deleteForever": "Elimina Permanentemente"
+    "deleteForever": "Elimina Permanentemente",
+    "deleteAccount": "Elimina Account",
+    "deleteAccountDesc": "Elimina definitivamente il tuo account e tutti i dati associati. Questa azione non può essere annullata.",
+    "deleteAccountConfirmTitle": "Eliminare Account Definitivamente?",
+    "deleteAccountConfirmDesc": "Questa azione eliminerà definitivamente l'intero account inclusi tutti i dati. Verrai disconnesso e non potrai più accedere.",
+    "deleteAccountItemAll": "Tutti i trade, le voci del diario e le statistiche",
+    "deleteAccountItemProfile": "Il tuo profilo e tutte le impostazioni",
+    "deleteAccountItemAuth": "Il tuo login e tutti i dati di autenticazione",
+    "deleteAccountItemStorage": "Tutti gli screenshot caricati",
+    "deleteAccountConfirmCheckbox": "Capisco che il mio account e tutti i dati verranno eliminati permanentemente",
+    "deleteAccountSuccess": "Account eliminato con successo",
+    "deleteAccountSuccessMessage": "Il tuo account è stato completamente eliminato. Verrai reindirizzato alla pagina iniziale...",
+    "deleteAccountError": "Errore durante l'eliminazione dell'account",
+    "deletingAccount": "Eliminazione account..."
   },
   "settings": {
     "title": "Impostazioni",

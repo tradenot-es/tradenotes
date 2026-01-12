@@ -603,7 +603,20 @@
     "mustConfirmReset": "Bevestig alsjeblieft dat je de consequenties begrijpt",
     "passwordRequired": "Wachtwoord is vereist",
     "resetting": "Data verwijderen...",
-    "deleteForever": "Permanent Verwijderen"
+    "deleteForever": "Permanent Verwijderen",
+    "deleteAccount": "Account Verwijderen",
+    "deleteAccountDesc": "Verwijder je account en alle bijbehorende gegevens permanent. Deze actie kan niet ongedaan worden gemaakt.",
+    "deleteAccountConfirmTitle": "Account Permanent Verwijderen?",
+    "deleteAccountConfirmDesc": "Deze actie verwijdert je hele account permanent inclusief alle gegevens. Je wordt uitgelogd en kunt niet meer inloggen.",
+    "deleteAccountItemAll": "Alle trades, dagboeknotities en statistieken",
+    "deleteAccountItemProfile": "Je profiel en alle instellingen",
+    "deleteAccountItemAuth": "Je login en alle authenticatiegegevens",
+    "deleteAccountItemStorage": "Alle geüploade screenshots",
+    "deleteAccountConfirmCheckbox": "Ik begrijp dat mijn account en alle gegevens permanent worden verwijderd",
+    "deleteAccountSuccess": "Account succesvol verwijderd",
+    "deleteAccountSuccessMessage": "Je account is volledig verwijderd. Je wordt nu doorgestuurd naar de homepagina...",
+    "deleteAccountError": "Fout bij verwijderen van account",
+    "deletingAccount": "Account verwijderen..."
   },
   "settings": {
     "title": "Instellingen",
