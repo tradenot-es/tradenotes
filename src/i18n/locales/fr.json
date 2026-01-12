@@ -603,7 +603,20 @@
     "mustConfirmReset": "Veuillez confirmer que vous comprenez les conséquences",
     "passwordRequired": "Mot de passe requis",
     "resetting": "Suppression des données...",
-    "deleteForever": "Supprimer Définitivement"
+    "deleteForever": "Supprimer Définitivement",
+    "deleteAccount": "Supprimer le Compte",
+    "deleteAccountDesc": "Supprimez définitivement votre compte et toutes les données associées. Cette action est irréversible.",
+    "deleteAccountConfirmTitle": "Supprimer le Compte Définitivement?",
+    "deleteAccountConfirmDesc": "Cette action supprimera définitivement l'intégralité de votre compte, y compris toutes les données. Vous serez déconnecté et ne pourrez plus vous connecter.",
+    "deleteAccountItemAll": "Tous les trades, entrées de journal et statistiques",
+    "deleteAccountItemProfile": "Votre profil et tous les paramètres",
+    "deleteAccountItemAuth": "Votre connexion et toutes les données d'authentification",
+    "deleteAccountItemStorage": "Toutes les captures d'écran téléchargées",
+    "deleteAccountConfirmCheckbox": "Je comprends que mon compte et toutes mes données seront supprimés définitivement",
+    "deleteAccountSuccess": "Compte supprimé avec succès",
+    "deleteAccountSuccessMessage": "Votre compte a été entièrement supprimé. Vous allez être redirigé vers la page d'accueil...",
+    "deleteAccountError": "Erreur lors de la suppression du compte",
+    "deletingAccount": "Suppression du compte..."
   },
   "settings": {
     "title": "Paramètres",

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle, Trophy } from "lucide-react";
+import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle, Trophy, Trash2 } from "lucide-react";
 import { AchievementsOverview } from "@/components/AchievementsOverview";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -50,6 +50,13 @@ const Account = () => {
   const [resetConfirmed, setResetConfirmed] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
+
+  // Delete account states
+  const [showDeleteAccountDialog, setShowDeleteAccountDialog] = useState(false);
+  const [deleteAccountPassword, setDeleteAccountPassword] = useState("");
+  const [deleteAccountConfirmed, setDeleteAccountConfirmed] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
+  const [deleteAccountSuccess, setDeleteAccountSuccess] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -306,6 +313,58 @@ const Account = () => {
       toast.error(t("account.resetError"));
     } finally {
       setResetting(false);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!deleteAccountConfirmed) {
+      toast.error(t("account.mustConfirmReset"));
+      return;
+    }
+    if (!deleteAccountPassword) {
+      toast.error(t("account.passwordRequired"));
+      return;
+    }
+
+    setDeletingAccount(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Not authenticated");
+
+      const { data, error } = await supabase.functions.invoke('delete-account', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: { password: deleteAccountPassword },
+      });
+
+      if (error) throw error;
+
+      if (data?.error) {
+        if (data.error === "Incorrect password") {
+          toast.error(t("account.incorrectPassword"));
+        } else {
+          throw new Error(data.error);
+        }
+        return;
+      }
+
+      // Show success screen
+      setDeleteAccountSuccess(true);
+      setShowDeleteAccountDialog(false);
+      setDeleteAccountPassword("");
+      setDeleteAccountConfirmed(false);
+      
+      // Sign out and redirect to home after showing success animation
+      setTimeout(async () => {
+        await supabase.auth.signOut();
+        window.location.href = "/";
+      }, 2500);
+    } catch (error: any) {
+      console.error("Delete account error:", error);
+      toast.error(t("account.deleteAccountError"));
+    } finally {
+      setDeletingAccount(false);
     }
   };
 
@@ -572,7 +631,8 @@ const Account = () => {
               </CardTitle>
               <CardDescription>{t("account.dangerZoneDesc")}</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
+              {/* Reset All Data */}
               <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg space-y-3">
                 <div className="flex items-start gap-3">
                   <AlertTriangle className="h-5 w-5 text-destructive mt-0.5" />
@@ -590,6 +650,27 @@ const Account = () => {
                 >
                   <AlertTriangle className="h-4 w-4 mr-2" />
                   {t("account.resetAll")}
+                </Button>
+              </div>
+
+              {/* Delete Account */}
+              <div className="p-4 bg-destructive/10 border border-destructive/20 rounded-lg space-y-3">
+                <div className="flex items-start gap-3">
+                  <Trash2 className="h-5 w-5 text-destructive mt-0.5" />
+                  <div className="flex-1 space-y-2">
+                    <p className="font-medium text-destructive">{t("account.deleteAccount")}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("account.deleteAccountDesc")}
+                    </p>
+                  </div>
+                </div>
+                <Button 
+                  variant="destructive" 
+                  onClick={() => setShowDeleteAccountDialog(true)}
+                  className="w-full"
+                >
+                  <Trash2 className="h-4 w-4 mr-2" />
+                  {t("account.deleteAccount")}
                 </Button>
               </div>
             </CardContent>
@@ -711,6 +792,92 @@ const Account = () => {
                 </DialogTitle>
                 <DialogDescription className="text-base">
                   {t("account.resetSuccessMessage")}
+                </DialogDescription>
+              </div>
+
+              <div className="flex items-center gap-2 text-sm text-muted-foreground animate-fade-in">
+                <div className="animate-spin rounded-full h-4 w-4 border-2 border-primary border-t-transparent" />
+                <span>{t("account.reloadingPage")}</span>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Delete Account Confirmation Dialog */}
+        <AlertDialog open={showDeleteAccountDialog} onOpenChange={setShowDeleteAccountDialog}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle className="flex items-center gap-2 text-destructive">
+                <Trash2 className="h-5 w-5" />
+                {t("account.deleteAccountConfirmTitle")}
+              </AlertDialogTitle>
+              <AlertDialogDescription className="space-y-4 pt-2">
+                <p className="text-destructive font-medium">
+                  {t("account.deleteAccountConfirmDesc")}
+                </p>
+                <ul className="list-disc list-inside space-y-1 text-sm">
+                  <li>{t("account.deleteAccountItemAll")}</li>
+                  <li>{t("account.deleteAccountItemProfile")}</li>
+                  <li>{t("account.deleteAccountItemAuth")}</li>
+                  <li>{t("account.deleteAccountItemStorage")}</li>
+                </ul>
+                <div className="flex items-start gap-2 p-3 bg-muted rounded-lg">
+                  <Checkbox 
+                    id="confirm-delete-account" 
+                    checked={deleteAccountConfirmed}
+                    onCheckedChange={(checked) => setDeleteAccountConfirmed(checked === true)}
+                  />
+                  <label htmlFor="confirm-delete-account" className="text-sm cursor-pointer">
+                    {t("account.deleteAccountConfirmCheckbox")}
+                  </label>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="delete-account-password">{t("account.enterPasswordToConfirm")}</Label>
+                  <Input
+                    id="delete-account-password"
+                    type="password"
+                    value={deleteAccountPassword}
+                    onChange={(e) => setDeleteAccountPassword(e.target.value)}
+                    placeholder={t("auth.password")}
+                  />
+                </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => {
+                setDeleteAccountPassword("");
+                setDeleteAccountConfirmed(false);
+              }}>
+                {t("trades.cancel")}
+              </AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleDeleteAccount}
+                disabled={!deleteAccountConfirmed || !deleteAccountPassword || deletingAccount}
+                className="bg-destructive hover:bg-destructive/90"
+              >
+                {deletingAccount ? t("account.deletingAccount") : t("account.deleteAccount")}
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        {/* Delete Account Success Screen Dialog */}
+        <Dialog open={deleteAccountSuccess} onOpenChange={setDeleteAccountSuccess}>
+          <DialogContent className="sm:max-w-md">
+            <div className="flex flex-col items-center justify-center py-8 space-y-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-500/20 rounded-full blur-xl animate-pulse" />
+                <div className="relative bg-green-500/10 border-2 border-green-500 rounded-full p-6 animate-scale-in">
+                  <CheckCircle className="h-16 w-16 text-green-500" />
+                </div>
+              </div>
+              
+              <div className="text-center space-y-2 animate-fade-in">
+                <DialogTitle className="text-2xl font-bold text-green-600">
+                  {t("account.deleteAccountSuccess")}
+                </DialogTitle>
+                <DialogDescription className="text-base">
+                  {t("account.deleteAccountSuccessMessage")}
                 </DialogDescription>
               </div>
 

@@ -639,7 +639,20 @@
     "mustConfirmReset": "Please confirm that you understand the consequences",
     "passwordRequired": "Password is required",
     "resetting": "Deleting data...",
-    "deleteForever": "Delete Permanently"
+    "deleteForever": "Delete Permanently",
+    "deleteAccount": "Delete Account",
+    "deleteAccountDesc": "Permanently delete your account and all associated data. This action cannot be undone.",
+    "deleteAccountConfirmTitle": "Delete Account Permanently?",
+    "deleteAccountConfirmDesc": "This action will permanently delete your entire account including all data. You will be signed out and unable to log in again.",
+    "deleteAccountItemAll": "All trades, journal entries and statistics",
+    "deleteAccountItemProfile": "Your profile and all settings",
+    "deleteAccountItemAuth": "Your login and all authentication data",
+    "deleteAccountItemStorage": "All uploaded screenshots",
+    "deleteAccountConfirmCheckbox": "I understand that my account and all data will be permanently deleted",
+    "deleteAccountSuccess": "Account successfully deleted",
+    "deleteAccountSuccessMessage": "Your account has been completely deleted. You will now be redirected to the home page...",
+    "deleteAccountError": "Error deleting account",
+    "deletingAccount": "Deleting account..."
   },
   "settings": {
     "title": "Settings",

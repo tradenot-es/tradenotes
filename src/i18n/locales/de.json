@@ -517,7 +517,20 @@
     "mustConfirmReset": "Bitte bestätige, dass du die Konsequenzen verstehst",
     "passwordRequired": "Passwort ist erforderlich",
     "resetting": "Lösche Daten...",
-    "deleteForever": "Endgültig löschen"
+    "deleteForever": "Endgültig löschen",
+    "deleteAccount": "Konto löschen",
+    "deleteAccountDesc": "Lösche dein Konto und alle zugehörigen Daten vollständig und unwiderruflich. Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteAccountConfirmTitle": "Konto endgültig löschen?",
+    "deleteAccountConfirmDesc": "Diese Aktion löscht unwiderruflich dein gesamtes Konto inklusive aller Daten. Du wirst abgemeldet und kannst dich nicht mehr anmelden.",
+    "deleteAccountItemAll": "Alle Trades, Journal-Einträge und Statistiken",
+    "deleteAccountItemProfile": "Dein Profil und alle Einstellungen",
+    "deleteAccountItemAuth": "Dein Login und alle Authentifizierungsdaten",
+    "deleteAccountItemStorage": "Alle hochgeladenen Screenshots",
+    "deleteAccountConfirmCheckbox": "Ich verstehe, dass mein Konto und alle Daten unwiderruflich gelöscht werden",
+    "deleteAccountSuccess": "Konto erfolgreich gelöscht",
+    "deleteAccountSuccessMessage": "Dein Konto wurde vollständig gelöscht. Du wirst jetzt zur Startseite weitergeleitet...",
+    "deleteAccountError": "Fehler beim Löschen des Kontos",
+    "deletingAccount": "Lösche Konto..."
   },
   "settings": {
     "title": "Einstellungen",
