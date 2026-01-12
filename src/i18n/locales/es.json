@@ -713,7 +713,17 @@
     "delete": "Eliminar",
     "edit": "Editar",
     "cancel": "Cancelar",
-    "confirm": "Confirmar"
+    "confirm": "Confirmar",
+    "viewAll": "Ver todo",
+    "days": {
+      "sunday": "Domingo",
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miércoles",
+      "thursday": "Jueves",
+      "friday": "Viernes",
+      "saturday": "Sábado"
+    }
   },
   "landing": {
     "badge": "Diario de Trading Profesional",
@@ -1403,18 +1413,6 @@
     "lowerIsBetter": "Más bajo = mejor",
     "scoreNeedsMoreData": "{{current}} de {{required}} operaciones necesarias para calcular la puntuación.",
     "scoreNeedsMoreDataTooltip": "La puntuación Revenge Trading analiza tu comportamiento después de operaciones perdedoras. Se necesitan al menos 10 operaciones para identificar patrones estadísticos."
-  },
-  "common": {
-    "loading": "Cargando...",
-    "days": {
-      "sunday": "Domingo",
-      "monday": "Lunes",
-      "tuesday": "Martes",
-      "wednesday": "Miércoles",
-      "thursday": "Jueves",
-      "friday": "Viernes",
-      "saturday": "Sábado"
-    }
   },
   "achievements": {
     "title": "Logros",

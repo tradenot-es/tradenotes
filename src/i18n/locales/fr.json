@@ -713,7 +713,17 @@
     "delete": "Supprimer",
     "edit": "Modifier",
     "cancel": "Annuler",
-    "confirm": "Confirmer"
+    "confirm": "Confirmer",
+    "viewAll": "Voir tout",
+    "days": {
+      "sunday": "Dimanche",
+      "monday": "Lundi",
+      "tuesday": "Mardi",
+      "wednesday": "Mercredi",
+      "thursday": "Jeudi",
+      "friday": "Vendredi",
+      "saturday": "Samedi"
+    }
   },
   "landing": {
     "badge": "Journal de Trading Professionnel",
@@ -1403,18 +1413,6 @@
     "lowerIsBetter": "Plus bas = mieux",
     "scoreNeedsMoreData": "{{current}} sur {{required}} trades nécessaires pour calculer le score.",
     "scoreNeedsMoreDataTooltip": "Le score Revenge Trading analyse votre comportement après les trades perdants. Au moins 10 trades sont nécessaires pour identifier des schémas statistiques."
-  },
-  "common": {
-    "loading": "Chargement...",
-    "days": {
-      "sunday": "Dimanche",
-      "monday": "Lundi",
-      "tuesday": "Mardi",
-      "wednesday": "Mercredi",
-      "thursday": "Jeudi",
-      "friday": "Vendredi",
-      "saturday": "Samedi"
-    }
   },
   "achievements": {
     "title": "Réalisations",

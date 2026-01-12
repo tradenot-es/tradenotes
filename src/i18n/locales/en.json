@@ -749,7 +749,17 @@
     "delete": "Delete",
     "edit": "Edit",
     "cancel": "Cancel",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "viewAll": "View all",
+    "days": {
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday"
+    }
   },
   "landing": {
     "badge": "Professional Trading Journal",
@@ -1682,17 +1692,5 @@
     "insight1": "80% of your winning trades had a maximum drawdown (MAE) of less than {{value}}%. Set your stop-loss accordingly.",
     "insight2Title": "Take-Profit",
     "insight2": "On average, your trades run {{value}}% into profit (MFE) before you exit. You're leaving {{missed}}% on the table."
-  },
-  "common": {
-    "loading": "Loading...",
-    "days": {
-      "sunday": "Sunday",
-      "monday": "Monday",
-      "tuesday": "Tuesday",
-      "wednesday": "Wednesday",
-      "thursday": "Thursday",
-      "friday": "Friday",
-      "saturday": "Saturday"
-    }
   }
 }

@@ -713,7 +713,17 @@
     "delete": "Verwijderen",
     "edit": "Bewerken",
     "cancel": "Annuleren",
-    "confirm": "Bevestigen"
+    "confirm": "Bevestigen",
+    "viewAll": "Bekijk alles",
+    "days": {
+      "sunday": "Zondag",
+      "monday": "Maandag",
+      "tuesday": "Dinsdag",
+      "wednesday": "Woensdag",
+      "thursday": "Donderdag",
+      "friday": "Vrijdag",
+      "saturday": "Zaterdag"
+    }
   },
   "landing": {
     "badge": "Professioneel Trading Dagboek",
@@ -1403,18 +1413,6 @@
     "lowerIsBetter": "Lager is beter",
     "scoreNeedsMoreData": "{{current}} van {{required}} trades nodig voor scoreberekening.",
     "scoreNeedsMoreDataTooltip": "De Revenge Trading Score analyseert je gedrag na verliezende trades. Minimaal 10 trades zijn nodig om statistische patronen te identificeren."
-  },
-  "common": {
-    "loading": "Laden...",
-    "days": {
-      "sunday": "Zondag",
-      "monday": "Maandag",
-      "tuesday": "Dinsdag",
-      "wednesday": "Woensdag",
-      "thursday": "Donderdag",
-      "friday": "Vrijdag",
-      "saturday": "Zaterdag"
-    }
   },
   "achievements": {
     "title": "Prestaties",

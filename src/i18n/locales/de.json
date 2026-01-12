@@ -628,6 +628,7 @@
     "edit": "Bearbeiten",
     "cancel": "Abbrechen",
     "confirm": "Bestätigen",
+    "viewAll": "Alle anzeigen",
     "days": {
       "sunday": "Sonntag",
       "monday": "Montag",
@@ -1559,8 +1560,5 @@
     "insight1": "80% deiner Gewinntrades hatten einen maximalen Drawdown (MAE) von weniger als {{value}}%. Setze deinen Stop-Loss entsprechend.",
     "insight2Title": "Take-Profit",
     "insight2": "Im Durchschnitt laufen deine Trades {{value}}% ins Plus (MFE) bevor du aussteigst. Du verlässt {{missed}}% auf dem Tisch."
-  },
-  "common": {
-    "viewAll": "Alle anzeigen"
   }
 }
