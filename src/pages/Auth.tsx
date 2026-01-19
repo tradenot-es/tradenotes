@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
-import logo from "@/assets/tradenotes-logo-transparent.png";
+import logo from "@/assets/tradenotes-logo-auth.png";
 
 const Auth = () => {
   const { t } = useTranslation();
@@ -148,8 +148,8 @@ const Auth = () => {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
-          <div className="flex flex-col items-center">
-            <img src={logo} alt="TradeNotes" className="h-12 w-auto mb-2" />
+          <div className="flex flex-col items-center mb-2">
+            <img src={logo} alt="TradeNotes" className="h-24 w-auto mb-4 drop-shadow-lg" />
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
           
@@ -196,8 +196,8 @@ const Auth = () => {
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
-          <div className="flex flex-col items-center">
-            <img src={logo} alt="TradeNotes" className="h-12 w-auto mb-2" />
+          <div className="flex flex-col items-center mb-2">
+            <img src={logo} alt="TradeNotes" className="h-24 w-auto mb-4 drop-shadow-lg" />
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
           
@@ -247,8 +247,8 @@ const Auth = () => {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-md space-y-6">
         {/* Logo and Slogan */}
-        <div className="flex flex-col items-center">
-          <img src={logo} alt="TradeNotes" className="h-12 w-auto mb-2" />
+        <div className="flex flex-col items-center mb-2">
+          <img src={logo} alt="TradeNotes" className="h-24 w-auto mb-4 drop-shadow-lg" />
           <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
         </div>
         
