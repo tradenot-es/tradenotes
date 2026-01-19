@@ -1488,7 +1488,19 @@
     "century_club": "100 Club",
     "century_club_desc": "100 trades bereikt",
     "thousand_club": "1000 Club",
-    "thousand_club_desc": "1000 trades bereikt"
+    "thousand_club_desc": "1000 trades bereikt",
+    "first_green_month": "Groene Maand",
+    "first_green_month_desc": "Eerste winstgevende maand",
+    "low_drawdown": "Drawdown Meester",
+    "low_drawdown_desc": "Max drawdown onder 5% bij 20+ trades",
+    "diversified": "Gediversifieerd",
+    "diversified_desc": "10 verschillende symbolen verhandeld",
+    "early_bird": "Vroege Vogel",
+    "early_bird_desc": "20 trades voor 10:00 uur",
+    "weekend_warrior": "Weekend Strijder",
+    "weekend_warrior_desc": "4 dagboek entries in het weekend",
+    "comeback_king": "Comeback Koning",
+    "comeback_king_desc": "Dag winstgevend afgesloten na 3 opeenvolgende verliezen"
   },
   "positionCalculator": {
     "title": "Positiegrootte Calculator",

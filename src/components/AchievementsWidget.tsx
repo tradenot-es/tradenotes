@@ -59,7 +59,7 @@ export function AchievementsWidget() {
               ({achievedCount}/{totalCount})
             </span>
           </CardTitle>
-          <Link to="/account">
+          <Link to="/dashboard/account">
             <Button variant="ghost" size="sm" className="h-8 gap-1">
               {t('common.viewAll', 'Alle anzeigen')}
               <ChevronRight className="h-3 w-3" />

@@ -1488,7 +1488,19 @@
     "century_club": "Club de los 100",
     "century_club_desc": "100 operaciones alcanzadas",
     "thousand_club": "Club de los 1000",
-    "thousand_club_desc": "1000 operaciones alcanzadas"
+    "thousand_club_desc": "1000 operaciones alcanzadas",
+    "first_green_month": "Mes Verde",
+    "first_green_month_desc": "Primer mes rentable",
+    "low_drawdown": "Maestro del Drawdown",
+    "low_drawdown_desc": "Drawdown máx. bajo 5% con 20+ operaciones",
+    "diversified": "Diversificado",
+    "diversified_desc": "10 símbolos diferentes operados",
+    "early_bird": "Madrugador",
+    "early_bird_desc": "20 operaciones antes de las 10:00",
+    "weekend_warrior": "Guerrero de Fin de Semana",
+    "weekend_warrior_desc": "4 entradas de diario el fin de semana",
+    "comeback_king": "Rey del Comeback",
+    "comeback_king_desc": "Día terminado en beneficio después de 3 pérdidas consecutivas"
   },
   "positionCalculator": {
     "title": "Calculadora de Tamaño de Posición",
