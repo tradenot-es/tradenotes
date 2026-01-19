@@ -1638,5 +1638,102 @@
         "text": "TradeNot.es ist ein Trading-Journal zur Dokumentation und Analyse von Trades. Die Nutzung dieser Software stellt keine Anlageberatung dar. Trading mit Finanzinstrumenten (Aktien, Futures, Optionen etc.) birgt erhebliche Risiken und kann zum Totalverlust des eingesetzten Kapitals führen. Vergangene Performance ist keine Garantie für zukünftige Ergebnisse."
       }
     }
+  },
+  "whyJournal": {
+    "badge": "Trading-Wissen",
+    "heroTitle": "Warum ein Trading Journal",
+    "heroTitleHighlight": "dein Schlüssel zum Erfolg ist",
+    "heroDescription": "90% aller Trader verlieren Geld. Der entscheidende Unterschied zwischen Gewinnern und Verlierern? Erfolgreiche Trader dokumentieren jeden Trade systematisch.",
+    "ctaStart": "Jetzt kostenlos starten",
+    "keyTakeaways": {
+      "title": "Das Wichtigste in Kürze",
+      "point1": "Ein Trading Journal ist das wichtigste Werkzeug für langfristigen Trading-Erfolg",
+      "point2": "Emotionale Fehler sind für über 70% aller Verluste verantwortlich – ein Journal hilft, diese zu erkennen",
+      "point3": "Professionelle Trader wie Paul Tudor Jones und Ray Dalio führen alle ein detailliertes Journal",
+      "point4": "Durch systematische Analyse kannst du deine Win Rate und Profitabilität nachweislich verdreifachen",
+      "point5": "Digitale Journals wie TradeNotes automatisieren die Analyse und sparen wertvolle Zeit"
+    },
+    "benefitsTitle": "6 Gründe für ein Trading Journal",
+    "benefitsDescription": "Entdecke, warum erfolgreiche Trader niemals ohne Journal handeln",
+    "benefits": {
+      "psychology": {
+        "title": "Emotionale Kontrolle",
+        "description": "Dokumentiere deine Emotionen bei jedem Trade. Erkenne Muster wie Overtrading nach Verlusten oder FOMO-Trades und eliminiere emotionale Fehler systematisch."
+      },
+      "patterns": {
+        "title": "Muster erkennen",
+        "description": "Identifiziere, welche Setups wirklich profitabel sind. Viele Trader glauben, bestimmte Strategien funktionieren – bis die Statistik das Gegenteil beweist."
+      },
+      "discipline": {
+        "title": "Disziplin aufbauen",
+        "description": "Das Wissen, jeden Trade dokumentieren zu müssen, verhindert impulsive Entscheidungen. Du handelst bewusster und regelbasierter."
+      },
+      "statistics": {
+        "title": "Echte Statistiken",
+        "description": "Win Rate, Profit Factor, R-Multiple, Erwartungswert – verstehe deine echte Performance statt auf Bauchgefühl zu vertrauen."
+      },
+      "risk": {
+        "title": "Risikomanagement",
+        "description": "Analysiere MAE und MFE deiner Trades. Optimiere Stop-Loss und Take-Profit basierend auf echten Daten statt Vermutungen."
+      },
+      "learning": {
+        "title": "Kontinuierliches Lernen",
+        "description": "Jeder Trade wird zur Lernmöglichkeit. Durch regelmäßige Reviews entwickelst du dich kontinuierlich weiter."
+      }
+    },
+    "cta1Title": "Bereit, dein Trading zu transformieren?",
+    "cta1Description": "Starte jetzt mit TradeNotes und erlebe den Unterschied eines professionellen Trading Journals.",
+    "cta1Button": "14 Tage kostenlos testen",
+    "elementsTitle": "Was gehört ins Trading Journal?",
+    "elementsDescription": "Die wichtigsten Elemente für eine vollständige Trade-Dokumentation",
+    "elements": {
+      "entryExit": "Entry- und Exit-Zeitpunkt",
+      "positionSize": "Positionsgröße und Risiko",
+      "stopLoss": "Stop-Loss und Take-Profit Level",
+      "emotions": "Emotionaler Zustand vor/während/nach dem Trade",
+      "marketConditions": "Marktbedingungen und Kontext",
+      "setup": "Setup/Strategie die zum Entry führte",
+      "screenshot": "Chart-Screenshot zur visuellen Analyse",
+      "notes": "Persönliche Notizen und Learnings"
+    },
+    "tradersTitle": "Von den Besten lernen",
+    "tradersDescription": "Die erfolgreichsten Trader der Geschichte schwören auf ihr Trading Journal",
+    "quotes": {
+      "jones": "Ich dokumentiere jeden einzelnen Trade. Das Journal ist mein wichtigstes Tool geworden.",
+      "dalio": "Schreib deine Entscheidungen auf, damit du aus ihnen lernen kannst.",
+      "livermore": "Das Studium meiner vergangenen Trades hat mir mehr beigebracht als alles andere."
+    },
+    "statsTitle": "Die Zahlen sprechen für sich",
+    "statsDescription": "Fakten über Trading-Erfolg und die Rolle von Journaling",
+    "stats": {
+      "failRate": "der Retail-Trader verlieren langfristig Geld",
+      "improvement": "bessere Performance bei Tradern mit systematischem Journal",
+      "emotional": "aller Trading-Fehler sind emotional bedingt"
+    },
+    "faqTitle": "Häufige Fragen",
+    "faq": {
+      "digital": {
+        "question": "Digital oder auf Papier?",
+        "answer": "Ein digitales Journal wie TradeNotes bietet automatische Berechnungen, visuelle Charts, Suchfunktionen und kann nie verloren gehen. Die Zeitersparnis gegenüber Papier ist enorm."
+      },
+      "time": {
+        "question": "Wie viel Zeit kostet das Journaling?",
+        "answer": "Mit TradeNotes dauert die Dokumentation eines Trades weniger als 2 Minuten. Die wöchentliche Review nimmt etwa 15-30 Minuten in Anspruch – Zeit, die sich durch bessere Trades vielfach auszahlt."
+      },
+      "beginners": {
+        "question": "Auch für Anfänger sinnvoll?",
+        "answer": "Gerade für Anfänger ist ein Journal essentiell! Je früher du mit dem Dokumentieren beginnst, desto schneller erkennst du deine Stärken und Schwächen und vermeidest teure Anfängerfehler."
+      },
+      "review": {
+        "question": "Wie oft sollte ich mein Journal reviewen?",
+        "answer": "Empfohlen: Kurze tägliche Review nach dem Trading-Tag, ausführliche wöchentliche Analyse am Wochenende, und ein umfassender monatlicher Rückblick."
+      }
+    },
+    "finalCtaTitle": "Starte heute mit deinem Trading Journal",
+    "finalCtaDescription": "Schließe dich tausenden erfolgreichen Tradern an, die ihre Performance mit TradeNotes systematisch verbessern.",
+    "finalCtaButton": "Kostenlos registrieren",
+    "finalCtaFeatures": "Alle Features ansehen",
+    "backToHome": "Zurück zur Startseite",
+    "readMore": "Mehr erfahren"
   }
 }
