@@ -1,21 +1,37 @@
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { AchievementBadge } from './AchievementBadge';
 import { useAchievements } from '@/hooks/useAchievements';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { Trophy, RefreshCw } from 'lucide-react';
+import { Trophy, RefreshCw, Loader2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
-
+import { toast } from 'sonner';
 
 export function AchievementsOverview() {
   const { achievements, loading, checkAchievements } = useAchievements();
   const { t } = useTranslation();
+  const [isChecking, setIsChecking] = useState(false);
 
   const achievedCount = achievements.filter(a => a.achieved).length;
   const totalCount = achievements.length;
   const progressPercent = totalCount > 0 ? (achievedCount / totalCount) * 100 : 0;
+
+  const handleCheck = async () => {
+    setIsChecking(true);
+    try {
+      const newCount = await checkAchievements();
+      if (newCount > 0) {
+        toast.success(t('achievements.newUnlocked', `${newCount} neue(s) Achievement(s) freigeschaltet! 🎉`));
+      } else {
+        toast.info(t('achievements.noNew', 'Keine neuen Achievements. Weiter so!'));
+      }
+    } finally {
+      setIsChecking(false);
+    }
+  };
 
   // Sort: achieved first (by date), then locked
   const sortedAchievements = [...achievements].sort((a, b) => {
@@ -66,10 +82,15 @@ export function AchievementsOverview() {
           <Button
             variant="outline"
             size="sm"
-            onClick={checkAchievements}
+            onClick={handleCheck}
+            disabled={isChecking}
             className="gap-2"
           >
-            <RefreshCw className="h-4 w-4" />
+            {isChecking ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              <RefreshCw className="h-4 w-4" />
+            )}
             {t('achievements.check', 'Prüfen')}
           </Button>
         </div>

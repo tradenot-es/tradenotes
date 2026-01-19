@@ -302,8 +302,8 @@ export function useAchievements() {
     }
   }, [user, t, getAchievementName, getAchievementDescription, loadAchievements, triggerConfetti]);
 
-  const checkAchievements = useCallback(async () => {
-    if (!user) return;
+  const checkAchievements = useCallback(async (): Promise<number> => {
+    if (!user) return 0;
 
     try {
       // Fetch all needed data in parallel
@@ -522,8 +522,11 @@ export function useAchievements() {
           unlockAchievement(newAchievements[i]);
         }, i * 1500);
       }
+      
+      return newAchievements.length;
     } catch (error) {
       console.error('Error checking achievements:', error);
+      return 0;
     }
   }, [user, unlockAchievement]);
 
