@@ -60,7 +60,7 @@ export function AchievementBadge({
           'hover:scale-110 hover:z-10',
           sizeClasses[size],
           achieved
-            ? 'bg-muted/30 drop-shadow-[0_0_12px_hsl(158,100%,45%,0.6)] hover:drop-shadow-[0_0_18px_hsl(158,100%,45%,0.8)]'
+            ? 'bg-muted/30 drop-shadow-[0_0_6px_hsl(158,100%,45%,0.35)] hover:drop-shadow-[0_0_10px_hsl(158,100%,45%,0.5)]'
             : 'bg-muted/50 opacity-50'
         )}
       >
