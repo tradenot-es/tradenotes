@@ -835,9 +835,17 @@
         "title": "Fast Trade Entry",
         "description": "Log trades in seconds with live P&L preview, quick symbol selection, and auto-fill. Copy last trade for instant journaling."
       },
-      "chartAnalysis": {
-        "title": "AI Chart Analysis",
-        "description": "Upload TradingView or NinjaTrader screenshots—AI extracts entry, exit, and trade details automatically. No manual input needed."
+      "webhookSync": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Trades sync automatically via webhook—entry, exit, MFE/MAE, and account type. Supports 12+ prop firms like Apex, Topstep, Tradeify."
+      },
+      "propFirm": {
+        "title": "Prop Firm Integration",
+        "description": "Automatic detection of Sim, Eval, Funded & Live accounts. Separate analytics for each account phase with Apex, Topstep & 10+ other prop firms."
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analysis",
+        "description": "Tick-by-tick Maximum Favorable & Adverse Excursion tracking. Optimize stop-loss and take-profit with data-driven risk analysis."
       },
       "journal": {
         "title": "Trading Journal",
@@ -927,9 +935,13 @@
       "dailyPrep": "Daily Prep with political events",
       "glossary": "Trading Glossary with all important terms",
       "darkMode": "Dark/Light Mode",
-      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL)",
+      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL, IT)",
       "futureFeatures": "All future features included",
-      "freeTrial": "14-Day Free Trial"
+      "freeTrial": "14-Day Free Trial",
+      "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integration)",
+      "propFirmDetection": "Prop Firm Account Detection (Apex, Topstep, Tradeify, etc.)",
+      "mfeMaeTracking": "MFE/MAE Tracking for Stop-Loss Optimization",
+      "achievements": "Gamification & Achievements System"
     }
   },
   "validation": {

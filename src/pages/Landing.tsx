@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import heroLogo from "@/assets/tradenotes-logo-hero.png";
-import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, ScanLine, Bell, Globe } from "lucide-react";
+import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair } from "lucide-react";
 const Landing = () => {
   const {
     t
@@ -16,9 +16,17 @@ const Landing = () => {
     title: t("landing.features.easyEntry.title"),
     description: t("landing.features.easyEntry.description")
   }, {
-    icon: <ScanLine className="h-6 w-6" />,
-    title: t("landing.features.chartAnalysis.title"),
-    description: t("landing.features.chartAnalysis.description")
+    icon: <Zap className="h-6 w-6" />,
+    title: t("landing.features.webhookSync.title"),
+    description: t("landing.features.webhookSync.description")
+  }, {
+    icon: <Building2 className="h-6 w-6" />,
+    title: t("landing.features.propFirm.title"),
+    description: t("landing.features.propFirm.description")
+  }, {
+    icon: <Crosshair className="h-6 w-6" />,
+    title: t("landing.features.mfeMAE.title"),
+    description: t("landing.features.mfeMAE.description")
   }, {
     icon: <BookOpen className="h-6 w-6" />,
     title: t("landing.features.journal.title"),
@@ -84,7 +92,7 @@ const Landing = () => {
     title: t("landing.features.glossary.title"),
     description: t("landing.features.glossary.description")
   }];
-  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
+  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.ninjaTraderSync"), t("landing.allFeatures.propFirmDetection"), t("landing.allFeatures.mfeMaeTracking"), t("landing.allFeatures.achievements"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
