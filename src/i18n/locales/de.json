@@ -696,7 +696,7 @@
     "footerPrivacy": "Datenschutz",
     "footerTerms": "AGB",
     "footerImprint": "Impressum",
-    "footerCopyright": "© 2025 TradeNot.es. Alle Rechte vorbehalten.",
+    "footerCopyright": "© {{year}} TradeNot.es. Alle Rechte vorbehalten.",
     "features": {
       "easyEntry": {
         "title": "Schnelle Trade-Eingabe",

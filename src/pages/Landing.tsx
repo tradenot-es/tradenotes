@@ -326,7 +326,7 @@ const Landing = () => {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            {t("landing.footerCopyright")}
+            {t("landing.footerCopyright", { year: new Date().getFullYear() })}
           </div>
         </div>
       </footer>

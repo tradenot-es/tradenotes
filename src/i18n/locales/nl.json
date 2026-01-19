@@ -782,7 +782,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Voorwaarden",
     "footerImprint": "Colofon",
-    "footerCopyright": "© 2025 TradeNot.es. Alle rechten voorbehouden.",
+    "footerCopyright": "© {{year}} TradeNot.es. Alle rechten voorbehouden.",
     "whySection": {
       "badge": "Waarom een trading journal?",
       "title": "Succesvolle traders documenteren elke trade",
