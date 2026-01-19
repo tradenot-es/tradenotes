@@ -782,7 +782,7 @@
     "footerPrivacy": "Privacidad",
     "footerTerms": "Términos",
     "footerImprint": "Aviso Legal",
-    "footerCopyright": "© 2025 TradeNot.es. Todos los derechos reservados.",
+    "footerCopyright": "© {{year}} TradeNot.es. Todos los derechos reservados.",
     "whySection": {
       "badge": "¿Por qué un diario de trading?",
       "title": "Los traders exitosos documentan cada operación",

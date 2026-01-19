@@ -818,7 +818,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Terms",
     "footerImprint": "Imprint",
-    "footerCopyright": "© 2025 TradeNot.es. All rights reserved.",
+    "footerCopyright": "© {{year}} TradeNot.es. All rights reserved.",
     "whySection": {
       "badge": "Why a Trading Journal?",
       "title": "Successful traders document every trade",

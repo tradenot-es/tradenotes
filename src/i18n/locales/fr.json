@@ -782,7 +782,7 @@
     "footerPrivacy": "Confidentialité",
     "footerTerms": "Conditions",
     "footerImprint": "Mentions Légales",
-    "footerCopyright": "© 2025 TradeNot.es. Tous droits réservés.",
+    "footerCopyright": "© {{year}} TradeNot.es. Tous droits réservés.",
     "whySection": {
       "badge": "Pourquoi un journal de trading?",
       "title": "Les traders performants documentent chaque trade",

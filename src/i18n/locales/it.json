@@ -802,7 +802,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Termini",
     "footerImprint": "Note Legali",
-    "footerCopyright": "© 2025 TradeNot.es. Tutti i diritti riservati.",
+    "footerCopyright": "© {{year}} TradeNot.es. Tutti i diritti riservati.",
     "whySection": {
       "badge": "Perché un diario di trading?",
       "title": "I trader di successo documentano ogni operazione",
