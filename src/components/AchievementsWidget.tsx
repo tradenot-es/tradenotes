@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 export function AchievementsWidget() {
   const { achievements, loading } = useAchievements();
@@ -25,8 +26,8 @@ export function AchievementsWidget() {
     return 0;
   });
 
-  // Show max 8 badges in widget
-  const displayAchievements = sortedAchievements.slice(0, 8);
+  // Show all achievements in scrollable area
+  const displayAchievements = sortedAchievements;
 
   if (loading) {
     return (
@@ -69,19 +70,22 @@ export function AchievementsWidget() {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex flex-wrap gap-2">
-            {displayAchievements.map((achievement) => (
-              <AchievementBadge
-                key={achievement.type}
-                icon={achievement.icon}
-                name={achievement.name}
-                description={achievement.description}
-                achieved={achievement.achieved}
-                achievedAt={achievement.achievedAt}
-                size="md"
-              />
-            ))}
-          </div>
+          <ScrollArea className="w-full">
+            <div className="flex gap-2 pb-2">
+              {displayAchievements.map((achievement) => (
+                <AchievementBadge
+                  key={achievement.type}
+                  icon={achievement.icon}
+                  name={achievement.name}
+                  description={achievement.description}
+                  achieved={achievement.achieved}
+                  achievedAt={achievement.achievedAt}
+                  size="md"
+                />
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         </TooltipProvider>
         
         {achievedCount === 0 && (
