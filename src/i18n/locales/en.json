@@ -1681,7 +1681,19 @@
     "century_club": "Century Club",
     "century_club_desc": "Reached 100 trades",
     "thousand_club": "Thousand Club",
-    "thousand_club_desc": "Reached 1000 trades"
+    "thousand_club_desc": "Reached 1000 trades",
+    "first_green_month": "Green Month",
+    "first_green_month_desc": "First profitable month",
+    "low_drawdown": "Drawdown Master",
+    "low_drawdown_desc": "Max drawdown under 5% with 20+ trades",
+    "diversified": "Diversified",
+    "diversified_desc": "Traded 10 different symbols",
+    "early_bird": "Early Bird",
+    "early_bird_desc": "20 trades before 10:00 AM",
+    "weekend_warrior": "Weekend Warrior",
+    "weekend_warrior_desc": "4 journal entries on weekends",
+    "comeback_king": "Comeback King",
+    "comeback_king_desc": "Ended day profitably after 3 consecutive losses"
   },
   "positionCalculator": {
     "title": "Position Size Calculator",

@@ -1488,7 +1488,19 @@
     "century_club": "Club des 100",
     "century_club_desc": "100 trades atteints",
     "thousand_club": "Club des 1000",
-    "thousand_club_desc": "1000 trades atteints"
+    "thousand_club_desc": "1000 trades atteints",
+    "first_green_month": "Mois Vert",
+    "first_green_month_desc": "Premier mois profitable",
+    "low_drawdown": "Maître du Drawdown",
+    "low_drawdown_desc": "Drawdown max sous 5% avec 20+ trades",
+    "diversified": "Diversifié",
+    "diversified_desc": "10 symboles différents tradés",
+    "early_bird": "Lève-tôt",
+    "early_bird_desc": "20 trades avant 10h00",
+    "weekend_warrior": "Guerrier du Weekend",
+    "weekend_warrior_desc": "4 entrées de journal le weekend",
+    "comeback_king": "Roi du Comeback",
+    "comeback_king_desc": "Journée terminée en profit après 3 pertes consécutives"
   },
   "positionCalculator": {
     "title": "Calculateur de Taille de Position",

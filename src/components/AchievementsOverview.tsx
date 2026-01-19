@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Progress } from '@/components/ui/progress';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 export function AchievementsOverview() {
   const { achievements, loading, checkAchievements } = useAchievements();
@@ -84,30 +85,32 @@ export function AchievementsOverview() {
         </div>
       </CardHeader>
       <CardContent>
-        <TooltipProvider>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-            {sortedAchievements.map((achievement) => (
-              <div
-                key={achievement.type}
-                className="flex flex-col items-center gap-2"
-              >
-                <AchievementBadge
-                  icon={achievement.icon}
-                  name={achievement.name}
-                  description={achievement.description}
-                  achieved={achievement.achieved}
-                  achievedAt={achievement.achievedAt}
-                  size="lg"
-                />
-                <span className={`text-xs text-center line-clamp-2 ${
-                  achievement.achieved ? 'text-foreground' : 'text-muted-foreground'
-                }`}>
-                  {achievement.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </TooltipProvider>
+        <ScrollArea className="h-[320px] pr-4">
+          <TooltipProvider>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+              {sortedAchievements.map((achievement) => (
+                <div
+                  key={achievement.type}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <AchievementBadge
+                    icon={achievement.icon}
+                    name={achievement.name}
+                    description={achievement.description}
+                    achieved={achievement.achieved}
+                    achievedAt={achievement.achievedAt}
+                    size="lg"
+                  />
+                  <span className={`text-xs text-center line-clamp-2 ${
+                    achievement.achieved ? 'text-foreground' : 'text-muted-foreground'
+                  }`}>
+                    {achievement.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </TooltipProvider>
+        </ScrollArea>
       </CardContent>
     </Card>
   );

@@ -1658,7 +1658,19 @@
     "century_club": "Club dei 100",
     "century_club_desc": "100 operazioni raggiunte",
     "thousand_club": "Club dei 1000",
-    "thousand_club_desc": "1000 operazioni raggiunte"
+    "thousand_club_desc": "1000 operazioni raggiunte",
+    "first_green_month": "Mese Verde",
+    "first_green_month_desc": "Primo mese profittevole",
+    "low_drawdown": "Maestro del Drawdown",
+    "low_drawdown_desc": "Drawdown max sotto 5% con 20+ operazioni",
+    "diversified": "Diversificato",
+    "diversified_desc": "10 simboli diversi tradati",
+    "early_bird": "Mattiniero",
+    "early_bird_desc": "20 operazioni prima delle 10:00",
+    "weekend_warrior": "Guerriero del Weekend",
+    "weekend_warrior_desc": "4 voci di diario nel weekend",
+    "comeback_king": "Re del Comeback",
+    "comeback_king_desc": "Giornata chiusa in profitto dopo 3 perdite consecutive"
   },
   "positionCalculator": {
     "title": "Calcolatore Dimensione Posizione",

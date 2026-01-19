@@ -28,6 +28,13 @@ export const ACHIEVEMENT_DEFINITIONS = [
   { type: 'r_master', icon: '⭐', requirement: 'Ø R-Multiple > 1.5 (min. 20 Trades)' },
   { type: 'century_club', icon: '💯', requirement: '100 Trades erreichen' },
   { type: 'thousand_club', icon: '🎖️', requirement: '1000 Trades erreichen' },
+  // New achievements
+  { type: 'first_green_month', icon: '📈', requirement: 'Erster profitabler Monat' },
+  { type: 'low_drawdown', icon: '🎯', requirement: 'Max Drawdown < 5%' },
+  { type: 'diversified', icon: '🌐', requirement: '10 verschiedene Symbole getradet' },
+  { type: 'early_bird', icon: '🌅', requirement: '20 Trades vor 10:00 Uhr' },
+  { type: 'weekend_warrior', icon: '📝', requirement: '4 Wochen Journal am Wochenende' },
+  { type: 'comeback_king', icon: '👑', requirement: 'Nach 3 Verlusttrades profitabel abgeschlossen' },
 ] as const;
 
 export type AchievementType = typeof ACHIEVEMENT_DEFINITIONS[number]['type'];
@@ -35,9 +42,11 @@ export type AchievementType = typeof ACHIEVEMENT_DEFINITIONS[number]['type'];
 interface Trade {
   id: string;
   pnl_net: number;
+  entry_time: string;
   exit_time: string;
   stop_loss_price?: number | null;
   r?: number | null;
+  symbol: string;
 }
 
 interface JournalEntry {
@@ -149,7 +158,7 @@ export function useAchievements() {
       const [tradesRes, journalRes, existingRes] = await Promise.all([
         supabase
           .from('trades')
-          .select('id, pnl_net, exit_time, stop_loss_price, r')
+          .select('id, pnl_net, entry_time, exit_time, stop_loss_price, r, symbol')
           .eq('user_id', user.id)
           .order('exit_time', { ascending: true }),
         supabase
@@ -262,6 +271,96 @@ export function useAchievements() {
         const avgR = tradesWithR.reduce((sum, t) => sum + Number(t.r), 0) / tradesWithR.length;
         if (avgR > 1.5 && !existingTypes.has('r_master')) {
           newAchievements.push('r_master');
+        }
+      }
+
+      // ===== NEW ACHIEVEMENTS =====
+
+      // First Green Month (first profitable month)
+      const monthlyPnL = new Map<string, number>();
+      for (const trade of trades) {
+        const monthKey = trade.exit_time.substring(0, 7); // YYYY-MM
+        monthlyPnL.set(monthKey, (monthlyPnL.get(monthKey) || 0) + Number(trade.pnl_net));
+      }
+      const hasProfitableMonth = Array.from(monthlyPnL.values()).some(pnl => pnl > 0);
+      if (hasProfitableMonth && !existingTypes.has('first_green_month')) {
+        newAchievements.push('first_green_month');
+      }
+
+      // Low Drawdown (max drawdown < 5% - simplified: no single loss > 5% of cumulative gains)
+      if (trades.length >= 20 && !existingTypes.has('low_drawdown')) {
+        let runningEquity = 0;
+        let peak = 0;
+        let maxDrawdownPercent = 0;
+        for (const trade of trades) {
+          runningEquity += Number(trade.pnl_net);
+          if (runningEquity > peak) peak = runningEquity;
+          if (peak > 0) {
+            const drawdown = (peak - runningEquity) / peak * 100;
+            maxDrawdownPercent = Math.max(maxDrawdownPercent, drawdown);
+          }
+        }
+        if (maxDrawdownPercent < 5 && peak > 0) {
+          newAchievements.push('low_drawdown');
+        }
+      }
+
+      // Diversified (10 different symbols traded)
+      const uniqueSymbols = new Set(trades.map(t => t.symbol));
+      if (uniqueSymbols.size >= 10 && !existingTypes.has('diversified')) {
+        newAchievements.push('diversified');
+      }
+
+      // Early Bird (20 trades before 10:00)
+      const earlyTrades = trades.filter(t => {
+        const entryTime = t.entry_time || t.exit_time;
+        const hour = new Date(entryTime).getHours();
+        return hour < 10;
+      });
+      if (earlyTrades.length >= 20 && !existingTypes.has('early_bird')) {
+        newAchievements.push('early_bird');
+      }
+
+      // Weekend Warrior (4 journal entries on weekends)
+      const weekendEntries = journalEntries.filter(entry => {
+        const day = new Date(entry.date).getDay();
+        return day === 0 || day === 6; // Sunday or Saturday
+      });
+      if (weekendEntries.length >= 4 && !existingTypes.has('weekend_warrior')) {
+        newAchievements.push('weekend_warrior');
+      }
+
+      // Comeback King (after 3 consecutive losses, ended day profitably)
+      if (!existingTypes.has('comeback_king') && trades.length >= 5) {
+        // Group trades by day
+        const tradesByDay = new Map<string, Trade[]>();
+        for (const trade of trades) {
+          const day = trade.exit_time.split('T')[0];
+          if (!tradesByDay.has(day)) tradesByDay.set(day, []);
+          tradesByDay.get(day)!.push(trade);
+        }
+        
+        for (const [, dayTrades] of tradesByDay) {
+          let lossStreak = 0;
+          let hasComeback = false;
+          const totalDayPnL = dayTrades.reduce((sum, t) => sum + Number(t.pnl_net), 0);
+          
+          for (const trade of dayTrades) {
+            if (trade.pnl_net < 0) {
+              lossStreak++;
+            } else {
+              if (lossStreak >= 3 && totalDayPnL > 0) {
+                hasComeback = true;
+                break;
+              }
+              lossStreak = 0;
+            }
+          }
+          
+          if (hasComeback) {
+            newAchievements.push('comeback_king');
+            break;
+          }
         }
       }
 
