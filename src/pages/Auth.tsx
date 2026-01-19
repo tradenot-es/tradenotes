@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
-import logo from "@/assets/tradenotes-logo-transparent.png";
+import logo from "@/assets/tradenotes-logo-new-transparent.png";
 
 const Auth = () => {
   const { t } = useTranslation();
