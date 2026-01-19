@@ -3,6 +3,12 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from './useAuth';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
+import confetti from 'canvas-confetti';
+
+export interface AchievementProgress {
+  current: number;
+  target: number;
+}
 
 export interface Achievement {
   id: string;
@@ -13,6 +19,7 @@ export interface Achievement {
   achieved: boolean;
   achievedAt?: string;
   metadata?: Record<string, unknown>;
+  progress?: AchievementProgress;
 }
 
 export const ACHIEVEMENT_DEFINITIONS = [
@@ -69,21 +76,138 @@ export function useAchievements() {
     return t(`achievements.${type}_desc`, ACHIEVEMENT_DEFINITIONS.find(a => a.type === type)?.requirement || '');
   }, [t]);
 
+  // Calculate progress for each achievement type
+  const calculateProgress = useCallback((
+    type: string,
+    trades: Trade[],
+    journalEntries: JournalEntry[]
+  ): AchievementProgress | undefined => {
+    switch (type) {
+      case 'first_trade':
+        return { current: Math.min(trades.length, 1), target: 1 };
+      
+      case 'century_club':
+        return { current: Math.min(trades.length, 100), target: 100 };
+      
+      case 'thousand_club':
+        return { current: Math.min(trades.length, 1000), target: 1000 };
+      
+      case 'streak_3_wins':
+      case 'streak_5_wins':
+      case 'streak_10_wins': {
+        const target = type === 'streak_3_wins' ? 3 : type === 'streak_5_wins' ? 5 : 10;
+        let currentStreak = 0;
+        let maxStreak = 0;
+        for (const trade of trades) {
+          if (trade.pnl_net > 0) {
+            currentStreak++;
+            maxStreak = Math.max(maxStreak, currentStreak);
+          } else {
+            currentStreak = 0;
+          }
+        }
+        return { current: Math.min(maxStreak, target), target };
+      }
+      
+      case 'consistency_7_days':
+      case 'consistency_30_days': {
+        const target = type === 'consistency_7_days' ? 7 : 30;
+        const tradeDays = new Set(trades.map(t => t.exit_time.split('T')[0]));
+        const sortedDays = Array.from(tradeDays).sort();
+        let consecutiveDays = 1;
+        let maxConsecutive = sortedDays.length > 0 ? 1 : 0;
+        for (let i = 1; i < sortedDays.length; i++) {
+          const prevDate = new Date(sortedDays[i - 1]);
+          const currDate = new Date(sortedDays[i]);
+          const diffDays = (currDate.getTime() - prevDate.getTime()) / (1000 * 60 * 60 * 24);
+          if (diffDays === 1) {
+            consecutiveDays++;
+            maxConsecutive = Math.max(maxConsecutive, consecutiveDays);
+          } else {
+            consecutiveDays = 1;
+          }
+        }
+        return { current: Math.min(maxConsecutive, target), target };
+      }
+      
+      case 'journal_hero':
+        return { current: Math.min(journalEntries.length, 7), target: 7 };
+      
+      case 'risk_manager': {
+        const tradesWithSL = trades.filter(t => t.stop_loss_price != null).length;
+        return { current: Math.min(tradesWithSL, 10), target: 10 };
+      }
+      
+      case 'r_master': {
+        const tradesWithR = trades.filter(t => t.r != null && t.r > 0);
+        return { current: Math.min(tradesWithR.length, 20), target: 20 };
+      }
+      
+      case 'diversified': {
+        const uniqueSymbols = new Set(trades.map(t => t.symbol));
+        return { current: Math.min(uniqueSymbols.size, 10), target: 10 };
+      }
+      
+      case 'early_bird': {
+        const earlyTrades = trades.filter(t => {
+          const entryTime = t.entry_time || t.exit_time;
+          const hour = new Date(entryTime).getHours();
+          return hour < 10;
+        });
+        return { current: Math.min(earlyTrades.length, 20), target: 20 };
+      }
+      
+      case 'weekend_warrior': {
+        const weekendEntries = journalEntries.filter(entry => {
+          const day = new Date(entry.date).getDay();
+          return day === 0 || day === 6;
+        });
+        return { current: Math.min(weekendEntries.length, 4), target: 4 };
+      }
+      
+      // These achievements have binary conditions, no progress tracking
+      case 'profitable_week':
+      case 'first_green_month':
+      case 'low_drawdown':
+      case 'comeback_king':
+        return undefined;
+      
+      default:
+        return undefined;
+    }
+  }, []);
+
   const loadAchievements = useCallback(async () => {
     if (!user) return;
 
     try {
-      const { data, error } = await supabase
-        .from('user_achievements')
-        .select('*')
-        .eq('user_id', user.id);
+      // Fetch achievements, trades and journal entries for progress calculation
+      const [achievementsRes, tradesRes, journalRes] = await Promise.all([
+        supabase
+          .from('user_achievements')
+          .select('*')
+          .eq('user_id', user.id),
+        supabase
+          .from('trades')
+          .select('id, pnl_net, entry_time, exit_time, stop_loss_price, r, symbol')
+          .eq('user_id', user.id)
+          .order('exit_time', { ascending: true }),
+        supabase
+          .from('journal_entries')
+          .select('id, date')
+          .eq('user_id', user.id),
+      ]);
 
-      if (error) throw error;
+      if (achievementsRes.error) throw achievementsRes.error;
 
-      const achievementMap = new Map(data?.map(a => [a.achievement_type, a]) || []);
+      const trades = (tradesRes.data || []) as Trade[];
+      const journalEntries = (journalRes.data || []) as JournalEntry[];
+      const achievementMap = new Map(achievementsRes.data?.map(a => [a.achievement_type, a]) || []);
 
       const allAchievements: Achievement[] = ACHIEVEMENT_DEFINITIONS.map(def => {
         const achieved = achievementMap.get(def.type);
+        const progress = !achieved ? calculateProgress(def.type, trades, journalEntries) : undefined;
+        
         return {
           id: achieved?.id || def.type,
           type: def.type,
@@ -93,6 +217,7 @@ export function useAchievements() {
           achieved: !!achieved,
           achievedAt: achieved?.achieved_at,
           metadata: achieved?.metadata as Record<string, unknown> | undefined,
+          progress,
         };
       });
 
@@ -103,6 +228,29 @@ export function useAchievements() {
       setLoading(false);
     }
   }, [user, getAchievementName, getAchievementDescription]);
+
+  const triggerConfetti = useCallback(() => {
+    // Achievement celebration confetti
+    const count = 200;
+    const defaults = {
+      origin: { y: 0.7 },
+      zIndex: 9999,
+    };
+
+    function fire(particleRatio: number, opts: confetti.Options) {
+      confetti({
+        ...defaults,
+        ...opts,
+        particleCount: Math.floor(count * particleRatio),
+      });
+    }
+
+    fire(0.25, { spread: 26, startVelocity: 55 });
+    fire(0.2, { spread: 60 });
+    fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+    fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+    fire(0.1, { spread: 120, startVelocity: 45 });
+  }, []);
 
   const unlockAchievement = useCallback(async (type: AchievementType, metadata?: Record<string, unknown>) => {
     if (!user) return false;
@@ -137,6 +285,10 @@ export function useAchievements() {
       };
 
       setNewAchievement(newAch);
+      
+      // Trigger confetti celebration!
+      triggerConfetti();
+      
       toast.success(
         `${def?.icon} ${t('achievements.newAchievement', 'Neues Achievement!')}`,
         { description: getAchievementName(type) }
@@ -148,7 +300,7 @@ export function useAchievements() {
       console.error('Error unlocking achievement:', error);
       return false;
     }
-  }, [user, t, getAchievementName, getAchievementDescription, loadAchievements]);
+  }, [user, t, getAchievementName, getAchievementDescription, loadAchievements, triggerConfetti]);
 
   const checkAchievements = useCallback(async () => {
     if (!user) return;

@@ -80,6 +80,7 @@ export function AchievementsWidget() {
                   description={achievement.description}
                   achieved={achievement.achieved}
                   achievedAt={achievement.achievedAt}
+                  progress={achievement.progress}
                   size="md"
                 />
               ))}

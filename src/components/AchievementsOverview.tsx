@@ -99,6 +99,7 @@ export function AchievementsOverview() {
                     description={achievement.description}
                     achieved={achievement.achieved}
                     achievedAt={achievement.achievedAt}
+                    progress={achievement.progress}
                     size="lg"
                   />
                   <span className={`text-xs text-center line-clamp-2 ${
