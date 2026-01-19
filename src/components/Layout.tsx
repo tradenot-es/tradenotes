@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import { AIAssistantFAB } from "@/components/AIAssistantFAB";
-import logo from "@/assets/tradenotes-logo.png";
+import logo from "@/assets/tradenotes-logo-transparent.png";
 export function Layout({
   children
 }: {
@@ -61,7 +61,7 @@ export function Layout({
           <SidebarContent>
           <div className="p-4 border-b border-sidebar-border">
             <div className="flex items-center gap-3 mb-2">
-              <img src={logo} alt="TradeNot.es Logo" className="h-10 w-10" />
+              <img src={logo} alt="TradeNot.es Logo" className="h-12 w-12 filter hue-rotate-[30deg] brightness-110 drop-shadow-[0_0_10px_hsl(158,100%,45%,0.4)]" />
               <h1 className="text-xl font-bold text-sidebar-foreground">TradeNot.es</h1>
             </div>
             <p className="text-sm text-muted-foreground">
