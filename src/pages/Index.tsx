@@ -213,7 +213,7 @@ const Index = () => {
             <img 
               src={logo} 
               alt="TradeNotes" 
-              className="h-36 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] filter hue-rotate-[30deg] brightness-110" 
+              className="h-72 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)]" 
             />
           </div>
           <Button 
