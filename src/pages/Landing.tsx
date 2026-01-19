@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import footerLogo from "@/assets/tradenotes-logo-new-transparent.png";
-import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair } from "lucide-react";
+import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight } from "lucide-react";
 const Landing = () => {
   const {
     t
@@ -182,6 +182,15 @@ const Landing = () => {
               <h3 className="font-semibold text-lg">{t("landing.whySection.benefit3Title")}</h3>
               <p className="text-muted-foreground text-sm">{t("landing.whySection.benefit3Desc")}</p>
             </div>
+          </div>
+          
+          <div className="mt-10">
+            <Button variant="outline" asChild className="gap-2">
+              <Link to="/warum-trading-journal">
+                {t("whyJournal.readMore")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

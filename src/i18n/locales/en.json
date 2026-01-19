@@ -1770,5 +1770,102 @@
         "text": "TradeNot.es is a trading journal for documenting and analyzing trades. Using this software does not constitute investment advice. Trading with financial instruments (stocks, futures, options, etc.) involves significant risks and can result in the total loss of invested capital. Past performance is not a guarantee of future results."
       }
     }
+  },
+  "whyJournal": {
+    "badge": "Trading Knowledge",
+    "heroTitle": "Why a Trading Journal",
+    "heroTitleHighlight": "is your key to success",
+    "heroDescription": "90% of all traders lose money. The crucial difference between winners and losers? Successful traders systematically document every trade.",
+    "ctaStart": "Start for free",
+    "keyTakeaways": {
+      "title": "Key Takeaways",
+      "point1": "A trading journal is the most important tool for long-term trading success",
+      "point2": "Emotional mistakes are responsible for over 70% of all losses – a journal helps identify them",
+      "point3": "Professional traders like Paul Tudor Jones and Ray Dalio all keep detailed journals",
+      "point4": "Through systematic analysis, you can demonstrably triple your win rate and profitability",
+      "point5": "Digital journals like TradeNotes automate analysis and save valuable time"
+    },
+    "benefitsTitle": "6 Reasons for a Trading Journal",
+    "benefitsDescription": "Discover why successful traders never trade without a journal",
+    "benefits": {
+      "psychology": {
+        "title": "Emotional Control",
+        "description": "Document your emotions with every trade. Recognize patterns like overtrading after losses or FOMO trades and systematically eliminate emotional mistakes."
+      },
+      "patterns": {
+        "title": "Pattern Recognition",
+        "description": "Identify which setups are truly profitable. Many traders believe certain strategies work – until statistics prove otherwise."
+      },
+      "discipline": {
+        "title": "Build Discipline",
+        "description": "Knowing you have to document every trade prevents impulsive decisions. You trade more consciously and rule-based."
+      },
+      "statistics": {
+        "title": "Real Statistics",
+        "description": "Win rate, profit factor, R-multiple, expectancy – understand your real performance instead of trusting gut feelings."
+      },
+      "risk": {
+        "title": "Risk Management",
+        "description": "Analyze MAE and MFE of your trades. Optimize stop-loss and take-profit based on real data instead of assumptions."
+      },
+      "learning": {
+        "title": "Continuous Learning",
+        "description": "Every trade becomes a learning opportunity. Through regular reviews, you continuously improve."
+      }
+    },
+    "cta1Title": "Ready to transform your trading?",
+    "cta1Description": "Start now with TradeNotes and experience the difference of a professional trading journal.",
+    "cta1Button": "Try 14 days free",
+    "elementsTitle": "What belongs in a Trading Journal?",
+    "elementsDescription": "The essential elements for complete trade documentation",
+    "elements": {
+      "entryExit": "Entry and exit time",
+      "positionSize": "Position size and risk",
+      "stopLoss": "Stop-loss and take-profit levels",
+      "emotions": "Emotional state before/during/after the trade",
+      "marketConditions": "Market conditions and context",
+      "setup": "Setup/strategy that led to entry",
+      "screenshot": "Chart screenshot for visual analysis",
+      "notes": "Personal notes and learnings"
+    },
+    "tradersTitle": "Learn from the Best",
+    "tradersDescription": "The most successful traders in history swear by their trading journal",
+    "quotes": {
+      "jones": "I document every single trade. The journal has become my most important tool.",
+      "dalio": "Write down your decisions so you can learn from them.",
+      "livermore": "Studying my past trades has taught me more than anything else."
+    },
+    "statsTitle": "The Numbers Speak for Themselves",
+    "statsDescription": "Facts about trading success and the role of journaling",
+    "stats": {
+      "failRate": "of retail traders lose money long-term",
+      "improvement": "better performance for traders with systematic journals",
+      "emotional": "of trading mistakes are emotionally driven"
+    },
+    "faqTitle": "Frequently Asked Questions",
+    "faq": {
+      "digital": {
+        "question": "Digital or on paper?",
+        "answer": "A digital journal like TradeNotes offers automatic calculations, visual charts, search functions, and can never be lost. The time savings compared to paper are enormous."
+      },
+      "time": {
+        "question": "How much time does journaling take?",
+        "answer": "With TradeNotes, documenting a trade takes less than 2 minutes. The weekly review takes about 15-30 minutes – time that pays off many times over through better trades."
+      },
+      "beginners": {
+        "question": "Useful for beginners too?",
+        "answer": "A journal is especially essential for beginners! The earlier you start documenting, the faster you'll recognize your strengths and weaknesses and avoid expensive beginner mistakes."
+      },
+      "review": {
+        "question": "How often should I review my journal?",
+        "answer": "Recommended: Short daily review after the trading day, thorough weekly analysis on the weekend, and a comprehensive monthly review."
+      }
+    },
+    "finalCtaTitle": "Start your Trading Journal today",
+    "finalCtaDescription": "Join thousands of successful traders who systematically improve their performance with TradeNotes.",
+    "finalCtaButton": "Register for free",
+    "finalCtaFeatures": "View all features",
+    "backToHome": "Back to homepage",
+    "readMore": "Learn more"
   }
 }
