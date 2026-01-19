@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
-import heroLogo from "@/assets/tradenotes-logo-hero.png";
+import footerLogo from "@/assets/tradenotes-logo-new-transparent.png";
 import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair } from "lucide-react";
 const Landing = () => {
   const {
@@ -303,7 +303,7 @@ const Landing = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-1 space-y-4">
-              <img src={heroLogo} alt="TradeNot.es Logo" className="h-20 w-auto" />
+              <img src={footerLogo} alt="TradeNot.es Logo" className="h-24 w-auto drop-shadow-[0_0_20px_hsl(158,100%,45%,0.4)] hue-rotate-[30deg] brightness-110" />
               <p className="text-sm text-muted-foreground">
                 {t("landing.footerDescription")}
               </p>
