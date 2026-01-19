@@ -149,7 +149,9 @@ const Auth = () => {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
-            <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg" />
+            <Link to="/">
+              <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+            </Link>
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
           
@@ -197,7 +199,9 @@ const Auth = () => {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
-            <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg" />
+            <Link to="/">
+              <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+            </Link>
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
           
@@ -248,7 +252,9 @@ const Auth = () => {
       <div className="w-full max-w-md space-y-6">
         {/* Logo and Slogan */}
         <div className="flex flex-col items-center mb-2">
-          <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg" />
+          <Link to="/">
+            <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+          </Link>
           <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
         </div>
         
