@@ -203,20 +203,21 @@ const Index = () => {
 
   return (
     <div className="space-y-8 p-2">
-      <div className="glossy-card py-3 px-4 rounded-2xl">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_auto] lg:items-center lg:gap-x-6">
-          <div className="flex-shrink-0 min-w-0 lg:pr-2">
+      <div className="glossy-card py-4 px-6 rounded-2xl overflow-visible">
+        <div className="flex items-center gap-6">
+          <div className="flex-shrink-0 min-w-0">
             <h1 className="text-4xl font-bold gradient-text leading-tight">{t("dashboard.title")}</h1>
             <p className="text-muted-foreground mt-1">{t("dashboard.subtitle")}</p>
           </div>
           <img 
             src={logo} 
             alt="TradeNotes" 
-            className="h-72 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] shrink-0 justify-self-center lg:justify-self-auto" 
+            className="h-40 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] shrink-0 -my-8" 
           />
+          <div className="flex-grow" />
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
-            className="gap-2 justify-self-center lg:justify-self-end"
+            className="gap-2 shrink-0"
             size="lg"
           >
             <Plus className="h-4 w-4" />
