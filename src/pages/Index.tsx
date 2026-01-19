@@ -11,7 +11,7 @@ import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
-import logo from "@/assets/tradenotes-logo-auth.png";
+import logo from "@/assets/tradenotes-logo-transparent.png";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
