@@ -69,18 +69,19 @@ export function AchievementsWidget() {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex gap-1.5 overflow-hidden">
             {displayAchievements.map((achievement) => (
-              <AchievementBadge
-                key={achievement.type}
-                icon={achievement.icon}
-                name={achievement.name}
-                description={achievement.description}
-                achieved={achievement.achieved}
-                achievedAt={achievement.achievedAt}
-                progress={achievement.progress}
-                size="md"
-              />
+              <div key={achievement.type} className="flex-shrink-0">
+                <AchievementBadge
+                  icon={achievement.icon}
+                  name={achievement.name}
+                  description={achievement.description}
+                  achieved={achievement.achieved}
+                  achievedAt={achievement.achievedAt}
+                  progress={achievement.progress}
+                  size="sm"
+                />
+              </div>
             ))}
           </div>
         </TooltipProvider>
