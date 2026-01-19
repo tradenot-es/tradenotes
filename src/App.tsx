@@ -23,6 +23,7 @@ import Status from "./pages/Status";
 import Datenschutz from "./pages/Datenschutz";
 import AGB from "./pages/AGB";
 import Impressum from "./pages/Impressum";
+import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/datenschutz" element={<Datenschutz />} />
             <Route path="/agb" element={<AGB />} />
             <Route path="/impressum" element={<Impressum />} />
+            <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route
               path="/dashboard/*"
               element={

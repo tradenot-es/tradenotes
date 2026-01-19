@@ -40,6 +40,16 @@
     "privacy": "Politique de confidentialité",
     "termsRequired": "Veuillez accepter les CGV et la Politique de confidentialité"
   },
+  "checkout": {
+    "successTitle": "Bienvenue dans Premium !",
+    "successDescription": "Votre paiement a été effectué avec succès. Votre accès Premium est maintenant actif.",
+    "premiumActivated": "Vous avez maintenant accès à toutes les fonctionnalités Premium :",
+    "feature1": "Enregistrement illimité des trades",
+    "feature2": "Rapports et analyses avancés",
+    "feature3": "Assistant de trading IA",
+    "goToDashboard": "Aller au tableau de bord",
+    "redirecting": "Redirection dans {{seconds}} secondes..."
+  },
   "dashboard": {
     "title": "Tableau de bord",
     "subtitle": "Aperçu de vos performances de trading",

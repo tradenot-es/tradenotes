@@ -40,6 +40,16 @@
     "privacy": "Privacybeleid",
     "termsRequired": "Accepteer de Algemene voorwaarden en het Privacybeleid"
   },
+  "checkout": {
+    "successTitle": "Welkom bij Premium!",
+    "successDescription": "Je betaling is gelukt. Je Premium-toegang is nu actief.",
+    "premiumActivated": "Je hebt nu toegang tot alle Premium-functies:",
+    "feature1": "Onbeperkte trade-registratie",
+    "feature2": "Geavanceerde rapporten & analyses",
+    "feature3": "AI-aangedreven trading-assistent",
+    "goToDashboard": "Naar dashboard",
+    "redirecting": "Automatische doorverwijzing in {{seconds}} seconden..."
+  },
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overzicht van je trading prestaties",
