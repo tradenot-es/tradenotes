@@ -528,8 +528,13 @@ export function useAchievements() {
   }, [user, unlockAchievement]);
 
   useEffect(() => {
-    loadAchievements();
-  }, [loadAchievements]);
+    const init = async () => {
+      await loadAchievements();
+      // Auto-check achievements on first load
+      checkAchievements();
+    };
+    init();
+  }, [loadAchievements, checkAchievements]);
 
   const dismissNewAchievement = useCallback(() => {
     setNewAchievement(null);
