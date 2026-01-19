@@ -1704,5 +1704,39 @@
     "insight1": "80% of your winning trades had a maximum drawdown (MAE) of less than {{value}}%. Set your stop-loss accordingly.",
     "insight2Title": "Take-Profit",
     "insight2": "On average, your trades run {{value}}% into profit (MFE) before you exit. You're leaving {{missed}}% on the table."
+  },
+  "imprint": {
+    "title": "Legal Notice",
+    "subtitle": "Legal information and mandatory disclosures according to applicable law",
+    "provider": {
+      "title": "Provider",
+      "address": "TradeNot.es\nOwner: [Name on request]\nGermany"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "responsible": {
+      "title": "Responsible for Content",
+      "content": "The operator of this website is responsible for the content.\nFor questions please contact: info@tradenot.es"
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content": {
+        "title": "Liability for Content",
+        "text": "The contents of our pages have been created with the greatest care. However, we cannot guarantee the accuracy, completeness, and timeliness of the content. As a service provider, we are responsible for our own content on these pages according to general laws."
+      },
+      "links": {
+        "title": "Liability for Links",
+        "text": "Our offer contains links to external websites of third parties, on whose contents we have no influence. Therefore, we cannot assume any liability for these external contents. The respective provider or operator of the pages is always responsible for the contents of the linked pages."
+      },
+      "copyright": {
+        "title": "Copyright",
+        "text": "The content and works created by the site operators on these pages are subject to copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law requires the prior written consent of the respective author or creator."
+      },
+      "trading": {
+        "title": "Risk Disclaimer",
+        "text": "TradeNot.es is a trading journal for documenting and analyzing trades. Using this software does not constitute investment advice. Trading with financial instruments (stocks, futures, options, etc.) involves significant risks and can result in the total loss of invested capital. Past performance is not a guarantee of future results."
+      }
+    }
   }
 }
