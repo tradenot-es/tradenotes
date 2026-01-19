@@ -23,7 +23,21 @@
     "hasAccount": "Already registered? Login",
     "loginSuccess": "Successfully logged in!",
     "accountCreated": "Account created! You can now log in.",
-    "error": "An error occurred"
+    "error": "An error occurred",
+    "slogan": "Your professional trading journal",
+    "forgotPassword": "Forgot password?",
+    "forgotPasswordDesc": "Enter your email address to reset your password",
+    "sendResetEmail": "Send reset link",
+    "resetEmailSent": "Password reset email sent!",
+    "backToLogin": "Back to login",
+    "resetPassword": "Set new password",
+    "resetPasswordDesc": "Enter your new password",
+    "passwordUpdated": "Password updated successfully!",
+    "acceptTerms": "I accept the",
+    "terms": "Terms of Service",
+    "and": "and",
+    "privacy": "Privacy Policy",
+    "termsRequired": "Please accept the Terms of Service and Privacy Policy"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -652,7 +666,15 @@
     "deleteAccountSuccess": "Account successfully deleted",
     "deleteAccountSuccessMessage": "Your account has been completely deleted. You will now be redirected to the home page...",
     "deleteAccountError": "Error deleting account",
-    "deletingAccount": "Deleting account..."
+    "deletingAccount": "Deleting account...",
+    "choosePlan": "Choose your plan",
+    "monthlyLabel": "Monthly",
+    "yearlyLabel": "Yearly",
+    "savePercent": "Save 17%",
+    "perMonth": "per month",
+    "perYear": "per year",
+    "subscribeNow": "Upgrade now",
+    "subscribeError": "Error starting checkout"
   },
   "settings": {
     "title": "Settings",

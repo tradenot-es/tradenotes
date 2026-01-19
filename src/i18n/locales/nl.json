@@ -24,7 +24,21 @@
     "hasAccount": "Al geregistreerd? Inloggen",
     "loginSuccess": "Succesvol ingelogd!",
     "accountCreated": "Account aangemaakt! Je kunt nu inloggen.",
-    "error": "Er is een fout opgetreden"
+    "error": "Er is een fout opgetreden",
+    "slogan": "Jouw professionele trading dagboek",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "forgotPasswordDesc": "Voer je e-mailadres in om je wachtwoord te resetten",
+    "sendResetEmail": "Resetlink verzenden",
+    "resetEmailSent": "Reset e-mail verzonden!",
+    "backToLogin": "Terug naar inloggen",
+    "resetPassword": "Nieuw wachtwoord instellen",
+    "resetPasswordDesc": "Voer je nieuwe wachtwoord in",
+    "passwordUpdated": "Wachtwoord succesvol bijgewerkt!",
+    "acceptTerms": "Ik accepteer de",
+    "terms": "Algemene voorwaarden",
+    "and": "en",
+    "privacy": "Privacybeleid",
+    "termsRequired": "Accepteer de Algemene voorwaarden en het Privacybeleid"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -616,7 +630,15 @@
     "deleteAccountSuccess": "Account succesvol verwijderd",
     "deleteAccountSuccessMessage": "Je account is volledig verwijderd. Je wordt nu doorgestuurd naar de homepagina...",
     "deleteAccountError": "Fout bij verwijderen van account",
-    "deletingAccount": "Account verwijderen..."
+    "deletingAccount": "Account verwijderen...",
+    "choosePlan": "Kies je plan",
+    "monthlyLabel": "Maandelijks",
+    "yearlyLabel": "Jaarlijks",
+    "savePercent": "Bespaar 17%",
+    "perMonth": "per maand",
+    "perYear": "per jaar",
+    "subscribeNow": "Nu upgraden",
+    "subscribeError": "Fout bij starten van betaling"
   },
   "settings": {
     "title": "Instellingen",
