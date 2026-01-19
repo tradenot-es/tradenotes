@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
-import logo from "@/assets/tradenotes-logo-auth.png";
+import logo from "@/assets/tradenotes-logo-transparent.png";
 
 const Auth = () => {
   const { t } = useTranslation();
@@ -150,7 +150,11 @@ const Auth = () => {
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
             <Link to="/">
-              <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+              <img 
+                src={logo} 
+                alt="TradeNotes" 
+                className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
+              />
             </Link>
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
@@ -200,7 +204,11 @@ const Auth = () => {
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
             <Link to="/">
-              <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+              <img 
+                src={logo} 
+                alt="TradeNotes" 
+                className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
+              />
             </Link>
             <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
           </div>
@@ -253,7 +261,11 @@ const Auth = () => {
         {/* Logo and Slogan */}
         <div className="flex flex-col items-center mb-2">
           <Link to="/">
-            <img src={logo} alt="TradeNotes" className="h-48 w-auto mb-4 drop-shadow-lg hover:scale-105 transition-transform cursor-pointer" />
+            <img 
+              src={logo} 
+              alt="TradeNotes" 
+              className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
+            />
           </Link>
           <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
         </div>
