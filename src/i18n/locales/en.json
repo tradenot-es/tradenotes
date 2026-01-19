@@ -39,6 +39,16 @@
     "privacy": "Privacy Policy",
     "termsRequired": "Please accept the Terms of Service and Privacy Policy"
   },
+  "checkout": {
+    "successTitle": "Welcome to Premium!",
+    "successDescription": "Your payment was successful. Your Premium access is now active.",
+    "premiumActivated": "You now have access to all Premium features:",
+    "feature1": "Unlimited trade logging",
+    "feature2": "Advanced reports & analytics",
+    "feature3": "AI-powered trading assistant",
+    "goToDashboard": "Go to Dashboard",
+    "redirecting": "Redirecting in {{seconds}} seconds..."
+  },
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overview of your trading performance",

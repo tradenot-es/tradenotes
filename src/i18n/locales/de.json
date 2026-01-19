@@ -39,6 +39,16 @@
     "privacy": "Datenschutzerklärung",
     "termsRequired": "Bitte akzeptiere die AGB und Datenschutzerklärung"
   },
+  "checkout": {
+    "successTitle": "Willkommen bei Premium!",
+    "successDescription": "Deine Zahlung war erfolgreich. Dein Premium-Zugang ist jetzt aktiv.",
+    "premiumActivated": "Du hast jetzt Zugriff auf alle Premium-Funktionen:",
+    "feature1": "Unbegrenzte Trade-Erfassung",
+    "feature2": "Erweiterte Reports & Analysen",
+    "feature3": "KI-gestützter Trading-Assistent",
+    "goToDashboard": "Zum Dashboard",
+    "redirecting": "Automatische Weiterleitung in {{seconds}} Sekunden..."
+  },
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Übersicht deiner Trading-Performance",

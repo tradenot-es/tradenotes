@@ -69,7 +69,7 @@ serve(async (req) => {
       subscription_data: {
         trial_period_days: 14, // 14-day free trial
       },
-      success_url: `${origin}/dashboard?checkout=success`,
+      success_url: `${origin}/checkout-success`,
       cancel_url: `${origin}/dashboard/account?checkout=canceled`,
     });
 

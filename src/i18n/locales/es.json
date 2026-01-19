@@ -40,6 +40,16 @@
     "privacy": "Política de privacidad",
     "termsRequired": "Por favor acepta los Términos de servicio y la Política de privacidad"
   },
+  "checkout": {
+    "successTitle": "¡Bienvenido a Premium!",
+    "successDescription": "Tu pago fue exitoso. Tu acceso Premium ya está activo.",
+    "premiumActivated": "Ahora tienes acceso a todas las funciones Premium:",
+    "feature1": "Registro ilimitado de operaciones",
+    "feature2": "Informes y análisis avanzados",
+    "feature3": "Asistente de trading con IA",
+    "goToDashboard": "Ir al panel",
+    "redirecting": "Redirigiendo en {{seconds}} segundos..."
+  },
   "dashboard": {
     "title": "Panel",
     "subtitle": "Resumen de tu rendimiento de trading",
