@@ -23,7 +23,21 @@
     "hasAccount": "Già registrato? Accedi",
     "loginSuccess": "Accesso effettuato con successo!",
     "accountCreated": "Account creato! Ora puoi accedere.",
-    "error": "Si è verificato un errore"
+    "error": "Si è verificato un errore",
+    "slogan": "Il tuo diario di trading professionale",
+    "forgotPassword": "Password dimenticata?",
+    "forgotPasswordDesc": "Inserisci il tuo indirizzo email per reimpostare la password",
+    "sendResetEmail": "Invia link",
+    "resetEmailSent": "Email di reimpostazione inviata!",
+    "backToLogin": "Torna al login",
+    "resetPassword": "Imposta nuova password",
+    "resetPasswordDesc": "Inserisci la tua nuova password",
+    "passwordUpdated": "Password aggiornata con successo!",
+    "acceptTerms": "Accetto i",
+    "terms": "Termini di servizio",
+    "and": "e",
+    "privacy": "Informativa sulla privacy",
+    "termsRequired": "Accetta i Termini di servizio e l'Informativa sulla privacy"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -636,7 +650,15 @@
     "deleteAccountSuccess": "Account eliminato con successo",
     "deleteAccountSuccessMessage": "Il tuo account è stato completamente eliminato. Verrai reindirizzato alla pagina iniziale...",
     "deleteAccountError": "Errore durante l'eliminazione dell'account",
-    "deletingAccount": "Eliminazione account..."
+    "deletingAccount": "Eliminazione account...",
+    "choosePlan": "Scegli il tuo piano",
+    "monthlyLabel": "Mensile",
+    "yearlyLabel": "Annuale",
+    "savePercent": "Risparmia 17%",
+    "perMonth": "al mese",
+    "perYear": "all'anno",
+    "subscribeNow": "Aggiorna ora",
+    "subscribeError": "Errore durante l'avvio del pagamento"
   },
   "settings": {
     "title": "Impostazioni",

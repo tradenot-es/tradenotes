@@ -23,7 +23,21 @@
     "hasAccount": "Bereits registriert? Anmelden",
     "loginSuccess": "Erfolgreich angemeldet!",
     "accountCreated": "Account erstellt! Du kannst dich jetzt anmelden.",
-    "error": "Ein Fehler ist aufgetreten"
+    "error": "Ein Fehler ist aufgetreten",
+    "slogan": "Dein professionelles Trading Journal",
+    "forgotPassword": "Passwort vergessen?",
+    "forgotPasswordDesc": "Gib deine E-Mail-Adresse ein, um dein Passwort zurückzusetzen",
+    "sendResetEmail": "Reset-Link senden",
+    "resetEmailSent": "E-Mail zum Zurücksetzen wurde gesendet!",
+    "backToLogin": "Zurück zur Anmeldung",
+    "resetPassword": "Neues Passwort setzen",
+    "resetPasswordDesc": "Gib dein neues Passwort ein",
+    "passwordUpdated": "Passwort erfolgreich aktualisiert!",
+    "acceptTerms": "Ich akzeptiere die",
+    "terms": "AGB",
+    "and": "und",
+    "privacy": "Datenschutzerklärung",
+    "termsRequired": "Bitte akzeptiere die AGB und Datenschutzerklärung"
   },
   "dashboard": {
     "title": "Dashboard",
@@ -530,7 +544,15 @@
     "deleteAccountSuccess": "Konto erfolgreich gelöscht",
     "deleteAccountSuccessMessage": "Dein Konto wurde vollständig gelöscht. Du wirst jetzt zur Startseite weitergeleitet...",
     "deleteAccountError": "Fehler beim Löschen des Kontos",
-    "deletingAccount": "Lösche Konto..."
+    "deletingAccount": "Lösche Konto...",
+    "choosePlan": "Wähle deinen Plan",
+    "monthlyLabel": "Monatlich",
+    "yearlyLabel": "Jährlich",
+    "savePercent": "Spare 17%",
+    "perMonth": "pro Monat",
+    "perYear": "pro Jahr",
+    "subscribeNow": "Jetzt upgraden",
+    "subscribeError": "Fehler beim Starten des Checkouts"
   },
   "settings": {
     "title": "Einstellungen",

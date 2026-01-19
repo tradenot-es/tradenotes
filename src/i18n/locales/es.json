@@ -24,7 +24,21 @@
     "hasAccount": "¿Ya estás registrado? Inicia sesión",
     "loginSuccess": "¡Inicio de sesión exitoso!",
     "accountCreated": "¡Cuenta creada! Ya puedes iniciar sesión.",
-    "error": "Se produjo un error"
+    "error": "Se produjo un error",
+    "slogan": "Tu diario de trading profesional",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "forgotPasswordDesc": "Ingresa tu correo electrónico para restablecer tu contraseña",
+    "sendResetEmail": "Enviar enlace",
+    "resetEmailSent": "¡Correo de restablecimiento enviado!",
+    "backToLogin": "Volver al inicio de sesión",
+    "resetPassword": "Establecer nueva contraseña",
+    "resetPasswordDesc": "Ingresa tu nueva contraseña",
+    "passwordUpdated": "¡Contraseña actualizada con éxito!",
+    "acceptTerms": "Acepto los",
+    "terms": "Términos de servicio",
+    "and": "y",
+    "privacy": "Política de privacidad",
+    "termsRequired": "Por favor acepta los Términos de servicio y la Política de privacidad"
   },
   "dashboard": {
     "title": "Panel",
@@ -616,7 +630,15 @@
     "deleteAccountSuccess": "Cuenta eliminada con éxito",
     "deleteAccountSuccessMessage": "Tu cuenta ha sido eliminada completamente. Serás redirigido a la página de inicio...",
     "deleteAccountError": "Error al eliminar la cuenta",
-    "deletingAccount": "Eliminando cuenta..."
+    "deletingAccount": "Eliminando cuenta...",
+    "choosePlan": "Elige tu plan",
+    "monthlyLabel": "Mensual",
+    "yearlyLabel": "Anual",
+    "savePercent": "Ahorra 17%",
+    "perMonth": "por mes",
+    "perYear": "por año",
+    "subscribeNow": "Actualizar ahora",
+    "subscribeError": "Error al iniciar el pago"
   },
   "settings": {
     "title": "Configuración",

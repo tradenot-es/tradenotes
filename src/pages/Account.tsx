@@ -43,6 +43,8 @@ const Account = () => {
     subscription_end?: string;
   } | null>(null);
   const [loadingSubscription, setLoadingSubscription] = useState(true);
+  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">("yearly");
+  const [subscribing, setSubscribing] = useState(false);
 
   // Reset states
   const [showResetDialog, setShowResetDialog] = useState(false);
@@ -264,6 +266,34 @@ const Account = () => {
       }
     } catch (error: any) {
       toast.error(error.message || "Fehler beim Öffnen des Kundenportals");
+    }
+  };
+
+  const handleSubscribe = async () => {
+    setSubscribing(true);
+    try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast.error(t("auth.error"));
+        return;
+      }
+
+      const { data, error } = await supabase.functions.invoke('create-checkout', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
+        body: { plan: selectedPlan },
+      });
+
+      if (error) throw error;
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      }
+    } catch (error: any) {
+      console.error("Subscribe error:", error);
+      toast.error(t("account.subscribeError"));
+    } finally {
+      setSubscribing(false);
     }
   };
 
@@ -500,12 +530,49 @@ const Account = () => {
                         </p>
                       </div>
                       
-                      <div className="pt-2 border-t border-blue-500/20">
-                        <p className="text-sm font-medium mb-2">{t("account.availablePlans")}</p>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          <li>• {t("account.monthlyPlan")}</li>
-                          <li>• {t("account.yearlyPlan")}</li>
-                        </ul>
+                      {/* Plan Selection */}
+                      <div className="pt-3 border-t border-blue-500/20">
+                        <p className="text-sm font-medium mb-3">{t("account.choosePlan")}</p>
+                        <div className="grid grid-cols-2 gap-3">
+                          {/* Monthly Plan */}
+                          <button
+                            type="button"
+                            onClick={() => setSelectedPlan("monthly")}
+                            className={`relative p-4 rounded-lg border-2 transition-all text-left ${
+                              selectedPlan === "monthly"
+                                ? "border-primary bg-primary/5"
+                                : "border-border hover:border-primary/50"
+                            }`}
+                          >
+                            <div className="font-medium">{t("account.monthlyLabel")}</div>
+                            <div className="text-2xl font-bold mt-1">19,99€</div>
+                            <div className="text-xs text-muted-foreground">{t("account.perMonth")}</div>
+                            {selectedPlan === "monthly" && (
+                              <CheckCircle className="absolute top-2 right-2 h-5 w-5 text-primary" />
+                            )}
+                          </button>
+                          
+                          {/* Yearly Plan */}
+                          <button
+                            type="button"
+                            onClick={() => setSelectedPlan("yearly")}
+                            className={`relative p-4 rounded-lg border-2 transition-all text-left ${
+                              selectedPlan === "yearly"
+                                ? "border-primary bg-primary/5"
+                                : "border-border hover:border-primary/50"
+                            }`}
+                          >
+                            <div className="absolute -top-2 -right-2 bg-green-500 text-white text-xs font-bold px-2 py-0.5 rounded-full">
+                              {t("account.savePercent")}
+                            </div>
+                            <div className="font-medium">{t("account.yearlyLabel")}</div>
+                            <div className="text-2xl font-bold mt-1">199,90€</div>
+                            <div className="text-xs text-muted-foreground">{t("account.perYear")}</div>
+                            {selectedPlan === "yearly" && (
+                              <CheckCircle className="absolute top-2 right-2 h-5 w-5 text-primary" />
+                            )}
+                          </button>
+                        </div>
                       </div>
 
                       <div className="pt-2 border-t border-blue-500/20">
@@ -527,6 +594,17 @@ const Account = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Subscribe Button */}
+                  <Button 
+                    onClick={handleSubscribe} 
+                    className="w-full" 
+                    variant="premium"
+                    disabled={subscribing}
+                  >
+                    <CreditCard className="h-4 w-4 mr-2" />
+                    {subscribing ? t("auth.loading") : t("account.subscribeNow")}
+                  </Button>
                 </div>
               )}
             </CardContent>

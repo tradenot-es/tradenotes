@@ -24,7 +24,21 @@
     "hasAccount": "Déjà inscrit ? Se connecter",
     "loginSuccess": "Connexion réussie !",
     "accountCreated": "Compte créé ! Vous pouvez maintenant vous connecter.",
-    "error": "Une erreur s'est produite"
+    "error": "Une erreur s'est produite",
+    "slogan": "Votre journal de trading professionnel",
+    "forgotPassword": "Mot de passe oublié ?",
+    "forgotPasswordDesc": "Entrez votre adresse e-mail pour réinitialiser votre mot de passe",
+    "sendResetEmail": "Envoyer le lien",
+    "resetEmailSent": "E-mail de réinitialisation envoyé !",
+    "backToLogin": "Retour à la connexion",
+    "resetPassword": "Définir nouveau mot de passe",
+    "resetPasswordDesc": "Entrez votre nouveau mot de passe",
+    "passwordUpdated": "Mot de passe mis à jour avec succès !",
+    "acceptTerms": "J'accepte les",
+    "terms": "CGV",
+    "and": "et",
+    "privacy": "Politique de confidentialité",
+    "termsRequired": "Veuillez accepter les CGV et la Politique de confidentialité"
   },
   "dashboard": {
     "title": "Tableau de bord",
@@ -616,7 +630,15 @@
     "deleteAccountSuccess": "Compte supprimé avec succès",
     "deleteAccountSuccessMessage": "Votre compte a été entièrement supprimé. Vous allez être redirigé vers la page d'accueil...",
     "deleteAccountError": "Erreur lors de la suppression du compte",
-    "deletingAccount": "Suppression du compte..."
+    "deletingAccount": "Suppression du compte...",
+    "choosePlan": "Choisissez votre plan",
+    "monthlyLabel": "Mensuel",
+    "yearlyLabel": "Annuel",
+    "savePercent": "Économisez 17%",
+    "perMonth": "par mois",
+    "perYear": "par an",
+    "subscribeNow": "Mettre à niveau",
+    "subscribeError": "Erreur lors du démarrage du paiement"
   },
   "settings": {
     "title": "Paramètres",
