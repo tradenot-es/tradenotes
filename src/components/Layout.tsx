@@ -7,7 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import { AIAssistantFAB } from "@/components/AIAssistantFAB";
-import logo from "@/assets/tradenotes-logo-transparent.png";
+import logo from "@/assets/tradenotes-logo-new-transparent.png";
 export function Layout({
   children
 }: {
