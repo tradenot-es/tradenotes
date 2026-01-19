@@ -1577,5 +1577,102 @@
         "text": "TradeNot.es est un journal de trading pour documenter et analyser les trades. L'utilisation de ce logiciel ne constitue pas un conseil en investissement. Le trading d'instruments financiers (actions, futures, options, etc.) comporte des risques importants et peut entraîner la perte totale du capital investi. Les performances passées ne garantissent pas les résultats futurs."
       }
     }
+  },
+  "whyJournal": {
+    "badge": "Savoir Trading",
+    "heroTitle": "Pourquoi un journal de trading",
+    "heroTitleHighlight": "est la clé de votre succès",
+    "heroDescription": "90% des traders perdent de l'argent. La différence cruciale entre gagnants et perdants ? Les traders à succès documentent systématiquement chaque trade.",
+    "ctaStart": "Commencer gratuitement",
+    "keyTakeaways": {
+      "title": "Points clés",
+      "point1": "Un journal de trading est l'outil le plus important pour le succès à long terme",
+      "point2": "Les erreurs émotionnelles sont responsables de plus de 70% des pertes – un journal aide à les identifier",
+      "point3": "Les traders professionnels comme Paul Tudor Jones et Ray Dalio tiennent tous des journaux détaillés",
+      "point4": "Grâce à une analyse systématique, vous pouvez tripler votre taux de réussite et votre rentabilité",
+      "point5": "Les journaux numériques comme TradeNotes automatisent l'analyse et font gagner un temps précieux"
+    },
+    "benefitsTitle": "6 raisons d'avoir un journal de trading",
+    "benefitsDescription": "Découvrez pourquoi les traders à succès ne tradent jamais sans journal",
+    "benefits": {
+      "psychology": {
+        "title": "Contrôle émotionnel",
+        "description": "Documentez vos émotions à chaque trade. Reconnaissez les patterns comme le surtrading après les pertes ou les trades FOMO et éliminez systématiquement les erreurs émotionnelles."
+      },
+      "patterns": {
+        "title": "Reconnaissance des patterns",
+        "description": "Identifiez quels setups sont vraiment rentables. Beaucoup de traders croient que certaines stratégies fonctionnent – jusqu'à ce que les statistiques prouvent le contraire."
+      },
+      "discipline": {
+        "title": "Construire la discipline",
+        "description": "Savoir que vous devez documenter chaque trade empêche les décisions impulsives. Vous tradez de manière plus consciente et basée sur des règles."
+      },
+      "statistics": {
+        "title": "Vraies statistiques",
+        "description": "Taux de réussite, facteur de profit, R-multiple, espérance – comprenez votre vraie performance au lieu de faire confiance à l'intuition."
+      },
+      "risk": {
+        "title": "Gestion du risque",
+        "description": "Analysez le MAE et MFE de vos trades. Optimisez le stop-loss et take-profit basés sur des données réelles plutôt que des suppositions."
+      },
+      "learning": {
+        "title": "Apprentissage continu",
+        "description": "Chaque trade devient une opportunité d'apprentissage. Grâce à des revues régulières, vous vous améliorez continuellement."
+      }
+    },
+    "cta1Title": "Prêt à transformer votre trading ?",
+    "cta1Description": "Commencez maintenant avec TradeNotes et découvrez la différence d'un journal de trading professionnel.",
+    "cta1Button": "Essai gratuit de 14 jours",
+    "elementsTitle": "Que mettre dans un journal de trading ?",
+    "elementsDescription": "Les éléments essentiels pour une documentation complète des trades",
+    "elements": {
+      "entryExit": "Heure d'entrée et de sortie",
+      "positionSize": "Taille de position et risque",
+      "stopLoss": "Niveaux de stop-loss et take-profit",
+      "emotions": "État émotionnel avant/pendant/après le trade",
+      "marketConditions": "Conditions du marché et contexte",
+      "setup": "Setup/stratégie qui a mené à l'entrée",
+      "screenshot": "Capture d'écran du graphique pour l'analyse visuelle",
+      "notes": "Notes personnelles et apprentissages"
+    },
+    "tradersTitle": "Apprendre des meilleurs",
+    "tradersDescription": "Les traders les plus réussis de l'histoire jurent par leur journal de trading",
+    "quotes": {
+      "jones": "Je documente chaque trade. Le journal est devenu mon outil le plus important.",
+      "dalio": "Écrivez vos décisions pour pouvoir en tirer des leçons.",
+      "livermore": "L'étude de mes trades passés m'a appris plus que tout le reste."
+    },
+    "statsTitle": "Les chiffres parlent d'eux-mêmes",
+    "statsDescription": "Faits sur le succès en trading et le rôle du journaling",
+    "stats": {
+      "failRate": "des traders particuliers perdent de l'argent à long terme",
+      "improvement": "meilleure performance pour les traders avec des journaux systématiques",
+      "emotional": "des erreurs de trading sont motivées par les émotions"
+    },
+    "faqTitle": "Questions fréquentes",
+    "faq": {
+      "digital": {
+        "question": "Numérique ou papier ?",
+        "answer": "Un journal numérique comme TradeNotes offre des calculs automatiques, des graphiques visuels, des fonctions de recherche et ne peut jamais être perdu. Le gain de temps par rapport au papier est énorme."
+      },
+      "time": {
+        "question": "Combien de temps prend le journaling ?",
+        "answer": "Avec TradeNotes, documenter un trade prend moins de 2 minutes. La revue hebdomadaire prend environ 15-30 minutes – du temps qui se rentabilise plusieurs fois grâce à de meilleurs trades."
+      },
+      "beginners": {
+        "question": "Utile aussi pour les débutants ?",
+        "answer": "Un journal est particulièrement essentiel pour les débutants ! Plus tôt vous commencez à documenter, plus vite vous reconnaîtrez vos forces et faiblesses et éviterez des erreurs coûteuses."
+      },
+      "review": {
+        "question": "À quelle fréquence revoir mon journal ?",
+        "answer": "Recommandé : Revue quotidienne courte après la journée de trading, analyse hebdomadaire approfondie le week-end, et revue mensuelle complète."
+      }
+    },
+    "finalCtaTitle": "Commencez votre journal de trading aujourd'hui",
+    "finalCtaDescription": "Rejoignez des milliers de traders à succès qui améliorent systématiquement leur performance avec TradeNotes.",
+    "finalCtaButton": "S'inscrire gratuitement",
+    "finalCtaFeatures": "Voir toutes les fonctionnalités",
+    "backToHome": "Retour à l'accueil",
+    "readMore": "En savoir plus"
   }
 }

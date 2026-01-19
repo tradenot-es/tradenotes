@@ -1577,5 +1577,102 @@
         "text": "TradeNot.es is een trading dagboek voor het documenteren en analyseren van trades. Het gebruik van deze software vormt geen beleggingsadvies. Handelen met financiële instrumenten (aandelen, futures, opties, enz.) brengt aanzienlijke risico's met zich mee en kan leiden tot het totale verlies van het geïnvesteerde kapitaal. Prestaties uit het verleden zijn geen garantie voor toekomstige resultaten."
       }
     }
+  },
+  "whyJournal": {
+    "badge": "Trading Kennis",
+    "heroTitle": "Waarom een trading dagboek",
+    "heroTitleHighlight": "jouw sleutel tot succes is",
+    "heroDescription": "90% van alle traders verliezen geld. Het cruciale verschil tussen winnaars en verliezers? Succesvolle traders documenteren systematisch elke trade.",
+    "ctaStart": "Gratis beginnen",
+    "keyTakeaways": {
+      "title": "Belangrijkste punten",
+      "point1": "Een trading dagboek is het belangrijkste hulpmiddel voor langetermijnsucces",
+      "point2": "Emotionele fouten zijn verantwoordelijk voor meer dan 70% van alle verliezen – een dagboek helpt deze te identificeren",
+      "point3": "Professionele traders zoals Paul Tudor Jones en Ray Dalio houden allemaal gedetailleerde dagboeken bij",
+      "point4": "Door systematische analyse kun je aantoonbaar je winstpercentage en winstgevendheid verdrievoudigen",
+      "point5": "Digitale dagboeken zoals TradeNotes automatiseren de analyse en besparen waardevolle tijd"
+    },
+    "benefitsTitle": "6 redenen voor een trading dagboek",
+    "benefitsDescription": "Ontdek waarom succesvolle traders nooit handelen zonder dagboek",
+    "benefits": {
+      "psychology": {
+        "title": "Emotionele controle",
+        "description": "Documenteer je emoties bij elke trade. Herken patronen zoals overtrading na verliezen of FOMO-trades en elimineer systematisch emotionele fouten."
+      },
+      "patterns": {
+        "title": "Patroonherkenning",
+        "description": "Identificeer welke setups echt winstgevend zijn. Veel traders geloven dat bepaalde strategieën werken – totdat de statistieken het tegendeel bewijzen."
+      },
+      "discipline": {
+        "title": "Discipline opbouwen",
+        "description": "Weten dat je elke trade moet documenteren voorkomt impulsieve beslissingen. Je handelt bewuster en op basis van regels."
+      },
+      "statistics": {
+        "title": "Echte statistieken",
+        "description": "Winstpercentage, winstfactor, R-multiple, verwachtingswaarde – begrijp je echte prestaties in plaats van op gevoel te vertrouwen."
+      },
+      "risk": {
+        "title": "Risicobeheer",
+        "description": "Analyseer MAE en MFE van je trades. Optimaliseer stop-loss en take-profit op basis van echte data in plaats van aannames."
+      },
+      "learning": {
+        "title": "Continu leren",
+        "description": "Elke trade wordt een leermogelijkheid. Door regelmatige reviews verbeter je continu."
+      }
+    },
+    "cta1Title": "Klaar om je trading te transformeren?",
+    "cta1Description": "Begin nu met TradeNotes en ervaar het verschil van een professioneel trading dagboek.",
+    "cta1Button": "14 dagen gratis proberen",
+    "elementsTitle": "Wat hoort in een trading dagboek?",
+    "elementsDescription": "De essentiële elementen voor complete trade-documentatie",
+    "elements": {
+      "entryExit": "Entry- en exit-tijdstip",
+      "positionSize": "Positiegrootte en risico",
+      "stopLoss": "Stop-loss en take-profit niveaus",
+      "emotions": "Emotionele staat voor/tijdens/na de trade",
+      "marketConditions": "Marktomstandigheden en context",
+      "setup": "Setup/strategie die tot entry leidde",
+      "screenshot": "Grafiek-screenshot voor visuele analyse",
+      "notes": "Persoonlijke notities en leerpunten"
+    },
+    "tradersTitle": "Leer van de besten",
+    "tradersDescription": "De meest succesvolle traders in de geschiedenis zweren bij hun trading dagboek",
+    "quotes": {
+      "jones": "Ik documenteer elke trade. Het dagboek is mijn belangrijkste tool geworden.",
+      "dalio": "Schrijf je beslissingen op zodat je ervan kunt leren.",
+      "livermore": "Het bestuderen van mijn eerdere trades heeft me meer geleerd dan wat dan ook."
+    },
+    "statsTitle": "De cijfers spreken voor zich",
+    "statsDescription": "Feiten over trading-succes en de rol van journaling",
+    "stats": {
+      "failRate": "van particuliere traders verliest op lange termijn geld",
+      "improvement": "betere prestaties voor traders met systematische dagboeken",
+      "emotional": "van trading-fouten wordt gedreven door emoties"
+    },
+    "faqTitle": "Veelgestelde vragen",
+    "faq": {
+      "digital": {
+        "question": "Digitaal of op papier?",
+        "answer": "Een digitaal dagboek zoals TradeNotes biedt automatische berekeningen, visuele grafieken, zoekfuncties en kan nooit verloren gaan. De tijdsbesparing vergeleken met papier is enorm."
+      },
+      "time": {
+        "question": "Hoeveel tijd kost journaling?",
+        "answer": "Met TradeNotes duurt het documenteren van een trade minder dan 2 minuten. De wekelijkse review neemt ongeveer 15-30 minuten in beslag – tijd die zich meervoudig terugverdient door betere trades."
+      },
+      "beginners": {
+        "question": "Ook nuttig voor beginners?",
+        "answer": "Een dagboek is vooral essentieel voor beginners! Hoe eerder je begint met documenteren, hoe sneller je je sterke en zwakke punten herkent en dure beginnerfouten vermijdt."
+      },
+      "review": {
+        "question": "Hoe vaak moet ik mijn dagboek reviewen?",
+        "answer": "Aanbevolen: Korte dagelijkse review na de handelsdag, grondige wekelijkse analyse in het weekend, en een uitgebreide maandelijkse terugblik."
+      }
+    },
+    "finalCtaTitle": "Begin vandaag met je trading dagboek",
+    "finalCtaDescription": "Sluit je aan bij duizenden succesvolle traders die hun prestaties systematisch verbeteren met TradeNotes.",
+    "finalCtaButton": "Gratis registreren",
+    "finalCtaFeatures": "Bekijk alle functies",
+    "backToHome": "Terug naar home",
+    "readMore": "Meer lezen"
   }
 }
