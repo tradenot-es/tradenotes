@@ -60,13 +60,13 @@ export function AchievementBadge({
           'hover:scale-110 hover:z-10',
           sizeClasses[size],
           achieved
-            ? 'bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/40 ring-2 ring-amber-300/60 hover:shadow-xl hover:shadow-amber-500/50'
+            ? 'bg-muted/30 drop-shadow-[0_0_12px_hsl(158,100%,45%,0.6)] hover:drop-shadow-[0_0_18px_hsl(158,100%,45%,0.8)]'
             : 'bg-muted/50 opacity-50'
         )}
       >
         <span className={cn(
           'select-none transition-all duration-300',
-          achieved ? 'drop-shadow-sm' : 'grayscale opacity-60'
+          !achieved && 'grayscale opacity-60'
         )}>
           {icon}
         </span>
