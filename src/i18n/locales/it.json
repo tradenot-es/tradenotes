@@ -1747,5 +1747,102 @@
         "text": "TradeNot.es è un diario di trading per documentare e analizzare le operazioni. L'uso di questo software non costituisce consulenza sugli investimenti. Il trading con strumenti finanziari (azioni, futures, opzioni, ecc.) comporta rischi significativi e può comportare la perdita totale del capitale investito. Le performance passate non garantiscono risultati futuri."
       }
     }
+  },
+  "whyJournal": {
+    "badge": "Conoscenza Trading",
+    "heroTitle": "Perché un diario di trading",
+    "heroTitleHighlight": "è la tua chiave del successo",
+    "heroDescription": "Il 90% dei trader perde denaro. La differenza cruciale tra vincitori e perdenti? I trader di successo documentano sistematicamente ogni operazione.",
+    "ctaStart": "Inizia gratis",
+    "keyTakeaways": {
+      "title": "Punti chiave",
+      "point1": "Un diario di trading è lo strumento più importante per il successo a lungo termine",
+      "point2": "Gli errori emotivi sono responsabili di oltre il 70% delle perdite – un diario aiuta a identificarli",
+      "point3": "Trader professionisti come Paul Tudor Jones e Ray Dalio tengono tutti diari dettagliati",
+      "point4": "Attraverso l'analisi sistematica, puoi triplicare la tua percentuale di successo e redditività",
+      "point5": "I diari digitali come TradeNotes automatizzano l'analisi e fanno risparmiare tempo prezioso"
+    },
+    "benefitsTitle": "6 motivi per un diario di trading",
+    "benefitsDescription": "Scopri perché i trader di successo non operano mai senza un diario",
+    "benefits": {
+      "psychology": {
+        "title": "Controllo emotivo",
+        "description": "Documenta le tue emozioni ad ogni operazione. Riconosci pattern come l'overtrading dopo le perdite o le operazioni FOMO ed elimina sistematicamente gli errori emotivi."
+      },
+      "patterns": {
+        "title": "Riconoscimento pattern",
+        "description": "Identifica quali setup sono veramente redditizi. Molti trader credono che certe strategie funzionino – finché le statistiche non dimostrano il contrario."
+      },
+      "discipline": {
+        "title": "Costruire disciplina",
+        "description": "Sapere che devi documentare ogni operazione previene le decisioni impulsive. Operi in modo più consapevole e basato su regole."
+      },
+      "statistics": {
+        "title": "Statistiche reali",
+        "description": "Tasso di successo, fattore di profitto, R-multiplo, aspettativa – comprendi le tue vere prestazioni invece di affidarti all'istinto."
+      },
+      "risk": {
+        "title": "Gestione del rischio",
+        "description": "Analizza MAE e MFE delle tue operazioni. Ottimizza stop-loss e take-profit basandoti su dati reali invece che su ipotesi."
+      },
+      "learning": {
+        "title": "Apprendimento continuo",
+        "description": "Ogni operazione diventa un'opportunità di apprendimento. Attraverso revisioni regolari, migliori continuamente."
+      }
+    },
+    "cta1Title": "Pronto a trasformare il tuo trading?",
+    "cta1Description": "Inizia ora con TradeNotes e scopri la differenza di un diario di trading professionale.",
+    "cta1Button": "Prova 14 giorni gratis",
+    "elementsTitle": "Cosa mettere in un diario di trading?",
+    "elementsDescription": "Gli elementi essenziali per una documentazione completa delle operazioni",
+    "elements": {
+      "entryExit": "Orario di entrata e uscita",
+      "positionSize": "Dimensione posizione e rischio",
+      "stopLoss": "Livelli di stop-loss e take-profit",
+      "emotions": "Stato emotivo prima/durante/dopo l'operazione",
+      "marketConditions": "Condizioni di mercato e contesto",
+      "setup": "Setup/strategia che ha portato all'entrata",
+      "screenshot": "Screenshot del grafico per l'analisi visiva",
+      "notes": "Note personali e apprendimenti"
+    },
+    "tradersTitle": "Impara dai migliori",
+    "tradersDescription": "I trader di maggior successo della storia giurano sul loro diario di trading",
+    "quotes": {
+      "jones": "Documento ogni singola operazione. Il diario è diventato il mio strumento più importante.",
+      "dalio": "Scrivi le tue decisioni così puoi imparare da esse.",
+      "livermore": "Studiare le mie operazioni passate mi ha insegnato più di qualsiasi altra cosa."
+    },
+    "statsTitle": "I numeri parlano da soli",
+    "statsDescription": "Fatti sul successo nel trading e il ruolo del journaling",
+    "stats": {
+      "failRate": "dei trader retail perde denaro a lungo termine",
+      "improvement": "migliori prestazioni per i trader con diari sistematici",
+      "emotional": "degli errori di trading sono guidati dalle emozioni"
+    },
+    "faqTitle": "Domande frequenti",
+    "faq": {
+      "digital": {
+        "question": "Digitale o su carta?",
+        "answer": "Un diario digitale come TradeNotes offre calcoli automatici, grafici visivi, funzioni di ricerca e non può mai essere perso. Il risparmio di tempo rispetto alla carta è enorme."
+      },
+      "time": {
+        "question": "Quanto tempo richiede il journaling?",
+        "answer": "Con TradeNotes, documentare un'operazione richiede meno di 2 minuti. La revisione settimanale richiede circa 15-30 minuti – tempo che si ripaga molte volte attraverso operazioni migliori."
+      },
+      "beginners": {
+        "question": "Utile anche per i principianti?",
+        "answer": "Un diario è particolarmente essenziale per i principianti! Prima inizi a documentare, più velocemente riconoscerai i tuoi punti di forza e debolezza ed eviterai errori costosi da principiante."
+      },
+      "review": {
+        "question": "Quanto spesso dovrei rivedere il mio diario?",
+        "answer": "Consigliato: Breve revisione giornaliera dopo la giornata di trading, analisi settimanale approfondita nel weekend, e revisione mensile completa."
+      }
+    },
+    "finalCtaTitle": "Inizia il tuo diario di trading oggi",
+    "finalCtaDescription": "Unisciti a migliaia di trader di successo che migliorano sistematicamente le loro prestazioni con TradeNotes.",
+    "finalCtaButton": "Registrati gratis",
+    "finalCtaFeatures": "Vedi tutte le funzionalità",
+    "backToHome": "Torna alla home",
+    "readMore": "Scopri di più"
   }
 }
