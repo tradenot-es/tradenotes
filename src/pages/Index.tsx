@@ -11,7 +11,7 @@ import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
-import { Logo3DViewer } from "@/components/Logo3DViewer";
+import logo from "@/assets/tradenotes-logo-auth.png";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -210,7 +210,11 @@ const Index = () => {
             <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
           </div>
           <div className="flex-1 flex justify-center">
-            <Logo3DViewer size={120} />
+            <img 
+              src={logo} 
+              alt="TradeNotes" 
+              className="h-24 w-auto drop-shadow-lg" 
+            />
           </div>
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
