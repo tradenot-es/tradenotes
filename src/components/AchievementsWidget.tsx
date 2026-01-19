@@ -69,7 +69,7 @@ export function AchievementsWidget() {
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex justify-center gap-1.5 overflow-hidden">
+          <div className="flex justify-center gap-1 overflow-hidden">
             {displayAchievements.map((achievement) => (
               <div key={achievement.type} className="flex-shrink-0">
                 <AchievementBadge
@@ -79,7 +79,7 @@ export function AchievementsWidget() {
                   achieved={achievement.achieved}
                   achievedAt={achievement.achievedAt}
                   progress={achievement.progress}
-                  size="sm"
+                  size="md"
                 />
               </div>
             ))}
