@@ -799,9 +799,17 @@
         "title": "Snelle Trade Invoer",
         "description": "Leg trades vast in seconden met live P&L preview, snelle symbool selectie en auto-invulling. Kopieer laatste trade voor direct journaling."
       },
-      "chartAnalysis": {
-        "title": "AI Grafiekanalyse",
-        "description": "Upload TradingView of NinjaTrader screenshots—AI extraheert entry, exit en details automatisch. Geen handmatige invoer nodig."
+      "webhookSync": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Trades synchroniseren automatisch via webhook—entry, exit, MFE/MAE en accounttype. Ondersteunt 12+ prop firms zoals Apex, Topstep, Tradeify."
+      },
+      "propFirm": {
+        "title": "Prop Firm Integratie",
+        "description": "Automatische detectie van Sim, Eval, Funded & Live accounts. Aparte analytics voor elke accountfase bij Apex, Topstep en 10+ andere prop firms."
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analyse",
+        "description": "Tick-by-tick Maximum Favorable & Adverse Excursion tracking. Optimaliseer stop-loss en take-profit met datagestuurde risicoanalyse."
       },
       "journal": {
         "title": "Trading Dagboek",
@@ -875,7 +883,7 @@
       "equity": "Equity Curve voor kapitaalvolging",
       "consistency": "Consistency Tracker (12-weken heatmap)",
       "news": "Smart Portfolio Nieuws met proxy-mapping (futures), smart-tags & vertaling",
-      "politicalEvents": "Politieke Evenementen Kalender (Trump, Fed, Powell, verkiezingen)",
+      "politicalEvents": "Economische Kalender (FOMC, CPI, NFP, GDP) + Politiek Nieuws",
       "sectorSentiment": "Dagelijks Sector Sentiment Dashboard (9 sectoren gevolgd)",
       "ai": "AI Trading Assistent voor datagestuurde inzichten",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
@@ -891,9 +899,13 @@
       "dailyPrep": "Dagelijkse Voorbereiding met politieke evenementen",
       "glossary": "Trading Woordenlijst met alle belangrijke termen",
       "darkMode": "Donkere/Lichte Modus",
-      "multiLanguage": "Meertalige Ondersteuning (DE, EN, ES, FR, NL)",
+      "multiLanguage": "Meertalige Ondersteuning (DE, EN, ES, FR, NL, IT)",
       "futureFeatures": "Alle toekomstige functies inbegrepen",
-      "freeTrial": "14 Dagen Gratis Proberen"
+      "freeTrial": "14 Dagen Gratis Proberen",
+      "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integratie)",
+      "propFirmDetection": "Prop Firm Account Detectie (Apex, Topstep, Tradeify, etc.)",
+      "mfeMaeTracking": "MFE/MAE Tracking voor Stop-Loss Optimalisatie",
+      "achievements": "Gamificatie & Achievements Systeem"
     }
   },
   "validation": {

@@ -799,9 +799,17 @@
         "title": "Entrada Rápida de Operaciones",
         "description": "Registra operaciones en segundos con vista previa P&L en vivo, selección rápida de símbolos y autocompletado. Copia última operación para journaling instantáneo."
       },
-      "chartAnalysis": {
-        "title": "Análisis IA de Gráficos",
-        "description": "Sube capturas de TradingView o NinjaTrader—IA extrae entrada, salida y detalles automáticamente. Sin entrada manual necesaria."
+      "webhookSync": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Las operaciones se sincronizan automáticamente via webhook—entrada, salida, MFE/MAE y tipo de cuenta. Soporta 12+ prop firms como Apex, Topstep, Tradeify."
+      },
+      "propFirm": {
+        "title": "Integración Prop Firm",
+        "description": "Detección automática de cuentas Sim, Eval, Funded y Live. Analytics separados para cada fase de cuenta con Apex, Topstep y 10+ otras prop firms."
+      },
+      "mfeMAE": {
+        "title": "Análisis MFE/MAE",
+        "description": "Seguimiento tick-by-tick del Maximum Favorable & Adverse Excursion. Optimiza stop-loss y take-profit con análisis de riesgo basado en datos."
       },
       "journal": {
         "title": "Diario de Trading",
@@ -875,7 +883,7 @@
       "equity": "Curva de Capital para seguimiento de capital",
       "consistency": "Rastreador de Consistencia (mapa de calor de 12 semanas)",
       "news": "Smart Portfolio News con proxy-mapping (futuros), smart-tags y traducción",
-      "politicalEvents": "Calendario de Eventos Políticos (Trump, Fed, Powell, elecciones)",
+      "politicalEvents": "Calendario Económico (FOMC, CPI, NFP, GDP) + Noticias Políticas",
       "sectorSentiment": "Dashboard de Sentimiento Sectorial Diario (9 sectores rastreados)",
       "ai": "Asistente de Trading con IA para insights basados en datos",
       "winLoss": "Analytics de Ganancias/Pérdidas y Desglose de Rendimiento",
@@ -891,9 +899,13 @@
       "dailyPrep": "Preparación Diaria con eventos políticos",
       "glossary": "Glosario de Trading con todos los términos importantes",
       "darkMode": "Modo Oscuro/Claro",
-      "multiLanguage": "Soporte Multi-idioma (DE, EN, ES, FR, NL)",
+      "multiLanguage": "Soporte Multi-idioma (DE, EN, ES, FR, NL, IT)",
       "futureFeatures": "Todas las funciones futuras incluidas",
-      "freeTrial": "14 Días de Prueba Gratis"
+      "freeTrial": "14 Días de Prueba Gratis",
+      "ninjaTraderSync": "NinjaTrader Auto-Sync (Integración Webhook)",
+      "propFirmDetection": "Detección Cuentas Prop Firm (Apex, Topstep, Tradeify, etc.)",
+      "mfeMaeTracking": "Seguimiento MFE/MAE para Optimización Stop-Loss",
+      "achievements": "Gamificación & Sistema de Logros"
     }
   },
   "validation": {

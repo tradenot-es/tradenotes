@@ -819,9 +819,17 @@
         "title": "Inserimento Rapido Operazioni",
         "description": "Registra operazioni in secondi con anteprima P&L live, selezione rapida simboli e auto-compilazione. Copia l'ultima operazione per diario istantaneo."
       },
-      "chartAnalysis": {
-        "title": "Analisi Grafici AI",
-        "description": "Carica screenshot TradingView o NinjaTrader—l'AI estrae automaticamente entrata, uscita e dettagli operazione. Nessun inserimento manuale necessario."
+      "webhookSync": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Le operazioni si sincronizzano automaticamente via webhook—entrata, uscita, MFE/MAE e tipo account. Supporta 12+ prop firms come Apex, Topstep, Tradeify."
+      },
+      "propFirm": {
+        "title": "Integrazione Prop Firm",
+        "description": "Rilevamento automatico di account Sim, Eval, Funded e Live. Analytics separati per ogni fase account con Apex, Topstep e 10+ altre prop firms."
+      },
+      "mfeMAE": {
+        "title": "Analisi MFE/MAE",
+        "description": "Tracking tick-by-tick del Maximum Favorable & Adverse Excursion. Ottimizza stop-loss e take-profit con analisi del rischio basata sui dati."
       },
       "journal": {
         "title": "Diario di Trading",
@@ -895,7 +903,7 @@
       "equity": "Curva Equity per tracking capitale",
       "consistency": "Tracker Consistenza (mappa termica 12 settimane)",
       "news": "Notizie Portfolio Smart con proxy-mapping (futures), smart-tags & traduzione",
-      "politicalEvents": "Calendario Eventi Politici (Trump, Fed, Powell, elezioni)",
+      "politicalEvents": "Calendario Economico (FOMC, CPI, NFP, GDP) + Notizie Politiche",
       "sectorSentiment": "Dashboard Sentiment Settori Giornaliero (9 settori tracciati)",
       "ai": "Assistente Trading AI per insight basati su dati",
       "winLoss": "Analytics Vincite/Perdite & Ripartizione Performance",
@@ -913,7 +921,11 @@
       "darkMode": "Modalità Scuro/Chiaro",
       "multiLanguage": "Supporto Multi-Lingua (DE, EN, ES, FR, NL, IT)",
       "futureFeatures": "Tutte le funzionalità future incluse",
-      "freeTrial": "14 Giorni Prova Gratuita"
+      "freeTrial": "14 Giorni Prova Gratuita",
+      "ninjaTraderSync": "NinjaTrader Auto-Sync (Integrazione Webhook)",
+      "propFirmDetection": "Rilevamento Account Prop Firm (Apex, Topstep, Tradeify, etc.)",
+      "mfeMaeTracking": "Tracking MFE/MAE per Ottimizzazione Stop-Loss",
+      "achievements": "Gamificazione & Sistema Achievement"
     }
   },
   "validation": {

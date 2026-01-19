@@ -702,9 +702,17 @@
         "title": "Schnelle Trade-Eingabe",
         "description": "Trades in Sekunden erfassen mit Live P&L-Vorschau, Symbol-Quick-Chips und Auto-Fill. Letzten Trade kopieren für sofortiges Journaling."
       },
-      "chartAnalysis": {
-        "title": "KI-Chart-Analyse",
-        "description": "TradingView oder NinjaTrader Screenshots hochladen—KI extrahiert Entry, Exit und Trade-Details automatisch. Keine manuelle Eingabe nötig."
+      "webhookSync": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Trades werden automatisch via Webhook synchronisiert—Entry, Exit, MFE/MAE und Account-Typ. Unterstützt 12+ Prop-Firms wie Apex, Topstep, Tradeify."
+      },
+      "propFirm": {
+        "title": "Prop-Firm Integration",
+        "description": "Automatische Erkennung von Sim, Eval, Funded & Live Accounts. Separate Analytics für jede Account-Phase bei Apex, Topstep & 10+ weiteren Prop-Firms."
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analyse",
+        "description": "Tick-by-Tick Maximum Favorable & Adverse Excursion Tracking. Optimiere Stop-Loss und Take-Profit mit datenbasierter Risiko-Analyse."
       },
       "journal": {
         "title": "Trading Journal",
@@ -794,9 +802,13 @@
       "dailyPrep": "Daily Prep mit politischen Events",
       "glossary": "Trading Glossar mit allen wichtigen Begriffen",
       "darkMode": "Dark/Light Mode",
-      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL)",
+      "multiLanguage": "Multi-Language Support (DE, EN, ES, FR, NL, IT)",
       "futureFeatures": "Alle zukünftigen Features inklusive",
-      "freeTrial": "14 Tage kostenlos testen"
+      "freeTrial": "14 Tage kostenlos testen",
+      "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integration)",
+      "propFirmDetection": "Prop-Firm Account-Erkennung (Apex, Topstep, Tradeify, etc.)",
+      "mfeMaeTracking": "MFE/MAE Tracking für Stop-Loss Optimierung",
+      "achievements": "Gamification & Achievements System"
     },
     "whySection": {
       "badge": "Warum ein Trading Journal?",
