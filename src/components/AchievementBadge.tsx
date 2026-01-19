@@ -53,17 +53,21 @@ export function AchievementBadge({
   const progressPercent = progress ? (progress.current / progress.target) * 100 : 0;
 
   const badge = (
-    <div className="relative">
+    <div className="relative group cursor-pointer">
       <div
         className={cn(
           'flex items-center justify-center rounded-full transition-all duration-300',
+          'hover:scale-110 hover:z-10',
           sizeClasses[size],
           achieved
-            ? 'bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/25 ring-2 ring-amber-300/50'
-            : 'bg-muted/50 grayscale opacity-40'
+            ? 'bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/40 ring-2 ring-amber-300/60 hover:shadow-xl hover:shadow-amber-500/50'
+            : 'bg-muted/50 opacity-50'
         )}
       >
-        <span className={cn('select-none', !achieved && 'opacity-50')}>
+        <span className={cn(
+          'select-none transition-all duration-300',
+          achieved ? 'drop-shadow-sm' : 'grayscale opacity-60'
+        )}>
           {icon}
         </span>
       </div>
