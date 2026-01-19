@@ -1511,5 +1511,39 @@
     "insight1": "80% de vos trades gagnants avaient un drawdown maximum (MAE) de moins de {{value}}%. Ajustez votre stop-loss en conséquence.",
     "insight2Title": "Take-Profit",
     "insight2": "En moyenne, vos trades montent de {{value}}% (MFE) avant que vous sortiez. Vous laissez {{missed}}% sur la table."
+  },
+  "imprint": {
+    "title": "Mentions Légales",
+    "subtitle": "Informations légales et mentions obligatoires conformément à la loi applicable",
+    "provider": {
+      "title": "Éditeur",
+      "address": "TradeNot.es\nPropriétaire : [Nom sur demande]\nAllemagne"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "responsible": {
+      "title": "Responsable du Contenu",
+      "content": "L'exploitant de ce site web est responsable du contenu.\nPour toute question, veuillez contacter : info@tradenot.es"
+    },
+    "disclaimer": {
+      "title": "Clause de Non-Responsabilité",
+      "content": {
+        "title": "Responsabilité du Contenu",
+        "text": "Le contenu de nos pages a été créé avec le plus grand soin. Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu. En tant que prestataire de services, nous sommes responsables de notre propre contenu sur ces pages conformément aux lois générales."
+      },
+      "links": {
+        "title": "Responsabilité des Liens",
+        "text": "Notre offre contient des liens vers des sites web externes de tiers, sur le contenu desquels nous n'avons aucune influence. Par conséquent, nous ne pouvons assumer aucune responsabilité pour ces contenus externes. Le fournisseur ou l'exploitant respectif des pages est toujours responsable du contenu des pages liées."
+      },
+      "copyright": {
+        "title": "Droits d'Auteur",
+        "text": "Le contenu et les œuvres créés par les exploitants du site sur ces pages sont soumis au droit d'auteur. La reproduction, le traitement, la distribution ou toute forme de commercialisation de ces matériaux au-delà du cadre du droit d'auteur nécessite le consentement écrit préalable de l'auteur ou du créateur respectif."
+      },
+      "trading": {
+        "title": "Avertissement sur les Risques",
+        "text": "TradeNot.es est un journal de trading pour documenter et analyser les trades. L'utilisation de ce logiciel ne constitue pas un conseil en investissement. Le trading d'instruments financiers (actions, futures, options, etc.) comporte des risques importants et peut entraîner la perte totale du capital investi. Les performances passées ne garantissent pas les résultats futurs."
+      }
+    }
   }
 }

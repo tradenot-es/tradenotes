@@ -1511,5 +1511,39 @@
     "insight1": "80% van je winnende trades had een maximale drawdown (MAE) van minder dan {{value}}%. Pas je stop-loss dienovereenkomstig aan.",
     "insight2Title": "Take-Profit",
     "insight2": "Gemiddeld lopen je trades {{value}}% in de plus (MFE) voordat je uitstapt. Je laat {{missed}}% op tafel liggen."
+  },
+  "imprint": {
+    "title": "Impressum",
+    "subtitle": "Juridische informatie en wettelijke vermeldingen volgens toepasselijk recht",
+    "provider": {
+      "title": "Aanbieder",
+      "address": "TradeNot.es\nEigenaar: [Naam op aanvraag]\nDuitsland"
+    },
+    "contact": {
+      "title": "Contact"
+    },
+    "responsible": {
+      "title": "Verantwoordelijk voor Inhoud",
+      "content": "De exploitant van deze website is verantwoordelijk voor de inhoud.\nVoor vragen kunt u contact opnemen via: info@tradenot.es"
+    },
+    "disclaimer": {
+      "title": "Disclaimer",
+      "content": {
+        "title": "Aansprakelijkheid voor Inhoud",
+        "text": "De inhoud van onze pagina's is met de grootste zorg samengesteld. Wij kunnen echter geen garantie geven voor de juistheid, volledigheid en actualiteit van de inhoud. Als dienstverlener zijn wij verantwoordelijk voor onze eigen inhoud op deze pagina's volgens de algemene wetgeving."
+      },
+      "links": {
+        "title": "Aansprakelijkheid voor Links",
+        "text": "Ons aanbod bevat links naar externe websites van derden, op de inhoud waarvan wij geen invloed hebben. Daarom kunnen wij voor deze externe inhoud geen aansprakelijkheid aanvaarden. De respectieve aanbieder of exploitant van de pagina's is altijd verantwoordelijk voor de inhoud van de gelinkte pagina's."
+      },
+      "copyright": {
+        "title": "Auteursrecht",
+        "text": "De door de site-exploitanten gecreëerde inhoud en werken op deze pagina's zijn onderworpen aan het auteursrecht. Duplicatie, bewerking, distributie of enige vorm van commercialisering van dergelijk materiaal buiten het kader van het auteursrecht vereist de voorafgaande schriftelijke toestemming van de respectieve auteur of maker."
+      },
+      "trading": {
+        "title": "Risico Disclaimer",
+        "text": "TradeNot.es is een trading dagboek voor het documenteren en analyseren van trades. Het gebruik van deze software vormt geen beleggingsadvies. Handelen met financiële instrumenten (aandelen, futures, opties, enz.) brengt aanzienlijke risico's met zich mee en kan leiden tot het totale verlies van het geïnvesteerde kapitaal. Prestaties uit het verleden zijn geen garantie voor toekomstige resultaten."
+      }
+    }
   }
 }

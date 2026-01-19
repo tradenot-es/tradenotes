@@ -1572,5 +1572,39 @@
     "insight1": "80% deiner Gewinntrades hatten einen maximalen Drawdown (MAE) von weniger als {{value}}%. Setze deinen Stop-Loss entsprechend.",
     "insight2Title": "Take-Profit",
     "insight2": "Im Durchschnitt laufen deine Trades {{value}}% ins Plus (MFE) bevor du aussteigst. Du verlässt {{missed}}% auf dem Tisch."
+  },
+  "imprint": {
+    "title": "Impressum",
+    "subtitle": "Angaben gemäß § 5 TMG und Pflichtangaben nach § 55 RStV",
+    "provider": {
+      "title": "Anbieter",
+      "address": "TradeNot.es\nInhaber: [Name auf Anfrage]\nDeutschland"
+    },
+    "contact": {
+      "title": "Kontakt"
+    },
+    "responsible": {
+      "title": "Verantwortlich für den Inhalt",
+      "content": "Verantwortlich gemäß § 55 Abs. 2 RStV:\n\nDer Betreiber dieser Website ist für die Inhalte verantwortlich.\nBei Fragen wenden Sie sich bitte an: info@tradenot.es"
+    },
+    "disclaimer": {
+      "title": "Haftungsausschluss",
+      "content": {
+        "title": "Haftung für Inhalte",
+        "text": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich."
+      },
+      "links": {
+        "title": "Haftung für Links",
+        "text": "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
+      },
+      "copyright": {
+        "title": "Urheberrecht",
+        "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
+      },
+      "trading": {
+        "title": "Risikohinweis",
+        "text": "TradeNot.es ist ein Trading-Journal zur Dokumentation und Analyse von Trades. Die Nutzung dieser Software stellt keine Anlageberatung dar. Trading mit Finanzinstrumenten (Aktien, Futures, Optionen etc.) birgt erhebliche Risiken und kann zum Totalverlust des eingesetzten Kapitals führen. Vergangene Performance ist keine Garantie für zukünftige Ergebnisse."
+      }
+    }
   }
 }
