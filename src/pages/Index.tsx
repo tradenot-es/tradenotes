@@ -212,7 +212,7 @@ const Index = () => {
           <img 
             src={logo} 
             alt="TradeNotes" 
-            className="h-24 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] mx-4" 
+            className="h-72 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)]" 
           />
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
