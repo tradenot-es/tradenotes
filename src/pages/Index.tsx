@@ -203,19 +203,17 @@ const Index = () => {
 
   return (
     <div className="space-y-8 p-2">
-      <div className="glossy-card p-8 rounded-2xl">
-        <div className="flex items-center justify-between gap-4">
-          <div>
+      <div className="glossy-card p-4 rounded-2xl">
+        <div className="flex items-center justify-between">
+          <div className="flex-shrink-0">
             <h1 className="text-4xl font-bold gradient-text">{t("dashboard.title")}</h1>
             <p className="text-muted-foreground mt-2">{t("dashboard.subtitle")}</p>
           </div>
-          <div className="flex justify-center">
-            <img 
-              src={logo} 
-              alt="TradeNotes" 
-              className="h-72 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)]" 
-            />
-          </div>
+          <img 
+            src={logo} 
+            alt="TradeNotes" 
+            className="h-24 w-auto drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] mx-4" 
+          />
           <Button 
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
             className="gap-2"
