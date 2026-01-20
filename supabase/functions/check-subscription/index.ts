@@ -43,12 +43,25 @@ serve(async (req) => {
     if (!user?.email) throw new Error("User not authenticated or email not available");
     logStep("User authenticated", { userId: user.id, email: user.email });
 
+    // Calculate trial days remaining (14-day trial from account creation)
+    const createdAt = new Date(user.created_at);
+    const trialEndDate = new Date(createdAt);
+    trialEndDate.setDate(trialEndDate.getDate() + 14);
+    const now = new Date();
+    const trialDaysRemaining = Math.max(0, Math.ceil((trialEndDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+    logStep("Trial calculation", { createdAt: user.created_at, trialEndDate: trialEndDate.toISOString(), daysRemaining: trialDaysRemaining });
+
     const stripe = new Stripe(stripeKey, { apiVersion: "2025-08-27.basil" });
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     
     if (customers.data.length === 0) {
-      logStep("No customer found, returning unsubscribed state");
-      return new Response(JSON.stringify({ subscribed: false }), {
+      logStep("No customer found, returning trial state");
+      return new Response(JSON.stringify({ 
+        subscribed: false,
+        trial_days_remaining: trialDaysRemaining,
+        trial_end_date: trialEndDate.toISOString(),
+        account_created_at: user.created_at
+      }), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
         status: 200,
       });
@@ -87,7 +100,10 @@ serve(async (req) => {
       subscribed: hasActiveSub,
       product_id: productId,
       plan_name: planName,
-      subscription_end: subscriptionEnd
+      subscription_end: subscriptionEnd,
+      trial_days_remaining: hasActiveSub ? null : trialDaysRemaining,
+      trial_end_date: hasActiveSub ? null : trialEndDate.toISOString(),
+      account_created_at: user.created_at
     }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,

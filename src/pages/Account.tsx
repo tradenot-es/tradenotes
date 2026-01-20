@@ -41,6 +41,8 @@ const Account = () => {
     subscribed: boolean;
     plan_name?: string;
     subscription_end?: string;
+    trial_days_remaining?: number | null;
+    trial_end_date?: string | null;
   } | null>(null);
   const [loadingSubscription, setLoadingSubscription] = useState(true);
   const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">("yearly");
@@ -525,6 +527,20 @@ const Account = () => {
                     <div className="flex-1 space-y-3">
                       <div>
                         <p className="font-medium text-blue-600">{t("account.trialActive")}</p>
+                        {subscriptionStatus?.trial_days_remaining !== null && subscriptionStatus?.trial_days_remaining !== undefined && (
+                          <p className={`text-lg font-bold mt-1 ${
+                            subscriptionStatus.trial_days_remaining <= 3 
+                              ? 'text-orange-500' 
+                              : subscriptionStatus.trial_days_remaining <= 0 
+                                ? 'text-red-500'
+                                : 'text-blue-600'
+                          }`}>
+                            {subscriptionStatus.trial_days_remaining > 0 
+                              ? t("account.trialDaysRemaining", { days: subscriptionStatus.trial_days_remaining })
+                              : t("account.trialExpired")
+                            }
+                          </p>
+                        )}
                         <p className="text-sm text-muted-foreground mt-1">
                           {t("account.trialDescription")}
                         </p>
