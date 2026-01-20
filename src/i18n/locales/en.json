@@ -634,6 +634,8 @@
     "allFeaturesUnlocked": "✓ All features unlocked",
     "manageSubscription": "Manage Subscription",
     "trialActive": "14-Day Trial Active",
+    "trialDaysRemaining": "{{days}} days remaining",
+    "trialExpired": "Trial expired",
     "trialDescription": "Test TradeNot.es free for 14 days with most features. Upgrade anytime for full access.",
     "availablePlans": "Available Plans:",
     "monthlyPlan": "Monthly Subscription - Full Flexibility",

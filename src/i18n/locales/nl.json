@@ -598,6 +598,8 @@
     "allFeaturesUnlocked": "✓ Alle functies ontgrendeld",
     "manageSubscription": "Abonnement Beheren",
     "trialActive": "14-Daagse Proefperiode Actief",
+    "trialDaysRemaining": "Nog {{days}} dagen",
+    "trialExpired": "Proefperiode verlopen",
     "trialDescription": "Test TradeNotes 14 dagen gratis met de meeste functies. Upgrade op elk moment voor volledige toegang.",
     "availablePlans": "Beschikbare Abonnementen:",
     "monthlyPlan": "Maandelijks Abonnement - Volledige Flexibiliteit",

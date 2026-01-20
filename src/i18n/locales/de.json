@@ -512,6 +512,8 @@
     "allFeaturesUnlocked": "✓ Alle Features freigeschaltet",
     "manageSubscription": "Abonnement verwalten",
     "trialActive": "14-Tage-Testversion aktiv",
+    "trialDaysRemaining": "Noch {{days}} Tage übrig",
+    "trialExpired": "Testphase abgelaufen",
     "trialDescription": "Teste TradeNot.es 14 Tage kostenlos mit den meisten Features. Upgrade jederzeit für vollen Zugriff.",
     "availablePlans": "Verfügbare Abonnements:",
     "monthlyPlan": "Monatliches Abo - Volle Flexibilität",

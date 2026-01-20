@@ -14,3 +14,6 @@ verify_jwt = true
 
 [functions.reset-user-data]
 verify_jwt = true
+
+[functions.send-trial-reminder]
+verify_jwt = true

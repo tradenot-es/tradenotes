@@ -618,6 +618,8 @@
     "allFeaturesUnlocked": "✓ Tutte le funzionalità sbloccate",
     "manageSubscription": "Gestisci Abbonamento",
     "trialActive": "Prova Gratuita 14 Giorni Attiva",
+    "trialDaysRemaining": "{{days}} giorni rimanenti",
+    "trialExpired": "Prova scaduta",
     "trialDescription": "Testa TradeNot.es gratis per 14 giorni con la maggior parte delle funzionalità. Aggiorna in qualsiasi momento per accesso completo.",
     "availablePlans": "Piani Disponibili:",
     "monthlyPlan": "Abbonamento Mensile - Massima Flessibilità",

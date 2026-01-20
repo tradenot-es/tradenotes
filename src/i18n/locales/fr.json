@@ -598,6 +598,8 @@
     "allFeaturesUnlocked": "✓ Toutes les fonctionnalités débloquées",
     "manageSubscription": "Gérer l'Abonnement",
     "trialActive": "Essai Gratuit de 14 Jours Actif",
+    "trialDaysRemaining": "{{days}} jours restants",
+    "trialExpired": "Essai expiré",
     "trialDescription": "Testez TradeNotes gratuitement pendant 14 jours avec la plupart des fonctionnalités. Passez à la version complète à tout moment.",
     "availablePlans": "Plans Disponibles:",
     "monthlyPlan": "Abonnement Mensuel - Flexibilité Totale",
