@@ -595,12 +595,8 @@ const Account = () => {
                         <p className="text-sm font-medium mb-2">{t("account.trialLimitations")}</p>
                         <ul className="text-sm text-muted-foreground space-y-1">
                           <li className="flex items-start gap-2">
-                            <span className="text-red-500 mt-0.5">✗</span>
+                            <span className="text-blue-500 mt-0.5">ℹ</span>
                             <span>{t("account.limitationAI")}</span>
-                          </li>
-                          <li className="flex items-start gap-2">
-                            <span className="text-red-500 mt-0.5">✗</span>
-                            <span>{t("account.limitationMetrics")}</span>
                           </li>
                           <li className="flex items-start gap-2">
                             <span className="text-green-500 mt-0.5">✓</span>
