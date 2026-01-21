@@ -363,18 +363,6 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
               loading={politicalEventsLoading}
               hasAnyEventsInPeriod={allPoliticalEvents.length > 0}
             />
-
-            {/* Impact Legend */}
-            <Card className="border-muted">
-              <CardContent className="p-3">
-                <p className="text-xs font-medium mb-2">{t("calendar.impactLegend")}</p>
-                <div className="flex flex-wrap gap-2 text-xs">
-                  <span className="flex items-center gap-1">🔴 {t("calendar.highImpact")}</span>
-                  <span className="flex items-center gap-1">🟡 {t("calendar.mediumImpact")}</span>
-                  <span className="flex items-center gap-1">🔔 {t("calendar.political")}</span>
-                </div>
-              </CardContent>
-            </Card>
           </>
         )}
       </div>
