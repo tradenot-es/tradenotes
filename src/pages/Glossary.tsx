@@ -242,7 +242,7 @@ export default function Glossary() {
   ];
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
+    <div className="space-y-6 p-2">
       <PageHeader
         title={t("nav.glossary")}
         subtitle={t("glossary.subtitle")}
