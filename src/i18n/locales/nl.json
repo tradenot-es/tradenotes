@@ -300,9 +300,17 @@
     "noPoliticalEventsOnDate": "Geen impact events voor deze dag",
     "noPoliticalEventsInPeriod": "Geen impact events in de huidige periode",
     "highImpact": "Hoge impact",
-    "mediumImpact": "Medium",
+    "mediumImpact": "Gemiddelde impact",
+    "lowImpact": "Lage impact",
     "political": "Politiek",
-    "impactLegend": "Legenda"
+    "impactHighTooltip": "Sterke marktbeweging verwacht. Verhoogde volatiliteit en bredere spreads mogelijk. Stop-loss aanpassing aanbevolen.",
+    "impactMediumTooltip": "Gematigde volatiliteit mogelijk. Marktreactie hangt af van resultaten of uitspraken.",
+    "impactLowTooltip": "Weinig directe marktreactie verwacht. Lange termijn effecten mogelijk.",
+    "impactPoliticalTooltip": "Politieke gebeurtenis met potentiële marktinvloed. Reactie moeilijk te voorspellen.",
+    "impactLegend": "Legenda",
+    "scheduledEvents": "Geplande evenementen",
+    "relatedNews": "Gerelateerd nieuws",
+    "confirmed": "Bevestigd"
   },
   "trades": {
     "title": "Transacties",

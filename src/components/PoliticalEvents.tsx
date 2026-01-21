@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info } from "lucide-react";
 import { getCategoryIcon, getCategoryLabel } from "@/lib/economicCalendar";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
@@ -15,15 +16,48 @@ interface PoliticalEventsProps {
 export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
 
-  const getImpactBadge = (impact?: 'high' | 'medium' | 'political') => {
-    switch (impact) {
-      case 'high':
-        return <Badge variant="destructive" className="text-xs">{t("calendar.highImpact")}</Badge>;
-      case 'medium':
-        return <Badge variant="secondary" className="text-xs bg-amber-500/20 text-amber-700 dark:text-amber-300">{t("calendar.mediumImpact")}</Badge>;
-      default:
-        return <Badge variant="outline" className="text-xs">{t("calendar.political")}</Badge>;
-    }
+  const getImpactBadge = (impact?: 'high' | 'medium' | 'low' | 'political') => {
+    const getTooltipContent = () => {
+      switch (impact) {
+        case 'high':
+          return t("calendar.impactHighTooltip");
+        case 'medium':
+          return t("calendar.impactMediumTooltip");
+        case 'low':
+          return t("calendar.impactLowTooltip");
+        default:
+          return t("calendar.impactPoliticalTooltip");
+      }
+    };
+
+    const badge = (() => {
+      switch (impact) {
+        case 'high':
+          return <Badge variant="destructive" className="text-xs">{t("calendar.highImpact")}</Badge>;
+        case 'medium':
+          return <Badge variant="secondary" className="text-xs bg-amber-500/20 text-amber-700 dark:text-amber-300">{t("calendar.mediumImpact")}</Badge>;
+        case 'low':
+          return <Badge variant="outline" className="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">{t("calendar.lowImpact")}</Badge>;
+        default:
+          return <Badge variant="outline" className="text-xs">{t("calendar.political")}</Badge>;
+      }
+    })();
+
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="inline-flex items-center gap-1 cursor-help">
+              {badge}
+              <Info className="h-3 w-3 text-muted-foreground" />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent className="z-[1000]">
+            <p className="max-w-xs text-sm">{getTooltipContent()}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
   };
 
   const getCategoryIconComponent = (category?: string) => {

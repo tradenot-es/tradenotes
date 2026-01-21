@@ -300,9 +300,17 @@
     "noPoliticalEventsOnDate": "Sin eventos de impacto para este día",
     "noPoliticalEventsInPeriod": "Sin eventos de impacto en el período actual",
     "highImpact": "Alto impacto",
-    "mediumImpact": "Medio",
+    "mediumImpact": "Impacto medio",
+    "lowImpact": "Bajo impacto",
     "political": "Político",
-    "impactLegend": "Leyenda"
+    "impactHighTooltip": "Se espera movimiento fuerte del mercado. Posible aumento de volatilidad y spreads más amplios. Se recomienda ajustar stop-loss.",
+    "impactMediumTooltip": "Volatilidad moderada posible. Reacción del mercado depende de resultados o declaraciones.",
+    "impactLowTooltip": "Se espera poca reacción inmediata del mercado. Posibles efectos a largo plazo.",
+    "impactPoliticalTooltip": "Evento político con potencial influencia en el mercado. Reacción difícil de predecir.",
+    "impactLegend": "Leyenda",
+    "scheduledEvents": "Eventos programados",
+    "relatedNews": "Noticias relacionadas",
+    "confirmed": "Confirmado"
   },
   "trades": {
     "title": "Operaciones",
