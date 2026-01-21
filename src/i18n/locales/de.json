@@ -900,7 +900,7 @@
       "example": "Entry bei 100€, Stop-Loss bei 95€ (5€ Risiko = 1R), Exit bei 110€ ergibt: R-Multiple = (110 - 100) / 5 = 2R (doppelter Gewinn des Risikos). Bei Exit auf 92,50€: R-Multiple = (92,50 - 100) / 5 = -1,5R (Verlust vom 1,5-fachen des Risikos)"
     },
     "initialRisk": {
-      "term": "Anfängliches Risiko (R)",
+      "term": "Anfängliches Risiko (Initial Risk)",
       "definition": "Das initiale Risiko (R) definiert den maximalen Verlustbetrag, den Sie bei einem Trade akzeptieren, bevor Sie die Position schließen. Es ist die Grundlage für Positionsgrößenbestimmung und Trade-Management. Das Risiko sollte als fester Prozentsatz des Kontos (z.B. 1-2% pro Trade) festgelegt werden, um das Gesamtrisiko des Portfolios zu kontrollieren. Dies ist der Ausgangspunkt für alle R-Multiple-Berechnungen.",
       "formula": "Initial Risk (R) = |Entry Price - Stop Loss Price| × Position Size\n\nOder als Kontoprozentsatz: R = Account Size × Risk Percentage",
       "example": "Entry bei 50€, Stop-Loss bei 48€, Position 100 Aktien: Initial Risk = 2€ × 100 = 200€. Bei einem 10.000€ Konto entspricht dies 2% Risiko. Alternative: 10.000€ Konto, 1% Risiko = 100€ R"
@@ -912,7 +912,7 @@
       "example": "50% Win Rate, Ø Win 200€, Ø Loss 100€: Expectancy = (0,5 × 200) - (0,5 × 100) = 50€ pro Trade. Bei 100 Trades erwarten Sie 5.000€ Gewinn. Mit R-Multiple: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust: Expectancy = (0,4 × 3R) - (0,6 × 1R) = 0,6R pro Trade"
     },
     "tradeRating": {
-      "term": "Trade-Qualitätsbewertung",
+      "term": "Trade-Qualitätsbewertung (Trade Rating)",
       "definition": "Eine subjektive Bewertung (1-5 Sterne), die die Qualität der Trade-Ausführung widerspiegelt. Berücksichtigt Faktoren wie: Befolgen Ihres Plans, Entry/Exit-Timing, emotionale Kontrolle und Risikomanagement. Hilft, gut ausgeführte Trades unabhängig vom P&L-Ergebnis zu identifizieren."
     },
     "winRate": {
@@ -922,7 +922,7 @@
       "example": "60 gewinnbringende Trades von 100 insgesamt: Win Rate = (60 / 100) × 100% = 60%. Bei Ø R-Multiple von 2R benötigen Sie nur: 1/(1+2) = 33,3% Win Rate für Breakeven. Bei R-Multiple 1R benötigen Sie 50% Win Rate"
     },
     "winRateRiskReward": {
-      "term": "Zusammenhang Win Rate & Risk-Reward",
+      "term": "Win Rate & Risk-Reward Zusammenhang",
       "definition": "Win Rate und Risk-Reward-Verhältnis (R-Multiple) sind die beiden fundamentalen Säulen der Trading-Profitabilität. Sie stehen in einem inversen Verhältnis: Je höher Ihr durchschnittliches R-Multiple, desto niedriger kann Ihre Win Rate sein und Sie bleiben trotzdem profitabel. Dies ist essentiell zu verstehen, da viele Trader fälschlicherweise nur auf hohe Win Rates fokussieren. Momentum-Strategien haben oft nur 30-40% Win Rate, sind aber durch hohe R-Multiples (3R+) sehr profitabel. Mean-Reversion-Strategien haben oft 60-70% Win Rate, aber niedrigere R-Multiples (0,5-1,5R).",
       "example": "Szenario A (Momentum): 35% Win Rate, Ø Gewinn 4R, Ø Verlust 1R → Expectancy = (0,35 × 4R) - (0,65 × 1R) = 0,75R pro Trade (sehr profitabel).\n\nSzenario B (Mean-Reversion): 65% Win Rate, Ø Gewinn 0,8R, Ø Verlust 1R → Expectancy = (0,65 × 0,8R) - (0,35 × 1R) = 0,17R pro Trade (profitabel, aber weniger).\n\nSzenario C (verlustreich): 60% Win Rate, Ø Gewinn 0,5R, Ø Verlust 1R → Expectancy = (0,6 × 0,5R) - (0,4 × 1R) = -0,1R pro Trade (Verlust trotz hoher Win Rate!).\n\nBreakeven-Formel: Bei Ø R-Multiple von X benötigen Sie mindestens 1/(1+X) Win Rate. Bei 2R: 33,3%, bei 1R: 50%, bei 0,5R: 66,7%"
     },
@@ -932,14 +932,14 @@
       "formula": "Profit Factor = Summe aller Gewinne / Summe aller Verluste (absolut)\n\nBeziehung zu Win Rate & R: PF = (Win Rate × Avg Win) / (Loss Rate × Avg Loss)",
       "example": "10.000€ Gesamtgewinne (aus 15 Trades), 6.000€ Gesamtverluste (aus 10 Trades): Profit Factor = 10.000 / 6.000 = 1,67. Das bedeutet: Für jeden verlorenen Euro werden 1,67€ gewonnen. Alternativ: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust → PF = (0,4 × 3) / (0,6 × 1) = 2,0"
     },
-    "riskReward": { "term": "Risiko-Ertrag", "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.", "formula": "R:R = (Ziel - Entry) / (Entry - Stop)", "example": "Entry $50, Ziel $56, Stop $48 → 3:1" },
+    "riskReward": { "term": "Risiko-Ertrag (Risk-Reward)", "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.", "formula": "R:R = (Ziel - Entry) / (Entry - Stop)", "example": "Entry $50, Ziel $56, Stop $48 → 3:1" },
     "maxDrawdown": {
-      "term": "Maximaler Drawdown",
+      "term": "Maximaler Drawdown (Max Drawdown)",
       "definition": "Der maximale Drawdown misst den größten prozentualen Rückgang vom Höchststand zum Tiefststand der Equity-Kurve während einer Verlustphase. Es ist eine der wichtigsten Risikokennzahlen, da sie das psychologische und finanzielle Worst-Case-Szenario darstellt. Ein hoher Drawdown kann zur Kapitulation führen, selbst wenn die Strategie langfristig profitabel ist. Professionelle Trader überwachen Drawdowns genau und setzen oft maximale Drawdown-Limits (z.B. 20-25% als Stop-Trading-Level).",
       "formula": "Max Drawdown % = ((Trough Value - Peak Value) / Peak Value) × 100%\n\nMax Drawdown € = Peak Value - Trough Value",
       "example": "Konto erreicht 15.000€ Peak, fällt durch Verlustserie auf 12.000€ Trough, bevor es sich erholt: Max Drawdown = ((12.000 - 15.000) / 15.000) × 100% = -20% oder 3.000€ absolut. Bei 50% Drawdown (15.000€ auf 7.500€) benötigen Sie +100% Gewinn nur um wieder auf Ausgangsniveau zu kommen!"
     },
-    "avgWinLoss": { "term": "Ø Gewinn/Verlust", "definition": "Durchschnittlicher Gewinn vs. Verlust.", "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne", "example": "5 Gewinne à $500 → Ø $100" },
+    "avgWinLoss": { "term": "Ø Gewinn/Verlust (Avg Win/Loss)", "definition": "Durchschnittlicher Gewinn vs. Verlust.", "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne", "example": "5 Gewinne à $500 → Ø $100" },
     "pnl": {
       "term": "Profit & Loss (P&L)",
       "definition": "P&L bezeichnet den realisierten Gewinn oder Verlust einer geschlossenen Position oder eines Portfolios über einen bestimmten Zeitraum. Es kann in absoluten Beträgen (€/$) oder relativen Kennzahlen (%, R-Multiple) gemessen werden. Das P&L ist die finale Kennzahl, die über Erfolg oder Misserfolg entscheidet. Wichtig: Nicht realisierte Gewinne (offene Positionen) zählen nicht zum finalen P&L.",
@@ -982,7 +982,7 @@
       "example": "Eine Aktie handelt bei 45-50€ für Wochen. Durchbruch über 50€ mit hohem Volumen = bullischer Breakout"
     },
     "consolidation": {
-      "term": "Konsolidierung",
+      "term": "Konsolidierung (Consolidation)",
       "definition": "Eine Seitwärtsphase wo der Preis in einer engen Range handelt, typischerweise nach einer starken Bewegung. Zeigt Balance zwischen Käufern und Verkäufern.",
       "example": "Nach 20% Anstieg handelt die Aktie 2 Wochen in 5% Range – Konsolidierung vor möglichem nächsten Move"
     },
@@ -1003,12 +1003,12 @@
       "example": "10.000€ Konto, 2:1 Leverage → können 20.000€ Position halten. Bei 5% Gewinn: 1.000€ (10% auf Eigenkapital). Bei 5% Verlust: -1.000€ (-10% auf Eigenkapital)"
     },
     "liquidity": {
-      "term": "Liquidität",
+      "term": "Liquidität (Liquidity)",
       "definition": "Liquidität misst, wie schnell und zu welchem Preis ein Asset gekauft oder verkauft werden kann ohne den Marktpreis signifikant zu beeinflussen. Hohe Liquidität = enge Spreads, schnelle Ausführung.",
       "example": "Apple (AAPL): Millionen Aktien täglich, Spread 0.01€ = hochliquide. Penny Stock: 1000 Aktien/Tag, Spread 5% = illiquide"
     },
     "positionSizing": {
-      "term": "Positionsgrößenbestimmung",
+      "term": "Positionsgrößenbestimmung (Position Sizing)",
       "definition": "Position Sizing definiert, wie viel Kapital Sie in einen einzelnen Trade investieren basierend auf Risiko, Konto-Größe und Trade-Setup. Kritisch für langfristiges Überleben und Wachstum.",
       "formula": "Position Size = Risikobetrag / Risiko pro Einheit\n\nRisikobetrag = Kontogröße × Risiko% (z.B. 1-2%)",
       "example": "10.000€ Konto, 2% Risiko (200€), Entry 50€, Stop 47€ (3€ Risiko): Position Size = 200€ / 3€ = 66 Aktien"
@@ -1024,7 +1024,7 @@
       "example": "Sie wollen bei 50€ kaufen (Market Order), aber werden bei 50.15€ ausgeführt = 0.15€ Slippage pro Aktie (0.3%)"
     },
     "supportResistance": {
-      "term": "Support & Widerstand",
+      "term": "Unterstützung & Widerstand (Support & Resistance)",
       "definition": "Support ist ein Preisniveau, wo Kaufdruck historisch stark genug war, um Abwärtstrends zu stoppen. Widerstand ist wo Verkaufsdruck Aufwärtstrends stoppt. Werden zu selbst-erfüllenden Prophezeiungen.",
       "example": "Aktie fällt 3x auf 45€ und erholt sich = Support bei 45€. Erreicht 3x 55€ und fällt zurück = Widerstand bei 55€"
     },
@@ -1039,12 +1039,12 @@
       "example": "Aktie: 40€ → 45€ → 43€ → 48€ → 46€ → 51€ = Uptrend (steigende Tiefs bei 43€, 46€)"
     },
     "volatility": {
-      "term": "Volatilität",
+      "term": "Volatilität (Volatility)",
       "definition": "Volatilität misst die Stärke von Preisschwankungen. Hohe Volatilität = große Preisbewegungen (hohes Risiko & Chance), niedrige Volatilität = kleine Bewegungen (geringes Risiko & Chance).",
       "example": "Aktie A: 50€ ±0.50€/Tag (1% Volatilität), Aktie B: 50€ ±2.50€/Tag (5% Volatilität) = 5x volatiler"
     },
     "volume": {
-      "term": "Handelsvolumen",
+      "term": "Handelsvolumen (Volume)",
       "definition": "Volume misst die Anzahl der gehandelten Aktien/Kontrakte in einem Zeitraum. Hohes Volumen bestätigt Preisbewegungen (Überzeugung), niedriges Volumen = schwache/fragwürdige Moves.",
       "example": "Breakout über 50€: Mit 10x normalem Volumen = starkes Signal. Mit unterdurchschnittlichem Volumen = wahrscheinlich falscher Ausbruch"
     },
