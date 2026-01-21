@@ -989,19 +989,19 @@
       "example": "Risico $100, winst $200 → R-Multiple = 2R"
     },
     "initialRisk": {
-      "term": "Initieel Risico",
+      "term": "Initieel Risico (Initial Risk)",
       "definition": "Het geldbedrag dat u bereid bent te verliezen op een trade, berekend van entry prijs tot stop loss prijs.",
       "formula": "Initieel Risico = (Entry Prijs - Stop Loss Prijs) × Hoeveelheid",
       "example": "Entry $50, Stop Loss $48, Hoev. 100 → Risico = $200"
     },
     "expectancy": {
-      "term": "Verwachting",
+      "term": "Verwachting (Expectancy)",
       "definition": "Het gemiddelde bedrag dat u per trade kunt verwachten te winnen (of verliezen) in de loop van de tijd. Houdt rekening met zowel winstpercentage als gemiddelde winst/verlies.",
       "formula": "Verwachting = (Winstpercentage × Gem. Winst) - (Verliespercentage × Gem. Verlies)",
       "example": "60% winst%, $150 gem. winst, $100 gem. verlies → Verwachting = $50"
     },
     "tradeRating": {
-      "term": "Trade Kwaliteitsbeoordeling",
+      "term": "Trade Beoordeling (Trade Rating)",
       "definition": "Een subjectieve beoordeling (1-5 sterren) die de kwaliteit van de trade-uitvoering weerspiegelt. Houdt rekening met factoren zoals: uw plan volgen, entry/exit timing, emotionele controle en risicobeheer. Helpt bij het identificeren van goed uitgevoerde trades ongeacht het P&L-resultaat."
     },
     "winRate": { "term": "Winstpercentage", "definition": "Percentage winstgevende trades.", "formula": "Winstpercentage = (Winst Trades / Totaal) × 100%", "example": "60 winsten van 100 → 60%" },

@@ -1009,19 +1009,19 @@
       "example": "Entrata a $100, Stop-Loss a $95 ($5 rischio = 1R), Uscita a $110: R-Multiple = (110 - 100) / 5 = 2R (doppio rischio guadagnato). Uscita a $92.50: R-Multiple = (92.50 - 100) / 5 = -1.5R (1.5x rischio perso)"
     },
     "initialRisk": {
-      "term": "Rischio Iniziale",
+      "term": "Rischio Iniziale (Initial Risk)",
       "definition": "L'importo di denaro che sei disposto a perdere su un'operazione, calcolato dal prezzo di entrata al prezzo di stop loss.",
       "formula": "Rischio Iniziale = (Prezzo Entrata - Prezzo Stop Loss) × Quantità",
       "example": "Entrata $50, Stop Loss $48, Qty 100 → Rischio = $200"
     },
     "expectancy": {
-      "term": "Aspettativa",
+      "term": "Aspettativa (Expectancy)",
       "definition": "L'importo medio che puoi aspettarti di vincere (o perdere) per operazione nel tempo. Considera sia il win rate che il guadagno/perdita media.",
       "formula": "Aspettativa = (Win Rate × Guadagno Medio) - (Loss Rate × Perdita Media)",
       "example": "60% win rate, $150 guadagno medio, $100 perdita media → Aspettativa = $50"
     },
     "tradeRating": {
-      "term": "Valutazione Qualità Operazione",
+      "term": "Valutazione Operazione (Trade Rating)",
       "definition": "Una valutazione soggettiva (1-5 stelle) che riflette la qualità dell'esecuzione dell'operazione. Considera fattori come: seguire il tuo piano, timing entrata/uscita, controllo emotivo e gestione del rischio. Questo aiuta a identificare operazioni ben eseguite indipendentemente dal risultato P&L."
     },
     "winRate": {
