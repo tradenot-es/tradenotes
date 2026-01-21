@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-
+import { PageHeader } from "@/components/PageHeader";
 interface GlossaryTerm {
   id: string;
   term: string;
@@ -243,12 +243,10 @@ export default function Glossary() {
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold mb-2">{t("nav.glossary")}</h1>
-        <p className="text-muted-foreground">
-          {t("glossary.subtitle")}
-        </p>
-      </div>
+      <PageHeader
+        title={t("nav.glossary")}
+        subtitle={t("glossary.subtitle")}
+      />
 
       <div className="space-y-4">
         {terms.map((term) => (

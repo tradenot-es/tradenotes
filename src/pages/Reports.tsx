@@ -26,6 +26,7 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 import { PnLChart } from "@/components/PnLChart";
 import { MFEMAEAnalysis } from "@/components/reports/MFEMAEAnalysis";
+import { PageHeader } from "@/components/PageHeader";
 
 interface Trade {
   id: string;
@@ -295,28 +296,27 @@ export default function Reports() {
 
   return (
     <div className="container mx-auto p-6 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">{t("reports.title")}</h1>
-          <p className="text-muted-foreground">{t("reports.subtitle")}</p>
-        </div>
-        
-        <div className="flex items-center gap-4">
-          <Calendar className="h-5 w-5 text-muted-foreground" />
-          <Select value={timeFilter} onValueChange={setTimeFilter}>
-            <SelectTrigger className="w-40">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">{t("reports.allTime")}</SelectItem>
-              <SelectItem value="week">{t("reports.thisWeek")}</SelectItem>
-              <SelectItem value="month">{t("reports.thisMonth")}</SelectItem>
-              <SelectItem value="3months">{t("reports.last3Months")}</SelectItem>
-              <SelectItem value="year">{t("reports.thisYear")}</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
+      <PageHeader
+        title={t("reports.title")}
+        subtitle={t("reports.subtitle")}
+        actions={
+          <div className="flex items-center gap-4">
+            <Calendar className="h-5 w-5 text-muted-foreground" />
+            <Select value={timeFilter} onValueChange={setTimeFilter}>
+              <SelectTrigger className="w-40">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("reports.allTime")}</SelectItem>
+                <SelectItem value="week">{t("reports.thisWeek")}</SelectItem>
+                <SelectItem value="month">{t("reports.thisMonth")}</SelectItem>
+                <SelectItem value="3months">{t("reports.last3Months")}</SelectItem>
+                <SelectItem value="year">{t("reports.thisYear")}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        }
+      />
 
       <Tabs defaultValue="overview" className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">

@@ -8,6 +8,7 @@ import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { TradeCalendar } from "@/components/TradeCalendar";
 import { TradeFilters, TradeFilterOptions } from "@/components/TradeFilters";
 import { TradesTable } from "@/components/TradesTable";
+import { PageHeader } from "@/components/PageHeader";
 
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
@@ -235,46 +236,46 @@ const Trades = () => {
 
   return (
     <div className="space-y-6 pb-6">
-      <div className="flex items-center justify-between flex-wrap gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">{t("trades.title")}</h1>
-          <p className="text-muted-foreground">{t("trades.subtitle")}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          {webhookTrades.length > 0 && (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="destructive" size="sm">
-                  <Trash2 className="h-4 w-4 mr-1" />
-                  {t("trades.deleteAllWebhook", { count: webhookTrades.length })}
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>{t("trades.deleteAllWebhookDialog.title")}</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    {t("trades.deleteAllWebhookDialog.description", { count: webhookTrades.length })}
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={handleDeleteAllWebhookTrades}
-                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                  >
-                    {t("common.delete")}
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          )}
-          <TradeFilters
-            onFilterChange={setFilters}
-            availableSetups={availableSetups}
-            compact
-          />
-        </div>
-      </div>
+      <PageHeader
+        title={t("trades.title")}
+        subtitle={t("trades.subtitle")}
+        actions={
+          <div className="flex items-center gap-2">
+            {webhookTrades.length > 0 && (
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive" size="sm">
+                    <Trash2 className="h-4 w-4 mr-1" />
+                    {t("trades.deleteAllWebhook", { count: webhookTrades.length })}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>{t("trades.deleteAllWebhookDialog.title")}</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      {t("trades.deleteAllWebhookDialog.description", { count: webhookTrades.length })}
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+                    <AlertDialogAction
+                      onClick={handleDeleteAllWebhookTrades}
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    >
+                      {t("common.delete")}
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            )}
+            <TradeFilters
+              onFilterChange={setFilters}
+              availableSetups={availableSetups}
+              compact
+            />
+          </div>
+        }
+      />
 
 
       <div className="overflow-auto">
