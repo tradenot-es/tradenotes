@@ -980,6 +980,8 @@
     "slippageInvalid": "Slippage moet tussen 0 en 100% zijn"
   },
   "glossary": {
+    "searchPlaceholder": "Zoek termen...",
+    "noResults": "Geen resultaten gevonden.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "Meet hoeveel keer uw initiële risico u heeft gewonnen of verloren op een trade. Een R-Multiple van 2R betekent dat u twee keer uw initiële risico maakte, terwijl -1R betekent dat u uw volledige risicobedrag verloor.",
