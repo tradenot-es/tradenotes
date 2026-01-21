@@ -980,6 +980,8 @@
     "slippageInvalid": "Le slippage doit être entre 0 et 100%"
   },
   "glossary": {
+    "searchPlaceholder": "Rechercher des termes...",
+    "noResults": "Aucun résultat trouvé.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "Mesure combien de fois votre risque initial vous avez gagné ou perdu sur un trade. Un R-Multiple de 2R signifie que vous avez fait deux fois votre risque initial, tandis que -1R signifie que vous avez perdu votre montant de risque complet.",

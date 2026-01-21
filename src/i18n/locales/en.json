@@ -1013,6 +1013,8 @@
     "slippageInvalid": "Slippage must be between 0 and 100%"
   },
   "glossary": {
+    "searchPlaceholder": "Search terms...",
+    "noResults": "No results found.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "R-Multiple is a fundamental risk management metric that measures the ratio between profit/loss and initial risk. It normalizes every trade based on the risk taken, enabling fair comparison across different trades regardless of position size or absolute amounts. A positive R-Multiple shows a gain, a negative one shows a loss relative to risk.",

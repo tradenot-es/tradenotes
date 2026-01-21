@@ -1000,6 +1000,8 @@
     "slippageInvalid": "Lo slippage deve essere tra 0 e 100%"
   },
   "glossary": {
+    "searchPlaceholder": "Cerca termini...",
+    "noResults": "Nessun risultato trovato.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "R-Multiple è una metrica fondamentale di gestione del rischio che misura il rapporto tra profitto/perdita e rischio iniziale. Normalizza ogni operazione in base al rischio assunto, consentendo un confronto equo tra diverse operazioni indipendentemente dalla dimensione della posizione o dagli importi assoluti. Un R-Multiple positivo mostra un guadagno, uno negativo mostra una perdita rispetto al rischio.",

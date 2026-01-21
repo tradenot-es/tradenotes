@@ -1,8 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { Search } from "lucide-react";
+
 interface GlossaryTerm {
   id: string;
   term: string;
@@ -13,6 +15,7 @@ interface GlossaryTerm {
 
 export default function Glossary() {
   const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     // Scroll to anchor on mount and when hash changes
@@ -241,6 +244,18 @@ export default function Glossary() {
     }
   ];
 
+  const filteredTerms = useMemo(() => {
+    if (!searchQuery.trim()) return terms;
+    
+    const query = searchQuery.toLowerCase();
+    return terms.filter(term => 
+      term.term.toLowerCase().includes(query) ||
+      term.definition.toLowerCase().includes(query) ||
+      (term.formula && term.formula.toLowerCase().includes(query)) ||
+      (term.example && term.example.toLowerCase().includes(query))
+    );
+  }, [terms, searchQuery]);
+
   return (
     <div className="space-y-6 p-2">
       <PageHeader
@@ -248,39 +263,55 @@ export default function Glossary() {
         subtitle={t("glossary.subtitle")}
       />
 
+      <div className="relative max-w-md">
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Input
+          placeholder={t("glossary.searchPlaceholder")}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="pl-10"
+        />
+      </div>
+
       <div className="space-y-4">
-        {terms.map((term) => (
-          <Card key={term.id} id={term.id} className="scroll-mt-20">
-            <CardHeader>
-              <CardTitle className="text-2xl">{term.term}</CardTitle>
-              <CardDescription className="text-base">
-                {term.definition}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {term.formula && (
-                <div>
-                  <p className="font-semibold text-sm text-muted-foreground mb-1">
-                    {t("glossary.formula")}:
-                  </p>
-                  <code className="block bg-muted p-3 rounded-md font-mono text-sm">
-                    {term.formula}
-                  </code>
-                </div>
-              )}
-              {term.example && (
-                <div>
-                  <p className="font-semibold text-sm text-muted-foreground mb-1">
-                    {t("glossary.example")}:
-                  </p>
-                  <p className="text-sm bg-muted/50 p-3 rounded-md">
-                    {term.example}
-                  </p>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        ))}
+        {filteredTerms.length === 0 ? (
+          <p className="text-muted-foreground text-center py-8">
+            {t("glossary.noResults")}
+          </p>
+        ) : (
+          filteredTerms.map((term) => (
+            <Card key={term.id} id={term.id} className="scroll-mt-20">
+              <CardHeader>
+                <CardTitle className="text-2xl">{term.term}</CardTitle>
+                <CardDescription className="text-base">
+                  {term.definition}
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {term.formula && (
+                  <div>
+                    <p className="font-semibold text-sm text-muted-foreground mb-1">
+                      {t("glossary.formula")}:
+                    </p>
+                    <code className="block bg-muted p-3 rounded-md font-mono text-sm">
+                      {term.formula}
+                    </code>
+                  </div>
+                )}
+                {term.example && (
+                  <div>
+                    <p className="font-semibold text-sm text-muted-foreground mb-1">
+                      {t("glossary.example")}:
+                    </p>
+                    <p className="text-sm bg-muted/50 p-3 rounded-md">
+                      {term.example}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          ))
+        )}
       </div>
     </div>
   );

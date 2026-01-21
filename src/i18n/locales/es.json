@@ -980,6 +980,8 @@
     "slippageInvalid": "El slippage debe estar entre 0 y 100%"
   },
   "glossary": {
+    "searchPlaceholder": "Buscar términos...",
+    "noResults": "No se encontraron resultados.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "Mide cuántas veces su riesgo inicial ganó o perdió en una operación. Un R-Multiple de 2R significa que obtuvo el doble de su riesgo inicial, mientras que -1R significa que perdió su monto de riesgo completo.",

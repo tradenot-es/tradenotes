@@ -891,6 +891,8 @@
     "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen"
   },
   "glossary": {
+    "searchPlaceholder": "Begriffe suchen...",
+    "noResults": "Keine Ergebnisse gefunden.",
     "rMultiple": {
       "term": "R-Multiple",
       "definition": "Das R-Multiple ist eine fundamentale Kennzahl im Risikomanagement, die das Verhältnis zwischen Gewinn/Verlust und dem initialen Risiko misst. Es normalisiert jeden Trade auf das eingegangene Risiko und ermöglicht so einen fairen Vergleich verschiedener Trades unabhängig von Position Size oder absoluten Beträgen. Ein positives R-Multiple zeigt einen Gewinn, ein negatives einen Verlust relativ zum Risiko.",
