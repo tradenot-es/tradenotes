@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { z } from "zod";
 import { DailyPrep } from "@/components/DailyPrep";
+import { PageHeader } from "@/components/PageHeader";
 
 interface JournalEntry {
   id: string;
@@ -88,10 +89,10 @@ const Journal = () => {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">{t("journal.title")}</h1>
-        <p className="text-muted-foreground">{t("journal.subtitle")}</p>
-      </div>
+      <PageHeader
+        title={t("journal.title")}
+        subtitle={t("journal.subtitle")}
+      />
 
       <Tabs defaultValue="prep" className="space-y-6">
         <TabsList>

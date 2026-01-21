@@ -11,7 +11,7 @@ import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
 import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import { PageHeader } from "@/components/PageHeader";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
@@ -203,27 +203,20 @@ const Index = () => {
 
   return (
     <div className="space-y-8 p-2">
-      <div className="glossy-card relative py-4 px-6 rounded-2xl overflow-visible">
-        <img
-          src={logo}
-          alt="TradeNotes"
-          className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-auto -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)]"
-        />
-        <div className="flex items-center justify-between gap-6">
-          <div className="flex-shrink-0 min-w-0 pr-10">
-            <h1 className="text-4xl font-bold gradient-text leading-tight">{t("dashboard.title")}</h1>
-            <p className="text-muted-foreground mt-1">{t("dashboard.subtitle")}</p>
-          </div>
+      <PageHeader
+        title={t("dashboard.title")}
+        subtitle={t("dashboard.subtitle")}
+        actions={
           <Button
             onClick={() => navigate('/dashboard/trades?addTrade=true')}
-            className="gap-2 shrink-0"
+            className="gap-2"
             size="lg"
           >
             <Plus className="h-4 w-4" />
             {t("dashboard.addTrade")}
           </Button>
-        </div>
-      </div>
+        }
+      />
 
       {trades.length === 0 ? (
         <div className="glossy-card p-12 text-center rounded-2xl">

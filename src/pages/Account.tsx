@@ -15,6 +15,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
+import { PageHeader } from "@/components/PageHeader";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -403,10 +404,10 @@ const Account = () => {
   return (
     <TooltipProvider delayDuration={0}>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">{t("account.title")}</h1>
-          <p className="text-muted-foreground">{t("account.subtitle")}</p>
-        </div>
+        <PageHeader
+          title={t("account.title")}
+          subtitle={t("account.subtitle")}
+        />
 
         <div className="grid gap-6">
           {/* Achievements Section */}

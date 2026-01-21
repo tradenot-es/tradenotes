@@ -17,6 +17,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { SetupDefinition } from "@/types/setup";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus } from "lucide-react";
+import { PageHeader } from "@/components/PageHeader";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -232,10 +233,10 @@ const Settings = () => {
   return (
     <TooltipProvider delayDuration={0}>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">{t("settings.title")}</h1>
-          <p className="text-muted-foreground">{t("settings.subtitle")}</p>
-        </div>
+        <PageHeader
+          title={t("settings.title")}
+          subtitle={t("settings.subtitle")}
+        />
 
         <div className="grid gap-6">
           {/* General Settings */}
