@@ -11,7 +11,7 @@ export interface PoliticalEvent {
   url: string;
   published_at: string;
   source: string;
-  impact_level?: 'high' | 'medium' | 'political';
+  impact_level?: 'high' | 'medium' | 'low' | 'political';
   isScheduled?: boolean;
   category?: EconomicEvent['category'];
   time?: string;
@@ -73,7 +73,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
       url: '', // No external link for scheduled events
       published_at: event.date,
       source: 'Economic Calendar',
-      impact_level: event.impact as 'high' | 'medium' | 'political',
+      impact_level: event.impact as 'high' | 'medium' | 'low' | 'political',
       isScheduled: true,
       category: event.category,
       time: event.time

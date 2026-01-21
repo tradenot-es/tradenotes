@@ -92,16 +92,16 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'boj-dec-2026', date: '2026-12-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
 
   // ========== OPEC+ Meetings 2025 ==========
-  { id: 'opec-feb-2025', date: '2025-02-01', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-feb-2025', date: '2025-02-01', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
   { id: 'opec-apr-2025', date: '2025-04-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-jun-2025', date: '2025-06-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-jun-2025', date: '2025-06-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
   { id: 'opec-sep-2025', date: '2025-09-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
   { id: 'opec-dec-2025', date: '2025-12-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
 
   // ========== OPEC+ Meetings 2026 ==========
-  { id: 'opec-feb-2026', date: '2026-02-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-feb-2026', date: '2026-02-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
   { id: 'opec-apr-2026', date: '2026-04-02', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-jun-2026', date: '2026-06-04', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-jun-2026', date: '2026-06-04', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
   { id: 'opec-sep-2026', date: '2026-09-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
   { id: 'opec-dec-2026', date: '2026-12-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
 
@@ -190,20 +190,20 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'gdp-q3-2026-fin', date: '2026-12-22', time: '08:30', title: 'GDP Q3 2026 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q3 2026' },
 
   // ========== Global Summits & Political Events 2025 ==========
-  { id: 'wef-2025-start', date: '2025-01-20', time: '09:00', title: 'World Economic Forum Davos 2025', category: 'summit', impact: 'high', description: 'Annual WEF meeting begins - global leaders discuss economy, trade, AI' },
+  { id: 'wef-2025-start', date: '2025-01-20', time: '09:00', title: 'World Economic Forum Davos 2025', category: 'summit', impact: 'medium', description: 'Annual WEF meeting begins - global leaders discuss economy, trade, AI' },
   { id: 'wef-2025-trump', date: '2025-01-21', time: '11:00', title: 'Trump Speech at WEF Davos', category: 'summit', impact: 'high', description: 'US President addresses World Economic Forum' },
-  { id: 'wef-2025-end', date: '2025-01-24', time: '17:00', title: 'WEF Davos 2025 Closing', category: 'summit', impact: 'medium', description: 'World Economic Forum closing sessions' },
-  { id: 'g7-2025', date: '2025-06-15', time: '09:00', title: 'G7 Summit 2025', category: 'summit', impact: 'high', description: 'G7 leaders meet in Canada - major policy discussions' },
+  { id: 'wef-2025-end', date: '2025-01-24', time: '17:00', title: 'WEF Davos 2025 Closing', category: 'summit', impact: 'low', description: 'World Economic Forum closing sessions' },
+  { id: 'g7-2025', date: '2025-06-15', time: '09:00', title: 'G7 Summit 2025', category: 'summit', impact: 'medium', description: 'G7 leaders meet in Canada - major policy discussions' },
   { id: 'jackson-hole-2025', date: '2025-08-21', time: '10:00', title: 'Jackson Hole Symposium', category: 'summit', impact: 'high', description: 'Fed Chair speech at annual Jackson Hole Economic Symposium' },
-  { id: 'un-ga-2025', date: '2025-09-16', time: '09:00', title: 'UN General Assembly 2025', category: 'summit', impact: 'medium', description: 'United Nations General Assembly opens in New York' },
-  { id: 'g20-2025', date: '2025-11-15', time: '09:00', title: 'G20 Summit 2025', category: 'summit', impact: 'high', description: 'G20 leaders meet in South Africa' },
+  { id: 'un-ga-2025', date: '2025-09-16', time: '09:00', title: 'UN General Assembly 2025', category: 'summit', impact: 'low', description: 'United Nations General Assembly opens in New York' },
+  { id: 'g20-2025', date: '2025-11-15', time: '09:00', title: 'G20 Summit 2025', category: 'summit', impact: 'medium', description: 'G20 leaders meet in South Africa' },
 
   // ========== Global Summits & Political Events 2026 ==========
-  { id: 'wef-2026', date: '2026-01-19', time: '09:00', title: 'World Economic Forum Davos 2026', category: 'summit', impact: 'high', description: 'Annual WEF meeting - global economic outlook' },
-  { id: 'g7-2026', date: '2026-06-14', time: '09:00', title: 'G7 Summit 2026', category: 'summit', impact: 'high', description: 'G7 leaders annual summit' },
+  { id: 'wef-2026', date: '2026-01-19', time: '09:00', title: 'World Economic Forum Davos 2026', category: 'summit', impact: 'medium', description: 'Annual WEF meeting - global economic outlook' },
+  { id: 'g7-2026', date: '2026-06-14', time: '09:00', title: 'G7 Summit 2026', category: 'summit', impact: 'medium', description: 'G7 leaders annual summit' },
   { id: 'jackson-hole-2026', date: '2026-08-20', time: '10:00', title: 'Jackson Hole Symposium', category: 'summit', impact: 'high', description: 'Fed Chair speech at annual Jackson Hole Economic Symposium' },
-  { id: 'un-ga-2026', date: '2026-09-15', time: '09:00', title: 'UN General Assembly 2026', category: 'summit', impact: 'medium', description: 'United Nations General Assembly opens' },
-  { id: 'g20-2026', date: '2026-11-14', time: '09:00', title: 'G20 Summit 2026', category: 'summit', impact: 'high', description: 'G20 leaders annual summit' },
+  { id: 'un-ga-2026', date: '2026-09-15', time: '09:00', title: 'UN General Assembly 2026', category: 'summit', impact: 'low', description: 'United Nations General Assembly opens' },
+  { id: 'g20-2026', date: '2026-11-14', time: '09:00', title: 'G20 Summit 2026', category: 'summit', impact: 'medium', description: 'G20 leaders annual summit' },
 
   // ========== US Elections 2026 ==========
   { id: 'us-midterm-2026', date: '2026-11-03', time: '06:00', title: 'US Midterm Elections', category: 'election', impact: 'high', description: 'US Midterm Elections - House and Senate races' },
