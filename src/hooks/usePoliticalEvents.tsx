@@ -17,21 +17,24 @@ export interface PoliticalEvent {
   time?: string;
 }
 
-// Impact-Level Keywords - expanded to include geopolitical events and global summits
+// Impact-Level Keywords - expanded to include geopolitical events, global summits, and central banks
 const HIGH_IMPACT_KEYWORDS = [
   'FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 
   'Federal Reserve', 'Fed rate', 'war', 'invasion', 'military', 'sanctions', 
   'crash', 'default', 'debt ceiling', 'shutdown', 'recession',
   'Davos', 'WEF', 'World Economic Forum', 'G7', 'G20', 'Jackson Hole',
-  'UN General Assembly', 'BRICS Summit', 'EU Summit'
+  'UN General Assembly', 'BRICS Summit', 'EU Summit',
+  'ECB', 'Lagarde', 'European Central Bank', 'OPEC', 'oil production',
+  'Bank of England', 'BoE', 'Bailey', 'Bank of Japan', 'BoJ', 'Ueda',
+  'midterm', 'election', 'congress', 'senate'
 ];
 const MEDIUM_IMPACT_KEYWORDS = [
   'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 
-  'housing', 'oil', 'OPEC', 'China trade', 'tariff', 'stimulus', 'volatility',
-  'VIX', 'selloff', 'rally'
+  'housing', 'oil', 'China trade', 'tariff', 'stimulus', 'volatility',
+  'VIX', 'selloff', 'rally', 'carry trade', 'yen', 'euro', 'pound'
 ];
 const POLITICAL_KEYWORDS = [
-  'Trump', 'Biden', 'election', 'policy', 'Congress', 'Senate', 'White House',
+  'Trump', 'Biden', 'policy', 'White House',
   'geopolitical', 'NATO', 'Europe', 'Russia', 'China', 'conflict', 'nuclear'
 ];
 
@@ -128,7 +131,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
             action: 'get-political-events',
             startDate: dateRange.start,
             endDate: dateRange.end,
-            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus,Davos,WEF,World Economic Forum,G7,G20,BRICS,EU Summit,UN General Assembly,Jackson Hole',
+            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus,Davos,WEF,World Economic Forum,G7,G20,BRICS,EU Summit,UN General Assembly,Jackson Hole,ECB,Lagarde,European Central Bank,Bank of England,BoE,Bailey,Bank of Japan,BoJ,Ueda,midterm,election,oil production,carry trade',
             limit: 50
           }
         });

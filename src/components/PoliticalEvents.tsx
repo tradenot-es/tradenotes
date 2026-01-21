@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe } from "lucide-react";
+import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote } from "lucide-react";
 import { getCategoryIcon, getCategoryLabel } from "@/lib/economicCalendar";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
@@ -38,6 +38,16 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
         return <TrendingUp className="h-4 w-4 text-orange-600" />;
       case 'summit':
         return <Globe className="h-4 w-4 text-cyan-600" />;
+      case 'ecb':
+        return <Landmark className="h-4 w-4 text-yellow-600" />;
+      case 'boe':
+        return <Landmark className="h-4 w-4 text-red-700" />;
+      case 'boj':
+        return <Landmark className="h-4 w-4 text-rose-600" />;
+      case 'opec':
+        return <Fuel className="h-4 w-4 text-amber-700" />;
+      case 'election':
+        return <Vote className="h-4 w-4 text-red-600" />;
       default:
         return <Calendar className="h-4 w-4 text-muted-foreground" />;
     }

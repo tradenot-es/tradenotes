@@ -3,13 +3,13 @@ export interface EconomicEvent {
   date: string; // YYYY-MM-DD
   time?: string; // HH:MM EST
   title: string;
-  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'other';
+  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'ecb' | 'opec' | 'election' | 'boe' | 'boj' | 'other';
   impact: 'high' | 'medium' | 'low';
   description: string;
 }
 
 // Economic Calendar 2025-2026
-// Sources: Federal Reserve, BLS, BEA official schedules
+// Sources: Federal Reserve, BLS, BEA, ECB, BoE, BoJ, OPEC official schedules
 export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   // ========== FOMC Meetings 2025 ==========
   { id: 'fomc-jan-2025', date: '2025-01-29', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
@@ -30,6 +30,80 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'fomc-sep-2026', date: '2026-09-16', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
   { id: 'fomc-nov-2026', date: '2026-11-04', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
   { id: 'fomc-dec-2026', date: '2026-12-16', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
+
+  // ========== ECB Meetings 2025 ==========
+  { id: 'ecb-jan-2025', date: '2025-01-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-mar-2025', date: '2025-03-06', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-apr-2025', date: '2025-04-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-jun-2025', date: '2025-06-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-jul-2025', date: '2025-07-24', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-sep-2025', date: '2025-09-11', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-oct-2025', date: '2025-10-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-dec-2025', date: '2025-12-18', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+
+  // ========== ECB Meetings 2026 ==========
+  { id: 'ecb-jan-2026', date: '2026-01-22', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-mar-2026', date: '2026-03-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-apr-2026', date: '2026-04-16', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-jun-2026', date: '2026-06-04', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-jul-2026', date: '2026-07-23', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-sep-2026', date: '2026-09-10', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-oct-2026', date: '2026-10-29', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  { id: 'ecb-dec-2026', date: '2026-12-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+
+  // ========== Bank of England (BoE) Meetings 2025 ==========
+  { id: 'boe-feb-2025', date: '2025-02-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-mar-2025', date: '2025-03-20', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-may-2025', date: '2025-05-08', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-jun-2025', date: '2025-06-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-aug-2025', date: '2025-08-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-sep-2025', date: '2025-09-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-nov-2025', date: '2025-11-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-dec-2025', date: '2025-12-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+
+  // ========== Bank of England (BoE) Meetings 2026 ==========
+  { id: 'boe-feb-2026', date: '2026-02-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-mar-2026', date: '2026-03-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-may-2026', date: '2026-05-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-jun-2026', date: '2026-06-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-aug-2026', date: '2026-08-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-sep-2026', date: '2026-09-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-nov-2026', date: '2026-11-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  { id: 'boe-dec-2026', date: '2026-12-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+
+  // ========== Bank of Japan (BoJ) Meetings 2025 ==========
+  { id: 'boj-jan-2025', date: '2025-01-24', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-mar-2025', date: '2025-03-14', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-apr-2025', date: '2025-04-25', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-jun-2025', date: '2025-06-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-jul-2025', date: '2025-07-31', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-sep-2025', date: '2025-09-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-oct-2025', date: '2025-10-31', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-dec-2025', date: '2025-12-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+
+  // ========== Bank of Japan (BoJ) Meetings 2026 ==========
+  { id: 'boj-jan-2026', date: '2026-01-23', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-mar-2026', date: '2026-03-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-apr-2026', date: '2026-04-24', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-jun-2026', date: '2026-06-12', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-jul-2026', date: '2026-07-30', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-sep-2026', date: '2026-09-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  { id: 'boj-oct-2026', date: '2026-10-30', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
+  { id: 'boj-dec-2026', date: '2026-12-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+
+  // ========== OPEC+ Meetings 2025 ==========
+  { id: 'opec-feb-2025', date: '2025-02-01', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-apr-2025', date: '2025-04-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
+  { id: 'opec-jun-2025', date: '2025-06-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-sep-2025', date: '2025-09-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
+  { id: 'opec-dec-2025', date: '2025-12-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
+
+  // ========== OPEC+ Meetings 2026 ==========
+  { id: 'opec-feb-2026', date: '2026-02-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-apr-2026', date: '2026-04-02', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
+  { id: 'opec-jun-2026', date: '2026-06-04', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Joint Ministerial Monitoring Committee' },
+  { id: 'opec-sep-2026', date: '2026-09-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
+  { id: 'opec-dec-2026', date: '2026-12-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
 
   // ========== CPI Reports 2025 (Released ~10th-15th of each month) ==========
   { id: 'cpi-jan-2025', date: '2025-01-15', time: '08:30', title: 'CPI Report (Dec)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - December 2024 data' },
@@ -130,6 +204,10 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'jackson-hole-2026', date: '2026-08-20', time: '10:00', title: 'Jackson Hole Symposium', category: 'summit', impact: 'high', description: 'Fed Chair speech at annual Jackson Hole Economic Symposium' },
   { id: 'un-ga-2026', date: '2026-09-15', time: '09:00', title: 'UN General Assembly 2026', category: 'summit', impact: 'medium', description: 'United Nations General Assembly opens' },
   { id: 'g20-2026', date: '2026-11-14', time: '09:00', title: 'G20 Summit 2026', category: 'summit', impact: 'high', description: 'G20 leaders annual summit' },
+
+  // ========== US Elections 2026 ==========
+  { id: 'us-midterm-2026', date: '2026-11-03', time: '06:00', title: 'US Midterm Elections', category: 'election', impact: 'high', description: 'US Midterm Elections - House and Senate races' },
+  { id: 'us-midterm-results-2026', date: '2026-11-04', time: '00:00', title: 'US Election Results Day', category: 'election', impact: 'high', description: 'US Midterm Election results - market reaction' },
 ];
 
 // Helper to get events for a date range
@@ -146,28 +224,38 @@ export function getEconomicEventsForDate(date: Date): EconomicEvent[] {
   return ECONOMIC_CALENDAR_2025_2026.filter(event => event.date === dateStr);
 }
 
-// Get category icon
+// Get icon for category
 export function getCategoryIcon(category: EconomicEvent['category']): string {
   switch (category) {
-    case 'fomc': return '🏛️';
+    case 'fomc': return '📅';
     case 'cpi': return '📊';
     case 'nfp': return '👷';
     case 'gdp': return '📈';
     case 'fed_speech': return '🎤';
     case 'summit': return '🌍';
-    default: return '📅';
+    case 'ecb': return '🇪🇺';
+    case 'opec': return '🛢️';
+    case 'election': return '🗳️';
+    case 'boe': return '🇬🇧';
+    case 'boj': return '🇯🇵';
+    default: return '📌';
   }
 }
 
-// Get category label
+// Get label for category
 export function getCategoryLabel(category: EconomicEvent['category']): string {
   switch (category) {
     case 'fomc': return 'FOMC';
     case 'cpi': return 'CPI';
-    case 'nfp': return 'NFP';
+    case 'nfp': return 'Jobs Report';
     case 'gdp': return 'GDP';
     case 'fed_speech': return 'Fed Speech';
     case 'summit': return 'Global Summit';
-    default: return 'Event';
+    case 'ecb': return 'ECB';
+    case 'opec': return 'OPEC+';
+    case 'election': return 'Election';
+    case 'boe': return 'Bank of England';
+    case 'boj': return 'Bank of Japan';
+    default: return 'Other';
   }
 }
