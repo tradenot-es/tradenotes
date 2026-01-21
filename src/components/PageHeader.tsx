@@ -16,7 +16,7 @@ export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
         className="pointer-events-none absolute left-1/2 top-1/2 h-40 w-auto -translate-x-1/2 -translate-y-1/2 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] -z-10"
       />
       <div className="flex items-center justify-between gap-6 flex-wrap">
-        <div className="flex-shrink-0 min-w-0 max-w-[45%] relative z-10 bg-background/70 backdrop-blur-md rounded-xl px-4 py-2">
+        <div className="flex-shrink-0 min-w-0 relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold gradient-text leading-tight">
             {title}
           </h1>
@@ -25,7 +25,7 @@ export function PageHeader({ title, subtitle, actions }: PageHeaderProps) {
           )}
         </div>
         {actions && (
-          <div className="shrink-0 flex items-center gap-2 z-10 bg-background/70 backdrop-blur-md rounded-xl px-3 py-2">
+          <div className="shrink-0 flex items-center gap-2 z-10">
             {actions}
           </div>
         )}
