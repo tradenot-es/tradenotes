@@ -17,11 +17,13 @@ export interface PoliticalEvent {
   time?: string;
 }
 
-// Impact-Level Keywords - expanded to include geopolitical events
+// Impact-Level Keywords - expanded to include geopolitical events and global summits
 const HIGH_IMPACT_KEYWORDS = [
   'FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 
   'Federal Reserve', 'Fed rate', 'war', 'invasion', 'military', 'sanctions', 
-  'crash', 'default', 'debt ceiling', 'shutdown', 'recession'
+  'crash', 'default', 'debt ceiling', 'shutdown', 'recession',
+  'Davos', 'WEF', 'World Economic Forum', 'G7', 'G20', 'Jackson Hole',
+  'UN General Assembly', 'BRICS Summit', 'EU Summit'
 ];
 const MEDIUM_IMPACT_KEYWORDS = [
   'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 
@@ -126,7 +128,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
             action: 'get-political-events',
             startDate: dateRange.start,
             endDate: dateRange.end,
-            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus',
+            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus,Davos,WEF,World Economic Forum,G7,G20,BRICS,EU Summit,UN General Assembly,Jackson Hole',
             limit: 50
           }
         });
