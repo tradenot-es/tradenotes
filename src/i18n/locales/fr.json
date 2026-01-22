@@ -768,6 +768,13 @@
     }
   },
   "landing": {
+    "nav": {
+      "features": "Fonctionnalités",
+      "pricing": "Tarifs"
+    },
+    "cta": {
+      "startNow": "Commencer"
+    },
     "badge": "Journal de Trading Professionnel pour Futures & Actions",
     "heroTitle": "Votre avantage trading avec un journal",
     "heroTitleHighlight": "intelligent propulsé par l'IA",

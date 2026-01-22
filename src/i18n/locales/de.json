@@ -679,6 +679,13 @@
     }
   },
   "landing": {
+    "nav": {
+      "features": "Features",
+      "pricing": "Preise"
+    },
+    "cta": {
+      "startNow": "Jetzt starten"
+    },
     "badge": "Professionelles Trading Journal",
     "heroTitle": "Werde ein besserer Trader durch",
     "heroTitleHighlight": "systematisches Journaling",

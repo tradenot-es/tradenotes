@@ -788,6 +788,13 @@
     }
   },
   "landing": {
+    "nav": {
+      "features": "Funzionalità",
+      "pricing": "Prezzi"
+    },
+    "cta": {
+      "startNow": "Inizia ora"
+    },
     "badge": "Diario di Trading Professionale per Futures e Azioni",
     "heroTitle": "Il tuo vantaggio trading con un diario",
     "heroTitleHighlight": "intelligente alimentato dall'IA",
