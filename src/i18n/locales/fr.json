@@ -10,6 +10,7 @@
     "account": "Compte",
     "settings": "Paramètres",
     "logout": "Déconnexion",
+    "login": "Connexion",
     "welcome": "Bienvenue, {{name}} !"
   },
   "auth": {

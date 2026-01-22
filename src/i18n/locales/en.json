@@ -9,6 +9,7 @@
     "account": "Account",
     "settings": "Settings",
     "logout": "Logout",
+    "login": "Login",
     "welcome": "Welcome, {{name}}!"
   },
   "auth": {

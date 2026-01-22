@@ -10,6 +10,7 @@
     "account": "Cuenta",
     "settings": "Configuración",
     "logout": "Cerrar sesión",
+    "login": "Iniciar sesión",
     "welcome": "¡Bienvenido, {{name}}!"
   },
   "auth": {
