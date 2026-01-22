@@ -768,6 +768,13 @@
     }
   },
   "landing": {
+    "nav": {
+      "features": "Functies",
+      "pricing": "Prijzen"
+    },
+    "cta": {
+      "startNow": "Nu starten"
+    },
     "badge": "Professioneel Trading Dagboek voor Futures & Aandelen",
     "heroTitle": "Jouw trading-voordeel met een",
     "heroTitleHighlight": "AI-gedreven slim dagboek",

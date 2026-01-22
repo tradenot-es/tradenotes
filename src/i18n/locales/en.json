@@ -801,6 +801,13 @@
     }
   },
   "landing": {
+    "nav": {
+      "features": "Features",
+      "pricing": "Pricing"
+    },
+    "cta": {
+      "startNow": "Get Started"
+    },
     "badge": "Professional Trading Journal",
     "heroTitle": "Become a better trader through",
     "heroTitleHighlight": "systematic journaling",
