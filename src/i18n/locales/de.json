@@ -1353,7 +1353,7 @@
           "items": [
             "<strong>Supabase (Cloud-Infrastruktur):</strong> Hosting und Datenbank-Dienste in EU-Rechenzentren",
             "<strong>Stripe:</strong> Zahlungsabwicklung (unterliegt eigener Datenschutzerklärung)",
-            "<strong>Resend:</strong> E-Mail-Versand (transaktionale E-Mails)"
+            "<strong>Lettermint:</strong> E-Mail-Versand (transaktionale E-Mails, Trial-Erinnerungen)"
           ],
           "compliance": "Alle Dienstleister sind DSGVO-konform und haben mit uns Auftragsverarbeitungsverträge nach Art. 28 DSGVO geschlossen."
         },

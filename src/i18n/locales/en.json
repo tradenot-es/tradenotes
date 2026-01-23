@@ -1485,7 +1485,7 @@
           "items": [
             "<strong>Supabase (Cloud Infrastructure):</strong> Hosting and database services in EU data centers",
             "<strong>Stripe:</strong> Payment processing (subject to its own privacy policy)",
-            "<strong>Resend:</strong> Email delivery (transactional emails)"
+            "<strong>Lettermint:</strong> Email delivery (transactional emails, trial reminders)"
           ],
           "compliance": "All service providers are GDPR compliant and have signed data processing agreements with us according to Art. 28 GDPR."
         },

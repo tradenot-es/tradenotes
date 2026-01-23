@@ -1462,7 +1462,7 @@
           "items": [
             "<strong>Supabase (Infrastruttura Cloud):</strong> Servizi hosting e database in data center UE",
             "<strong>Stripe:</strong> Elaborazione pagamenti (soggetto alla propria informativa privacy)",
-            "<strong>Resend:</strong> Consegna email (email transazionali)"
+            "<strong>Lettermint:</strong> Consegna email (email transazionali, promemoria di prova)"
           ],
           "compliance": "Tutti i fornitori di servizi sono conformi GDPR e hanno firmato accordi di trattamento dati con noi secondo l'Art. 28 GDPR."
         },
