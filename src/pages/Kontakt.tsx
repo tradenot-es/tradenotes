@@ -6,13 +6,26 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { AltchaWidget } from "@/components/AltchaWidget";
+import { supabase } from "@/integrations/supabase/client";
 
 const Kontakt = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    if (!altchaPayload) {
+      toast({
+        title: "Fehler",
+        description: "Bitte bestätigen Sie, dass Sie kein Roboter sind.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsSubmitting(true);
 
     const formData = new FormData(e.currentTarget);
@@ -62,15 +75,43 @@ const Kontakt = () => {
       return;
     }
 
+    // Verify ALTCHA on backend
+    try {
+      const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
+        body: { payload: altchaPayload },
+        method: 'POST',
+      });
+
+      if (!verifyResult?.valid) {
+        toast({
+          title: "Fehler",
+          description: "Captcha-Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        setAltchaPayload(null);
+        return;
+      }
+    } catch {
+      toast({
+        title: "Fehler",
+        description: "Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     // Simulate form submission
     setTimeout(() => {
       toast({
         title: "Nachricht gesendet",
         description: "Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.",
       });
-      e.currentTarget.reset();
+      (e.target as HTMLFormElement).reset();
+      setAltchaPayload(null);
       setIsSubmitting(false);
-    }, 1000);
+    }, 500);
   };
 
   return (
@@ -142,7 +183,12 @@ const Kontakt = () => {
                     />
                   </div>
                   
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  <AltchaWidget 
+                    onVerified={setAltchaPayload}
+                    onError={() => setAltchaPayload(null)}
+                  />
+                  
+                  <Button type="submit" className="w-full" disabled={isSubmitting || !altchaPayload}>
                     {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
                   </Button>
                 </form>
