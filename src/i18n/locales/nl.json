@@ -1292,7 +1292,7 @@
           "items": [
             "<strong>Supabase (Cloud-infrastructuur):</strong> Hosting en databasediensten in EU-datacenters",
             "<strong>Stripe:</strong> Betalingsverwerking (onderworpen aan eigen privacybeleid)",
-            "<strong>Resend:</strong> E-mailbezorging (transactionele e-mails)"
+            "<strong>Lettermint:</strong> E-mailbezorging (transactionele e-mails, proefherinneringen)"
           ],
           "compliance": "Alle dienstverleners zijn AVG-conform en hebben verwerkersovereenkomsten met ons gesloten volgens art. 28 AVG."
         },

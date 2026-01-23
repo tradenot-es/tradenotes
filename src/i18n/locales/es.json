@@ -1292,7 +1292,7 @@
           "items": [
             "<strong>Supabase (Infraestructura en la nube):</strong> Servicios de hosting y base de datos en centros de datos de la UE",
             "<strong>Stripe:</strong> Procesamiento de pagos (sujeto a su propia política de privacidad)",
-            "<strong>Resend:</strong> Entrega de correos electrónicos (correos transaccionales)"
+            "<strong>Lettermint:</strong> Entrega de correos electrónicos (correos transaccionales, recordatorios de prueba)"
           ],
           "compliance": "Todos los proveedores de servicios cumplen con el RGPD y han firmado acuerdos de procesamiento de datos con nosotros según el art. 28 RGPD."
         },
