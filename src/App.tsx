@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { CookieConsent } from "./components/CookieConsent";
 import Landing from "./pages/Landing";
 import Index from "./pages/Index";
 import Trades from "./pages/Trades";
@@ -69,6 +70,7 @@ const App = () => (
               }
             />
           </Routes>
+          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

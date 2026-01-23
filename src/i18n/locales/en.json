@@ -38,7 +38,10 @@
     "terms": "Terms of Service",
     "and": "and",
     "privacy": "Privacy Policy",
-    "termsRequired": "Please accept the Terms of Service and Privacy Policy"
+    "termsRequired": "Please accept the Terms of Service and Privacy Policy",
+    "captchaRequired": "Please confirm that you are not a robot",
+    "captchaFailed": "Captcha verification failed. Please try again.",
+    "captchaError": "Verification failed. Please try again."
   },
   "checkout": {
     "successTitle": "Welcome to Premium!",

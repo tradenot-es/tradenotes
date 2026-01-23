@@ -10,6 +10,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
 import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import { AltchaWidget } from "@/components/AltchaWidget";
 
 const Auth = () => {
   const { t } = useTranslation();
@@ -25,6 +26,7 @@ const Auth = () => {
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const authSchema = z.object({
@@ -67,7 +69,34 @@ const Auth = () => {
       return;
     }
 
+    // Verify ALTCHA for registration
+    if (!isLogin && !altchaPayload) {
+      toast.error(t("auth.captchaRequired") || "Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+      return;
+    }
+
     setLoading(true);
+
+    // Verify ALTCHA on backend for registration
+    if (!isLogin && altchaPayload) {
+      try {
+        const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
+          body: { payload: altchaPayload },
+          method: 'POST',
+        });
+
+        if (!verifyResult?.valid) {
+          toast.error(t("auth.captchaFailed") || "Captcha-Verifizierung fehlgeschlagen.");
+          setLoading(false);
+          setAltchaPayload(null);
+          return;
+        }
+      } catch {
+        toast.error(t("auth.captchaError") || "Verifizierung fehlgeschlagen.");
+        setLoading(false);
+        return;
+      }
+    }
 
     try {
       if (isLogin) {
@@ -89,6 +118,7 @@ const Auth = () => {
         if (error) throw error;
         toast.success(t("auth.accountCreated"));
         setIsLogin(true);
+        setAltchaPayload(null);
       }
     } catch (error: any) {
       toast.error(error.message || t("auth.error"));
@@ -325,20 +355,27 @@ const Auth = () => {
               
               {/* Terms Checkbox - only in register mode */}
               {!isLogin && (
-                <div className="flex items-start gap-2">
-                  <Checkbox
-                    id="terms"
-                    checked={acceptedTerms}
-                    onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
-                    className="mt-1"
+                <>
+                  <div className="flex items-start gap-2">
+                    <Checkbox
+                      id="terms"
+                      checked={acceptedTerms}
+                      onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
+                      className="mt-1"
+                    />
+                    <label htmlFor="terms" className="text-sm text-muted-foreground leading-tight">
+                      {t("auth.acceptTerms")}{" "}
+                      <Link to="/agb" className="text-primary hover:underline">{t("auth.terms")}</Link>
+                      {" "}{t("auth.and")}{" "}
+                      <Link to="/datenschutz" className="text-primary hover:underline">{t("auth.privacy")}</Link>
+                    </label>
+                  </div>
+                  
+                  <AltchaWidget 
+                    onVerified={setAltchaPayload}
+                    onError={() => setAltchaPayload(null)}
                   />
-                  <label htmlFor="terms" className="text-sm text-muted-foreground leading-tight">
-                    {t("auth.acceptTerms")}{" "}
-                    <Link to="/agb" className="text-primary hover:underline">{t("auth.terms")}</Link>
-                    {" "}{t("auth.and")}{" "}
-                    <Link to="/datenschutz" className="text-primary hover:underline">{t("auth.privacy")}</Link>
-                  </label>
-                </div>
+                </>
               )}
               
               <Button type="submit" className="w-full" disabled={loading}>

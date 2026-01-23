@@ -38,7 +38,10 @@
     "terms": "AGB",
     "and": "und",
     "privacy": "Datenschutzerklärung",
-    "termsRequired": "Bitte akzeptiere die AGB und Datenschutzerklärung"
+    "termsRequired": "Bitte akzeptiere die AGB und Datenschutzerklärung",
+    "captchaRequired": "Bitte bestätige, dass du kein Roboter bist",
+    "captchaFailed": "Captcha-Verifizierung fehlgeschlagen. Bitte versuche es erneut.",
+    "captchaError": "Verifizierung fehlgeschlagen. Bitte versuche es erneut."
   },
   "checkout": {
     "successTitle": "Willkommen bei Premium!",
