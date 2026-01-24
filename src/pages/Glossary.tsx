@@ -247,13 +247,42 @@ export default function Glossary() {
   const filteredTerms = useMemo(() => {
     if (!searchQuery.trim()) return terms;
     
-    const query = searchQuery.toLowerCase();
-    return terms.filter(term => 
+    const query = searchQuery.toLowerCase().trim();
+    
+    // Filter matching terms
+    const matchingTerms = terms.filter(term => 
       term.term.toLowerCase().includes(query) ||
       term.definition.toLowerCase().includes(query) ||
       (term.formula && term.formula.toLowerCase().includes(query)) ||
       (term.example && term.example.toLowerCase().includes(query))
     );
+    
+    // Sort by relevance: exact match > starts with > contains in term > contains elsewhere
+    return matchingTerms.sort((a, b) => {
+      const aTermLower = a.term.toLowerCase();
+      const bTermLower = b.term.toLowerCase();
+      
+      // Priority 1: Exact term match
+      const aExact = aTermLower === query;
+      const bExact = bTermLower === query;
+      if (aExact && !bExact) return -1;
+      if (bExact && !aExact) return 1;
+      
+      // Priority 2: Term starts with query
+      const aStarts = aTermLower.startsWith(query);
+      const bStarts = bTermLower.startsWith(query);
+      if (aStarts && !bStarts) return -1;
+      if (bStarts && !aStarts) return 1;
+      
+      // Priority 3: Term contains query
+      const aContains = aTermLower.includes(query);
+      const bContains = bTermLower.includes(query);
+      if (aContains && !bContains) return -1;
+      if (bContains && !aContains) return 1;
+      
+      // Priority 4: Alphabetical fallback
+      return aTermLower.localeCompare(bTermLower);
+    });
   }, [terms, searchQuery]);
 
   return (
