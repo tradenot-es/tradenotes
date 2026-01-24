@@ -1655,8 +1655,8 @@
       },
       "complaint": {
         "title": "Right to Complain",
-        "intro": "You have the right to lodge a complaint with a data protection supervisory authority:",
-        "authority": "Responsible supervisory authority for Germany:\nThe Federal Commissioner for Data Protection and Freedom of Information (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nPhone: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+        "intro": "You have the right to lodge a complaint with a data protection supervisory authority. Below is the UK authority; EU residents may contact their local data protection authority:",
+        "authority": "UK Information Commissioner's Office (ICO)\nWycliffe House, Water Lane\nWilmslow, Cheshire SK9 5AF\nPhone: +44 303 123 1113\nWebsite: ico.org.uk"
       }
     }
   },
