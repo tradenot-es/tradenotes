@@ -778,6 +778,7 @@
     "returnHome": "Terug naar home"
   },
   "common": {
+    "back": "Terug",
     "loading": "Laden...",
     "readMore": "Lees meer",
     "translate": "Vertalen",
