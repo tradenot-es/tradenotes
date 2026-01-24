@@ -1353,7 +1353,10 @@
           "items": [
             "<strong>Supabase (Cloud-Infrastruktur):</strong> Hosting und Datenbank-Dienste in EU-Rechenzentren",
             "<strong>Stripe:</strong> Zahlungsabwicklung (unterliegt eigener Datenschutzerklärung)",
-            "<strong>Lettermint:</strong> E-Mail-Versand (transaktionale E-Mails, Trial-Erinnerungen)"
+            "<strong>Lettermint:</strong> E-Mail-Versand (transaktionale E-Mails, Trial-Erinnerungen)",
+            "<strong>Marketaux:</strong> Finanznachrichten-API für Portfolio-News und Marktstimmungsanalyse",
+            "<strong>Lovable AI:</strong> KI-Gateway für den Trading-Assistenten (nutzt Google Gemini / OpenAI-Modelle zur Analyse)",
+            "<strong>ALTCHA:</strong> Selbst-gehosteter Captcha-Dienst zum Bot-Schutz (Proof-of-Work, keine externen Aufrufe)"
           ],
           "compliance": "Alle Dienstleister sind DSGVO-konform und haben mit uns Auftragsverarbeitungsverträge nach Art. 28 DSGVO geschlossen."
         },

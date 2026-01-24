@@ -1292,7 +1292,10 @@
           "items": [
             "<strong>Supabase (Infrastructure Cloud):</strong> Hébergement et services de base de données dans des centres de données UE",
             "<strong>Stripe:</strong> Traitement des paiements (soumis à sa propre politique de confidentialité)",
-            "<strong>Lettermint:</strong> Envoi d'emails (emails transactionnels, rappels d'essai)"
+            "<strong>Lettermint:</strong> Envoi d'emails (emails transactionnels, rappels d'essai)",
+            "<strong>Marketaux:</strong> API d'actualités financières pour les nouvelles du portefeuille et l'analyse du sentiment du marché",
+            "<strong>Lovable AI:</strong> Passerelle IA pour l'assistant de trading (utilise les modèles Google Gemini / OpenAI pour l'analyse)",
+            "<strong>ALTCHA:</strong> Service captcha auto-hébergé pour la protection contre les bots (preuve de travail, pas d'appels externes)"
           ],
           "compliance": "Tous les prestataires de services sont conformes au RGPD et ont signé des accords de traitement de données avec nous selon l'art. 28 RGPD."
         },
