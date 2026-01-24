@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { RotatingWord } from "@/components/RotatingWord";
+import { AttentionCTA } from "@/components/AttentionCTA";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight } from "lucide-react";
 const Landing = () => {
@@ -127,9 +128,11 @@ const Landing = () => {
                 {t("landing.heroDescription")}
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" variant="premium" asChild>
-                  <Link to="/auth">{t("landing.ctaStart")}</Link>
-                </Button>
+                <AttentionCTA intervalMs={13000}>
+                  <Button size="lg" variant="premium" asChild>
+                    <Link to="/auth">{t("landing.ctaStart")}</Link>
+                  </Button>
+                </AttentionCTA>
                 <Button size="lg" variant="outline" asChild>
                   <a href="#features">{t("landing.ctaFeatures")}</a>
                 </Button>
