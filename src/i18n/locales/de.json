@@ -218,7 +218,26 @@
     "impactLegend": "Legende",
     "scheduledEvents": "Geplante Events",
     "relatedNews": "Verwandte News",
-    "confirmed": "Bestätigt"
+    "confirmed": "Bestätigt",
+    "categories": {
+      "fomc": "FOMC",
+      "cpi": "VPI",
+      "nfp": "Arbeitsmarkt",
+      "gdp": "BIP",
+      "fed_speech": "Fed-Rede",
+      "summit": "Gipfeltreffen",
+      "ecb": "EZB",
+      "opec": "OPEC+",
+      "election": "Wahlen",
+      "boe": "BoE",
+      "boj": "BoJ",
+      "ism": "ISM PMI",
+      "retail": "Einzelhandel",
+      "pce": "PCE Inflation",
+      "ppi": "Erzeugerpreise",
+      "housing": "Immobilien",
+      "other": "Sonstige"
+    }
   },
   "weekdays": {
     "mon": "Mo",

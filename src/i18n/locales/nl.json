@@ -322,7 +322,26 @@
     "impactLegend": "Legenda",
     "scheduledEvents": "Geplande evenementen",
     "relatedNews": "Gerelateerd nieuws",
-    "confirmed": "Bevestigd"
+    "confirmed": "Bevestigd",
+    "categories": {
+      "fomc": "FOMC",
+      "cpi": "CPI",
+      "nfp": "Arbeidsmarkt",
+      "gdp": "BBP",
+      "fed_speech": "Fed-toespraak",
+      "summit": "Top",
+      "ecb": "ECB",
+      "opec": "OPEC+",
+      "election": "Verkiezingen",
+      "boe": "BoE",
+      "boj": "BoJ",
+      "ism": "ISM PMI",
+      "retail": "Detailhandel",
+      "pce": "PCE Inflatie",
+      "ppi": "Producentenprijzen",
+      "housing": "Huizenmarkt",
+      "other": "Overig"
+    }
   },
   "trades": {
     "title": "Transacties",

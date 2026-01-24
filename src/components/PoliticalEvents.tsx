@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home } from "lucide-react";
-import { getCategoryIcon, getCategoryLabel } from "@/lib/economicCalendar";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
 interface PoliticalEventsProps {
@@ -15,6 +14,35 @@ interface PoliticalEventsProps {
 
 export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
+
+  // Get country flag based on category
+  const getCountryFlag = (category?: string): string => {
+    const categoryToFlag: Record<string, string> = {
+      fomc: '🇺🇸',
+      cpi: '🇺🇸',
+      nfp: '🇺🇸',
+      gdp: '🇺🇸',
+      fed_speech: '🇺🇸',
+      ism: '🇺🇸',
+      retail: '🇺🇸',
+      pce: '🇺🇸',
+      ppi: '🇺🇸',
+      housing: '🇺🇸',
+      ecb: '🇪🇺',
+      boe: '🇬🇧',
+      boj: '🇯🇵',
+      opec: '🌍',
+      summit: '🌍',
+      election: '🗳️'
+    };
+    return categoryToFlag[category || ''] || '🌍';
+  };
+
+  // Get localized category label
+  const getLocalizedCategoryLabel = (category?: string): string => {
+    if (!category) return '';
+    return t(`calendar.categories.${category}`, { defaultValue: category.toUpperCase() });
+  };
 
   const getImpactBadge = (impact?: 'high' | 'medium' | 'low' | 'political') => {
     const getTooltipContent = () => {
@@ -151,6 +179,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
               {scheduledEvents.map((event, index) => (
                 <div key={`${date.toISOString()}-${event.uuid}-${index}`} className="border-b border-blue-200/50 dark:border-blue-900/50 pb-3 last:border-0 last:pb-0">
                   <div className="flex items-start gap-2">
+                    <span className="text-sm" title={event.category}>{getCountryFlag(event.category)}</span>
                     {getCategoryIconComponent(event.category)}
                     <div className="flex-1">
                       <h4 className="text-sm font-medium">{event.title}</h4>
@@ -163,7 +192,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                         {getImpactBadge(event.impact_level)}
                         {event.category && (
                           <Badge variant="outline" className="text-xs border-blue-300 dark:border-blue-800">
-                            {getCategoryLabel(event.category)}
+                            {getLocalizedCategoryLabel(event.category)}
                           </Badge>
                         )}
                         {event.time && (
