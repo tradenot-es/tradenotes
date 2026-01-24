@@ -27,6 +27,7 @@ const Auth = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
+  const [forgotPasswordAltchaPayload, setForgotPasswordAltchaPayload] = useState<string | null>(null);
   const navigate = useNavigate();
 
   const authSchema = z.object({
@@ -133,8 +134,34 @@ const Auth = () => {
       setErrors({ email: t("validation.emailInvalid") });
       return;
     }
+
+    // Verify ALTCHA for password reset
+    if (!forgotPasswordAltchaPayload) {
+      toast.error(t("auth.captchaRequired") || "Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+      return;
+    }
     
     setLoading(true);
+
+    // Verify ALTCHA on backend
+    try {
+      const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
+        body: { payload: forgotPasswordAltchaPayload },
+        method: 'POST',
+      });
+
+      if (!verifyResult?.valid) {
+        toast.error(t("auth.captchaFailed") || "Captcha-Verifizierung fehlgeschlagen.");
+        setLoading(false);
+        setForgotPasswordAltchaPayload(null);
+        return;
+      }
+    } catch {
+      toast.error(t("auth.captchaError") || "Verifizierung fehlgeschlagen.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: `${window.location.origin}/auth?reset=true`,
@@ -142,6 +169,7 @@ const Auth = () => {
       if (error) throw error;
       toast.success(t("auth.resetEmailSent"));
       setShowForgotPassword(false);
+      setForgotPasswordAltchaPayload(null);
     } catch (error: any) {
       toast.error(error.message || t("auth.error"));
     } finally {
@@ -266,7 +294,13 @@ const Auth = () => {
                     <p className="text-sm text-destructive">{errors.email}</p>
                   )}
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                
+                <AltchaWidget 
+                  onVerified={setForgotPasswordAltchaPayload}
+                  onError={() => setForgotPasswordAltchaPayload(null)}
+                />
+                
+                <Button type="submit" className="w-full" disabled={loading || !forgotPasswordAltchaPayload}>
                   {loading ? t("auth.loading") : t("auth.sendResetEmail")}
                 </Button>
                 <Button
