@@ -808,8 +808,9 @@
       "startNow": "Nu starten"
     },
     "badge": "Professioneel Trading Dagboek voor Futures & Aandelen",
-    "heroTitle": "Jouw trading-voordeel met een",
-    "heroTitleHighlight": "AI-gedreven slim dagboek",
+    "heroTitle": "Word een betere trader door",
+    "heroTitleHighlightWords": ["systematisch", "nauwkeurig", "AI-gestuurd"],
+    "heroTitleHighlightSuffix": "journaling",
     "heroDescription": "TradeNotes – het trading dagboek voor ambitieuze futures en aandelen daytraders. Gedetailleerde analytics, AI-nieuws, politieke evenementen en patroonherkenning helpen je een winstgevend systeem te bouwen. Gebruikt door duizenden traders wereldwijd.",
     "ctaStart": "Start Gratis",
     "ctaFeatures": "Ontdek Functies",
