@@ -58,7 +58,7 @@ export function RotatingWord({
   return (
     <span className="relative inline-block align-bottom">
       {/* Invisible placeholder for stable width */}
-      <span className="invisible" aria-hidden="true">
+      <span className={cn("invisible", className)} aria-hidden="true">
         {longestWord}
       </span>
       

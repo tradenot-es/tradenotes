@@ -111,13 +111,14 @@ const Landing = () => {
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
                 <span className="flex items-start gap-2 mt-2 flex-wrap">
-                  <span className="gradient-text leading-tight">
+                  <span className="leading-tight">
                     <RotatingWord 
                       words={t("landing.heroTitleHighlightWords", { returnObjects: true }) as string[]}
                       intervalMs={3000}
+                      className="gradient-text"
                     />
                     {t("landing.heroTitleHighlightSuffix") && (
-                      <> {t("landing.heroTitleHighlightSuffix")}</>
+                      <span className="gradient-text"> {t("landing.heroTitleHighlightSuffix")}</span>
                     )}
                   </span>
                 </span>
