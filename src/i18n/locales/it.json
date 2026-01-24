@@ -1219,7 +1219,85 @@
     },
     "subtitle": "Termini essenziali di trading e concetti di gestione del rischio",
     "formula": "Formula",
-    "example": "Esempio"
+    "example": "Esempio",
+    "revengeTrading": {
+      "term": "Revenge Trading",
+      "definition": "Trading impulsivo dopo le perdite con l'obiettivo di recuperare rapidamente il denaro perso. Spesso porta a perdite maggiori attraverso operazioni affrettate e non pianificate.",
+      "example": "Dopo 3 operazioni in perdita, raddoppi la dimensione della tua posizione sulla prossima operazione per 'recuperare rapidamente' la perdita."
+    },
+    "fomo": {
+      "term": "FOMO (Fear Of Missing Out)",
+      "definition": "La paura di perdere un'opportunità redditizia. Porta a entrate affrettate senza un piano chiaro, spesso vicino al massimo di un movimento.",
+      "example": "Un'azione sale del 15% in un giorno. Salti sul treno senza analisi – e compri esattamente al massimo del giorno."
+    },
+    "overtrading": {
+      "term": "Overtrading",
+      "definition": "Fare troppe operazioni, spesso per noia, impazienza o dopo perdite. Porta a commissioni più alte e risultati medi peggiori.",
+      "formula": "Segnali: Operazioni al giorno > massimo pianificato OPPURE dimensioni posizione inconsistenti",
+      "example": "Il tuo piano permette 5 operazioni/giorno, ma ne fai 15 perché vuoi 'fare qualcosa'."
+    },
+    "dayTrading": {
+      "term": "Day Trading",
+      "definition": "Strategia di trading in cui tutte le posizioni vengono chiuse prima della chiusura del mercato. Nessun rischio overnight, ma richiede monitoraggio intensivo del mercato.",
+      "example": "Compri alle 10:00 e vendi al più tardi alle 15:30, mai overnight."
+    },
+    "swingTrading": {
+      "term": "Swing Trading",
+      "definition": "Le posizioni vengono mantenute per diversi giorni o settimane per catturare movimenti di prezzo più ampi. Meno impegnativo in termini di tempo rispetto al day trading.",
+      "example": "Acquisto lunedì dopo il breakout, vendita venerdì successivo quando viene raggiunto l'obiettivo di prezzo."
+    },
+    "momentumTrading": {
+      "term": "Momentum Trading",
+      "definition": "Strategia che scommette su forti movimenti di prezzo. 'Trend is your friend' – comprare nei mercati in rialzo, vendere nei mercati in ribasso.",
+      "example": "L'azione rompe il consolidamento con alto volume → Entrata long per cavalcare il movimento."
+    },
+    "meanReversion": {
+      "term": "Mean Reversion (Ritorno alla Media)",
+      "definition": "Strategia basata sull'assunzione che i prezzi tornino alla loro media. Trading contro movimenti estremi.",
+      "example": "L'azione scende del 10% in un giorno senza notizie → Acquisto aspettandosi un recupero verso la media."
+    },
+    "marketOrder": {
+      "term": "Market Order (Ordine di Mercato)",
+      "definition": "Ordine per esecuzione immediata al miglior prezzo disponibile. Garantisce l'esecuzione, non il prezzo.",
+      "example": "Vuoi comprare immediatamente → Market Order. In alta volatilità, il prezzo potrebbe differire da quello atteso (slippage)."
+    },
+    "limitOrder": {
+      "term": "Limit Order (Ordine Limite)",
+      "definition": "Ordine eseguito solo al prezzo specificato o migliore. Garantisce il prezzo, non l'esecuzione.",
+      "example": "Limit Buy a $50 significa: Compra solo se prezzo ≤ $50. A $51, nessuna esecuzione."
+    },
+    "trailingStop": {
+      "term": "Trailing Stop",
+      "definition": "Uno stop-loss dinamico che segue il prezzo nella direzione del profitto ma rimane fisso sui ritracciamenti. Protegge automaticamente i profitti in corso.",
+      "example": "Long a $100, trailing stop $5. Il prezzo sale a $110 → Stop a $105. Il prezzo scende a $105 → Vendita (invece di $95)."
+    },
+    "movingAverage": {
+      "term": "Moving Average (Media Mobile)",
+      "definition": "Prezzo medio su un periodo definito, aggiornato con ogni nuovo punto dati. Attenua i movimenti di prezzo e mostra i trend.",
+      "formula": "SMA = Somma dei Prezzi di Chiusura / Numero di Periodi",
+      "example": "MA 20 giorni: Media delle ultime 20 chiusure. Prezzo sopra MA = rialzista, sotto MA = ribassista."
+    },
+    "candlestickPatterns": {
+      "term": "Candlestick Patterns (Pattern a Candele)",
+      "definition": "Pattern di prezzo visivi basati sui grafici a candele giapponesi. Mostrano la battaglia tra acquirenti e venditori all'interno di un periodo.",
+      "example": "Hammer = piccola candela con lunga ombra inferiore alla fine di un downtrend → possibile inversione verso l'alto."
+    },
+    "spread": {
+      "term": "Spread (Bid-Ask Spread)",
+      "definition": "Differenza tra l'offerta di acquisto più alta (Bid) e l'offerta di vendita più bassa (Ask). Costi di trading sostenuti ad ogni operazione.",
+      "formula": "Spread = Ask - Bid",
+      "example": "Bid $49.95, Ask $50.05 → Spread = $0.10 (0.2%). Con 1000 azioni = $100 costo implicito."
+    },
+    "bullBearMarket": {
+      "term": "Bull Market / Bear Market (Mercato Toro / Orso)",
+      "definition": "Bull Market = prezzi in rialzo sostenuto (≥20% dal minimo). Bear Market = prezzi in ribasso sostenuto (≥20% dal massimo). Definisce la fase di mercato.",
+      "example": "S&P 500 sale del 30% in 12 mesi = Bull Market. Scende del 25% = Bear Market."
+    },
+    "correction": {
+      "term": "Correzione (Correction)",
+      "definition": "Calo temporaneo del 10-20% in un trend rialzista. Sano e normale, spesso offre opportunità di acquisto.",
+      "example": "L'azione sale da $100 a $150 (+50%), poi scende a $135 (-10%) → Correzione, non cambio di trend."
+    }
   },
   "reports": {
     "title": "Report",
