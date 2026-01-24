@@ -811,6 +811,7 @@
     "returnHome": "Return to Home"
   },
   "common": {
+    "back": "Back",
     "loading": "Loading...",
     "readMore": "Read more",
     "translate": "Translate",

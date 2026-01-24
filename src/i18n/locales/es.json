@@ -778,6 +778,7 @@
     "returnHome": "Volver al inicio"
   },
   "common": {
+    "back": "Volver",
     "loading": "Cargando...",
     "readMore": "Leer más",
     "translate": "Traducir",
