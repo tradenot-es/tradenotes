@@ -1635,8 +1635,8 @@
       },
       "complaint": {
         "title": "Diritto di Reclamo",
-        "intro": "Hai il diritto di presentare reclamo a un'autorità di vigilanza protezione dati:",
-        "authority": "Autorità di vigilanza responsabile per la Germania:\nIl Commissario Federale per la Protezione dei Dati e la Libertà di Informazione (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTelefono: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+        "intro": "Hai il diritto di presentare un reclamo a un'autorità di controllo per la protezione dei dati:",
+        "authority": "Autorità di controllo competente per l'Italia:\nGarante per la protezione dei dati personali\nPiazza Venezia, 11\n00187 Roma\nTelefono: +39 06 696771\nEmail: garante@gpdp.it\nSito web: garanteprivacy.it"
       }
     }
   },

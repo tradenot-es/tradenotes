@@ -1464,9 +1464,9 @@
         "lastUpdated": "Última actualización:"
       },
       "complaint": {
-        "title": "Derecho de Queja",
-        "intro": "Tiene derecho a presentar una queja ante una autoridad supervisora de protección de datos:",
-        "authority": "Autoridad supervisora competente para Alemania:\nEl Comisionado Federal para la Protección de Datos y la Libertad de Información (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTeléfono: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+        "title": "Derecho de Reclamación",
+        "intro": "Tiene derecho a presentar una reclamación ante una autoridad de control de protección de datos:",
+        "authority": "Autoridad de control competente para España:\nAgencia Española de Protección de Datos (AEPD)\nC/ Jorge Juan, 6\n28001 Madrid\nTeléfono: +34 901 100 099\nSitio web: aepd.es"
       }
     }
   },

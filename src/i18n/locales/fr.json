@@ -1464,9 +1464,9 @@
         "lastUpdated": "Dernière mise à jour:"
       },
       "complaint": {
-        "title": "Droit de Plainte",
-        "intro": "Vous avez le droit de déposer une plainte auprès d'une autorité de contrôle de la protection des données:",
-        "authority": "Autorité de contrôle compétente pour l'Allemagne:\nLe Commissaire Fédéral à la Protection des Données et à la Liberté d'Information (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTéléphone: +49 (0)228-997799-0\nEmail: poststelle@bfdi.bund.de"
+        "title": "Droit de Réclamation",
+        "intro": "Vous avez le droit de déposer une réclamation auprès d'une autorité de contrôle de la protection des données:",
+        "authority": "Autorité de contrôle compétente pour la France:\nCommission Nationale de l'Informatique et des Libertés (CNIL)\n3 Place de Fontenoy\nTSA 80715\n75334 Paris Cedex 07\nTéléphone: +33 1 53 73 22 22\nSite web: cnil.fr"
       }
     }
   },
