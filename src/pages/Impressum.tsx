@@ -35,6 +35,12 @@ const Impressum = () => {
                   <p className="text-muted-foreground whitespace-pre-line mt-2">
                     {t('imprint.provider.address')}
                   </p>
+                  <p className="text-muted-foreground mt-2">
+                    {t('imprint.provider.kvk')}
+                  </p>
+                  <p className="text-muted-foreground">
+                    {t('imprint.provider.btw')}
+                  </p>
                 </div>
               </CardContent>
             </Card>

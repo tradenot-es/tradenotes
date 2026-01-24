@@ -1688,24 +1688,26 @@
     "insight2": "Gemiddeld lopen je trades {{value}}% in de plus (MFE) voordat je uitstapt. Je laat {{missed}}% op tafel liggen."
   },
   "imprint": {
-    "title": "Impressum",
-    "subtitle": "Juridische informatie en wettelijke vermeldingen volgens toepasselijk recht",
+    "title": "Juridische Informatie",
+    "subtitle": "Wettelijke vermeldingen conform Nederlands recht en de EU E-commerce richtlijn",
     "provider": {
       "title": "Aanbieder",
-      "address": "TradeNot.es\nEigenaar: [Naam op aanvraag]\nDuitsland"
+      "address": "TradeNot.es\n[Uw volledige naam]\n[Straat en huisnummer]\n[Postcode Plaats]\nNederland",
+      "kvk": "KvK-nummer: [XXXXXXXX]",
+      "btw": "BTW-id: NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Contact"
     },
     "responsible": {
       "title": "Verantwoordelijk voor Inhoud",
-      "content": "De exploitant van deze website is verantwoordelijk voor de inhoud.\nVoor vragen kunt u contact opnemen via: info@tradenot.es"
+      "content": "De exploitant van deze website is verantwoordelijk voor de inhoud conform Nederlands en Europees recht.\n\nVoor vragen kunt u contact opnemen via: info@tradenot.es"
     },
     "disclaimer": {
       "title": "Disclaimer",
       "content": {
         "title": "Aansprakelijkheid voor Inhoud",
-        "text": "De inhoud van onze pagina's is met de grootste zorg samengesteld. Wij kunnen echter geen garantie geven voor de juistheid, volledigheid en actualiteit van de inhoud. Als dienstverlener zijn wij verantwoordelijk voor onze eigen inhoud op deze pagina's volgens de algemene wetgeving."
+        "text": "De inhoud van onze pagina's is met de grootste zorg samengesteld. Wij kunnen echter geen garantie geven voor de juistheid, volledigheid en actualiteit van de inhoud. Als dienstverlener zijn wij verantwoordelijk voor onze eigen inhoud op deze pagina's conform toepasselijk recht."
       },
       "links": {
         "title": "Aansprakelijkheid voor Links",
@@ -1713,7 +1715,7 @@
       },
       "copyright": {
         "title": "Auteursrecht",
-        "text": "De door de site-exploitanten gecreëerde inhoud en werken op deze pagina's zijn onderworpen aan het auteursrecht. Duplicatie, bewerking, distributie of enige vorm van commercialisering van dergelijk materiaal buiten het kader van het auteursrecht vereist de voorafgaande schriftelijke toestemming van de respectieve auteur of maker."
+        "text": "De door de site-exploitanten gecreëerde inhoud en werken op deze pagina's zijn beschermd onder toepasselijk auteursrecht. Duplicatie, bewerking, distributie of enige vorm van commercialisering van dergelijk materiaal buiten het kader van het auteursrecht vereist de voorafgaande schriftelijke toestemming van de respectieve auteur of maker."
       },
       "trading": {
         "title": "Risico Disclaimer",
