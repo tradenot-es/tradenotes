@@ -1292,7 +1292,10 @@
           "items": [
             "<strong>Supabase (Cloud-infrastructuur):</strong> Hosting en databasediensten in EU-datacenters",
             "<strong>Stripe:</strong> Betalingsverwerking (onderworpen aan eigen privacybeleid)",
-            "<strong>Lettermint:</strong> E-mailbezorging (transactionele e-mails, proefherinneringen)"
+            "<strong>Lettermint:</strong> E-mailbezorging (transactionele e-mails, proefherinneringen)",
+            "<strong>Marketaux:</strong> Financieel nieuws-API voor portfolionieuws en marktsentimentanalyse",
+            "<strong>Lovable AI:</strong> AI-gateway voor de trading-assistent (gebruikt Google Gemini / OpenAI-modellen voor analyse)",
+            "<strong>ALTCHA:</strong> Zelf-gehoste captchadienst voor botbescherming (proof-of-work, geen externe oproepen)"
           ],
           "compliance": "Alle dienstverleners zijn AVG-conform en hebben verwerkersovereenkomsten met ons gesloten volgens art. 28 AVG."
         },

@@ -1462,7 +1462,10 @@
           "items": [
             "<strong>Supabase (Infrastruttura Cloud):</strong> Servizi hosting e database in data center UE",
             "<strong>Stripe:</strong> Elaborazione pagamenti (soggetto alla propria informativa privacy)",
-            "<strong>Lettermint:</strong> Consegna email (email transazionali, promemoria di prova)"
+            "<strong>Lettermint:</strong> Consegna email (email transazionali, promemoria di prova)",
+            "<strong>Marketaux:</strong> API notizie finanziarie per notizie del portafoglio e analisi del sentiment di mercato",
+            "<strong>Lovable AI:</strong> Gateway IA per l'assistente di trading (utilizza modelli Google Gemini / OpenAI per l'analisi)",
+            "<strong>ALTCHA:</strong> Servizio captcha auto-ospitato per protezione bot (proof-of-work, nessuna chiamata esterna)"
           ],
           "compliance": "Tutti i fornitori di servizi sono conformi GDPR e hanno firmato accordi di trattamento dati con noi secondo l'Art. 28 GDPR."
         },
