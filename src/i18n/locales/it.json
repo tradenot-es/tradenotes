@@ -828,8 +828,9 @@
       "startNow": "Inizia ora"
     },
     "badge": "Diario di Trading Professionale per Futures e Azioni",
-    "heroTitle": "Il tuo vantaggio trading con un diario",
-    "heroTitleHighlight": "intelligente alimentato dall'IA",
+    "heroTitle": "Diventa un trader migliore con un",
+    "heroTitleHighlightWords": ["journaling sistematico", "journaling preciso", "journaling basato su IA"],
+    "heroTitleHighlightSuffix": "",
     "heroDescription": "TradeNotes – il diario di trading per day trader di futures e azioni ambiziosi. Analytics dettagliati, notizie AI, eventi politici e riconoscimento pattern ti aiutano a costruire un sistema redditizio. Usato da migliaia di trader in tutto il mondo.",
     "ctaStart": "Inizia Gratis",
     "ctaFeatures": "Esplora Funzionalità",

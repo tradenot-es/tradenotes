@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { RotatingWord } from "@/components/RotatingWord";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
 import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight } from "lucide-react";
 const Landing = () => {
@@ -109,11 +110,16 @@ const Landing = () => {
               </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 {t("landing.heroTitle")}
-                <span className="flex items-start gap-6 md:gap-8 mt-2 flex-wrap">
+                <span className="flex items-start gap-2 mt-2 flex-wrap">
                   <span className="gradient-text leading-tight">
-                    {t("landing.heroTitleHighlight")}
+                    <RotatingWord 
+                      words={t("landing.heroTitleHighlightWords", { returnObjects: true }) as string[]}
+                      intervalMs={3000}
+                    />
+                    {t("landing.heroTitleHighlightSuffix") && (
+                      <> {t("landing.heroTitleHighlightSuffix")}</>
+                    )}
                   </span>
-                  
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground">
