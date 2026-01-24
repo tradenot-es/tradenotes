@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3 } from "lucide-react";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
@@ -88,7 +88,24 @@ export function Layout({
             </div>
           </SidebarContent>
         </Sidebar>
-        <main className="flex-1 p-6 overflow-auto">{children}</main>
+        <div className="flex-1 flex flex-col overflow-auto">
+          <main className="flex-1 p-6">{children}</main>
+          <footer className="px-6 py-4 border-t border-border/50">
+            <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
+              <Link to="/datenschutz" className="hover:text-foreground transition-colors">
+                {t("landing.footerPrivacy")}
+              </Link>
+              <span className="text-border">•</span>
+              <Link to="/agb" className="hover:text-foreground transition-colors">
+                {t("landing.footerTerms")}
+              </Link>
+              <span className="text-border">•</span>
+              <Link to="/impressum" className="hover:text-foreground transition-colors">
+                {t("landing.footerImprint")}
+              </Link>
+            </div>
+          </footer>
+        </div>
         <AIAssistantFAB />
       </div>
     </SidebarProvider>;
