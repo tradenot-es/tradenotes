@@ -1879,23 +1879,25 @@
   },
   "imprint": {
     "title": "Legal Notice",
-    "subtitle": "Legal information and mandatory disclosures according to applicable law",
+    "subtitle": "Legal information in accordance with EU e-commerce regulations. Operated from the Netherlands.",
     "provider": {
       "title": "Provider",
-      "address": "TradeNot.es\nOwner: [Name on request]\nGermany"
+      "address": "TradeNot.es\n[Your full name]\n[Street and number]\n[Postal code City]\nThe Netherlands",
+      "kvk": "KvK Number: [XXXXXXXX]",
+      "btw": "VAT ID: NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Contact"
     },
     "responsible": {
       "title": "Responsible for Content",
-      "content": "The operator of this website is responsible for the content.\nFor questions please contact: info@tradenot.es"
+      "content": "The operator of this website is responsible for its content under applicable Dutch and European law.\n\nFor questions please contact: info@tradenot.es"
     },
     "disclaimer": {
       "title": "Disclaimer",
       "content": {
         "title": "Liability for Content",
-        "text": "The contents of our pages have been created with the greatest care. However, we cannot guarantee the accuracy, completeness, and timeliness of the content. As a service provider, we are responsible for our own content on these pages according to general laws."
+        "text": "The contents of our pages have been created with the greatest care. However, we cannot guarantee the accuracy, completeness, and timeliness of the content. As a service provider, we are responsible for our own content on these pages in accordance with applicable law."
       },
       "links": {
         "title": "Liability for Links",
@@ -1903,7 +1905,7 @@
       },
       "copyright": {
         "title": "Copyright",
-        "text": "The content and works created by the site operators on these pages are subject to copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law requires the prior written consent of the respective author or creator."
+        "text": "The content and works created by the site operators on these pages are protected under applicable copyright law. Duplication, processing, distribution, or any form of commercialization of such material beyond the scope of the copyright law requires the prior written consent of the respective author or creator."
       },
       "trading": {
         "title": "Risk Disclaimer",

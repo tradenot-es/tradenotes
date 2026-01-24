@@ -1689,23 +1689,25 @@
   },
   "imprint": {
     "title": "Aviso Legal",
-    "subtitle": "Información legal y declaraciones obligatorias según la ley aplicable",
+    "subtitle": "Información legal conforme a las regulaciones de comercio electrónico de la UE. Operado desde los Países Bajos.",
     "provider": {
       "title": "Proveedor",
-      "address": "TradeNot.es\nPropietario: [Nombre bajo solicitud]\nAlemania"
+      "address": "TradeNot.es\n[Su nombre completo]\n[Calle y número]\n[Código postal Ciudad]\nPaíses Bajos",
+      "kvk": "Número KvK: [XXXXXXXX]",
+      "btw": "NIF-IVA: NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Contacto"
     },
     "responsible": {
       "title": "Responsable del Contenido",
-      "content": "El operador de este sitio web es responsable del contenido.\nPara preguntas, por favor contacte: info@tradenot.es"
+      "content": "El operador de este sitio web es responsable del contenido conforme al derecho neerlandés y europeo aplicable.\n\nPara preguntas, por favor contacte: info@tradenot.es"
     },
     "disclaimer": {
       "title": "Descargo de Responsabilidad",
       "content": {
         "title": "Responsabilidad por el Contenido",
-        "text": "El contenido de nuestras páginas ha sido creado con el mayor cuidado. Sin embargo, no podemos garantizar la exactitud, integridad y actualidad del contenido. Como proveedor de servicios, somos responsables de nuestro propio contenido en estas páginas de acuerdo con las leyes generales."
+        "text": "El contenido de nuestras páginas ha sido creado con el mayor cuidado. Sin embargo, no podemos garantizar la exactitud, integridad y actualidad del contenido. Como proveedor de servicios, somos responsables de nuestro propio contenido en estas páginas conforme a la ley aplicable."
       },
       "links": {
         "title": "Responsabilidad por Enlaces",
@@ -1713,7 +1715,7 @@
       },
       "copyright": {
         "title": "Derechos de Autor",
-        "text": "El contenido y las obras creados por los operadores del sitio en estas páginas están sujetos a la ley de derechos de autor. La duplicación, procesamiento, distribución o cualquier forma de comercialización de dicho material más allá del alcance de la ley de derechos de autor requiere el consentimiento previo por escrito del autor o creador respectivo."
+        "text": "El contenido y las obras creados por los operadores del sitio en estas páginas están protegidos bajo la ley de derechos de autor aplicable. La duplicación, procesamiento, distribución o cualquier forma de comercialización de dicho material más allá del alcance de la ley de derechos de autor requiere el consentimiento previo por escrito del autor o creador respectivo."
       },
       "trading": {
         "title": "Aviso de Riesgos",

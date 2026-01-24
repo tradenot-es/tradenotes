@@ -1689,23 +1689,25 @@
   },
   "imprint": {
     "title": "Mentions Légales",
-    "subtitle": "Informations légales et mentions obligatoires conformément à la loi applicable",
+    "subtitle": "Informations légales conformément aux réglementations e-commerce de l'UE. Exploité depuis les Pays-Bas.",
     "provider": {
       "title": "Éditeur",
-      "address": "TradeNot.es\nPropriétaire : [Nom sur demande]\nAllemagne"
+      "address": "TradeNot.es\n[Votre nom complet]\n[Rue et numéro]\n[Code postal Ville]\nPays-Bas",
+      "kvk": "Numéro KvK : [XXXXXXXX]",
+      "btw": "N° TVA : NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Contact"
     },
     "responsible": {
       "title": "Responsable du Contenu",
-      "content": "L'exploitant de ce site web est responsable du contenu.\nPour toute question, veuillez contacter : info@tradenot.es"
+      "content": "L'exploitant de ce site web est responsable du contenu conformément au droit néerlandais et européen applicable.\n\nPour toute question, veuillez contacter : info@tradenot.es"
     },
     "disclaimer": {
       "title": "Clause de Non-Responsabilité",
       "content": {
         "title": "Responsabilité du Contenu",
-        "text": "Le contenu de nos pages a été créé avec le plus grand soin. Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu. En tant que prestataire de services, nous sommes responsables de notre propre contenu sur ces pages conformément aux lois générales."
+        "text": "Le contenu de nos pages a été créé avec le plus grand soin. Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu. En tant que prestataire de services, nous sommes responsables de notre propre contenu sur ces pages conformément au droit applicable."
       },
       "links": {
         "title": "Responsabilité des Liens",
@@ -1713,7 +1715,7 @@
       },
       "copyright": {
         "title": "Droits d'Auteur",
-        "text": "Le contenu et les œuvres créés par les exploitants du site sur ces pages sont soumis au droit d'auteur. La reproduction, le traitement, la distribution ou toute forme de commercialisation de ces matériaux au-delà du cadre du droit d'auteur nécessite le consentement écrit préalable de l'auteur ou du créateur respectif."
+        "text": "Le contenu et les œuvres créés par les exploitants du site sur ces pages sont protégés par le droit d'auteur applicable. La reproduction, le traitement, la distribution ou toute forme de commercialisation de ces matériaux au-delà du cadre du droit d'auteur nécessite le consentement écrit préalable de l'auteur ou du créateur respectif."
       },
       "trading": {
         "title": "Avertissement sur les Risques",

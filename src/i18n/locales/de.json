@@ -1747,23 +1747,25 @@
   },
   "imprint": {
     "title": "Impressum",
-    "subtitle": "Angaben gemäß § 5 TMG und Pflichtangaben nach § 55 RStV",
+    "subtitle": "Rechtliche Angaben gemäß EU E-Commerce-Richtlinie. Betrieben von einem Unternehmen mit Sitz in den Niederlanden.",
     "provider": {
       "title": "Anbieter",
-      "address": "TradeNot.es\nInhaber: [Name auf Anfrage]\nDeutschland"
+      "address": "TradeNot.es\n[Ihr vollständiger Name]\n[Straße und Hausnummer]\n[Postleitzahl Stadt]\nNiederlande",
+      "kvk": "KvK-Nummer: [XXXXXXXX]",
+      "btw": "BTW-id: NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Kontakt"
     },
     "responsible": {
       "title": "Verantwortlich für den Inhalt",
-      "content": "Verantwortlich gemäß § 55 Abs. 2 RStV:\n\nDer Betreiber dieser Website ist für die Inhalte verantwortlich.\nBei Fragen wenden Sie sich bitte an: info@tradenot.es"
+      "content": "Der Betreiber dieser Website ist für die Inhalte gemäß niederländischem und europäischem Recht verantwortlich.\n\nBei Fragen wenden Sie sich bitte an: info@tradenot.es"
     },
     "disclaimer": {
       "title": "Haftungsausschluss",
       "content": {
         "title": "Haftung für Inhalte",
-        "text": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich."
+        "text": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich."
       },
       "links": {
         "title": "Haftung für Links",
@@ -1771,7 +1773,7 @@
       },
       "copyright": {
         "title": "Urheberrecht",
-        "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
+        "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem anwendbaren Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
       },
       "trading": {
         "title": "Risikohinweis",

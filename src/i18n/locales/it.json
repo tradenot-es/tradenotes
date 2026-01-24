@@ -1859,23 +1859,25 @@
   },
   "imprint": {
     "title": "Note Legali",
-    "subtitle": "Informazioni legali e dichiarazioni obbligatorie secondo la legge applicabile",
+    "subtitle": "Informazioni legali ai sensi delle normative e-commerce dell'UE. Gestito dai Paesi Bassi.",
     "provider": {
       "title": "Fornitore",
-      "address": "TradeNot.es\nProprietario: [Nome su richiesta]\nGermania"
+      "address": "TradeNot.es\n[Il tuo nome completo]\n[Via e numero]\n[CAP Città]\nPaesi Bassi",
+      "kvk": "Numero KvK: [XXXXXXXX]",
+      "btw": "Partita IVA: NL[XXXXXXXXX]B01"
     },
     "contact": {
       "title": "Contatto"
     },
     "responsible": {
       "title": "Responsabile del Contenuto",
-      "content": "L'operatore di questo sito web è responsabile del contenuto.\nPer domande contattare: info@tradenot.es"
+      "content": "L'operatore di questo sito web è responsabile del contenuto ai sensi del diritto olandese ed europeo applicabile.\n\nPer domande contattare: info@tradenot.es"
     },
     "disclaimer": {
       "title": "Esclusione di Responsabilità",
       "content": {
         "title": "Responsabilità per il Contenuto",
-        "text": "Il contenuto delle nostre pagine è stato creato con la massima cura. Tuttavia, non possiamo garantire l'accuratezza, la completezza e l'attualità del contenuto. Come fornitore di servizi, siamo responsabili dei nostri contenuti su queste pagine secondo le leggi generali."
+        "text": "Il contenuto delle nostre pagine è stato creato con la massima cura. Tuttavia, non possiamo garantire l'accuratezza, la completezza e l'attualità del contenuto. Come fornitore di servizi, siamo responsabili dei nostri contenuti su queste pagine ai sensi della legge applicabile."
       },
       "links": {
         "title": "Responsabilità per i Link",
@@ -1883,7 +1885,7 @@
       },
       "copyright": {
         "title": "Diritti d'Autore",
-        "text": "I contenuti e le opere creati dagli operatori del sito su queste pagine sono soggetti alla legge sul diritto d'autore. La duplicazione, l'elaborazione, la distribuzione o qualsiasi forma di commercializzazione di tale materiale al di fuori dell'ambito della legge sul diritto d'autore richiede il previo consenso scritto del rispettivo autore o creatore."
+        "text": "I contenuti e le opere creati dagli operatori del sito su queste pagine sono protetti dalla legge sul diritto d'autore applicabile. La duplicazione, l'elaborazione, la distribuzione o qualsiasi forma di commercializzazione di tale materiale al di fuori dell'ambito della legge sul diritto d'autore richiede il previo consenso scritto del rispettivo autore o creatore."
       },
       "trading": {
         "title": "Avviso sui Rischi",
