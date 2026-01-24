@@ -112,12 +112,21 @@ export default {
             opacity: "0",
           },
         },
+        "circuit-scan": {
+          "0%": {
+            backgroundPosition: "0% 0%",
+          },
+          "100%": {
+            backgroundPosition: "100% 100%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "servo-pulse": "servo-pulse 1s cubic-bezier(0.22, 0.61, 0.36, 1)",
         "servo-ripple": "servo-ripple 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
+        "circuit-scan": "circuit-scan 90s linear infinite",
       },
     },
   },

@@ -9,6 +9,7 @@ import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { CookieConsent } from "./components/CookieConsent";
 import Landing from "./pages/Landing";
+import PreLaunch from "./pages/PreLaunch";
 import Index from "./pages/Index";
 import Trades from "./pages/Trades";
 import Import from "./pages/Import";
@@ -30,6 +31,16 @@ import WhyJournal from "./pages/WhyJournal";
 
 const queryClient = new QueryClient();
 
+// Conditional Home Route based on environment variables
+const HomeRoute = () => {
+  const isPrelaunch = import.meta.env.VITE_PRELAUNCH_MODE === 'true';
+  const isMaintenance = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
+  
+  if (isMaintenance) return <PreLaunch mode="maintenance" />;
+  if (isPrelaunch) return <PreLaunch mode="prelaunch" />;
+  return <Landing />;
+};
+
 const App = () => (
   <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
     <QueryClientProvider client={queryClient}>
@@ -39,7 +50,7 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={<HomeRoute />} />
             <Route path="/warum-trading-journal" element={<WhyJournal />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/kontakt" element={<Kontakt />} />
