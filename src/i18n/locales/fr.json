@@ -1328,15 +1328,15 @@
       },
       "gdpr": {
         "name": "Conforme RGPD",
-        "description": "Conformité totale avec le Règlement Général sur la Protection des Données de l'UE avec stockage des données dans l'UE"
+        "description": "Conformité totale avec le Règlement Général sur la Protection des Données de l'UE"
       }
     },
     "dataStorage": {
       "title": "Stockage et Sécurité des Données",
       "euRegion": {
-        "badge": "UE",
-        "title": "Stockage des Données dans l'UE",
-        "description": "Toutes vos données sont stockées et traitées exclusivement dans des centres de données hautement sécurisés à Francfort, Allemagne."
+        "badge": "Cloud",
+        "title": "Stockage Cloud Sécurisé",
+        "description": "Toutes vos données sont stockées et traitées dans des centres de données cloud sécurisés."
       },
       "encrypted": {
         "badge": "Chiffré",
@@ -1398,7 +1398,7 @@
           "title": "Prestataires de Services",
           "intro": "Nous travaillons avec des prestataires de services soigneusement sélectionnés qui nous aident à fournir nos services:",
           "items": [
-            "<strong>Supabase (Infrastructure Cloud):</strong> Hébergement et services de base de données dans des centres de données UE",
+            "<strong>Lovable Cloud:</strong> Hébergement et services backend",
             "<strong>Stripe:</strong> Traitement des paiements (soumis à sa propre politique de confidentialité)",
             "<strong>Lettermint:</strong> Envoi d'emails (emails transactionnels, rappels d'essai)",
             "<strong>Marketaux:</strong> API d'actualités financières pour les nouvelles du portefeuille et l'analyse du sentiment du marché",

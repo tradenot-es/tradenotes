@@ -1328,15 +1328,15 @@
       },
       "gdpr": {
         "name": "AVG-conform",
-        "description": "Volledige naleving van de EU Algemene Verordening Gegevensbescherming met gegevensopslag in de EU"
+        "description": "Volledige naleving van de EU Algemene Verordening Gegevensbescherming"
       }
     },
     "dataStorage": {
       "title": "Gegevensopslag & Beveiliging",
       "euRegion": {
-        "badge": "EU",
-        "title": "Gegevensopslag in de EU",
-        "description": "Al uw gegevens worden uitsluitend opgeslagen en verwerkt in zeer veilige datacenters in Frankfurt, Duitsland."
+        "badge": "Cloud",
+        "title": "Veilige Cloud-opslag",
+        "description": "Al uw gegevens worden opgeslagen en verwerkt in veilige cloud-datacenters."
       },
       "encrypted": {
         "badge": "Versleuteld",
@@ -1398,7 +1398,7 @@
           "title": "Dienstverleners",
           "intro": "We werken samen met zorgvuldig geselecteerde dienstverleners die ons ondersteunen bij het leveren van onze diensten:",
           "items": [
-            "<strong>Supabase (Cloud-infrastructuur):</strong> Hosting en databasediensten in EU-datacenters",
+            "<strong>Lovable Cloud:</strong> Hosting- en backenddiensten",
             "<strong>Stripe:</strong> Betalingsverwerking (onderworpen aan eigen privacybeleid)",
             "<strong>Lettermint:</strong> E-mailbezorging (transactionele e-mails, proefherinneringen)",
             "<strong>Marketaux:</strong> Financieel nieuws-API voor portfolionieuws en marktsentimentanalyse",

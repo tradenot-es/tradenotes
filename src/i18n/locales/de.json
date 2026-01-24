@@ -1386,15 +1386,15 @@
       },
       "gdpr": {
         "name": "DSGVO-konform",
-        "description": "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung mit Datenspeicherung in der EU"
+        "description": "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung"
       }
     },
     "dataStorage": {
       "title": "Datenspeicherung & Sicherheit",
       "euRegion": {
-        "badge": "EU",
-        "title": "Datenspeicherung in der EU",
-        "description": "Alle Ihre Daten werden ausschließlich in hochsicheren Rechenzentren in Frankfurt, Deutschland gespeichert und verarbeitet."
+        "badge": "Cloud",
+        "title": "Sichere Cloud-Speicherung",
+        "description": "Alle Ihre Daten werden in sicheren Cloud-Rechenzentren gespeichert und verarbeitet."
       },
       "encrypted": {
         "badge": "Verschlüsselt",
@@ -1456,7 +1456,7 @@
           "title": "Dienstleister",
           "intro": "Wir arbeiten mit sorgfältig ausgewählten Dienstleistern zusammen, die uns bei der Erbringung unserer Dienste unterstützen:",
           "items": [
-            "<strong>Supabase (Cloud-Infrastruktur):</strong> Hosting und Datenbank-Dienste in EU-Rechenzentren",
+            "<strong>Lovable Cloud:</strong> Hosting und Backend-Dienste",
             "<strong>Stripe:</strong> Zahlungsabwicklung (unterliegt eigener Datenschutzerklärung)",
             "<strong>Lettermint:</strong> E-Mail-Versand (transaktionale E-Mails, Trial-Erinnerungen)",
             "<strong>Marketaux:</strong> Finanznachrichten-API für Portfolio-News und Marktstimmungsanalyse",
