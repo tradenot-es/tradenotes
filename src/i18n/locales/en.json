@@ -1518,15 +1518,15 @@
       },
       "gdpr": {
         "name": "GDPR Compliant",
-        "description": "Full compliance with EU General Data Protection Regulation with data storage in the EU"
+        "description": "Full compliance with EU General Data Protection Regulation"
       }
     },
     "dataStorage": {
       "title": "Data Storage & Security",
       "euRegion": {
-        "badge": "EU",
-        "title": "Data Storage in the EU",
-        "description": "All your data is stored and processed exclusively in highly secure data centers in Frankfurt, Germany."
+        "badge": "Cloud",
+        "title": "Secure Cloud Storage",
+        "description": "All your data is stored and processed in secure cloud data centers."
       },
       "encrypted": {
         "badge": "Encrypted",
@@ -1588,7 +1588,7 @@
           "title": "Service Providers",
           "intro": "We work with carefully selected service providers who support us in providing our services:",
           "items": [
-            "<strong>Supabase (Cloud Infrastructure):</strong> Hosting and database services in EU data centers",
+            "<strong>Lovable Cloud:</strong> Hosting and backend services",
             "<strong>Stripe:</strong> Payment processing (subject to its own privacy policy)",
             "<strong>Lettermint:</strong> Email delivery (transactional emails, trial reminders)",
             "<strong>Marketaux:</strong> Financial news API for portfolio news and market sentiment analysis",

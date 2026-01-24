@@ -1498,15 +1498,15 @@
       },
       "gdpr": {
         "name": "Conforme GDPR",
-        "description": "Piena conformità al Regolamento Generale sulla Protezione dei Dati UE con archiviazione dati nell'UE"
+        "description": "Piena conformità al Regolamento Generale sulla Protezione dei Dati UE"
       }
     },
     "dataStorage": {
       "title": "Archiviazione & Sicurezza Dati",
       "euRegion": {
-        "badge": "UE",
-        "title": "Archiviazione Dati nell'UE",
-        "description": "Tutti i tuoi dati sono archiviati ed elaborati esclusivamente in data center altamente sicuri a Francoforte, Germania."
+        "badge": "Cloud",
+        "title": "Archiviazione Cloud Sicura",
+        "description": "Tutti i tuoi dati sono archiviati ed elaborati in data center cloud sicuri."
       },
       "encrypted": {
         "badge": "Crittografato",
@@ -1568,7 +1568,7 @@
           "title": "Fornitori Servizi",
           "intro": "Lavoriamo con fornitori di servizi selezionati che ci supportano nella fornitura dei nostri servizi:",
           "items": [
-            "<strong>Supabase (Infrastruttura Cloud):</strong> Servizi hosting e database in data center UE",
+            "<strong>Lovable Cloud:</strong> Servizi hosting e backend",
             "<strong>Stripe:</strong> Elaborazione pagamenti (soggetto alla propria informativa privacy)",
             "<strong>Lettermint:</strong> Consegna email (email transazionali, promemoria di prova)",
             "<strong>Marketaux:</strong> API notizie finanziarie per notizie del portafoglio e analisi del sentiment di mercato",

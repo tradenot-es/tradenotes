@@ -1328,15 +1328,15 @@
       },
       "gdpr": {
         "name": "Cumplimiento RGPD",
-        "description": "Cumplimiento total con el Reglamento General de Protección de Datos de la UE con almacenamiento de datos en la UE"
+        "description": "Cumplimiento total con el Reglamento General de Protección de Datos de la UE"
       }
     },
     "dataStorage": {
       "title": "Almacenamiento y Seguridad de Datos",
       "euRegion": {
-        "badge": "UE",
-        "title": "Almacenamiento de Datos en la UE",
-        "description": "Todos sus datos se almacenan y procesan exclusivamente en centros de datos altamente seguros en Frankfurt, Alemania."
+        "badge": "Cloud",
+        "title": "Almacenamiento Cloud Seguro",
+        "description": "Todos sus datos se almacenan y procesan en centros de datos cloud seguros."
       },
       "encrypted": {
         "badge": "Cifrado",
@@ -1398,7 +1398,7 @@
           "title": "Proveedores de Servicios",
           "intro": "Trabajamos con proveedores de servicios cuidadosamente seleccionados que nos apoyan en la prestación de nuestros servicios:",
           "items": [
-            "<strong>Supabase (Infraestructura en la nube):</strong> Servicios de hosting y base de datos en centros de datos de la UE",
+            "<strong>Lovable Cloud:</strong> Servicios de hosting y backend",
             "<strong>Stripe:</strong> Procesamiento de pagos (sujeto a su propia política de privacidad)",
             "<strong>Lettermint:</strong> Entrega de correos electrónicos (correos transaccionales, recordatorios de prueba)",
             "<strong>Marketaux:</strong> API de noticias financieras para noticias del portafolio y análisis del sentimiento del mercado",
