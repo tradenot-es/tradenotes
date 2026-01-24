@@ -244,6 +244,104 @@ export default function Glossary() {
       term: t("glossary.winRateRiskReward.term"),
       definition: t("glossary.winRateRiskReward.definition"),
       example: t("glossary.winRateRiskReward.example")
+    },
+    // New terms - Trading Psychology
+    {
+      id: "revenge-trading",
+      term: t("glossary.revengeTrading.term"),
+      definition: t("glossary.revengeTrading.definition"),
+      example: t("glossary.revengeTrading.example")
+    },
+    {
+      id: "fomo",
+      term: t("glossary.fomo.term"),
+      definition: t("glossary.fomo.definition"),
+      example: t("glossary.fomo.example")
+    },
+    {
+      id: "overtrading",
+      term: t("glossary.overtrading.term"),
+      definition: t("glossary.overtrading.definition"),
+      formula: t("glossary.overtrading.formula"),
+      example: t("glossary.overtrading.example")
+    },
+    // Trading Styles
+    {
+      id: "day-trading",
+      term: t("glossary.dayTrading.term"),
+      definition: t("glossary.dayTrading.definition"),
+      example: t("glossary.dayTrading.example")
+    },
+    {
+      id: "swing-trading",
+      term: t("glossary.swingTrading.term"),
+      definition: t("glossary.swingTrading.definition"),
+      example: t("glossary.swingTrading.example")
+    },
+    {
+      id: "momentum-trading",
+      term: t("glossary.momentumTrading.term"),
+      definition: t("glossary.momentumTrading.definition"),
+      example: t("glossary.momentumTrading.example")
+    },
+    {
+      id: "mean-reversion",
+      term: t("glossary.meanReversion.term"),
+      definition: t("glossary.meanReversion.definition"),
+      example: t("glossary.meanReversion.example")
+    },
+    // Order Types
+    {
+      id: "market-order",
+      term: t("glossary.marketOrder.term"),
+      definition: t("glossary.marketOrder.definition"),
+      example: t("glossary.marketOrder.example")
+    },
+    {
+      id: "limit-order",
+      term: t("glossary.limitOrder.term"),
+      definition: t("glossary.limitOrder.definition"),
+      example: t("glossary.limitOrder.example")
+    },
+    {
+      id: "trailing-stop",
+      term: t("glossary.trailingStop.term"),
+      definition: t("glossary.trailingStop.definition"),
+      example: t("glossary.trailingStop.example")
+    },
+    // Technical Analysis
+    {
+      id: "moving-average",
+      term: t("glossary.movingAverage.term"),
+      definition: t("glossary.movingAverage.definition"),
+      formula: t("glossary.movingAverage.formula"),
+      example: t("glossary.movingAverage.example")
+    },
+    {
+      id: "candlestick-patterns",
+      term: t("glossary.candlestickPatterns.term"),
+      definition: t("glossary.candlestickPatterns.definition"),
+      example: t("glossary.candlestickPatterns.example")
+    },
+    // Market Structure
+    {
+      id: "spread",
+      term: t("glossary.spread.term"),
+      definition: t("glossary.spread.definition"),
+      formula: t("glossary.spread.formula"),
+      example: t("glossary.spread.example")
+    },
+    {
+      id: "bull-bear-market",
+      term: t("glossary.bullBearMarket.term"),
+      definition: t("glossary.bullBearMarket.definition"),
+      example: t("glossary.bullBearMarket.example")
+    },
+    {
+      id: "correction",
+      term: t("glossary.correction.term"),
+      definition: t("glossary.correction.definition"),
+      example: t("glossary.correction.example")
     }
   ];
 

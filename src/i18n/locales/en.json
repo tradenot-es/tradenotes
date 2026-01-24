@@ -1237,7 +1237,85 @@
     },
     "subtitle": "Essential trading terms and risk management concepts",
     "formula": "Formula",
-    "example": "Example"
+    "example": "Example",
+    "revengeTrading": {
+      "term": "Revenge Trading",
+      "definition": "Impulsive trading after losses with the goal of quickly recovering lost money. Often leads to larger losses through hasty, unplanned trades.",
+      "example": "After 3 losing trades you double your position size on the next trade to 'quickly' recover the loss."
+    },
+    "fomo": {
+      "term": "FOMO (Fear Of Missing Out)",
+      "definition": "The fear of missing a profitable opportunity. Leads to hasty entries without a clear plan, often near the high of a move.",
+      "example": "A stock rises 15% in one day. You jump in without analysis – and buy exactly at the day's high."
+    },
+    "overtrading": {
+      "term": "Overtrading",
+      "definition": "Making too many trades, often from boredom, impatience, or after losses. Leads to increased fees and worse average results.",
+      "formula": "Signs: Trades per day > planned maximum OR position sizes inconsistent",
+      "example": "Your plan allows 5 trades/day, but you make 15 because you want to 'do something'."
+    },
+    "dayTrading": {
+      "term": "Day Trading",
+      "definition": "Trading strategy where all positions are closed before market close. No overnight risk, but requires intensive market monitoring.",
+      "example": "You buy at 10:00 AM and sell by 3:30 PM at the latest, never holding overnight."
+    },
+    "swingTrading": {
+      "term": "Swing Trading",
+      "definition": "Positions are held for several days to weeks to capture larger price movements. Less time-intensive than day trading.",
+      "example": "Buy on Monday after breakout, sell the following Friday when price target is reached."
+    },
+    "momentumTrading": {
+      "term": "Momentum Trading",
+      "definition": "Strategy that bets on strong price movements. 'Trend is your friend' – buy in rising, sell in falling markets.",
+      "example": "Stock breaks out of consolidation with high volume → Long entry to ride the move."
+    },
+    "meanReversion": {
+      "term": "Mean Reversion",
+      "definition": "Strategy based on the assumption that prices return to their average. Trading against extreme movements.",
+      "example": "Stock falls 10% in one day without news → Buy expecting a recovery to the average."
+    },
+    "marketOrder": {
+      "term": "Market Order",
+      "definition": "Order for immediate execution at the best available price. Guarantees execution, not price.",
+      "example": "You want to buy immediately → Market Order. In high volatility, price may differ from expected (slippage)."
+    },
+    "limitOrder": {
+      "term": "Limit Order",
+      "definition": "Order executed only at the specified price or better. Guarantees price, not execution.",
+      "example": "Limit Buy at $50 means: Buy only if price ≤ $50. At $51, no execution."
+    },
+    "trailingStop": {
+      "term": "Trailing Stop",
+      "definition": "A dynamic stop-loss that follows price in the profit direction but stays fixed on pullbacks. Automatically secures running profits.",
+      "example": "Long at $100, trailing stop $5. Price rises to $110 → Stop at $105. Price falls to $105 → Sell (instead of $95)."
+    },
+    "movingAverage": {
+      "term": "Moving Average",
+      "definition": "Average price over a defined period, updated with each new data point. Smooths price movements and shows trends.",
+      "formula": "SMA = Sum of Closing Prices / Number of Periods",
+      "example": "20-day MA: Average of last 20 closing prices. Price above MA = bullish, below MA = bearish."
+    },
+    "candlestickPatterns": {
+      "term": "Candlestick Patterns",
+      "definition": "Visual price patterns based on Japanese candlestick charts. Show the battle between buyers and sellers within a period.",
+      "example": "Hammer = small candle with long lower shadow at end of downtrend → possible reversal upward."
+    },
+    "spread": {
+      "term": "Spread (Bid-Ask Spread)",
+      "definition": "Difference between highest buy offer (Bid) and lowest sell offer (Ask). Trading costs incurred on every trade.",
+      "formula": "Spread = Ask - Bid",
+      "example": "Bid $49.95, Ask $50.05 → Spread = $0.10 (0.2%). With 1000 shares = $100 implicit cost."
+    },
+    "bullBearMarket": {
+      "term": "Bull Market / Bear Market",
+      "definition": "Bull Market = sustained rising prices (≥20% from low). Bear Market = sustained falling prices (≥20% from high). Defines market phase.",
+      "example": "S&P 500 rises 30% over 12 months = Bull Market. Falls 25% = Bear Market."
+    },
+    "correction": {
+      "term": "Correction",
+      "definition": "Temporary decline of 10-20% in an uptrend. Healthy and normal, often offers buying opportunities.",
+      "example": "Stock rises from $100 to $150 (+50%), then falls to $135 (-10%) → Correction, not trend change."
+    }
   },
   "reports": {
     "title": "Reports",
