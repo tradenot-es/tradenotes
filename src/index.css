@@ -223,4 +223,19 @@ All colors MUST be HSL.
   .glossy-transition {
     transition: var(--transition-glossy);
   }
+
+  /* Circuit Grid Background for Pre-launch page */
+  .circuit-grid-bg {
+    background-image: 
+      linear-gradient(to right, hsl(158 100% 45% / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(158 100% 45% / 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: circuit-scan 90s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .circuit-grid-bg {
+      animation: none;
+    }
+  }
 }

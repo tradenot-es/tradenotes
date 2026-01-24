@@ -2014,5 +2014,30 @@
     "settings": "Impostazioni",
     "saveSelection": "Salva selezione",
     "back": "Indietro"
+  },
+  "prelaunch": {
+    "badge": "BETA PRIVATA",
+    "headline": "In arrivo.",
+    "subline": "Attualmente in beta chiusa. Assicurati l'accesso anticipato e partecipa al lancio.",
+    "ctaPlaceholder": "Il tuo indirizzo email",
+    "ctaButton": "Ottieni accesso anticipato",
+    "trustText": "Niente spam. Cancellati quando vuoi.",
+    "statusLink": "Aggiornamenti",
+    "successMessage": "Sei nella lista! Ti contatteremo al lancio.",
+    "errorEmail": "Inserisci un indirizzo email valido.",
+    "errorDuplicate": "Questa email è già registrata.",
+    "errorRateLimit": "Troppe richieste. Riprova più tardi.",
+    "errorGeneric": "Si è verificato un errore. Riprova.",
+    "maintenance": {
+      "badge": "MANUTENZIONE",
+      "headline": "Breve manutenzione",
+      "subline": "Stiamo eseguendo aggiornamenti programmati. Torniamo tra pochi minuti.",
+      "seoTitle": "TradeNot.es - Manutenzione",
+      "seoDescription": "TradeNot.es è temporaneamente non disponibile. Stiamo eseguendo manutenzione programmata."
+    },
+    "seo": {
+      "title": "TradeNot.es - Beta Privata | Diario di Trading",
+      "description": "TradeNot.es - Il tuo diario di trading professionale. Attualmente in Beta Privata. Assicurati l'accesso anticipato!"
+    }
   }
 }
