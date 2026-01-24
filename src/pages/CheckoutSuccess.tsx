@@ -5,7 +5,7 @@ import confetti from "canvas-confetti";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Sparkles } from "lucide-react";
-import logo from "@/assets/tradenotes-logo-transparent.png";
+import logo from "@/assets/tradenotes-logo-new-transparent.png";
 
 export default function CheckoutSuccess() {
   const { t } = useTranslation();
