@@ -325,7 +325,26 @@
     "impactLegend": "Legend",
     "scheduledEvents": "Scheduled Events",
     "relatedNews": "Related News",
-    "confirmed": "Confirmed"
+    "confirmed": "Confirmed",
+    "categories": {
+      "fomc": "FOMC",
+      "cpi": "CPI",
+      "nfp": "Jobs Report",
+      "gdp": "GDP",
+      "fed_speech": "Fed Speech",
+      "summit": "Summit",
+      "ecb": "ECB",
+      "opec": "OPEC+",
+      "election": "Election",
+      "boe": "BoE",
+      "boj": "BoJ",
+      "ism": "ISM PMI",
+      "retail": "Retail Sales",
+      "pce": "PCE Inflation",
+      "ppi": "Producer Prices",
+      "housing": "Housing",
+      "other": "Other"
+    }
   },
   "trades": {
     "title": "Trades",

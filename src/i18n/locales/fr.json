@@ -322,7 +322,26 @@
     "impactLegend": "Légende",
     "scheduledEvents": "Événements planifiés",
     "relatedNews": "Actualités connexes",
-    "confirmed": "Confirmé"
+    "confirmed": "Confirmé",
+    "categories": {
+      "fomc": "FOMC",
+      "cpi": "IPC",
+      "nfp": "Emploi",
+      "gdp": "PIB",
+      "fed_speech": "Discours Fed",
+      "summit": "Sommet",
+      "ecb": "BCE",
+      "opec": "OPEP+",
+      "election": "Élections",
+      "boe": "BoE",
+      "boj": "BdJ",
+      "ism": "ISM PMI",
+      "retail": "Ventes détail",
+      "pce": "Inflation PCE",
+      "ppi": "Prix producteurs",
+      "housing": "Immobilier",
+      "other": "Autre"
+    }
   },
   "trades": {
     "title": "Transactions",
