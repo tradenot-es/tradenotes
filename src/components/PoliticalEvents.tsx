@@ -15,25 +15,33 @@ interface PoliticalEventsProps {
 export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
 
-  // Get country flag based on category
-  const getCountryFlag = (category?: string): string => {
+  // Get country flag based on category and title (for mixed categories like CPI, GDP)
+  const getCountryFlag = (category?: string, title?: string): string => {
+    // Title-based detection for shared categories (CPI, GDP, Retail)
+    if (title) {
+      if (title.includes('EU ') || title.includes('Eurozone') || title.includes('HICP')) return '🇪🇺';
+      if (title.includes('UK ')) return '🇬🇧';
+    }
+    
+    // Category-based fallback for region-specific categories
     const categoryToFlag: Record<string, string> = {
       fomc: '🇺🇸',
-      cpi: '🇺🇸',
-      nfp: '🇺🇸',
-      gdp: '🇺🇸',
       fed_speech: '🇺🇸',
       ism: '🇺🇸',
-      retail: '🇺🇸',
       pce: '🇺🇸',
       ppi: '🇺🇸',
       housing: '🇺🇸',
+      nfp: '🇺🇸',
       ecb: '🇪🇺',
       boe: '🇬🇧',
       boj: '🇯🇵',
       opec: '🌍',
       summit: '🌍',
-      election: '🗳️'
+      election: '🗳️',
+      // Default US for generic categories when no title match
+      cpi: '🇺🇸',
+      gdp: '🇺🇸',
+      retail: '🇺🇸'
     };
     return categoryToFlag[category || ''] || '🌍';
   };
@@ -179,7 +187,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
               {scheduledEvents.map((event, index) => (
                 <div key={`${date.toISOString()}-${event.uuid}-${index}`} className="border-b border-blue-200/50 dark:border-blue-900/50 pb-3 last:border-0 last:pb-0">
                   <div className="flex items-start gap-2">
-                    <span className="text-sm" title={event.category}>{getCountryFlag(event.category)}</span>
+                    <span className="text-sm" title={event.category}>{getCountryFlag(event.category, event.title)}</span>
                     {getCategoryIconComponent(event.category)}
                     <div className="flex-1">
                       <h4 className="text-sm font-medium">{event.title}</h4>
