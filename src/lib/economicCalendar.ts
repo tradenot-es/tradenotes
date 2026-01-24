@@ -1,261 +1,401 @@
+// Static Economic Calendar for 2025-2026
+// Contains scheduled high-impact events from central banks, economic reports, and global summits
+
 export interface EconomicEvent {
   id: string;
-  date: string; // YYYY-MM-DD
-  time?: string; // HH:MM EST
+  date: string; // YYYY-MM-DD format
+  time?: string; // Optional time in EST
   title: string;
-  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'ecb' | 'opec' | 'election' | 'boe' | 'boj' | 'other';
+  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'ecb' | 'opec' | 'election' | 'boe' | 'boj' | 'ism' | 'retail' | 'pce' | 'ppi' | 'other';
   impact: 'high' | 'medium' | 'low';
   description: string;
 }
 
-// Economic Calendar 2025-2026
-// Sources: Federal Reserve, BLS, BEA, ECB, BoE, BoJ, OPEC official schedules
+// 2025-2026 Economic Calendar
+// Sources: Federal Reserve, ECB, BoE, BoJ, OPEC, G7/G20 schedules
 export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
-  // ========== FOMC Meetings 2025 ==========
-  { id: 'fomc-jan-2025', date: '2025-01-29', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-mar-2025', date: '2025-03-19', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-may-2025', date: '2025-05-07', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-jun-2025', date: '2025-06-18', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-jul-2025', date: '2025-07-30', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-sep-2025', date: '2025-09-17', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-nov-2025', date: '2025-11-05', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-dec-2025', date: '2025-12-17', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
+  // ==================== 2025 EVENTS ====================
   
-  // ========== FOMC Meetings 2026 (Tentative) ==========
-  { id: 'fomc-jan-2026', date: '2026-01-28', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-mar-2026', date: '2026-03-18', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-may-2026', date: '2026-05-06', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-jun-2026', date: '2026-06-17', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-jul-2026', date: '2026-07-29', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-sep-2026', date: '2026-09-16', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
-  { id: 'fomc-nov-2026', date: '2026-11-04', time: '14:00', title: 'FOMC Meeting', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision' },
-  { id: 'fomc-dec-2026', date: '2026-12-16', time: '14:00', title: 'FOMC Meeting + Projections', category: 'fomc', impact: 'high', description: 'Fed rate decision with economic projections (SEP)' },
+  // --- JANUARY 2025 ---
+  { id: 'fomc-2025-01', date: '2025-01-29', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and statement' },
+  { id: 'ecb-2025-01', date: '2025-01-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'nfp-2025-01', date: '2025-01-10', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-01', date: '2025-01-15', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2025-q4-adv', date: '2025-01-30', time: '08:30', title: 'US GDP Q4 (Advance)', category: 'gdp', impact: 'high', description: 'Q4 2024 GDP first estimate' },
+  { id: 'davos-2025', date: '2025-01-20', title: 'WEF Davos 2025', category: 'summit', impact: 'medium', description: 'World Economic Forum Annual Meeting' },
+  { id: 'ism-mfg-2025-01', date: '2025-01-03', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-01', date: '2025-01-07', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-01', date: '2025-01-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-01', date: '2025-01-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-01', date: '2025-01-31', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== ECB Meetings 2025 ==========
-  { id: 'ecb-jan-2025', date: '2025-01-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-mar-2025', date: '2025-03-06', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-apr-2025', date: '2025-04-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-jun-2025', date: '2025-06-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-jul-2025', date: '2025-07-24', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-sep-2025', date: '2025-09-11', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-oct-2025', date: '2025-10-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-dec-2025', date: '2025-12-18', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  // --- FEBRUARY 2025 ---
+  { id: 'boe-2025-02', date: '2025-02-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-02', date: '2025-02-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-02', date: '2025-02-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ism-mfg-2025-02', date: '2025-02-03', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-02', date: '2025-02-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-02', date: '2025-02-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-02', date: '2025-02-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-02', date: '2025-02-28', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+  { id: 'gdp-2025-q4-2nd', date: '2025-02-27', time: '08:30', title: 'US GDP Q4 (Second)', category: 'gdp', impact: 'medium', description: 'Q4 2024 GDP second estimate' },
 
-  // ========== ECB Meetings 2026 ==========
-  { id: 'ecb-jan-2026', date: '2026-01-22', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-mar-2026', date: '2026-03-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-apr-2026', date: '2026-04-16', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-jun-2026', date: '2026-06-04', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-jul-2026', date: '2026-07-23', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-sep-2026', date: '2026-09-10', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-oct-2026', date: '2026-10-29', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
-  { id: 'ecb-dec-2026', date: '2026-12-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank interest rate decision' },
+  // --- MARCH 2025 ---
+  { id: 'fomc-2025-03', date: '2025-03-19', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2025-03', date: '2025-03-06', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-03', date: '2025-03-14', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2025-03', date: '2025-03-20', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-03', date: '2025-03-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-03', date: '2025-03-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2025-03', date: '2025-03-01', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2025-q4-3rd', date: '2025-03-27', time: '08:30', title: 'US GDP Q4 (Final)', category: 'gdp', impact: 'medium', description: 'Q4 2024 GDP final estimate' },
+  { id: 'ism-mfg-2025-03', date: '2025-03-03', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-03', date: '2025-03-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-03', date: '2025-03-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-03', date: '2025-03-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-03', date: '2025-03-28', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Bank of England (BoE) Meetings 2025 ==========
-  { id: 'boe-feb-2025', date: '2025-02-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-mar-2025', date: '2025-03-20', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-may-2025', date: '2025-05-08', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-jun-2025', date: '2025-06-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-aug-2025', date: '2025-08-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-sep-2025', date: '2025-09-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-nov-2025', date: '2025-11-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-dec-2025', date: '2025-12-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  // --- APRIL 2025 ---
+  { id: 'ecb-2025-04', date: '2025-04-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'nfp-2025-04', date: '2025-04-04', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-04', date: '2025-04-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2025-q1-adv', date: '2025-04-30', time: '08:30', title: 'US GDP Q1 (Advance)', category: 'gdp', impact: 'high', description: 'Q1 2025 GDP first estimate' },
+  { id: 'ism-mfg-2025-04', date: '2025-04-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-04', date: '2025-04-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-04', date: '2025-04-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-04', date: '2025-04-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-04', date: '2025-04-25', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Bank of England (BoE) Meetings 2026 ==========
-  { id: 'boe-feb-2026', date: '2026-02-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-mar-2026', date: '2026-03-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-may-2026', date: '2026-05-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-jun-2026', date: '2026-06-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-aug-2026', date: '2026-08-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-sep-2026', date: '2026-09-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-nov-2026', date: '2026-11-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
-  { id: 'boe-dec-2026', date: '2026-12-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England interest rate decision' },
+  // --- MAY 2025 ---
+  { id: 'fomc-2025-05', date: '2025-05-07', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2025-05', date: '2025-05-08', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-05', date: '2025-05-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-05', date: '2025-05-13', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2025-05', date: '2025-05-28', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2025-q1-2nd', date: '2025-05-29', time: '08:30', title: 'US GDP Q1 (Second)', category: 'gdp', impact: 'medium', description: 'Q1 2025 GDP second estimate' },
+  { id: 'ism-mfg-2025-05', date: '2025-05-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-05', date: '2025-05-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-05', date: '2025-05-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-05', date: '2025-05-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-05', date: '2025-05-30', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Bank of Japan (BoJ) Meetings 2025 ==========
-  { id: 'boj-jan-2025', date: '2025-01-24', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-mar-2025', date: '2025-03-14', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-apr-2025', date: '2025-04-25', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-jun-2025', date: '2025-06-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-jul-2025', date: '2025-07-31', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-sep-2025', date: '2025-09-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-oct-2025', date: '2025-10-31', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-dec-2025', date: '2025-12-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  // --- JUNE 2025 ---
+  { id: 'fomc-2025-06', date: '2025-06-18', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2025-06', date: '2025-06-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-06', date: '2025-06-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2025-06', date: '2025-06-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-06', date: '2025-06-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-06', date: '2025-06-11', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'g7-2025', date: '2025-06-15', title: 'G7 Summit', category: 'summit', impact: 'medium', description: 'G7 Leaders Summit - Canada' },
+  { id: 'gdp-2025-q1-3rd', date: '2025-06-26', time: '08:30', title: 'US GDP Q1 (Final)', category: 'gdp', impact: 'medium', description: 'Q1 2025 GDP final estimate' },
+  { id: 'ism-mfg-2025-06', date: '2025-06-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-06', date: '2025-06-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-06', date: '2025-06-17', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-06', date: '2025-06-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-06', date: '2025-06-27', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Bank of Japan (BoJ) Meetings 2026 ==========
-  { id: 'boj-jan-2026', date: '2026-01-23', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-mar-2026', date: '2026-03-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-apr-2026', date: '2026-04-24', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-jun-2026', date: '2026-06-12', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-jul-2026', date: '2026-07-30', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-sep-2026', date: '2026-09-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
-  { id: 'boj-oct-2026', date: '2026-10-30', time: '03:00', title: 'BoJ Rate Decision + Outlook', category: 'boj', impact: 'high', description: 'Bank of Japan rate decision with quarterly outlook' },
-  { id: 'boj-dec-2026', date: '2026-12-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan interest rate decision' },
+  // --- JULY 2025 ---
+  { id: 'fomc-2025-07', date: '2025-07-30', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2025-07', date: '2025-07-24', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-07', date: '2025-07-31', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'nfp-2025-07', date: '2025-07-03', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-07', date: '2025-07-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2025-q2-adv', date: '2025-07-30', time: '08:30', title: 'US GDP Q2 (Advance)', category: 'gdp', impact: 'high', description: 'Q2 2025 GDP first estimate' },
+  { id: 'ism-mfg-2025-07', date: '2025-07-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-07', date: '2025-07-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-07', date: '2025-07-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-07', date: '2025-07-15', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-07', date: '2025-07-25', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== OPEC+ Meetings 2025 ==========
-  { id: 'opec-feb-2025', date: '2025-02-01', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
-  { id: 'opec-apr-2025', date: '2025-04-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-jun-2025', date: '2025-06-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
-  { id: 'opec-sep-2025', date: '2025-09-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-dec-2025', date: '2025-12-04', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
+  // --- AUGUST 2025 ---
+  { id: 'boe-2025-08', date: '2025-08-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-08', date: '2025-08-01', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-08', date: '2025-08-13', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'jackson-hole-2025', date: '2025-08-21', title: 'Jackson Hole Symposium', category: 'fomc', impact: 'high', description: 'Fed Chair Powell speech at Jackson Hole' },
+  { id: 'gdp-2025-q2-2nd', date: '2025-08-28', time: '08:30', title: 'US GDP Q2 (Second)', category: 'gdp', impact: 'medium', description: 'Q2 2025 GDP second estimate' },
+  { id: 'ism-mfg-2025-08', date: '2025-08-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-08', date: '2025-08-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-08', date: '2025-08-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-08', date: '2025-08-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-08', date: '2025-08-29', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== OPEC+ Meetings 2026 ==========
-  { id: 'opec-feb-2026', date: '2026-02-05', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
-  { id: 'opec-apr-2026', date: '2026-04-02', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-jun-2026', date: '2026-06-04', time: '10:00', title: 'OPEC+ Monitoring Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ Joint Ministerial Monitoring Committee - no production decisions' },
-  { id: 'opec-sep-2026', date: '2026-09-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ Ministerial Meeting - production decisions' },
-  { id: 'opec-dec-2026', date: '2026-12-03', time: '10:00', title: 'OPEC+ Full Meeting', category: 'opec', impact: 'high', description: 'OPEC+ year-end Ministerial Meeting' },
+  // --- SEPTEMBER 2025 ---
+  { id: 'fomc-2025-09', date: '2025-09-17', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2025-09', date: '2025-09-11', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-09', date: '2025-09-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2025-09', date: '2025-09-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-09', date: '2025-09-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-09', date: '2025-09-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'un-ga-2025', date: '2025-09-16', title: 'UN General Assembly', category: 'summit', impact: 'medium', description: 'United Nations General Assembly - New York' },
+  { id: 'gdp-2025-q2-3rd', date: '2025-09-25', time: '08:30', title: 'US GDP Q2 (Final)', category: 'gdp', impact: 'medium', description: 'Q2 2025 GDP final estimate' },
+  { id: 'ism-mfg-2025-09', date: '2025-09-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-09', date: '2025-09-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-09', date: '2025-09-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-09', date: '2025-09-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-09', date: '2025-09-26', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== CPI Reports 2025 (Released ~10th-15th of each month) ==========
-  { id: 'cpi-jan-2025', date: '2025-01-15', time: '08:30', title: 'CPI Report (Dec)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - December 2024 data' },
-  { id: 'cpi-feb-2025', date: '2025-02-12', time: '08:30', title: 'CPI Report (Jan)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - January 2025 data' },
-  { id: 'cpi-mar-2025', date: '2025-03-12', time: '08:30', title: 'CPI Report (Feb)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - February 2025 data' },
-  { id: 'cpi-apr-2025', date: '2025-04-10', time: '08:30', title: 'CPI Report (Mar)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - March 2025 data' },
-  { id: 'cpi-may-2025', date: '2025-05-13', time: '08:30', title: 'CPI Report (Apr)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - April 2025 data' },
-  { id: 'cpi-jun-2025', date: '2025-06-11', time: '08:30', title: 'CPI Report (May)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - May 2025 data' },
-  { id: 'cpi-jul-2025', date: '2025-07-11', time: '08:30', title: 'CPI Report (Jun)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - June 2025 data' },
-  { id: 'cpi-aug-2025', date: '2025-08-13', time: '08:30', title: 'CPI Report (Jul)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - July 2025 data' },
-  { id: 'cpi-sep-2025', date: '2025-09-11', time: '08:30', title: 'CPI Report (Aug)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - August 2025 data' },
-  { id: 'cpi-oct-2025', date: '2025-10-10', time: '08:30', title: 'CPI Report (Sep)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - September 2025 data' },
-  { id: 'cpi-nov-2025', date: '2025-11-13', time: '08:30', title: 'CPI Report (Oct)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - October 2025 data' },
-  { id: 'cpi-dec-2025', date: '2025-12-10', time: '08:30', title: 'CPI Report (Nov)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - November 2025 data' },
+  // --- OCTOBER 2025 ---
+  { id: 'ecb-2025-10', date: '2025-10-30', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-10', date: '2025-10-31', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'nfp-2025-10', date: '2025-10-03', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-10', date: '2025-10-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2025-q3-adv', date: '2025-10-30', time: '08:30', title: 'US GDP Q3 (Advance)', category: 'gdp', impact: 'high', description: 'Q3 2025 GDP first estimate' },
+  { id: 'ism-mfg-2025-10', date: '2025-10-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-10', date: '2025-10-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-10', date: '2025-10-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-10', date: '2025-10-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-10', date: '2025-10-31', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== CPI Reports 2026 ==========
-  { id: 'cpi-jan-2026', date: '2026-01-14', time: '08:30', title: 'CPI Report (Dec)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - December 2025 data' },
-  { id: 'cpi-feb-2026', date: '2026-02-11', time: '08:30', title: 'CPI Report (Jan)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - January 2026 data' },
-  { id: 'cpi-mar-2026', date: '2026-03-11', time: '08:30', title: 'CPI Report (Feb)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - February 2026 data' },
-  { id: 'cpi-apr-2026', date: '2026-04-10', time: '08:30', title: 'CPI Report (Mar)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - March 2026 data' },
-  { id: 'cpi-may-2026', date: '2026-05-12', time: '08:30', title: 'CPI Report (Apr)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - April 2026 data' },
-  { id: 'cpi-jun-2026', date: '2026-06-10', time: '08:30', title: 'CPI Report (May)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - May 2026 data' },
-  { id: 'cpi-jul-2026', date: '2026-07-14', time: '08:30', title: 'CPI Report (Jun)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - June 2026 data' },
-  { id: 'cpi-aug-2026', date: '2026-08-12', time: '08:30', title: 'CPI Report (Jul)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - July 2026 data' },
-  { id: 'cpi-sep-2026', date: '2026-09-10', time: '08:30', title: 'CPI Report (Aug)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - August 2026 data' },
-  { id: 'cpi-oct-2026', date: '2026-10-13', time: '08:30', title: 'CPI Report (Sep)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - September 2026 data' },
-  { id: 'cpi-nov-2026', date: '2026-11-12', time: '08:30', title: 'CPI Report (Oct)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - October 2026 data' },
-  { id: 'cpi-dec-2026', date: '2026-12-10', time: '08:30', title: 'CPI Report (Nov)', category: 'cpi', impact: 'high', description: 'Consumer Price Index - November 2026 data' },
+  // --- NOVEMBER 2025 ---
+  { id: 'fomc-2025-11', date: '2025-11-05', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2025-11', date: '2025-11-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-11', date: '2025-11-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-11', date: '2025-11-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'g20-2025', date: '2025-11-15', title: 'G20 Summit', category: 'summit', impact: 'medium', description: 'G20 Leaders Summit - South Africa' },
+  { id: 'opec-2025-11', date: '2025-11-26', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2025-q3-2nd', date: '2025-11-26', time: '08:30', title: 'US GDP Q3 (Second)', category: 'gdp', impact: 'medium', description: 'Q3 2025 GDP second estimate' },
+  { id: 'ism-mfg-2025-11', date: '2025-11-03', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-11', date: '2025-11-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-11', date: '2025-11-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-11', date: '2025-11-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-11', date: '2025-11-26', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== NFP/Jobs Reports 2025 (First Friday of each month) ==========
-  { id: 'nfp-jan-2025', date: '2025-01-10', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - December 2024 data' },
-  { id: 'nfp-feb-2025', date: '2025-02-07', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - January 2025 data' },
-  { id: 'nfp-mar-2025', date: '2025-03-07', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - February 2025 data' },
-  { id: 'nfp-apr-2025', date: '2025-04-04', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - March 2025 data' },
-  { id: 'nfp-may-2025', date: '2025-05-02', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - April 2025 data' },
-  { id: 'nfp-jun-2025', date: '2025-06-06', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - May 2025 data' },
-  { id: 'nfp-jul-2025', date: '2025-07-03', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - June 2025 data' },
-  { id: 'nfp-aug-2025', date: '2025-08-01', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - July 2025 data' },
-  { id: 'nfp-sep-2025', date: '2025-09-05', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - August 2025 data' },
-  { id: 'nfp-oct-2025', date: '2025-10-03', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - September 2025 data' },
-  { id: 'nfp-nov-2025', date: '2025-11-07', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - October 2025 data' },
-  { id: 'nfp-dec-2025', date: '2025-12-05', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - November 2025 data' },
+  // --- DECEMBER 2025 ---
+  { id: 'fomc-2025-12', date: '2025-12-17', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2025-12', date: '2025-12-18', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2025-12', date: '2025-12-19', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2025-12', date: '2025-12-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2025-12', date: '2025-12-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2025-12', date: '2025-12-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2025-12', date: '2025-12-04', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ year-end production meeting' },
+  { id: 'gdp-2025-q3-3rd', date: '2025-12-23', time: '08:30', title: 'US GDP Q3 (Final)', category: 'gdp', impact: 'medium', description: 'Q3 2025 GDP final estimate' },
+  { id: 'ism-mfg-2025-12', date: '2025-12-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2025-12', date: '2025-12-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2025-12', date: '2025-12-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2025-12', date: '2025-12-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2025-12', date: '2025-12-19', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== NFP/Jobs Reports 2026 ==========
-  { id: 'nfp-jan-2026', date: '2026-01-09', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - December 2025 data' },
-  { id: 'nfp-feb-2026', date: '2026-02-06', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - January 2026 data' },
-  { id: 'nfp-mar-2026', date: '2026-03-06', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - February 2026 data' },
-  { id: 'nfp-apr-2026', date: '2026-04-03', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - March 2026 data' },
-  { id: 'nfp-may-2026', date: '2026-05-01', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - April 2026 data' },
-  { id: 'nfp-jun-2026', date: '2026-06-05', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - May 2026 data' },
-  { id: 'nfp-jul-2026', date: '2026-07-02', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - June 2026 data' },
-  { id: 'nfp-aug-2026', date: '2026-08-07', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - July 2026 data' },
-  { id: 'nfp-sep-2026', date: '2026-09-04', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - August 2026 data' },
-  { id: 'nfp-oct-2026', date: '2026-10-02', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - September 2026 data' },
-  { id: 'nfp-nov-2026', date: '2026-11-06', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - October 2026 data' },
-  { id: 'nfp-dec-2026', date: '2026-12-04', time: '08:30', title: 'Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - November 2026 data' },
+  // ==================== 2026 EVENTS ====================
 
-  // ========== GDP Reports 2025 (Quarterly) ==========
-  { id: 'gdp-q4-2024-adv', date: '2025-01-30', time: '08:30', title: 'GDP Q4 2024 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q4 2024' },
-  { id: 'gdp-q4-2024-sec', date: '2025-02-27', time: '08:30', title: 'GDP Q4 2024 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q4 2024' },
-  { id: 'gdp-q4-2024-fin', date: '2025-03-27', time: '08:30', title: 'GDP Q4 2024 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q4 2024' },
-  { id: 'gdp-q1-2025-adv', date: '2025-04-30', time: '08:30', title: 'GDP Q1 2025 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q1 2025' },
-  { id: 'gdp-q1-2025-sec', date: '2025-05-29', time: '08:30', title: 'GDP Q1 2025 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q1 2025' },
-  { id: 'gdp-q1-2025-fin', date: '2025-06-26', time: '08:30', title: 'GDP Q1 2025 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q1 2025' },
-  { id: 'gdp-q2-2025-adv', date: '2025-07-30', time: '08:30', title: 'GDP Q2 2025 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q2 2025' },
-  { id: 'gdp-q2-2025-sec', date: '2025-08-28', time: '08:30', title: 'GDP Q2 2025 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q2 2025' },
-  { id: 'gdp-q2-2025-fin', date: '2025-09-25', time: '08:30', title: 'GDP Q2 2025 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q2 2025' },
-  { id: 'gdp-q3-2025-adv', date: '2025-10-30', time: '08:30', title: 'GDP Q3 2025 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q3 2025' },
-  { id: 'gdp-q3-2025-sec', date: '2025-11-26', time: '08:30', title: 'GDP Q3 2025 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q3 2025' },
-  { id: 'gdp-q3-2025-fin', date: '2025-12-23', time: '08:30', title: 'GDP Q3 2025 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q3 2025' },
+  // --- JANUARY 2026 ---
+  { id: 'fomc-2026-01', date: '2026-01-28', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and statement' },
+  { id: 'ecb-2026-01', date: '2026-01-22', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'nfp-2026-01', date: '2026-01-09', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-01', date: '2026-01-14', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2026-q4-adv', date: '2026-01-29', time: '08:30', title: 'US GDP Q4 (Advance)', category: 'gdp', impact: 'high', description: 'Q4 2025 GDP first estimate' },
+  { id: 'davos-2026', date: '2026-01-19', title: 'WEF Davos 2026', category: 'summit', impact: 'medium', description: 'World Economic Forum Annual Meeting' },
+  { id: 'ism-mfg-2026-01', date: '2026-01-05', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-01', date: '2026-01-07', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-01', date: '2026-01-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-01', date: '2026-01-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-01', date: '2026-01-30', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== GDP Reports 2026 ==========
-  { id: 'gdp-q4-2025-adv', date: '2026-01-29', time: '08:30', title: 'GDP Q4 2025 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q4 2025' },
-  { id: 'gdp-q4-2025-sec', date: '2026-02-26', time: '08:30', title: 'GDP Q4 2025 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q4 2025' },
-  { id: 'gdp-q4-2025-fin', date: '2026-03-26', time: '08:30', title: 'GDP Q4 2025 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q4 2025' },
-  { id: 'gdp-q1-2026-adv', date: '2026-04-29', time: '08:30', title: 'GDP Q1 2026 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q1 2026' },
-  { id: 'gdp-q1-2026-sec', date: '2026-05-28', time: '08:30', title: 'GDP Q1 2026 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q1 2026' },
-  { id: 'gdp-q1-2026-fin', date: '2026-06-25', time: '08:30', title: 'GDP Q1 2026 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q1 2026' },
-  { id: 'gdp-q2-2026-adv', date: '2026-07-29', time: '08:30', title: 'GDP Q2 2026 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q2 2026' },
-  { id: 'gdp-q2-2026-sec', date: '2026-08-27', time: '08:30', title: 'GDP Q2 2026 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q2 2026' },
-  { id: 'gdp-q2-2026-fin', date: '2026-09-24', time: '08:30', title: 'GDP Q2 2026 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q2 2026' },
-  { id: 'gdp-q3-2026-adv', date: '2026-10-29', time: '08:30', title: 'GDP Q3 2026 (Advance)', category: 'gdp', impact: 'high', description: 'Advance estimate GDP Q3 2026' },
-  { id: 'gdp-q3-2026-sec', date: '2026-11-25', time: '08:30', title: 'GDP Q3 2026 (Second)', category: 'gdp', impact: 'medium', description: 'Second estimate GDP Q3 2026' },
-  { id: 'gdp-q3-2026-fin', date: '2026-12-22', time: '08:30', title: 'GDP Q3 2026 (Final)', category: 'gdp', impact: 'medium', description: 'Final estimate GDP Q3 2026' },
+  // --- FEBRUARY 2026 ---
+  { id: 'boe-2026-02', date: '2026-02-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-02', date: '2026-02-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-02', date: '2026-02-11', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2026-q4-2nd', date: '2026-02-26', time: '08:30', title: 'US GDP Q4 (Second)', category: 'gdp', impact: 'medium', description: 'Q4 2025 GDP second estimate' },
+  { id: 'ism-mfg-2026-02', date: '2026-02-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-02', date: '2026-02-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-02', date: '2026-02-13', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-02', date: '2026-02-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-02', date: '2026-02-27', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Global Summits & Political Events 2025 ==========
-  { id: 'wef-2025-start', date: '2025-01-20', time: '09:00', title: 'World Economic Forum Davos 2025', category: 'summit', impact: 'medium', description: 'Annual WEF meeting begins - global leaders discuss economy, trade, AI' },
-  { id: 'wef-2025-trump', date: '2025-01-21', time: '11:00', title: 'Trump Speech at WEF Davos', category: 'summit', impact: 'high', description: 'US President addresses World Economic Forum' },
-  { id: 'wef-2025-end', date: '2025-01-24', time: '17:00', title: 'WEF Davos 2025 Closing', category: 'summit', impact: 'low', description: 'World Economic Forum closing sessions' },
-  { id: 'g7-2025', date: '2025-06-15', time: '09:00', title: 'G7 Summit 2025', category: 'summit', impact: 'medium', description: 'G7 leaders meet in Canada - major policy discussions' },
-  { id: 'jackson-hole-2025', date: '2025-08-21', time: '10:00', title: 'Jackson Hole Symposium', category: 'summit', impact: 'high', description: 'Fed Chair speech at annual Jackson Hole Economic Symposium' },
-  { id: 'un-ga-2025', date: '2025-09-16', time: '09:00', title: 'UN General Assembly 2025', category: 'summit', impact: 'low', description: 'United Nations General Assembly opens in New York' },
-  { id: 'g20-2025', date: '2025-11-15', time: '09:00', title: 'G20 Summit 2025', category: 'summit', impact: 'medium', description: 'G20 leaders meet in South Africa' },
+  // --- MARCH 2026 ---
+  { id: 'fomc-2026-03', date: '2026-03-18', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2026-03', date: '2026-03-05', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-03', date: '2026-03-13', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2026-03', date: '2026-03-19', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-03', date: '2026-03-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-03', date: '2026-03-11', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2026-03', date: '2026-03-01', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2026-q4-3rd', date: '2026-03-26', time: '08:30', title: 'US GDP Q4 (Final)', category: 'gdp', impact: 'medium', description: 'Q4 2025 GDP final estimate' },
+  { id: 'ism-mfg-2026-03', date: '2026-03-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-03', date: '2026-03-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-03', date: '2026-03-13', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-03', date: '2026-03-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-03', date: '2026-03-27', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== Global Summits & Political Events 2026 ==========
-  { id: 'wef-2026', date: '2026-01-19', time: '09:00', title: 'World Economic Forum Davos 2026', category: 'summit', impact: 'medium', description: 'Annual WEF meeting - global economic outlook' },
-  { id: 'g7-2026', date: '2026-06-14', time: '09:00', title: 'G7 Summit 2026', category: 'summit', impact: 'medium', description: 'G7 leaders annual summit' },
-  { id: 'jackson-hole-2026', date: '2026-08-20', time: '10:00', title: 'Jackson Hole Symposium', category: 'summit', impact: 'high', description: 'Fed Chair speech at annual Jackson Hole Economic Symposium' },
-  { id: 'un-ga-2026', date: '2026-09-15', time: '09:00', title: 'UN General Assembly 2026', category: 'summit', impact: 'low', description: 'United Nations General Assembly opens' },
-  { id: 'g20-2026', date: '2026-11-14', time: '09:00', title: 'G20 Summit 2026', category: 'summit', impact: 'medium', description: 'G20 leaders annual summit' },
+  // --- APRIL 2026 ---
+  { id: 'ecb-2026-04', date: '2026-04-16', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'nfp-2026-04', date: '2026-04-03', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-04', date: '2026-04-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2026-q1-adv', date: '2026-04-29', time: '08:30', title: 'US GDP Q1 (Advance)', category: 'gdp', impact: 'high', description: 'Q1 2026 GDP first estimate' },
+  { id: 'ism-mfg-2026-04', date: '2026-04-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-04', date: '2026-04-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-04', date: '2026-04-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-04', date: '2026-04-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-04', date: '2026-04-24', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 
-  // ========== US Elections 2026 ==========
-  { id: 'us-midterm-2026', date: '2026-11-03', time: '06:00', title: 'US Midterm Elections', category: 'election', impact: 'high', description: 'US Midterm Elections - House and Senate races' },
-  { id: 'us-midterm-results-2026', date: '2026-11-04', time: '00:00', title: 'US Election Results Day', category: 'election', impact: 'high', description: 'US Midterm Election results - market reaction' },
+  // --- MAY 2026 ---
+  { id: 'fomc-2026-05', date: '2026-05-06', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2026-05', date: '2026-05-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-05', date: '2026-05-01', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-05', date: '2026-05-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2026-05', date: '2026-05-27', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2026-q1-2nd', date: '2026-05-28', time: '08:30', title: 'US GDP Q1 (Second)', category: 'gdp', impact: 'medium', description: 'Q1 2026 GDP second estimate' },
+  { id: 'ism-mfg-2026-05', date: '2026-05-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-05', date: '2026-05-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-05', date: '2026-05-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-05', date: '2026-05-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-05', date: '2026-05-29', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- JUNE 2026 ---
+  { id: 'fomc-2026-06', date: '2026-06-17', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2026-06', date: '2026-06-04', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-06', date: '2026-06-12', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2026-06', date: '2026-06-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-06', date: '2026-06-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-06', date: '2026-06-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'g7-2026', date: '2026-06-13', title: 'G7 Summit', category: 'summit', impact: 'medium', description: 'G7 Leaders Summit - Italy' },
+  { id: 'gdp-2026-q1-3rd', date: '2026-06-25', time: '08:30', title: 'US GDP Q1 (Final)', category: 'gdp', impact: 'medium', description: 'Q1 2026 GDP final estimate' },
+  { id: 'ism-mfg-2026-06', date: '2026-06-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-06', date: '2026-06-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-06', date: '2026-06-16', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-06', date: '2026-06-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-06', date: '2026-06-26', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- JULY 2026 ---
+  { id: 'fomc-2026-07', date: '2026-07-29', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2026-07', date: '2026-07-23', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-07', date: '2026-07-17', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'nfp-2026-07', date: '2026-07-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-07', date: '2026-07-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2026-q2-adv', date: '2026-07-30', time: '08:30', title: 'US GDP Q2 (Advance)', category: 'gdp', impact: 'high', description: 'Q2 2026 GDP first estimate' },
+  { id: 'ism-mfg-2026-07', date: '2026-07-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-07', date: '2026-07-06', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-07', date: '2026-07-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-07', date: '2026-07-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-07', date: '2026-07-31', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- AUGUST 2026 ---
+  { id: 'boe-2026-08', date: '2026-08-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-08', date: '2026-08-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-08', date: '2026-08-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'jackson-hole-2026', date: '2026-08-27', title: 'Jackson Hole Symposium', category: 'fomc', impact: 'high', description: 'Fed Chair Powell speech at Jackson Hole' },
+  { id: 'gdp-2026-q2-2nd', date: '2026-08-27', time: '08:30', title: 'US GDP Q2 (Second)', category: 'gdp', impact: 'medium', description: 'Q2 2026 GDP second estimate' },
+  { id: 'ism-mfg-2026-08', date: '2026-08-03', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-08', date: '2026-08-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-08', date: '2026-08-14', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-08', date: '2026-08-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-08', date: '2026-08-28', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- SEPTEMBER 2026 ---
+  { id: 'fomc-2026-09', date: '2026-09-16', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2026-09', date: '2026-09-10', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-09', date: '2026-09-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2026-09', date: '2026-09-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-09', date: '2026-09-04', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-09', date: '2026-09-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'un-ga-2026', date: '2026-09-15', title: 'UN General Assembly', category: 'summit', impact: 'medium', description: 'United Nations General Assembly - New York' },
+  { id: 'gdp-2026-q2-3rd', date: '2026-09-24', time: '08:30', title: 'US GDP Q2 (Final)', category: 'gdp', impact: 'medium', description: 'Q2 2026 GDP final estimate' },
+  { id: 'ism-mfg-2026-09', date: '2026-09-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-09', date: '2026-09-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-09', date: '2026-09-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-09', date: '2026-09-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-09', date: '2026-09-25', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- OCTOBER 2026 ---
+  { id: 'ecb-2026-10', date: '2026-10-29', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-10', date: '2026-10-30', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'nfp-2026-10', date: '2026-10-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-10', date: '2026-10-14', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'gdp-2026-q3-adv', date: '2026-10-29', time: '08:30', title: 'US GDP Q3 (Advance)', category: 'gdp', impact: 'high', description: 'Q3 2026 GDP first estimate' },
+  { id: 'ism-mfg-2026-10', date: '2026-10-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-10', date: '2026-10-05', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-10', date: '2026-10-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-10', date: '2026-10-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-10', date: '2026-10-30', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- NOVEMBER 2026 ---
+  { id: 'fomc-2026-11', date: '2026-11-04', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'us-midterm-2026', date: '2026-11-03', title: 'US Midterm Elections', category: 'election', impact: 'high', description: 'US Congressional midterm elections' },
+  { id: 'boe-2026-11', date: '2026-11-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-11', date: '2026-11-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-11', date: '2026-11-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'g20-2026', date: '2026-11-21', title: 'G20 Summit', category: 'summit', impact: 'medium', description: 'G20 Leaders Summit - Brazil' },
+  { id: 'opec-2026-11', date: '2026-11-25', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
+  { id: 'gdp-2026-q3-2nd', date: '2026-11-25', time: '08:30', title: 'US GDP Q3 (Second)', category: 'gdp', impact: 'medium', description: 'Q3 2026 GDP second estimate' },
+  { id: 'ism-mfg-2026-11', date: '2026-11-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-11', date: '2026-11-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-11', date: '2026-11-13', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-11', date: '2026-11-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-11', date: '2026-11-25', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
+
+  // --- DECEMBER 2026 ---
+  { id: 'fomc-2026-12', date: '2026-12-16', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2026-12', date: '2026-12-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2026-12', date: '2026-12-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
+  { id: 'boe-2026-12', date: '2026-12-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2026-12', date: '2026-12-04', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2026-12', date: '2026-12-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'opec-2026-12', date: '2026-12-03', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ year-end production meeting' },
+  { id: 'gdp-2026-q3-3rd', date: '2026-12-22', time: '08:30', title: 'US GDP Q3 (Final)', category: 'gdp', impact: 'medium', description: 'Q3 2026 GDP final estimate' },
+  { id: 'ism-mfg-2026-12', date: '2026-12-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
+  { id: 'ism-svc-2026-12', date: '2026-12-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
+  { id: 'retail-2026-12', date: '2026-12-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
+  { id: 'ppi-2026-12', date: '2026-12-10', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'pce-2026-12', date: '2026-12-18', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
 ];
 
-// Helper to get events for a date range
+// Helper function to get events within a date range
 export function getEconomicEventsInRange(startDate: Date, endDate: Date): EconomicEvent[] {
+  const start = startDate.toISOString().split('T')[0];
+  const end = endDate.toISOString().split('T')[0];
+  
   return ECONOMIC_CALENDAR_2025_2026.filter(event => {
-    const eventDate = new Date(event.date);
-    return eventDate >= startDate && eventDate <= endDate;
+    return event.date >= start && event.date <= end;
   });
 }
 
-// Helper to get events for a specific date
+// Helper function to get events for a specific date
 export function getEconomicEventsForDate(date: Date): EconomicEvent[] {
   const dateStr = date.toISOString().split('T')[0];
   return ECONOMIC_CALENDAR_2025_2026.filter(event => event.date === dateStr);
 }
 
-// Get icon for category
+// Category icons for UI display
 export function getCategoryIcon(category: EconomicEvent['category']): string {
-  switch (category) {
-    case 'fomc': return '📅';
-    case 'cpi': return '📊';
-    case 'nfp': return '👷';
-    case 'gdp': return '📈';
-    case 'fed_speech': return '🎤';
-    case 'summit': return '🌍';
-    case 'ecb': return '🇪🇺';
-    case 'opec': return '🛢️';
-    case 'election': return '🗳️';
-    case 'boe': return '🇬🇧';
-    case 'boj': return '🇯🇵';
-    default: return '📌';
-  }
+  const icons: Record<EconomicEvent['category'], string> = {
+    fomc: '🏛️',
+    cpi: '📊',
+    nfp: '👥',
+    gdp: '📈',
+    fed_speech: '🎤',
+    summit: '🌍',
+    ecb: '🇪🇺',
+    opec: '🛢️',
+    election: '🗳️',
+    boe: '🇬🇧',
+    boj: '🇯🇵',
+    ism: '🏭',
+    retail: '🛒',
+    pce: '💲',
+    ppi: '🏭',
+    other: '📅'
+  };
+  return icons[category] || '📅';
 }
 
-// Get label for category
+// Category labels for UI display
 export function getCategoryLabel(category: EconomicEvent['category']): string {
-  switch (category) {
-    case 'fomc': return 'FOMC';
-    case 'cpi': return 'CPI';
-    case 'nfp': return 'Jobs Report';
-    case 'gdp': return 'GDP';
-    case 'fed_speech': return 'Fed Speech';
-    case 'summit': return 'Global Summit';
-    case 'ecb': return 'ECB';
-    case 'opec': return 'OPEC+';
-    case 'election': return 'Election';
-    case 'boe': return 'Bank of England';
-    case 'boj': return 'Bank of Japan';
-    default: return 'Other';
-  }
+  const labels: Record<EconomicEvent['category'], string> = {
+    fomc: 'FOMC',
+    cpi: 'CPI',
+    nfp: 'Jobs Report',
+    gdp: 'GDP',
+    fed_speech: 'Fed Speech',
+    summit: 'Summit',
+    ecb: 'ECB',
+    opec: 'OPEC+',
+    election: 'Election',
+    boe: 'Bank of England',
+    boj: 'Bank of Japan',
+    ism: 'ISM PMI',
+    retail: 'Retail Sales',
+    pce: 'PCE Inflation',
+    ppi: 'Producer Prices',
+    other: 'Other'
+  };
+  return labels[category] || 'Other';
 }

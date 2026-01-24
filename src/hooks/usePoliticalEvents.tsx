@@ -17,7 +17,7 @@ export interface PoliticalEvent {
   time?: string;
 }
 
-// Impact-Level Keywords - expanded to include geopolitical events, global summits, and central banks
+// Impact-Level Keywords - expanded to include geopolitical events, global summits, central banks, and economic indicators
 const HIGH_IMPACT_KEYWORDS = [
   'FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 
   'Federal Reserve', 'Fed rate', 'war', 'invasion', 'military', 'sanctions', 
@@ -26,12 +26,15 @@ const HIGH_IMPACT_KEYWORDS = [
   'UN General Assembly', 'BRICS Summit', 'EU Summit',
   'ECB', 'Lagarde', 'European Central Bank', 'OPEC', 'oil production',
   'Bank of England', 'BoE', 'Bailey', 'Bank of Japan', 'BoJ', 'Ueda',
-  'midterm', 'election', 'congress', 'senate'
+  'midterm', 'election', 'congress', 'senate',
+  'PCE', 'Personal Consumption', 'ISM Manufacturing', 'ISM Services',
+  'retail sales', 'consumer spending'
 ];
 const MEDIUM_IMPACT_KEYWORDS = [
-  'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail sales', 
+  'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail', 
   'housing', 'oil', 'China trade', 'tariff', 'stimulus', 'volatility',
-  'VIX', 'selloff', 'rally', 'carry trade', 'yen', 'euro', 'pound'
+  'VIX', 'selloff', 'rally', 'carry trade', 'yen', 'euro', 'pound',
+  'producer prices', 'housing starts', 'building permits', 'PMI'
 ];
 const POLITICAL_KEYWORDS = [
   'Trump', 'Biden', 'policy', 'White House',

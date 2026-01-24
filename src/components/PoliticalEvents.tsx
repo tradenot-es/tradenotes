@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info } from "lucide-react";
+import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home } from "lucide-react";
 import { getCategoryIcon, getCategoryLabel } from "@/lib/economicCalendar";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
@@ -82,6 +82,16 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
         return <Fuel className="h-4 w-4 text-amber-700" />;
       case 'election':
         return <Vote className="h-4 w-4 text-red-600" />;
+      case 'ism':
+        return <Factory className="h-4 w-4 text-slate-600" />;
+      case 'retail':
+        return <ShoppingCart className="h-4 w-4 text-emerald-600" />;
+      case 'pce':
+        return <DollarSign className="h-4 w-4 text-green-700" />;
+      case 'ppi':
+        return <Factory className="h-4 w-4 text-gray-600" />;
+      case 'housing':
+        return <Home className="h-4 w-4 text-teal-600" />;
       default:
         return <Calendar className="h-4 w-4 text-muted-foreground" />;
     }
