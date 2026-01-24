@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
@@ -22,6 +23,7 @@ const defaultPreferences: CookiePreferences = {
 };
 
 export const CookieConsent = () => {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [preferences, setPreferences] = useState<CookiePreferences>(defaultPreferences);
@@ -84,13 +86,12 @@ export const CookieConsent = () => {
           
           <div className="flex-1 space-y-4">
             <div>
-              <h3 className="text-lg font-semibold mb-2">Cookie-Einstellungen</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('cookieConsent.title')}</h3>
               <p className="text-sm text-muted-foreground">
-                Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Notwendige Cookies sind für die 
-                Grundfunktionen der Website erforderlich. Sie können Ihre Einstellungen jederzeit anpassen.
-                Mehr Informationen finden Sie in unserer{' '}
+                {t('cookieConsent.description')}{' '}
+                {t('cookieConsent.moreInfo')}{' '}
                 <Link to="/datenschutz" className="text-primary hover:underline">
-                  Datenschutzerklärung
+                  {t('cookieConsent.privacyPolicy')}
                 </Link>.
               </p>
             </div>
@@ -99,9 +100,11 @@ export const CookieConsent = () => {
               <div className="space-y-4 pt-4 border-t border-border">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label htmlFor="necessary" className="font-medium">Notwendige Cookies</Label>
+                    <Label htmlFor="necessary" className="font-medium">
+                      {t('cookieConsent.necessary.label')}
+                    </Label>
                     <p className="text-xs text-muted-foreground">
-                      Erforderlich für grundlegende Funktionen wie Login und Navigation.
+                      {t('cookieConsent.necessary.description')}
                     </p>
                   </div>
                   <Switch id="necessary" checked={true} disabled />
@@ -109,9 +112,11 @@ export const CookieConsent = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label htmlFor="functional" className="font-medium">Funktionale Cookies</Label>
+                    <Label htmlFor="functional" className="font-medium">
+                      {t('cookieConsent.functional.label')}
+                    </Label>
                     <p className="text-xs text-muted-foreground">
-                      Speichern Ihre Präferenzen wie Sprache und Theme.
+                      {t('cookieConsent.functional.description')}
                     </p>
                   </div>
                   <Switch 
@@ -123,9 +128,11 @@ export const CookieConsent = () => {
 
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label htmlFor="analytics" className="font-medium">Analyse-Cookies</Label>
+                    <Label htmlFor="analytics" className="font-medium">
+                      {t('cookieConsent.analytics.label')}
+                    </Label>
                     <p className="text-xs text-muted-foreground">
-                      Helfen uns zu verstehen, wie Besucher die Website nutzen.
+                      {t('cookieConsent.analytics.description')}
                     </p>
                   </div>
                   <Switch 
@@ -141,10 +148,10 @@ export const CookieConsent = () => {
               {!showDetails ? (
                 <>
                   <Button onClick={acceptAll} className="flex-1 sm:flex-none">
-                    Alle akzeptieren
+                    {t('cookieConsent.acceptAll')}
                   </Button>
                   <Button variant="outline" onClick={acceptNecessary} className="flex-1 sm:flex-none">
-                    Nur notwendige
+                    {t('cookieConsent.acceptNecessary')}
                   </Button>
                   <Button 
                     variant="ghost" 
@@ -152,23 +159,23 @@ export const CookieConsent = () => {
                     className="flex-1 sm:flex-none"
                   >
                     <Settings className="w-4 h-4 mr-2" />
-                    Einstellungen
+                    {t('cookieConsent.settings')}
                   </Button>
                 </>
               ) : (
                 <>
                   <Button onClick={saveCustom} className="flex-1 sm:flex-none">
-                    Auswahl speichern
+                    {t('cookieConsent.saveSelection')}
                   </Button>
                   <Button variant="outline" onClick={acceptAll} className="flex-1 sm:flex-none">
-                    Alle akzeptieren
+                    {t('cookieConsent.acceptAll')}
                   </Button>
                   <Button 
                     variant="ghost" 
                     onClick={() => setShowDetails(false)}
                     className="flex-1 sm:flex-none"
                   >
-                    Zurück
+                    {t('cookieConsent.back')}
                   </Button>
                 </>
               )}

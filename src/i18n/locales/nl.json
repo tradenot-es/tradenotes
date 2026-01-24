@@ -1709,5 +1709,28 @@
     "finalCtaFeatures": "Bekijk alle functies",
     "backToHome": "Terug naar home",
     "readMore": "Meer lezen"
+  },
+  "cookieConsent": {
+    "title": "Cookie-instellingen",
+    "description": "We gebruiken cookies om je ervaring te verbeteren. Noodzakelijke cookies zijn vereist voor basisfunctionaliteit van de website. Je kunt je instellingen op elk moment aanpassen.",
+    "moreInfo": "Voor meer informatie, zie ons",
+    "privacyPolicy": "Privacybeleid",
+    "necessary": {
+      "label": "Noodzakelijke cookies",
+      "description": "Vereist voor basisfuncties zoals inloggen en navigatie."
+    },
+    "functional": {
+      "label": "Functionele cookies",
+      "description": "Slaan je voorkeuren op zoals taal en thema."
+    },
+    "analytics": {
+      "label": "Analytische cookies",
+      "description": "Helpen ons te begrijpen hoe bezoekers de website gebruiken."
+    },
+    "acceptAll": "Alles accepteren",
+    "acceptNecessary": "Alleen noodzakelijke",
+    "settings": "Instellingen",
+    "saveSelection": "Selectie opslaan",
+    "back": "Terug"
   }
 }
