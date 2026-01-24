@@ -88,10 +88,36 @@ export default {
             height: "0",
           },
         },
+        "servo-pulse": {
+          "0%": {
+            transform: "scale(1)",
+            boxShadow: "0 0 20px hsl(158 100% 45% / 0.2), 0 4px 16px hsl(0 0% 0% / 0.15)",
+          },
+          "20%": {
+            transform: "scale(1.015)",
+            boxShadow: "0 0 40px hsl(158 100% 50% / 0.45), 0 0 80px hsl(158 100% 45% / 0.2)",
+          },
+          "100%": {
+            transform: "scale(1)",
+            boxShadow: "0 0 20px hsl(158 100% 45% / 0.2), 0 4px 16px hsl(0 0% 0% / 0.15)",
+          },
+        },
+        "servo-ripple": {
+          "0%": {
+            transform: "scale(1)",
+            opacity: "0.4",
+          },
+          "100%": {
+            transform: "scale(1.4)",
+            opacity: "0",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "servo-pulse": "servo-pulse 1s cubic-bezier(0.22, 0.61, 0.36, 1)",
+        "servo-ripple": "servo-ripple 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
       },
     },
   },
