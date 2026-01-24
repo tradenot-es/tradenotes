@@ -39,7 +39,18 @@
     "terms": "CGV",
     "and": "et",
     "privacy": "Politique de confidentialité",
-    "termsRequired": "Veuillez accepter les CGV et la Politique de confidentialité"
+    "termsRequired": "Veuillez accepter les CGV et la Politique de confidentialité",
+    "captchaRequired": "Veuillez confirmer que vous n'êtes pas un robot",
+    "captchaFailed": "Échec de la vérification captcha. Veuillez réessayer.",
+    "captchaError": "Échec de la vérification. Veuillez réessayer."
+  },
+  "captcha": {
+    "clickToVerify": "Cliquer pour vérifier",
+    "loading": "Chargement du défi...",
+    "verifying": "Vérification en cours...",
+    "verified": "Vérifié !",
+    "error": "Erreur survenue",
+    "clickToRetry": "Cliquer pour réessayer"
   },
   "checkout": {
     "successTitle": "Bienvenue dans Premium !",

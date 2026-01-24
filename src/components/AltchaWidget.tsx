@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Loader2, CheckCircle2, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -19,6 +20,7 @@ interface Challenge {
 type WidgetState = 'idle' | 'loading' | 'solving' | 'verified' | 'error';
 
 export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetProps) => {
+  const { t } = useTranslation();
   const [state, setState] = useState<WidgetState>('idle');
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -35,11 +37,12 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
 
   const solveChallenge = async (challenge: Challenge): Promise<string> => {
     const { salt, algorithm, maxnumber } = challenge;
+    const targetHash = challenge.challenge;
     
-    // Proof of Work: Find a number that produces a hash starting with challenge prefix
+    // ALTCHA v2 PoW: Find number n where SHA-256(salt + n) === challenge
     for (let i = 0; i <= maxnumber; i++) {
-      // Update progress every 1000 iterations
-      if (i % 1000 === 0) {
+      // Update progress every 2000 iterations for smoother UI
+      if (i % 2000 === 0) {
         setProgress(Math.round((i / maxnumber) * 100));
         // Allow UI to update
         await new Promise(resolve => setTimeout(resolve, 0));
@@ -51,10 +54,11 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
       const hashArray = Array.from(new Uint8Array(hashBuffer));
       const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
       
-      if (hashHex.startsWith(challenge.challenge.substring(0, 8))) {
+      // Check if hash matches the challenge exactly
+      if (hashHex === targetHash) {
         // Found solution
         const payload = {
-          challenge: challenge.challenge,
+          challenge: targetHash,
           salt,
           number: i,
           algorithm,
@@ -84,31 +88,38 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
       onVerified(payload);
     } catch (error) {
       setState('error');
-      const message = error instanceof Error ? error.message : 'Verification failed';
+      const message = error instanceof Error ? error.message : t('auth.captchaError');
       setErrorMessage(message);
       onError?.(message);
     }
-  }, [state, onVerified, onError, supabaseUrl]);
+  }, [state, onVerified, onError, supabaseUrl, t]);
 
   const getStatusText = () => {
     switch (state) {
       case 'idle':
-        return 'Klicken zum Verifizieren';
+        return t('captcha.clickToVerify', 'Klicken zum Verifizieren');
       case 'loading':
-        return 'Challenge wird geladen...';
+        return t('captcha.loading', 'Challenge wird geladen...');
       case 'solving':
-        return `Verifizierung läuft... ${progress}%`;
+        return t('captcha.verifying', 'Verifizierung läuft...') + ` ${progress}%`;
       case 'verified':
-        return 'Verifiziert!';
+        return t('captcha.verified', 'Verifiziert!');
       case 'error':
-        return errorMessage || 'Fehler aufgetreten';
+        return errorMessage || t('captcha.error', 'Fehler aufgetreten');
+    }
+  };
+
+  const handleRetry = () => {
+    if (state === 'error') {
+      setState('idle');
+      setErrorMessage(null);
     }
   };
 
   return (
     <button
       type="button"
-      onClick={startVerification}
+      onClick={state === 'error' ? handleRetry : startVerification}
       disabled={state === 'loading' || state === 'solving' || state === 'verified'}
       className={cn(
         'w-full flex items-center gap-3 p-4 rounded-lg border transition-all duration-200',
@@ -116,7 +127,7 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
         state === 'loading' && 'border-border bg-muted/50 cursor-wait',
         state === 'solving' && 'border-primary/50 bg-primary/5 cursor-wait',
         state === 'verified' && 'border-green-500 bg-green-500/10 cursor-default',
-        state === 'error' && 'border-destructive bg-destructive/10 cursor-pointer',
+        state === 'error' && 'border-destructive bg-destructive/10 cursor-pointer hover:bg-destructive/20',
         className
       )}
     >
@@ -150,6 +161,11 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
               style={{ width: `${progress}%` }}
             />
           </div>
+        )}
+        {state === 'error' && (
+          <p className="text-xs text-muted-foreground mt-1">
+            {t('captcha.clickToRetry', 'Klicken zum erneuten Versuch')}
+          </p>
         )}
       </div>
 

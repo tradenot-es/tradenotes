@@ -39,7 +39,18 @@
     "terms": "Algemene voorwaarden",
     "and": "en",
     "privacy": "Privacybeleid",
-    "termsRequired": "Accepteer de Algemene voorwaarden en het Privacybeleid"
+    "termsRequired": "Accepteer de Algemene voorwaarden en het Privacybeleid",
+    "captchaRequired": "Bevestig dat je geen robot bent",
+    "captchaFailed": "Captcha-verificatie mislukt. Probeer het opnieuw.",
+    "captchaError": "Verificatie mislukt. Probeer het opnieuw."
+  },
+  "captcha": {
+    "clickToVerify": "Klik om te verifiëren",
+    "loading": "Challenge wordt geladen...",
+    "verifying": "Verifiëren...",
+    "verified": "Geverifieerd!",
+    "error": "Fout opgetreden",
+    "clickToRetry": "Klik om opnieuw te proberen"
   },
   "checkout": {
     "successTitle": "Welkom bij Premium!",

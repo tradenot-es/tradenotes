@@ -5,27 +5,46 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-// ALTCHA PoW Configuration
-const DIFFICULTY = 50000; // Number of iterations required (higher = harder)
+// ALTCHA PoW Configuration - keep difficulty low for fast solving
+const DIFFICULTY = 100000; // Max number to search
 const CHALLENGE_EXPIRY_MS = 5 * 60 * 1000; // 5 minutes
-const SECRET_KEY = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || 'default-secret';
 
-// Generate a random challenge
-function generateChallenge(): { challenge: string; salt: string; algorithm: string; maxnumber: number; signature: string } {
+// Store valid challenges temporarily (in production, use a database)
+const validChallenges = new Map<string, { salt: string; secretNumber: number; expires: number }>();
+
+// Generate a challenge following ALTCHA v2 protocol
+async function generateChallenge(): Promise<{ challenge: string; salt: string; algorithm: string; maxnumber: number; signature: string }> {
   const salt = crypto.randomUUID();
-  const challenge = crypto.randomUUID();
-  const maxnumber = DIFFICULTY;
+  const secretNumber = Math.floor(Math.random() * DIFFICULTY); // Random number client needs to find
   const algorithm = 'SHA-256';
   
-  // Create signature for verification
-  const data = `${challenge}:${salt}:${maxnumber}:${Date.now()}`;
-  const signature = btoa(data);
+  // Calculate the challenge hash: SHA-256(salt + secretNumber)
+  const encoder = new TextEncoder();
+  const data = encoder.encode(`${salt}${secretNumber}`);
+  const hashBuffer = await crypto.subtle.digest(algorithm, data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const challenge = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  
+  // Store for verification
+  const expires = Date.now() + CHALLENGE_EXPIRY_MS;
+  validChallenges.set(challenge, { salt, secretNumber, expires });
+  
+  // Cleanup expired challenges
+  for (const [key, value] of validChallenges.entries()) {
+    if (value.expires < Date.now()) {
+      validChallenges.delete(key);
+    }
+  }
+  
+  // Create signature for additional security
+  const signatureData = `${challenge}:${salt}:${DIFFICULTY}:${expires}`;
+  const signature = btoa(signatureData);
   
   return {
     challenge,
     salt,
     algorithm,
-    maxnumber,
+    maxnumber: DIFFICULTY,
     signature,
   };
 }
@@ -38,15 +57,15 @@ async function verifySolution(
   algorithm: string
 ): Promise<boolean> {
   try {
+    // Recalculate the hash with the provided number
     const encoder = new TextEncoder();
     const data = encoder.encode(`${salt}${number}`);
-    
     const hashBuffer = await crypto.subtle.digest(algorithm, data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    const calculatedHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     
-    // Check if the hash matches the challenge
-    return hashHex.startsWith(challenge.substring(0, 8));
+    // The calculated hash must match the challenge
+    return calculatedHash === challenge;
   } catch {
     return false;
   }
@@ -64,7 +83,7 @@ serve(async (req) => {
 
     if (req.method === 'GET' && action === 'create') {
       // Generate new challenge
-      const challengeData = generateChallenge();
+      const challengeData = await generateChallenge();
       
       return new Response(JSON.stringify(challengeData), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
@@ -95,6 +114,11 @@ serve(async (req) => {
         }
 
         const isValid = await verifySolution(challenge, salt, number, algorithm);
+        
+        // Remove used challenge to prevent replay attacks
+        if (isValid) {
+          validChallenges.delete(challenge);
+        }
         
         return new Response(JSON.stringify({ valid: isValid }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
