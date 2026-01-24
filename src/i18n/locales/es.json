@@ -1709,5 +1709,28 @@
     "finalCtaFeatures": "Ver todas las funciones",
     "backToHome": "Volver al inicio",
     "readMore": "Saber más"
+  },
+  "cookieConsent": {
+    "title": "Configuración de cookies",
+    "description": "Usamos cookies para mejorar tu experiencia. Las cookies necesarias son requeridas para la funcionalidad básica del sitio. Puedes ajustar tu configuración en cualquier momento.",
+    "moreInfo": "Para más información, consulta nuestra",
+    "privacyPolicy": "Política de privacidad",
+    "necessary": {
+      "label": "Cookies necesarias",
+      "description": "Requeridas para funciones básicas como inicio de sesión y navegación."
+    },
+    "functional": {
+      "label": "Cookies funcionales",
+      "description": "Almacenan tus preferencias como idioma y tema."
+    },
+    "analytics": {
+      "label": "Cookies analíticas",
+      "description": "Nos ayudan a entender cómo los visitantes usan el sitio."
+    },
+    "acceptAll": "Aceptar todas",
+    "acceptNecessary": "Solo necesarias",
+    "settings": "Configuración",
+    "saveSelection": "Guardar selección",
+    "back": "Volver"
   }
 }

@@ -1902,5 +1902,28 @@
     "finalCtaFeatures": "View all features",
     "backToHome": "Back to homepage",
     "readMore": "Learn more"
+  },
+  "cookieConsent": {
+    "title": "Cookie Settings",
+    "description": "We use cookies to improve your experience. Necessary cookies are required for basic website functionality. You can adjust your settings at any time.",
+    "moreInfo": "For more information, please see our",
+    "privacyPolicy": "Privacy Policy",
+    "necessary": {
+      "label": "Necessary Cookies",
+      "description": "Required for basic functions like login and navigation."
+    },
+    "functional": {
+      "label": "Functional Cookies",
+      "description": "Store your preferences like language and theme."
+    },
+    "analytics": {
+      "label": "Analytics Cookies",
+      "description": "Help us understand how visitors use the website."
+    },
+    "acceptAll": "Accept All",
+    "acceptNecessary": "Necessary Only",
+    "settings": "Settings",
+    "saveSelection": "Save Selection",
+    "back": "Back"
   }
 }
