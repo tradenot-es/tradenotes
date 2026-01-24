@@ -1,9 +1,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 interface GlossaryTerm {
   id: string;
@@ -16,9 +18,10 @@ interface GlossaryTerm {
 export default function Glossary() {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeLetter, setActiveLetter] = useState<string | null>(null);
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
   useEffect(() => {
-    // Scroll to anchor on mount and when hash changes
     const hash = window.location.hash;
     if (hash) {
       setTimeout(() => {
@@ -249,7 +252,6 @@ export default function Glossary() {
     
     const query = searchQuery.toLowerCase().trim();
     
-    // Filter matching terms
     const matchingTerms = terms.filter(term => 
       term.term.toLowerCase().includes(query) ||
       term.definition.toLowerCase().includes(query) ||
@@ -257,33 +259,80 @@ export default function Glossary() {
       (term.example && term.example.toLowerCase().includes(query))
     );
     
-    // Sort by relevance: exact match > starts with > contains in term > contains elsewhere
     return matchingTerms.sort((a, b) => {
       const aTermLower = a.term.toLowerCase();
       const bTermLower = b.term.toLowerCase();
       
-      // Priority 1: Exact term match
       const aExact = aTermLower === query;
       const bExact = bTermLower === query;
       if (aExact && !bExact) return -1;
       if (bExact && !aExact) return 1;
       
-      // Priority 2: Term starts with query
       const aStarts = aTermLower.startsWith(query);
       const bStarts = bTermLower.startsWith(query);
       if (aStarts && !bStarts) return -1;
       if (bStarts && !aStarts) return 1;
       
-      // Priority 3: Term contains query
       const aContains = aTermLower.includes(query);
       const bContains = bTermLower.includes(query);
       if (aContains && !bContains) return -1;
       if (bContains && !aContains) return 1;
       
-      // Priority 4: Alphabetical fallback
       return aTermLower.localeCompare(bTermLower);
     });
   }, [terms, searchQuery]);
+
+  // Group terms by first letter
+  const groupedTerms = useMemo(() => {
+    const groups: Record<string, GlossaryTerm[]> = {};
+    
+    filteredTerms.forEach(term => {
+      const firstLetter = term.term.charAt(0).toUpperCase();
+      if (!groups[firstLetter]) {
+        groups[firstLetter] = [];
+      }
+      groups[firstLetter].push(term);
+    });
+    
+    return groups;
+  }, [filteredTerms]);
+
+  // Get all available letters
+  const availableLetters = useMemo(() => {
+    return Object.keys(groupedTerms).sort();
+  }, [groupedTerms]);
+
+  // All alphabet letters
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+  const scrollToLetter = (letter: string) => {
+    const section = sectionRefs.current[letter];
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveLetter(letter);
+    }
+  };
+
+  // Update active letter on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 200;
+      
+      for (const letter of availableLetters) {
+        const section = sectionRefs.current[letter];
+        if (section) {
+          const { offsetTop, offsetHeight } = section;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveLetter(letter);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [availableLetters]);
 
   return (
     <div className="space-y-6 p-2">
@@ -292,56 +341,112 @@ export default function Glossary() {
         subtitle={t("glossary.subtitle")}
       />
 
-      <div className="relative max-w-md">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder={t("glossary.searchPlaceholder")}
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="pl-10"
-        />
+      {/* Search and A-Z Navigation */}
+      <div className="space-y-4">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder={t("glossary.searchPlaceholder")}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+
+        {/* A-Z Navigation Bar */}
+        {!searchQuery && (
+          <div className="flex flex-wrap gap-1 p-2 bg-muted/30 rounded-lg border">
+            {alphabet.map(letter => {
+              const hasTerms = availableLetters.includes(letter);
+              return (
+                <Button
+                  key={letter}
+                  variant={activeLetter === letter ? "default" : "ghost"}
+                  size="sm"
+                  className={cn(
+                    "w-8 h-8 p-0 text-sm font-medium",
+                    !hasTerms && "opacity-30 cursor-not-allowed"
+                  )}
+                  disabled={!hasTerms}
+                  onClick={() => hasTerms && scrollToLetter(letter)}
+                >
+                  {letter}
+                </Button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      <div className="space-y-4">
+      {/* Grouped Terms */}
+      <div className="space-y-8">
         {filteredTerms.length === 0 ? (
           <p className="text-muted-foreground text-center py-8">
             {t("glossary.noResults")}
           </p>
+        ) : searchQuery ? (
+          // Show flat list when searching
+          <div className="space-y-4">
+            {filteredTerms.map((term) => (
+              <GlossaryCard key={term.id} term={term} t={t} />
+            ))}
+          </div>
         ) : (
-          filteredTerms.map((term) => (
-            <Card key={term.id} id={term.id} className="scroll-mt-20">
-              <CardHeader>
-                <CardTitle className="text-2xl">{term.term}</CardTitle>
-                <CardDescription className="text-base">
-                  {term.definition}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {term.formula && (
-                  <div>
-                    <p className="font-semibold text-sm text-muted-foreground mb-1">
-                      {t("glossary.formula")}:
-                    </p>
-                    <code className="block bg-muted p-3 rounded-md font-mono text-sm">
-                      {term.formula}
-                    </code>
-                  </div>
-                )}
-                {term.example && (
-                  <div>
-                    <p className="font-semibold text-sm text-muted-foreground mb-1">
-                      {t("glossary.example")}:
-                    </p>
-                    <p className="text-sm bg-muted/50 p-3 rounded-md">
-                      {term.example}
-                    </p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+          // Show grouped by letter when not searching
+          availableLetters.map(letter => (
+            <div
+              key={letter}
+              ref={(el) => (sectionRefs.current[letter] = el)}
+              className="scroll-mt-32"
+            >
+              <h2 className="text-2xl font-bold text-primary mb-4 sticky top-16 bg-background/95 backdrop-blur-sm py-2 z-10 border-b">
+                {letter}
+              </h2>
+              <div className="space-y-4">
+                {groupedTerms[letter].map((term) => (
+                  <GlossaryCard key={term.id} term={term} t={t} />
+                ))}
+              </div>
+            </div>
           ))
         )}
       </div>
     </div>
+  );
+}
+
+// Extracted Card component for cleaner code
+function GlossaryCard({ term, t }: { term: GlossaryTerm; t: (key: string) => string }) {
+  return (
+    <Card id={term.id} className="scroll-mt-20">
+      <CardHeader>
+        <CardTitle className="text-2xl">{term.term}</CardTitle>
+        <CardDescription className="text-base">
+          {term.definition}
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {term.formula && (
+          <div>
+            <p className="font-semibold text-sm text-muted-foreground mb-1">
+              {t("glossary.formula")}:
+            </p>
+            <code className="block bg-muted p-3 rounded-md font-mono text-sm">
+              {term.formula}
+            </code>
+          </div>
+        )}
+        {term.example && (
+          <div>
+            <p className="font-semibold text-sm text-muted-foreground mb-1">
+              {t("glossary.example")}:
+            </p>
+            <p className="text-sm bg-muted/50 p-3 rounded-md">
+              {term.example}
+            </p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }
