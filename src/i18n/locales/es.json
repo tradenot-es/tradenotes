@@ -39,7 +39,18 @@
     "terms": "Términos de servicio",
     "and": "y",
     "privacy": "Política de privacidad",
-    "termsRequired": "Por favor acepta los Términos de servicio y la Política de privacidad"
+    "termsRequired": "Por favor acepta los Términos de servicio y la Política de privacidad",
+    "captchaRequired": "Por favor confirma que no eres un robot",
+    "captchaFailed": "Falló la verificación del captcha. Por favor inténtalo de nuevo.",
+    "captchaError": "Falló la verificación. Por favor inténtalo de nuevo."
+  },
+  "captcha": {
+    "clickToVerify": "Clic para verificar",
+    "loading": "Cargando desafío...",
+    "verifying": "Verificando...",
+    "verified": "¡Verificado!",
+    "error": "Error ocurrido",
+    "clickToRetry": "Clic para reintentar"
   },
   "checkout": {
     "successTitle": "¡Bienvenido a Premium!",

@@ -43,6 +43,14 @@
     "captchaFailed": "Captcha verification failed. Please try again.",
     "captchaError": "Verification failed. Please try again."
   },
+  "captcha": {
+    "clickToVerify": "Click to verify",
+    "loading": "Loading challenge...",
+    "verifying": "Verifying...",
+    "verified": "Verified!",
+    "error": "Error occurred",
+    "clickToRetry": "Click to retry"
+  },
   "checkout": {
     "successTitle": "Welcome to Premium!",
     "successDescription": "Your payment was successful. Your Premium access is now active.",

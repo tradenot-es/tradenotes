@@ -38,7 +38,18 @@
     "terms": "Termini di servizio",
     "and": "e",
     "privacy": "Informativa sulla privacy",
-    "termsRequired": "Accetta i Termini di servizio e l'Informativa sulla privacy"
+    "termsRequired": "Accetta i Termini di servizio e l'Informativa sulla privacy",
+    "captchaRequired": "Conferma di non essere un robot",
+    "captchaFailed": "Verifica captcha fallita. Riprova.",
+    "captchaError": "Verifica fallita. Riprova."
+  },
+  "captcha": {
+    "clickToVerify": "Clicca per verificare",
+    "loading": "Caricamento sfida...",
+    "verifying": "Verifica in corso...",
+    "verified": "Verificato!",
+    "error": "Si è verificato un errore",
+    "clickToRetry": "Clicca per riprovare"
   },
   "checkout": {
     "successTitle": "Benvenuto in Premium!",
