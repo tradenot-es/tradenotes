@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Server, Lock, Eye, FileText, CheckCircle2 } from "lucide-react";
@@ -302,6 +303,7 @@ const Datenschutz = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

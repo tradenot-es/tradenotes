@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Building2, Mail, Globe, Scale, AlertCircle } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -115,6 +116,7 @@ const Impressum = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, AlertCircle, Clock, Activity } from "lucide-react";
@@ -167,6 +168,7 @@ const Status = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

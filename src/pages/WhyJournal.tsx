@@ -5,7 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
-import { 
+import { Footer } from "@/components/Footer";
+import {
   TrendingUp, 
   Brain, 
   Target, 
@@ -359,12 +360,7 @@ const WhyJournal = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center text-sm text-muted-foreground">
-          <Link to="/" className="hover:text-primary">← {t("whyJournal.backToHome")}</Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
