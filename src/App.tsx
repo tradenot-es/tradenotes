@@ -8,6 +8,7 @@ import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { CookieConsent } from "./components/CookieConsent";
+import { featureFlags } from "./config/featureFlags";
 import Landing from "./pages/Landing";
 import PreLaunch from "./pages/PreLaunch";
 import Index from "./pages/Index";
@@ -31,17 +32,10 @@ import WhyJournal from "./pages/WhyJournal";
 
 const queryClient = new QueryClient();
 
-// Conditional Home Route based on environment variables
+// Conditional Home Route based on feature flags
 const HomeRoute = () => {
-  const isPrelaunch = import.meta.env.VITE_PRELAUNCH_MODE === 'true';
-  const isMaintenance = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
-  
-  // Debug logging
-  console.log('VITE_PRELAUNCH_MODE:', import.meta.env.VITE_PRELAUNCH_MODE);
-  console.log('isPrelaunch:', isPrelaunch);
-  
-  if (isMaintenance) return <PreLaunch mode="maintenance" />;
-  if (isPrelaunch) return <PreLaunch mode="prelaunch" />;
+  if (featureFlags.MAINTENANCE_MODE) return <PreLaunch mode="maintenance" />;
+  if (featureFlags.PRELAUNCH_MODE) return <PreLaunch mode="prelaunch" />;
   return <Landing />;
 };
 
