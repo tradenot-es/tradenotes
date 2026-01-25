@@ -3,7 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.png" type="image/png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <script>
+      // Override any injected viewport restrictions for WCAG compliance
+      (function() {
+        var meta = document.querySelector('meta[name="viewport"]');
+        if (meta) {
+          meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+        }
+        // Observer to catch and fix any later injections
+        new MutationObserver(function(mutations) {
+          mutations.forEach(function(m) {
+            m.addedNodes.forEach(function(node) {
+              if (node.nodeName === 'META' && node.getAttribute('name') === 'viewport') {
+                var content = node.getAttribute('content') || '';
+                if (content.includes('user-scalable=no') || content.includes('maximum-scale=1')) {
+                  node.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+                }
+              }
+            });
+          });
+        }).observe(document.head, { childList: true });
+      })();
+    </script>
     <title>Trading Journal für profitable Trader | TradeNot.es</title>
     <meta name="description" content="92% der profitablen Daytrader führen ein Trading Journal. TradeNot.es: Muster erkennen, Disziplin stärken, Performance messen mit 20+ KPIs, AI-Analyse & Equity Curve." />
     <meta name="keywords" content="Trading Journal, Trading Tagebuch, Daytrading, Performance Tracking, Equity Curve, R-Multiple, Win Rate, Trading Analytics, Trade Dokumentation" />
