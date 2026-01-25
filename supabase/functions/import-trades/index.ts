@@ -1,10 +1,35 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.1";
 
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-api-key',
-};
+// Allowed origins for CORS - includes webhook sources
+const ALLOWED_ORIGINS = [
+  "https://tradenot.es",
+  "https://www.tradenot.es",
+  "http://localhost:5173",
+  "http://localhost:3000",
+];
+
+// Special handling for import-trades: Allow requests without Origin header (webhooks from desktop apps)
+function getCorsHeaders(req: Request): Record<string, string> {
+  const origin = req.headers.get("Origin") || "";
+  
+  // If no Origin header (e.g., from NinjaTrader desktop app), allow the request
+  if (!origin) {
+    return {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-api-key",
+    };
+  }
+  
+  const isAllowed = ALLOWED_ORIGINS.some(allowed => origin.startsWith(allowed)) || 
+                   origin.includes(".lovableproject.com") || 
+                   origin.includes(".lovable.app");
+  
+  return {
+    "Access-Control-Allow-Origin": isAllowed ? origin : ALLOWED_ORIGINS[0],
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-api-key",
+  };
+}
 
 interface TradingViewAlert {
   symbol: string;
@@ -116,6 +141,8 @@ function calculatePnL(
 }
 
 serve(async (req) => {
+  const corsHeaders = getCorsHeaders(req);
+  
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
