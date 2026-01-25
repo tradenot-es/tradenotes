@@ -207,7 +207,7 @@ const Auth = () => {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
-            <Link to="/">
+            <Link to="/" aria-label="TradeNotes Home">
               <img 
                 src={logo} 
                 alt="TradeNotes" 
@@ -261,7 +261,7 @@ const Auth = () => {
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md space-y-6">
           <div className="flex flex-col items-center mb-2">
-            <Link to="/">
+            <Link to="/" aria-label="TradeNotes Home">
               <img 
                 src={logo} 
                 alt="TradeNotes" 
@@ -324,7 +324,7 @@ const Auth = () => {
       <div className="w-full max-w-md space-y-6">
         {/* Logo and Slogan */}
         <div className="flex flex-col items-center mb-2">
-          <Link to="/">
+          <Link to="/" aria-label="TradeNotes Home">
             <img 
               src={logo} 
               alt="TradeNotes" 
