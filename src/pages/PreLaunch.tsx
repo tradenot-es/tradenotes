@@ -256,21 +256,13 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
           </div>
         )}
 
-        {/* Beta Login & Status Links */}
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <Link to="/auth">
-            <Button variant="outline" size="sm" className="gap-2">
-              <LogIn className="h-4 w-4" />
-              {t("prelaunch.betaLogin", "Beta Login")}
-            </Button>
-          </Link>
-          <a 
-            href="/status" 
-            className="text-muted-foreground hover:text-primary text-sm transition-colors underline-offset-4 hover:underline"
-          >
-            {t("prelaunch.statusLink")}
-          </a>
-        </div>
+        {/* Beta Login Link */}
+        <Link to="/auth">
+          <Button variant="outline" size="sm" className="gap-2">
+            <LogIn className="h-4 w-4" />
+            {t("prelaunch.betaLogin", "Beta Login")}
+          </Button>
+        </Link>
 
         {/* HUD Decorative Lines */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
