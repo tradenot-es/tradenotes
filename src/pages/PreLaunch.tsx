@@ -9,7 +9,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { Loader2, CheckCircle2, AlertCircle, Wrench, LogIn } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import logo from "@/assets/tradenotes-logo-optimized.webp";
 
 interface PreLaunchProps {
   mode: "prelaunch" | "maintenance";
@@ -156,6 +156,9 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
           <img 
             src={logo} 
             alt="TradeNot.es" 
+            width={112}
+            height={112}
+            fetchPriority="high"
             className="h-20 md:h-28 w-auto drop-shadow-[0_0_30px_hsl(158,100%,45%,0.4)]"
           />
         </div>

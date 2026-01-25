@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { z } from "zod";
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import logo from "@/assets/tradenotes-logo-optimized.webp";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { ArrowLeft } from "lucide-react";
 
@@ -161,6 +161,8 @@ const Auth = () => {
               <img 
                 src={logo} 
                 alt="TradeNotes" 
+                width={224}
+                height={224}
                 className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
               />
             </Link>
@@ -215,6 +217,8 @@ const Auth = () => {
               <img 
                 src={logo} 
                 alt="TradeNotes" 
+                width={224}
+                height={224}
                 className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
               />
             </Link>
@@ -278,6 +282,8 @@ const Auth = () => {
             <img 
               src={logo} 
               alt="TradeNotes" 
+              width={224}
+              height={224}
               className="h-56 w-auto mb-4 drop-shadow-[0_0_25px_hsl(158,100%,45%,0.5)] hover:scale-105 transition-transform cursor-pointer hue-rotate-[30deg] brightness-110" 
             />
           </Link>
