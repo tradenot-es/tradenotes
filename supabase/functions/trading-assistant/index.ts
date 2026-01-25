@@ -47,17 +47,52 @@ serve(async (req) => {
       .replace(/[\r\n\t]+/g, ' ')
       .substring(0, 500);
 
-    // Content filtering for prompt injection
+    // Enhanced content filtering for prompt injection
     const suspiciousPatterns = [
-      /ignore.{0,30}previous/i,
+      // Direct injection attempts
+      /ignore.{0,50}(previous|above|instruction|system)/i,
       /system.{0,30}prompt/i,
       /admin.{0,30}mode/i,
-      /reveal.{0,30}(instructions|prompt)/i,
+      /reveal.{0,30}(instructions|prompt|system|context)/i,
       /pretend.{0,30}you.{0,30}are/i,
-      /disregard.{0,30}(above|previous)/i,
+      /disregard.{0,30}(above|previous|instruction)/i,
+      // Role manipulation
+      /you.{0,20}(are|will be).{0,20}(now|from now)/i,
+      /act.{0,20}as.{0,20}(if|though)/i,
+      /new.{0,20}(persona|identity|role)/i,
+      // Context escape attempts
+      /forget.{0,30}(everything|all|above)/i,
+      /override.{0,20}(instruction|rule|setting)/i,
+      /bypass.{0,20}(filter|security|restriction)/i,
+      // Data extraction attempts
+      /what.{0,30}(are|is).{0,30}(your|system).{0,20}(instruction|prompt|rule)/i,
+      /tell.{0,20}me.{0,20}(your|the).{0,20}(instruction|prompt|rule)/i,
+      /repeat.{0,30}(instruction|prompt|system)/i,
+      /output.{0,20}(everything|all|instruction)/i,
+      // Delimiter injection
+      /\[\[.{0,50}\]\]/i,
+      /\{\{.{0,50}\}\}/i,
+      /<<<.{0,50}>>>/i,
+      // Unicode normalization bypass attempts (common tricks)
+      /[\u200B-\u200D\uFEFF]/,
+      // Multi-language injection keywords
+      /(vergiss|oublie|olvida|dimentica).{0,30}(alles|tout|todo|tutto)/i,
     ];
 
+    // Check for suspicious patterns
     if (suspiciousPatterns.some(p => p.test(sanitizedQuestion))) {
+      console.log('Prompt injection attempt detected from user:', user.id);
+      throw new Error('Question contains prohibited content');
+    }
+
+    // Additional semantic checks for suspicious question structures
+    const suspiciousKeywords = [
+      'jailbreak', 'dan mode', 'developer mode', 'sudo', 'root access',
+      'base64', 'hex encode', 'rot13', 'encoded instruction'
+    ];
+    const lowerQuestion = sanitizedQuestion.toLowerCase();
+    if (suspiciousKeywords.some(kw => lowerQuestion.includes(kw))) {
+      console.log('Suspicious keyword detected from user:', user.id);
       throw new Error('Question contains prohibited content');
     }
 
@@ -225,7 +260,23 @@ Anweisungen:
     }
 
     const aiData = await aiResponse.json();
-    const answer = aiData.choices[0].message.content;
+    let answer = aiData.choices[0].message.content;
+
+    // Output validation: Check if AI response leaked system prompt or instructions
+    const leakedPatterns = [
+      /verfügbare performance-daten/i,
+      /du bist ein professioneller trading-analyst/i,
+      /anweisungen:/i,
+      /system.?prompt/i,
+      /hier (sind|ist) (meine|die) (anweisung|instruktion)/i,
+      /als ki.{0,20}(assistent|modell)/i,
+      /meine (programmierung|konfiguration)/i,
+    ];
+    
+    if (leakedPatterns.some(p => p.test(answer))) {
+      console.log('Potential system prompt leak detected, sanitizing response');
+      answer = 'Ich kann diese Frage leider nicht beantworten. Bitte stelle eine Frage zu deiner Trading-Performance. 📊';
+    }
 
     console.log('AI response received, saving to database...');
 
