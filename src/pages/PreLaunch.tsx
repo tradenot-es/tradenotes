@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { AttentionCTA } from "@/components/AttentionCTA";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { AltchaWidget } from "@/components/AltchaWidget";
 import { Loader2, CheckCircle2, AlertCircle, Wrench } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/tradenotes-logo-new-transparent.png";
@@ -19,6 +20,7 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [errorKey, setErrorKey] = useState<string>("");
+  const [captchaPayload, setCaptchaPayload] = useState<string | null>(null);
 
   // SEO Meta Tags
   useEffect(() => {
@@ -62,6 +64,10 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
     return regex.test(email) && email.length <= 255;
   };
 
+  const handleCaptchaVerified = (payload: string) => {
+    setCaptchaPayload(payload);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -73,12 +79,18 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
       return;
     }
 
+    if (!captchaPayload) {
+      setStatus("error");
+      setErrorKey("prelaunch.errorCaptcha");
+      return;
+    }
+
     setIsLoading(true);
     setStatus("idle");
 
     try {
       const { data, error } = await supabase.functions.invoke("join-waitlist", {
-        body: { email: trimmedEmail }
+        body: { email: trimmedEmail, captcha: captchaPayload }
       });
 
       if (error) {
@@ -105,6 +117,7 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
 
       setStatus("success");
       setEmail("");
+      setCaptchaPayload(null);
     } catch (error) {
       console.error("Waitlist error:", error);
       setStatus("error");
@@ -217,6 +230,12 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
                     </Button>
                   </AttentionCTA>
                 </div>
+
+                {/* ALTCHA Captcha */}
+                <AltchaWidget 
+                  onVerified={handleCaptchaVerified}
+                  onError={() => setCaptchaPayload(null)}
+                />
 
                 {status === "error" && (
                   <div className="flex items-center gap-2 text-destructive text-sm">

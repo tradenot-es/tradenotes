@@ -1858,6 +1858,7 @@
     "errorDuplicate": "Este correo electrónico ya está registrado.",
     "errorRateLimit": "Demasiadas solicitudes. Por favor, inténtalo más tarde.",
     "errorGeneric": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+    "errorCaptcha": "Por favor, completa el captcha primero.",
     "maintenance": {
       "badge": "MANTENIMIENTO",
       "headline": "Breve mantenimiento",

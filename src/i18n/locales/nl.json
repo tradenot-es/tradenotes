@@ -1858,6 +1858,7 @@
     "errorDuplicate": "Dit e-mailadres is al geregistreerd.",
     "errorRateLimit": "Te veel verzoeken. Probeer het later opnieuw.",
     "errorGeneric": "Er is een fout opgetreden. Probeer het opnieuw.",
+    "errorCaptcha": "Voltooi eerst de captcha.",
     "maintenance": {
       "badge": "ONDERHOUD",
       "headline": "Kort onderhoud",
