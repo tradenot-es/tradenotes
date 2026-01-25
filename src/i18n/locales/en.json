@@ -41,7 +41,11 @@
     "termsRequired": "Please accept the Terms of Service and Privacy Policy",
     "captchaRequired": "Please confirm that you are not a robot",
     "captchaFailed": "Captcha verification failed. Please try again.",
-    "captchaError": "Verification failed. Please try again."
+    "captchaError": "Verification failed. Please try again.",
+    "betaLoginTitle": "Beta Login",
+    "betaLoginDesc": "Login for Private Beta Testers",
+    "needAccess": "Need beta access?",
+    "joinWaitlist": "Join waitlist"
   },
   "captcha": {
     "clickToVerify": "Click to verify",

@@ -6,27 +6,24 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
 import logo from "@/assets/tradenotes-logo-new-transparent.png";
 import { AltchaWidget } from "@/components/AltchaWidget";
+import { ArrowLeft } from "lucide-react";
 
 const Auth = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const isPasswordReset = searchParams.get("reset") === "true";
   
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
   const [forgotPasswordAltchaPayload, setForgotPasswordAltchaPayload] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -48,7 +45,7 @@ const Auth = () => {
     });
   }, [navigate]);
 
-  const handleAuth = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
 
@@ -64,63 +61,16 @@ const Auth = () => {
       return;
     }
 
-    // Check terms acceptance for registration
-    if (!isLogin && !acceptedTerms) {
-      toast.error(t("auth.termsRequired"));
-      return;
-    }
-
-    // Verify ALTCHA for registration
-    if (!isLogin && !altchaPayload) {
-      toast.error(t("auth.captchaRequired") || "Bitte bestätigen Sie, dass Sie kein Roboter sind.");
-      return;
-    }
-
     setLoading(true);
 
-    // Verify ALTCHA on backend for registration
-    if (!isLogin && altchaPayload) {
-      try {
-        const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
-          body: { payload: altchaPayload },
-          method: 'POST',
-        });
-
-        if (!verifyResult?.valid) {
-          toast.error(t("auth.captchaFailed") || "Captcha-Verifizierung fehlgeschlagen.");
-          setLoading(false);
-          setAltchaPayload(null);
-          return;
-        }
-      } catch {
-        toast.error(t("auth.captchaError") || "Verifizierung fehlgeschlagen.");
-        setLoading(false);
-        return;
-      }
-    }
-
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
-        toast.success(t("auth.loginSuccess"));
-        navigate("/dashboard");
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/dashboard`,
-          },
-        });
-        if (error) throw error;
-        toast.success(t("auth.accountCreated"));
-        setIsLogin(true);
-        setAltchaPayload(null);
-      }
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (error) throw error;
+      toast.success(t("auth.loginSuccess"));
+      navigate("/dashboard");
     } catch (error: any) {
       toast.error(error.message || t("auth.error"));
     } finally {
@@ -336,13 +286,13 @@ const Auth = () => {
         
         <Card>
           <CardHeader>
-            <CardTitle>{isLogin ? t("auth.login") : t("auth.register")}</CardTitle>
+            <CardTitle>{t("auth.betaLoginTitle", "Beta Login")}</CardTitle>
             <CardDescription>
-              {isLogin ? t("auth.loginDesc") : t("auth.registerDesc")}
+              {t("auth.betaLoginDesc", "Login für Private Beta Tester")}
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleAuth} className="space-y-4">
+            <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">{t("auth.email")}</Label>
                 <Input
@@ -376,54 +326,32 @@ const Auth = () => {
                 )}
               </div>
               
-              {/* Forgot Password Link - only in login mode */}
-              {isLogin && (
-                <button
-                  type="button"
-                  className="text-sm text-primary hover:underline"
-                  onClick={() => setShowForgotPassword(true)}
-                >
-                  {t("auth.forgotPassword")}
-                </button>
-              )}
-              
-              {/* Terms Checkbox - only in register mode */}
-              {!isLogin && (
-                <>
-                  <div className="flex items-start gap-2">
-                    <Checkbox
-                      id="terms"
-                      checked={acceptedTerms}
-                      onCheckedChange={(checked) => setAcceptedTerms(checked === true)}
-                      className="mt-1"
-                    />
-                    <label htmlFor="terms" className="text-sm text-muted-foreground leading-tight">
-                      {t("auth.acceptTerms")}{" "}
-                      <Link to="/agb" className="text-primary hover:underline">{t("auth.terms")}</Link>
-                      {" "}{t("auth.and")}{" "}
-                      <Link to="/datenschutz" className="text-primary hover:underline">{t("auth.privacy")}</Link>
-                    </label>
-                  </div>
-                  
-                  <AltchaWidget 
-                    onVerified={setAltchaPayload}
-                    onError={() => setAltchaPayload(null)}
-                  />
-                </>
-              )}
+              <button
+                type="button"
+                className="text-sm text-primary hover:underline"
+                onClick={() => setShowForgotPassword(true)}
+              >
+                {t("auth.forgotPassword")}
+              </button>
               
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? t("auth.loading") : isLogin ? t("auth.login") : t("auth.register")}
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                className="w-full"
-                onClick={() => setIsLogin(!isLogin)}
-              >
-                {isLogin ? t("auth.noAccount") : t("auth.hasAccount")}
+                {loading ? t("auth.loading") : t("auth.login")}
               </Button>
             </form>
+            
+            {/* Beta Access Notice */}
+            <div className="mt-6 pt-4 border-t border-border text-center">
+              <p className="text-sm text-muted-foreground">
+                {t("auth.needAccess", "Du benötigst einen Beta-Zugang?")}
+              </p>
+              <Link 
+                to="/" 
+                className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-1"
+              >
+                <ArrowLeft className="h-3 w-3" />
+                {t("auth.joinWaitlist", "Zur Warteliste")}
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>

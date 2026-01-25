@@ -41,7 +41,11 @@
     "termsRequired": "Bitte akzeptiere die AGB und Datenschutzerklärung",
     "captchaRequired": "Bitte bestätige, dass du kein Roboter bist",
     "captchaFailed": "Captcha-Verifizierung fehlgeschlagen. Bitte versuche es erneut.",
-    "captchaError": "Verifizierung fehlgeschlagen. Bitte versuche es erneut."
+    "captchaError": "Verifizierung fehlgeschlagen. Bitte versuche es erneut.",
+    "betaLoginTitle": "Beta Login",
+    "betaLoginDesc": "Anmeldung für Private Beta Tester",
+    "needAccess": "Du benötigst einen Beta-Zugang?",
+    "joinWaitlist": "Zur Warteliste"
   },
   "captcha": {
     "clickToVerify": "Klicken zum Verifizieren",

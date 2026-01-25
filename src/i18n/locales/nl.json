@@ -42,7 +42,11 @@
     "termsRequired": "Accepteer de Algemene voorwaarden en het Privacybeleid",
     "captchaRequired": "Bevestig dat je geen robot bent",
     "captchaFailed": "Captcha-verificatie mislukt. Probeer het opnieuw.",
-    "captchaError": "Verificatie mislukt. Probeer het opnieuw."
+    "captchaError": "Verificatie mislukt. Probeer het opnieuw.",
+    "betaLoginTitle": "Beta Login",
+    "betaLoginDesc": "Inloggen voor Private Beta Testers",
+    "needAccess": "Heb je beta-toegang nodig?",
+    "joinWaitlist": "Naar de wachtlijst"
   },
   "captcha": {
     "clickToVerify": "Klik om te verifiëren",
