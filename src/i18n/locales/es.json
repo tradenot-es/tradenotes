@@ -42,7 +42,11 @@
     "termsRequired": "Por favor acepta los Términos de servicio y la Política de privacidad",
     "captchaRequired": "Por favor confirma que no eres un robot",
     "captchaFailed": "Falló la verificación del captcha. Por favor inténtalo de nuevo.",
-    "captchaError": "Falló la verificación. Por favor inténtalo de nuevo."
+    "captchaError": "Falló la verificación. Por favor inténtalo de nuevo.",
+    "betaLoginTitle": "Acceso Beta",
+    "betaLoginDesc": "Inicio de sesión para probadores de Beta privada",
+    "needAccess": "¿Necesitas acceso beta?",
+    "joinWaitlist": "Únete a la lista de espera"
   },
   "captcha": {
     "clickToVerify": "Clic para verificar",

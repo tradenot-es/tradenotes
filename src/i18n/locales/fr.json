@@ -42,7 +42,11 @@
     "termsRequired": "Veuillez accepter les CGV et la Politique de confidentialité",
     "captchaRequired": "Veuillez confirmer que vous n'êtes pas un robot",
     "captchaFailed": "Échec de la vérification captcha. Veuillez réessayer.",
-    "captchaError": "Échec de la vérification. Veuillez réessayer."
+    "captchaError": "Échec de la vérification. Veuillez réessayer.",
+    "betaLoginTitle": "Connexion Beta",
+    "betaLoginDesc": "Connexion pour les testeurs de la Beta privée",
+    "needAccess": "Besoin d'un accès beta ?",
+    "joinWaitlist": "Rejoindre la liste d'attente"
   },
   "captcha": {
     "clickToVerify": "Cliquer pour vérifier",
