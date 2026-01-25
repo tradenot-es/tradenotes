@@ -56,15 +56,33 @@ const Import = () => {
 
   const loadApiKey = async () => {
     try {
-      const { data, error } = await supabase
-        .from('user_settings')
-        .select('webhook_api_key')
-        .eq('user_id', session?.user.id)
-        .single();
+      // Use secure edge function to retrieve API key (not exposed via direct table query)
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData?.session?.access_token;
       
-      if (error) throw error;
-      if (data?.webhook_api_key) {
-        setApiKey(data.webhook_api_key);
+      if (!accessToken) {
+        console.error('No access token available');
+        return;
+      }
+      
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-webhook-key`,
+        {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      
+      if (!response.ok) {
+        throw new Error('Failed to load API key');
+      }
+      
+      const result = await response.json();
+      if (result.webhook_api_key) {
+        setApiKey(result.webhook_api_key);
       }
     } catch (error) {
       console.error('Error loading API key:', error);
@@ -89,22 +107,34 @@ const Import = () => {
   const regenerateApiKey = async () => {
     setLoadingApiKey(true);
     try {
-      // Generate a new API key (48 hex characters = 24 random bytes)
-      const randomBytes = new Uint8Array(24);
-      crypto.getRandomValues(randomBytes);
-      const newApiKey = Array.from(randomBytes)
-        .map(b => b.toString(16).padStart(2, '0'))
-        .join('');
+      // Use secure edge function to regenerate API key server-side
+      const { data: sessionData } = await supabase.auth.getSession();
+      const accessToken = sessionData?.session?.access_token;
       
-      const { error } = await supabase
-        .from('user_settings')
-        .update({ webhook_api_key: newApiKey })
-        .eq('user_id', session?.user.id);
+      if (!accessToken) {
+        throw new Error('No access token available');
+      }
       
-      if (error) throw error;
+      const response = await fetch(
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/regenerate-webhook-key`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       
-      setApiKey(newApiKey);
-      toast.success(t("import.ntApiKeyRegenerated"));
+      if (!response.ok) {
+        throw new Error('Failed to regenerate API key');
+      }
+      
+      const result = await response.json();
+      if (result.webhook_api_key) {
+        setApiKey(result.webhook_api_key);
+        toast.success(t("import.ntApiKeyRegenerated"));
+      }
     } catch (error: any) {
       console.error('Error regenerating API key:', error);
       toast.error(t("import.ntApiKeyRegenerateError"));
