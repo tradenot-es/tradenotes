@@ -36,6 +36,10 @@ const HomeRoute = () => {
   const isPrelaunch = import.meta.env.VITE_PRELAUNCH_MODE === 'true';
   const isMaintenance = import.meta.env.VITE_MAINTENANCE_MODE === 'true';
   
+  // Debug logging
+  console.log('VITE_PRELAUNCH_MODE:', import.meta.env.VITE_PRELAUNCH_MODE);
+  console.log('isPrelaunch:', isPrelaunch);
+  
   if (isMaintenance) return <PreLaunch mode="maintenance" />;
   if (isPrelaunch) return <PreLaunch mode="prelaunch" />;
   return <Landing />;
