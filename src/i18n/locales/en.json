@@ -2043,6 +2043,7 @@
     "ctaButton": "Get Early Access",
     "trustText": "No spam. Unsubscribe anytime.",
     "statusLink": "Status Updates",
+    "betaLogin": "Beta Login",
     "successMessage": "You're on the list! We'll notify you at launch.",
     "errorEmail": "Please enter a valid email address.",
     "errorDuplicate": "This email is already registered.",

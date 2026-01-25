@@ -1853,6 +1853,7 @@
     "ctaButton": "Obtener acceso anticipado",
     "trustText": "Sin spam. Cancela cuando quieras.",
     "statusLink": "Actualizaciones",
+    "betaLogin": "Acceso Beta",
     "successMessage": "¡Estás en la lista! Te avisaremos en el lanzamiento.",
     "errorEmail": "Por favor, introduce un correo electrónico válido.",
     "errorDuplicate": "Este correo electrónico ya está registrado.",
