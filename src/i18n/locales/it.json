@@ -2028,6 +2028,7 @@
     "errorDuplicate": "Questa email è già registrata.",
     "errorRateLimit": "Troppe richieste. Riprova più tardi.",
     "errorGeneric": "Si è verificato un errore. Riprova.",
+    "errorCaptcha": "Per favore, completa prima il captcha.",
     "maintenance": {
       "badge": "MANUTENZIONE",
       "headline": "Breve manutenzione",

@@ -1916,6 +1916,7 @@
     "errorDuplicate": "Diese E-Mail ist bereits registriert.",
     "errorRateLimit": "Zu viele Anfragen. Bitte versuche es später erneut.",
     "errorGeneric": "Ein Fehler ist aufgetreten. Bitte versuche es erneut.",
+    "errorCaptcha": "Bitte bestätige zuerst das Captcha.",
     "maintenance": {
       "badge": "WARTUNG",
       "headline": "Kurze Wartungspause",
