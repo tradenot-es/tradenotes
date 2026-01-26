@@ -182,8 +182,18 @@ const Account = () => {
         },
       });
 
-      if (error) throw error;
-      if (data?.error) throw new Error(data.error);
+      // Handle edge function errors (including 409 conflict)
+      if (error) {
+        // Try to parse error context for user-friendly message
+        const errorMessage = error.message || t("settings.emailUpdateError");
+        toast.error(errorMessage);
+        return;
+      }
+      
+      if (data?.error) {
+        toast.error(data.error);
+        return;
+      }
       
       toast.success(t("settings.emailUpdateSuccess"));
     } catch (error: any) {
