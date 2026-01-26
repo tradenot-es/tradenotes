@@ -167,11 +167,27 @@ const Account = () => {
   };
 
   const handleUpdateEmail = async () => {
+    if (!user?.email || email === user.email) {
+      toast.error("Bitte gib eine neue E-Mail-Adresse ein");
+      return;
+    }
+    
     try {
-      const { error } = await supabase.auth.updateUser({ email });
+      const { data, error } = await supabase.functions.invoke('send-auth-email', {
+        body: {
+          email: user.email, // Current email (for lookup)
+          new_email: email, // New email address
+          type: 'email_change',
+          language: navigator.language.startsWith('de') ? 'de' : 'en',
+        },
+      });
+
       if (error) throw error;
+      if (data?.error) throw new Error(data.error);
+      
       toast.success(t("settings.emailUpdateSuccess"));
     } catch (error: any) {
+      console.error('Email update error:', error);
       toast.error(error.message || t("settings.emailUpdateError"));
     }
   };
