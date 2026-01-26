@@ -390,25 +390,51 @@ serve(async (req) => {
         throw new Error("No action link returned from generateLink");
       }
     } else if (type === 'email_change' && new_email) {
-      logStep("Generating email change link via Supabase Admin API");
+      logStep("Processing email change request");
       
+      // First, find the user by their current email
+      const { data: userData, error: userError } = await supabaseAdmin.auth.admin.listUsers();
+      
+      if (userError) {
+        logStep("Error listing users", { error: userError.message });
+        throw new Error(`Failed to find user: ${userError.message}`);
+      }
+      
+      const targetUser = userData.users.find(u => u.email === email);
+      if (!targetUser) {
+        logStep("User not found with email", { email: email.substring(0, 3) + "***" });
+        throw new Error("User not found");
+      }
+      
+      // Generate a magic link for the NEW email to verify ownership
+      // This will also update the email once clicked
       const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
-        type: 'email_change_new',
-        email: email,
-        newEmail: new_email,
+        type: 'magiclink',
+        email: new_email,
         options: {
           redirectTo: `${baseUrl}/dashboard`,
         },
       });
       
       if (linkError) {
-        logStep("Error generating email change link", { error: linkError.message });
-        throw new Error(`Failed to generate email change link: ${linkError.message}`);
+        logStep("Error generating email verification link", { error: linkError.message });
+        throw new Error(`Failed to generate verification link: ${linkError.message}`);
+      }
+      
+      // Update the user's email directly via Admin API (skips double confirmation)
+      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
+        email: new_email,
+        email_confirm: false, // Require confirmation via the magic link
+      });
+      
+      if (updateError) {
+        logStep("Error updating user email", { error: updateError.message });
+        throw new Error(`Failed to update email: ${updateError.message}`);
       }
       
       if (linkData?.properties?.action_link) {
         confirmUrl = linkData.properties.action_link;
-        logStep("Email change link generated successfully");
+        logStep("Email change link generated successfully - email updated pending confirmation");
       } else {
         throw new Error("No action link returned from generateLink");
       }
