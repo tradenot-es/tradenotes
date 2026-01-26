@@ -184,22 +184,17 @@ const Account = () => {
 
       // Handle edge function errors (including 409 conflict)
       if (error) {
-        // FunctionsHttpError contains the response in error.context
-        // Try to extract the actual error message from the response body
+        // Parse error message - Supabase functions.invoke includes JSON body in error.message for non-2xx
         let errorMessage = t("settings.emailUpdateError");
-        try {
-          if (error.context?.json) {
-            const jsonBody = await error.context.json();
-            errorMessage = jsonBody?.error || errorMessage;
-          } else if (error.context?.body) {
-            const text = await new Response(error.context.body).text();
-            const parsed = JSON.parse(text);
-            errorMessage = parsed?.error || errorMessage;
-          }
-        } catch {
-          // Fallback to error message if parsing fails
-          errorMessage = error.message || errorMessage;
+        
+        // Try to extract JSON error from the error message string
+        const messageMatch = error.message?.match(/\{"error":\s*"([^"]+)"\}/);
+        if (messageMatch && messageMatch[1]) {
+          errorMessage = messageMatch[1];
+        } else if (error.message && !error.message.includes('non-2xx')) {
+          errorMessage = error.message;
         }
+        
         toast.error(errorMessage);
         return;
       }
