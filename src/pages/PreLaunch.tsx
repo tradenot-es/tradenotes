@@ -91,7 +91,7 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
 
     try {
       const { data, error } = await supabase.functions.invoke("join-waitlist", {
-        body: { email: trimmedEmail, captcha: captchaPayload }
+        body: { email: trimmedEmail, captcha: captchaPayload, language: i18n.language }
       });
 
       if (error) {
