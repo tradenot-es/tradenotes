@@ -93,30 +93,26 @@ const Auth = () => {
     
     setLoading(true);
 
-    // Verify ALTCHA on backend
     try {
-      const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
-        body: { payload: forgotPasswordAltchaPayload },
-        method: 'POST',
+      // Call send-auth-email Edge Function directly with ALTCHA payload
+      // This generates a secure recovery link via Supabase Admin API and sends via Lettermint
+      const { data, error } = await supabase.functions.invoke('send-auth-email', {
+        body: { 
+          email, 
+          type: 'recovery',
+          altcha_payload: forgotPasswordAltchaPayload,
+          language: navigator.language.startsWith('de') ? 'de' : 'en',
+        },
       });
 
-      if (!verifyResult?.valid) {
-        toast.error(t("auth.captchaFailed") || "Captcha-Verifizierung fehlgeschlagen.");
-        setLoading(false);
-        setForgotPasswordAltchaPayload(null);
-        return;
+      if (error) {
+        throw new Error(error.message || t("auth.error"));
       }
-    } catch {
-      toast.error(t("auth.captchaError") || "Verifizierung fehlgeschlagen.");
-      setLoading(false);
-      return;
-    }
 
-    try {
-      const { error } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth?reset=true`,
-      });
-      if (error) throw error;
+      if (data?.error) {
+        throw new Error(data.error);
+      }
+
       toast.success(t("auth.resetEmailSent"));
       setShowForgotPassword(false);
       setForgotPasswordAltchaPayload(null);
