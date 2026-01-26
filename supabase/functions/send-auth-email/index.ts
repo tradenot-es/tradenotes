@@ -370,6 +370,10 @@ serve(async (req) => {
     } else if (type === 'recovery') {
       logStep("Generating recovery link via Supabase Admin API");
       
+      // Find user to track password reset
+      const { data: userData } = await supabaseAdmin.auth.admin.listUsers();
+      const targetUser = userData?.users.find(u => u.email === email);
+      
       const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
         type: 'recovery',
         email: email,
@@ -386,6 +390,16 @@ serve(async (req) => {
       if (linkData?.properties?.action_link) {
         confirmUrl = linkData.properties.action_link;
         logStep("Recovery link generated successfully");
+        
+        // Track password reset for cooldown
+        if (targetUser) {
+          await supabaseAdmin.from('email_change_tracking').insert({
+            user_id: targetUser.id,
+            change_type: 'password_reset',
+            old_email: email,
+          });
+          logStep("Password reset tracked for cooldown");
+        }
       } else {
         throw new Error("No action link returned from generateLink");
       }
@@ -408,28 +422,93 @@ serve(async (req) => {
       
       logStep("User found", { userId: targetUser.id });
       
+      // Check for 30-day email change limit
+      const thirtyDaysAgo = new Date();
+      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+      
+      const { data: recentEmailChanges } = await supabaseAdmin
+        .from('email_change_tracking')
+        .select('created_at')
+        .eq('user_id', targetUser.id)
+        .eq('change_type', 'email_change')
+        .gte('created_at', thirtyDaysAgo.toISOString())
+        .order('created_at', { ascending: false })
+        .limit(1);
+      
+      if (recentEmailChanges && recentEmailChanges.length > 0) {
+        const lastChange = new Date(recentEmailChanges[0].created_at);
+        const nextAllowed = new Date(lastChange);
+        nextAllowed.setDate(nextAllowed.getDate() + 30);
+        const daysRemaining = Math.ceil((nextAllowed.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+        
+        logStep("Email change limit reached", { lastChange: lastChange.toISOString(), daysRemaining });
+        
+        return new Response(
+          JSON.stringify({
+            success: false,
+            code: "EMAIL_CHANGE_LIMIT",
+            error: `Du kannst deine E-Mail nur einmal pro 30 Tage ändern. Nächste Änderung möglich in ${daysRemaining} Tagen.`,
+            nextAllowedDate: nextAllowed.toISOString(),
+          }),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          },
+        );
+      }
+      
+      // Check for 24-hour password reset cooldown
+      const twentyFourHoursAgo = new Date();
+      twentyFourHoursAgo.setHours(twentyFourHoursAgo.getHours() - 24);
+      
+      const { data: recentPasswordResets } = await supabaseAdmin
+        .from('email_change_tracking')
+        .select('created_at')
+        .eq('user_id', targetUser.id)
+        .eq('change_type', 'password_reset')
+        .gte('created_at', twentyFourHoursAgo.toISOString())
+        .order('created_at', { ascending: false })
+        .limit(1);
+      
+      if (recentPasswordResets && recentPasswordResets.length > 0) {
+        const lastReset = new Date(recentPasswordResets[0].created_at);
+        const cooldownEnd = new Date(lastReset);
+        cooldownEnd.setHours(cooldownEnd.getHours() + 24);
+        const hoursRemaining = Math.ceil((cooldownEnd.getTime() - Date.now()) / (1000 * 60 * 60));
+        
+        logStep("Password reset cooldown active", { lastReset: lastReset.toISOString(), hoursRemaining });
+        
+        return new Response(
+          JSON.stringify({
+            success: false,
+            code: "PASSWORD_RESET_COOLDOWN",
+            error: `Aus Sicherheitsgründen kannst du deine E-Mail 24 Stunden nach einem Passwort-Reset nicht ändern. Noch ${hoursRemaining} Stunden warten.`,
+            cooldownEndDate: cooldownEnd.toISOString(),
+          }),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          },
+        );
+      }
+      
       // Check if new email is already in use by another user
-       const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
-       if (existingUser) {
-         logStep("New email already in use by another user");
+      const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
+      if (existingUser) {
+        logStep("New email already in use by another user");
 
-         // IMPORTANT:
-         // We intentionally return HTTP 200 here (instead of 409) because some hosting/preview layers
-         // classify non-2xx responses from backend functions as "RUNTIME_ERROR" events and may show
-         // a blank-screen overlay, even though this is an expected business-rule conflict.
-         // The frontend already checks for `data?.error` and will display the message to the user.
-         return new Response(
-           JSON.stringify({
-             success: false,
-             code: "EMAIL_ALREADY_IN_USE",
-             error: "Diese E-Mail-Adresse wird bereits verwendet",
-           }),
-           {
-             headers: { ...corsHeaders, "Content-Type": "application/json" },
-             status: 200,
-           },
-         );
-       }
+        return new Response(
+          JSON.stringify({
+            success: false,
+            code: "EMAIL_ALREADY_IN_USE",
+            error: "Diese E-Mail-Adresse wird bereits verwendet",
+          }),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+            status: 200,
+          },
+        );
+      }
       
       // Directly update the user's email using Admin API
       // This bypasses the double-confirmation requirement
@@ -468,6 +547,15 @@ serve(async (req) => {
       if (linkData?.properties?.action_link) {
         confirmUrl = linkData.properties.action_link;
         logStep("Email change completed - magic link generated for new email");
+        
+        // Track successful email change
+        await supabaseAdmin.from('email_change_tracking').insert({
+          user_id: targetUser.id,
+          change_type: 'email_change',
+          old_email: email,
+          new_email: new_email,
+        });
+        logStep("Email change tracked for rate limiting");
       } else {
         throw new Error("No action link returned from generateLink");
       }

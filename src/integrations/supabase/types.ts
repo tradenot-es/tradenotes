@@ -80,6 +80,33 @@ export type Database = {
         }
         Relationships: []
       }
+      email_change_tracking: {
+        Row: {
+          change_type: string
+          created_at: string
+          id: string
+          new_email: string | null
+          old_email: string | null
+          user_id: string
+        }
+        Insert: {
+          change_type: string
+          created_at?: string
+          id?: string
+          new_email?: string | null
+          old_email?: string | null
+          user_id: string
+        }
+        Update: {
+          change_type?: string
+          created_at?: string
+          id?: string
+          new_email?: string | null
+          old_email?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       journal_entries: {
         Row: {
           content: string
