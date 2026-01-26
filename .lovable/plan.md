@@ -1,101 +1,103 @@
 
-# Einfachstes Konzept: Lettermint für alle Transaktions-E-Mails
+
+# E-Mail-Bestätigung für Wartelisten-Eintragung
+
+## Zusammenfassung
+Nach erfolgreicher Anmeldung zur Warteliste wird eine Bestätigungs-E-Mail über Lettermint versendet. Der Nutzer erhält somit eine persönliche Willkommens-Nachricht mit Branding statt nur eines Pop-ups.
 
 ## Aktuelle Situation
+- Die `join-waitlist` Edge Function speichert die E-Mail in der Datenbank
+- Das Frontend zeigt nach Erfolg nur eine In-Page-Meldung an
+- Lettermint ist bereits für Auth-E-Mails konfiguriert und verifiziert
 
-| Komponente | Status |
-|------------|--------|
-| `send-auth-email` Edge Function | ✅ Vorhanden, mit Lettermint integriert |
-| `send-trial-reminder` Edge Function | ✅ Vorhanden, mit Lettermint integriert |
-| `LETTERMINT_API_KEY` | ✅ Konfiguriert |
-| Lettermint Domain (tradenot.es) | ✅ Verifiziert |
+## Geplante Änderungen
 
-## Das Problem
+### 1. Edge Function erweitern (`supabase/functions/join-waitlist/index.ts`)
 
-Aktuell ruft `Auth.tsx` bei "Passwort vergessen" die Supabase-Methode `resetPasswordForEmail()` auf:
+Nach dem erfolgreichen Datenbank-Insert wird eine E-Mail über die Lettermint API gesendet:
 
+**Neue Funktionalität:**
+- E-Mail-Template im TradeNot.es Design (dunkel, grüne Akzente)
+- Lokalisierte Inhalte basierend auf der Browser-Sprache (DE/EN)
+- Inhalt: Dankesnachricht, Bestätigung der Wartelisten-Position
+- Fallback: Bei E-Mail-Fehler wird trotzdem `success: true` zurückgegeben (Silent Fail), da der Nutzer bereits eingetragen ist
+
+**Template-Inhalt (Deutsch):**
 ```text
-Auth.tsx → supabase.auth.resetPasswordForEmail() → Supabase sendet E-Mail (SMTP)
+Betreff: Willkommen auf der Warteliste!
+
+Hallo,
+
+Danke für dein Interesse an TradeNot.es - deinem professionellen Trading Journal.
+
+Du bist jetzt auf unserer Warteliste und gehörst zu den Ersten, die zum Launch Zugang erhalten.
+
+Was dich erwartet:
+- Professionelles Trading-Journal
+- KI-gestützter Trading-Assistent
+- Detaillierte Performance-Analysen
+
+Wir melden uns, sobald es losgeht!
+
+Dein TradeNot.es Team
 ```
 
-Supabase sendet dann selbst eine E-Mail über seinen internen SMTP. Da Lovable Cloud keinen Zugang zum Supabase Dashboard bietet, können wir dort keine SMTP-Einstellungen oder Auth Hooks konfigurieren.
+### 2. Frontend anpassen (`src/pages/PreLaunch.tsx`)
 
-## Die Lösung: Frontend-Trigger + Edge Function
+- Die `language` (Browsersprache) wird an die Edge Function übergeben
+- Das Pop-up bleibt zusätzlich bestehen als visuelle Bestätigung
 
-Statt Supabase die E-Mail senden zu lassen, triggern wir die `send-auth-email` Edge Function direkt aus dem Frontend:
+### 3. Übersetzungen hinzufügen (alle 6 Sprachen)
+
+Neue Übersetzungsschlüssel für die E-Mail-Inhalte werden nicht benötigt, da die Templates direkt in der Edge Function definiert sind (wie bei `send-auth-email`).
+
+## Architektur-Diagramm
 
 ```text
-Auth.tsx → send-auth-email Edge Function → Lettermint API → E-Mail an User
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   PreLaunch.tsx │────▶│  join-waitlist  │────▶│   Supabase DB   │
+│   (Frontend)    │     │  Edge Function  │     │   (waitlist)    │
+└─────────────────┘     └────────┬────────┘     └─────────────────┘
+                                 │
+                                 ▼
+                        ┌─────────────────┐
+                        │  Lettermint API │
+                        │  (E-Mail senden)│
+                        └─────────────────┘
 ```
-
-### Ablauf für Passwort-Reset
-
-1. User gibt E-Mail ein und löst ALTCHA
-2. Frontend ruft `send-auth-email` mit `type: 'recovery'` auf
-3. Edge Function generiert einen sicheren Reset-Token
-4. E-Mail wird über Lettermint mit gebrandetem Template versendet
-5. User klickt Link → landet auf `/auth?reset=true`
-6. User setzt neues Passwort
-
-## Implementierungsschritte
-
-### Schritt 1: Edge Function erweitern
-
-Die `send-auth-email` Edge Function muss:
-- Supabase Admin-Client nutzen um `generateLink()` aufzurufen
-- Den generierten Recovery-Link in die E-Mail einbetten
-- ALTCHA-Token für Spam-Schutz validieren
-
-### Schritt 2: Auth.tsx anpassen
-
-Die `handleForgotPassword` Funktion ändern:
-- Statt `supabase.auth.resetPasswordForEmail()` 
-- → `supabase.functions.invoke('send-auth-email', { body: { email, type: 'recovery' } })`
-
-### Schritt 3: Account.tsx anpassen (E-Mail-Änderung)
-
-Falls E-Mail-Änderungen auch über Lettermint laufen sollen:
-- Bei `handleUpdateEmail` → Edge Function mit `type: 'email_change'` aufrufen
-
-## Vorteile dieser Lösung
-
-| Aspekt | Vorteil |
-|--------|---------|
-| **Einfachheit** | Keine Dashboard-Konfiguration nötig |
-| **Kontrolle** | Volle Kontrolle über E-Mail-Design und -Inhalt |
-| **Stabilität** | Kein Konflikt mit Supabase-internem SMTP |
-| **Zustellbarkeit** | DNS-Records (SPF/DKIM) für tradenot.es bereits aktiv |
-| **Wartbarkeit** | Alle E-Mails an einem Ort (Lettermint) |
 
 ## Technische Details
 
-### Edge Function: Token-Generierung
+### Edge Function Änderungen
 
 ```text
-// Pseudocode für send-auth-email
-1. Empfange { email, type, altcha_payload }
-2. Validiere ALTCHA (optional aber empfohlen)
-3. Rufe supabaseAdmin.auth.admin.generateLink() auf
-4. Erhalte recovery_link mit eingebettetem Token
-5. Sende E-Mail über Lettermint mit diesem Link
+1. LETTERMINT_API_KEY aus Secrets laden
+2. Nach erfolgreichem DB-Insert:
+   - Sprache aus Request-Body ermitteln (fallback: "de")
+   - E-Mail-Template generieren (lokalisiert)
+   - POST an Lettermint API senden
+3. Bei E-Mail-Fehler: Nur loggen, kein Fehler an Frontend
+4. Erfolg zurückgeben
 ```
 
-### Supabase `generateLink()` API
+### E-Mail-Design
+- Konsistent mit bestehendem Auth-E-Mail-Design
+- Dunkelgrauer Hintergrund (#0a0a0a, #1a1a1a)
+- Grüne Akzentfarbe (#10b981)
+- TradeNot.es Logo/Branding im Header
+- Mobile-optimiertes Layout
 
-Diese Admin-Methode generiert sichere Auth-Links ohne selbst eine E-Mail zu senden – perfekt für unseren Use Case.
+## Dateien die bearbeitet werden
 
-## E-Mail-Typen im Überblick
+| Datei | Änderung |
+|-------|----------|
+| `supabase/functions/join-waitlist/index.ts` | Lettermint E-Mail-Versand hinzufügen |
+| `src/pages/PreLaunch.tsx` | Browser-Sprache an Edge Function übergeben |
 
-| Typ | Trigger | Status nach Implementierung |
-|-----|---------|----------------------------|
-| Password Recovery | "Passwort vergessen" | ✅ Über Lettermint |
-| Email Change | Account-Einstellungen | ✅ Über Lettermint |
-| Trial Reminder | Cronjob/Webhook | ✅ Bereits implementiert |
+## Vorteile
 
-## Zusammenfassung
+- **Professioneller Eindruck**: Gebrandete E-Mail statt nur Pop-up
+- **Zustellbarkeit**: DNS-Records (SPF/DKIM) für tradenot.es bereits aktiv
+- **Konsistenz**: Gleiches Design wie Auth-E-Mails
+- **Robustheit**: Silent Fail bei E-Mail-Fehler - Nutzer ist trotzdem eingetragen
 
-Diese Lösung:
-- Ist **einfach** – nur 2-3 Dateien müssen angepasst werden
-- Ist **stabil** – keine Abhängigkeit von Supabase SMTP
-- Ist **tragfähig** – zentrale E-Mail-Logik in Edge Functions
-- Benötigt **keine Dashboard-Konfiguration**
