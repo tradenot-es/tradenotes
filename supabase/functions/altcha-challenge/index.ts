@@ -23,12 +23,38 @@ function getCorsHeaders(req: Request): Record<string, string> {
 // ALTCHA PoW Configuration - keep difficulty low for fast solving
 const DIFFICULTY = 100000; // Max number to search
 const CHALLENGE_EXPIRY_MS = 5 * 60 * 1000; // 5 minutes
+const MAX_CHALLENGES = 10000; // Maximum challenges to store (prevents memory exhaustion)
 
 // Store valid challenges temporarily (in production, use a database)
 const validChallenges = new Map<string, { salt: string; secretNumber: number; expires: number }>();
 
+// Cleanup expired challenges and enforce size limit with LRU eviction
+function cleanupChallenges(): void {
+  const now = Date.now();
+  
+  // First, remove all expired challenges
+  for (const [key, value] of validChallenges.entries()) {
+    if (value.expires < now) {
+      validChallenges.delete(key);
+    }
+  }
+  
+  // If still at capacity, remove oldest entries (LRU eviction)
+  while (validChallenges.size >= MAX_CHALLENGES) {
+    const oldestKey = validChallenges.keys().next().value;
+    if (oldestKey) {
+      validChallenges.delete(oldestKey);
+    } else {
+      break;
+    }
+  }
+}
+
 // Generate a challenge following ALTCHA v2 protocol
 async function generateChallenge(): Promise<{ challenge: string; salt: string; algorithm: string; maxnumber: number; signature: string }> {
+  // Cleanup before adding new challenge to prevent memory exhaustion
+  cleanupChallenges();
+  
   const salt = crypto.randomUUID();
   const secretNumber = Math.floor(Math.random() * DIFFICULTY); // Random number client needs to find
   const algorithm = 'SHA-256';
@@ -43,13 +69,6 @@ async function generateChallenge(): Promise<{ challenge: string; salt: string; a
   // Store for verification
   const expires = Date.now() + CHALLENGE_EXPIRY_MS;
   validChallenges.set(challenge, { salt, secretNumber, expires });
-  
-  // Cleanup expired challenges
-  for (const [key, value] of validChallenges.entries()) {
-    if (value.expires < Date.now()) {
-      validChallenges.delete(key);
-    }
-  }
   
   // Create signature for additional security
   const signatureData = `${challenge}:${salt}:${DIFFICULTY}:${expires}`;
