@@ -326,8 +326,8 @@ serve(async (req) => {
     }
     logStep("Request parsed", { email: email.substring(0, 3) + "***", type, language });
 
-    // Verify ALTCHA for recovery and email_change requests (spam protection)
-    if ((type === 'recovery' || type === 'email_change') && altcha_payload) {
+    // Verify ALTCHA for signup, recovery, and email_change requests (spam protection)
+    if ((type === 'signup' || type === 'recovery' || type === 'email_change') && altcha_payload) {
       const isValidAltcha = await verifyAltcha(altcha_payload);
       if (!isValidAltcha) {
         logStep("ALTCHA verification failed");
@@ -342,55 +342,78 @@ serve(async (req) => {
     const baseUrl = getBaseUrl();
     let confirmUrl = redirect_to || baseUrl;
     
-    // For recovery and email_change, generate a secure link using Supabase Admin API
-    if (type === 'recovery' || type === 'email_change') {
-      logStep("Generating auth link via Supabase Admin API", { type });
+    // Generate secure links using Supabase Admin API
+    if (type === 'signup') {
+      // For signup, the user was already created with supabase.auth.signUp()
+      // We generate a magiclink to verify the email
+      logStep("Generating email verification link via Supabase Admin API");
       
-      if (type === 'recovery') {
-        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
-          type: 'recovery',
-          email: email,
-          options: {
-            redirectTo: `${baseUrl}/auth?reset=true`,
-          },
-        });
-        
-        if (linkError) {
-          logStep("Error generating recovery link", { error: linkError.message });
-          throw new Error(`Failed to generate recovery link: ${linkError.message}`);
-        }
-        
-        if (linkData?.properties?.action_link) {
-          confirmUrl = linkData.properties.action_link;
-          logStep("Recovery link generated successfully");
-        } else {
-          throw new Error("No action link returned from generateLink");
-        }
-      } else if (type === 'email_change' && new_email) {
-        // For email change, we need to update the user's email
-        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
-          type: 'email_change_new',
-          email: email,
-          newEmail: new_email,
-          options: {
-            redirectTo: `${baseUrl}/dashboard`,
-          },
-        });
-        
-        if (linkError) {
-          logStep("Error generating email change link", { error: linkError.message });
-          throw new Error(`Failed to generate email change link: ${linkError.message}`);
-        }
-        
-        if (linkData?.properties?.action_link) {
-          confirmUrl = linkData.properties.action_link;
-          logStep("Email change link generated successfully");
-        } else {
-          throw new Error("No action link returned from generateLink");
-        }
+      const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+        type: 'magiclink',
+        email: email,
+        options: {
+          redirectTo: `${baseUrl}/dashboard`,
+        },
+      });
+      
+      if (linkError) {
+        logStep("Error generating verification link", { error: linkError.message });
+        throw new Error(`Failed to generate verification link: ${linkError.message}`);
+      }
+      
+      if (linkData?.properties?.action_link) {
+        confirmUrl = linkData.properties.action_link;
+        logStep("Email verification link generated successfully");
+      } else {
+        throw new Error("No action link returned from generateLink");
+      }
+    } else if (type === 'recovery') {
+      logStep("Generating recovery link via Supabase Admin API");
+      
+      const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+        type: 'recovery',
+        email: email,
+        options: {
+          redirectTo: `${baseUrl}/auth?reset=true`,
+        },
+      });
+      
+      if (linkError) {
+        logStep("Error generating recovery link", { error: linkError.message });
+        throw new Error(`Failed to generate recovery link: ${linkError.message}`);
+      }
+      
+      if (linkData?.properties?.action_link) {
+        confirmUrl = linkData.properties.action_link;
+        logStep("Recovery link generated successfully");
+      } else {
+        throw new Error("No action link returned from generateLink");
+      }
+    } else if (type === 'email_change' && new_email) {
+      logStep("Generating email change link via Supabase Admin API");
+      
+      const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+        type: 'email_change_new',
+        email: email,
+        newEmail: new_email,
+        options: {
+          redirectTo: `${baseUrl}/dashboard`,
+        },
+      });
+      
+      if (linkError) {
+        logStep("Error generating email change link", { error: linkError.message });
+        throw new Error(`Failed to generate email change link: ${linkError.message}`);
+      }
+      
+      if (linkData?.properties?.action_link) {
+        confirmUrl = linkData.properties.action_link;
+        logStep("Email change link generated successfully");
+      } else {
+        throw new Error("No action link returned from generateLink");
       }
     } else if (token_hash) {
-      // Use token_hash for PKCE flow (signup, magic_link)
+      // Use token_hash for PKCE flow (magic_link)
       const params = new URLSearchParams({
         token_hash,
         type,
