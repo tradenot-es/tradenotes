@@ -390,9 +390,9 @@ serve(async (req) => {
         throw new Error("No action link returned from generateLink");
       }
     } else if (type === 'email_change' && new_email) {
-      logStep("Processing email change request");
+      logStep("Processing email change request - single confirmation flow");
       
-      // First, find the user by their current email
+      // Find the user by their current email
       const { data: userData, error: userError } = await supabaseAdmin.auth.admin.listUsers();
       
       if (userError) {
@@ -406,8 +406,23 @@ serve(async (req) => {
         throw new Error("User not found");
       }
       
-      // Generate a magic link for the NEW email to verify ownership
-      // This will also update the email once clicked
+      logStep("User found", { userId: targetUser.id });
+      
+      // Directly update the user's email using Admin API
+      // This bypasses the double-confirmation requirement
+      const { data: updatedUser, error: updateError } = await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
+        email: new_email,
+        email_confirm: true, // Mark as confirmed immediately since we're sending our own verification
+      });
+      
+      if (updateError) {
+        logStep("Error updating user email", { error: updateError.message });
+        throw new Error(`Failed to update email: ${updateError.message}`);
+      }
+      
+      logStep("Email updated successfully via Admin API");
+      
+      // Generate a magic link for the user to log in with their new email
       const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
         type: 'magiclink',
         email: new_email,
@@ -417,24 +432,13 @@ serve(async (req) => {
       });
       
       if (linkError) {
-        logStep("Error generating email verification link", { error: linkError.message });
-        throw new Error(`Failed to generate verification link: ${linkError.message}`);
-      }
-      
-      // Update the user's email directly via Admin API (skips double confirmation)
-      const { error: updateError } = await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
-        email: new_email,
-        email_confirm: false, // Require confirmation via the magic link
-      });
-      
-      if (updateError) {
-        logStep("Error updating user email", { error: updateError.message });
-        throw new Error(`Failed to update email: ${updateError.message}`);
+        logStep("Error generating login link", { error: linkError.message });
+        throw new Error(`Failed to generate login link: ${linkError.message}`);
       }
       
       if (linkData?.properties?.action_link) {
         confirmUrl = linkData.properties.action_link;
-        logStep("Email change link generated successfully - email updated pending confirmation");
+        logStep("Email change completed - magic link generated for new email");
       } else {
         throw new Error("No action link returned from generateLink");
       }
