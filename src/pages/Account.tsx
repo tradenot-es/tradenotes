@@ -184,8 +184,22 @@ const Account = () => {
 
       // Handle edge function errors (including 409 conflict)
       if (error) {
-        // Try to parse error context for user-friendly message
-        const errorMessage = error.message || t("settings.emailUpdateError");
+        // FunctionsHttpError contains the response in error.context
+        // Try to extract the actual error message from the response body
+        let errorMessage = t("settings.emailUpdateError");
+        try {
+          if (error.context?.json) {
+            const jsonBody = await error.context.json();
+            errorMessage = jsonBody?.error || errorMessage;
+          } else if (error.context?.body) {
+            const text = await new Response(error.context.body).text();
+            const parsed = JSON.parse(text);
+            errorMessage = parsed?.error || errorMessage;
+          }
+        } catch {
+          // Fallback to error message if parsing fails
+          errorMessage = error.message || errorMessage;
+        }
         toast.error(errorMessage);
         return;
       }
