@@ -408,6 +408,13 @@ serve(async (req) => {
       
       logStep("User found", { userId: targetUser.id });
       
+      // Check if new email is already in use by another user
+      const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
+      if (existingUser) {
+        logStep("New email already in use by another user");
+        throw new Error("Diese E-Mail-Adresse wird bereits verwendet");
+      }
+      
       // Directly update the user's email using Admin API
       // This bypasses the double-confirmation requirement
       const { data: updatedUser, error: updateError } = await supabaseAdmin.auth.admin.updateUserById(targetUser.id, {
@@ -416,8 +423,14 @@ serve(async (req) => {
       });
       
       if (updateError) {
-        logStep("Error updating user email", { error: updateError.message });
-        throw new Error(`Failed to update email: ${updateError.message}`);
+        logStep("Error updating user email - full error", { 
+          message: updateError.message, 
+          name: updateError.name,
+          status: (updateError as any).status,
+          code: (updateError as any).code,
+          full: JSON.stringify(updateError)
+        });
+        throw new Error(`E-Mail konnte nicht geändert werden: ${updateError.message}`);
       }
       
       logStep("Email updated successfully via Admin API");
