@@ -409,14 +409,27 @@ serve(async (req) => {
       logStep("User found", { userId: targetUser.id });
       
       // Check if new email is already in use by another user
-      const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
-      if (existingUser) {
-        logStep("New email already in use by another user");
-        return new Response(JSON.stringify({ error: "Diese E-Mail-Adresse wird bereits verwendet" }), {
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-          status: 409,
-        });
-      }
+       const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
+       if (existingUser) {
+         logStep("New email already in use by another user");
+
+         // IMPORTANT:
+         // We intentionally return HTTP 200 here (instead of 409) because some hosting/preview layers
+         // classify non-2xx responses from backend functions as "RUNTIME_ERROR" events and may show
+         // a blank-screen overlay, even though this is an expected business-rule conflict.
+         // The frontend already checks for `data?.error` and will display the message to the user.
+         return new Response(
+           JSON.stringify({
+             success: false,
+             code: "EMAIL_ALREADY_IN_USE",
+             error: "Diese E-Mail-Adresse wird bereits verwendet",
+           }),
+           {
+             headers: { ...corsHeaders, "Content-Type": "application/json" },
+             status: 200,
+           },
+         );
+       }
       
       // Directly update the user's email using Admin API
       // This bypasses the double-confirmation requirement
