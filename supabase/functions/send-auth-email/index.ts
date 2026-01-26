@@ -412,7 +412,10 @@ serve(async (req) => {
       const existingUser = userData.users.find(u => u.email === new_email && u.id !== targetUser.id);
       if (existingUser) {
         logStep("New email already in use by another user");
-        throw new Error("Diese E-Mail-Adresse wird bereits verwendet");
+        return new Response(JSON.stringify({ error: "Diese E-Mail-Adresse wird bereits verwendet" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 409,
+        });
       }
       
       // Directly update the user's email using Admin API
