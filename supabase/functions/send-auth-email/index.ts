@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.76.1";
 
 // Allowed origins for CORS
 const ALLOWED_ORIGINS = [
@@ -33,6 +34,8 @@ interface AuthEmailRequest {
   redirect_to?: string;
   firstName?: string;
   language?: string;
+  altcha_payload?: string;
+  new_email?: string; // For email_change type
 }
 
 const getBaseUrl = () => {
@@ -264,6 +267,28 @@ const getEmailContent = (
   };
 };
 
+// Verify ALTCHA payload
+async function verifyAltcha(payload: string): Promise<boolean> {
+  try {
+    const decoded = JSON.parse(atob(payload));
+    const { challenge, salt, number, algorithm } = decoded;
+    
+    if (!challenge || !salt || number === undefined || !algorithm) {
+      return false;
+    }
+
+    const encoder = new TextEncoder();
+    const data = encoder.encode(`${salt}${number}`);
+    const hashBuffer = await crypto.subtle.digest(algorithm, data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const calculatedHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    
+    return calculatedHash === challenge;
+  } catch {
+    return false;
+  }
+}
+
 serve(async (req) => {
   const corsHeaders = getCorsHeaders(req);
   
@@ -280,20 +305,92 @@ serve(async (req) => {
     }
     logStep("Lettermint key verified");
 
+    const supabaseUrl = Deno.env.get("SUPABASE_URL");
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error("Supabase credentials not configured");
+    }
+
+    const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false,
+      },
+    });
+
     const body: AuthEmailRequest = await req.json();
-    const { email, type, token, token_hash, redirect_to, firstName, language } = body;
+    const { email, type, token, token_hash, redirect_to, firstName, language, altcha_payload, new_email } = body;
     
     if (!email || !type) {
       throw new Error("Missing required fields: email and type");
     }
     logStep("Request parsed", { email: email.substring(0, 3) + "***", type, language });
 
-    // Build confirmation URL
+    // Verify ALTCHA for recovery and email_change requests (spam protection)
+    if ((type === 'recovery' || type === 'email_change') && altcha_payload) {
+      const isValidAltcha = await verifyAltcha(altcha_payload);
+      if (!isValidAltcha) {
+        logStep("ALTCHA verification failed");
+        return new Response(JSON.stringify({ error: "Captcha verification failed" }), {
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+          status: 400,
+        });
+      }
+      logStep("ALTCHA verified successfully");
+    }
+
     const baseUrl = getBaseUrl();
     let confirmUrl = redirect_to || baseUrl;
     
-    if (token_hash) {
-      // Use token_hash for PKCE flow
+    // For recovery and email_change, generate a secure link using Supabase Admin API
+    if (type === 'recovery' || type === 'email_change') {
+      logStep("Generating auth link via Supabase Admin API", { type });
+      
+      if (type === 'recovery') {
+        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+          type: 'recovery',
+          email: email,
+          options: {
+            redirectTo: `${baseUrl}/auth?reset=true`,
+          },
+        });
+        
+        if (linkError) {
+          logStep("Error generating recovery link", { error: linkError.message });
+          throw new Error(`Failed to generate recovery link: ${linkError.message}`);
+        }
+        
+        if (linkData?.properties?.action_link) {
+          confirmUrl = linkData.properties.action_link;
+          logStep("Recovery link generated successfully");
+        } else {
+          throw new Error("No action link returned from generateLink");
+        }
+      } else if (type === 'email_change' && new_email) {
+        // For email change, we need to update the user's email
+        const { data: linkData, error: linkError } = await supabaseAdmin.auth.admin.generateLink({
+          type: 'email_change_new',
+          email: email,
+          newEmail: new_email,
+          options: {
+            redirectTo: `${baseUrl}/dashboard`,
+          },
+        });
+        
+        if (linkError) {
+          logStep("Error generating email change link", { error: linkError.message });
+          throw new Error(`Failed to generate email change link: ${linkError.message}`);
+        }
+        
+        if (linkData?.properties?.action_link) {
+          confirmUrl = linkData.properties.action_link;
+          logStep("Email change link generated successfully");
+        } else {
+          throw new Error("No action link returned from generateLink");
+        }
+      }
+    } else if (token_hash) {
+      // Use token_hash for PKCE flow (signup, magic_link)
       const params = new URLSearchParams({
         token_hash,
         type,
@@ -305,9 +402,12 @@ serve(async (req) => {
       confirmUrl = `${baseUrl}/auth/confirm?token=${token}&type=${type}`;
     }
     
-    logStep("Confirmation URL built", { type });
+    logStep("Confirmation URL ready", { type });
 
-    const emailContent = getEmailContent(type, email, confirmUrl, firstName, language || 'de');
+    // Determine which email address to send to
+    const recipientEmail = type === 'email_change' && new_email ? new_email : email;
+
+    const emailContent = getEmailContent(type, recipientEmail, confirmUrl, firstName, language || 'de');
     
     const response = await fetch("https://api.lettermint.co/v1/send", {
       method: "POST",
@@ -318,7 +418,7 @@ serve(async (req) => {
       },
       body: JSON.stringify({
         from: "TradeNot.es <noreply@tradenot.es>",
-        to: [email],
+        to: [recipientEmail],
         subject: emailContent.subject,
         html: emailContent.html,
         tag: `auth-${type}`,
