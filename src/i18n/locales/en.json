@@ -884,8 +884,19 @@
   "landing": {
     "nav": {
       "features": "Features",
-      "pricing": "Pricing"
+      "pricing": "Pricing",
+      "allFeatures": "All Features"
     },
+    "topFeaturesTitle": "What Makes TradeNotes Special",
+    "topFeaturesDescription": "The essential tools for your trading success",
+    "discoverAllFeatures": "Discover All 20+ Features",
+    "trustBadges": {
+      "ssl": "SSL Encrypted",
+      "gdpr": "GDPR Compliant",
+      "traders": "By Traders for Traders",
+      "sync": "NinjaTrader Auto-Sync"
+    },
+    "footerAllFeatures": "All Features",
     "cta": {
       "startNow": "Get Started"
     },
@@ -1086,6 +1097,144 @@
       "propFirmDetection": "Prop Firm Account Detection (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking for Stop-Loss Optimization",
       "achievements": "Gamification & Achievements System"
+    }
+  },
+  "features": {
+    "heroTitle": "All Features Overview",
+    "heroDescription": "Discover the complete feature set for professional trading journaling",
+    "featureCount": "20+ Features",
+    "backToLanding": "Back to Home",
+    "learnMore": "Learn more",
+    "ctaTitle": "Ready to improve your trading?",
+    "ctaDescription": "Start now with a 14-day free trial",
+    "categories": {
+      "tradingTools": "Trading Tools",
+      "analytics": "Analytics",
+      "ai": "AI & Automation",
+      "reports": "Reports",
+      "marketIntel": "Market Intelligence"
+    },
+    "items": {
+      "easyEntry": {
+        "title": "Quick Trade Entry",
+        "description": "Capture trades in seconds with live P&L preview and symbol quick-chips",
+        "benefits": ["Live P&L preview during entry", "Quick-chips for frequent symbols", "Copy last trade with one click"]
+      },
+      "ninjaTrader": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Automatic trade synchronization via webhook in real-time",
+        "benefits": ["Entry, Exit, MFE/MAE captured automatically", "Supports 12+ prop firms", "No manual entry needed"]
+      },
+      "propFirm": {
+        "title": "Prop Firm Integration",
+        "description": "Automatic detection of Sim, Eval, Funded & Live accounts",
+        "benefits": ["Separate analytics per account phase", "Apex, Topstep, Tradeify and more", "Account type auto-detected"]
+      },
+      "positionCalc": {
+        "title": "Position Size Calculator",
+        "description": "Calculate optimal position sizes based on risk",
+        "benefits": ["Risk-based lot calculation", "Enter stop-loss distance", "Define max risk per trade"]
+      },
+      "csvImport": {
+        "title": "CSV Import/Export",
+        "description": "Import trades from broker or export data",
+        "benefits": ["Supports common broker formats", "Easy data export", "Seamless integration"]
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analysis",
+        "description": "Optimize stop-loss and take-profit with data-driven analysis",
+        "benefits": ["Automatic high/low tracking", "Visualize missed profits", "Concrete stop-loss recommendations"]
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Track win rate, R-multiple, profit factor and expectancy",
+        "benefits": ["20+ KPIs at a glance", "Filter by time period", "Identify strengths and weaknesses"]
+      },
+      "equityCurve": {
+        "title": "Equity Curve",
+        "description": "Visualize capital growth over time",
+        "benefits": ["Spot drawdowns instantly", "Analyze growth trends", "Cumulative performance chart"]
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "12-week trading heatmap for pattern recognition",
+        "benefits": ["Profitable days at a glance", "Identify losing streaks", "Develop consistent habits"]
+      },
+      "calendar": {
+        "title": "Trading Calendar",
+        "description": "Calendar view with color-coded win/loss days",
+        "benefits": ["Quick monthly overview", "Click day to see trades", "Color coding by P&L"]
+      },
+      "aiAssistant": {
+        "title": "AI Trading Assistant",
+        "description": "Ask questions about your performance and get AI analysis",
+        "benefits": ["Natural language input", "Data-driven insights", "Analyzes your trade history"]
+      },
+      "aiCharts": {
+        "title": "AI Chat with Charts",
+        "description": "Interactive visualizations directly in chat",
+        "benefits": ["Bar, line and pie charts", "Tables for data overview", "Instant visualization"]
+      },
+      "dailySummary": {
+        "title": "AI Daily Report",
+        "description": "Automatic email summary of your performance",
+        "benefits": ["Daily strengths/weaknesses", "Personalized improvement suggestions", "Delivered via email"]
+      },
+      "goalAlerts": {
+        "title": "Goal Alerts & Notifications",
+        "description": "Real-time alerts for goal achievement or drawdown",
+        "benefits": ["Set daily profit goal", "Define max trades per day", "Receive drawdown warnings"]
+      },
+      "riskSimulator": {
+        "title": "What-If Risk Simulator",
+        "description": "Test alternative strategies with Monte Carlo simulation",
+        "benefits": ["What if with 2R exits?", "Simulate different risk management", "1000+ simulations per scenario"]
+      },
+      "symbolReports": {
+        "title": "Symbol Performance",
+        "description": "Analyze which instruments perform best",
+        "benefits": ["P&L per symbol", "Win rate comparison", "Find your best markets"]
+      },
+      "setupReports": {
+        "title": "Setup-based Reports",
+        "description": "Analyze performance by trading setup",
+        "benefits": ["Compare your strategies", "Identify top setups", "Setup-specific metrics"]
+      },
+      "hourAnalysis": {
+        "title": "Hour Analysis",
+        "description": "Find your most profitable trading times",
+        "benefits": ["P&L by time of day", "Identify best hours", "Avoid losing times"]
+      },
+      "streakAnalysis": {
+        "title": "Streak Analysis",
+        "description": "Understand win and loss streaks",
+        "benefits": ["Show longest streaks", "Average streak length", "Recognize patterns in streaks"]
+      },
+      "holdingPeriod": {
+        "title": "Holding Period Analysis",
+        "description": "Determine optimal trade duration",
+        "benefits": ["P&L by holding time", "Scalps vs. swing trades", "Find optimal duration"]
+      },
+      "portfolioNews": {
+        "title": "Portfolio News Intelligence",
+        "description": "Auto-curated news for your symbols",
+        "benefits": ["Futures proxy mapping (NQ→QQQ)", "Smart tags for news types", "AI translation included"]
+      },
+      "politicalEvents": {
+        "title": "Economic Calendar",
+        "description": "FOMC, CPI, NFP, GDP and more preloaded",
+        "benefits": ["Never miss market-moving events", "Show impact level", "Integrated directly in calendar"]
+      },
+      "sectorSentiment": {
+        "title": "Sector Sentiment",
+        "description": "Daily sentiment analysis by sector",
+        "benefits": ["11 sectors analyzed", "Article count per sector", "Show sentiment score"]
+      },
+      "economicCalendar": {
+        "title": "Economic Data",
+        "description": "Fed, Trump, Powell news in real-time",
+        "benefits": ["Track political events", "Estimate market impact", "Trade informed"]
+      }
     }
   },
   "validation": {

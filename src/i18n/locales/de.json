@@ -762,8 +762,19 @@
   "landing": {
     "nav": {
       "features": "Features",
-      "pricing": "Preise"
+      "pricing": "Preise",
+      "allFeatures": "Alle Features"
     },
+    "topFeaturesTitle": "Was TradeNotes besonders macht",
+    "topFeaturesDescription": "Die wichtigsten Tools für deinen Trading-Erfolg",
+    "discoverAllFeatures": "Alle 20+ Features entdecken",
+    "trustBadges": {
+      "ssl": "SSL verschlüsselt",
+      "gdpr": "DSGVO konform",
+      "traders": "Von Tradern für Trader",
+      "sync": "NinjaTrader Auto-Sync"
+    },
+    "footerAllFeatures": "Alle Features",
     "cta": {
       "startNow": "Jetzt starten"
     },
@@ -964,6 +975,144 @@
       "benefit2Desc": "Daily Prep, Konsistenz-Tracking und AI-Warnungen bei emotionalem Trading",
       "benefit3Title": "Performance messen",
       "benefit3Desc": "Equity Curve, R-Multiple, Expectancy und 20+ KPIs auf einen Blick"
+    }
+  },
+  "features": {
+    "heroTitle": "Alle Features im Überblick",
+    "heroDescription": "Entdecke die komplette Funktionspalette für professionelles Trading-Journaling",
+    "featureCount": "20+ Features",
+    "backToLanding": "Zurück zur Startseite",
+    "learnMore": "Mehr erfahren",
+    "ctaTitle": "Bereit dein Trading zu verbessern?",
+    "ctaDescription": "Starte jetzt mit 14 Tagen kostenloser Testphase",
+    "categories": {
+      "tradingTools": "Trading Tools",
+      "analytics": "Analysen",
+      "ai": "KI & Automatisierung",
+      "reports": "Reports",
+      "marketIntel": "Market Intelligence"
+    },
+    "items": {
+      "easyEntry": {
+        "title": "Schnelle Trade-Eingabe",
+        "description": "Trades in Sekunden erfassen mit Live P&L-Vorschau und Symbol-Quick-Chips",
+        "benefits": ["Live P&L-Vorschau während der Eingabe", "Quick-Chips für häufige Symbole", "Letzten Trade mit einem Klick kopieren"]
+      },
+      "ninjaTrader": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Automatische Trade-Synchronisation via Webhook in Echtzeit",
+        "benefits": ["Entry, Exit, MFE/MAE automatisch erfasst", "Unterstützt 12+ Prop-Firms", "Keine manuelle Eingabe nötig"]
+      },
+      "propFirm": {
+        "title": "Prop-Firm Integration",
+        "description": "Automatische Erkennung von Sim, Eval, Funded & Live Accounts",
+        "benefits": ["Separate Analytics pro Account-Phase", "Apex, Topstep, Tradeify und mehr", "Account-Typ wird automatisch erkannt"]
+      },
+      "positionCalc": {
+        "title": "Position Size Calculator",
+        "description": "Berechne optimale Positionsgrößen basierend auf Risiko",
+        "benefits": ["Risk-basierte Lot-Berechnung", "Stop-Loss Distanz eingeben", "Max Risiko pro Trade definieren"]
+      },
+      "csvImport": {
+        "title": "CSV Import/Export",
+        "description": "Trades vom Broker importieren oder Daten exportieren",
+        "benefits": ["Unterstützt gängige Broker-Formate", "Einfacher Daten-Export", "Nahtlose Integration"]
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analyse",
+        "description": "Optimiere Stop-Loss und Take-Profit mit datenbasierter Analyse",
+        "benefits": ["Automatisches High/Low Tracking", "Visualisiere verpasste Gewinne", "Konkrete Stop-Loss Empfehlungen"]
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Win Rate, R-Multiple, Profit Factor und Expectancy tracken",
+        "benefits": ["20+ KPIs auf einen Blick", "Filtere nach Zeitraum", "Identifiziere Stärken und Schwächen"]
+      },
+      "equityCurve": {
+        "title": "Equity Curve",
+        "description": "Kapitalwachstum über Zeit visualisieren",
+        "benefits": ["Drawdowns sofort erkennen", "Wachstumstrends analysieren", "Kumulativer Performance-Chart"]
+      },
+      "consistency": {
+        "title": "Consistency Tracker",
+        "description": "12-Wochen Trading-Heatmap für Muster-Erkennung",
+        "benefits": ["Profitable Tage auf einen Blick", "Verlustserien identifizieren", "Konsistente Gewohnheiten entwickeln"]
+      },
+      "calendar": {
+        "title": "Trading Kalender",
+        "description": "Kalenderansicht mit farbcodierten Gewinn-/Verlusttagen",
+        "benefits": ["Schneller Monatsüberblick", "Klick auf Tag zeigt Trades", "Farbcodierung nach P&L"]
+      },
+      "aiAssistant": {
+        "title": "KI Trading Assistant",
+        "description": "Stelle Fragen zu deiner Performance und erhalte KI-Analyse",
+        "benefits": ["Natürliche Spracheingabe", "Datengetriebene Insights", "Analysiert deine Trade-Historie"]
+      },
+      "aiCharts": {
+        "title": "AI Chat mit Charts",
+        "description": "Interaktive Visualisierungen direkt im Chat",
+        "benefits": ["Balken-, Linien- und Kreisdiagramme", "Tabellen für Datenübersicht", "Sofortige Visualisierung"]
+      },
+      "dailySummary": {
+        "title": "KI Tagesreport",
+        "description": "Automatische E-Mail-Zusammenfassung deiner Performance",
+        "benefits": ["Tägliche Stärken/Schwächen", "Personalisierte Verbesserungsvorschläge", "Per E-Mail zugestellt"]
+      },
+      "goalAlerts": {
+        "title": "Ziel-Alerts & Benachrichtigungen",
+        "description": "Echtzeit-Alerts bei Zielerreichung oder Drawdown",
+        "benefits": ["Tägliches Gewinnziel setzen", "Max-Trades pro Tag definieren", "Drawdown-Warnungen erhalten"]
+      },
+      "riskSimulator": {
+        "title": "What-If Risiko-Simulator",
+        "description": "Teste alternative Strategien mit Monte Carlo Simulation",
+        "benefits": ["Was wäre wenn mit 2R-Exits?", "Simuliere anderes Risiko-Management", "1000+ Simulationen pro Szenario"]
+      },
+      "symbolReports": {
+        "title": "Symbol Performance",
+        "description": "Analysiere welche Instrumente am besten performen",
+        "benefits": ["P&L pro Symbol", "Win Rate Vergleich", "Finde deine besten Märkte"]
+      },
+      "setupReports": {
+        "title": "Setup-basierte Reports",
+        "description": "Performance nach Trading-Setup analysieren",
+        "benefits": ["Vergleiche deine Strategien", "Identifiziere Top-Setups", "Setup-spezifische Metriken"]
+      },
+      "hourAnalysis": {
+        "title": "Stunden-Analyse",
+        "description": "Finde deine profitabelsten Handelszeiten",
+        "benefits": ["P&L nach Tageszeit", "Beste Stunden identifizieren", "Verlust-Zeiten vermeiden"]
+      },
+      "streakAnalysis": {
+        "title": "Streak-Analyse",
+        "description": "Gewinn- und Verlustserien verstehen",
+        "benefits": ["Längste Serien anzeigen", "Durchschnittliche Serienlänge", "Muster in Serien erkennen"]
+      },
+      "holdingPeriod": {
+        "title": "Haltezeit-Analyse",
+        "description": "Optimale Trade-Dauer ermitteln",
+        "benefits": ["P&L nach Haltedauer", "Scalps vs. Swing Trades", "Optimale Dauer finden"]
+      },
+      "portfolioNews": {
+        "title": "Portfolio News Intelligence",
+        "description": "Auto-kuratierte News für deine Symbole",
+        "benefits": ["Futures-Proxy-Mapping (NQ→QQQ)", "Smart-Tags für News-Typen", "KI-Übersetzung inklusive"]
+      },
+      "politicalEvents": {
+        "title": "Wirtschaftskalender",
+        "description": "FOMC, CPI, NFP, GDP und mehr vorgeladen",
+        "benefits": ["Marktbewegende Events nie verpassen", "Impact-Level anzeigen", "Direkt im Kalender integriert"]
+      },
+      "sectorSentiment": {
+        "title": "Sektor-Sentiment",
+        "description": "Tägliche Stimmungsanalyse nach Sektoren",
+        "benefits": ["11 Sektoren analysiert", "Artikelanzahl pro Sektor", "Sentiment-Score anzeigen"]
+      },
+      "economicCalendar": {
+        "title": "Wirtschaftsdaten",
+        "description": "Fed, Trump, Powell News in Echtzeit",
+        "benefits": ["Politische Events tracken", "Markt-Impact abschätzen", "Informiert handeln"]
+      }
     }
   },
   "validation": {
