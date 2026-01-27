@@ -1,6 +1,13 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+
+// Feature category illustrations
+import tradingToolsImg from "@/assets/features/trading-tools-illustration.jpg";
+import analyticsImg from "@/assets/features/analytics-illustration.jpg";
+import aiAssistantImg from "@/assets/features/ai-assistant-illustration.jpg";
+import reportsImg from "@/assets/features/reports-illustration.jpg";
+import marketIntelImg from "@/assets/features/market-intel-illustration.jpg";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
@@ -53,6 +60,7 @@ const Features = () => {
     {
       id: "trading-tools",
       name: t("features.categories.tradingTools"),
+      illustration: tradingToolsImg,
       features: [
         {
           icon: <TrendingUp className="h-6 w-6" />,
@@ -89,6 +97,7 @@ const Features = () => {
     {
       id: "analytics",
       name: t("features.categories.analytics"),
+      illustration: analyticsImg,
       features: [
         {
           icon: <Crosshair className="h-6 w-6" />,
@@ -125,6 +134,7 @@ const Features = () => {
     {
       id: "ai",
       name: t("features.categories.ai"),
+      illustration: aiAssistantImg,
       features: [
         {
           icon: <MessageSquare className="h-6 w-6" />,
@@ -161,6 +171,7 @@ const Features = () => {
     {
       id: "reports",
       name: t("features.categories.reports"),
+      illustration: reportsImg,
       features: [
         {
           icon: <FileText className="h-6 w-6" />,
@@ -197,6 +208,7 @@ const Features = () => {
     {
       id: "market-intel",
       name: t("features.categories.marketIntel"),
+      illustration: marketIntelImg,
       features: [
         {
           icon: <Target className="h-6 w-6" />,
@@ -271,6 +283,7 @@ const Features = () => {
                 key={index}
                 feature={feature}
                 imagePosition={index % 2 === 0 ? "right" : "left"}
+                screenshotUrl={index === 0 ? category.illustration : undefined}
               />
             ))}
           </section>
