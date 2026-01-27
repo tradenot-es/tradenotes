@@ -220,6 +220,42 @@ serve(async (req) => {
       : '0';
 
     // Build context for AI
+    // Calculate additional analytics for visualization
+    type TradeStats = { wins: number; total: number; pnl: number };
+    
+    const tradesByWeekday: Record<string, TradeStats> = trades?.reduce((acc: Record<string, TradeStats>, t) => {
+      const day = new Date(t.entry_time).toLocaleDateString('de-DE', { weekday: 'long' });
+      if (!acc[day]) acc[day] = { wins: 0, total: 0, pnl: 0 };
+      acc[day].total++;
+      if (t.pnl_net > 0) acc[day].wins++;
+      acc[day].pnl += Number(t.pnl_net);
+      return acc;
+    }, {} as Record<string, TradeStats>) || {};
+
+    const tradesBySymbol: Record<string, TradeStats> = trades?.reduce((acc: Record<string, TradeStats>, t) => {
+      if (!acc[t.symbol]) acc[t.symbol] = { wins: 0, total: 0, pnl: 0 };
+      acc[t.symbol].total++;
+      if (t.pnl_net > 0) acc[t.symbol].wins++;
+      acc[t.symbol].pnl += Number(t.pnl_net);
+      return acc;
+    }, {} as Record<string, TradeStats>) || {};
+
+    const longTrades = trades?.filter(t => t.side.toLowerCase() === 'long') || [];
+    const shortTrades = trades?.filter(t => t.side.toLowerCase() === 'short') || [];
+    const longPnL = longTrades.reduce((s, t) => s + Number(t.pnl_net), 0);
+    const shortPnL = shortTrades.reduce((s, t) => s + Number(t.pnl_net), 0);
+
+    const weekdayStats = Object.entries(tradesByWeekday).map(([day, stats]) => 
+      `- ${day}: ${stats.total} Trades, ${stats.total > 0 ? ((stats.wins / stats.total) * 100).toFixed(0) : 0}% Win-Rate, $${stats.pnl.toFixed(2)} P&L`
+    ).join('\n');
+
+    const symbolStats = Object.entries(tradesBySymbol)
+      .sort((a, b) => b[1].total - a[1].total)
+      .slice(0, 5)
+      .map(([sym, stats]) => 
+        `- ${sym}: ${stats.total} Trades, ${stats.total > 0 ? ((stats.wins / stats.total) * 100).toFixed(0) : 0}% Win-Rate, $${stats.pnl.toFixed(2)} P&L`
+      ).join('\n');
+
     const systemPrompt = `Du bist ein professioneller Trading-Analyst-Assistent für TradeNotes.io. Du analysierst Trading-Daten und gibst präzise, datenbasierte Antworten in einer freundlichen aber professionellen Art.
 
 Verfügbare Performance-Daten des Traders:
@@ -232,17 +268,45 @@ Verfügbare Performance-Daten des Traders:
 - Gewinn-Trades: ${winningTrades.length}
 - Verlust-Trades: ${losingTrades.length}
 
+Performance nach Wochentag:
+${weekdayStats}
+
+Top 5 Symbole nach Anzahl:
+${symbolStats}
+
+Long vs Short:
+- Long: ${longTrades.length} Trades, $${longPnL.toFixed(2)} P&L
+- Short: ${shortTrades.length} Trades, $${shortPnL.toFixed(2)} P&L
+
 Top 10 neueste Trades:
 ${trades?.slice(0, 10).map(t => `- ${t.symbol} (${t.side}): Entry $${t.entry_price}, Exit $${t.exit_price}, P&L: $${t.pnl_net}, Setup: ${t.setup || 'N/A'}, Zeit: ${new Date(t.entry_time).toLocaleDateString()}`).join('\n')}
 
 ${totalTrades > 10 ? `\nWeitere ${totalTrades - 10} Trades sind in der Historie verfügbar.` : ''}
 
-Anweisungen:
+WICHTIG - Visualisierungen:
+Wenn die Frage nach Vergleichen, Verteilungen, Zeitverläufen oder Rankings fragt, MUSST du zusätzlich zur Textantwort eine Visualisierung zurückgeben.
+
+Entscheide basierend auf der Frage:
+- "Performance nach Wochentag/Symbol/Setup" → Bar Chart
+- "Zeitverlauf/Entwicklung/Monat/Woche" → Line Chart  
+- "Vergleich Long vs Short" oder "Anteil Win/Loss" → Pie Chart
+- "Top/Beste/Schlechteste X" → Table
+
+Wenn eine Visualisierung sinnvoll ist, antworte EXAKT im JSON-Format:
+{"answer":"Deine Textantwort hier...","visualization":{"type":"bar|line|pie|table","title":"Chart-Titel","data":[{"label":"X","value":123}]}}
+
+Für Bar/Line Charts: data Array mit Objekten die "label" und "value" enthalten.
+Für Pie Charts: data Array mit Objekten die "name" und "value" enthalten.
+Für Tables: data Array mit Objekten deren Keys als Spaltenüberschriften dienen.
+
+Wenn KEINE Visualisierung passt, antworte NUR mit dem Textinhalt (kein JSON).
+
+Allgemeine Anweisungen:
 - Antworte präzise und datengetrieben
 - Nutze konkrete Zahlen und Beispiele aus den Daten
 - Sei konstruktiv und hilfreich
 - Wenn du Muster siehst, weise darauf hin
-- Halte die Antwort fokussiert und nicht zu lang (max 3-4 Sätze)
+- Halte die Textantwort fokussiert (max 3-4 Sätze)
 - Verwende Emojis sparsam aber passend (📈, 💰, 📊, ⚠️)
 - Antworte auf Deutsch`;
 
@@ -260,13 +324,13 @@ Anweisungen:
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
+        model: 'google/gemini-3-flash-preview',
         messages: [
           { role: 'system', content: systemPrompt },
           { role: 'user', content: sanitizedQuestion }
         ],
         temperature: 0.7,
-        max_tokens: 500,
+        max_tokens: 1000,
       }),
     });
 
@@ -277,7 +341,30 @@ Anweisungen:
     }
 
     const aiData = await aiResponse.json();
-    let answer = aiData.choices[0].message.content;
+    let rawAnswer = aiData.choices[0].message.content;
+
+    // Try to parse as JSON (visualization response)
+    let answer = rawAnswer;
+    let visualization = null;
+    
+    try {
+      // Clean potential markdown code blocks
+      const cleanedAnswer = rawAnswer.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+      
+      if (cleanedAnswer.startsWith('{') && cleanedAnswer.includes('"answer"')) {
+        const parsed = JSON.parse(cleanedAnswer);
+        if (parsed.answer) {
+          answer = parsed.answer;
+          if (parsed.visualization && parsed.visualization.type && parsed.visualization.data) {
+            visualization = parsed.visualization;
+            console.log('Visualization detected:', visualization.type);
+          }
+        }
+      }
+    } catch (parseError) {
+      // Not JSON, use raw answer
+      console.log('Response is plain text, no visualization');
+    }
 
     // Output validation: Check if AI response leaked system prompt or instructions
     const leakedPatterns = [
@@ -293,6 +380,7 @@ Anweisungen:
     if (leakedPatterns.some(p => p.test(answer))) {
       console.log('Potential system prompt leak detected, sanitizing response');
       answer = 'Ich kann diese Frage leider nicht beantworten. Bitte stelle eine Frage zu deiner Trading-Performance. 📊';
+      visualization = null;
     }
 
     console.log('AI response received, saving to database...');
@@ -315,6 +403,7 @@ Anweisungen:
     return new Response(
       JSON.stringify({ 
         answer, 
+        visualization,
         tradesAnalyzed: totalTrades,
         questionsRemaining: dailyLimit - (questionCount + 1),
         dailyLimit,

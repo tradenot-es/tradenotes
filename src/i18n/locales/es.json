@@ -1185,9 +1185,14 @@
     },
     "riskSimulator": {
       "term": "Simulador de Riesgo (Risk Simulator)",
-      "definition": "El Simulador de Riesgo es una herramienta para probar escenarios What-If basados en tus datos de trading reales. Permite simular cómo habría evolucionado tu curva de capital con diferentes estrategias de salida (R-Multiple) o tamaños de posición. Funciones: (1) Simulación What-If R-Multiple - ¿Y si todas las salidas hubieran sido a 1.5R, 2R o 3R? (2) Simulación de dimensionamiento de posición - Cómo diferentes % de riesgo afectan el crecimiento del capital. (3) Monte Carlo (opcional) - Aleatorización de secuencias de operaciones para determinar resultados probables.",
+      "definition": "El Simulador de Riesgo es una herramienta para probar escenarios What-If basados en tus datos de trading reales. Permite simular cómo habría evolucionado tu curva de capital con diferentes estrategias de salida (R-Multiple) o tamaños de posición.",
       "formula": "Capital Simulado = Capital Inicial × ∏(1 + Ri × Riesgo%)\n\ndonde Ri = R-Multiple simulado para cada operación",
-      "example": "Tus últimas 100 operaciones tuvieron un R promedio de 1.2R. El simulador muestra: Con 2% de riesgo por operación, tus $10.000 podrían haberse convertido en $15.400. Con 1% de riesgo = $12.500 (más seguro). La simulación Monte Carlo (1000 iteraciones) muestra que el 95% de los escenarios llevan a al menos $11.000 de capital final."
+      "example": "Tus últimas 100 operaciones tuvieron un R promedio de 1.2R. El simulador muestra: Con 2% de riesgo por operación, tus $10.000 podrían haberse convertido en $15.400."
+    },
+    "aiAssistantCharts": {
+      "term": "Chat IA con Gráficos Integrados (AI Chat with Inline Charts)",
+      "definition": "El Asistente de Trading IA puede responder preguntas no solo con texto, sino también con visualizaciones interactivas. Para preguntas sobre comparaciones, tendencias o rankings, la IA genera automáticamente gráficos apropiados (barras, líneas, circular) o tablas directamente en el chat.",
+      "example": "Pregunta: 'Muestra mi rendimiento por día de la semana' → La IA responde con un gráfico de barras mostrando tasa de éxito o P&L por día. Pregunta: 'Compara Long vs Short' → Gráfico circular con proporciones y rendimiento."
     }
   },
   "reports": {
@@ -1345,7 +1350,13 @@
     "suggestedQuestions": "Preguntas Sugeridas:",
     "inputPlaceholder": "Haz una pregunta...",
     "error": "Error de Procesamiento",
-    "errorDescription": "No se pudo procesar la solicitud. Por favor, inténtalo de nuevo."
+    "errorDescription": "No se pudo procesar la solicitud. Por favor, inténtalo de nuevo.",
+    "creditsExhausted": "Créditos Lovable AI agotados. Añade créditos en Configuración → Workspace → Uso.",
+    "dailyLimitReached": "Límite diario alcanzado. Actualiza para más preguntas o inténtalo mañana.",
+    "questionsRemaining": "preguntas restantes hoy",
+    "upgradeForMore": "Actualiza para más preguntas",
+    "chartsTooltip": "Para preguntas apropiadas, la IA genera automáticamente gráficos para visualizar tus datos.",
+    "showingTopResults": "Mostrando {{count}} de {{total}} resultados"
   },
   "privacy": {
     "title": "Política de Privacidad",

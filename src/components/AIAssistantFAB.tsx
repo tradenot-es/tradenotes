@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquare, X, Send } from "lucide-react";
+import { MessageSquare, X, Send, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,25 +8,33 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { ChatVisualization, Visualization } from "./ChatVisualization";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
   timestamp: Date;
+  visualization?: Visualization;
 }
 
 const SUGGESTED_QUESTIONS_DE = [
   "Was war mein bester Trading-Tag?",
-  "Welches Symbol hatte meine besten Trades?",
-  "Wie war meine Performance diese Woche?",
-  "Was ist mein profitabelstes Setup?",
+  "Zeige meine Performance nach Wochentag",
+  "Vergleiche Long vs Short Trades",
+  "Was sind meine Top 5 Symbole?",
 ];
 
 const SUGGESTED_QUESTIONS_EN = [
   "What was my best trading day?",
-  "Which symbol had my best trades?",
-  "How was my performance this week?",
-  "What's my most profitable setup?",
+  "Show my performance by weekday",
+  "Compare Long vs Short trades",
+  "What are my top 5 symbols?",
 ];
 
 export const AIAssistantFAB = () => {
@@ -75,6 +83,7 @@ export const AIAssistantFAB = () => {
         role: "assistant",
         content: data.answer,
         timestamp: new Date(),
+        visualization: data.visualization || undefined,
       };
 
       setMessages((prev) => [...prev, assistantMessage]);
@@ -118,6 +127,16 @@ export const AIAssistantFAB = () => {
             <CardTitle className="text-lg flex items-center gap-2">
               <MessageSquare className="h-5 w-5 text-primary" />
               {t("assistant.title")}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <BarChart3 className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" className="max-w-[250px]">
+                    <p className="text-xs">{t("assistant.chartsTooltip")}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </CardTitle>
             <Button
               variant="ghost"
@@ -173,8 +192,8 @@ export const AIAssistantFAB = () => {
                     <div
                       key={index}
                       className={cn(
-                        "flex",
-                        message.role === "user" ? "justify-end" : "justify-start"
+                        "flex flex-col",
+                        message.role === "user" ? "items-end" : "items-start"
                       )}
                     >
                       <div
@@ -193,6 +212,11 @@ export const AIAssistantFAB = () => {
                           })}
                         </p>
                       </div>
+                      {message.visualization && (
+                        <div className="w-full mt-2">
+                          <ChatVisualization visualization={message.visualization} />
+                        </div>
+                      )}
                     </div>
                   ))}
                   {isLoading && (

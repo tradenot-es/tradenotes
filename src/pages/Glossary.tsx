@@ -349,6 +349,12 @@ export default function Glossary() {
       definition: t("glossary.riskSimulator.definition"),
       formula: t("glossary.riskSimulator.formula"),
       example: t("glossary.riskSimulator.example")
+    },
+    {
+      id: "ai-assistant-charts",
+      term: t("glossary.aiAssistantCharts.term"),
+      definition: t("glossary.aiAssistantCharts.definition"),
+      example: t("glossary.aiAssistantCharts.example")
     }
   ];
 
