@@ -342,6 +342,13 @@ export default function Glossary() {
       term: t("glossary.correction.term"),
       definition: t("glossary.correction.definition"),
       example: t("glossary.correction.example")
+    },
+    {
+      id: "risk-simulator",
+      term: t("glossary.riskSimulator.term"),
+      definition: t("glossary.riskSimulator.definition"),
+      formula: t("glossary.riskSimulator.formula"),
+      example: t("glossary.riskSimulator.example")
     }
   ];
 

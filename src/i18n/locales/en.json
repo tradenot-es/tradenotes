@@ -1369,6 +1369,12 @@
       "term": "Correction",
       "definition": "Temporary decline of 10-20% in an uptrend. Healthy and normal, often offers buying opportunities.",
       "example": "Stock rises from $100 to $150 (+50%), then falls to $135 (-10%) → Correction, not trend change."
+    },
+    "riskSimulator": {
+      "term": "What-If Risk Simulator",
+      "definition": "An analysis tool that simulates various scenarios based on your historical trade data. Allows testing alternative strategies like different R-multiple exits, position sizes, or trade filters without risking real capital.",
+      "formula": "Monte Carlo: Random resampling of historical trades over 1000+ iterations to project possible future equity paths",
+      "example": "You test: 'What if I always exited at 2R?' The simulator calculates your hypothetical equity curve and shows whether this strategy would have been more profitable."
     }
   },
   "reports": {
@@ -1380,6 +1386,9 @@
     "behavior": "Behavior",
     "symbols": "Symbols",
     "riskAnalysis": "Risk Analysis",
+    "riskAnalysisTooltip": "Analyze your risk management using R-values and drawdown metrics",
+    "simulator": "Simulator",
+    "simulatorTooltip": "Simulate what-if scenarios based on your trade data",
     "mfemae": "MFE/MAE",
     "mfemaeTooltip": "Maximum Favorable/Adverse Excursion analysis. See how far your trades run in your favor vs against you, optimize stop-loss and take-profit levels.",
     "accountTypes": "Accounts",
