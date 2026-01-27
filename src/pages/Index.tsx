@@ -13,11 +13,13 @@ import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { PageHeader } from "@/components/PageHeader";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
+import { DailySummaryCard } from "@/components/DailySummaryCard";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useCurrency } from "@/hooks/useCurrency";
+
 interface Trade {
   id: string;
   symbol: string;
@@ -314,6 +316,9 @@ const Index = () => {
               <WeeklyPerformanceEnhanced trades={trades} />
             </div>
           </div>
+
+          {/* AI Daily Summary */}
+          <DailySummaryCard />
 
           {/* Sector Sentiment - AI powered */}
           <SectorSentimentWidget />

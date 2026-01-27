@@ -29,3 +29,9 @@ verify_jwt = false
 
 [functions.regenerate-webhook-key]
 verify_jwt = false
+
+[functions.daily-summary]
+verify_jwt = true
+
+[functions.trading-assistant]
+verify_jwt = true

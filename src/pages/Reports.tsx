@@ -26,6 +26,7 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 import { PnLChart } from "@/components/PnLChart";
 import { MFEMAEAnalysis } from "@/components/reports/MFEMAEAnalysis";
+import { RiskSimulator } from "@/components/reports/RiskSimulator";
 import { PageHeader } from "@/components/PageHeader";
 
 interface Trade {
@@ -319,7 +320,7 @@ export default function Reports() {
       />
 
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9">
           <HoverCard>
             <HoverCardTrigger asChild>
               <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
@@ -389,6 +390,15 @@ export default function Reports() {
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("reports.riskAnalysisTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+          
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <TabsTrigger value="simulator">{t("reports.simulator")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.simulatorTooltip")}</p>
             </HoverCardContent>
           </HoverCard>
         </TabsList>
@@ -805,6 +815,11 @@ export default function Reports() {
 
           {/* MFE/MAE Analysis integrated into Risk Tab */}
           <MFEMAEAnalysis trades={filteredTrades} />
+        </TabsContent>
+
+        {/* Risk Simulator Tab */}
+        <TabsContent value="simulator" className="space-y-6">
+          <RiskSimulator trades={filteredTrades} />
         </TabsContent>
       </Tabs>
     </div>

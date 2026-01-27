@@ -2068,5 +2068,69 @@
       "title": "TradeNot.es - Private Beta | Trading Journal",
       "description": "TradeNot.es - Your professional trading journal. Currently in Private Beta. Secure early access!"
     }
+  },
+  "goalAlerts": {
+    "goalAchieved": "🎯 Daily Goal Achieved!",
+    "goalAchievedDesc": "Congratulations! You made {{amount}} today.",
+    "drawdownWarning": "⚠️ Drawdown Warning",
+    "drawdownWarningDesc": "You've lost {{percent}}% of your daily goal. Consider taking a break.",
+    "drawdownCritical": "🚨 Critical Drawdown!",
+    "drawdownCriticalDesc": "You've lost your entire daily goal. Please stop trading today.",
+    "tradeLimitReached": "📊 Trade Limit Reached",
+    "tradeLimitReachedDesc": "You've made {{limit}} trades today."
+  },
+  "dailySummary": {
+    "title": "AI Daily Summary",
+    "generate": "Generate Summary",
+    "generating": "Generating...",
+    "generated": "Summary generated!",
+    "generateError": "Error generating summary",
+    "regenerate": "Regenerate",
+    "noSummary": "No summary for this day yet. Click 'Generate' to get an AI analysis.",
+    "trades": "Trades",
+    "netPnL": "Net P&L",
+    "showMore": "Show details",
+    "showLess": "Hide details",
+    "bestTrade": "Best Trade",
+    "worstTrade": "Worst Trade",
+    "suggestions": "Improvement Suggestions"
+  },
+  "riskSimulator": {
+    "title": "What-If Risk Simulator",
+    "description": "Simulate different scenarios based on your real trades",
+    "scenario": "Scenario",
+    "rExit": "R-Multiple Exit",
+    "positionSize": "Position Size",
+    "monteCarlo": "Monte Carlo",
+    "targetR": "Target R-Multiple",
+    "sizeMultiplier": "Size Multiplier",
+    "monteCarloDesc": "Simulates {{iterations}} random trade sequences",
+    "tradesWithR": "{{count}} of {{total}} trades have R data",
+    "originalResult": "Original",
+    "simulatedResult": "Simulated",
+    "difference": "Difference",
+    "percentChange": "Change",
+    "median": "Median",
+    "bestCase": "Best Case (95%)",
+    "worstCase": "Worst Case (5%)",
+    "original": "Original",
+    "simulated": "Simulated"
+  },
+  "settings": {
+    "notifications": "Notifications",
+    "notificationsDesc": "Get alerts for goal achievement or drawdown",
+    "enableNotifications": "Enable Notifications",
+    "enableNotificationsDesc": "Toast notifications for trading events",
+    "notificationSound": "Enable Sound",
+    "notificationSoundDesc": "Play sound for important alerts",
+    "drawdownThreshold": "Drawdown Warning Threshold",
+    "drawdownThresholdDesc": "Warn me when I lose this percentage of my daily goal"
+  },
+  "reports": {
+    "simulator": "Simulator",
+    "simulatorTooltip": "What-If scenarios and Monte Carlo simulation"
+  },
+  "assistant": {
+    "showingTopResults": "Showing {{count}} of {{total}} results"
   }
 }

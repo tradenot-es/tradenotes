@@ -1936,5 +1936,69 @@
       "title": "TradeNot.es - Private Beta | Trading Journal",
       "description": "TradeNot.es - Dein professionelles Trading Journal. Aktuell in Private Beta. Sichere dir frühen Zugang!"
     }
+  },
+  "goalAlerts": {
+    "goalAchieved": "🎯 Tagesziel erreicht!",
+    "goalAchievedDesc": "Glückwunsch! Du hast heute {{amount}} verdient.",
+    "drawdownWarning": "⚠️ Drawdown-Warnung",
+    "drawdownWarningDesc": "Du hast {{percent}}% deines Tagesziels verloren. Überlege, eine Pause zu machen.",
+    "drawdownCritical": "🚨 Kritischer Drawdown!",
+    "drawdownCriticalDesc": "Du hast dein Tagesziel komplett verloren. Bitte stoppe den Handel heute.",
+    "tradeLimitReached": "📊 Trade-Limit erreicht",
+    "tradeLimitReachedDesc": "Du hast {{limit}} Trades heute gemacht."
+  },
+  "dailySummary": {
+    "title": "KI Tages-Zusammenfassung",
+    "generate": "Zusammenfassung generieren",
+    "generating": "Generiere...",
+    "generated": "Zusammenfassung erstellt!",
+    "generateError": "Fehler beim Generieren der Zusammenfassung",
+    "regenerate": "Neu generieren",
+    "noSummary": "Noch keine Zusammenfassung für diesen Tag. Klicke auf 'Generieren' um eine KI-Analyse zu erhalten.",
+    "trades": "Trades",
+    "netPnL": "Net P&L",
+    "showMore": "Details anzeigen",
+    "showLess": "Details ausblenden",
+    "bestTrade": "Bester Trade",
+    "worstTrade": "Schlechtester Trade",
+    "suggestions": "Verbesserungsvorschläge"
+  },
+  "riskSimulator": {
+    "title": "What-If Risk Simulator",
+    "description": "Simuliere verschiedene Szenarien basierend auf deinen echten Trades",
+    "scenario": "Szenario",
+    "rExit": "R-Multiple Exit",
+    "positionSize": "Position Size",
+    "monteCarlo": "Monte Carlo",
+    "targetR": "Ziel R-Multiple",
+    "sizeMultiplier": "Größen-Multiplikator",
+    "monteCarloDesc": "Simuliert {{iterations}} zufällige Trade-Reihenfolgen",
+    "tradesWithR": "{{count}} von {{total}} Trades haben R-Daten",
+    "originalResult": "Original",
+    "simulatedResult": "Simuliert",
+    "difference": "Differenz",
+    "percentChange": "Änderung",
+    "median": "Median",
+    "bestCase": "Best Case (95%)",
+    "worstCase": "Worst Case (5%)",
+    "original": "Original",
+    "simulated": "Simuliert"
+  },
+  "settings": {
+    "notifications": "Benachrichtigungen",
+    "notificationsDesc": "Erhalte Alerts bei Zielerreichung oder Drawdown",
+    "enableNotifications": "Benachrichtigungen aktivieren",
+    "enableNotificationsDesc": "Toast-Benachrichtigungen bei Trading-Events",
+    "notificationSound": "Ton aktivieren",
+    "notificationSoundDesc": "Spiele einen Ton bei wichtigen Alerts",
+    "drawdownThreshold": "Drawdown-Warnschwelle",
+    "drawdownThresholdDesc": "Warne mich, wenn ich diesen Prozentsatz meines Tagesziels verliere"
+  },
+  "reports": {
+    "simulator": "Simulator",
+    "simulatorTooltip": "What-If Szenarien und Monte Carlo Simulation"
+  },
+  "assistant": {
+    "showingTopResults": "Zeige {{count}} von {{total}} Ergebnissen"
   }
 }

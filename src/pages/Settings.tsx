@@ -37,6 +37,9 @@ const Settings = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [dailyGoalAmount, setDailyGoalAmount] = useState("500.00");
   const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState("10");
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [notificationSound, setNotificationSound] = useState(false);
+  const [drawdownWarningThreshold, setDrawdownWarningThreshold] = useState(50);
 
   const timezones = [
     "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -92,6 +95,9 @@ const Settings = () => {
       setTags(data.tags || []);
       setDailyGoalAmount(data.daily_goal_amount?.toString() || "500.00");
       setDailyGoalMaxTrades(data.daily_goal_max_trades?.toString() || "10");
+      setNotificationsEnabled(data.notifications_enabled ?? true);
+      setNotificationSound(data.notification_sound ?? false);
+      setDrawdownWarningThreshold(data.drawdown_warning_threshold ?? 50);
     }
     setLoading(false);
   };
@@ -133,6 +139,9 @@ const Settings = () => {
           tags: tags,
           daily_goal_amount: parseFloat(dailyGoalAmount),
           daily_goal_max_trades: parseInt(dailyGoalMaxTrades),
+          notifications_enabled: notificationsEnabled,
+          notification_sound: notificationSound,
+          drawdown_warning_threshold: drawdownWarningThreshold,
         })
         .eq("id", settingsId);
 
@@ -378,6 +387,56 @@ const Settings = () => {
                 {errors.default_slippage && (
                   <p className="text-sm text-destructive">{errors.default_slippage}</p>
                 )}
+              </div>
+          </CardContent>
+          </Card>
+
+          {/* Notification Settings */}
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("settings.notifications")}</CardTitle>
+              <CardDescription>{t("settings.notificationsDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>{t("settings.enableNotifications")}</Label>
+                  <p className="text-sm text-muted-foreground">{t("settings.enableNotificationsDesc")}</p>
+                </div>
+                <input 
+                  type="checkbox" 
+                  className="h-5 w-5 accent-primary"
+                  checked={notificationsEnabled}
+                  onChange={(e) => setNotificationsEnabled(e.target.checked)}
+                />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <Label>{t("settings.notificationSound")}</Label>
+                  <p className="text-sm text-muted-foreground">{t("settings.notificationSoundDesc")}</p>
+                </div>
+                <input 
+                  type="checkbox" 
+                  className="h-5 w-5 accent-primary"
+                  checked={notificationSound}
+                  onChange={(e) => setNotificationSound(e.target.checked)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center justify-between">
+                  <Label>{t("settings.drawdownThreshold")}</Label>
+                  <Badge variant="outline">{drawdownWarningThreshold}%</Badge>
+                </div>
+                <input
+                  type="range"
+                  min="10"
+                  max="100"
+                  step="10"
+                  value={drawdownWarningThreshold}
+                  onChange={(e) => setDrawdownWarningThreshold(parseInt(e.target.value))}
+                  className="w-full"
+                />
+                <p className="text-xs text-muted-foreground">{t("settings.drawdownThresholdDesc")}</p>
               </div>
             </CardContent>
           </Card>
