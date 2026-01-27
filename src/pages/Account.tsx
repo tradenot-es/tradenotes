@@ -16,6 +16,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { PageHeader } from "@/components/PageHeader";
+import { z } from "zod";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -150,13 +151,36 @@ const Account = () => {
   };
 
   const handleUpdateProfile = async () => {
+    // Validate first name is required
+    const profileSchema = z.object({
+      firstName: z.string()
+        .trim()
+        .min(1, { message: t("validation.firstNameRequired") })
+        .max(50, { message: t("validation.firstNameTooLong") }),
+      lastName: z.string()
+        .trim()
+        .max(50, { message: t("validation.lastNameTooLong") })
+        .optional(),
+    });
+
+    const validation = profileSchema.safeParse({ 
+      firstName: firstName.trim(), 
+      lastName: lastName.trim() || undefined 
+    });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast.error(firstError.message);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('profiles')
         .upsert({
           id: user?.id,
-          first_name: firstName,
-          last_name: lastName,
+          first_name: firstName.trim(),
+          last_name: lastName.trim() || null,
         });
       
       if (error) throw error;
@@ -461,17 +485,22 @@ const Account = () => {
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName">{t("settings.firstName")}</Label>
+                  <Label htmlFor="firstName">
+                    {t("settings.firstName")} <span className="text-destructive">*</span>
+                  </Label>
                   <Input
                     id="firstName"
                     type="text"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder={t("settings.firstNamePlaceholder")}
+                    required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName">{t("settings.lastName")}</Label>
+                  <Label htmlFor="lastName">
+                    {t("settings.lastName")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
+                  </Label>
                   <Input
                     id="lastName"
                     type="text"

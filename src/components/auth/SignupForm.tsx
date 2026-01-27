@@ -35,8 +35,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       .min(8, { message: t("validation.passwordMin") })
       .regex(/[A-Z]/, { message: t("validation.passwordUppercase") })
       .regex(/[0-9]/, { message: t("validation.passwordNumber") }),
-    firstName: z.string().min(1, { message: t("validation.required") }),
-    lastName: z.string().min(1, { message: t("validation.required") }),
+    firstName: z.string().min(1, { message: t("validation.firstNameRequired") }),
+    lastName: z.string().optional(),
   });
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -128,7 +128,9 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
     <form onSubmit={handleSignup} className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="firstName">{t("auth.firstName")}</Label>
+          <Label htmlFor="firstName">
+            {t("auth.firstName")} <span className="text-destructive">*</span>
+          </Label>
           <Input
             id="firstName"
             type="text"
@@ -138,13 +140,16 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
               setFirstName(e.target.value);
               setErrors({ ...errors, firstName: "" });
             }}
+            required
           />
           {errors.firstName && (
             <p className="text-sm text-destructive">{errors.firstName}</p>
           )}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="lastName">{t("auth.lastName")}</Label>
+          <Label htmlFor="lastName">
+            {t("auth.lastName")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
+          </Label>
           <Input
             id="lastName"
             type="text"
@@ -155,9 +160,6 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
               setErrors({ ...errors, lastName: "" });
             }}
           />
-          {errors.lastName && (
-            <p className="text-sm text-destructive">{errors.lastName}</p>
-          )}
         </div>
       </div>
 
