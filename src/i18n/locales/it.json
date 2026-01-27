@@ -1321,9 +1321,14 @@
     },
     "riskSimulator": {
       "term": "Simulatore di Rischio (Risk Simulator)",
-      "definition": "Il Simulatore di Rischio è uno strumento per testare scenari What-If basati sui tuoi dati di trading reali. Permette di simulare come sarebbe evoluta la tua curva equity con diverse strategie di uscita (R-Multiple) o dimensioni posizione. Funzionalità: (1) Simulazione What-If R-Multiple - E se tutte le uscite fossero state a 1.5R, 2R o 3R? (2) Simulazione dimensionamento posizione - Come diverse % di rischio influenzano la crescita dell'equity. (3) Monte Carlo (opzionale) - Randomizzazione delle sequenze di operazioni per determinare risultati probabili.",
+      "definition": "Il Simulatore di Rischio è uno strumento per testare scenari What-If basati sui tuoi dati di trading reali. Permette di simulare come sarebbe evoluta la tua curva equity con diverse strategie di uscita (R-Multiple) o dimensioni posizione.",
       "formula": "Equity Simulata = Capitale Iniziale × ∏(1 + Ri × Rischio%)\n\ndove Ri = R-Multiple simulato per ogni operazione",
-      "example": "Le tue ultime 100 operazioni hanno avuto un R medio di 1.2R. Il simulatore mostra: Con 2% di rischio per operazione, i tuoi $10.000 sarebbero potuti diventare $15.400. Con 1% di rischio = $12.500 (più sicuro). La simulazione Monte Carlo (1000 iterazioni) mostra che il 95% degli scenari porta ad almeno $11.000 di capitale finale."
+      "example": "Le tue ultime 100 operazioni hanno avuto un R medio di 1.2R. Il simulatore mostra: Con 2% di rischio per operazione, i tuoi $10.000 sarebbero potuti diventare $15.400."
+    },
+    "aiAssistantCharts": {
+      "term": "Chat AI con Grafici Integrati (AI Chat with Inline Charts)",
+      "definition": "L'Assistente Trading AI può rispondere alle domande non solo con testo, ma anche con visualizzazioni interattive. Per domande su confronti, tendenze o classifiche, l'AI genera automaticamente grafici appropriati (barre, linee, torta) o tabelle direttamente nella chat.",
+      "example": "Domanda: 'Mostra le mie prestazioni per giorno della settimana' → L'AI risponde con un grafico a barre che mostra il tasso di successo o P&L per giorno. Domanda: 'Confronta Long vs Short' → Grafico a torta con proporzioni e prestazioni."
     }
   },
   "reports": {
@@ -1493,7 +1498,9 @@
     "creditsExhausted": "Crediti Lovable AI esauriti. Aggiungi crediti in Impostazioni → Workspace → Utilizzo.",
     "dailyLimitReached": "Limite giornaliero raggiunto. Aggiorna per più domande o riprova domani.",
     "questionsRemaining": "domande rimanenti oggi",
-    "upgradeForMore": "Aggiorna per più domande"
+    "upgradeForMore": "Aggiorna per più domande",
+    "chartsTooltip": "Per domande appropriate, l'AI genera automaticamente grafici per visualizzare i tuoi dati.",
+    "showingTopResults": "Mostrando {{count}} di {{total}} risultati"
   },
   "dailyPrep": {
     "title": "Preparazione Giornaliera",

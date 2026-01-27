@@ -1243,6 +1243,11 @@
       "definition": "Ein Analyse-Tool, das verschiedene Szenarien basierend auf deinen historischen Trade-Daten simuliert. Ermöglicht das Testen von alternativen Strategien wie unterschiedliche R-Multiple Exits, Positionsgrößen oder Trade-Filterungen, ohne echtes Kapital zu riskieren.",
       "formula": "Monte Carlo: Zufällige Neuordnung der historischen Trades über 1000+ Iterationen zur Projektion möglicher zukünftiger Equity-Verläufe",
       "example": "Du testest: 'Was wäre, wenn ich immer bei 2R ausgestiegen wäre?' Der Simulator berechnet deine hypothetische Equity-Kurve und zeigt, ob diese Strategie profitabler gewesen wäre."
+    },
+    "aiAssistantCharts": {
+      "term": "AI Chat mit Inline-Charts",
+      "definition": "Der AI Trading Assistent kann Fragen nicht nur mit Text, sondern auch mit interaktiven Visualisierungen beantworten. Bei Fragen nach Vergleichen, Trends oder Rankings generiert die KI automatisch passende Charts (Balken-, Linien-, Kreisdiagramme) oder Tabellen direkt im Chat.",
+      "example": "Frage: 'Zeige meine Performance nach Wochentag' → Die KI antwortet mit einem Balkendiagramm, das Win-Rate oder P&L pro Wochentag darstellt. Frage: 'Vergleiche Long vs Short' → Kreisdiagramm mit Anteil und Performance."
     }
   },
   "reports": {
@@ -1410,7 +1415,9 @@
     "creditsExhausted": "Lovable AI Credits aufgebraucht. Bitte lade Credits auf unter Settings → Workspace → Usage.",
     "dailyLimitReached": "Tageslimit erreicht. Upgrade für mehr Fragen oder versuche es morgen erneut.",
     "questionsRemaining": "Fragen heute verfügbar",
-    "upgradeForMore": "Upgrade für mehr Fragen"
+    "upgradeForMore": "Upgrade für mehr Fragen",
+    "chartsTooltip": "Bei passenden Fragen generiert die KI automatisch Charts zur Visualisierung deiner Daten.",
+    "showingTopResults": "Zeige {{count}} von {{total}} Ergebnissen"
   },
   "dailyPrep": {
     "title": "Tägliche Vorbereitung",
@@ -2038,7 +2045,4 @@
     "original": "Original",
     "simulated": "Simuliert"
   },
-  "assistant": {
-    "showingTopResults": "Zeige {{count}} von {{total}} Ergebnissen"
-  }
 }

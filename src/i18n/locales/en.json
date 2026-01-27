@@ -1375,6 +1375,11 @@
       "definition": "An analysis tool that simulates various scenarios based on your historical trade data. Allows testing alternative strategies like different R-multiple exits, position sizes, or trade filters without risking real capital.",
       "formula": "Monte Carlo: Random resampling of historical trades over 1000+ iterations to project possible future equity paths",
       "example": "You test: 'What if I always exited at 2R?' The simulator calculates your hypothetical equity curve and shows whether this strategy would have been more profitable."
+    },
+    "aiAssistantCharts": {
+      "term": "AI Chat with Inline Charts",
+      "definition": "The AI Trading Assistant can answer questions not only with text but also with interactive visualizations. When asking about comparisons, trends, or rankings, the AI automatically generates appropriate charts (bar, line, pie) or tables directly in the chat.",
+      "example": "Question: 'Show my performance by weekday' → The AI responds with a bar chart displaying win rate or P&L per weekday. Question: 'Compare Long vs Short' → Pie chart with proportions and performance."
     }
   },
   "reports": {
@@ -1542,7 +1547,9 @@
     "creditsExhausted": "Lovable AI credits exhausted. Please add credits under Settings → Workspace → Usage.",
     "dailyLimitReached": "Daily limit reached. Upgrade for more questions or try again tomorrow.",
     "questionsRemaining": "questions remaining today",
-    "upgradeForMore": "Upgrade for more questions"
+    "upgradeForMore": "Upgrade for more questions",
+    "chartsTooltip": "For suitable questions, the AI automatically generates charts to visualize your data.",
+    "showingTopResults": "Showing {{count}} of {{total}} results"
   },
   "dailyPrep": {
     "title": "Daily Preparation",
@@ -2170,7 +2177,4 @@
     "original": "Original",
     "simulated": "Simulated"
   },
-  "assistant": {
-    "showingTopResults": "Showing {{count}} of {{total}} results"
-  }
 }
