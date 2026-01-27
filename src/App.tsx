@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
 import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
@@ -34,7 +34,14 @@ import WhyJournal from "./pages/WhyJournal";
 const queryClient = new QueryClient();
 
 // Conditional Home Route based on feature flags
+// Secret preview parameter: ?preview=landing to bypass PreLaunch mode
 const HomeRoute = () => {
+  const [searchParams] = useSearchParams();
+  const previewMode = searchParams.get("preview");
+  
+  // Allow preview of landing page with secret parameter
+  if (previewMode === "landing") return <Landing />;
+  
   if (featureFlags.MAINTENANCE_MODE) return <PreLaunch mode="maintenance" />;
   if (featureFlags.PRELAUNCH_MODE) return <PreLaunch mode="prelaunch" />;
   return <Landing />;
