@@ -238,4 +238,57 @@ All colors MUST be HSL.
       animation: none;
     }
   }
+
+  /* Feature Collage for Hero Section */
+  .feature-collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+    will-change: transform;
+  }
+
+  .feature-collage-item {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-collage-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Fade-in-up animation for hero elements */
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .feature-collage {
+      will-change: auto;
+    }
+    
+    .feature-collage-item:hover {
+      transform: none;
+    }
+  }
 }

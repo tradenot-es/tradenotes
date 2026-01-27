@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -37,13 +37,13 @@ import sectorSentimentImg from "@/assets/features/sector-sentiment.webp";
 import economicCalendarImg from "@/assets/features/economic-calendar.webp";
 
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { CategoryNav } from "@/components/features/CategoryNav";
 import { FeatureRow } from "@/components/features/FeatureRow";
+import { FeaturesHero } from "@/components/features/FeaturesHero";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   TrendingUp,
   Zap,
@@ -70,6 +70,7 @@ import {
 
 const Features = () => {
   const { t } = useTranslation();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const categoryIds = ["trading-tools", "analytics", "ai", "reports", "market-intel"];
   const activeCategory = useScrollSpy(categoryIds, 140);
@@ -82,6 +83,17 @@ const Features = () => {
       metaDescription.setAttribute("content", t("features.heroDescription"));
     }
   }, [t]);
+
+  const handleCategoryClick = (categoryId: string) => {
+    const element = document.getElementById(categoryId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+  };
 
   // Feature data organized by category with individual illustrations
   const featureCategories = [
@@ -285,56 +297,57 @@ const Features = () => {
     },
   ];
 
+  // Filter features based on search query
+  const filterFeatures = (features: typeof featureCategories[0]["features"]) => {
+    if (!searchQuery.trim()) return features;
+    const query = searchQuery.toLowerCase();
+    return features.filter(
+      (feature) =>
+        feature.title.toLowerCase().includes(query) ||
+        feature.description.toLowerCase().includes(query) ||
+        feature.benefits.some((b) => b.toLowerCase().includes(query))
+    );
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <Button variant="ghost" asChild className="mb-6 gap-2">
-            <Link to="/">
-              <ArrowLeft className="h-4 w-4" />
-              {t("features.backToLanding")}
-            </Link>
-          </Button>
-
-          <div className="text-center max-w-3xl mx-auto">
-            <Badge className="mb-4 glow-effect">{t("features.featureCount")}</Badge>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {t("features.heroTitle")}
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              {t("features.heroDescription")}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* New Animated Hero Section */}
+      <FeaturesHero
+        onCategoryClick={handleCategoryClick}
+        onSearchChange={handleSearchChange}
+      />
 
       {/* Sticky Category Navigation */}
       <CategoryNav
         activeCategory={activeCategory}
-        onCategoryClick={() => {}}
+        onCategoryClick={handleCategoryClick}
       />
 
       {/* Feature Categories */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {featureCategories.map((category) => (
-          <section key={category.id} id={category.id} className="mb-16">
-            <div className="border-l-4 border-primary pl-4 mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold">{category.name}</h2>
-            </div>
+        {featureCategories.map((category) => {
+          const filteredFeatures = filterFeatures(category.features);
+          if (filteredFeatures.length === 0) return null;
+          
+          return (
+            <section key={category.id} id={category.id} className="mb-16">
+              <div className="border-l-4 border-primary pl-4 mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold">{category.name}</h2>
+              </div>
 
-            {category.features.map((feature, index) => (
-              <FeatureRow
-                key={index}
-                feature={feature}
-                imagePosition={index % 2 === 0 ? "right" : "left"}
-                screenshotUrl={feature.illustration}
-              />
-            ))}
-          </section>
-        ))}
+              {filteredFeatures.map((feature, index) => (
+                <FeatureRow
+                  key={index}
+                  feature={feature}
+                  imagePosition={index % 2 === 0 ? "right" : "left"}
+                  screenshotUrl={feature.illustration}
+                />
+              ))}
+            </section>
+          );
+        })}
       </div>
 
       {/* Final CTA */}
