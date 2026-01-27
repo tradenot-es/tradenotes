@@ -1,207 +1,298 @@
 
 
-# Feature-Visuals Generierung: Abstrakte Trading-Illustrationen
+# Animierte Hero-Section für die Features-Seite
 
 ## Ziel
 
-Erstellung von 12 kohärenten, abstrakten Visuals im dunklen Trading-Theme für die Features-Seite. Die Bilder ersetzen die aktuellen Kategorie-Illustrationen und erweitern die Abdeckung auf alle wichtigen Features.
+Erstellung einer modernen, animierten Full-Width Hero-Section mit Parallax-Effekten, die oben auf der Features-Seite eingefügt wird. Die Section ersetzt die aktuelle einfache Hero-Section und bietet ein immersives Erlebnis mit Kategorie-Filter, Teaser-Cards und einem visuellen Hero-Collage.
 
 ---
 
 ## Design-Spezifikation
 
-### Farbpalette
-| Verwendung | Hex-Code | Beschreibung |
-|------------|----------|--------------|
-| Hintergrund | #020617 / #000 | Fast schwarz |
-| Primär-Akzent | #10B981 | Neon-Grün |
-| Sekundär 1 | #22C55E | Helleres Grün |
-| Sekundär 2 | #38BDF8 | Cyan/Blau |
-| Sekundär 3 | #FACC15 | Gold/Gelb |
-| Verlust/Negativ | #EF4444 | Rot (sparsam) |
+### Layout-Struktur
 
-### Stilrichtlinien
-- Minimalistisch, technisch, leicht futuristisch
-- Klare Geometrie, dünne Linien (1-2px)
-- Glow-Effekte auf Akzentelementen
-- Leichtes Grain/Rauschen im Hintergrund
-- Keine Fotos, keine Menschen, keine echten UI-Screenshots
-- Nur kurze Labels ("PnL", "Winrate", "Setup A")
+```text
++------------------------------------------------------------------+
+|  Navigation (bereits vorhanden)                                   |
++------------------------------------------------------------------+
+|                                                                   |
+|  [Badge: "20+ Features" mit grünem Glow]                          |
+|                                                                   |
+|  H1: "Alle Features im Überblick" (4xl bold, gradient optional)   |
+|                                                                   |
+|  P: "Entdecke die komplette Funktionspalette..." (xl muted)       |
+|                                                                   |
+|  [Search Input] [Kategorie-Buttons: Tools | Analytics | AI | ...]  |
+|                                                                   |
+|  +--------------------+  +--------------------+                    |
+|  | Trading Tools Card |  | Analytics Card     |   (Hero Visual)   |
+|  | Icon + Title       |  | Icon + Title       |   Collage aus     |
+|  +--------------------+  +--------------------+   Feature-Images   |
+|  +--------------------+  +--------------------+   50% width        |
+|  | AI & Automation    |  | Market Intelligence|   responsive      |
+|  | Icon + Title       |  | Icon + Title       |                   |
+|  +--------------------+  +--------------------+                    |
+|                                                                   |
+|  [CTA Button: "14 Tage kostenlos testen" -> /auth]                |
+|                                                                   |
++------------------------------------------------------------------+
+```
 
-### Format
-- Auflösung: 1920x1080 (16:9)
-- Dateiformat: .webp (optimiert für Web)
-- Speicherort: `src/assets/features/`
+### Styling-Details
 
----
+| Element | Spezifikation |
+|---------|---------------|
+| Container | `min-h-[60vh]`, `bg-gradient-to-br from-black to-slate-900` |
+| Badge | Pill-Style, `glow-effect`, primäres Grün |
+| Headline | `text-4xl md:text-5xl font-bold`, optional `gradient-text` |
+| Subheadline | `text-xl text-muted-foreground`, max-width begrenzt |
+| Search Input | Standard Input-Komponente, `bg-muted/50`, Suchen-Icon |
+| Kategorie-Buttons | Toggle-Group oder Button-Reihe, aktive Kategorie hervorgehoben |
+| Teaser-Cards | `glossy-card`, `hover:glow-effect`, Icon + Title, 2x2 Grid |
+| CTA Button | `variant="premium"`, `size="lg"`, Arrow-Icon |
+| Hero Visual | Collage aus 4-6 Feature-Bildern, responsive 50% Breite auf Desktop |
 
-## Visual-Zuordnung zu Features
+### Animationen
 
-### Kategorie: Trading Tools (5 Features)
-
-| # | Feature | Dateiname | Motiv-Beschreibung |
-|---|---------|-----------|-------------------|
-| 1 | Schnelle Trade-Eingabe | `easy-entry.webp` | Vereinfachtes Ticket-Panel: große Preis-Zahl mittig, Buy/Sell-Buttons als farbige Rechtecke (grün/rot), Slider für Positionsgröße. Abstrakte Formen, keine echten UI-Komponenten. |
-| 2 | NinjaTrader Auto-Sync | `ninjatrader-sync.webp` | Zwei stilisierte Panels: links "NT" Chart-Panel mit abstraktem Logo-Icon, rechts "Journal" Dashboard-Panel, dazwischen leuchtende Sync-Pfeile mit Datenfluss-Linien. |
-| 3 | Prop-Firm Erkennung | `prop-firm.webp` | Dashboard mit Account-Karten, jede mit Status-Badge und Performance-Balken. Verbindungslinien zwischen Accounts, zentrale Sync-Indikation. |
-| 4 | Positionsrechner | `position-calculator.webp` | Abstraktes Rechner-Panel mit Eingabefeldern als Rechtecke, Risk%-Slider, Output-Box mit berechneter Lotgröße. Mathematische Symbole im Hintergrund. |
-| 5 | CSV Import | `csv-import.webp` | Abstrakte Tabelle mit Spalten/Zeilen, Upload-Pfeil-Icon, "CSV"-Label. Datenfluss von Datei zu Dashboard-Widgets. |
-
-### Kategorie: Analytics (5 Features)
-
-| # | Feature | Dateiname | Motiv-Beschreibung |
-|---|---------|-----------|-------------------|
-| 1 | MFE/MAE Analyse | `mfe-mae.webp` | Dunkles Chart-Panel mit Kerzen, zwei halbtransparente leuchtende Zonen für MFE (grün) und MAE (rot). Markierungen für Entry, Stop, Take Profit. |
-| 2 | Performance Analytics | `performance-analytics.webp` | Großes Equity-Chart, darunter Widgets: Winrate-Donut, Setup-Balkendiagramm, Wochentag-Heatmap. Grün für Gewinne, Rot für Verluste. |
-| 3 | Equity Curve | `equity-curve.webp` | Smooth-Line-Chart mit Auf/Ab-Phasen, markierte Drawdown-Zonen. Darunter Consistency-Bars (grün/rot) pro Tag/Woche. |
-| 4 | Konsistenz-Tracker | `consistency-tracker.webp` | Streak-Visualisierung mit verbundenen Tagen, Flammen-Icons für aktive Streaks, Fortschrittsbalken. Grid-Hintergrund. |
-| 5 | Trading Kalender | `trading-calendar.webp` | Kalender-Heatmap-Grid mit Tagen in verschiedenen Grün-/Rot-Tönen. Kleine Icons (Kerze, Dollar) statt Zahlen. |
-
-### Kategorie: AI & Automation (5 Features)
-
-| # | Feature | Dateiname | Motiv-Beschreibung |
-|---|---------|-----------|-------------------|
-| 1 | AI Trading Assistant | `ai-assistant.webp` | Chat-Panel: stilisierte Bubbles (grün/grau) mit Linien als Platzhaltertext. KI-Brain/Chip-Symbol. Netzwerk-/Node-Muster im Hintergrund. |
-| 2 | AI Chart-Analyse | `ai-charts.webp` | Chart mit Overlay von KI-generierten Annotations: Trendlinien, Support/Resistance-Zonen, Pattern-Markierungen. KI-Icon in Ecke. |
-| 3 | Daily Summary | `daily-summary.webp` | E-Mail/Notification-Card mit abstrakten Zeilen für Statistiken, Mini-Chart, Highlight-Badges. Envelope-Icon mit Glow. |
-| 4 | Goal Alerts | `goal-alerts.webp` | Zielscheibe mit Fortschrittsring, Notification-Bells mit Glow, Threshold-Linien. Progress-Bar und Alert-Icons. |
-| 5 | Monte Carlo Simulator | `monte-carlo.webp` | Cluster halbtransparenter Linien von gemeinsamem Startpunkt divergierend. Parameter-Boxen (Risk%, Trades, Winrate) als Rechtecke. |
-
-### Kategorie: Reports (5 Features)
-
-| # | Feature | Dateiname | Motiv-Beschreibung |
-|---|---------|-----------|-------------------|
-| 1 | Symbol Reports | `symbol-reports.webp` | Abstrakte Tabelle mit Ticker-Symbolen, Performance-Balken pro Symbol, kleine Sparkline-Charts. Filter-Icons oben. |
-| 2 | Setup Reports | `setup-reports.webp` | Setup-Karten mit Labels ("Setup A", "Setup B"), Winrate-Donuts, Vergleichs-Balkendiagramm. Tag-Badges. |
-| 3 | Hour Analysis | `hour-analysis.webp` | 24-Stunden-Radialchart oder Balkendiagramm, Zeitachse, Highlighting der profitabelsten Stunden mit Glow. |
-| 4 | Streak Analysis | `streak-analysis.webp` | Horizontale Streak-Bars (Win/Loss), Flammen-Icons, Rekord-Anzeige. Timeline-Visualisierung. |
-| 5 | Holding Period | `holding-period.webp` | Histogramm/Distribution-Chart für Haltedauer, Zeitachse, Performance-Korrelation. Timer-Icons. |
-
-### Kategorie: Market Intelligence (4 Features)
-
-| # | Feature | Dateiname | Motiv-Beschreibung |
-|---|---------|-----------|-------------------|
-| 1 | Portfolio News | `portfolio-news.webp` | Radar-Kreis mit Symbol-Punkten, News-Cards mit Headline-Balken und Sentiment-Indikatoren (grün/rot). Stilisierte Weltkarte im Hintergrund. |
-| 2 | Political Events | `political-events.webp` | Timeline mit Event-Markern, Impact-Levels (Glow für hohe Wichtigkeit). Flaggen-/Gebäude-Icons. |
-| 3 | Sector Sentiment | `sector-sentiment.webp` | Treemap oder Heatmap mit Sektoren, Sentiment-Farben (grün/rot/neutral). Sektor-Labels. |
-| 4 | Economic Calendar | `economic-calendar.webp` | Horizontale Zeitachse mit Event-Markern, Impact-Punkte mit Glow. Icons für News, Zentralbank, Reden. Weltkarten-Motiv. |
+| Animation | Beschreibung |
+|-----------|--------------|
+| Parallax-Hintergrund | Dezenter vertikaler Parallax-Effekt beim Scrollen (CSS `transform: translateY`) |
+| Fade-In bei Laden | Elemente erscheinen sequenziell mit `animate-fade-in` |
+| Hover-Glow | Cards leuchten beim Hover auf (`hover:shadow-glow`) |
+| Search-Focus | Suchfeld erweitert sich leicht bei Fokus |
+| CTA Servo-Pulse | Optionale Wiederverwendung der `servo-pulse` Animation |
 
 ---
 
 ## Implementierungsplan
 
-### Phase 1: Bild-Generierung (12 Visuals)
+### Phase 1: Neue Komponente erstellen
 
-Für jedes Visual wird folgende Prompt-Struktur verwendet:
+**Datei: `src/components/features/FeaturesHero.tsx`**
 
+Neue Komponente mit folgender Struktur:
+
+```tsx
+interface FeaturesHeroProps {
+  onCategoryClick: (categoryId: string) => void;
+  onSearchChange: (query: string) => void;
+}
+
+export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroProps) {
+  // State für Suche und Parallax
+  // Kategorie-Daten (Icons, Titles, IDs)
+  // Render Hero mit allen Elementen
+}
 ```
-Abstract technical visualization for [FEATURE NAME]. 
-Dark trading theme with black background (#020617). 
-Neon green accent (#10B981) with secondary colors (#22C55E, #38BDF8, #FACC15).
-[SPECIFIC MOTIF DESCRIPTION]
-Style: Minimalist, techy, futuristic. Clean geometry, thin lines, glow effects, subtle grain texture.
-No photos, no people, no real UI screenshots.
-16:9 aspect ratio, 1920x1080.
+
+Inhalte der Komponente:
+1. Container mit Gradient-Hintergrund und Parallax-Hook
+2. Badge "20+ Features" mit Glow
+3. H1 und P aus i18n
+4. Search-Input mit Icon
+5. Kategorie-Button-Reihe (5 Kategorien)
+6. 4 Teaser-Cards im 2x2 Grid (nur 4 wichtigste Kategorien)
+7. Hero-Visual Collage (responsive)
+8. Primärer CTA-Button
+
+### Phase 2: Parallax-Hook erstellen
+
+**Datei: `src/hooks/useParallax.tsx`**
+
+Einfacher Hook für dezenten Parallax-Effekt:
+
+```tsx
+export function useParallax(speed: number = 0.5) {
+  const [offset, setOffset] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffset(window.scrollY * speed);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [speed]);
+  
+  return offset;
+}
 ```
 
-Reihenfolge der Generierung:
-1. MFE/MAE Analyse
-2. Performance Analytics  
-3. AI Trading Assistant
-4. Monte Carlo Simulator
-5. Portfolio News
-6. Easy Entry
-7. NinjaTrader Sync
-8. Equity Curve
-9. Trading Calendar
-10. Symbol Reports
-11. Economic Calendar
-12. Prop-Firm (falls Zeit)
+### Phase 3: Hero-Visual Collage
 
-### Phase 2: Code-Anpassung
+**Option A: CSS Grid Collage**
+- Verwendet 4-6 bestehende Feature-Bilder
+- Asymmetrisches Grid-Layout
+- Dezente Rotation und Schatten
+
+**Option B: Animierte Floating Cards**
+- Feature-Bilder als schwebende Karten
+- Subtile Auf-Ab-Animation
+- Gestaffelte Delays
+
+Gewählte Option: **Option A** (CSS Grid Collage) - performanter und einfacher zu implementieren.
+
+### Phase 4: Features.tsx anpassen
 
 **Datei: `src/pages/Features.tsx`**
 
-1. Neue Imports für alle Feature-Bilder hinzufügen
-2. Jedes Feature-Objekt um `illustration`-Property erweitern
-3. Rendering-Logik anpassen: Jedes Feature erhält sein eigenes Bild
+1. Import der neuen `FeaturesHero` Komponente
+2. State für Suchfilter hinzufügen (optional für spätere Implementierung)
+3. Alte Hero-Section durch `<FeaturesHero />` ersetzen
+4. Handler-Funktionen für Kategorie-Klick und Suche übergeben
+
+Änderungen im Detail:
 
 ```tsx
-// Beispiel-Struktur nach Änderung
-features: [
-  {
-    icon: <Crosshair className="h-6 w-6" />,
-    title: t("features.items.mfeMAE.title"),
-    description: t("features.items.mfeMAE.description"),
-    benefits: [...],
-    illustration: mfeMaeImg,  // NEU
+// Neuer Import
+import { FeaturesHero } from "@/components/features/FeaturesHero";
+
+// In der Komponente
+const [searchQuery, setSearchQuery] = useState("");
+
+// Render
+<FeaturesHero 
+  onCategoryClick={(id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }}
+  onSearchChange={setSearchQuery}
+/>
+```
+
+### Phase 5: i18n-Erweiterungen
+
+**Dateien: `src/i18n/locales/{de,en,fr,es,nl,it}.json`**
+
+Neue Übersetzungsschlüssel hinzufügen:
+
+```json
+"features": {
+  "heroTitle": "Alle Features im Überblick",
+  "heroDescription": "Entdecke die komplette Funktionspalette...",
+  "featureCount": "20+ Features",
+  "searchPlaceholder": "Features durchsuchen...",
+  "ctaPrimary": "14 Tage kostenlos testen",
+  "teaserCards": {
+    "tradingTools": "Schnelle Trade-Erfassung & Import",
+    "analytics": "Performance tracken & analysieren",
+    "ai": "KI-gestützte Insights",
+    "marketIntel": "Marktdaten & News"
+  }
+}
+```
+
+### Phase 6: CSS-Erweiterungen
+
+**Datei: `src/index.css`**
+
+Neue Utility-Klassen für Parallax und Collage:
+
+```css
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-bg {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.feature-collage {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.feature-collage-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-collage-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: var(--shadow-glow);
+}
+```
+
+### Phase 7: Tailwind-Konfiguration
+
+**Datei: `tailwind.config.ts`**
+
+Neue Keyframes für zusätzliche Animationen (falls nötig):
+
+```ts
+keyframes: {
+  "float": {
+    "0%, 100%": { transform: "translateY(0)" },
+    "50%": { transform: "translateY(-10px)" },
   },
-  // ...
-]
+  "fade-in-up": {
+    "0%": { opacity: "0", transform: "translateY(20px)" },
+    "100%": { opacity: "1", transform: "translateY(0)" },
+  },
+},
+animation: {
+  "float": "float 3s ease-in-out infinite",
+  "fade-in-up": "fade-in-up 0.5s ease-out forwards",
+},
 ```
 
-**Datei: `src/components/features/FeatureRow.tsx`**
+---
 
-Die Komponente unterstützt bereits `screenshotUrl` - keine Änderung nötig.
+## Dateistruktur nach Implementierung
 
-**Rendering-Änderung in Features.tsx:**
-
-```tsx
-{category.features.map((feature, index) => (
-  <FeatureRow
-    key={index}
-    feature={feature}
-    imagePosition={index % 2 === 0 ? "right" : "left"}
-    screenshotUrl={feature.illustration}  // Jedes Feature hat eigenes Bild
-  />
-))}
+```text
+src/
+├── components/
+│   └── features/
+│       ├── CategoryNav.tsx (unverändert)
+│       ├── FeatureRow.tsx (unverändert)
+│       └── FeaturesHero.tsx (NEU)
+├── hooks/
+│   ├── useScrollSpy.tsx (unverändert)
+│   └── useParallax.tsx (NEU)
+├── pages/
+│   └── Features.tsx (angepasst)
+├── i18n/locales/
+│   ├── de.json (erweitert)
+│   ├── en.json (erweitert)
+│   └── ... (weitere Sprachen)
+├── index.css (erweitert)
+└── tailwind.config.ts (optional erweitert)
 ```
-
-### Phase 3: Cleanup
-
-- Alte Kategorie-Illustrationen entfernen (5 JPGs)
-- Neue WebP-Dateien optimieren (falls nötig)
-- Lazy Loading verifizieren
 
 ---
 
 ## Technische Details
 
-### Dateistruktur nach Implementierung
+### Responsive Verhalten
 
-```
-src/assets/features/
-├── mfe-mae.webp
-├── performance-analytics.webp
-├── ai-assistant.webp
-├── monte-carlo.webp
-├── portfolio-news.webp
-├── easy-entry.webp
-├── ninjatrader-sync.webp
-├── equity-curve.webp
-├── trading-calendar.webp
-├── symbol-reports.webp
-├── economic-calendar.webp
-├── prop-firm.webp
-├── csv-import.webp
-├── position-calculator.webp
-├── consistency-tracker.webp
-├── ai-charts.webp
-├── daily-summary.webp
-├── goal-alerts.webp
-├── setup-reports.webp
-├── hour-analysis.webp
-├── streak-analysis.webp
-├── holding-period.webp
-├── political-events.webp
-└── sector-sentiment.webp
-```
+| Breakpoint | Layout |
+|------------|--------|
+| Mobile (<768px) | Vertikal gestapelt, Hero-Visual versteckt oder kleiner, volle Breite für alle Elemente |
+| Tablet (768-1024px) | 2-Spalten für Teaser-Cards, Hero-Visual 40% Breite |
+| Desktop (>1024px) | Volles Layout wie Spezifikation, Hero-Visual 50% Breite |
 
-### Performance-Optimierung
+### Performance-Optimierungen
 
-- WebP-Format für bessere Kompression (~30% kleiner als JPG)
-- `loading="lazy"` bereits implementiert
-- Bilder werden erst geladen, wenn sie in den Viewport kommen
+1. **Parallax mit `will-change`**: Verhindert Layout-Thrashing
+2. **Lazy Loading für Bilder**: Feature-Bilder erst laden wenn sichtbar
+3. **Reduced Motion Support**: Parallax und Animationen deaktivieren bei `prefers-reduced-motion`
+4. **CSS-basierter Parallax bevorzugt**: Kein JavaScript-Recalculation bei jedem Scroll
+
+### Barrierefreiheit
+
+1. Search-Input mit korrektem `aria-label`
+2. Kategorie-Buttons als echte Buttons mit Fokus-States
+3. CTA-Link mit klarer Beschreibung
+4. Alle Animationen respektieren `prefers-reduced-motion`
 
 ---
 
@@ -209,9 +300,10 @@ src/assets/features/
 
 | Aspekt | Details |
 |--------|---------|
-| Anzahl Visuals | 24 (alle Features abgedeckt) |
-| Priorität | 12 Kern-Features zuerst |
-| Stil | Dark Trading Theme, abstrakt, technisch |
-| Format | WebP, 1920x1080, 16:9 |
-| Code-Änderungen | Features.tsx (Imports + Datenstruktur) |
+| Neue Dateien | 2 (FeaturesHero.tsx, useParallax.tsx) |
+| Geänderte Dateien | 3 (Features.tsx, index.css, de.json + weitere Sprachen) |
+| Animationen | Parallax, Fade-In, Hover-Glow |
+| Responsive | Vollständig responsiv (Mobile-First) |
+| i18n | Vollständig übersetzt in 6 Sprachen |
+| Performance | Optimiert mit will-change, lazy loading |
 
