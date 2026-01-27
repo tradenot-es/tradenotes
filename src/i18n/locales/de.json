@@ -1237,6 +1237,12 @@
       "term": "Korrektur (Correction)",
       "definition": "Temporärer Rückgang von 10-20% in einem Aufwärtstrend. Gesund und normal, bietet oft Kaufgelegenheiten.",
       "example": "Aktie steigt von 100€ auf 150€ (+50%), fällt dann auf 135€ (-10%) → Korrektur, kein Trendwechsel."
+    },
+    "riskSimulator": {
+      "term": "Was-wäre-wenn-Simulator (Risk Simulator)",
+      "definition": "Ein Analyse-Tool, das verschiedene Szenarien basierend auf deinen historischen Trade-Daten simuliert. Ermöglicht das Testen von alternativen Strategien wie unterschiedliche R-Multiple Exits, Positionsgrößen oder Trade-Filterungen, ohne echtes Kapital zu riskieren.",
+      "formula": "Monte Carlo: Zufällige Neuordnung der historischen Trades über 1000+ Iterationen zur Projektion möglicher zukünftiger Equity-Verläufe",
+      "example": "Du testest: 'Was wäre, wenn ich immer bei 2R ausgestiegen wäre?' Der Simulator berechnet deine hypothetische Equity-Kurve und zeigt, ob diese Strategie profitabler gewesen wäre."
     }
   },
   "reports": {
@@ -1248,6 +1254,9 @@
     "behavior": "Verhalten",
     "symbols": "Symbole",
     "riskAnalysis": "Risiko-Analyse",
+    "riskAnalysisTooltip": "Analysiere dein Risiko-Management anhand von R-Werten und Drawdown",
+    "simulator": "Simulator",
+    "simulatorTooltip": "Simuliere Was-wäre-wenn-Szenarien basierend auf deinen Trade-Daten",
     "mfemae": "MFE/MAE",
     "mfemaeTooltip": "Maximum Favorable/Adverse Excursion Analyse. Zeigt wie weit deine Trades für dich vs. gegen dich laufen, optimiere Stop-Loss und Take-Profit Levels.",
     "accountTypes": "Accounts",
