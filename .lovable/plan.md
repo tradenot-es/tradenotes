@@ -1,267 +1,134 @@
 
-# TradesViz Feature-Upgrade Plan
+# SEO-Optimierte Integration der 4 neuen Features auf der Landing Page
 
 ## Übersicht
-
-Basierend auf der Konkurrenzanalyse werden folgende 4 Features implementiert, um TradeNot.es gegenüber TradesViz.com zu differenzieren:
-
-| Feature | Priorität | Aufwand | Differenzierung |
-|---------|-----------|---------|-----------------|
-| AI Daily Summary | Hoch | Mittel | Automatische Tages-Zusammenfassung mit Verbesserungsvorschlägen |
-| What-If Risk Simulator | Mittel | Hoch | Monte-Carlo-Simulation basierend auf echten Trade-Daten |
-| Goal Alerts & Notifications | Mittel | Mittel | Browser-Push + Toast bei Zielerreichung/Drawdown |
-| AI Chat mit Inline-Charts | Hoch | Hoch | Visualisierte Antworten statt nur Text |
+Die heute implementierten Features müssen SEO-optimiert auf der Landing Page integriert werden:
+- **Goal Alerts & Notifications** - Ziel-Tracking mit Benachrichtigungen
+- **AI Daily Summary** - Automatische tägliche KI-Zusammenfassung
+- **AI Chat with Inline Charts** - Interaktive Visualisierungen im AI Chat
+- **What-If Risk Simulator** - Monte Carlo Risiko-Simulation
 
 ---
 
-## Feature 1: AI Daily Summary
+## Implementierungsschritte
 
-### Konzept
-Am Ende jedes Trading-Tages (oder auf Abruf) wird eine KI-generierte Zusammenfassung erstellt, die Performance, Muster und emotionale Trigger analysiert.
+### 1. Landing Page Feature Grid erweitern
+**Datei:** `src/pages/Landing.tsx`
 
-### User Flow
-1. Nutzer beendet Trading-Tag
-2. Button "Tages-Zusammenfassung generieren" oder automatisch bei letztem Trade
-3. AI analysiert alle Trades des Tages
-4. Zusammenfassung wird als Card angezeigt mit:
-   - Performance-Highlights
-   - Erkannte Muster (beste/schlechteste Zeiten)
-   - Emotionale Trigger-Analyse
-   - 3 konkrete Verbesserungsvorschläge
+Drei neue Feature-Karten im Grid hinzufügen (Risk Simulator, Daily Summary, AI Charts). Das bestehende `aiAlerts` deckt Goal Alerts bereits ab, aber wird umbenannt für Klarheit.
 
-### Technische Umsetzung
-
-#### Neue Edge Function: `daily-summary`
-```text
-- Holt alle Trades des gewählten Tages
-- Berechnet Tages-KPIs
-- Analysiert Muster (Zeit, Symbol, Setup)
-- Nutzt Lovable AI (gemini-3-flash-preview) für Summary
-- Speichert Summary in neuer Tabelle
+**Neue Einträge:**
+```
+- dailySummary (Mail Icon) → AI Daily Summary  
+- aiCharts (PieChart Icon) → AI Chat mit Inline-Charts
+- riskSimulator (Calculator/Gauge Icon) → What-If Risk Simulator
 ```
 
-#### Neue Datenbank-Tabelle: `daily_summaries`
-```text
-Spalten:
-- id (uuid, primary key)
-- user_id (uuid, foreign key)
-- date (date, unique per user)
-- summary_text (text)
-- highlights (jsonb) - strukturierte Daten
-- suggestions (jsonb) - Verbesserungsvorschläge
-- trades_count (integer)
-- net_pnl (numeric)
-- created_at (timestamp)
-```
-
-#### Neue Komponente: `DailySummaryCard.tsx`
-- Zeigt Summary im Dashboard nach dem Kalender
-- Button zum manuellen Generieren
-- Markdown-Rendering für AI-Text
-- Collapsible für lange Summaries
-
-### Dateien
-
-| Aktion | Datei |
-|--------|-------|
-| Neu | `supabase/functions/daily-summary/index.ts` |
-| Neu | `src/components/DailySummaryCard.tsx` |
-| Bearbeiten | `src/pages/Index.tsx` - Integration |
-| Migration | `daily_summaries` Tabelle |
-| Bearbeiten | `src/i18n/locales/*.json` - Übersetzungen |
+**Position:** Nach dem AI Trading Assistant, vor Reports - gruppiert als "AI Features Block"
 
 ---
 
-## Feature 2: What-If Risk Simulator
+### 2. Pricing "All Features" Liste erweitern
+**Datei:** `src/pages/Landing.tsx` (allFeatures Array)
 
-### Konzept
-Interaktiver Simulator, der verschiedene "Was wäre wenn"-Szenarien basierend auf historischen Trade-Daten visualisiert.
-
-### Szenarien
-1. **Exit-Timing**: "Was wäre mein P&L, wenn ich immer bei 1R/2R/3R ausgestiegen wäre?"
-2. **Position Size**: "Wie würde meine Equity Curve bei 50%/100%/200% Position Size aussehen?"
-3. **Trade Filter**: "Wie wäre meine Performance nur mit Setup X / Symbol Y?"
-4. **Monte Carlo**: Zukünftige Equity-Verteilung basierend auf historischer Win-Rate
-
-### User Flow
-1. Nutzer öffnet Reports → "Risk Simulator" Tab
-2. Wählt Szenario-Typ aus Dropdown
-3. Stellt Parameter ein (z.B. Target-R-Multiple)
-4. Chart zeigt Original vs. Simulierte Equity Curve
-
-### Technische Umsetzung
-
-#### Neue Komponente: `RiskSimulator.tsx`
-```text
-- Dropdown für Szenario-Typ
-- Slider für Parameter
-- Recharts LineChart für Vergleich
-- Client-side Berechnung (kein Backend nötig)
+Neue Einträge in der Premium-Feature-Liste:
 ```
-
-#### Berechnungslogik (Client-side)
-```text
-- R-Exit Simulation: Trades mit initial_risk neu berechnen
-- Position Size: Trades proportional skalieren
-- Trade Filter: Subset der Trades verwenden
-- Monte Carlo: Random Sampling mit 1000 Iterationen
+- dailySummary: "Automatische tägliche KI-Zusammenfassung per E-Mail"
+- aiCharts: "AI Chat mit interaktiven Charts & Tabellen"  
+- riskSimulator: "What-If Risiko-Simulator (Monte Carlo)"
+- goalAlerts: "Ziel-Alerts & Echtzeit-Benachrichtigungen"
 ```
-
-### Dateien
-
-| Aktion | Datei |
-|--------|-------|
-| Neu | `src/components/reports/RiskSimulator.tsx` |
-| Bearbeiten | `src/pages/Reports.tsx` - Neuer Tab |
-| Bearbeiten | `src/i18n/locales/*.json` - Übersetzungen |
 
 ---
 
-## Feature 3: Goal Alerts & Notifications
+### 3. Übersetzungen (alle 6 Sprachen)
+**Dateien:** `src/i18n/locales/{de,en,fr,es,nl,it}.json`
 
-### Konzept
-Echtzeit-Benachrichtigungen bei Zielerreichung oder Drawdown-Limits während des Trading-Tages.
-
-### Alert-Typen
-1. **Goal Achieved**: Tagesziel erreicht → Grüner Toast + optionaler Sound
-2. **Drawdown Warning**: 50% des Tagesziels verloren → Gelber Toast
-3. **Drawdown Critical**: 100% des Tagesziels verloren → Roter Toast + Warnung
-4. **Trade Limit**: Max-Trades erreicht → Info-Toast
-
-### Technische Umsetzung
-
-#### Browser Notifications
-```text
-- Permission Request beim ersten Trade
-- Service Worker nicht nötig (nur Foreground)
-- Toast-Fallback wenn Notifications abgelehnt
-```
-
-#### Neue Komponente: `GoalAlertsProvider.tsx`
-```text
-- Context Provider um App
-- Überwacht Trades-State
-- Berechnet aktuellen Tages-Fortschritt
-- Triggert Toasts/Notifications bei Schwellenwerten
-```
-
-#### Settings-Erweiterung
-```text
-- Toggle für Notifications aktivieren
-- Toggle für Sound aktivieren
-- Drawdown-Warnschwelle (Standard: 50%)
-```
-
-### Dateien
-
-| Aktion | Datei |
-|--------|-------|
-| Neu | `src/components/GoalAlertsProvider.tsx` |
-| Bearbeiten | `src/App.tsx` - Provider einbinden |
-| Bearbeiten | `src/pages/Settings.tsx` - Notification-Settings |
-| Migration | `user_settings` - neue Spalten |
-| Bearbeiten | `src/i18n/locales/*.json` - Übersetzungen |
-
----
-
-## Feature 4: AI Assistant mit Inline-Charts
-
-### Konzept
-Der AI Trading Assistant kann Fragen mit eingebetteten Charts/Tabellen beantworten, nicht nur mit Text.
-
-### Beispiel-Queries mit Chart-Response
-- "Zeige meine Performance nach Wochentag" → Bar Chart
-- "Wie war mein Monatsverlauf?" → Line Chart
-- "Top 5 Symbole nach Profit" → Tabelle
-- "Vergleiche Long vs Short" → Pie Chart
-
-### Technische Umsetzung
-
-#### Erweiterte Edge Function
-```text
-- AI entscheidet, ob Chart sinnvoll ist
-- Strukturierte Daten im Response zusätzlich zu Text
-- Chart-Typ und Daten als JSON
-```
-
-#### Response-Format
-```text
-{
-  "answer": "Deine Performance ist montags am besten...",
-  "visualization": {
-    "type": "bar",
-    "title": "Win-Rate nach Wochentag",
-    "data": [
-      { "day": "Montag", "winRate": 65 },
-      { "day": "Dienstag", "winRate": 52 },
-      ...
-    ]
-  }
+**Neue Keys in `landing.features`:**
+```json
+"dailySummary": {
+  "title": "KI Tagesreport",
+  "description": "Automatische E-Mail-Zusammenfassung deiner Trading-Performance mit Stärken, Schwächen und personalisierten Verbesserungsvorschlägen."
+},
+"aiCharts": {
+  "title": "AI Chat mit Charts",
+  "description": "Stelle Fragen und erhalte interaktive Visualisierungen—Balken-, Linien- und Kreisdiagramme direkt im Chat."
+},
+"riskSimulator": {
+  "title": "What-If Risiko-Simulator",
+  "description": "Teste alternative Strategien mit Monte Carlo Simulation. Wie hätte dein Kapital mit 2R-Exits oder 1% Risiko performt?"
 }
 ```
 
-#### Chat-UI Erweiterung
-```text
-- Erkennt visualization in Response
-- Rendert entsprechenden Recharts-Chart
-- Mini-Charts (200px Höhe) passend zum Chat
+**Neue Keys in `landing.allFeatures`:**
+```json
+"dailySummary": "Automatische KI Tagesreports per E-Mail",
+"aiCharts": "AI Chat mit interaktiven Charts & Tabellen",
+"riskSimulator": "What-If Risiko-Simulator (Monte Carlo)",
+"goalAlerts": "Ziel-Alerts & Echtzeit-Benachrichtigungen"
 ```
-
-### Unterstützte Chart-Typen
-| Typ | Verwendung |
-|-----|------------|
-| `bar` | Vergleiche (Wochentag, Symbol, Setup) |
-| `line` | Zeitverläufe (täglich, wöchentlich) |
-| `pie` | Anteile (Long/Short, Win/Loss) |
-| `table` | Top-Listen, Rankings |
-
-### Dateien
-
-| Aktion | Datei |
-|--------|-------|
-| Bearbeiten | `supabase/functions/trading-assistant/index.ts` - Chart-Logik |
-| Neu | `src/components/ChatVisualization.tsx` - Chart-Renderer |
-| Bearbeiten | `src/components/AIAssistantFAB.tsx` - Chart-Integration |
-| Bearbeiten | `src/i18n/locales/*.json` - Übersetzungen |
 
 ---
 
-## Implementierungs-Reihenfolge
+### 4. Schema.org Structured Data aktualisieren
+**Datei:** `index.html`
 
-```text
-Phase 1 (Schnelle Wins):
-├── Feature 3: Goal Alerts (1-2 Stunden)
-│   └── Sofortiger Nutzen, einfache Implementierung
-└── Feature 1: AI Daily Summary (2-3 Stunden)
-    └── Nutzt bestehende AI-Infrastruktur
-
-Phase 2 (Differenzierung):
-├── Feature 4: AI Chat Charts (3-4 Stunden)
-│   └── Erweitert bestehende Funktion
-└── Feature 2: Risk Simulator (4-5 Stunden)
-    └── Komplexeste Logik, rein Frontend
+Die `featureList` im SoftwareApplication Schema erweitern:
+```json
+"featureList": [
+  // Bestehende Einträge...
+  "AI Daily Summary Reports",
+  "What-If Risk Simulator (Monte Carlo)",
+  "AI Chat with Inline Visualizations",
+  "Goal Tracking & Smart Alerts"
+]
 ```
+
+---
+
+### 5. Icon-Auswahl für neue Features
+Passende Lucide Icons für visuelle Konsistenz:
+- **Daily Summary:** `Mail` oder `FileText` 
+- **AI Charts:** `PieChart` oder `BarChart3`
+- **Risk Simulator:** `Calculator` oder `Gauge`
+- **Goal Alerts:** `Bell` (bereits vorhanden für aiAlerts)
+
+---
+
+## Technische Details
+
+### Feature-Reihenfolge im Grid
+Aktuelle Reihenfolge reorganisieren für logische Gruppierung:
+
+**AI Features Block (zusammen positioniert):**
+1. KI Trading Assistant (bestehend)
+2. AI Chat mit Charts (NEU)
+3. KI Tagesreport (NEU)  
+4. Proaktive KI-Warnungen (bestehend, umfasst Goal Alerts)
+5. What-If Risiko-Simulator (NEU)
+
+### SEO-Keywords in Beschreibungen
+Relevante Keywords integrieren:
+- "Monte Carlo Simulation"
+- "Trading Performance Report"
+- "Interaktive Charts"
+- "Echtzeit-Benachrichtigungen"
+- "Risiko-Analyse"
+- "KI-gestützte Analyse"
 
 ---
 
 ## Zusammenfassung der Änderungen
 
-### Neue Dateien
-- `supabase/functions/daily-summary/index.ts`
-- `src/components/DailySummaryCard.tsx`
-- `src/components/reports/RiskSimulator.tsx`
-- `src/components/GoalAlertsProvider.tsx`
-- `src/components/ChatVisualization.tsx`
+| Datei | Änderung |
+|-------|----------|
+| `Landing.tsx` | 3 neue Feature-Karten + 4 neue allFeatures Einträge |
+| `de.json` | 7 neue Übersetzungs-Keys |
+| `en.json` | 7 neue Übersetzungs-Keys |
+| `fr.json` | 7 neue Übersetzungs-Keys |
+| `es.json` | 7 neue Übersetzungs-Keys |
+| `nl.json` | 7 neue Übersetzungs-Keys |
+| `it.json` | 7 neue Übersetzungs-Keys |
+| `index.html` | 4 neue Schema.org featureList Einträge |
 
-### Bearbeitete Dateien
-- `src/pages/Index.tsx`
-- `src/pages/Reports.tsx`
-- `src/pages/Settings.tsx`
-- `src/App.tsx`
-- `src/components/AIAssistantFAB.tsx`
-- `supabase/functions/trading-assistant/index.ts`
-- `src/i18n/locales/de.json`, `en.json`, `fr.json`, `es.json`, `nl.json`, `it.json`
-
-### Datenbank-Migrationen
-- Neue Tabelle: `daily_summaries`
-- Neue Spalten in `user_settings`: `notifications_enabled`, `notification_sound`, `drawdown_warning_threshold`
+**Geschätzter Aufwand:** ~15-20 Minuten für vollständige Implementierung mit allen Sprachen.
