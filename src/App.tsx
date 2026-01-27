@@ -8,6 +8,7 @@ import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { CookieConsent } from "./components/CookieConsent";
+import { GoalAlertsProvider } from "./components/GoalAlertsProvider";
 import { featureFlags } from "./config/featureFlags";
 import Landing from "./pages/Landing";
 import PreLaunch from "./pages/PreLaunch";
@@ -62,19 +63,21 @@ const App = () => (
               path="/dashboard/*"
               element={
                 <ProtectedRoute>
-                  <Layout>
-                    <Routes>
-                      <Route path="/" element={<Index />} />
-                      <Route path="/trades" element={<Trades />} />
-                      <Route path="/import" element={<Import />} />
-                      <Route path="/reports" element={<Reports />} />
-                      <Route path="/journal" element={<Journal />} />
-                      <Route path="/account" element={<Account />} />
-                      <Route path="/settings" element={<Settings />} />
-                      <Route path="/glossary" element={<Glossary />} />
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </Layout>
+                  <GoalAlertsProvider>
+                    <Layout>
+                      <Routes>
+                        <Route path="/" element={<Index />} />
+                        <Route path="/trades" element={<Trades />} />
+                        <Route path="/import" element={<Import />} />
+                        <Route path="/reports" element={<Reports />} />
+                        <Route path="/journal" element={<Journal />} />
+                        <Route path="/account" element={<Account />} />
+                        <Route path="/settings" element={<Settings />} />
+                        <Route path="/glossary" element={<Glossary />} />
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </Layout>
+                  </GoalAlertsProvider>
                 </ProtectedRoute>
               }
             />

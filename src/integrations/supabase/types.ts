@@ -80,6 +80,42 @@ export type Database = {
         }
         Relationships: []
       }
+      daily_summaries: {
+        Row: {
+          created_at: string
+          date: string
+          highlights: Json | null
+          id: string
+          net_pnl: number
+          suggestions: Json | null
+          summary_text: string
+          trades_count: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          highlights?: Json | null
+          id?: string
+          net_pnl?: number
+          suggestions?: Json | null
+          summary_text: string
+          trades_count?: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          highlights?: Json | null
+          id?: string
+          net_pnl?: number
+          suggestions?: Json | null
+          summary_text?: string
+          trades_count?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       email_change_tracking: {
         Row: {
           change_type: string
@@ -493,7 +529,10 @@ export type Database = {
           daily_goal_max_trades: number | null
           default_fees: number | null
           default_slippage: number | null
+          drawdown_warning_threshold: number | null
           id: string
+          notification_sound: boolean | null
+          notifications_enabled: boolean | null
           setup_definitions: Json | null
           setups: string[] | null
           subscription_tier: string | null
@@ -510,7 +549,10 @@ export type Database = {
           daily_goal_max_trades?: number | null
           default_fees?: number | null
           default_slippage?: number | null
+          drawdown_warning_threshold?: number | null
           id?: string
+          notification_sound?: boolean | null
+          notifications_enabled?: boolean | null
           setup_definitions?: Json | null
           setups?: string[] | null
           subscription_tier?: string | null
@@ -527,7 +569,10 @@ export type Database = {
           daily_goal_max_trades?: number | null
           default_fees?: number | null
           default_slippage?: number | null
+          drawdown_warning_threshold?: number | null
           id?: string
+          notification_sound?: boolean | null
+          notifications_enabled?: boolean | null
           setup_definitions?: Json | null
           setups?: string[] | null
           subscription_tier?: string | null
