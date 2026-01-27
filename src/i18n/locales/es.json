@@ -944,6 +944,18 @@
         "title": "Alertas IA Proactivas",
         "description": "Avisos en tiempo real para rachas de pérdidas, horas de trading débiles y trades contra-noticias. Prevención de riesgos con IA."
       },
+      "aiCharts": {
+        "title": "Chat IA con Gráficos",
+        "description": "Haz preguntas y recibe visualizaciones interactivas—gráficos de barras, líneas y circulares directamente en el chat."
+      },
+      "dailySummary": {
+        "title": "Reporte Diario IA",
+        "description": "Resumen automático por email de tu rendimiento de trading con fortalezas, debilidades y sugerencias de mejora personalizadas."
+      },
+      "riskSimulator": {
+        "title": "Simulador de Riesgo What-If",
+        "description": "Prueba estrategias alternativas con simulación Monte Carlo. ¿Cómo habría rendido tu capital con salidas 2R o 1% de riesgo?"
+      },
       "reports": {
         "title": "Informes Avanzados",
         "description": "Analiza por setup, símbolo, hora del día, período de tenencia y rachas. Encuentra tus patrones de trading más rentables."
@@ -979,6 +991,10 @@
       "politicalEvents": "Calendario Económico (FOMC, CPI, NFP, GDP) + Noticias Políticas",
       "sectorSentiment": "Dashboard de Sentimiento Sectorial Diario (9 sectores rastreados)",
       "ai": "Asistente de Trading con IA (5 preguntas/día en prueba, ilimitado con Premium)",
+      "aiCharts": "Chat IA con Gráficos & Tablas interactivas",
+      "dailySummary": "Reportes Diarios IA automáticos por Email",
+      "goalAlerts": "Alertas de Objetivos & Notificaciones en tiempo real",
+      "riskSimulator": "Simulador de Riesgo What-If (Monte Carlo)",
       "winLoss": "Analytics de Ganancias/Pérdidas y Desglose de Rendimiento",
       "calendar": "Vista de Calendario de Trading",
       "pnlCharts": "Gráficos y Visualizaciones de P&L",

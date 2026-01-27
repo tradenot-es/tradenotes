@@ -964,6 +964,18 @@
         "title": "Avvisi AI Proattivi",
         "description": "Avvisi in tempo reale per serie di perdite, orari di trading deboli e trade contro-notizie. Prevenzione rischi basata su AI."
       },
+      "aiCharts": {
+        "title": "Chat AI con Grafici",
+        "description": "Fai domande e ricevi visualizzazioni interattive—grafici a barre, linee e torta direttamente nella chat."
+      },
+      "dailySummary": {
+        "title": "Report Giornaliero AI",
+        "description": "Riepilogo automatico via email delle tue performance di trading con punti di forza, debolezze e suggerimenti di miglioramento personalizzati."
+      },
+      "riskSimulator": {
+        "title": "Simulatore Rischio What-If",
+        "description": "Testa strategie alternative con simulazione Monte Carlo. Come avrebbe performato il tuo capitale con uscite 2R o 1% di rischio?"
+      },
       "reports": {
         "title": "Report Avanzati",
         "description": "Analizza per setup, simbolo, ora del giorno, periodo detenzione e serie. Trova i tuoi pattern di trading più redditizi."
@@ -999,6 +1011,10 @@
       "politicalEvents": "Calendario Economico (FOMC, CPI, NFP, GDP) + Notizie Politiche",
       "sectorSentiment": "Dashboard Sentiment Settori Giornaliero (9 settori tracciati)",
       "ai": "Assistente Trading AI (5 domande/giorno in prova, illimitato con Premium)",
+      "aiCharts": "Chat AI con Grafici & Tabelle interattive",
+      "dailySummary": "Report Giornalieri AI automatici via Email",
+      "goalAlerts": "Avvisi Obiettivi & Notifiche in tempo reale",
+      "riskSimulator": "Simulatore Rischio What-If (Monte Carlo)",
       "winLoss": "Analytics Vincite/Perdite & Ripartizione Performance",
       "calendar": "Vista Calendario Trading",
       "pnlCharts": "Grafici P&L & Visualizzazioni",

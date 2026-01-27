@@ -944,6 +944,18 @@
         "title": "Alertes IA Proactives",
         "description": "Avertissements en temps réel pour séries de pertes, heures de trading faibles et trades contra-news. Prévention des risques par IA."
       },
+      "aiCharts": {
+        "title": "Chat IA avec Graphiques",
+        "description": "Posez des questions et recevez des visualisations interactives—graphiques à barres, linéaires et circulaires directement dans le chat."
+      },
+      "dailySummary": {
+        "title": "Rapport Quotidien IA",
+        "description": "Résumé automatique par email de votre performance de trading avec forces, faiblesses et suggestions d'amélioration personnalisées."
+      },
+      "riskSimulator": {
+        "title": "Simulateur de Risque What-If",
+        "description": "Testez des stratégies alternatives avec simulation Monte Carlo. Comment votre capital aurait-il performé avec des sorties 2R ou 1% de risque?"
+      },
       "reports": {
         "title": "Rapports Avancés",
         "description": "Analysez par setup, symbole, heure de la journée, période de détention et séries. Trouvez vos modèles de trading les plus rentables."
@@ -979,6 +991,10 @@
       "politicalEvents": "Calendrier Économique (FOMC, CPI, NFP, GDP) + Actualités Politiques",
       "sectorSentiment": "Tableau de Bord du Sentiment Sectoriel Quotidien (9 secteurs suivis)",
       "ai": "Assistant Trading IA (5 questions/jour en essai, illimité avec Premium)",
+      "aiCharts": "Chat IA avec Graphiques & Tableaux interactifs",
+      "dailySummary": "Rapports Quotidiens IA automatiques par Email",
+      "goalAlerts": "Alertes d'Objectifs & Notifications en temps réel",
+      "riskSimulator": "Simulateur de Risque What-If (Monte Carlo)",
       "winLoss": "Analytique Gains/Pertes et Répartition des Performances",
       "calendar": "Vue Calendrier de Trading",
       "pnlCharts": "Graphiques et Visualisations P&L",

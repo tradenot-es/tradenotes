@@ -1015,6 +1015,18 @@
         "title": "Proactive AI Alerts",
         "description": "Real-time warnings for loss streaks, weak trading hours, and contra-news trades. AI-powered risk prevention."
       },
+      "aiCharts": {
+        "title": "AI Chat with Charts",
+        "description": "Ask questions and receive interactive visualizations—bar, line, and pie charts directly in the chat."
+      },
+      "dailySummary": {
+        "title": "AI Daily Report",
+        "description": "Automatic email summary of your trading performance with strengths, weaknesses, and personalized improvement suggestions."
+      },
+      "riskSimulator": {
+        "title": "What-If Risk Simulator",
+        "description": "Test alternative strategies with Monte Carlo simulation. How would your capital have performed with 2R exits or 1% risk?"
+      },
       "reports": {
         "title": "Advanced Reports",
         "description": "Analyze by setup, symbol, time-of-day, holding period, and streaks. Find your most profitable trading patterns."
@@ -1050,6 +1062,10 @@
       "politicalEvents": "Economic Calendar (FOMC, CPI, NFP, GDP) + Political News",
       "sectorSentiment": "Daily Sector Sentiment Dashboard (9 sectors tracked)",
       "ai": "AI Trading Assistant (5 questions/day in trial, unlimited with Premium)",
+      "aiCharts": "AI Chat with interactive Charts & Tables",
+      "dailySummary": "Automatic AI Daily Reports via Email",
+      "goalAlerts": "Goal Alerts & Real-time Notifications",
+      "riskSimulator": "What-If Risk Simulator (Monte Carlo)",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
       "calendar": "Trading Calendar View",
       "pnlCharts": "P&L Charts & Visualizations",

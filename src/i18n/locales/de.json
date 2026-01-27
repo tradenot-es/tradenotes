@@ -882,6 +882,18 @@
         "title": "Proaktive KI-Warnungen",
         "description": "Echtzeit-Alerts bei Verlustserien, schwachen Handelszeiten und Contra-News-Trades. KI-gestützte Risikoproävention."
       },
+      "aiCharts": {
+        "title": "AI Chat mit Charts",
+        "description": "Stelle Fragen und erhalte interaktive Visualisierungen—Balken-, Linien- und Kreisdiagramme direkt im Chat."
+      },
+      "dailySummary": {
+        "title": "KI Tagesreport",
+        "description": "Automatische E-Mail-Zusammenfassung deiner Trading-Performance mit Stärken, Schwächen und personalisierten Verbesserungsvorschlägen."
+      },
+      "riskSimulator": {
+        "title": "What-If Risiko-Simulator",
+        "description": "Teste alternative Strategien mit Monte Carlo Simulation. Wie hätte dein Kapital mit 2R-Exits oder 1% Risiko performt?"
+      },
       "reports": {
         "title": "Erweiterte Reports",
         "description": "Nach Setup, Symbol, Tageszeit, Haltedauer und Serien analysieren. Deine profitabelsten Trading-Muster finden."
@@ -917,6 +929,10 @@
       "politicalEvents": "Wirtschaftskalender (FOMC, CPI, NFP, GDP) + Politische News",
       "sectorSentiment": "Tägliches Sektoren-Sentiment Dashboard (9 Sektoren)",
       "ai": "AI Trading Assistant (5 Fragen/Tag im Trial, unbegrenzt mit Premium)",
+      "aiCharts": "AI Chat mit interaktiven Charts & Tabellen",
+      "dailySummary": "Automatische KI Tagesreports per E-Mail",
+      "goalAlerts": "Ziel-Alerts & Echtzeit-Benachrichtigungen",
+      "riskSimulator": "What-If Risiko-Simulator (Monte Carlo)",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
       "calendar": "Trading Kalender-Ansicht",
       "pnlCharts": "P&L Charts & Visualisierungen",
