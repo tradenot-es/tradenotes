@@ -76,9 +76,10 @@ const Settings = () => {
   }, [user]);
 
   const loadSettings = async () => {
+    // Explicitly select only needed columns - exclude webhook_api_key for security
     const { data, error } = await supabase
       .from("user_settings")
-      .select("*")
+      .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold")
       .maybeSingle();
 
     if (!error && data) {
