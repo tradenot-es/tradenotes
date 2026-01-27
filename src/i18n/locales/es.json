@@ -774,7 +774,14 @@
     "dailyGoalTooltip": "Establece un objetivo de ganancia diario y número máximo de operaciones por día",
     "dailyGoalDesc": "Define tu objetivo de trading diario y rastréalo en Informes",
     "dailyGoalAmount": "Objetivo de Ganancia Diaria ($)",
-    "dailyGoalMaxTrades": "Máximo de Operaciones por Día"
+    "dailyGoalMaxTrades": "Máximo de Operaciones por Día",
+    "goalAlerts": "Alertas de Objetivos",
+    "goalAlertsTooltip": "Recibe notificaciones en tiempo real cuando alcanzas tus objetivos diarios o te acercas a los límites de drawdown.",
+    "goalAlertsDesc": "Activa las notificaciones y configura los límites de drawdown",
+    "enableNotifications": "Activar Notificaciones",
+    "notificationSound": "Sonido de Notificación",
+    "drawdownWarningThreshold": "Umbral de Alerta de Drawdown",
+    "drawdownWarningThresholdHelp": "Recibe una advertencia cuando el drawdown diario supere este monto"
   },
   "notFound": {
     "title": "404",
@@ -1078,6 +1085,11 @@
     "trend": { "term": "Tendencia (Trend)", "definition": "Dirección general del movimiento de precios en el tiempo.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = tendencia alcista (mínimos crecientes)" },
     "volatility": { "term": "Volatilidad (Volatility)", "definition": "Magnitud de las fluctuaciones de precio. Alta = grandes movimientos.", "example": "Acción A: $50 ±$0.50/día (1%), Acción B: $50 ±$2.50/día (5%) = 5x más volátil" },
     "volume": { "term": "Volumen (Volume)", "definition": "Número de acciones/contratos negociados en un período. Alto volumen confirma movimientos.", "example": "Breakout sobre $50 con 10x volumen normal = señal fuerte. Con volumen bajo = probable falso" },
+    "newsSentiment": {
+      "term": "Sentimiento de Noticias (News Sentiment)",
+      "definition": "El Sentimiento de Noticias analiza el tono de los artículos de noticias sobre un símbolo específico. Calcula un promedio de todas las noticias en las 24 horas antes de tu entrada en la operación. El valor varía de -1 (muy bajista/negativo) a 0 (neutral) hasta +1 (muy alcista/positivo). Un valor de 0.00 significa sentimiento neutral o ningún artículo encontrado en esa ventana temporal.",
+      "example": "Entrada long en NQ a las 14:30. El sistema analiza todas las noticias desde las 14:30 de ayer hasta las 14:30 de hoy. Resultado: 0.35 (alcista) - coincide con la posición Long. Si fuera -0.35, aparecería una advertencia 'Trade Contra-News' ya que estás operando contra el sentimiento del mercado."
+    },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
       "definition": "El mayor beneficio no realizado que alcanza una operación antes de cerrar. Muestra el mejor nivel de precio durante la operación.",
@@ -1170,6 +1182,12 @@
       "term": "Corrección (Correction)",
       "definition": "Descenso temporal de 10-20% en una tendencia alcista. Saludable y normal, a menudo ofrece oportunidades de compra.",
       "example": "La acción sube de $100 a $150 (+50%), luego cae a $135 (-10%) → Corrección, no cambio de tendencia."
+    },
+    "riskSimulator": {
+      "term": "Simulador de Riesgo (Risk Simulator)",
+      "definition": "El Simulador de Riesgo es una herramienta para probar escenarios What-If basados en tus datos de trading reales. Permite simular cómo habría evolucionado tu curva de capital con diferentes estrategias de salida (R-Multiple) o tamaños de posición. Funciones: (1) Simulación What-If R-Multiple - ¿Y si todas las salidas hubieran sido a 1.5R, 2R o 3R? (2) Simulación de dimensionamiento de posición - Cómo diferentes % de riesgo afectan el crecimiento del capital. (3) Monte Carlo (opcional) - Aleatorización de secuencias de operaciones para determinar resultados probables.",
+      "formula": "Capital Simulado = Capital Inicial × ∏(1 + Ri × Riesgo%)\n\ndonde Ri = R-Multiple simulado para cada operación",
+      "example": "Tus últimas 100 operaciones tuvieron un R promedio de 1.2R. El simulador muestra: Con 2% de riesgo por operación, tus $10.000 podrían haberse convertido en $15.400. Con 1% de riesgo = $12.500 (más seguro). La simulación Monte Carlo (1000 iteraciones) muestra que el 95% de los escenarios llevan a al menos $11.000 de capital final."
     }
   },
   "reports": {
@@ -1264,7 +1282,14 @@
     "goalAchievedPerfect": "¡Perfecto! Objetivo alcanzado sin sobreoperar",
     "goalNotAchievedOvertraded": "Límite de operaciones superado",
     "goalAchieved": "Objetivo alcanzado",
-    "overtraded": "Sobreoperado"
+    "overtraded": "Sobreoperado",
+    "simulator": "Simulador",
+    "simulatorTooltip": "Simula escenarios What-If con diferentes salidas R-Multiple y tamaños de posición para optimizar tu estrategia.",
+    "dailySummary": "Resumen Diario IA",
+    "dailySummaryTooltip": "Recibe un análisis automático de tu rendimiento diario de trading con sugerencias de mejora.",
+    "generateSummary": "Generar Resumen",
+    "generatingSummary": "Generando...",
+    "noTradesForSummary": "No se encontraron operaciones para este día."
   },
   "filters": {
     "filters": "Filtros",

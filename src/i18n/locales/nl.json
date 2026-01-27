@@ -774,7 +774,14 @@
     "dailyGoalTooltip": "Stel een dagelijks winstdoel en maximaal aantal transacties per dag in",
     "dailyGoalDesc": "Definieer je dagelijks handelsdoel en volg het in Rapporten",
     "dailyGoalAmount": "Dagelijks Winstdoel ($)",
-    "dailyGoalMaxTrades": "Maximum Transacties per Dag"
+    "dailyGoalMaxTrades": "Maximum Transacties per Dag",
+    "goalAlerts": "Doel Waarschuwingen",
+    "goalAlertsTooltip": "Ontvang realtime meldingen wanneer je dagelijkse doelen bereikt of drawdown-limieten nadert.",
+    "goalAlertsDesc": "Schakel meldingen in en stel drawdown-limieten in",
+    "enableNotifications": "Meldingen Inschakelen",
+    "notificationSound": "Meldingsgeluid",
+    "drawdownWarningThreshold": "Drawdown Waarschuwingsdrempel",
+    "drawdownWarningThresholdHelp": "Ontvang een waarschuwing wanneer de dagelijkse drawdown dit bedrag overschrijdt"
   },
   "notFound": {
     "title": "404",
@@ -1078,6 +1085,11 @@
     "trend": { "term": "Trend", "definition": "Algemene richting van prijsbeweging over tijd.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = uptrend (stijgende dieptepunten)" },
     "volatility": { "term": "Volatiliteit", "definition": "Grootte van prijsschommelingen. Hoge = grote bewegingen.", "example": "Aandeel A: $50 ±$0.50/dag (1%), Aandeel B: $50 ±$2.50/dag (5%) = 5x volatieler" },
     "volume": { "term": "Handelsvolume", "definition": "Aantal verhandelde aandelen/contracten in periode. Hoog volume bevestigt bewegingen.", "example": "Breakout boven $50 met 10x normaal volume = sterk signaal. Met laag volume = waarschijnlijk vals" },
+    "newsSentiment": {
+      "term": "Nieuws Sentiment (News Sentiment)",
+      "definition": "Nieuws Sentiment analyseert de stemming van nieuwsartikelen over een specifiek symbool. Het berekent een gemiddelde van al het nieuws in de 24 uur voor je trade-entry. De waarde varieert van -1 (zeer bearish/negatief) via 0 (neutraal) tot +1 (zeer bullish/positief). Een waarde van 0.00 betekent neutraal sentiment of geen nieuwsartikelen gevonden in dat tijdvenster.",
+      "example": "Entry op NQ Long om 14:30. Systeem analyseert al het nieuws van 14:30 gisteren tot 14:30 vandaag. Resultaat: 0.35 (bullish) - past bij Long positie. Als het -0.35 was, verschijnt een 'Contra-News Trade' waarschuwing omdat je tegen het marktsentiment handelt."
+    },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
       "definition": "De hoogste niet-gerealiseerde winst die een trade bereikt voordat deze wordt gesloten. Toont het beste prijsniveau tijdens de trade.",
@@ -1170,6 +1182,12 @@
       "term": "Correctie (Correction)",
       "definition": "Tijdelijke daling van 10-20% in een uptrend. Gezond en normaal, biedt vaak koopkansen.",
       "example": "Aandeel stijgt van €100 naar €150 (+50%), daalt dan naar €135 (-10%) → Correctie, geen trendwijziging."
+    },
+    "riskSimulator": {
+      "term": "Risico Simulator (Risk Simulator)",
+      "definition": "De Risico Simulator is een tool om What-If scenario's te testen op basis van je echte trading data. Hiermee kun je simuleren hoe je equity curve zou zijn ontwikkeld met verschillende exit-strategieën (R-Multiple) of positiegroottes. Functies: (1) What-If R-Multiple Simulatie - Wat als alle exits op 1.5R, 2R of 3R waren geweest? (2) Positiegrootte Simulatie - Hoe verschillende risico% de equity groei beïnvloeden. (3) Monte Carlo (optioneel) - Randomisatie van trade-sequenties om waarschijnlijke uitkomsten te bepalen.",
+      "formula": "Gesimuleerde Equity = Startkapitaal × ∏(1 + Ri × Risico%)\n\nwaarbij Ri = gesimuleerde R-Multiple voor elke trade",
+      "example": "Je laatste 100 trades hadden een gemiddelde R van 1.2R. De simulator toont: Met 2% risico per trade, zou je $10.000 $15.400 kunnen zijn geworden. Met 1% risico = $12.500 (veiliger). De Monte Carlo simulatie (1000 iteraties) toont dat 95% van de scenario's leiden tot minimaal $11.000 eindkapitaal."
     }
   },
   "reports": {
@@ -1264,7 +1282,14 @@
     "goalAchievedPerfect": "Perfect! Doel bereikt zonder overtrading",
     "goalNotAchievedOvertraded": "Handelslimiet overschreden",
     "goalAchieved": "Doel bereikt",
-    "overtraded": "Overtrade"
+    "overtraded": "Overtrade",
+    "simulator": "Simulator",
+    "simulatorTooltip": "Simuleer What-If scenario's met verschillende R-Multiple exits en positiegroottes om je strategie te optimaliseren.",
+    "dailySummary": "AI Dagelijkse Samenvatting",
+    "dailySummaryTooltip": "Ontvang automatische analyse van je dagelijkse trading prestaties met verbeteringssuggesties.",
+    "generateSummary": "Samenvatting Genereren",
+    "generatingSummary": "Genereren...",
+    "noTradesForSummary": "Geen transacties gevonden voor deze dag."
   },
   "filters": {
     "filters": "Filters",

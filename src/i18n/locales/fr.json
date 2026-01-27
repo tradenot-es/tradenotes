@@ -774,7 +774,14 @@
     "dailyGoalTooltip": "Définir un objectif de profit quotidien et un nombre maximum de transactions par jour",
     "dailyGoalDesc": "Définissez votre objectif de trading quotidien et suivez-le dans les rapports",
     "dailyGoalAmount": "Objectif de Profit Quotidien ($)",
-    "dailyGoalMaxTrades": "Maximum de Transactions par Jour"
+    "dailyGoalMaxTrades": "Maximum de Transactions par Jour",
+    "goalAlerts": "Alertes d'Objectifs",
+    "goalAlertsTooltip": "Recevez des notifications en temps réel lorsque vous atteignez vos objectifs quotidiens ou approchez des limites de drawdown.",
+    "goalAlertsDesc": "Activez les notifications et définissez les limites de drawdown",
+    "enableNotifications": "Activer les Notifications",
+    "notificationSound": "Son de Notification",
+    "drawdownWarningThreshold": "Seuil d'Alerte Drawdown",
+    "drawdownWarningThresholdHelp": "Recevez un avertissement lorsque le drawdown quotidien dépasse ce montant"
   },
   "notFound": {
     "title": "404",
@@ -1078,6 +1085,11 @@
     "trend": { "term": "Tendance (Trend)", "definition": "Direction générale du mouvement des prix dans le temps.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = tendance haussière (creux croissants)" },
     "volatility": { "term": "Volatilité (Volatility)", "definition": "Ampleur des fluctuations de prix. Haute = grands mouvements.", "example": "Action A: $50 ±$0.50/jour (1%), Action B: $50 ±$2.50/jour (5%) = 5x plus volatile" },
     "volume": { "term": "Volume", "definition": "Nombre d'actions/contrats échangés dans une période. Volume élevé confirme mouvements.", "example": "Breakout au-dessus $50 avec 10x volume normal = signal fort. Avec volume faible = probable faux" },
+    "newsSentiment": {
+      "term": "Sentiment des Actualités (News Sentiment)",
+      "definition": "Le Sentiment des Actualités analyse la tonalité des articles de presse concernant un symbole spécifique. Il calcule une moyenne de toutes les actualités dans les 24 heures précédant votre entrée en position. La valeur varie de -1 (très baissier/négatif) à 0 (neutre) jusqu'à +1 (très haussier/positif). Une valeur de 0.00 signifie soit un sentiment neutre, soit aucun article trouvé dans cette fenêtre temporelle.",
+      "example": "Entrée long sur NQ à 14h30. Le système analyse toutes les actualités de 14h30 hier à 14h30 aujourd'hui. Résultat: 0.35 (haussier) - correspond à la position Long. Si c'était -0.35, un avertissement 'Trade Contra-News' apparaîtrait car vous tradez contre le sentiment du marché."
+    },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
       "definition": "Le profit non réalisé le plus élevé qu'un trade atteint avant de clôturer. Montre le meilleur niveau de prix pendant le trade.",
@@ -1170,6 +1182,12 @@
       "term": "Correction",
       "definition": "Baisse temporaire de 10-20% dans une tendance haussière. Saine et normale, offre souvent des opportunités d'achat.",
       "example": "L'action passe de 100€ à 150€ (+50%), puis retombe à 135€ (-10%) → Correction, pas de changement de tendance."
+    },
+    "riskSimulator": {
+      "term": "Simulateur de Risque (Risk Simulator)",
+      "definition": "Le Simulateur de Risque est un outil permettant de tester des scénarios What-If basés sur vos données de trading réelles. Il permet de simuler comment votre courbe d'équité aurait évolué avec différentes stratégies de sortie (R-Multiple) ou tailles de position. Fonctionnalités: (1) Simulation What-If R-Multiple - Et si toutes les sorties avaient été à 1.5R, 2R ou 3R? (2) Simulation de dimensionnement de position - Comment différents % de risque affectent la croissance de l'équité. (3) Monte Carlo (optionnel) - Randomisation des séquences de trades pour déterminer les résultats probables.",
+      "formula": "Équité Simulée = Capital Initial × ∏(1 + Ri × Risque%)\n\noù Ri = R-Multiple simulé pour chaque trade",
+      "example": "Vos 100 derniers trades ont eu un R moyen de 1.2R. Le simulateur montre: Avec 2% de risque par trade, votre $10.000 auraient pu devenir $15.400. Avec 1% de risque = $12.500 (plus de sécurité). La simulation Monte Carlo (1000 itérations) montre que 95% des scénarios mènent à au moins $11.000 de capital final."
     }
   },
   "reports": {
@@ -1264,7 +1282,14 @@
     "goalAchievedPerfect": "Parfait! Objectif atteint sans overtrading",
     "goalNotAchievedOvertraded": "Limite de trades dépassée",
     "goalAchieved": "Objectif atteint",
-    "overtraded": "Overtrading"
+    "overtraded": "Overtrading",
+    "simulator": "Simulateur",
+    "simulatorTooltip": "Simulez des scénarios What-If avec différentes sorties R-Multiple et tailles de position pour optimiser votre stratégie.",
+    "dailySummary": "Résumé Quotidien IA",
+    "dailySummaryTooltip": "Recevez une analyse automatique de vos performances de trading quotidiennes avec des suggestions d'amélioration.",
+    "generateSummary": "Générer le Résumé",
+    "generatingSummary": "Génération en cours...",
+    "noTradesForSummary": "Aucune transaction trouvée pour cette journée."
   },
   "filters": {
     "filters": "Filtres",

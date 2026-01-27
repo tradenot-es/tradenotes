@@ -794,7 +794,14 @@
     "dailyGoalTooltip": "Imposta un obiettivo di profitto giornaliero e numero massimo di operazioni al giorno",
     "dailyGoalDesc": "Definisci il tuo obiettivo di trading giornaliero e traccialo nei Report",
     "dailyGoalAmount": "Obiettivo Profitto Giornaliero ($)",
-    "dailyGoalMaxTrades": "Operazioni Massime al Giorno"
+    "dailyGoalMaxTrades": "Operazioni Massime al Giorno",
+    "goalAlerts": "Avvisi Obiettivi",
+    "goalAlertsTooltip": "Ricevi notifiche in tempo reale quando raggiungi i tuoi obiettivi giornalieri o ti avvicini ai limiti di drawdown.",
+    "goalAlertsDesc": "Attiva le notifiche e imposta i limiti di drawdown",
+    "enableNotifications": "Attiva Notifiche",
+    "notificationSound": "Suono Notifica",
+    "drawdownWarningThreshold": "Soglia Avviso Drawdown",
+    "drawdownWarningThresholdHelp": "Ricevi un avviso quando il drawdown giornaliero supera questo importo"
   },
   "notFound": {
     "title": "404",
@@ -1214,6 +1221,11 @@
       "definition": "Il volume misura il numero di azioni/contratti scambiati in un periodo. Alto volume conferma movimenti di prezzo (convinzione), basso volume = movimenti deboli/questionabili.",
       "example": "Breakout sopra $50: Con volume 10x normale = segnale forte. Con volume sotto media = probabile falso breakout"
     },
+    "newsSentiment": {
+      "term": "Sentiment delle Notizie (News Sentiment)",
+      "definition": "Il Sentiment delle Notizie analizza il tono degli articoli di notizie su un simbolo specifico. Calcola una media di tutte le notizie nelle 24 ore prima della tua entrata nell'operazione. Il valore varia da -1 (molto ribassista/negativo) a 0 (neutrale) fino a +1 (molto rialzista/positivo). Un valore di 0.00 significa sentiment neutrale o nessun articolo trovato in quella finestra temporale.",
+      "example": "Entrata long su NQ alle 14:30. Il sistema analizza tutte le notizie dalle 14:30 di ieri alle 14:30 di oggi. Risultato: 0.35 (rialzista) - corrisponde alla posizione Long. Se fosse -0.35, apparirebbe un avviso 'Trade Contra-News' poiché stai operando contro il sentiment del mercato."
+    },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
       "definition": "Il massimo profitto non realizzato che un'operazione raggiunge prima della chiusura. Mostra il miglior livello di prezzo durante l'operazione.",
@@ -1306,6 +1318,12 @@
       "term": "Correzione (Correction)",
       "definition": "Calo temporaneo del 10-20% in un trend rialzista. Sano e normale, spesso offre opportunità di acquisto.",
       "example": "L'azione sale da $100 a $150 (+50%), poi scende a $135 (-10%) → Correzione, non cambio di trend."
+    },
+    "riskSimulator": {
+      "term": "Simulatore di Rischio (Risk Simulator)",
+      "definition": "Il Simulatore di Rischio è uno strumento per testare scenari What-If basati sui tuoi dati di trading reali. Permette di simulare come sarebbe evoluta la tua curva equity con diverse strategie di uscita (R-Multiple) o dimensioni posizione. Funzionalità: (1) Simulazione What-If R-Multiple - E se tutte le uscite fossero state a 1.5R, 2R o 3R? (2) Simulazione dimensionamento posizione - Come diverse % di rischio influenzano la crescita dell'equity. (3) Monte Carlo (opzionale) - Randomizzazione delle sequenze di operazioni per determinare risultati probabili.",
+      "formula": "Equity Simulata = Capitale Iniziale × ∏(1 + Ri × Rischio%)\n\ndove Ri = R-Multiple simulato per ogni operazione",
+      "example": "Le tue ultime 100 operazioni hanno avuto un R medio di 1.2R. Il simulatore mostra: Con 2% di rischio per operazione, i tuoi $10.000 sarebbero potuti diventare $15.400. Con 1% di rischio = $12.500 (più sicuro). La simulazione Monte Carlo (1000 iterazioni) mostra che il 95% degli scenari porta ad almeno $11.000 di capitale finale."
     }
   },
   "reports": {
@@ -1358,6 +1376,13 @@
     "goalNotAchievedOvertraded": "Limite operazioni superato",
     "goalAchieved": "Obiettivo raggiunto",
     "overtraded": "Overtrading",
+    "simulator": "Simulatore",
+    "simulatorTooltip": "Simula scenari What-If con diverse uscite R-Multiple e dimensioni posizione per ottimizzare la tua strategia.",
+    "dailySummary": "Riepilogo Giornaliero IA",
+    "dailySummaryTooltip": "Ricevi un'analisi automatica delle tue performance di trading giornaliere con suggerimenti di miglioramento.",
+    "generateSummary": "Genera Riepilogo",
+    "generatingSummary": "Generazione in corso...",
+    "noTradesForSummary": "Nessuna operazione trovata per questo giorno.",
     "allTime": "Tutto il Tempo",
     "thisWeek": "Questa Settimana",
     "thisMonth": "Questo Mese",
