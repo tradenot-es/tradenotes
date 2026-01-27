@@ -1107,6 +1107,14 @@
     "learnMore": "Learn more",
     "ctaTitle": "Ready to improve your trading?",
     "ctaDescription": "Start now with a 14-day free trial",
+    "ctaPrimary": "Start 14-day free trial",
+    "searchPlaceholder": "Search features...",
+    "teaserCards": {
+      "tradingTools": "Fast trade entry & import",
+      "analytics": "Track & analyze performance",
+      "ai": "AI-powered insights",
+      "marketIntel": "Market data & news"
+    },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analytics",

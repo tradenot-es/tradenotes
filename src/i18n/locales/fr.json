@@ -1036,6 +1036,14 @@
     "learnMore": "En savoir plus",
     "ctaTitle": "Prêt à améliorer votre trading?",
     "ctaDescription": "Commencez maintenant avec un essai gratuit de 14 jours",
+    "ctaPrimary": "Essai gratuit 14 jours",
+    "searchPlaceholder": "Rechercher des fonctionnalités...",
+    "teaserCards": {
+      "tradingTools": "Saisie rapide & import",
+      "analytics": "Suivi & analyse performance",
+      "ai": "Insights IA",
+      "marketIntel": "Données & actualités marché"
+    },
     "categories": {
       "tradingTools": "Outils de Trading",
       "analytics": "Analyses",

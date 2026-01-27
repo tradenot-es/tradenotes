@@ -985,6 +985,14 @@
     "learnMore": "Mehr erfahren",
     "ctaTitle": "Bereit dein Trading zu verbessern?",
     "ctaDescription": "Starte jetzt mit 14 Tagen kostenloser Testphase",
+    "ctaPrimary": "14 Tage kostenlos testen",
+    "searchPlaceholder": "Features durchsuchen...",
+    "teaserCards": {
+      "tradingTools": "Schnelle Trade-Erfassung & Import",
+      "analytics": "Performance tracken & analysieren",
+      "ai": "KI-gestützte Insights",
+      "marketIntel": "Marktdaten & News"
+    },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analysen",

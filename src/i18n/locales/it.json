@@ -1056,6 +1056,14 @@
     "learnMore": "Scopri di più",
     "ctaTitle": "Pronto a migliorare il tuo trading?",
     "ctaDescription": "Inizia ora con 14 giorni di prova gratuita",
+    "ctaPrimary": "Prova gratuita 14 giorni",
+    "searchPlaceholder": "Cerca funzionalità...",
+    "teaserCards": {
+      "tradingTools": "Inserimento rapido & import",
+      "analytics": "Traccia e analizza performance",
+      "ai": "Insights con IA",
+      "marketIntel": "Dati e notizie di mercato"
+    },
     "categories": { "tradingTools": "Strumenti Trading", "analytics": "Analisi", "ai": "IA & Automazione", "reports": "Report", "marketIntel": "Intelligenza di Mercato" },
     "items": {
       "easyEntry": { "title": "Inserimento Rapido", "description": "Cattura operazioni in secondi", "benefits": ["Anteprima P&L", "Quick-chips", "Copia ultima operazione"] },

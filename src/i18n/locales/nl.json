@@ -1036,6 +1036,14 @@
     "learnMore": "Meer info",
     "ctaTitle": "Klaar om je trading te verbeteren?",
     "ctaDescription": "Start nu met 14 dagen gratis proefperiode",
+    "ctaPrimary": "14 dagen gratis proberen",
+    "searchPlaceholder": "Functies zoeken...",
+    "teaserCards": {
+      "tradingTools": "Snelle invoer & import",
+      "analytics": "Prestaties volgen & analyseren",
+      "ai": "AI-gestuurde inzichten",
+      "marketIntel": "Marktdata & nieuws"
+    },
     "categories": { "tradingTools": "Trading Tools", "analytics": "Analyses", "ai": "AI & Automatisering", "reports": "Rapporten", "marketIntel": "Markt Intelligentie" },
     "items": {
       "easyEntry": { "title": "Snelle Invoer", "description": "Trades vastleggen in seconden", "benefits": ["Live P&L preview", "Quick-chips", "Laatste trade kopiëren"] },
