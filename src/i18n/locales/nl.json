@@ -813,8 +813,19 @@
   "landing": {
     "nav": {
       "features": "Functies",
-      "pricing": "Prijzen"
+      "pricing": "Prijzen",
+      "allFeatures": "Alle Functies"
     },
+    "topFeaturesTitle": "Wat TradeNotes bijzonder maakt",
+    "topFeaturesDescription": "De essentiële tools voor jouw trading succes",
+    "discoverAllFeatures": "Ontdek alle 20+ Functies",
+    "trustBadges": {
+      "ssl": "SSL Versleuteld",
+      "gdpr": "AVG Conform",
+      "traders": "Door Traders voor Traders",
+      "sync": "NinjaTrader Auto-Sync"
+    },
+    "footerAllFeatures": "Alle Functies",
     "cta": {
       "startNow": "Nu starten"
     },
@@ -1015,6 +1026,42 @@
       "propFirmDetection": "Prop Firm Account Detectie (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking voor Stop-Loss Optimalisatie",
       "achievements": "Gamificatie & Achievements Systeem"
+    }
+  },
+  "features": {
+    "heroTitle": "Alle Functies Overzicht",
+    "heroDescription": "Ontdek de complete set functies voor professioneel trading journaling",
+    "featureCount": "20+ Functies",
+    "backToLanding": "Terug naar Home",
+    "learnMore": "Meer info",
+    "ctaTitle": "Klaar om je trading te verbeteren?",
+    "ctaDescription": "Start nu met 14 dagen gratis proefperiode",
+    "categories": { "tradingTools": "Trading Tools", "analytics": "Analyses", "ai": "AI & Automatisering", "reports": "Rapporten", "marketIntel": "Markt Intelligentie" },
+    "items": {
+      "easyEntry": { "title": "Snelle Invoer", "description": "Trades vastleggen in seconden", "benefits": ["Live P&L preview", "Quick-chips", "Laatste trade kopiëren"] },
+      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Automatische synchronisatie", "benefits": ["Entry, Exit, MFE/MAE", "12+ prop firms", "Geen handmatige invoer"] },
+      "propFirm": { "title": "Prop Firm Integratie", "description": "Automatische account detectie", "benefits": ["Gescheiden analytics", "Apex, Topstep", "Type auto-gedetecteerd"] },
+      "positionCalc": { "title": "Positie Calculator", "description": "Risico-gebaseerde groottes", "benefits": ["Risico-berekening", "Stop-loss afstand", "Max risico"] },
+      "csvImport": { "title": "CSV Import/Export", "description": "Data importeren of exporteren", "benefits": ["Broker formaten", "Makkelijk exporteren", "Naadloze integratie"] },
+      "mfeMAE": { "title": "MFE/MAE Analyse", "description": "Stop-loss optimaliseren", "benefits": ["Automatische tracking", "Gemiste winst", "Aanbevelingen"] },
+      "analytics": { "title": "Performance Analytics", "description": "Win rate, R-multiple", "benefits": ["20+ KPIs", "Filter op periode", "Sterktes/zwaktes"] },
+      "equityCurve": { "title": "Equity Curve", "description": "Kapitaalgroei over tijd", "benefits": ["Drawdowns zien", "Groeitrends", "Cumulatieve grafiek"] },
+      "consistency": { "title": "Consistentie Tracker", "description": "12-weken heatmap", "benefits": ["Winstgevende dagen", "Verliesreeksen", "Consistente gewoontes"] },
+      "calendar": { "title": "Trading Kalender", "description": "Kalender met kleuren", "benefits": ["Maandoverzicht", "Klik voor trades", "P&L kleuren"] },
+      "aiAssistant": { "title": "AI Assistent", "description": "Vragen over performance", "benefits": ["Natuurlijke taal", "Data-gedreven", "Historische analyse"] },
+      "aiCharts": { "title": "AI Chat met Grafieken", "description": "Interactieve visualisaties", "benefits": ["Staaf, lijn, taart", "Tabellen", "Directe visualisatie"] },
+      "dailySummary": { "title": "Dagelijks AI Rapport", "description": "Automatische email samenvatting", "benefits": ["Sterktes/zwaktes", "Suggesties", "Per email"] },
+      "goalAlerts": { "title": "Doel Alerts", "description": "Realtime meldingen", "benefits": ["Dagelijks winstdoel", "Max trades", "Drawdown alerts"] },
+      "riskSimulator": { "title": "Risico Simulator", "description": "Monte Carlo simulatie", "benefits": ["What-if 2R exits", "Ander risicobeheer", "1000+ simulaties"] },
+      "symbolReports": { "title": "Symbool Performance", "description": "Analyse per instrument", "benefits": ["P&L per symbool", "Win rate vergelijking", "Beste markten"] },
+      "setupReports": { "title": "Setup Rapporten", "description": "Performance per setup", "benefits": ["Strategieën vergelijken", "Top setups", "Specifieke metrics"] },
+      "hourAnalysis": { "title": "Uur Analyse", "description": "Meest winstgevende uren", "benefits": ["P&L per uur", "Beste uren", "Slechte uren vermijden"] },
+      "streakAnalysis": { "title": "Reeks Analyse", "description": "Win/verlies reeksen", "benefits": ["Langste reeksen", "Gemiddelde lengte", "Patronen"] },
+      "holdingPeriod": { "title": "Houdperiode Analyse", "description": "Optimale trade duur", "benefits": ["P&L per duur", "Scalps vs swings", "Optimale duur"] },
+      "portfolioNews": { "title": "Nieuws Intelligentie", "description": "Auto-gecureerd nieuws", "benefits": ["Proxy-mapping", "Smart tags", "AI vertaling"] },
+      "politicalEvents": { "title": "Economische Kalender", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Belangrijke events", "Impact niveau", "In kalender"] },
+      "sectorSentiment": { "title": "Sector Sentiment", "description": "Dagelijkse sentiment analyse", "benefits": ["11 sectoren", "Aantal artikelen", "Sentiment score"] },
+      "economicCalendar": { "title": "Economische Data", "description": "Fed, Powell realtime", "benefits": ["Politieke events", "Markt impact", "Geïnformeerd traden"] }
     }
   },
   "validation": {

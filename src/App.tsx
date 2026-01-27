@@ -30,6 +30,7 @@ import Impressum from "./pages/Impressum";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
 import WhyJournal from "./pages/WhyJournal";
+import Features from "./pages/Features";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomeRoute />} />
+            <Route path="/features" element={<Features />} />
             <Route path="/warum-trading-journal" element={<WhyJournal />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/kontakt" element={<Kontakt />} />

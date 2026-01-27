@@ -5,108 +5,75 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { TrustBadges } from "@/components/TrustBadges";
 import { RotatingWord } from "@/components/RotatingWord";
 import { AttentionCTA } from "@/components/AttentionCTA";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
-import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight, Mail, PieChart, Calculator } from "lucide-react";
+import { 
+  BarChart3, 
+  BookOpen, 
+  Check, 
+  Star, 
+  Target, 
+  MessageSquare, 
+  Crosshair, 
+  ArrowRight,
+  Calculator,
+  TrendingUp
+} from "lucide-react";
+
 const Landing = () => {
-  const {
-    t
-  } = useTranslation();
-  const features = [{
-    icon: <TrendingUp className="h-6 w-6" />,
-    title: t("landing.features.easyEntry.title"),
-    description: t("landing.features.easyEntry.description")
-  }, {
-    icon: <Zap className="h-6 w-6" />,
-    title: t("landing.features.webhookSync.title"),
-    description: t("landing.features.webhookSync.description")
-  }, {
-    icon: <Building2 className="h-6 w-6" />,
-    title: t("landing.features.propFirm.title"),
-    description: t("landing.features.propFirm.description")
-  }, {
-    icon: <Crosshair className="h-6 w-6" />,
-    title: t("landing.features.mfeMAE.title"),
-    description: t("landing.features.mfeMAE.description")
-  }, {
-    icon: <BookOpen className="h-6 w-6" />,
-    title: t("landing.features.journal.title"),
-    description: t("landing.features.journal.description")
-  }, {
-    icon: <BarChart3 className="h-6 w-6" />,
-    title: t("landing.features.analytics.title"),
-    description: t("landing.features.analytics.description")
-  }, {
-    icon: <LineChart className="h-6 w-6" />,
-    title: t("landing.features.equity.title"),
-    description: t("landing.features.equity.description")
-  }, {
-    icon: <Activity className="h-6 w-6" />,
-    title: t("landing.features.consistency.title"),
-    description: t("landing.features.consistency.description")
-  }, {
-    icon: <Calendar className="h-6 w-6" />,
-    title: t("landing.features.calendar.title"),
-    description: t("landing.features.calendar.description")
-  }, {
-    icon: <Target className="h-6 w-6" />,
-    title: t("landing.features.news.title"),
-    description: t("landing.features.news.description")
-  }, {
-    icon: <Bell className="h-6 w-6" />,
-    title: t("landing.features.politicalEvents.title"),
-    description: t("landing.features.politicalEvents.description")
-  }, {
-    icon: <Globe className="h-6 w-6" />,
-    title: t("landing.features.newsTranslation.title"),
-    description: t("landing.features.newsTranslation.description")
-  }, {
-    icon: <MessageSquare className="h-6 w-6" />,
-    title: t("landing.features.ai.title"),
-    description: t("landing.features.ai.description")
-  }, {
-    icon: <PieChart className="h-6 w-6" />,
-    title: t("landing.features.aiCharts.title"),
-    description: t("landing.features.aiCharts.description")
-  }, {
-    icon: <Mail className="h-6 w-6" />,
-    title: t("landing.features.dailySummary.title"),
-    description: t("landing.features.dailySummary.description")
-  }, {
-    icon: <Bell className="h-6 w-6" />,
-    title: t("landing.features.aiAlerts.title"),
-    description: t("landing.features.aiAlerts.description")
-  }, {
-    icon: <Calculator className="h-6 w-6" />,
-    title: t("landing.features.riskSimulator.title"),
-    description: t("landing.features.riskSimulator.description")
-  }, {
-    icon: <FileText className="h-6 w-6" />,
-    title: t("landing.features.reports.title"),
-    description: t("landing.features.reports.description")
-  }, {
-    icon: <Import className="h-6 w-6" />,
-    title: t("landing.features.import.title"),
-    description: t("landing.features.import.description")
-  }, {
-    icon: <Activity className="h-6 w-6" />,
-    title: t("landing.features.weekly.title"),
-    description: t("landing.features.weekly.description")
-  }, {
-    icon: <TrendingUp className="h-6 w-6" />,
-    title: t("landing.features.pnl.title"),
-    description: t("landing.features.pnl.description")
-  }, {
-    icon: <Target className="h-6 w-6" />,
-    title: t("landing.features.prep.title"),
-    description: t("landing.features.prep.description")
-  }, {
-    icon: <BookOpen className="h-6 w-6" />,
-    title: t("landing.features.glossary.title"),
-    description: t("landing.features.glossary.description")
-  }];
-  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.aiCharts"), t("landing.allFeatures.dailySummary"), t("landing.allFeatures.goalAlerts"), t("landing.allFeatures.riskSimulator"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.ninjaTraderSync"), t("landing.allFeatures.propFirmDetection"), t("landing.allFeatures.mfeMaeTracking"), t("landing.allFeatures.achievements"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
+  const { t } = useTranslation();
+
+  // Top 6 Features for landing page (reduced from 23)
+  const topFeatures = [
+    {
+      icon: <Crosshair className="h-6 w-6" />,
+      title: t("landing.features.mfeMAE.title"),
+      description: t("landing.features.mfeMAE.description"),
+    },
+    {
+      icon: <BookOpen className="h-6 w-6" />,
+      title: t("landing.features.journal.title"),
+      description: t("landing.features.journal.description"),
+    },
+    {
+      icon: <BarChart3 className="h-6 w-6" />,
+      title: t("landing.features.analytics.title"),
+      description: t("landing.features.analytics.description"),
+    },
+    {
+      icon: <MessageSquare className="h-6 w-6" />,
+      title: t("landing.features.ai.title"),
+      description: t("landing.features.ai.description"),
+    },
+    {
+      icon: <Calculator className="h-6 w-6" />,
+      title: t("landing.features.riskSimulator.title"),
+      description: t("landing.features.riskSimulator.description"),
+    },
+    {
+      icon: <Target className="h-6 w-6" />,
+      title: t("landing.features.news.title"),
+      description: t("landing.features.news.description"),
+    },
+  ];
+
+  // Reduced allFeatures list for pricing section
+  const allFeatures = [
+    t("landing.allFeatures.unlimited"),
+    t("landing.allFeatures.fullAnalytics"),
+    t("landing.allFeatures.mfeMaeTracking"),
+    t("landing.allFeatures.ai"),
+    t("landing.allFeatures.aiCharts"),
+    t("landing.allFeatures.dailySummary"),
+    t("landing.allFeatures.goalAlerts"),
+    t("landing.allFeatures.riskSimulator"),
+    t("landing.allFeatures.ninjaTraderSync"),
+    t("landing.allFeatures.propFirmDetection"),
+    t("landing.allFeatures.news"),
+    t("landing.allFeatures.freeTrial"),
+  ];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
@@ -217,29 +184,45 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Features Section - Reduced to Top 6 */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <Badge className="mb-4">{t("landing.featuresBadge")}</Badge>
-            <h2 className="text-4xl font-bold mb-4">{t("landing.featuresTitle")}</h2>
+            <h2 className="text-4xl font-bold mb-4">{t("landing.topFeaturesTitle")}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t("landing.featuresDescription")}
+              {t("landing.topFeaturesDescription")}
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => <Card key={index} className="smooth-transition hover:scale-105">
-                <CardHeader>
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
+            {topFeatures.map((feature, index) => (
+              <Card key={index} className="group smooth-transition hover:scale-[1.03] hover:shadow-glow cursor-pointer">
+                <CardHeader className="relative overflow-hidden">
+                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 transition-colors">
                     {feature.icon}
                   </div>
-                  <CardTitle>{feature.title}</CardTitle>
-                  <CardDescription>{feature.description}</CardDescription>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                  <CardDescription className="line-clamp-2">{feature.description}</CardDescription>
+                  <ArrowRight className="absolute bottom-4 right-4 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
                 </CardHeader>
-              </Card>)}
+              </Card>
+            ))}
+          </div>
+          
+          {/* CTA to Features Page */}
+          <div className="text-center mt-12">
+            <Button variant="outline" size="lg" asChild className="gap-2">
+              <Link to="/features">
+                {t("landing.discoverAllFeatures")}
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
+
+      {/* Trust Badges Section */}
+      <TrustBadges />
 
 
       {/* Pricing Section */}

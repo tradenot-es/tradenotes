@@ -813,8 +813,19 @@
   "landing": {
     "nav": {
       "features": "Funciones",
-      "pricing": "Precios"
+      "pricing": "Precios",
+      "allFeatures": "Todas las Funciones"
     },
+    "topFeaturesTitle": "Lo que hace especial a TradeNotes",
+    "topFeaturesDescription": "Las herramientas esenciales para tu éxito en trading",
+    "discoverAllFeatures": "Descubrir las 20+ Funciones",
+    "trustBadges": {
+      "ssl": "Cifrado SSL",
+      "gdpr": "Conforme RGPD",
+      "traders": "Por Traders para Traders",
+      "sync": "NinjaTrader Auto-Sync"
+    },
+    "footerAllFeatures": "Todas las Funciones",
     "cta": {
       "startNow": "Empezar"
     },
@@ -1015,6 +1026,42 @@
       "propFirmDetection": "Detección Cuentas Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Seguimiento MFE/MAE para Optimización Stop-Loss",
       "achievements": "Gamificación & Sistema de Logros"
+    }
+  },
+  "features": {
+    "heroTitle": "Todas las Funciones",
+    "heroDescription": "Descubre el conjunto completo de funciones para journaling profesional",
+    "featureCount": "20+ Funciones",
+    "backToLanding": "Volver al Inicio",
+    "learnMore": "Saber más",
+    "ctaTitle": "¿Listo para mejorar tu trading?",
+    "ctaDescription": "Comienza ahora con 14 días de prueba gratis",
+    "categories": { "tradingTools": "Herramientas", "analytics": "Análisis", "ai": "IA & Automatización", "reports": "Informes", "marketIntel": "Inteligencia de Mercado" },
+    "items": {
+      "easyEntry": { "title": "Entrada Rápida", "description": "Captura operaciones en segundos", "benefits": ["Vista previa P&L", "Quick-chips", "Copiar última operación"] },
+      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Sincronización automática", "benefits": ["Entry, Exit, MFE/MAE", "12+ prop firms", "Sin entrada manual"] },
+      "propFirm": { "title": "Integración Prop Firm", "description": "Detección automática de cuentas", "benefits": ["Analytics separados", "Apex, Topstep", "Tipo auto-detectado"] },
+      "positionCalc": { "title": "Calculadora Posición", "description": "Tamaños basados en riesgo", "benefits": ["Cálculo por riesgo", "Distancia stop-loss", "Riesgo máximo"] },
+      "csvImport": { "title": "Import/Export CSV", "description": "Importar o exportar datos", "benefits": ["Formatos broker", "Export fácil", "Integración fluida"] },
+      "mfeMAE": { "title": "Análisis MFE/MAE", "description": "Optimizar stop-loss", "benefits": ["Tracking automático", "Ganancias perdidas", "Recomendaciones"] },
+      "analytics": { "title": "Analytics Rendimiento", "description": "Win rate, R-multiple", "benefits": ["20+ KPIs", "Filtrar período", "Fortalezas/debilidades"] },
+      "equityCurve": { "title": "Curva Equity", "description": "Crecimiento capital", "benefits": ["Drawdowns", "Tendencias", "Gráfico acumulativo"] },
+      "consistency": { "title": "Rastreador Consistencia", "description": "Heatmap 12 semanas", "benefits": ["Días rentables", "Rachas perdedoras", "Hábitos consistentes"] },
+      "calendar": { "title": "Calendario Trading", "description": "Vista calendario", "benefits": ["Vista mensual", "Click para trades", "Codificación P&L"] },
+      "aiAssistant": { "title": "Asistente IA", "description": "Preguntas sobre rendimiento", "benefits": ["Lenguaje natural", "Insights", "Análisis histórico"] },
+      "aiCharts": { "title": "Chat IA con Gráficos", "description": "Visualizaciones interactivas", "benefits": ["Barras, líneas, pastel", "Tablas", "Visualización instantánea"] },
+      "dailySummary": { "title": "Informe Diario IA", "description": "Resumen email automático", "benefits": ["Fortalezas/debilidades", "Sugerencias", "Por email"] },
+      "goalAlerts": { "title": "Alertas Objetivos", "description": "Alertas tiempo real", "benefits": ["Objetivo diario", "Max trades", "Alertas drawdown"] },
+      "riskSimulator": { "title": "Simulador Riesgo", "description": "Simulación Monte Carlo", "benefits": ["What-if 2R", "Gestión diferente", "1000+ simulaciones"] },
+      "symbolReports": { "title": "Rendimiento Símbolos", "description": "Análisis por instrumento", "benefits": ["P&L por símbolo", "Comparación", "Mejores mercados"] },
+      "setupReports": { "title": "Informes Setup", "description": "Rendimiento por setup", "benefits": ["Comparar estrategias", "Top setups", "Métricas específicas"] },
+      "hourAnalysis": { "title": "Análisis Horario", "description": "Horas más rentables", "benefits": ["P&L por hora", "Mejores horas", "Evitar malas horas"] },
+      "streakAnalysis": { "title": "Análisis Rachas", "description": "Rachas ganancia/pérdida", "benefits": ["Rachas más largas", "Longitud media", "Patrones"] },
+      "holdingPeriod": { "title": "Análisis Duración", "description": "Duración óptima", "benefits": ["P&L por duración", "Scalps vs swings", "Duración óptima"] },
+      "portfolioNews": { "title": "Inteligencia Noticias", "description": "Noticias auto-curadas", "benefits": ["Proxy-mapping", "Smart tags", "Traducción IA"] },
+      "politicalEvents": { "title": "Calendario Económico", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Eventos importantes", "Nivel impacto", "En calendario"] },
+      "sectorSentiment": { "title": "Sentimiento Sectorial", "description": "Análisis sentimiento", "benefits": ["11 sectores", "Artículos", "Score sentimiento"] },
+      "economicCalendar": { "title": "Datos Económicos", "description": "Fed, Powell en tiempo real", "benefits": ["Eventos políticos", "Impacto mercado", "Trading informado"] }
     }
   },
   "validation": {

@@ -813,8 +813,19 @@
   "landing": {
     "nav": {
       "features": "Fonctionnalités",
-      "pricing": "Tarifs"
+      "pricing": "Tarifs",
+      "allFeatures": "Toutes les Fonctionnalités"
     },
+    "topFeaturesTitle": "Ce qui rend TradeNotes spécial",
+    "topFeaturesDescription": "Les outils essentiels pour votre succès en trading",
+    "discoverAllFeatures": "Découvrir les 20+ Fonctionnalités",
+    "trustBadges": {
+      "ssl": "Cryptage SSL",
+      "gdpr": "Conforme RGPD",
+      "traders": "Par des Traders pour des Traders",
+      "sync": "NinjaTrader Auto-Sync"
+    },
+    "footerAllFeatures": "Toutes les Fonctionnalités",
     "cta": {
       "startNow": "Commencer"
     },
@@ -1015,6 +1026,48 @@
       "propFirmDetection": "Détection Comptes Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Suivi MFE/MAE pour Optimisation Stop-Loss",
       "achievements": "Gamification & Système d'Achievements"
+    }
+  },
+  "features": {
+    "heroTitle": "Aperçu de Toutes les Fonctionnalités",
+    "heroDescription": "Découvrez l'ensemble complet des fonctionnalités pour un journaling de trading professionnel",
+    "featureCount": "20+ Fonctionnalités",
+    "backToLanding": "Retour à l'Accueil",
+    "learnMore": "En savoir plus",
+    "ctaTitle": "Prêt à améliorer votre trading?",
+    "ctaDescription": "Commencez maintenant avec un essai gratuit de 14 jours",
+    "categories": {
+      "tradingTools": "Outils de Trading",
+      "analytics": "Analyses",
+      "ai": "IA & Automatisation",
+      "reports": "Rapports",
+      "marketIntel": "Intelligence de Marché"
+    },
+    "items": {
+      "easyEntry": { "title": "Saisie Rapide", "description": "Capturez des trades en secondes", "benefits": ["Aperçu P&L en direct", "Quick-chips pour symboles", "Copier le dernier trade"] },
+      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Synchronisation automatique via webhook", "benefits": ["Entry, Exit, MFE/MAE automatiques", "12+ prop firms", "Pas de saisie manuelle"] },
+      "propFirm": { "title": "Intégration Prop Firm", "description": "Détection automatique des comptes", "benefits": ["Analytics séparés par phase", "Apex, Topstep, etc.", "Type de compte auto-détecté"] },
+      "positionCalc": { "title": "Calculateur de Position", "description": "Tailles de position basées sur le risque", "benefits": ["Calcul de lot basé sur le risque", "Distance stop-loss", "Risque max par trade"] },
+      "csvImport": { "title": "Import/Export CSV", "description": "Importer ou exporter des données", "benefits": ["Formats courtier", "Export facile", "Intégration transparente"] },
+      "mfeMAE": { "title": "Analyse MFE/MAE", "description": "Optimiser stop-loss et take-profit", "benefits": ["Suivi high/low automatique", "Visualiser profits manqués", "Recommandations stop-loss"] },
+      "analytics": { "title": "Analytics Performance", "description": "Win rate, R-multiple, profit factor", "benefits": ["20+ KPIs", "Filtrer par période", "Forces et faiblesses"] },
+      "equityCurve": { "title": "Courbe d'Equity", "description": "Croissance du capital dans le temps", "benefits": ["Drawdowns visibles", "Tendances de croissance", "Graphique cumulatif"] },
+      "consistency": { "title": "Suivi Cohérence", "description": "Heatmap 12 semaines", "benefits": ["Jours rentables visibles", "Séries perdantes", "Habitudes cohérentes"] },
+      "calendar": { "title": "Calendrier Trading", "description": "Vue calendrier codée par couleur", "benefits": ["Aperçu mensuel", "Cliquer pour voir trades", "Codage couleur P&L"] },
+      "aiAssistant": { "title": "Assistant IA", "description": "Questions sur votre performance", "benefits": ["Langage naturel", "Insights data-driven", "Analyse historique"] },
+      "aiCharts": { "title": "Chat IA avec Graphiques", "description": "Visualisations interactives", "benefits": ["Barres, lignes, camemberts", "Tableaux de données", "Visualisation instantanée"] },
+      "dailySummary": { "title": "Rapport Quotidien IA", "description": "Résumé email automatique", "benefits": ["Forces/faiblesses", "Suggestions personnalisées", "Livré par email"] },
+      "goalAlerts": { "title": "Alertes Objectifs", "description": "Alertes temps réel", "benefits": ["Objectif profit quotidien", "Max trades par jour", "Alertes drawdown"] },
+      "riskSimulator": { "title": "Simulateur Risque", "description": "Simulation Monte Carlo", "benefits": ["What-if 2R exits", "Gestion risque différente", "1000+ simulations"] },
+      "symbolReports": { "title": "Performance Symboles", "description": "Analyse par instrument", "benefits": ["P&L par symbole", "Comparaison win rate", "Meilleurs marchés"] },
+      "setupReports": { "title": "Rapports Setup", "description": "Performance par setup", "benefits": ["Comparer stratégies", "Top setups", "Métriques spécifiques"] },
+      "hourAnalysis": { "title": "Analyse Horaire", "description": "Heures les plus rentables", "benefits": ["P&L par heure", "Meilleures heures", "Éviter heures perdantes"] },
+      "streakAnalysis": { "title": "Analyse Séries", "description": "Séries gains/pertes", "benefits": ["Plus longues séries", "Longueur moyenne", "Patterns dans séries"] },
+      "holdingPeriod": { "title": "Analyse Durée", "description": "Durée optimale des trades", "benefits": ["P&L par durée", "Scalps vs swings", "Durée optimale"] },
+      "portfolioNews": { "title": "Intelligence Actualités", "description": "News auto-curées", "benefits": ["Proxy-mapping futures", "Smart tags", "Traduction IA"] },
+      "politicalEvents": { "title": "Calendrier Économique", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Événements importants", "Niveau d'impact", "Intégré au calendrier"] },
+      "sectorSentiment": { "title": "Sentiment Sectoriel", "description": "Analyse sentiment quotidienne", "benefits": ["11 secteurs", "Nombre d'articles", "Score sentiment"] },
+      "economicCalendar": { "title": "Données Économiques", "description": "Fed, Trump, Powell en temps réel", "benefits": ["Événements politiques", "Impact marché", "Trader informé"] }
     }
   },
   "validation": {
