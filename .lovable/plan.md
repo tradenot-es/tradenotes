@@ -1,512 +1,217 @@
 
-# Moderne Landing Page & Features-Seite: Kompletter Umbau-Plan
 
-## Übersicht
+# Feature-Visuals Generierung: Abstrakte Trading-Illustrationen
 
-Die aktuelle Landing Page zeigt 23 Features in einem überladenen 3-Spalten-Grid. Dieser Plan transformiert sie zu einer **schlanken, conversion-fokussierten Landing Page** mit einem **reduzierten 6-Feature-Grid** und verlagert die Details auf eine neue dedizierte **/features**-Seite.
+## Ziel
 
----
-
-## Teil 1: Landing Page Redesign
-
-### 1.1 Seitenstruktur (neu)
-
-```
-┌─────────────────────────────────────────────────────────┐
-│ Navigation (besteht bereits)                            │
-├─────────────────────────────────────────────────────────┤
-│ HERO SECTION (beibehalten, minimal anpassen)            │
-│ - Badge, Rotating Headline, Dashboard Preview           │
-│ - CTA: "Jetzt starten" + "Features entdecken"          │
-├─────────────────────────────────────────────────────────┤
-│ WHY SECTION (beibehalten)                               │
-├─────────────────────────────────────────────────────────┤
-│ TOP-FEATURES GRID (NEU: 2x3 statt 23 Features)         │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐                    │
-│ │MFE/MAE  │ │Journal  │ │Analytics│                    │
-│ └─────────┘ └─────────┘ └─────────┘                    │
-│ ┌─────────┐ ┌─────────┐ ┌─────────┐                    │
-│ │AI Chat  │ │Risk Sim │ │News     │                    │
-│ └─────────┘ └─────────┘ └─────────┘                    │
-│                                                         │
-│ CTA: "Alle 20+ Features entdecken →" → /features       │
-├─────────────────────────────────────────────────────────┤
-│ SOCIAL PROOF SECTION (NEU)                             │
-│ - Trust Badges (SSL, DSGVO, von Tradern für Trader)    │
-├─────────────────────────────────────────────────────────┤
-│ PRICING SECTION (beibehalten, allFeatures gekürzt)     │
-├─────────────────────────────────────────────────────────┤
-│ FINAL CTA (beibehalten)                                 │
-├─────────────────────────────────────────────────────────┤
-│ Footer                                                   │
-└─────────────────────────────────────────────────────────┘
-```
-
-### 1.2 Top-6 Feature-Auswahl (Priorisiert nach User-Value)
-
-| # | Feature | Icon | Begründung |
-|---|---------|------|------------|
-| 1 | MFE/MAE Analyse | `Crosshair` | Alleinstellungsmerkmal, datenfokussiert |
-| 2 | Trading Journal | `BookOpen` | Kernfunktion, SEO-Hauptkeyword |
-| 3 | Performance Analytics | `BarChart3` | Sofortiger Nutzen erkennbar |
-| 4 | AI Trading Assistant | `MessageSquare` | Modernes AI-Feature, Differenzierung |
-| 5 | What-If Risk Simulator | `Calculator` | Neu implementiert, Monte Carlo USP |
-| 6 | Portfolio News | `Target` | Relevanz für Futures-Trader |
-
-### 1.3 Erweiterte Feature-Cards (Landing)
-
-Jede Card bekommt mehr visuelle Tiefe:
-
-```tsx
-<Card className="group glossy-card hover:scale-[1.03] hover:shadow-glow 
-                 transition-all duration-300 cursor-pointer">
-  <CardHeader className="relative overflow-hidden">
-    {/* Icon mit Glow-Hintergrund */}
-    <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center 
-                    justify-center text-primary mb-4 group-hover:bg-primary/20 
-                    transition-colors">
-      {feature.icon}
-    </div>
-    
-    {/* Titel als Benefit-Headline */}
-    <CardTitle className="text-lg">{feature.title}</CardTitle>
-    
-    {/* Kurzbeschreibung (1 Satz) */}
-    <CardDescription className="line-clamp-2">
-      {feature.description}
-    </CardDescription>
-    
-    {/* Hover-Indicator */}
-    <ArrowRight className="absolute bottom-4 right-4 h-5 w-5 opacity-0 
-                           group-hover:opacity-100 transition-opacity text-primary" />
-  </CardHeader>
-</Card>
-```
-
-### 1.4 Trust-Section (Neu)
-
-```tsx
-<section className="py-12 px-4 bg-muted/20 border-y">
-  <div className="max-w-5xl mx-auto flex flex-wrap justify-center 
-                  items-center gap-8 text-muted-foreground text-sm">
-    <div className="flex items-center gap-2">
-      <Shield className="h-5 w-5 text-primary" />
-      <span>SSL verschlüsselt</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Lock className="h-5 w-5 text-primary" />
-      <span>DSGVO konform</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Users className="h-5 w-5 text-primary" />
-      <span>Von Tradern für Trader</span>
-    </div>
-    <div className="flex items-center gap-2">
-      <Zap className="h-5 w-5 text-primary" />
-      <span>NinjaTrader Auto-Sync</span>
-    </div>
-  </div>
-</section>
-```
+Erstellung von 12 kohärenten, abstrakten Visuals im dunklen Trading-Theme für die Features-Seite. Die Bilder ersetzen die aktuellen Kategorie-Illustrationen und erweitern die Abdeckung auf alle wichtigen Features.
 
 ---
 
-## Teil 2: Neue Features-Seite (/features)
+## Design-Spezifikation
 
-### 2.1 Seitenstruktur
+### Farbpalette
+| Verwendung | Hex-Code | Beschreibung |
+|------------|----------|--------------|
+| Hintergrund | #020617 / #000 | Fast schwarz |
+| Primär-Akzent | #10B981 | Neon-Grün |
+| Sekundär 1 | #22C55E | Helleres Grün |
+| Sekundär 2 | #38BDF8 | Cyan/Blau |
+| Sekundär 3 | #FACC15 | Gold/Gelb |
+| Verlust/Negativ | #EF4444 | Rot (sparsam) |
 
-```
-┌─────────────────────────────────────────────────────────┐
-│ Navigation (mit Zurück-zur-Landing Button)              │
-├─────────────────────────────────────────────────────────┤
-│ HERO                                                    │
-│ "Alle Features im Überblick"                            │
-│ Beschreibung + Feature-Zähler (20+ Features)           │
-├─────────────────────────────────────────────────────────┤
-│ STICKY CATEGORY NAV                                     │
-│ [Trading Tools] [Analysen] [KI & Automatisierung]      │
-│ [Reports] [Market Intelligence]                         │
-├─────────────────────────────────────────────────────────┤
-│ CATEGORY: Trading Tools                                 │
-│ ┌────────────────────────────────────────────────────┐ │
-│ │ ← Text/Icon │ Screenshot/Demo Placeholder →       │ │
-│ │   Feature 1  │                                     │ │
-│ ├──────────────┼─────────────────────────────────────┤ │
-│ │              │ ← Text/Icon                        │ │
-│ │ Placeholder  │   Feature 2                        │ │
-│ └──────────────┴─────────────────────────────────────┘ │
-├─────────────────────────────────────────────────────────┤
-│ CATEGORY: Analysen                                      │
-│ (gleiche 2-Spalten-Struktur, alternierend)             │
-├─────────────────────────────────────────────────────────┤
-│ ... weitere Kategorien ...                              │
-├─────────────────────────────────────────────────────────┤
-│ FINAL CTA                                               │
-│ "Bereit dein Trading zu verbessern?"                   │
-├─────────────────────────────────────────────────────────┤
-│ Footer                                                   │
-└─────────────────────────────────────────────────────────┘
-```
+### Stilrichtlinien
+- Minimalistisch, technisch, leicht futuristisch
+- Klare Geometrie, dünne Linien (1-2px)
+- Glow-Effekte auf Akzentelementen
+- Leichtes Grain/Rauschen im Hintergrund
+- Keine Fotos, keine Menschen, keine echten UI-Screenshots
+- Nur kurze Labels ("PnL", "Winrate", "Setup A")
 
-### 2.2 Feature-Kategorien
-
-| Kategorie | Features |
-|-----------|----------|
-| **Trading Tools** | Easy Entry, NinjaTrader Sync, Prop-Firm Erkennung, Position Calculator, CSV Import |
-| **Analysen** | MFE/MAE, Performance Analytics, Equity Curve, Konsistenz-Tracker, Kalender-Heatmap |
-| **KI & Automatisierung** | AI Trading Assistant, AI Charts, Daily Summary, Goal Alerts, Proactive Alerts |
-| **Reports** | Symbol Performance, Setup-Reports, Stunden-Analyse, Streak-Analyse, Haltezeit-Analyse |
-| **Market Intelligence** | Portfolio News, Political Events, Sektor-Sentiment, Wirtschaftskalender |
-
-### 2.3 Feature-Row-Komponente
-
-```tsx
-interface FeatureRowProps {
-  feature: {
-    icon: React.ReactNode;
-    title: string;
-    description: string;
-    benefits: string[];  // 2-3 Bullet Points
-  };
-  imagePosition: "left" | "right";
-  screenshotPlaceholder?: string;
-}
-
-const FeatureRow = ({ feature, imagePosition }: FeatureRowProps) => (
-  <div className={cn(
-    "grid md:grid-cols-2 gap-8 items-center py-12",
-    imagePosition === "right" && "md:[&>*:first-child]:order-2"
-  )}>
-    {/* Content Side */}
-    <div className="space-y-4">
-      <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center 
-                      justify-center text-primary">
-        {feature.icon}
-      </div>
-      <h3 className="text-2xl font-bold">{feature.title}</h3>
-      <p className="text-muted-foreground text-lg">{feature.description}</p>
-      
-      {/* Benefit Bullets */}
-      <ul className="space-y-2">
-        {feature.benefits.map((benefit, i) => (
-          <li key={i} className="flex items-start gap-2">
-            <Check className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-            <span>{benefit}</span>
-          </li>
-        ))}
-      </ul>
-      
-      {/* Optional: Detail Accordion */}
-      <Collapsible>
-        <CollapsibleTrigger asChild>
-          <Button variant="ghost" size="sm" className="gap-2">
-            Mehr erfahren <ChevronDown className="h-4 w-4" />
-          </Button>
-        </CollapsibleTrigger>
-        <CollapsibleContent className="pt-4 text-muted-foreground">
-          {feature.extendedDescription}
-        </CollapsibleContent>
-      </Collapsible>
-    </div>
-    
-    {/* Screenshot/Demo Placeholder */}
-    <div className="aspect-video rounded-xl border border-primary/20 
-                    bg-muted/50 flex items-center justify-center">
-      <div className="text-center text-muted-foreground">
-        <ImageIcon className="h-12 w-12 mx-auto mb-2 opacity-50" />
-        <span className="text-sm">Screenshot Placeholder</span>
-      </div>
-    </div>
-  </div>
-);
-```
-
-### 2.4 Sticky Category Navigation
-
-```tsx
-const CategoryNav = ({ categories, activeCategory, onCategoryClick }) => (
-  <nav className="sticky top-16 z-40 bg-background/95 backdrop-blur-lg 
-                  border-b py-3 -mx-4 px-4">
-    <div className="max-w-7xl mx-auto">
-      <ScrollArea orientation="horizontal">
-        <div className="flex gap-2">
-          {categories.map(cat => (
-            <Button
-              key={cat.id}
-              variant={activeCategory === cat.id ? "default" : "ghost"}
-              size="sm"
-              onClick={() => onCategoryClick(cat.id)}
-              className="shrink-0"
-            >
-              <cat.icon className="h-4 w-4 mr-2" />
-              {cat.name}
-            </Button>
-          ))}
-        </div>
-      </ScrollArea>
-    </div>
-  </nav>
-);
-```
-
-### 2.5 Scroll-Spy Integration
-
-```tsx
-// IntersectionObserver für aktive Kategorie
-useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveCategory(entry.target.id);
-        }
-      });
-    },
-    { rootMargin: "-100px 0px -60% 0px" }
-  );
-  
-  categories.forEach(cat => {
-    const el = document.getElementById(cat.id);
-    if (el) observer.observe(el);
-  });
-  
-  return () => observer.disconnect();
-}, []);
-```
+### Format
+- Auflösung: 1920x1080 (16:9)
+- Dateiformat: .webp (optimiert für Web)
+- Speicherort: `src/assets/features/`
 
 ---
 
-## Teil 3: Animationen
+## Visual-Zuordnung zu Features
 
-### 3.1 Fade-In on Scroll (Bereits in Tailwind konfiguriert)
+### Kategorie: Trading Tools (5 Features)
 
-```tsx
-// Utility Hook für Scroll-Animationen
-const useScrollAnimation = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-  
-  return { ref, isVisible };
-};
+| # | Feature | Dateiname | Motiv-Beschreibung |
+|---|---------|-----------|-------------------|
+| 1 | Schnelle Trade-Eingabe | `easy-entry.webp` | Vereinfachtes Ticket-Panel: große Preis-Zahl mittig, Buy/Sell-Buttons als farbige Rechtecke (grün/rot), Slider für Positionsgröße. Abstrakte Formen, keine echten UI-Komponenten. |
+| 2 | NinjaTrader Auto-Sync | `ninjatrader-sync.webp` | Zwei stilisierte Panels: links "NT" Chart-Panel mit abstraktem Logo-Icon, rechts "Journal" Dashboard-Panel, dazwischen leuchtende Sync-Pfeile mit Datenfluss-Linien. |
+| 3 | Prop-Firm Erkennung | `prop-firm.webp` | Dashboard mit Account-Karten, jede mit Status-Badge und Performance-Balken. Verbindungslinien zwischen Accounts, zentrale Sync-Indikation. |
+| 4 | Positionsrechner | `position-calculator.webp` | Abstraktes Rechner-Panel mit Eingabefeldern als Rechtecke, Risk%-Slider, Output-Box mit berechneter Lotgröße. Mathematische Symbole im Hintergrund. |
+| 5 | CSV Import | `csv-import.webp` | Abstrakte Tabelle mit Spalten/Zeilen, Upload-Pfeil-Icon, "CSV"-Label. Datenfluss von Datei zu Dashboard-Widgets. |
 
-// Verwendung
-<div 
-  ref={ref} 
-  className={cn(
-    "transition-all duration-700",
-    isVisible 
-      ? "opacity-100 translate-y-0" 
-      : "opacity-0 translate-y-8"
-  )}
->
-```
+### Kategorie: Analytics (5 Features)
 
-### 3.2 Hover-Effekte (erweitert)
+| # | Feature | Dateiname | Motiv-Beschreibung |
+|---|---------|-----------|-------------------|
+| 1 | MFE/MAE Analyse | `mfe-mae.webp` | Dunkles Chart-Panel mit Kerzen, zwei halbtransparente leuchtende Zonen für MFE (grün) und MAE (rot). Markierungen für Entry, Stop, Take Profit. |
+| 2 | Performance Analytics | `performance-analytics.webp` | Großes Equity-Chart, darunter Widgets: Winrate-Donut, Setup-Balkendiagramm, Wochentag-Heatmap. Grün für Gewinne, Rot für Verluste. |
+| 3 | Equity Curve | `equity-curve.webp` | Smooth-Line-Chart mit Auf/Ab-Phasen, markierte Drawdown-Zonen. Darunter Consistency-Bars (grün/rot) pro Tag/Woche. |
+| 4 | Konsistenz-Tracker | `consistency-tracker.webp` | Streak-Visualisierung mit verbundenen Tagen, Flammen-Icons für aktive Streaks, Fortschrittsbalken. Grid-Hintergrund. |
+| 5 | Trading Kalender | `trading-calendar.webp` | Kalender-Heatmap-Grid mit Tagen in verschiedenen Grün-/Rot-Tönen. Kleine Icons (Kerze, Dollar) statt Zahlen. |
 
-```css
-/* In index.css ergänzen */
-.feature-card-hover {
-  @apply transition-all duration-300;
-}
+### Kategorie: AI & Automation (5 Features)
 
-.feature-card-hover:hover {
-  @apply scale-[1.02] shadow-glow;
-  transform: translateY(-4px);
-}
-```
+| # | Feature | Dateiname | Motiv-Beschreibung |
+|---|---------|-----------|-------------------|
+| 1 | AI Trading Assistant | `ai-assistant.webp` | Chat-Panel: stilisierte Bubbles (grün/grau) mit Linien als Platzhaltertext. KI-Brain/Chip-Symbol. Netzwerk-/Node-Muster im Hintergrund. |
+| 2 | AI Chart-Analyse | `ai-charts.webp` | Chart mit Overlay von KI-generierten Annotations: Trendlinien, Support/Resistance-Zonen, Pattern-Markierungen. KI-Icon in Ecke. |
+| 3 | Daily Summary | `daily-summary.webp` | E-Mail/Notification-Card mit abstrakten Zeilen für Statistiken, Mini-Chart, Highlight-Badges. Envelope-Icon mit Glow. |
+| 4 | Goal Alerts | `goal-alerts.webp` | Zielscheibe mit Fortschrittsring, Notification-Bells mit Glow, Threshold-Linien. Progress-Bar und Alert-Icons. |
+| 5 | Monte Carlo Simulator | `monte-carlo.webp` | Cluster halbtransparenter Linien von gemeinsamem Startpunkt divergierend. Parameter-Boxen (Risk%, Trades, Winrate) als Rechtecke. |
+
+### Kategorie: Reports (5 Features)
+
+| # | Feature | Dateiname | Motiv-Beschreibung |
+|---|---------|-----------|-------------------|
+| 1 | Symbol Reports | `symbol-reports.webp` | Abstrakte Tabelle mit Ticker-Symbolen, Performance-Balken pro Symbol, kleine Sparkline-Charts. Filter-Icons oben. |
+| 2 | Setup Reports | `setup-reports.webp` | Setup-Karten mit Labels ("Setup A", "Setup B"), Winrate-Donuts, Vergleichs-Balkendiagramm. Tag-Badges. |
+| 3 | Hour Analysis | `hour-analysis.webp` | 24-Stunden-Radialchart oder Balkendiagramm, Zeitachse, Highlighting der profitabelsten Stunden mit Glow. |
+| 4 | Streak Analysis | `streak-analysis.webp` | Horizontale Streak-Bars (Win/Loss), Flammen-Icons, Rekord-Anzeige. Timeline-Visualisierung. |
+| 5 | Holding Period | `holding-period.webp` | Histogramm/Distribution-Chart für Haltedauer, Zeitachse, Performance-Korrelation. Timer-Icons. |
+
+### Kategorie: Market Intelligence (4 Features)
+
+| # | Feature | Dateiname | Motiv-Beschreibung |
+|---|---------|-----------|-------------------|
+| 1 | Portfolio News | `portfolio-news.webp` | Radar-Kreis mit Symbol-Punkten, News-Cards mit Headline-Balken und Sentiment-Indikatoren (grün/rot). Stilisierte Weltkarte im Hintergrund. |
+| 2 | Political Events | `political-events.webp` | Timeline mit Event-Markern, Impact-Levels (Glow für hohe Wichtigkeit). Flaggen-/Gebäude-Icons. |
+| 3 | Sector Sentiment | `sector-sentiment.webp` | Treemap oder Heatmap mit Sektoren, Sentiment-Farben (grün/rot/neutral). Sektor-Labels. |
+| 4 | Economic Calendar | `economic-calendar.webp` | Horizontale Zeitachse mit Event-Markern, Impact-Punkte mit Glow. Icons für News, Zentralbank, Reden. Weltkarten-Motiv. |
 
 ---
 
-## Teil 4: Technische Umsetzung
+## Implementierungsplan
 
-### 4.1 Neue Dateien
+### Phase 1: Bild-Generierung (12 Visuals)
 
-| Datei | Zweck |
-|-------|-------|
-| `src/pages/Features.tsx` | Neue Features-Seite |
-| `src/components/features/FeatureRow.tsx` | Wiederverwendbare Feature-Zeile |
-| `src/components/features/CategoryNav.tsx` | Sticky Navigation |
-| `src/components/features/FeatureCategory.tsx` | Kategorie-Container |
-| `src/components/TrustBadges.tsx` | Trust-Section Komponente |
+Für jedes Visual wird folgende Prompt-Struktur verwendet:
 
-### 4.2 Routing-Erweiterung (App.tsx)
-
-```tsx
-import Features from "./pages/Features";
-
-// In Routes hinzufügen:
-<Route path="/features" element={<Features />} />
+```
+Abstract technical visualization for [FEATURE NAME]. 
+Dark trading theme with black background (#020617). 
+Neon green accent (#10B981) with secondary colors (#22C55E, #38BDF8, #FACC15).
+[SPECIFIC MOTIF DESCRIPTION]
+Style: Minimalist, techy, futuristic. Clean geometry, thin lines, glow effects, subtle grain texture.
+No photos, no people, no real UI screenshots.
+16:9 aspect ratio, 1920x1080.
 ```
 
-### 4.3 Navigation-Update
+Reihenfolge der Generierung:
+1. MFE/MAE Analyse
+2. Performance Analytics  
+3. AI Trading Assistant
+4. Monte Carlo Simulator
+5. Portfolio News
+6. Easy Entry
+7. NinjaTrader Sync
+8. Equity Curve
+9. Trading Calendar
+10. Symbol Reports
+11. Economic Calendar
+12. Prop-Firm (falls Zeit)
 
-Footer und Navigation um `/features` Link ergänzen:
+### Phase 2: Code-Anpassung
+
+**Datei: `src/pages/Features.tsx`**
+
+1. Neue Imports für alle Feature-Bilder hinzufügen
+2. Jedes Feature-Objekt um `illustration`-Property erweitern
+3. Rendering-Logik anpassen: Jedes Feature erhält sein eigenes Bild
 
 ```tsx
-// In Navigation.tsx
-<a href="/features" className="text-sm font-medium hover:text-primary">
-  {t("landing.nav.allFeatures")}
-</a>
-
-// In Footer.tsx unter "Product"
-<li>
-  <Link to="/features" className="hover:text-primary">
-    {t("landing.footerAllFeatures")}
-  </Link>
-</li>
-```
-
-### 4.4 Übersetzungen (alle 6 Sprachen)
-
-Neue Keys für `de.json`, `en.json`, `fr.json`, `es.json`, `nl.json`, `it.json`:
-
-```json
-{
-  "landing": {
-    "nav": {
-      "allFeatures": "Alle Features"
-    },
-    "topFeaturesTitle": "Was TradeNotes besonders macht",
-    "topFeaturesDescription": "Die wichtigsten Tools für deinen Trading-Erfolg",
-    "discoverAllFeatures": "Alle 20+ Features entdecken",
-    "trustBadges": {
-      "ssl": "SSL verschlüsselt",
-      "gdpr": "DSGVO konform",
-      "traders": "Von Tradern für Trader",
-      "sync": "NinjaTrader Auto-Sync"
-    },
-    "footerAllFeatures": "Alle Features"
+// Beispiel-Struktur nach Änderung
+features: [
+  {
+    icon: <Crosshair className="h-6 w-6" />,
+    title: t("features.items.mfeMAE.title"),
+    description: t("features.items.mfeMAE.description"),
+    benefits: [...],
+    illustration: mfeMaeImg,  // NEU
   },
-  "features": {
-    "heroTitle": "Alle Features im Überblick",
-    "heroDescription": "Entdecke die komplette Funktionspalette für professionelles Trading-Journaling",
-    "featureCount": "20+ Features",
-    "categories": {
-      "tradingTools": "Trading Tools",
-      "analytics": "Analysen",
-      "ai": "KI & Automatisierung",
-      "reports": "Reports",
-      "marketIntel": "Market Intelligence"
-    },
-    "backToLanding": "Zurück zur Startseite",
-    "learnMore": "Mehr erfahren",
-    "ctaTitle": "Bereit dein Trading zu verbessern?",
-    "ctaDescription": "Starte jetzt mit 14 Tagen kostenloser Testphase",
-    // Pro Feature: title, description, benefits[]
-    "mfeMAE": {
-      "title": "MFE/MAE Analyse",
-      "description": "Optimiere deine Stop-Loss und Take-Profit Strategien mit datenbasierter Analyse",
-      "benefits": [
-        "Automatisches Tracking von High/Low während des Trades",
-        "Visualisiere verpasste Gewinne und optimale Exits",
-        "Erhalte konkrete Stop-Loss Empfehlungen"
-      ]
-    }
-    // ... weitere Features
-  }
-}
+  // ...
+]
 ```
 
-### 4.5 SEO-Optimierung
+**Datei: `src/components/features/FeatureRow.tsx`**
 
-**Features-Seite Schema.org:**
+Die Komponente unterstützt bereits `screenshotUrl` - keine Änderung nötig.
+
+**Rendering-Änderung in Features.tsx:**
 
 ```tsx
-useEffect(() => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": t("features.heroTitle"),
-    "description": t("features.heroDescription"),
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
-        { "@type": "ListItem", position: 2, name: "Features", item: `${baseUrl}/features` }
-      ]
-    },
-    "mainEntity": {
-      "@type": "SoftwareApplication",
-      "name": "TradeNotes",
-      "applicationCategory": "FinanceApplication",
-      "featureList": allFeatures.map(f => f.title)
-    }
-  };
-  // Inject into head...
-}, []);
+{category.features.map((feature, index) => (
+  <FeatureRow
+    key={index}
+    feature={feature}
+    imagePosition={index % 2 === 0 ? "right" : "left"}
+    screenshotUrl={feature.illustration}  // Jedes Feature hat eigenes Bild
+  />
+))}
 ```
 
-**Meta-Tags in index.html für /features:**
-Da React-Router client-seitig ist, werden dynamische Meta-Tags via `react-helmet` oder direkter DOM-Manipulation gesetzt.
+### Phase 3: Cleanup
+
+- Alte Kategorie-Illustrationen entfernen (5 JPGs)
+- Neue WebP-Dateien optimieren (falls nötig)
+- Lazy Loading verifizieren
 
 ---
 
-## Teil 5: Responsive Design
+## Technische Details
 
-### 5.1 Breakpoints
+### Dateistruktur nach Implementierung
 
-| Breakpoint | Landing Features | Features Page |
-|------------|------------------|---------------|
-| Mobile (<640px) | 1 Spalte, vertikal | 1 Spalte, Text über Bild |
-| Tablet (640-1024px) | 2 Spalten | 1 Spalte, alternierend |
-| Desktop (>1024px) | 3 Spalten | 2 Spalten, alternierend |
-
-### 5.2 Mobile Category Nav
-
-```tsx
-// Auf Mobile: Horizontales Scroll statt Wrap
-<ScrollArea className="w-full md:hidden">
-  <div className="flex gap-2 pb-2">
-    {categories.map(cat => (...))}
-  </div>
-</ScrollArea>
+```
+src/assets/features/
+├── mfe-mae.webp
+├── performance-analytics.webp
+├── ai-assistant.webp
+├── monte-carlo.webp
+├── portfolio-news.webp
+├── easy-entry.webp
+├── ninjatrader-sync.webp
+├── equity-curve.webp
+├── trading-calendar.webp
+├── symbol-reports.webp
+├── economic-calendar.webp
+├── prop-firm.webp
+├── csv-import.webp
+├── position-calculator.webp
+├── consistency-tracker.webp
+├── ai-charts.webp
+├── daily-summary.webp
+├── goal-alerts.webp
+├── setup-reports.webp
+├── hour-analysis.webp
+├── streak-analysis.webp
+├── holding-period.webp
+├── political-events.webp
+└── sector-sentiment.webp
 ```
 
----
+### Performance-Optimierung
 
-## Teil 6: Performance-Optimierungen
-
-1. **Lazy Loading für Screenshots:**
-   ```tsx
-   <img loading="lazy" src={screenshot} alt={feature.title} />
-   ```
-
-2. **Intersection Observer für Animation Triggers:**
-   - Nur sichtbare Sections animieren
-   - Reduziert Main-Thread Arbeit
-
-3. **CSS Containment:**
-   ```css
-   .feature-category {
-     contain: content;
-   }
-   ```
+- WebP-Format für bessere Kompression (~30% kleiner als JPG)
+- `loading="lazy"` bereits implementiert
+- Bilder werden erst geladen, wenn sie in den Viewport kommen
 
 ---
 
-## Zusammenfassung der Änderungen
+## Zusammenfassung
 
-| Datei | Aktion | Beschreibung |
-|-------|--------|--------------|
-| `src/pages/Landing.tsx` | MODIFIZIEREN | Features auf 6 reduzieren, Trust-Section hinzufügen, CTA zu /features |
-| `src/pages/Features.tsx` | NEU | Komplette Features-Seite mit Kategorien |
-| `src/components/features/FeatureRow.tsx` | NEU | Wiederverwendbare Feature-Zeile |
-| `src/components/features/CategoryNav.tsx` | NEU | Sticky Kategorie-Navigation |
-| `src/components/TrustBadges.tsx` | NEU | Trust-Section Komponente |
-| `src/App.tsx` | MODIFIZIEREN | Route `/features` hinzufügen |
-| `src/components/Navigation.tsx` | MODIFIZIEREN | Link zu Features hinzufügen |
-| `src/components/Footer.tsx` | MODIFIZIEREN | Link zu Features hinzufügen |
-| `src/i18n/locales/*.json` | MODIFIZIEREN | Neue Translation Keys (alle 6 Sprachen) |
-| `src/index.css` | MODIFIZIEREN | Zusätzliche Hover-Animationen |
-| `index.html` | MODIFIZIEREN | Schema.org für Features-Seite vorbereiten |
+| Aspekt | Details |
+|--------|---------|
+| Anzahl Visuals | 24 (alle Features abgedeckt) |
+| Priorität | 12 Kern-Features zuerst |
+| Stil | Dark Trading Theme, abstrakt, technisch |
+| Format | WebP, 1920x1080, 16:9 |
+| Code-Änderungen | Features.tsx (Imports + Datenstruktur) |
 
-**Geschätzter Aufwand:** ~45-60 Minuten für vollständige Implementierung
