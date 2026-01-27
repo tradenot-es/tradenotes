@@ -1186,7 +1186,7 @@
     "riskSimulator": {
       "term": "Simulador de Riesgo (Risk Simulator)",
       "definition": "El Simulador de Riesgo es una herramienta para probar escenarios What-If basados en tus datos de trading reales. Permite simular cómo habría evolucionado tu curva de capital con diferentes estrategias de salida (R-Multiple) o tamaños de posición.",
-      "formula": "Capital Simulado = Capital Inicial × ∏(1 + Ri × Riesgo%)\n\ndonde Ri = R-Multiple simulado para cada operación",
+      "formula": "Capital Simulado = Capital Inicial × ∏(1 + Ri × Riesgo%) donde Ri = R-Multiple simulado para cada operación",
       "example": "Tus últimas 100 operaciones tuvieron un R promedio de 1.2R. El simulador muestra: Con 2% de riesgo por operación, tus $10.000 podrían haberse convertido en $15.400."
     },
     "aiAssistantCharts": {
