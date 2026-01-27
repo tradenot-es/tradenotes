@@ -944,6 +944,18 @@
         "title": "Proactieve AI Waarschuwingen",
         "description": "Realtime waarschuwingen voor verliesreeksen, zwakke handelsuren en contra-nieuws trades. AI-gestuurde risicopreventie."
       },
+      "aiCharts": {
+        "title": "AI Chat met Grafieken",
+        "description": "Stel vragen en ontvang interactieve visualisaties—staaf-, lijn- en cirkeldiagrammen direct in de chat."
+      },
+      "dailySummary": {
+        "title": "AI Dagrapport",
+        "description": "Automatische e-mailsamenvatting van je trading prestaties met sterktes, zwaktes en gepersonaliseerde verbetervoorstellen."
+      },
+      "riskSimulator": {
+        "title": "What-If Risicosimulator",
+        "description": "Test alternatieve strategieën met Monte Carlo simulatie. Hoe zou je kapitaal hebben gepresteerd met 2R exits of 1% risico?"
+      },
       "reports": {
         "title": "Geavanceerde Rapporten",
         "description": "Analyseer per setup, symbool, tijdstip, houdperiode en reeksen. Vind je meest winstgevende trading patronen."
@@ -979,6 +991,10 @@
       "politicalEvents": "Economische Kalender (FOMC, CPI, NFP, GDP) + Politiek Nieuws",
       "sectorSentiment": "Dagelijks Sector Sentiment Dashboard (9 sectoren gevolgd)",
       "ai": "AI Trading Assistent (5 vragen/dag in proef, onbeperkt met Premium)",
+      "aiCharts": "AI Chat met interactieve Grafieken & Tabellen",
+      "dailySummary": "Automatische AI Dagrapporten via Email",
+      "goalAlerts": "Doel-Alerts & Realtime Notificaties",
+      "riskSimulator": "What-If Risicosimulator (Monte Carlo)",
       "winLoss": "Win/Loss Analytics & Performance Breakdown",
       "calendar": "Trading Kalender Weergave",
       "pnlCharts": "P&L Grafieken & Visualisaties",

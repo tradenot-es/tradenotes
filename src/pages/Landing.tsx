@@ -8,7 +8,7 @@ import { Footer } from "@/components/Footer";
 import { RotatingWord } from "@/components/RotatingWord";
 import { AttentionCTA } from "@/components/AttentionCTA";
 import dashboardPreview from "@/assets/dashboard-real-preview.jpg";
-import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight } from "lucide-react";
+import { TrendingUp, BarChart3, BookOpen, LineChart, Calendar, Check, Star, Import, FileText, Activity, Target, MessageSquare, Zap, Bell, Globe, Building2, Crosshair, ArrowRight, Mail, PieChart, Calculator } from "lucide-react";
 const Landing = () => {
   const {
     t
@@ -66,9 +66,21 @@ const Landing = () => {
     title: t("landing.features.ai.title"),
     description: t("landing.features.ai.description")
   }, {
+    icon: <PieChart className="h-6 w-6" />,
+    title: t("landing.features.aiCharts.title"),
+    description: t("landing.features.aiCharts.description")
+  }, {
+    icon: <Mail className="h-6 w-6" />,
+    title: t("landing.features.dailySummary.title"),
+    description: t("landing.features.dailySummary.description")
+  }, {
     icon: <Bell className="h-6 w-6" />,
     title: t("landing.features.aiAlerts.title"),
     description: t("landing.features.aiAlerts.description")
+  }, {
+    icon: <Calculator className="h-6 w-6" />,
+    title: t("landing.features.riskSimulator.title"),
+    description: t("landing.features.riskSimulator.description")
   }, {
     icon: <FileText className="h-6 w-6" />,
     title: t("landing.features.reports.title"),
@@ -94,7 +106,7 @@ const Landing = () => {
     title: t("landing.features.glossary.title"),
     description: t("landing.features.glossary.description")
   }];
-  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.ninjaTraderSync"), t("landing.allFeatures.propFirmDetection"), t("landing.allFeatures.mfeMaeTracking"), t("landing.allFeatures.achievements"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
+  const allFeatures = [t("landing.allFeatures.unlimited"), t("landing.allFeatures.fullAnalytics"), t("landing.allFeatures.journal"), t("landing.allFeatures.equity"), t("landing.allFeatures.consistency"), t("landing.allFeatures.news"), t("landing.allFeatures.politicalEvents"), t("landing.allFeatures.sectorSentiment"), t("landing.allFeatures.ai"), t("landing.allFeatures.aiCharts"), t("landing.allFeatures.dailySummary"), t("landing.allFeatures.goalAlerts"), t("landing.allFeatures.riskSimulator"), t("landing.allFeatures.winLoss"), t("landing.allFeatures.calendar"), t("landing.allFeatures.pnlCharts"), t("landing.allFeatures.csvImport"), t("landing.allFeatures.setupReports"), t("landing.allFeatures.hourAnalysis"), t("landing.allFeatures.symbolReports"), t("landing.allFeatures.streakAnalysis"), t("landing.allFeatures.holdingPeriod"), t("landing.allFeatures.weeklyTracking"), t("landing.allFeatures.dailyPrep"), t("landing.allFeatures.glossary"), t("landing.allFeatures.darkMode"), t("landing.allFeatures.multiLanguage"), t("landing.allFeatures.ninjaTraderSync"), t("landing.allFeatures.propFirmDetection"), t("landing.allFeatures.mfeMaeTracking"), t("landing.allFeatures.achievements"), t("landing.allFeatures.futureFeatures"), t("landing.allFeatures.freeTrial")];
   return <div className="min-h-screen bg-background">
       <Navigation />
 
