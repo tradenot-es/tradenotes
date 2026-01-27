@@ -1186,7 +1186,7 @@
     "riskSimulator": {
       "term": "Simulateur de Risque (Risk Simulator)",
       "definition": "Le Simulateur de Risque est un outil permettant de tester des scénarios What-If basés sur vos données de trading réelles. Il permet de simuler comment votre courbe d'équité aurait évolué avec différentes stratégies de sortie (R-Multiple) ou tailles de position.",
-      "formula": "Équité Simulée = Capital Initial × ∏(1 + Ri × Risque%)\n\noù Ri = R-Multiple simulé pour chaque trade",
+      "formula": "Équité Simulée = Capital Initial × ∏(1 + Ri × Risque%) où Ri = R-Multiple simulé pour chaque trade",
       "example": "Vos 100 derniers trades ont eu un R moyen de 1.2R. Le simulateur montre: Avec 2% de risque par trade, votre $10.000 auraient pu devenir $15.400."
     },
     "aiAssistantCharts": {

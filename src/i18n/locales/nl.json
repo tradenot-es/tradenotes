@@ -1186,7 +1186,7 @@
     "riskSimulator": {
       "term": "Risico Simulator (Risk Simulator)",
       "definition": "De Risico Simulator is een tool om What-If scenario's te testen op basis van je echte trading data. Hiermee kun je simuleren hoe je equity curve zou zijn ontwikkeld met verschillende exit-strategieën (R-Multiple) of positiegroottes.",
-      "formula": "Gesimuleerde Equity = Startkapitaal × ∏(1 + Ri × Risico%)\n\nwaarbij Ri = gesimuleerde R-Multiple voor elke trade",
+      "formula": "Gesimuleerde Equity = Startkapitaal × ∏(1 + Ri × Risico%) waarbij Ri = gesimuleerde R-Multiple voor elke trade",
       "example": "Je laatste 100 trades hadden een gemiddelde R van 1.2R. De simulator toont: Met 2% risico per trade, zou je $10.000 $15.400 kunnen zijn geworden."
     },
     "aiAssistantCharts": {
