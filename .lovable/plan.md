@@ -1,103 +1,99 @@
 
-
-# E-Mail-Bestätigung für Wartelisten-Eintragung
+# Vorname als Pflichtfeld - Optimale & rechtssichere Implementierung
 
 ## Zusammenfassung
-Nach erfolgreicher Anmeldung zur Warteliste wird eine Bestätigungs-E-Mail über Lettermint versendet. Der Nutzer erhält somit eine persönliche Willkommens-Nachricht mit Branding statt nur eines Pop-ups.
+Der Vorname bleibt Pflichtfeld bei der Registrierung und wird zusätzlich auf der Account-Seite validiert. Der Nachname bleibt optional (DSGVO-Datenminimierung). Ein Datenbank-Constraint stellt Konsistenz sicher.
+
+## Rechtliche Grundlage
+
+### Warum Vorname als Pflichtfeld legitim ist
+- **Art. 6 DSGVO**: Vertragserfüllung (personalisierter Service) + berechtigtes Interesse
+- **Verwendungszweck**: E-Mail-Anrede, Dashboard-Begrüßung, Support-Kommunikation
+- **Transparenz**: Nutzer sehen bei Registrierung, dass der Name erfasst wird
+- **Erforderlichkeit**: Name ist für professionelle Kommunikation üblich
+
+### Warum Nachname optional bleiben sollte
+- **Art. 5 DSGVO - Datenminimierung**: Für Personalisierung reicht der Vorname
+- **Nutzerfreundlichkeit**: Weniger Pflichtfelder = bessere Conversion
+- **Pseudonymität**: Manche Nutzer möchten nur Vornamen angeben
 
 ## Aktuelle Situation
-- Die `join-waitlist` Edge Function speichert die E-Mail in der Datenbank
-- Das Frontend zeigt nach Erfolg nur eine In-Page-Meldung an
-- Lettermint ist bereits für Auth-E-Mails konfiguriert und verifiziert
+
+| Bereich | Status | Problem |
+|---------|--------|---------|
+| SignupForm | Vorname Pflicht | Funktioniert korrekt |
+| Account-Seite | Keine Validierung | Nutzer kann Vorname leeren |
+| Datenbank | `first_name` nullable | Inkonsistenz möglich |
+| Zod-Schema | Nur bei Signup | Fehlt auf Account-Seite |
 
 ## Geplante Änderungen
 
-### 1. Edge Function erweitern (`supabase/functions/join-waitlist/index.ts`)
+### 1. Account-Seite: Validierung hinzufügen
 
-Nach dem erfolgreichen Datenbank-Insert wird eine E-Mail über die Lettermint API gesendet:
+Die `handleUpdateProfile()` Funktion wird um Validierung erweitert:
+- Vorname darf nicht leer sein
+- Fehlermeldung mit Übersetzung
+- Visueller Pflichtfeld-Indikator (Asterisk)
 
-**Neue Funktionalität:**
-- E-Mail-Template im TradeNot.es Design (dunkel, grüne Akzente)
-- Lokalisierte Inhalte basierend auf der Browser-Sprache (DE/EN)
-- Inhalt: Dankesnachricht, Bestätigung der Wartelisten-Position
-- Fallback: Bei E-Mail-Fehler wird trotzdem `success: true` zurückgegeben (Silent Fail), da der Nutzer bereits eingetragen ist
+### 2. Zod-Schema für Account-Update
 
-**Template-Inhalt (Deutsch):**
-```text
-Betreff: Willkommen auf der Warteliste!
+Neues Schema für Profile-Updates:
+- Vorname: min 1 Zeichen, max 50 Zeichen
+- Nachname: optional, max 50 Zeichen
+- Trim-Whitespace vor Validierung
 
-Hallo,
+### 3. Datenbank-Migration
 
-Danke für dein Interesse an TradeNot.es - deinem professionellen Trading Journal.
+SQL-Migration um Datenkonsistenz zu gewährleisten:
+- Bestehende NULL-Werte auf "Trader" setzen (Fallback)
+- `NOT NULL` Constraint für `first_name`
+- Maximale Länge von 100 Zeichen (für Sicherheit)
 
-Du bist jetzt auf unserer Warteliste und gehörst zu den Ersten, die zum Launch Zugang erhalten.
+### 4. UI-Verbesserungen
 
-Was dich erwartet:
-- Professionelles Trading-Journal
-- KI-gestützter Trading-Assistent
-- Detaillierte Performance-Analysen
-
-Wir melden uns, sobald es losgeht!
-
-Dein TradeNot.es Team
-```
-
-### 2. Frontend anpassen (`src/pages/PreLaunch.tsx`)
-
-- Die `language` (Browsersprache) wird an die Edge Function übergeben
-- Das Pop-up bleibt zusätzlich bestehen als visuelle Bestätigung
-
-### 3. Übersetzungen hinzufügen (alle 6 Sprachen)
-
-Neue Übersetzungsschlüssel für die E-Mail-Inhalte werden nicht benötigt, da die Templates direkt in der Edge Function definiert sind (wie bei `send-auth-email`).
-
-## Architektur-Diagramm
-
-```text
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│   PreLaunch.tsx │────▶│  join-waitlist  │────▶│   Supabase DB   │
-│   (Frontend)    │     │  Edge Function  │     │   (waitlist)    │
-└─────────────────┘     └────────┬────────┘     └─────────────────┘
-                                 │
-                                 ▼
-                        ┌─────────────────┐
-                        │  Lettermint API │
-                        │  (E-Mail senden)│
-                        └─────────────────┘
-```
+- Asterisk (*) bei Pflichtfeldern
+- Konsistente Fehlermeldungen
+- Klarere Label-Texte
 
 ## Technische Details
 
-### Edge Function Änderungen
-
+### Datenbank-Migration
 ```text
-1. LETTERMINT_API_KEY aus Secrets laden
-2. Nach erfolgreichem DB-Insert:
-   - Sprache aus Request-Body ermitteln (fallback: "de")
-   - E-Mail-Template generieren (lokalisiert)
-   - POST an Lettermint API senden
-3. Bei E-Mail-Fehler: Nur loggen, kein Fehler an Frontend
-4. Erfolg zurückgeben
+1. UPDATE profiles SET first_name = 'Trader' WHERE first_name IS NULL
+2. ALTER TABLE profiles ALTER COLUMN first_name SET NOT NULL
+3. ALTER TABLE profiles ALTER COLUMN first_name SET DEFAULT 'Trader'
+4. ADD CHECK constraint: char_length(first_name) >= 1
 ```
 
-### E-Mail-Design
-- Konsistent mit bestehendem Auth-E-Mail-Design
-- Dunkelgrauer Hintergrund (#0a0a0a, #1a1a1a)
-- Grüne Akzentfarbe (#10b981)
-- TradeNot.es Logo/Branding im Header
-- Mobile-optimiertes Layout
+### Frontend-Validierung (Account.tsx)
+```text
+1. Import Zod
+2. Erstelle profileUpdateSchema
+3. Validiere vor upsert
+4. Zeige Fehlermeldungen
+5. Füge Pflichtfeld-Marker hinzu
+```
+
+### Übersetzungen
+Neue Keys für alle 6 Sprachen:
+- `validation.firstNameRequired`: "Vorname ist erforderlich"
+- `validation.firstNameTooLong`: "Vorname darf maximal 50 Zeichen haben"
 
 ## Dateien die bearbeitet werden
 
 | Datei | Änderung |
 |-------|----------|
-| `supabase/functions/join-waitlist/index.ts` | Lettermint E-Mail-Versand hinzufügen |
-| `src/pages/PreLaunch.tsx` | Browser-Sprache an Edge Function übergeben |
+| `src/pages/Account.tsx` | Zod-Validierung, Pflichtfeld-Marker |
+| `src/i18n/locales/*.json` | Neue Validierungs-Übersetzungen |
+| Database Migration | NOT NULL Constraint für first_name |
 
 ## Vorteile
 
-- **Professioneller Eindruck**: Gebrandete E-Mail statt nur Pop-up
-- **Zustellbarkeit**: DNS-Records (SPF/DKIM) für tradenot.es bereits aktiv
-- **Konsistenz**: Gleiches Design wie Auth-E-Mails
-- **Robustheit**: Silent Fail bei E-Mail-Fehler - Nutzer ist trotzdem eingetragen
+- **Rechtssicher**: DSGVO-konform durch transparente Datenerfassung
+- **Konsistent**: Validierung an allen Stellen (Signup + Account)
+- **Robust**: Datenbank-Constraint verhindert inkonsistente Daten
+- **Nutzerfreundlich**: Nachname bleibt optional
 
+## Hinweis zu bestehenden Nutzern
+
+Die Migration setzt NULL-Werte auf "Trader" als Fallback. Diese Nutzer können ihren Namen auf der Account-Seite aktualisieren. Dies ist ein guter Kompromiss zwischen Datenkonsistenz und Nutzerfreundlichkeit.
