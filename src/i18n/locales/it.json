@@ -820,7 +820,10 @@
     "cancel": "Annulla",
     "confirm": "Conferma",
     "viewAll": "Vedi tutto",
-    "days": {
+    "date": "Data",
+    "days": "Giorni",
+    "months": "Mesi",
+    "daysOfWeek": {
       "sunday": "Domenica",
       "monday": "Lunedì",
       "tuesday": "Martedì",

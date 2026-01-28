@@ -800,7 +800,10 @@
     "cancel": "Annuleren",
     "confirm": "Bevestigen",
     "viewAll": "Bekijk alles",
-    "days": {
+    "date": "Datum",
+    "days": "Dagen",
+    "months": "Maanden",
+    "daysOfWeek": {
       "sunday": "Zondag",
       "monday": "Maandag",
       "tuesday": "Dinsdag",
