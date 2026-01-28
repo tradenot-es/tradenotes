@@ -54,44 +54,47 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
   }
 
   return (
-    <Card 
-      className="cursor-pointer hover:shadow-glow transition-all" 
-      onClick={() => navigate("/dashboard/reports?tab=goals")}
-    >
-      <CardHeader className="pb-2">
+    <Card className="hover:shadow-glow transition-all">
+      <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-lg">
-          <div className="flex items-center gap-2">
+          <div 
+            className="flex items-center gap-2 cursor-pointer flex-1"
+            onClick={() => navigate("/dashboard/reports?tab=goals")}
+          >
             <Target className="h-5 w-5 text-primary" />
             {t("tradingGoals.title")}
           </div>
-          <ArrowRight className="h-4 w-4 text-muted-foreground" />
+          <button
+            onClick={() => navigate("/dashboard/reports?tab=goals")}
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+            aria-label="Zu Trading Goals"
+          >
+            <ArrowRight className="h-5 w-5 text-muted-foreground hover:text-foreground transition-colors" />
+          </button>
         </CardTitle>
       </CardHeader>
-      <CardContent className="py-6">
+      <CardContent className="pt-2 pb-6">
         <TooltipProvider>
-          <div className="flex items-center justify-between gap-12">
-            {/* Weekly Average Score */}
-            <div className="flex items-center gap-5">
+          <div className="flex items-center gap-8">
+            {/* Weekly Average Score - Radial only, no duplicate text */}
+            <div className="flex flex-col items-center">
               <RadialProgress
                 value={avgScore}
-                size={100}
+                size={90}
                 strokeWidth={8}
                 showPercentage={true}
                 color={avgScore >= 75 ? "success" : avgScore >= 50 ? "warning" : "destructive"}
               />
-              <div className="flex flex-col">
-                <span className="text-3xl font-bold">{Math.round(avgScore)}%</span>
-                <span className="text-sm text-muted-foreground">
-                  {t("tradingGoals.weeklyAvg")}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  {daysAchieved}/7 {t("tradingGoals.daysAchieved")}
-                </span>
-              </div>
+              <span className="text-xs text-muted-foreground mt-2">
+                {t("tradingGoals.weeklyAvg")}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {daysAchieved}/7 {t("tradingGoals.daysAchieved")}
+              </span>
             </div>
 
-            {/* Last 7 Days Indicators - Larger */}
-            <div className="flex items-center gap-4">
+            {/* Last 7 Days Indicators */}
+            <div className="flex items-center gap-3 flex-1 justify-center">
               {Array.from({ length: 7 }).map((_, idx) => {
                 const date = subDays(now, 6 - idx);
                 const dateStr = format(date, "yyyy-MM-dd");
@@ -103,7 +106,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                   <div key={idx} className="flex flex-col items-center gap-1.5">
                     <div
                       className={cn(
-                        "w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold transition-transform hover:scale-110",
+                        "w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-transform hover:scale-110",
                         !hasTrades
                           ? "bg-muted text-muted-foreground"
                           : score >= 100
@@ -126,9 +129,9 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
             </div>
 
             {/* Goals Count */}
-            <div className="text-right">
-              <span className="text-2xl font-bold">{enabledGoalsCount}</span>
-              <span className="text-sm text-muted-foreground block">{t("tradingGoals.goals")}</span>
+            <div className="text-center min-w-[60px]">
+              <span className="text-3xl font-bold block">{enabledGoalsCount}</span>
+              <span className="text-sm text-muted-foreground">{t("tradingGoals.goals")}</span>
             </div>
           </div>
         </TooltipProvider>
