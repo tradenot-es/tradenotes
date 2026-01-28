@@ -17,12 +17,14 @@ import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
 import { DailyGoalProgress } from "@/components/DailyGoalProgress";
+import { TradingGoalsTracker } from "@/components/TradingGoalsTracker";
 import { RadialProgress } from "@/components/RadialProgress";
 import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { startOfDay, endOfDay } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
+import { useTradingGoals } from "@/hooks/useTradingGoals";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 import { PnLChart } from "@/components/PnLChart";
 import { MFEMAEAnalysis } from "@/components/reports/MFEMAEAnalysis";
@@ -55,6 +57,10 @@ export default function Reports() {
   const [timeFilter, setTimeFilter] = useState<string>("all");
   const [dailyGoalAmount, setDailyGoalAmount] = useState(500);
   const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState(10);
+
+  // Trading Goals Hook - needs trades with fees field
+  const tradesWithFees = trades.map(t => ({ ...t, fees: 0 }));
+  const { goals, enabledGoals, dailyResults } = useTradingGoals(tradesWithFees);
 
   useEffect(() => {
     if (user) {
@@ -643,6 +649,13 @@ export default function Reports() {
               </div>
             </CardContent>
           </Card>
+
+          {/* Advanced Trading Goals Matrix */}
+          <TradingGoalsTracker
+            dailyResults={dailyResults}
+            enabledGoals={enabledGoals}
+            goals={goals}
+          />
         </TabsContent>
 
         {/* By Setup Tab */}

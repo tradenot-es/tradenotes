@@ -538,6 +538,7 @@ export type Database = {
           subscription_tier: string | null
           tags: string[] | null
           timezone: string | null
+          trading_goals: Json | null
           updated_at: string | null
           user_id: string
           webhook_api_key: string | null
@@ -558,6 +559,7 @@ export type Database = {
           subscription_tier?: string | null
           tags?: string[] | null
           timezone?: string | null
+          trading_goals?: Json | null
           updated_at?: string | null
           user_id: string
           webhook_api_key?: string | null
@@ -578,6 +580,7 @@ export type Database = {
           subscription_tier?: string | null
           tags?: string[] | null
           timezone?: string | null
+          trading_goals?: Json | null
           updated_at?: string | null
           user_id?: string
           webhook_api_key?: string | null

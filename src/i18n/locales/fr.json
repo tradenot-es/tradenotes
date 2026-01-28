@@ -1991,5 +1991,30 @@
       "title": "TradeNot.es - Bêta Privée | Journal de Trading",
       "description": "TradeNot.es - Votre journal de trading professionnel. Actuellement en Bêta Privée. Réservez un accès anticipé !"
     }
+  },
+  "tradingGoals": {
+    "title": "Suivi des Objectifs",
+    "description": "Suivez vos objectifs quotidiens et vos progrès",
+    "dailyPnl": "PnL Quotidien",
+    "maxTrades": "Max Trades",
+    "minWinRate": "Min Win Rate",
+    "maxDrawdown": "Max Drawdown",
+    "maxCommissions": "Max Commissions",
+    "minAvgR": "Min R Moyen",
+    "maxLosingStreak": "Max Série Perdante",
+    "minProfitFactor": "Min Profit Factor",
+    "totalGoal": "Total",
+    "achieved": "Objectif atteint",
+    "notAchieved": "Objectif non atteint",
+    "configureGoals": "Configurer les objectifs",
+    "noGoalsConfigured": "Aucun objectif configuré",
+    "viewDetails": "Voir les détails",
+    "avgScore": "Score Moy",
+    "daysAchieved": "Jours atteints",
+    "tradingDays": "Jours de trading",
+    "activeGoals": "Objectifs actifs",
+    "showingDays": "Affichage de {{shown}} sur {{total}} jours",
+    "weeklyAvg": "Moy 7 jours",
+    "goals": "Objectifs"
   }
 }
