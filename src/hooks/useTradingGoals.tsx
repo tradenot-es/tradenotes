@@ -15,6 +15,7 @@ interface Trade {
   fees: number;
   r?: number | null;
   exit_time: string;
+  initial_risk?: number | null;
 }
 
 export function useTradingGoals(trades: Trade[]) {
@@ -108,6 +109,15 @@ export function useTradingGoals(trades: Trade[]) {
         const totalLosses = Math.abs(losses.reduce((sum, t) => sum + t.pnl_net, 0));
         const profitFactor = totalLosses > 0 ? totalWins / totalLosses : totalWins > 0 ? Infinity : 0;
 
+        // New goal calculations
+        const winsCount = wins.length;
+        const lossesCount = losses.length;
+        const avgWin = winsCount > 0 ? totalWins / winsCount : 0;
+        const avgLoss = lossesCount > 0 ? totalLosses / lossesCount : 0;
+        const maxRiskPerTrade = Math.max(...dayTrades.map(t => t.initial_risk || 0), 0);
+        const bestTrade = dayTrades.length > 0 ? Math.max(...dayTrades.map(t => t.pnl_net)) : 0;
+        const worstTrade = dayTrades.length > 0 ? Math.abs(Math.min(...dayTrades.map(t => t.pnl_net))) : 0;
+
         // Calculate each goal
         const goalResults: Record<GoalKey, { value: number; percentage: number; achieved: boolean }> = {
           daily_pnl: calculateGoalResult(pnl, goals.daily_pnl),
@@ -118,6 +128,14 @@ export function useTradingGoals(trades: Trade[]) {
           min_avg_r: calculateGoalResult(avgR, goals.min_avg_r),
           max_losing_streak: calculateGoalResult(maxLosingStreak, goals.max_losing_streak),
           min_profit_factor: calculateGoalResult(profitFactor === Infinity ? 999 : profitFactor, goals.min_profit_factor),
+          // New goals
+          min_wins: calculateGoalResult(winsCount, goals.min_wins),
+          max_losses: calculateGoalResult(lossesCount, goals.max_losses),
+          min_avg_win: calculateGoalResult(avgWin, goals.min_avg_win),
+          max_avg_loss: calculateGoalResult(avgLoss, goals.max_avg_loss),
+          max_risk_per_trade: calculateGoalResult(maxRiskPerTrade, goals.max_risk_per_trade),
+          min_best_trade: calculateGoalResult(bestTrade, goals.min_best_trade),
+          max_worst_trade: calculateGoalResult(worstTrade, goals.max_worst_trade),
         };
 
         // Calculate composite score (average of enabled goals)

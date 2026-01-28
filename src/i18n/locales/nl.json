@@ -2000,6 +2000,13 @@
     "minAvgR": "Min Gem R",
     "maxLosingStreak": "Max Verliesserie",
     "minProfitFactor": "Min Profit Factor",
+    "minWins": "Min Winnende Trades",
+    "maxLosses": "Max Verliezende Trades",
+    "minAvgWin": "Min Gem Winst",
+    "maxAvgLoss": "Max Gem Verlies",
+    "maxRiskPerTrade": "Max Risico/Trade",
+    "minBestTrade": "Min Beste Trade",
+    "maxWorstTrade": "Max Slechtste Trade",
     "totalGoal": "Totaal",
     "achieved": "Doel behaald",
     "notAchieved": "Doel niet behaald",
@@ -2012,6 +2019,11 @@
     "activeGoals": "Actieve doelen",
     "showingDays": "Tonen {{shown}} van {{total}} dagen",
     "weeklyAvg": "7-dagen gem",
-    "goals": "Doelen"
+    "goals": "Doelen",
+    "settingsTitle": "Trading Doelen",
+    "settingsDescription": "Definieer je dagelijkse doelen voor de tracker",
+    "profitGoals": "Winstdoelen",
+    "riskLimits": "Risicolimieten",
+    "performanceGoals": "Prestatiedoelen"
   }
 }

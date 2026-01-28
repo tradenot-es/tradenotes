@@ -18,6 +18,8 @@ import { SetupDefinition } from "@/types/setup";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
+import { TradingGoalsSettings } from "@/components/settings/TradingGoalsSettings";
+import { TradingGoalsConfig, defaultTradingGoals, GoalKey, TradingGoal } from "@/types/tradingGoals";
 
 const Settings = () => {
   const { t } = useTranslation();
@@ -40,6 +42,7 @@ const Settings = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [notificationSound, setNotificationSound] = useState(false);
   const [drawdownWarningThreshold, setDrawdownWarningThreshold] = useState(50);
+  const [tradingGoals, setTradingGoals] = useState<TradingGoalsConfig>(defaultTradingGoals);
 
   const timezones = [
     "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -79,7 +82,7 @@ const Settings = () => {
     // Explicitly select only needed columns - exclude webhook_api_key for security
     const { data, error } = await supabase
       .from("user_settings")
-      .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold")
+      .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold, trading_goals")
       .maybeSingle();
 
     if (!error && data) {
@@ -99,6 +102,10 @@ const Settings = () => {
       setNotificationsEnabled(data.notifications_enabled ?? true);
       setNotificationSound(data.notification_sound ?? false);
       setDrawdownWarningThreshold(data.drawdown_warning_threshold ?? 50);
+      
+      // Load trading goals from JSONB field
+      const storedGoals = (data.trading_goals as unknown as Partial<TradingGoalsConfig>) || {};
+      setTradingGoals({ ...defaultTradingGoals, ...storedGoals });
     }
     setLoading(false);
   };
@@ -143,6 +150,7 @@ const Settings = () => {
           notifications_enabled: notificationsEnabled,
           notification_sound: notificationSound,
           drawdown_warning_threshold: drawdownWarningThreshold,
+          trading_goals: tradingGoals as any,
         })
         .eq("id", settingsId);
 
@@ -234,6 +242,13 @@ const Settings = () => {
 
   const removeTag = (tag: string) => {
     setTags(tags.filter((t) => t !== tag));
+  };
+
+  const handleGoalChange = (key: GoalKey, updates: Partial<TradingGoal>) => {
+    setTradingGoals(prev => ({
+      ...prev,
+      [key]: { ...prev[key], ...updates }
+    }));
   };
 
   if (loading) {
@@ -488,6 +503,12 @@ const Settings = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Trading Goals Settings */}
+          <TradingGoalsSettings
+            goals={tradingGoals}
+            onGoalChange={handleGoalChange}
+          />
 
           {/* Trading Setups with Checklists */}
           <Card>

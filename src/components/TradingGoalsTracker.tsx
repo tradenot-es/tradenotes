@@ -42,6 +42,14 @@ const goalLabels: Record<GoalKey, string> = {
   min_avg_r: "Avg R",
   max_losing_streak: "L-Streak",
   min_profit_factor: "PF",
+  // New goals
+  min_wins: "Wins",
+  max_losses: "Losses",
+  min_avg_win: "Ø Win",
+  max_avg_loss: "Ø Loss",
+  max_risk_per_trade: "Risk",
+  min_best_trade: "Best",
+  max_worst_trade: "Worst",
 };
 
 export function TradingGoalsTracker({
@@ -85,6 +93,11 @@ export function TradingGoalsTracker({
       case "daily_pnl":
       case "max_drawdown":
       case "max_commissions":
+      case "min_avg_win":
+      case "max_avg_loss":
+      case "max_risk_per_trade":
+      case "min_best_trade":
+      case "max_worst_trade":
         return formatCurrency(value);
       case "min_win_rate":
         return `${value.toFixed(1)}%`;
