@@ -1,82 +1,175 @@
 
-# Trading Goals Widget: Layout-Optimierung
 
-## Ziel
-Das Widget größer und prominenter gestalten, ohne das Dashboard zu überladen.
+# Erweiterung Trading Goals System
 
----
+## Übersicht
 
-## Änderungen in `TradingGoalsWidget.tsx`
-
-### 1. Haupt-Radial-Chart vergrößern
-
-| Element | Aktuell | Neu |
-|---------|---------|-----|
-| RadialProgress size | 72px | 100px |
-| strokeWidth | 6 | 8 |
-| Prozent-Text | text-2xl | text-3xl |
-
-### 2. Tages-Indikatoren vergrößern
-
-| Element | Aktuell | Neu |
-|---------|---------|-----|
-| Kreis-Größe | w-10 h-10 (40px) | w-14 h-14 (56px) |
-| Score-Text | text-xs | text-sm font-bold |
-| Wochentag-Label | text-[10px] | text-xs |
-| Gap zwischen Tagen | gap-3 | gap-4 |
-
-### 3. Card-Padding erhöhen
-
-| Element | Aktuell | Neu |
-|---------|---------|-----|
-| CardContent | Standard | py-6 |
-| Innerer Container gap | gap-8 | gap-12 |
-
-### 4. Goals-Count prominenter
-
-| Element | Aktuell | Neu |
-|---------|---------|-----|
-| Zahl | text-sm | text-2xl font-bold |
-| Label | text-xs | text-sm |
+Basierend auf TradesViz werden die Trading-Ziele um zusätzliche sinnvolle Metriken erweitert und eine dedizierte Settings-Karte für die Ziel-Konfiguration hinzugefügt.
 
 ---
 
-## Visuelles Ergebnis
+## Neue Ziele (inspiriert von TradesViz)
+
+### Aktuelle 8 Ziele
+| Ziel | Typ | Status |
+|------|-----|--------|
+| Daily PnL | >= | Vorhanden |
+| Max Trades | <= | Vorhanden |
+| Min Win Rate | >= | Vorhanden |
+| Max Drawdown | <= | Vorhanden |
+| Max Commissions | <= | Vorhanden |
+| Min Avg R | >= | Vorhanden |
+| Max Losing Streak | <= | Vorhanden |
+| Min Profit Factor | >= | Vorhanden |
+
+### Neue 7 Ziele (insgesamt 15)
+| Ziel | Typ | Beschreibung |
+|------|-----|--------------|
+| Min Wins | >= | Mindestanzahl gewinnender Trades |
+| Max Losses | <= | Maximale Anzahl Verlust-Trades |
+| Min Avg Win | >= | Mindest-Durchschnittsgewinn pro Winner |
+| Max Avg Loss | <= | Maximaler Durchschnittsverlust pro Loser |
+| Max Risk per Trade | <= | Maximales Initial Risk pro Trade |
+| Min Best Trade | >= | Mindest-P&L des besten Trades |
+| Max Worst Trade | <= | Maximaler Verlust eines einzelnen Trades |
+
+---
+
+## Technische Umsetzung
+
+### 1. Types erweitern (`src/types/tradingGoals.ts`)
+
+```typescript
+// Neue Keys zum TradingGoalsConfig hinzufügen:
+min_wins: TradingGoal;
+max_losses: TradingGoal;
+min_avg_win: TradingGoal;
+max_avg_loss: TradingGoal;
+max_risk_per_trade: TradingGoal;
+min_best_trade: TradingGoal;
+max_worst_trade: TradingGoal;
+```
+
+### 2. Hook erweitern (`src/hooks/useTradingGoals.tsx`)
+
+Neue Berechnungen für jeden Trade-Tag:
+- **min_wins**: `dayTrades.filter(t => t.pnl_net > 0).length`
+- **max_losses**: `dayTrades.filter(t => t.pnl_net < 0).length`
+- **min_avg_win**: `totalWins / wins.length`
+- **max_avg_loss**: `|totalLosses| / losses.length`
+- **max_risk_per_trade**: `Math.max(...dayTrades.map(t => t.initial_risk || 0))`
+- **min_best_trade**: `Math.max(...dayTrades.map(t => t.pnl_net))`
+- **max_worst_trade**: `|Math.min(...dayTrades.map(t => t.pnl_net))|`
+
+### 3. Settings UI (`src/pages/Settings.tsx`)
+
+Neue dedizierte Karte "Trading Goals" mit:
 
 ```text
-+------------------------------------------------------------------------+
-| 🎯 Trading Goals Tracker                                          →   |
-+------------------------------------------------------------------------+
-|                                                                        |
-|   ┌──────────┐      ┌──────────────────────────────────────┐   ┌────┐ |
-|   │          │      │                                      │   │    │ |
-|   │   75%    │  ─   │  [72] [85] [--] [--] [92] [45] [88]  │   │ 2  │ |
-|   │  ○○○○○   │      │  Mon  Tue  Wed  Thu  Fri  Sat  Sun   │   │Ziele│ |
-|   │          │      │                                      │   │    │ |
-|   └──────────┘      └──────────────────────────────────────┘   └────┘ |
-|    Wochen-Ø                    Letzte 7 Tage                          |
-|    5/7 erreicht                                                        |
-|                                                                        |
-+------------------------------------------------------------------------+
++--------------------------------------------------------------+
+| 🎯 Trading Goals                                              |
+| Definiere deine täglichen Ziele für den Goals Tracker         |
++--------------------------------------------------------------+
+|                                                               |
+| [Accordion: Gewinn-Ziele]                                     |
+|   ☑ Täglicher Gewinn       >= $[___500___]                   |
+|   ☐ Min Best Trade         >= $[___100___]                   |
+|   ☐ Min Avg Win            >= $[____50___]                   |
+|   ☐ Min Wins               >= [_____3___]                    |
+|                                                               |
+| [Accordion: Risiko-Limits]                                    |
+|   ☑ Max Trades             <= [____10___]                    |
+|   ☐ Max Losses             <= [_____3___]                    |
+|   ☐ Max Drawdown           <= $[___200___]                   |
+|   ☐ Max Worst Trade        <= $[___100___]                   |
+|   ☐ Max Avg Loss           <= $[____30___]                   |
+|   ☐ Max Risk per Trade     <= $[____50___]                   |
+|   ☐ Max Commissions        <= $[____50___]                   |
+|   ☐ Max Verlustserie       <= [_____3___]                    |
+|                                                               |
+| [Accordion: Performance-Ziele]                                |
+|   ☐ Min Win Rate           >= [____50___] %                  |
+|   ☐ Min Avg R              >= [___1.0___]                    |
+|   ☐ Min Profit Factor      >= [___1.5___]                    |
+|                                                               |
++--------------------------------------------------------------+
+```
+
+Komponenten:
+- Checkbox zum Aktivieren/Deaktivieren jedes Ziels
+- Input-Feld für den Zielwert
+- Gruppierung in 3 Accordions: Gewinn-Ziele, Risiko-Limits, Performance-Ziele
+- Automatisches Speichern bei Änderung
+
+### 4. Übersetzungen erweitern
+
+Neue Keys für alle 6 Sprachen (DE, EN, FR, ES, NL, IT):
+
+```json
+"tradingGoals": {
+  // Existing...
+  "minWins": "Min Gewinntrades",
+  "maxLosses": "Max Verlusttrades", 
+  "minAvgWin": "Min Ø Gewinn",
+  "maxAvgLoss": "Max Ø Verlust",
+  "maxRiskPerTrade": "Max Risiko/Trade",
+  "minBestTrade": "Min bester Trade",
+  "maxWorstTrade": "Max schlechtester Trade",
+  "profitGoals": "Gewinn-Ziele",
+  "riskLimits": "Risiko-Limits",
+  "performanceGoals": "Performance-Ziele",
+  "goalEnabled": "Aktiviert",
+  "goalTarget": "Zielwert"
+}
+```
+
+### 5. Tracker-Tabelle erweitern (`TradingGoalsTracker.tsx`)
+
+Neue Goal-Labels hinzufügen:
+```typescript
+const goalLabels: Record<GoalKey, string> = {
+  // Existing...
+  min_wins: "Wins",
+  max_losses: "Losses",
+  min_avg_win: "Ø Win",
+  max_avg_loss: "Ø Loss",
+  max_risk_per_trade: "Risk",
+  min_best_trade: "Best",
+  max_worst_trade: "Worst",
+};
 ```
 
 ---
 
-## Wochenende-Logik
+## Betroffene Dateien
 
-**Keine Änderung erforderlich:**
-- Aktuelle Implementierung zeigt alle 7 Kalendertage
-- Tage ohne Trades werden als "-" (grau) angezeigt
-- Dies funktioniert für alle Trader-Typen (Aktien, Forex, Crypto)
+| Datei | Änderung |
+|-------|----------|
+| `src/types/tradingGoals.ts` | +7 neue Goal-Keys und Defaults |
+| `src/hooks/useTradingGoals.tsx` | +7 neue Berechnungen |
+| `src/pages/Settings.tsx` | +Neue Trading Goals Karte mit Accordions |
+| `src/components/TradingGoalsTracker.tsx` | +7 neue Labels |
+| `src/i18n/locales/de.json` | +15 neue Übersetzungskeys |
+| `src/i18n/locales/en.json` | +15 neue Übersetzungskeys |
+| `src/i18n/locales/fr.json` | +15 neue Übersetzungskeys |
+| `src/i18n/locales/es.json` | +15 neue Übersetzungskeys |
+| `src/i18n/locales/nl.json` | +15 neue Übersetzungskeys |
+| `src/i18n/locales/it.json` | +15 neue Übersetzungskeys |
+
+---
+
+## Datenbank-Änderungen
+
+Keine Schema-Änderungen nötig - das `trading_goals` JSONB-Feld in `user_settings` ist bereits flexibel genug für neue Keys.
 
 ---
 
 ## Zusammenfassung
 
-| Aspekt | Änderung |
-|--------|----------|
-| Dateien | 1 (TradingGoalsWidget.tsx) |
-| Radial-Chart | +38% größer (72px → 100px) |
-| Tages-Kreise | +40% größer (40px → 56px) |
-| Lesbarkeit | Deutlich verbessert |
-| Wochenende | Bleibt wie ist (sinnvoll für alle Trader-Typen) |
+| Aspekt | Wert |
+|--------|------|
+| Neue Ziele | 7 (von 8 auf 15 total) |
+| Neue Settings-UI | Trading Goals Karte mit 3 Accordions |
+| Dateien betroffen | 10 |
+| Datenbankänderungen | Keine |
+
