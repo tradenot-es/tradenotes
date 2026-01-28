@@ -1,298 +1,253 @@
 
+# Trading Goals Tracker: Erweitertes Zielerfüllungs-Dashboard
 
-# Animierte Hero-Section für die Features-Seite
+## Übersicht
 
-## Ziel
-
-Erstellung einer modernen, animierten Full-Width Hero-Section mit Parallax-Effekten, die oben auf der Features-Seite eingefügt wird. Die Section ersetzt die aktuelle einfache Hero-Section und bietet ein immersives Erlebnis mit Kategorie-Filter, Teaser-Cards und einem visuellen Hero-Collage.
+Erstellung eines umfassenden "Trading Goals Tracker" nach dem Vorbild von TradesViz, der multiple benutzerdefinierte Ziele pro Tag in einer Matrix-Ansicht mit Radial-Progress-Charts visualisiert.
 
 ---
 
-## Design-Spezifikation
+## Aktuelle Situation vs. Verbesserung
 
-### Layout-Struktur
+| Aktuell | Neu |
+|---------|-----|
+| 2 feste Ziele (PnL, Max Trades) | 6+ konfigurierbare Ziele |
+| Einzelner Tag-Fokus | Matrix-Ansicht für mehrere Tage |
+| Nur binär (erreicht/nicht) | Prozentuale Erfüllung pro Ziel |
+| Keine Composite-Score | Gesamt-Zielerfüllung pro Tag |
+| Nur in Reports-Tab | Eigene Seite oder Dashboard-Widget |
+
+---
+
+## Neue Features
+
+### 1. Konfigurierbare Ziel-Typen
+
+Benutzer können in Settings folgende Ziele aktivieren/deaktivieren:
+
+| Ziel | Beschreibung | Operator | Beispiel |
+|------|--------------|----------|----------|
+| Daily PnL Target | Tägliches Gewinnziel | ≥ | $500 |
+| Max Trades | Maximale Trades pro Tag | ≤ | 10 |
+| Min Win Rate | Mindest-Gewinnrate | ≥ | 50% |
+| Max Drawdown | Maximaler Tages-Drawdown | ≤ | $200 |
+| Max Commissions | Maximale Gebühren | ≤ | $50 |
+| Avg R-Multiple | Durchschnittlicher R-Wert | ≥ | 1.0 |
+| Max Losing Streak | Maximale Verlustserie | ≤ | 3 |
+| Min Profit Factor | Mindest-Profit-Faktor | ≥ | 1.5 |
+
+### 2. Goals Matrix Komponente
+
+Neue `TradingGoalsTracker.tsx` Komponente mit:
 
 ```text
 +------------------------------------------------------------------+
-|  Navigation (bereits vorhanden)                                   |
+| Trading Goals Tracker                    [Daily|Weekly|Monthly]   |
+|                        [Date Range: Jan 1 - Jan 31]               |
 +------------------------------------------------------------------+
-|                                                                   |
-|  [Badge: "20+ Features" mit grünem Glow]                          |
-|                                                                   |
-|  H1: "Alle Features im Überblick" (4xl bold, gradient optional)   |
-|                                                                   |
-|  P: "Entdecke die komplette Funktionspalette..." (xl muted)       |
-|                                                                   |
-|  [Search Input] [Kategorie-Buttons: Tools | Analytics | AI | ...]  |
-|                                                                   |
-|  +--------------------+  +--------------------+                    |
-|  | Trading Tools Card |  | Analytics Card     |   (Hero Visual)   |
-|  | Icon + Title       |  | Icon + Title       |   Collage aus     |
-|  +--------------------+  +--------------------+   Feature-Images   |
-|  +--------------------+  +--------------------+   50% width        |
-|  | AI & Automation    |  | Market Intelligence|   responsive      |
-|  | Icon + Title       |  | Icon + Title       |                   |
-|  +--------------------+  +--------------------+                    |
-|                                                                   |
-|  [CTA Button: "14 Tage kostenlos testen" -> /auth]                |
-|                                                                   |
+|         | PnL ≥500 | Trades ≤10 | WinRate ≥50% | R ≥1.0 | Total  |
+|---------|----------|------------|--------------|--------|--------|
+| Jan 15  |   (100%) |    (100%)  |     (78%)    |  (50%) |  82%   |
+| Jan 14  |    (0%)  |    (100%)  |    (100%)    | (100%) |  75%   |
+| Jan 13  |   (60%)  |     (80%)  |     (45%)    |  (80%) |  66%   |
+| ...     |          |            |              |        |        |
 +------------------------------------------------------------------+
 ```
 
-### Styling-Details
+Jede Zelle enthält:
+- `RadialProgress` Mini-Chart (40x40px)
+- Prozent-Wert
+- Farbcodierung: Grün ≥100%, Gelb ≥50%, Rot <50%
 
-| Element | Spezifikation |
-|---------|---------------|
-| Container | `min-h-[60vh]`, `bg-gradient-to-br from-black to-slate-900` |
-| Badge | Pill-Style, `glow-effect`, primäres Grün |
-| Headline | `text-4xl md:text-5xl font-bold`, optional `gradient-text` |
-| Subheadline | `text-xl text-muted-foreground`, max-width begrenzt |
-| Search Input | Standard Input-Komponente, `bg-muted/50`, Suchen-Icon |
-| Kategorie-Buttons | Toggle-Group oder Button-Reihe, aktive Kategorie hervorgehoben |
-| Teaser-Cards | `glossy-card`, `hover:glow-effect`, Icon + Title, 2x2 Grid |
-| CTA Button | `variant="premium"`, `size="lg"`, Arrow-Icon |
-| Hero Visual | Collage aus 4-6 Feature-Bildern, responsive 50% Breite auf Desktop |
+### 3. Composite Goal Score
 
-### Animationen
+Aggregierte Zielerfüllung pro Tag:
+- Gewichteter Durchschnitt aller Ziele
+- Visual: Große Radial-Progress + Prozent
+- Farbcodierte Zusammenfassung
 
-| Animation | Beschreibung |
-|-----------|--------------|
-| Parallax-Hintergrund | Dezenter vertikaler Parallax-Effekt beim Scrollen (CSS `transform: translateY`) |
-| Fade-In bei Laden | Elemente erscheinen sequenziell mit `animate-fade-in` |
-| Hover-Glow | Cards leuchten beim Hover auf (`hover:shadow-glow`) |
-| Search-Focus | Suchfeld erweitert sich leicht bei Fokus |
-| CTA Servo-Pulse | Optionale Wiederverwendung der `servo-pulse` Animation |
+### 4. Dashboard-Widget (Kompakt)
+
+Kleine Version für Dashboard:
+- Letzte 7 Tage als Mini-Radials
+- Wöchentlicher Durchschnitt
+- CTA zu voller Ansicht in Reports
 
 ---
 
-## Implementierungsplan
+## Technische Implementierung
 
-### Phase 1: Neue Komponente erstellen
+### Phase 1: Datenbank-Erweiterung
 
-**Datei: `src/components/features/FeaturesHero.tsx`**
+**Migration: `user_settings` erweitern**
 
-Neue Komponente mit folgender Struktur:
-
-```tsx
-interface FeaturesHeroProps {
-  onCategoryClick: (categoryId: string) => void;
-  onSearchChange: (query: string) => void;
-}
-
-export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroProps) {
-  // State für Suche und Parallax
-  // Kategorie-Daten (Icons, Titles, IDs)
-  // Render Hero mit allen Elementen
-}
+```sql
+ALTER TABLE user_settings ADD COLUMN IF NOT EXISTS 
+  trading_goals JSONB DEFAULT '{
+    "daily_pnl": {"enabled": true, "target": 500, "operator": ">="},
+    "max_trades": {"enabled": true, "target": 10, "operator": "<="},
+    "min_win_rate": {"enabled": false, "target": 50, "operator": ">="},
+    "max_drawdown": {"enabled": false, "target": 200, "operator": "<="},
+    "max_commissions": {"enabled": false, "target": 50, "operator": "<="},
+    "min_avg_r": {"enabled": false, "target": 1.0, "operator": ">="},
+    "max_losing_streak": {"enabled": false, "target": 3, "operator": "<="},
+    "min_profit_factor": {"enabled": false, "target": 1.5, "operator": ">="}
+  }'::jsonb;
 ```
 
-Inhalte der Komponente:
-1. Container mit Gradient-Hintergrund und Parallax-Hook
-2. Badge "20+ Features" mit Glow
-3. H1 und P aus i18n
-4. Search-Input mit Icon
-5. Kategorie-Button-Reihe (5 Kategorien)
-6. 4 Teaser-Cards im 2x2 Grid (nur 4 wichtigste Kategorien)
-7. Hero-Visual Collage (responsive)
-8. Primärer CTA-Button
+### Phase 2: Neue Komponenten
 
-### Phase 2: Parallax-Hook erstellen
+**Dateien:**
 
-**Datei: `src/hooks/useParallax.tsx`**
+1. `src/components/TradingGoalsTracker.tsx`
+   - Matrix-Tabelle mit Radial-Progress pro Zelle
+   - Zeit-Filter (Daily/Weekly/Monthly)
+   - Datums-Range-Picker
+   - Account-Type-Filter
 
-Einfacher Hook für dezenten Parallax-Effekt:
+2. `src/components/GoalRadialCell.tsx`
+   - Mini-Radial-Progress (40x40)
+   - Tooltip mit Details
+   - Klickbar → navigiert zu Trades
+
+3. `src/components/TradingGoalsWidget.tsx`
+   - Kompakte Dashboard-Version
+   - 7-Tage-Übersicht
+   - Link zu voller Ansicht
+
+4. `src/hooks/useTradingGoals.tsx`
+   - Lädt Goals-Konfiguration
+   - Berechnet Erfüllung pro Tag
+   - Caching für Performance
+
+### Phase 3: Settings-Erweiterung
+
+**In `src/pages/Settings.tsx`:**
+
+Neue Card "Trading Goals Configuration":
+- Toggle pro Ziel-Typ
+- Eingabefeld für Target-Wert
+- Gewichtung (für Composite Score)
 
 ```tsx
-export function useParallax(speed: number = 0.5) {
-  const [offset, setOffset] = useState(0);
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      setOffset(window.scrollY * speed);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [speed]);
-  
-  return offset;
-}
+<Card>
+  <CardHeader>
+    <CardTitle>Trading Goals</CardTitle>
+    <CardDescription>Configure your daily trading goals</CardDescription>
+  </CardHeader>
+  <CardContent>
+    {/* Goal rows with toggle, input, weight */}
+    <GoalConfigRow 
+      label="Daily PnL Target"
+      enabled={goals.daily_pnl.enabled}
+      target={goals.daily_pnl.target}
+      onToggle={...}
+      onTargetChange={...}
+    />
+    {/* ... weitere Ziele */}
+  </CardContent>
+</Card>
 ```
 
-### Phase 3: Hero-Visual Collage
+### Phase 4: Reports-Integration
 
-**Option A: CSS Grid Collage**
-- Verwendet 4-6 bestehende Feature-Bilder
-- Asymmetrisches Grid-Layout
-- Dezente Rotation und Schatten
+**In `src/pages/Reports.tsx`:**
 
-**Option B: Animierte Floating Cards**
-- Feature-Bilder als schwebende Karten
-- Subtile Auf-Ab-Animation
-- Gestaffelte Delays
+Erweiterung des "goals" Tabs:
+- Bestehende `DailyGoalProgress` Komponente erhalten
+- Neue `TradingGoalsTracker` Matrix darunter
+- Export-Button für CSV
 
-Gewählte Option: **Option A** (CSS Grid Collage) - performanter und einfacher zu implementieren.
+### Phase 5: Dashboard-Widget
 
-### Phase 4: Features.tsx anpassen
+**In `src/pages/Index.tsx`:**
 
-**Datei: `src/pages/Features.tsx`**
-
-1. Import der neuen `FeaturesHero` Komponente
-2. State für Suchfilter hinzufügen (optional für spätere Implementierung)
-3. Alte Hero-Section durch `<FeaturesHero />` ersetzen
-4. Handler-Funktionen für Kategorie-Klick und Suche übergeben
-
-Änderungen im Detail:
+Neues Widget nach `AchievementsWidget`:
 
 ```tsx
-// Neuer Import
-import { FeaturesHero } from "@/components/features/FeaturesHero";
-
-// In der Komponente
-const [searchQuery, setSearchQuery] = useState("");
-
-// Render
-<FeaturesHero 
-  onCategoryClick={(id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }}
-  onSearchChange={setSearchQuery}
+<TradingGoalsWidget 
+  trades={trades}
+  goals={userGoals}
+  onClick={() => navigate('/dashboard/reports?tab=goals')}
 />
 ```
 
-### Phase 5: i18n-Erweiterungen
+---
 
-**Dateien: `src/i18n/locales/{de,en,fr,es,nl,it}.json`**
+## UI/UX Design
 
-Neue Übersetzungsschlüssel hinzufügen:
+### Farbschema für Ziel-Erfüllung
 
-```json
-"features": {
-  "heroTitle": "Alle Features im Überblick",
-  "heroDescription": "Entdecke die komplette Funktionspalette...",
-  "featureCount": "20+ Features",
-  "searchPlaceholder": "Features durchsuchen...",
-  "ctaPrimary": "14 Tage kostenlos testen",
-  "teaserCards": {
-    "tradingTools": "Schnelle Trade-Erfassung & Import",
-    "analytics": "Performance tracken & analysieren",
-    "ai": "KI-gestützte Insights",
-    "marketIntel": "Marktdaten & News"
-  }
-}
-```
+| Erfüllung | Farbe | CSS Variable |
+|-----------|-------|--------------|
+| ≥100% | Grün | `bg-success` |
+| ≥75% | Hellgrün | `bg-success/70` |
+| ≥50% | Gelb | `bg-warning` |
+| ≥25% | Orange | `bg-warning/70` |
+| <25% | Rot | `bg-destructive` |
 
-### Phase 6: CSS-Erweiterungen
+### Radial-Größen
 
-**Datei: `src/index.css`**
+| Kontext | Größe | strokeWidth |
+|---------|-------|-------------|
+| Matrix-Zelle | 40px | 4px |
+| Dashboard-Widget | 48px | 5px |
+| Daily Goal Detail | 120px | 10px |
 
-Neue Utility-Klassen für Parallax und Collage:
+### Responsive Verhalten
 
-```css
-.parallax-container {
-  overflow: hidden;
-  position: relative;
-}
-
-.parallax-bg {
-  will-change: transform;
-  transition: transform 0.1s linear;
-}
-
-.feature-collage {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.feature-collage-item {
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-card);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-collage-item:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: var(--shadow-glow);
-}
-```
-
-### Phase 7: Tailwind-Konfiguration
-
-**Datei: `tailwind.config.ts`**
-
-Neue Keyframes für zusätzliche Animationen (falls nötig):
-
-```ts
-keyframes: {
-  "float": {
-    "0%, 100%": { transform: "translateY(0)" },
-    "50%": { transform: "translateY(-10px)" },
-  },
-  "fade-in-up": {
-    "0%": { opacity: "0", transform: "translateY(20px)" },
-    "100%": { opacity: "1", transform: "translateY(0)" },
-  },
-},
-animation: {
-  "float": "float 3s ease-in-out infinite",
-  "fade-in-up": "fade-in-up 0.5s ease-out forwards",
-},
-```
+| Viewport | Layout |
+|----------|--------|
+| Desktop | Volle Matrix-Tabelle |
+| Tablet | Horizontales Scrollen |
+| Mobile | Card-View pro Tag (statt Tabelle) |
 
 ---
 
-## Dateistruktur nach Implementierung
+## Dateistruktur
 
 ```text
 src/
 ├── components/
-│   └── features/
-│       ├── CategoryNav.tsx (unverändert)
-│       ├── FeatureRow.tsx (unverändert)
-│       └── FeaturesHero.tsx (NEU)
+│   ├── TradingGoalsTracker.tsx (NEU)
+│   ├── GoalRadialCell.tsx (NEU)
+│   ├── TradingGoalsWidget.tsx (NEU)
+│   └── DailyGoalProgress.tsx (erweitert)
 ├── hooks/
-│   ├── useScrollSpy.tsx (unverändert)
-│   └── useParallax.tsx (NEU)
+│   └── useTradingGoals.tsx (NEU)
 ├── pages/
-│   └── Features.tsx (angepasst)
-├── i18n/locales/
-│   ├── de.json (erweitert)
-│   ├── en.json (erweitert)
-│   └── ... (weitere Sprachen)
-├── index.css (erweitert)
-└── tailwind.config.ts (optional erweitert)
+│   ├── Settings.tsx (erweitert)
+│   ├── Reports.tsx (erweitert)
+│   └── Index.tsx (erweitert)
+└── i18n/locales/
+    └── {de,en,...}.json (erweitert)
 ```
 
 ---
 
-## Technische Details
+## i18n-Erweiterungen
 
-### Responsive Verhalten
-
-| Breakpoint | Layout |
-|------------|--------|
-| Mobile (<768px) | Vertikal gestapelt, Hero-Visual versteckt oder kleiner, volle Breite für alle Elemente |
-| Tablet (768-1024px) | 2-Spalten für Teaser-Cards, Hero-Visual 40% Breite |
-| Desktop (>1024px) | Volles Layout wie Spezifikation, Hero-Visual 50% Breite |
-
-### Performance-Optimierungen
-
-1. **Parallax mit `will-change`**: Verhindert Layout-Thrashing
-2. **Lazy Loading für Bilder**: Feature-Bilder erst laden wenn sichtbar
-3. **Reduced Motion Support**: Parallax und Animationen deaktivieren bei `prefers-reduced-motion`
-4. **CSS-basierter Parallax bevorzugt**: Kein JavaScript-Recalculation bei jedem Scroll
-
-### Barrierefreiheit
-
-1. Search-Input mit korrektem `aria-label`
-2. Kategorie-Buttons als echte Buttons mit Fokus-States
-3. CTA-Link mit klarer Beschreibung
-4. Alle Animationen respektieren `prefers-reduced-motion`
+```json
+{
+  "tradingGoals": {
+    "title": "Trading Goals Tracker",
+    "dailyPnl": "Daily PnL",
+    "maxTrades": "Max Trades",
+    "minWinRate": "Min Win Rate",
+    "maxDrawdown": "Max Drawdown",
+    "maxCommissions": "Max Commissions",
+    "minAvgR": "Min Avg R",
+    "maxLosingStreak": "Max Losing Streak",
+    "minProfitFactor": "Min Profit Factor",
+    "totalGoal": "Total Goal",
+    "achieved": "Goal Achieved",
+    "notAchieved": "Goal Not Met",
+    "configureGoals": "Configure Goals",
+    "noGoalsConfigured": "No goals configured",
+    "viewDetails": "View Details"
+  }
+}
+```
 
 ---
 
@@ -300,10 +255,11 @@ src/
 
 | Aspekt | Details |
 |--------|---------|
-| Neue Dateien | 2 (FeaturesHero.tsx, useParallax.tsx) |
-| Geänderte Dateien | 3 (Features.tsx, index.css, de.json + weitere Sprachen) |
-| Animationen | Parallax, Fade-In, Hover-Glow |
-| Responsive | Vollständig responsiv (Mobile-First) |
-| i18n | Vollständig übersetzt in 6 Sprachen |
-| Performance | Optimiert mit will-change, lazy loading |
+| Neue Komponenten | 3 (TradingGoalsTracker, GoalRadialCell, TradingGoalsWidget) |
+| Neue Hooks | 1 (useTradingGoals) |
+| DB-Migration | 1 (trading_goals JSONB) |
+| Geänderte Dateien | 4 (Settings, Reports, Index, Locales) |
+| Ziel-Typen | 8 konfigurierbare Ziele |
+| Visualisierung | Matrix mit Mini-Radials + Composite Score |
 
+Diese Erweiterung macht TradeNotes zu einem professionellen Trading-Journal mit umfassender Zielerfüllungs-Analyse auf dem Niveau von TradesViz.
