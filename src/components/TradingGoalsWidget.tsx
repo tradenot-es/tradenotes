@@ -7,8 +7,19 @@ import { Target, ArrowRight, Settings } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { DayGoalResult, GoalKey } from "@/types/tradingGoals";
 import { format, parseISO, subDays } from "date-fns";
-import { de } from "date-fns/locale";
+import { de, enUS, fr, es, nl, it } from "date-fns/locale";
 import { cn } from "@/lib/utils";
+
+const getLocale = (lang: string) => {
+  switch (lang) {
+    case 'de': return de;
+    case 'fr': return fr;
+    case 'es': return es;
+    case 'nl': return nl;
+    case 'it': return it;
+    default: return enUS;
+  }
+};
 
 interface TradingGoalsWidgetProps {
   dailyResults: DayGoalResult[];
@@ -16,8 +27,9 @@ interface TradingGoalsWidgetProps {
 }
 
 export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingGoalsWidgetProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const currentLocale = getLocale(i18n.language);
 
   // Get last 7 days of results
   const now = new Date();
@@ -121,7 +133,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                       {hasTrades ? Math.round(score) : "-"}
                     </div>
                     <span className="text-sm font-medium text-muted-foreground">
-                      {format(date, "EEE", { locale: de })}
+                      {format(date, "EEE", { locale: currentLocale })}
                     </span>
                   </div>
                 );
