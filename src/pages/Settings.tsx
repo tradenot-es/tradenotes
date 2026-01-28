@@ -37,8 +37,6 @@ const Settings = () => {
   const [newTag, setNewTag] = useState("");
   const [settingsId, setSettingsId] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [dailyGoalAmount, setDailyGoalAmount] = useState("500.00");
-  const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState("10");
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [notificationSound, setNotificationSound] = useState(false);
   const [drawdownWarningThreshold, setDrawdownWarningThreshold] = useState(50);
@@ -97,8 +95,6 @@ const Settings = () => {
       setSetupDefinitions(setupDefs);
       
       setTags(data.tags || []);
-      setDailyGoalAmount(data.daily_goal_amount?.toString() || "500.00");
-      setDailyGoalMaxTrades(data.daily_goal_max_trades?.toString() || "10");
       setNotificationsEnabled(data.notifications_enabled ?? true);
       setNotificationSound(data.notification_sound ?? false);
       setDrawdownWarningThreshold(data.drawdown_warning_threshold ?? 50);
@@ -145,8 +141,6 @@ const Settings = () => {
           default_slippage: parseFloat(defaultSlippage),
           setup_definitions: setupDefinitions as any,
           tags: tags,
-          daily_goal_amount: parseFloat(dailyGoalAmount),
-          daily_goal_max_trades: parseInt(dailyGoalMaxTrades),
           notifications_enabled: notificationsEnabled,
           notification_sound: notificationSound,
           drawdown_warning_threshold: drawdownWarningThreshold,
@@ -453,53 +447,6 @@ const Settings = () => {
                   className="w-full"
                 />
                 <p className="text-xs text-muted-foreground">{t("settings.drawdownThresholdDesc")}</p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Daily Trade Goal */}
-          <Card>
-            <CardHeader>
-              <div className="flex items-center gap-2">
-                <CardTitle>{ t("settings.dailyGoal")}</CardTitle>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <button type="button" className="inline-flex">
-                      <HelpCircle className="h-4 w-4 text-muted-foreground" />
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p className="max-w-xs text-sm">
-                      {t("settings.dailyGoalTooltip")}
-                    </p>
-                  </TooltipContent>
-                </Tooltip>
-              </div>
-              <CardDescription>
-                {t("settings.dailyGoalDesc")}
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-2">
-                <Label htmlFor="dailyGoalAmount">{t("settings.dailyGoalAmount")}</Label>
-                <Input
-                  id="dailyGoalAmount"
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  value={dailyGoalAmount}
-                  onChange={(e) => setDailyGoalAmount(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="dailyGoalMaxTrades">{t("settings.dailyGoalMaxTrades")}</Label>
-                <Input
-                  id="dailyGoalMaxTrades"
-                  type="number"
-                  min="1"
-                  value={dailyGoalMaxTrades}
-                  onChange={(e) => setDailyGoalMaxTrades(e.target.value)}
-                />
               </div>
             </CardContent>
           </Card>
