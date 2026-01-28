@@ -2349,5 +2349,30 @@
     "worstCase": "Worst Case (5%)",
     "original": "Original",
     "simulated": "Simulated"
+  },
+  "tradingGoals": {
+    "title": "Trading Goals Tracker",
+    "description": "Track your daily goals and progress",
+    "dailyPnl": "Daily PnL",
+    "maxTrades": "Max Trades",
+    "minWinRate": "Min Win Rate",
+    "maxDrawdown": "Max Drawdown",
+    "maxCommissions": "Max Commissions",
+    "minAvgR": "Min Avg R",
+    "maxLosingStreak": "Max Losing Streak",
+    "minProfitFactor": "Min Profit Factor",
+    "totalGoal": "Total",
+    "achieved": "Goal Achieved",
+    "notAchieved": "Goal Not Met",
+    "configureGoals": "Configure Goals",
+    "noGoalsConfigured": "No goals configured yet",
+    "viewDetails": "View Details",
+    "avgScore": "Avg Score",
+    "daysAchieved": "Days Achieved",
+    "tradingDays": "Trading Days",
+    "activeGoals": "Active Goals",
+    "showingDays": "Showing {{shown}} of {{total}} days",
+    "weeklyAvg": "7-Day Avg",
+    "goals": "Goals"
   }
 }

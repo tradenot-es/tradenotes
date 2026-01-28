@@ -1985,5 +1985,30 @@
       "title": "TradeNot.es - Private Beta | Trading Journal",
       "description": "TradeNot.es - Je professionele trading journal. Momenteel in Private Beta. Verzeker je vroege toegang!"
     }
+  },
+  "tradingGoals": {
+    "title": "Doelen Tracker",
+    "description": "Volg je dagelijkse doelen en voortgang",
+    "dailyPnl": "Dagelijkse PnL",
+    "maxTrades": "Max Trades",
+    "minWinRate": "Min Win Rate",
+    "maxDrawdown": "Max Drawdown",
+    "maxCommissions": "Max Commissies",
+    "minAvgR": "Min Gem R",
+    "maxLosingStreak": "Max Verliesserie",
+    "minProfitFactor": "Min Profit Factor",
+    "totalGoal": "Totaal",
+    "achieved": "Doel behaald",
+    "notAchieved": "Doel niet behaald",
+    "configureGoals": "Doelen configureren",
+    "noGoalsConfigured": "Geen doelen geconfigureerd",
+    "viewDetails": "Details bekijken",
+    "avgScore": "Gem Score",
+    "daysAchieved": "Dagen behaald",
+    "tradingDays": "Handelsdagen",
+    "activeGoals": "Actieve doelen",
+    "showingDays": "Tonen {{shown}} van {{total}} dagen",
+    "weeklyAvg": "7-dagen gem",
+    "goals": "Doelen"
   }
 }

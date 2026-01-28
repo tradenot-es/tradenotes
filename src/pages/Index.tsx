@@ -14,8 +14,10 @@ import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { PageHeader } from "@/components/PageHeader";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { DailySummaryCard } from "@/components/DailySummaryCard";
+import { TradingGoalsWidget } from "@/components/TradingGoalsWidget";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { useTradingGoals } from "@/hooks/useTradingGoals";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useCurrency } from "@/hooks/useCurrency";
@@ -237,8 +239,11 @@ const Index = () => {
             expectancy={kpis.expectancyNum}
           />
 
-          {/* Achievements Widget */}
-          <AchievementsWidget />
+          {/* Achievements & Goals Widgets */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <AchievementsWidget />
+            <TradingGoalsWidgetWrapper trades={trades} />
+          </div>
 
           {/* Radial Progress KPIs - Featured Metrics */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -340,5 +345,16 @@ const Index = () => {
     </div>
   );
 };
+
+// Wrapper component to use the hook
+function TradingGoalsWidgetWrapper({ trades }: { trades: Trade[] }) {
+  const { dailyResults, enabledGoals } = useTradingGoals(trades);
+  return (
+    <TradingGoalsWidget 
+      dailyResults={dailyResults} 
+      enabledGoalsCount={enabledGoals.length} 
+    />
+  );
+}
 
 export default Index;

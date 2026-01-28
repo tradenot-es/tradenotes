@@ -1985,5 +1985,30 @@
       "title": "TradeNot.es - Beta Privada | Diario de Trading",
       "description": "TradeNot.es - Tu diario de trading profesional. Actualmente en Beta Privada. ¡Asegura tu acceso anticipado!"
     }
+  },
+  "tradingGoals": {
+    "title": "Seguimiento de Objetivos",
+    "description": "Sigue tus objetivos diarios y tu progreso",
+    "dailyPnl": "PnL Diario",
+    "maxTrades": "Max Trades",
+    "minWinRate": "Min Win Rate",
+    "maxDrawdown": "Max Drawdown",
+    "maxCommissions": "Max Comisiones",
+    "minAvgR": "Min R Promedio",
+    "maxLosingStreak": "Max Serie Perdedora",
+    "minProfitFactor": "Min Profit Factor",
+    "totalGoal": "Total",
+    "achieved": "Objetivo alcanzado",
+    "notAchieved": "Objetivo no alcanzado",
+    "configureGoals": "Configurar objetivos",
+    "noGoalsConfigured": "No hay objetivos configurados",
+    "viewDetails": "Ver detalles",
+    "avgScore": "Puntuación Prom",
+    "daysAchieved": "Días alcanzados",
+    "tradingDays": "Días de trading",
+    "activeGoals": "Objetivos activos",
+    "showingDays": "Mostrando {{shown}} de {{total}} días",
+    "weeklyAvg": "Prom 7 días",
+    "goals": "Objetivos"
   }
 }
