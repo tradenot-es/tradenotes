@@ -67,31 +67,31 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
           <ArrowRight className="h-4 w-4 text-muted-foreground" />
         </CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="py-6">
         <TooltipProvider>
-          <div className="flex items-center justify-between gap-8">
+          <div className="flex items-center justify-between gap-12">
             {/* Weekly Average Score */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-5">
               <RadialProgress
                 value={avgScore}
-                size={72}
-                strokeWidth={6}
+                size={100}
+                strokeWidth={8}
                 showPercentage={true}
                 color={avgScore >= 75 ? "success" : avgScore >= 50 ? "warning" : "destructive"}
               />
               <div className="flex flex-col">
-                <span className="text-2xl font-bold">{Math.round(avgScore)}%</span>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-3xl font-bold">{Math.round(avgScore)}%</span>
+                <span className="text-sm text-muted-foreground">
                   {t("tradingGoals.weeklyAvg")}
                 </span>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-sm text-muted-foreground">
                   {daysAchieved}/7 {t("tradingGoals.daysAchieved")}
                 </span>
               </div>
             </div>
 
             {/* Last 7 Days Indicators - Larger */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               {Array.from({ length: 7 }).map((_, idx) => {
                 const date = subDays(now, 6 - idx);
                 const dateStr = format(date, "yyyy-MM-dd");
@@ -100,10 +100,10 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                 const hasTrades = dayResult && dayResult.tradesCount > 0;
 
                 return (
-                  <div key={idx} className="flex flex-col items-center gap-1">
+                  <div key={idx} className="flex flex-col items-center gap-1.5">
                     <div
                       className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-transform hover:scale-110",
+                        "w-14 h-14 rounded-full flex items-center justify-center text-sm font-bold transition-transform hover:scale-110",
                         !hasTrades
                           ? "bg-muted text-muted-foreground"
                           : score >= 100
@@ -117,7 +117,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                     >
                       {hasTrades ? Math.round(score) : "-"}
                     </div>
-                    <span className="text-[10px] text-muted-foreground">
+                    <span className="text-xs text-muted-foreground">
                       {format(date, "EEE", { locale: de })}
                     </span>
                   </div>
@@ -127,8 +127,8 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
 
             {/* Goals Count */}
             <div className="text-right">
-              <span className="text-sm font-medium">{enabledGoalsCount}</span>
-              <span className="text-xs text-muted-foreground block">{t("tradingGoals.goals")}</span>
+              <span className="text-2xl font-bold">{enabledGoalsCount}</span>
+              <span className="text-sm text-muted-foreground block">{t("tradingGoals.goals")}</span>
             </div>
           </div>
         </TooltipProvider>
