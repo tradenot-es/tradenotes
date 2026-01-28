@@ -2232,6 +2232,13 @@
     "minAvgR": "Min Ø R",
     "maxLosingStreak": "Max Verlustserie",
     "minProfitFactor": "Min Profit Factor",
+    "minWins": "Min Gewinntrades",
+    "maxLosses": "Max Verlusttrades",
+    "minAvgWin": "Min Ø Gewinn",
+    "maxAvgLoss": "Max Ø Verlust",
+    "maxRiskPerTrade": "Max Risiko/Trade",
+    "minBestTrade": "Min bester Trade",
+    "maxWorstTrade": "Max schlechtester Trade",
     "totalGoal": "Gesamt",
     "achieved": "Ziel erreicht",
     "notAchieved": "Ziel verfehlt",
@@ -2244,6 +2251,11 @@
     "activeGoals": "Aktive Ziele",
     "showingDays": "Zeige {{shown}} von {{total}} Tagen",
     "weeklyAvg": "7-Tage Ø",
-    "goals": "Ziele"
+    "goals": "Ziele",
+    "settingsTitle": "Trading Goals",
+    "settingsDescription": "Definiere deine täglichen Ziele für den Goals Tracker",
+    "profitGoals": "Gewinn-Ziele",
+    "riskLimits": "Risiko-Limits",
+    "performanceGoals": "Performance-Ziele"
   }
 }

@@ -2000,6 +2000,13 @@
     "minAvgR": "Min R Promedio",
     "maxLosingStreak": "Max Serie Perdedora",
     "minProfitFactor": "Min Profit Factor",
+    "minWins": "Min Trades Ganadores",
+    "maxLosses": "Max Trades Perdedores",
+    "minAvgWin": "Min Ganancia Prom",
+    "maxAvgLoss": "Max Pérdida Prom",
+    "maxRiskPerTrade": "Max Riesgo/Trade",
+    "minBestTrade": "Min Mejor Trade",
+    "maxWorstTrade": "Max Peor Trade",
     "totalGoal": "Total",
     "achieved": "Objetivo alcanzado",
     "notAchieved": "Objetivo no alcanzado",
@@ -2012,6 +2019,11 @@
     "activeGoals": "Objetivos activos",
     "showingDays": "Mostrando {{shown}} de {{total}} días",
     "weeklyAvg": "Prom 7 días",
-    "goals": "Objetivos"
+    "goals": "Objetivos",
+    "settingsTitle": "Objetivos de Trading",
+    "settingsDescription": "Define tus objetivos diarios para el seguimiento",
+    "profitGoals": "Objetivos de Ganancia",
+    "riskLimits": "Límites de Riesgo",
+    "performanceGoals": "Objetivos de Rendimiento"
   }
 }
