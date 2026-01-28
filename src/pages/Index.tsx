@@ -239,11 +239,8 @@ const Index = () => {
             expectancy={kpis.expectancyNum}
           />
 
-          {/* Achievements & Goals Widgets */}
-          <div className="grid gap-6 md:grid-cols-2">
-            <AchievementsWidget />
-            <TradingGoalsWidgetWrapper trades={trades} />
-          </div>
+          {/* Achievements Widget - Full Width */}
+          <AchievementsWidget />
 
           {/* Radial Progress KPIs - Featured Metrics */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -321,6 +318,9 @@ const Index = () => {
               <WeeklyPerformanceEnhanced trades={trades} />
             </div>
           </div>
+
+          {/* Trading Goals Tracker - Full Width */}
+          <TradingGoalsWidgetWrapper trades={trades} />
 
           {/* AI Daily Summary */}
           <DailySummaryCard />
