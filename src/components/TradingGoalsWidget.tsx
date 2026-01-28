@@ -75,7 +75,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
       </CardHeader>
       <CardContent className="pt-2 pb-6">
         <TooltipProvider>
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-10">
             {/* Weekly Average Score - Radial only, no duplicate text */}
             <div className="flex flex-col items-center">
               <RadialProgress
@@ -93,8 +93,8 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
               </span>
             </div>
 
-            {/* Last 7 Days Indicators */}
-            <div className="flex items-center gap-3 flex-1 justify-center">
+            {/* Last 7 Days Indicators - Large & Prominent */}
+            <div className="flex items-center gap-5 flex-1 justify-center">
               {Array.from({ length: 7 }).map((_, idx) => {
                 const date = subDays(now, 6 - idx);
                 const dateStr = format(date, "yyyy-MM-dd");
@@ -103,10 +103,10 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                 const hasTrades = dayResult && dayResult.tradesCount > 0;
 
                 return (
-                  <div key={idx} className="flex flex-col items-center gap-1.5">
+                  <div key={idx} className="flex flex-col items-center gap-2">
                     <div
                       className={cn(
-                        "w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-transform hover:scale-110",
+                        "w-16 h-16 rounded-full flex items-center justify-center text-lg font-bold transition-transform hover:scale-110 shadow-sm",
                         !hasTrades
                           ? "bg-muted text-muted-foreground"
                           : score >= 100
@@ -120,7 +120,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
                     >
                       {hasTrades ? Math.round(score) : "-"}
                     </div>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-sm font-medium text-muted-foreground">
                       {format(date, "EEE", { locale: de })}
                     </span>
                   </div>
