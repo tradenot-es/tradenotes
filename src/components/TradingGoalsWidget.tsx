@@ -69,60 +69,66 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
       </CardHeader>
       <CardContent>
         <TooltipProvider>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center justify-between gap-8">
             {/* Weekly Average Score */}
-            <div className="flex flex-col items-center">
+            <div className="flex items-center gap-4">
               <RadialProgress
                 value={avgScore}
-                size={64}
-                strokeWidth={5}
+                size={72}
+                strokeWidth={6}
                 showPercentage={true}
                 color={avgScore >= 75 ? "success" : avgScore >= 50 ? "warning" : "destructive"}
               />
-              <span className="text-xs text-muted-foreground mt-1">
-                {t("tradingGoals.weeklyAvg")}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-2xl font-bold">{Math.round(avgScore)}%</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("tradingGoals.weeklyAvg")}
+                </span>
+                <span className="text-xs text-muted-foreground">
+                  {daysAchieved}/7 {t("tradingGoals.daysAchieved")}
+                </span>
+              </div>
             </div>
 
-            {/* Last 7 Days Mini Indicators */}
-            <div className="flex-1">
-              <div className="flex gap-1 justify-end">
-                {Array.from({ length: 7 }).map((_, idx) => {
-                  const date = subDays(now, 6 - idx);
-                  const dateStr = format(date, "yyyy-MM-dd");
-                  const dayResult = dailyResults.find((r) => r.date === dateStr);
-                  const score = dayResult?.compositeScore || 0;
-                  const hasTrades = dayResult && dayResult.tradesCount > 0;
+            {/* Last 7 Days Indicators - Larger */}
+            <div className="flex items-center gap-3">
+              {Array.from({ length: 7 }).map((_, idx) => {
+                const date = subDays(now, 6 - idx);
+                const dateStr = format(date, "yyyy-MM-dd");
+                const dayResult = dailyResults.find((r) => r.date === dateStr);
+                const score = dayResult?.compositeScore || 0;
+                const hasTrades = dayResult && dayResult.tradesCount > 0;
 
-                  return (
-                    <div key={idx} className="flex flex-col items-center">
-                      <div
-                        className={cn(
-                          "w-6 h-6 rounded-full flex items-center justify-center text-[8px] font-bold",
-                          !hasTrades
-                            ? "bg-muted text-muted-foreground"
-                            : score >= 100
-                            ? "bg-success text-success-foreground"
-                            : score >= 75
-                            ? "bg-success/70 text-success-foreground"
-                            : score >= 50
-                            ? "bg-warning text-warning-foreground"
-                            : "bg-destructive text-destructive-foreground"
-                        )}
-                      >
-                        {hasTrades ? Math.round(score) : "-"}
-                      </div>
-                      <span className="text-[9px] text-muted-foreground mt-0.5">
-                        {format(date, "EEE", { locale: de })}
-                      </span>
+                return (
+                  <div key={idx} className="flex flex-col items-center gap-1">
+                    <div
+                      className={cn(
+                        "w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-transform hover:scale-110",
+                        !hasTrades
+                          ? "bg-muted text-muted-foreground"
+                          : score >= 100
+                          ? "bg-success text-success-foreground"
+                          : score >= 75
+                          ? "bg-success/70 text-success-foreground"
+                          : score >= 50
+                          ? "bg-warning text-warning-foreground"
+                          : "bg-destructive text-destructive-foreground"
+                      )}
+                    >
+                      {hasTrades ? Math.round(score) : "-"}
                     </div>
-                  );
-                })}
-              </div>
-              <div className="flex justify-between mt-2 text-xs text-muted-foreground">
-                <span>{daysAchieved}/7 {t("tradingGoals.daysAchieved")}</span>
-                <span>{enabledGoalsCount} {t("tradingGoals.goals")}</span>
-              </div>
+                    <span className="text-[10px] text-muted-foreground">
+                      {format(date, "EEE", { locale: de })}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Goals Count */}
+            <div className="text-right">
+              <span className="text-sm font-medium">{enabledGoalsCount}</span>
+              <span className="text-xs text-muted-foreground block">{t("tradingGoals.goals")}</span>
             </div>
           </div>
         </TooltipProvider>
