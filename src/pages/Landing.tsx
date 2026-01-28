@@ -196,16 +196,18 @@ const Landing = () => {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {topFeatures.map((feature, index) => (
-              <Card key={index} className="group smooth-transition hover:scale-[1.03] hover:shadow-glow cursor-pointer">
-                <CardHeader className="relative overflow-hidden">
-                  <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 transition-colors">
-                    {feature.icon}
-                  </div>
-                  <CardTitle className="text-lg">{feature.title}</CardTitle>
-                  <CardDescription className="line-clamp-2">{feature.description}</CardDescription>
-                  <ArrowRight className="absolute bottom-4 right-4 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
-                </CardHeader>
-              </Card>
+              <Link key={index} to="/features" className="block">
+                <Card className="group smooth-transition hover:scale-[1.03] hover:shadow-glow cursor-pointer h-full">
+                  <CardHeader className="relative overflow-hidden">
+                    <div className="h-14 w-14 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:bg-primary/20 transition-colors">
+                      {feature.icon}
+                    </div>
+                    <CardTitle className="text-lg">{feature.title}</CardTitle>
+                    <CardDescription className="line-clamp-2">{feature.description}</CardDescription>
+                    <ArrowRight className="absolute bottom-4 right-4 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary" />
+                  </CardHeader>
+                </Card>
+              </Link>
             ))}
           </div>
           
