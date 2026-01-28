@@ -800,7 +800,10 @@
     "cancel": "Cancelar",
     "confirm": "Confirmar",
     "viewAll": "Ver todo",
-    "days": {
+    "date": "Fecha",
+    "days": "Días",
+    "months": "Meses",
+    "daysOfWeek": {
       "sunday": "Domingo",
       "monday": "Lunes",
       "tuesday": "Martes",

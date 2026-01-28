@@ -749,7 +749,10 @@
     "cancel": "Abbrechen",
     "confirm": "Bestätigen",
     "viewAll": "Alle anzeigen",
-    "days": {
+    "date": "Datum",
+    "days": "Tage",
+    "months": "Monate",
+    "daysOfWeek": {
       "sunday": "Sonntag",
       "monday": "Montag",
       "tuesday": "Dienstag",

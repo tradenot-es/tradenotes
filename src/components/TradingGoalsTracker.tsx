@@ -10,11 +10,22 @@ import { GoalRadialCell } from "@/components/GoalRadialCell";
 import { RadialProgress } from "@/components/RadialProgress";
 import { Settings, Target, TrendingUp, Calendar } from "lucide-react";
 import { format, parseISO, subDays, subWeeks, subMonths } from "date-fns";
-import { de } from "date-fns/locale";
+import { de, enUS, fr, es, nl, it } from "date-fns/locale";
 import { useCurrency } from "@/hooks/useCurrency";
 import { GoalKey, TradingGoalsConfig, DayGoalResult } from "@/types/tradingGoals";
 import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
+
+const getLocale = (lang: string) => {
+  switch (lang) {
+    case 'de': return de;
+    case 'fr': return fr;
+    case 'es': return es;
+    case 'nl': return nl;
+    case 'it': return it;
+    default: return enUS;
+  }
+};
 
 interface TradingGoalsTrackerProps {
   dailyResults: DayGoalResult[];
@@ -38,10 +49,11 @@ export function TradingGoalsTracker({
   enabledGoals,
   goals,
 }: TradingGoalsTrackerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const { formatCurrency } = useCurrency();
   const [timeFilter, setTimeFilter] = useState<string>("30d");
+  const currentLocale = getLocale(i18n.language);
 
   const filteredResults = dailyResults.filter((result) => {
     const date = parseISO(result.date);
@@ -150,10 +162,13 @@ export function TradingGoalsTracker({
               <div className="text-3xl font-bold">{filteredResults.length}</div>
               <div className="text-sm text-muted-foreground">{t("tradingGoals.tradingDays")}</div>
             </div>
-            <div className="p-4 rounded-lg bg-muted/50 flex flex-col items-center justify-center">
+            <button
+              onClick={() => navigate("/dashboard/settings")}
+              className="p-4 rounded-lg bg-muted/50 flex flex-col items-center justify-center hover:bg-muted transition-colors cursor-pointer"
+            >
               <div className="text-3xl font-bold">{enabledGoals.length}</div>
               <div className="text-sm text-muted-foreground">{t("tradingGoals.activeGoals")}</div>
-            </div>
+            </button>
           </div>
 
           {/* Goals Matrix Table */}
@@ -179,7 +194,7 @@ export function TradingGoalsTracker({
                 {filteredResults.slice(0, 20).map((result) => (
                   <TableRow key={result.date}>
                     <TableCell className="font-medium text-sm">
-                      {format(parseISO(result.date), "dd. MMM", { locale: de })}
+                      {format(parseISO(result.date), "dd. MMM", { locale: currentLocale })}
                     </TableCell>
                     {enabledGoals.map(([key, config]) => (
                       <TableCell key={key} className="p-1">

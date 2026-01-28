@@ -871,7 +871,10 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "viewAll": "View all",
-    "days": {
+    "date": "Date",
+    "days": "Days",
+    "months": "Months",
+    "daysOfWeek": {
       "sunday": "Sunday",
       "monday": "Monday",
       "tuesday": "Tuesday",
