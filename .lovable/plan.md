@@ -1,10 +1,8 @@
 
-
-# Konsolidierung: Entfernung redundanter Daily Goal Komponenten
+# Umsetzung: Konsolidierung Daily Goals
 
 ## Übersicht
-
-Die legacy "Daily Goal Progress" Komponente und die zugehörigen KPI-Karten werden entfernt. Der erweiterte **TradingGoalsTracker** übernimmt alle Funktionen mit seinen 15 konfigurierbaren Zielen.
+Entfernung der redundanten legacy "Daily Goal Progress" Komponente und Bereinigung der Reports.tsx. Der TradingGoalsTracker übernimmt alle Funktionen.
 
 ---
 
@@ -13,61 +11,81 @@ Die legacy "Daily Goal Progress" Komponente und die zugehörigen KPI-Karten werd
 ### 1. Datei löschen
 | Datei | Aktion |
 |-------|--------|
-| `src/components/DailyGoalProgress.tsx` | Löschen |
+| `src/components/DailyGoalProgress.tsx` | Löschen (119 Zeilen) |
 
 ### 2. Reports.tsx bereinigen
 
-**Entfernte Elemente:**
-- Import von `DailyGoalProgress`
-- State-Variablen `dailyGoalAmount` und `dailyGoalMaxTrades`
-- Funktion `loadSettings()` (nicht mehr benötigt)
-- useMemo `dailyGoalTracking` (wird durch TradingGoalsTracker ersetzt)
-- Die 3 KPI-Karten im Goals-Tab:
-  - Goal Achievement Rate
-  - Current Goal
-  - Best Day
-- Die "Daily Goal History" Card mit der DailyGoalProgress-Liste
-
-**Ergebnis im "Daily Goals" Tab:**
-```text
-+----------------------------------------------------------+
-| 🎯 Trading Goals (TradingGoalsTracker)                   |
-|----------------------------------------------------------|
-| [Ø Score] [Days Achieved] [Trading Days] [Active Goals]  |
-|                                                          |
-| Date  | PnL | Trades | WinRate | ... | Total Goal        |
-|-------|-----|--------|---------|-----|-------------------|
-| 28.01 | ✓   | ✓      | ✗       | ... | 75%               |
-| 27.01 | ✓   | ✓      | ✓       | ... | 100%              |
-| ...   |     |        |         |     |                   |
-+----------------------------------------------------------+
+**Zeile 19 - Import entfernen:**
+```typescript
+// ENTFERNEN:
+import { DailyGoalProgress } from "@/components/DailyGoalProgress";
 ```
 
-Der TradingGoalsTracker bietet bereits:
-- Durchschnittlicher Score (ersetzt Achievement Rate)
-- Anzahl Tage mit 100% Zielerreichung (ersetzt Days Achieved)
-- Aktive Ziele (verlinkt zu Settings)
-- Zeitfilter (7d, 14d, 30d, 3m, all)
-- Matrix mit allen 15 Zielen pro Tag
+**Zeilen 58-59 - Legacy State entfernen:**
+```typescript
+// ENTFERNEN:
+const [dailyGoalAmount, setDailyGoalAmount] = useState(500);
+const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState(10);
+```
+
+**Zeilen 65-82 - loadSettings entfernen:**
+```typescript
+// VORHER:
+useEffect(() => {
+  if (user) {
+    loadTrades();
+    loadSettings();  // <-- entfernen
+  }
+}, [user]);
+
+const loadSettings = async () => { ... }  // <-- ganze Funktion entfernen
+
+// NACHHER:
+useEffect(() => {
+  if (user) {
+    loadTrades();
+  }
+}, [user]);
+```
+
+**Zeilen 229-254 - dailyGoalTracking useMemo entfernen:**
+```typescript
+// ENTFERNEN - kompletter Block:
+const dailyGoalTracking = useMemo(() => { ... }, [...]);
+```
+
+**Zeilen 540-659 - Goals Tab vereinfachen:**
+```typescript
+// VORHER: 3 KPI-Karten + Daily Goal History Card + TradingGoalsTracker
+
+// NACHHER: Nur TradingGoalsTracker
+<TabsContent value="goals" className="space-y-6">
+  <TradingGoalsTracker
+    dailyResults={dailyResults}
+    enabledGoals={enabledGoals}
+    goals={goals}
+  />
+</TabsContent>
+```
 
 ---
 
-## Betroffene Dateien
+## Entfernte UI-Elemente im Goals Tab
 
-| Datei | Änderung |
-|-------|----------|
-| `src/components/DailyGoalProgress.tsx` | Löschen |
-| `src/pages/Reports.tsx` | Import, State, useMemo und UI-Elemente entfernen |
+| Element | Ersetzt durch |
+|---------|--------------|
+| Goal Achievement Rate (RadialProgress) | Ø Score im Tracker |
+| Current Goal Card | Aktive Goals Link → Settings |
+| Best Day Card | - (nicht mehr benötigt) |
+| Daily Goal History (10 DailyGoalProgress) | Matrix-Tabelle im Tracker |
 
 ---
 
-## Zusammenfassung
+## Resultat
 
 | Aspekt | Vorher | Nachher |
 |--------|--------|---------|
-| Daily Goals Tab Komponenten | 5 Cards + Tracker | 1 Tracker |
-| Redundante Metriken | 2 (PnL + MaxTrades) | 0 |
-| Verfügbare Ziele | 2 legacy + 15 neue | 15 konfigurierbar |
-| Code-Zeilen entfernt | ~80 | - |
+| Komponenten im Goals Tab | 5 | 1 |
+| Code-Zeilen entfernt | ~200 | - |
 | Dateien gelöscht | 1 | - |
-
+| Verfügbare Ziele | 2 legacy | 15 konfigurierbar |
