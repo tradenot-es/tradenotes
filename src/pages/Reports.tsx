@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
@@ -52,6 +53,12 @@ export default function Reports() {
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeFilter, setTimeFilter] = useState<string>("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "overview";
+
+  const handleTabChange = (value: string) => {
+    setSearchParams({ tab: value });
+  };
 
   // Trading Goals Hook - needs trades with fees field
   const tradesWithFees = trades.map(t => ({ ...t, fees: 0 }));
@@ -281,7 +288,7 @@ export default function Reports() {
         }
       />
 
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-6">
         <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9">
           <HoverCard>
             <HoverCardTrigger asChild>
