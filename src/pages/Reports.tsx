@@ -16,13 +16,10 @@ import { HoldingPeriodAnalysis } from "@/components/reports/HoldingPeriodAnalysi
 import { SymbolPerformance } from "@/components/reports/SymbolPerformance";
 import { HourOfDayAnalysis } from "@/components/reports/HourOfDayAnalysis";
 import { ConsistencyTracker } from "@/components/ConsistencyTracker";
-import { DailyGoalProgress } from "@/components/DailyGoalProgress";
 import { TradingGoalsTracker } from "@/components/TradingGoalsTracker";
-import { RadialProgress } from "@/components/RadialProgress";
 import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
-import { startOfDay, endOfDay } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
 import { useTradingGoals } from "@/hooks/useTradingGoals";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
@@ -55,8 +52,6 @@ export default function Reports() {
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
   const [timeFilter, setTimeFilter] = useState<string>("all");
-  const [dailyGoalAmount, setDailyGoalAmount] = useState(500);
-  const [dailyGoalMaxTrades, setDailyGoalMaxTrades] = useState(10);
 
   // Trading Goals Hook - needs trades with fees field
   const tradesWithFees = trades.map(t => ({ ...t, fees: 0 }));
@@ -65,21 +60,8 @@ export default function Reports() {
   useEffect(() => {
     if (user) {
       loadTrades();
-      loadSettings();
     }
   }, [user]);
-
-  const loadSettings = async () => {
-    const { data } = await supabase
-      .from("user_settings")
-      .select("daily_goal_amount, daily_goal_max_trades")
-      .maybeSingle();
-
-    if (data) {
-      setDailyGoalAmount(data.daily_goal_amount || 500);
-      setDailyGoalMaxTrades(data.daily_goal_max_trades || 10);
-    }
-  };
 
   const loadTrades = async () => {
     setLoading(true);
@@ -226,32 +208,6 @@ export default function Reports() {
     };
   }, [filteredTrades]);
 
-  // Daily Goal Tracking
-  const dailyGoalTracking = useMemo(() => {
-    const dailyMap = new Map<string, { pnl: number; trades: number }>();
-    
-    filteredTrades.forEach(trade => {
-      const date = format(new Date(trade.exit_time), 'yyyy-MM-dd');
-      const current = dailyMap.get(date) || { pnl: 0, trades: 0 };
-      current.pnl += trade.pnl_net;
-      current.trades++;
-      dailyMap.set(date, current);
-    });
-
-    const result = Array.from(dailyMap.entries()).map(([date, stats]) => ({
-      date,
-      pnl: stats.pnl,
-      trades: stats.trades,
-      goalAchieved: stats.pnl >= dailyGoalAmount && stats.trades <= dailyGoalMaxTrades,
-      overTraded: stats.trades > dailyGoalMaxTrades
-    }));
-
-    const totalDays = result.length;
-    const daysAchieved = result.filter(d => d.goalAchieved).length;
-    const achievementRate = totalDays > 0 ? ((daysAchieved / totalDays) * 100).toFixed(1) : "0";
-
-    return { days: result, totalDays, daysAchieved, achievementRate };
-  }, [filteredTrades, dailyGoalAmount, dailyGoalMaxTrades]);
 
   // P&L by Month for Chart
   const pnlByMonth = useMemo(() => {
@@ -538,119 +494,6 @@ export default function Reports() {
 
         {/* Daily Goals Tab */}
         <TabsContent value="goals" className="space-y-6">
-          <div className="grid gap-4 md:grid-cols-3">
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{t("reports.goalAchievementRate")}</CardTitle>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <p className="text-sm">{t("reports.goalAchievementRateTooltip")}</p>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-              </CardHeader>
-              <CardContent className="flex justify-center py-4">
-                <RadialProgress
-                  value={parseFloat(dailyGoalTracking.achievementRate)}
-                  size={160}
-                  strokeWidth={12}
-                  subtitle={t("reports.daysAchieved", { 
-                    achieved: dailyGoalTracking.daysAchieved, 
-                    total: dailyGoalTracking.totalDays 
-                  })}
-                  color="warning"
-                />
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{t("reports.currentGoal")}</CardTitle>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <p className="text-sm">{t("reports.currentGoalTooltip")}</p>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">
-                  {formatCurrency(dailyGoalAmount)}
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {t("reports.maxTradesPerDay", { trades: dailyGoalMaxTrades })}
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="flex items-center gap-2">
-                  <CardTitle className="text-lg">{t("reports.bestDay")}</CardTitle>
-                  <HoverCard>
-                    <HoverCardTrigger asChild>
-                      <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                    </HoverCardTrigger>
-                    <HoverCardContent className="w-80">
-                      <p className="text-sm">{t("reports.bestDayTooltip")}</p>
-                    </HoverCardContent>
-                  </HoverCard>
-                </div>
-              </CardHeader>
-              <CardContent>
-                {dailyGoalTracking.days.length > 0 ? (
-                  <>
-                    <div className="text-2xl font-bold text-success">
-                      {formatCurrency(Math.max(...dailyGoalTracking.days.map(d => d.pnl)))}
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      {t("reports.bestTradingDay")}
-                    </p>
-                  </>
-                ) : (
-                  <p className="text-sm text-muted-foreground">{t("reports.noData")}</p>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>{t("reports.dailyGoalHistory")}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {dailyGoalTracking.days
-                  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-                  .slice(0, 10)
-                  .map((day) => (
-                    <DailyGoalProgress
-                      key={day.date}
-                      date={day.date}
-                      dailyPnL={day.pnl}
-                      dailyTrades={day.trades}
-                      goalAmount={dailyGoalAmount}
-                      maxTrades={dailyGoalMaxTrades}
-                    />
-                  ))}
-                {dailyGoalTracking.days.length === 0 && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    {t("reports.noTradesInPeriod")}
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Advanced Trading Goals Matrix */}
           <TradingGoalsTracker
             dailyResults={dailyResults}
             enabledGoals={enabledGoals}
