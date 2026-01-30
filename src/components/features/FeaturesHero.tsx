@@ -15,11 +15,11 @@ import {
   Zap,
 } from "lucide-react";
 
-// Feature images for collage
-import mfeMaeImg from "@/assets/features/mfe-mae.webp";
-import aiAssistantImg from "@/assets/features/ai-assistant.webp";
-import equityCurveImg from "@/assets/features/equity-curve.webp";
-import tradingCalendarImg from "@/assets/features/trading-calendar.webp";
+// Feature images for collage - Professional trading screenshots
+import tradingDashboardImg from "@/assets/features/trading-dashboard-pro.webp";
+import orderBookImg from "@/assets/features/order-book-pro.webp";
+import performanceAnalyticsImg from "@/assets/features/performance-analytics-pro.webp";
+import analyticsHeatmapImg from "@/assets/features/analytics-heatmap-pro.webp";
 
 interface FeaturesHeroProps {
   onCategoryClick: (categoryId: string) => void;
@@ -190,41 +190,41 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               className="feature-collage"
               style={{ transform: `translateY(${-parallaxOffset * 0.5}px)` }}
             >
-              {/* Top Left - Large */}
+              {/* Top Left - Trading Dashboard */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={mfeMaeImg}
-                  alt="MFE/MAE Analysis"
+                  src={tradingDashboardImg}
+                  alt="Trading Dashboard"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
 
-              {/* Top Right */}
+              {/* Top Right - Order Book */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={aiAssistantImg}
-                  alt="AI Trading Assistant"
+                  src={orderBookImg}
+                  alt="Order Book"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
 
-              {/* Bottom Left */}
+              {/* Bottom Left - Performance Analytics */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={equityCurveImg}
-                  alt="Equity Curve"
+                  src={performanceAnalyticsImg}
+                  alt="Performance Analytics"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
               </div>
 
-              {/* Bottom Right */}
+              {/* Bottom Right - Analytics Heatmap */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={tradingCalendarImg}
-                  alt="Trading Calendar"
+                  src={analyticsHeatmapImg}
+                  alt="Analytics Heatmap"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
