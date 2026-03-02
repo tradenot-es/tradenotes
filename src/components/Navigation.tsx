@@ -54,19 +54,19 @@ export const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
-            <a 
-              href="#features" 
+            <Link 
+              to="/features" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
             >
               {t("landing.nav.features")}
-            </a>
-            <a 
-              href="#pricing" 
+            </Link>
+            <Link 
+              to="/#pricing" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
               style={{ transitionDelay: '50ms' }}
             >
               {t("landing.nav.pricing")}
-            </a>
+            </Link>
             <Link 
               to="/auth" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
