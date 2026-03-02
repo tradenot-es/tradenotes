@@ -832,11 +832,11 @@
     "cta": {
       "startNow": "Nu starten"
     },
-    "badge": "Professioneel Trading Dagboek voor Futures & Aandelen",
+    "badge": "Professioneel Trading Dagboek",
     "heroTitle": "Word een betere trader door",
     "heroTitleHighlightWords": ["systematisch", "nauwkeurig", "AI-gestuurd"],
     "heroTitleHighlightSuffix": "journaling",
-    "heroDescription": "TradeNotes – het trading dagboek voor ambitieuze futures en aandelen daytraders. Gedetailleerde analytics, AI-nieuws, politieke evenementen en patroonherkenning helpen je een winstgevend systeem te bouwen. Gebruikt door duizenden traders wereldwijd.",
+    "heroDescription": "TradeNotes – het trading dagboek voor ambitieuze en actieve traders. Gedetailleerde analytics, AI-nieuws, politieke evenementen en patroonherkenning helpen je een winstgevend systeem te bouwen. Gebruikt door duizenden traders wereldwijd.",
     "ctaStart": "Start Gratis",
     "ctaFeatures": "Ontdek Functies",
     "rating": "4.9/5 van 1000+ Traders",
@@ -860,7 +860,7 @@
     "pricingDescription": "Geen niveaus, geen verborgen pro-functies, geen paywalls. Alles ontgrendeld vanaf dag één.",
     "trialBadge": "14 Dagen Gratis Proberen",
     "premiumTitle": "TradeNot.es Premium",
-    "premiumDescription": "De AI-gestuurde trading-edge voor futures traders",
+    "premiumDescription": "De AI-gestuurde trading-edge voor actieve traders",
     "monthlyPlan": "Maandelijks",
     "monthlyPrice": "€19,99",
     "monthlyPeriod": "/maand",

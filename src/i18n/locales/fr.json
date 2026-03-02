@@ -832,11 +832,11 @@
     "cta": {
       "startNow": "Commencer"
     },
-    "badge": "Journal de Trading Professionnel pour Futures & Actions",
+    "badge": "Journal de Trading Professionnel",
     "heroTitle": "Devenez un meilleur trader grâce à un",
     "heroTitleHighlightWords": ["journaling systématique", "journaling précis", "journaling alimenté par l'IA"],
     "heroTitleHighlightSuffix": "",
-    "heroDescription": "TradeNotes – le journal de trading pour les day traders de Futures et actions ambitieux. Analytics détaillés, actualités IA, événements politiques et reconnaissance de patterns vous aident à construire un système rentable. Utilisé par des milliers de traders dans le monde.",
+    "heroDescription": "TradeNotes – le journal de trading pour les traders actifs et ambitieux. Analytics détaillés, actualités IA, événements politiques et reconnaissance de patterns vous aident à construire un système rentable. Utilisé par des milliers de traders dans le monde.",
     "ctaStart": "Commencer Gratuitement",
     "ctaFeatures": "Découvrir les Fonctionnalités",
     "rating": "4.9/5 par 1000+ Traders",
@@ -860,7 +860,7 @@
     "pricingDescription": "Pas de niveaux, pas de fonctionnalités pro cachées, pas de paywalls. Tout débloqué dès le premier jour.",
     "trialBadge": "Essai Gratuit de 14 Jours",
     "premiumTitle": "TradeNot.es Premium",
-    "premiumDescription": "L'avantage trading propulsé par l'IA pour les traders de futures",
+    "premiumDescription": "L'avantage trading propulsé par l'IA pour les traders actifs",
     "monthlyPlan": "Mensuel",
     "monthlyPrice": "19,99€",
     "monthlyPeriod": "/mois",
