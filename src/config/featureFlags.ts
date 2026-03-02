@@ -10,7 +10,7 @@ export const featureFlags = {
   /**
    * When true, shows the PreLaunch/Waitlist page instead of the Landing page
    */
-  PRELAUNCH_MODE: true,
+  PRELAUNCH_MODE: false,
   
   /**
    * When true, shows the Maintenance page (takes priority over PRELAUNCH_MODE)
