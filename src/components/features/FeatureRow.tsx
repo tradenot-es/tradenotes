@@ -80,9 +80,12 @@ export function FeatureRow({ feature, imagePosition, screenshotUrl, visual }: Fe
         ) : screenshotUrl ? (
           <img
             loading="lazy"
+            decoding="async"
             src={screenshotUrl}
             alt={feature.title}
-            className="w-full h-full object-cover"
+            width={1600}
+            height={900}
+            className="w-full h-full object-cover object-top"
           />
         ) : (
           <div className="text-center text-muted-foreground">

@@ -1,4 +1,4 @@
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import logo from "@/assets/logo.webp";
 import { ReactNode } from "react";
 
 interface PageHeaderProps {

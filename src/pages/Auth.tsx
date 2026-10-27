@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { z } from "zod";
-import logo from "@/assets/tradenotes-logo-optimized.webp";
+import logo from "@/assets/logo.webp";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { ArrowLeft } from "lucide-react";

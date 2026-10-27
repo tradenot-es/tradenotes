@@ -17,11 +17,11 @@ import {
 } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 
-// Feature images for collage - Professional trading screenshots
-import tradingDashboardImg from "@/assets/features/trading-dashboard-pro.webp";
-import orderBookImg from "@/assets/features/order-book-pro.webp";
-import performanceAnalyticsImg from "@/assets/features/performance-analytics-pro.webp";
-import analyticsHeatmapImg from "@/assets/features/analytics-heatmap-pro.webp";
+// Collage: real screenshots of the app
+import disciplineShot from "@/assets/screens/discipline-score.webp";
+import daysShot from "@/assets/screens/days.webp";
+import behaviorShot from "@/assets/screens/reports-behavior.webp";
+import equityShot from "@/assets/screens/equity.webp";
 
 interface FeaturesHeroProps {
   onCategoryClick: (categoryId: string) => void;
@@ -200,43 +200,47 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               className="feature-collage"
               style={{ transform: `translateY(${-parallaxOffset * 0.5}px)` }}
             >
-              {/* Top Left - Trading Dashboard */}
+              {/* Top Left - discipline & score */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={tradingDashboardImg}
-                  alt="Trading Dashboard"
-                  className="w-full h-full object-cover"
+                  src={disciplineShot}
+                  alt="Disziplin & TradeNot.es Score"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 
-              {/* Top Right - Order Book */}
+              {/* Top Right - day view */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={orderBookImg}
-                  alt="Order Book"
-                  className="w-full h-full object-cover"
+                  src={daysShot}
+                  alt="Tagesansicht"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 
-              {/* Bottom Left - Performance Analytics */}
+              {/* Bottom Left - behaviour report */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={performanceAnalyticsImg}
-                  alt="Performance Analytics"
-                  className="w-full h-full object-cover"
+                  src={behaviorShot}
+                  alt="Fehler- & Emotions-Analyse"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 
-              {/* Bottom Right - Analytics Heatmap */}
+              {/* Bottom Right - equity curve */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={analyticsHeatmapImg}
-                  alt="Analytics Heatmap"
-                  className="w-full h-full object-cover"
+                  src={equityShot}
+                  alt="Equity Curve"
+                  className="w-full h-full object-cover object-top"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>

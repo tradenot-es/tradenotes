@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PoliticalEvents } from "./PoliticalEvents";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import trumpEmoji from "@/assets/trump-emoji.png";
+import trumpEmoji from "@/assets/trump-emoji.webp";
 import { db } from "@/lib/api";
 import { useEffect } from "react";
 import { getCurrencySymbol } from "@/lib/utils";

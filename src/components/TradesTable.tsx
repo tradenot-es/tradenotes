@@ -1,3 +1,4 @@
+import { featureFlags } from "@/config/featureFlags";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { formatDistanceToNow, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
@@ -345,11 +346,13 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                               </Badge>
                             )}
                             {/* Compact Sentiment Inline */}
-                            <TradeSentimentGauge 
-                              symbol={trade.symbol}
-                              side={trade.side as "long" | "short"}
-                              entryTime={trade.entry_time}
-                            />
+                            {featureFlags.NEWS_FEATURES && (
+                              <TradeSentimentGauge
+                                symbol={trade.symbol}
+                                side={trade.side as "long" | "short"}
+                                entryTime={trade.entry_time}
+                              />
+                            )}
                           </div>
                           <div className="flex gap-2">
                             {onEditTrade && (
@@ -417,16 +420,12 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                           </div>
 
                           {/* Right: News Context & Hype */}
-                          <div className="space-y-2">
-                            <TradeNewsContext 
-                              symbol={trade.symbol}
-                              entryTime={trade.entry_time}
-                            />
-                            <NewsHypeIndicator 
-                              symbol={trade.symbol}
-                              entryTime={trade.entry_time}
-                            />
-                          </div>
+                          {featureFlags.NEWS_FEATURES && (
+                            <div className="space-y-2">
+                              <TradeNewsContext symbol={trade.symbol} entryTime={trade.entry_time} />
+                              <NewsHypeIndicator symbol={trade.symbol} entryTime={trade.entry_time} />
+                            </div>
+                          )}
                         </div>
                       </div>
                     </TableCell>

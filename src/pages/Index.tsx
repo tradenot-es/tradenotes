@@ -337,10 +337,10 @@ const Index = () => {
           {featureFlags.AI_FEATURES && <DailySummaryCard />}
 
           {/* Sector Sentiment - AI powered */}
-          <SectorSentimentWidget />
+          {featureFlags.NEWS_FEATURES && <SectorSentimentWidget />}
 
           {/* Portfolio News - Full width */}
-          <PortfolioNews />
+          {featureFlags.NEWS_FEATURES && <PortfolioNews />}
         </>
       )}
 

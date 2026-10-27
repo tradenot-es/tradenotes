@@ -8,7 +8,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import { AIAssistantFAB } from "@/components/AIAssistantFAB";
 import { featureFlags } from "@/config/featureFlags";
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import logo from "@/assets/logo.webp";
 /** Nav link that also closes the off-canvas sidebar on phones. */
 function SidebarNavLink(props: NavLinkProps) {
   const { setOpenMobile } = useSidebar();

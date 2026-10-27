@@ -9,7 +9,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { Loader2, CheckCircle2, AlertCircle, Wrench, LogIn } from "lucide-react";
 import { invoke } from "@/lib/api";
-import logo from "@/assets/tradenotes-logo-optimized.webp";
+import logo from "@/assets/logo.webp";
 
 interface PreLaunchProps {
   mode: "prelaunch" | "maintenance";

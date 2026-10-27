@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-// Feature illustrations - Professional Trading Screenshots
-import tradingDashboardImg from "@/assets/features/trading-dashboard-pro.webp";
-import orderBookImg from "@/assets/features/order-book-pro.webp";
-import marketScannerImg from "@/assets/features/market-scanner-pro.webp";
-import riskCalculatorImg from "@/assets/features/risk-calculator-pro.webp";
-import performanceAnalyticsImg from "@/assets/features/performance-analytics-pro.webp";
-import analyticsHeatmapImg from "@/assets/features/analytics-heatmap-pro.webp";
-
-// Re-use professional images across features for consistent look
-// Trading Tools uses: tradingDashboardImg, orderBookImg, marketScannerImg, riskCalculatorImg
-// Analytics uses: performanceAnalyticsImg, analyticsHeatmapImg
-// AI uses: tradingDashboardImg (for context), performanceAnalyticsImg
-// Reports uses: analyticsHeatmapImg, marketScannerImg
-// Market Intel uses: tradingDashboardImg, marketScannerImg
+// Feature illustrations: real screenshots of the app (demo account, see README "Screenshots")
+import accountsShot from "@/assets/screens/reports-accounts.webp";
+import calendarShot from "@/assets/screens/calendar.webp";
+import consistencyShot from "@/assets/screens/consistency.webp";
+import daysShot from "@/assets/screens/days.webp";
+import equityShot from "@/assets/screens/equity.webp";
+import holdingShot from "@/assets/screens/holding.webp";
+import importShot from "@/assets/screens/import.webp";
+import overviewShot from "@/assets/screens/reports-overview.webp";
+import positionCalcShot from "@/assets/screens/position-calc.webp";
+import riskShot from "@/assets/screens/reports-risk.webp";
+import rulesShot from "@/assets/screens/rules.webp";
+import setupShot from "@/assets/screens/reports-setup.webp";
+import simulatorShot from "@/assets/screens/reports-simulator.webp";
+import streaksShot from "@/assets/screens/streaks.webp";
+import symbolsShot from "@/assets/screens/reports-symbols.webp";
+import timeShot from "@/assets/screens/reports-time.webp";
+import tradeDialogShot from "@/assets/screens/trade-dialog.webp";
+import tradesShot from "@/assets/screens/trades.webp";
 
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
@@ -117,14 +122,14 @@ const Features = () => {
           title: t("features.items.goalAlerts.title"),
           description: t("features.items.goalAlerts.description"),
           benefits: t("features.items.goalAlerts.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: rulesShot,
         },
         {
           icon: <Calculator className="h-6 w-6" />,
           title: t("features.items.riskSimulator.title"),
           description: t("features.items.riskSimulator.description"),
           benefits: t("features.items.riskSimulator.benefits", { returnObjects: true }) as string[],
-          illustration: riskCalculatorImg,
+          illustration: simulatorShot,
         },
       ],
     },
@@ -137,35 +142,35 @@ const Features = () => {
           title: t("features.items.easyEntry.title"),
           description: t("features.items.easyEntry.description"),
           benefits: t("features.items.easyEntry.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: tradeDialogShot,
         },
         {
           icon: <Zap className="h-6 w-6" />,
           title: t("features.items.ninjaTrader.title"),
           description: t("features.items.ninjaTrader.description"),
           benefits: t("features.items.ninjaTrader.benefits", { returnObjects: true }) as string[],
-          illustration: orderBookImg,
+          illustration: importShot,
         },
         {
           icon: <Building2 className="h-6 w-6" />,
           title: t("features.items.propFirm.title"),
           description: t("features.items.propFirm.description"),
           benefits: t("features.items.propFirm.benefits", { returnObjects: true }) as string[],
-          illustration: performanceAnalyticsImg,
+          illustration: accountsShot,
         },
         {
           icon: <Calculator className="h-6 w-6" />,
           title: t("features.items.positionCalc.title"),
           description: t("features.items.positionCalc.description"),
           benefits: t("features.items.positionCalc.benefits", { returnObjects: true }) as string[],
-          illustration: riskCalculatorImg,
+          illustration: positionCalcShot,
         },
         {
           icon: <Import className="h-6 w-6" />,
           title: t("features.items.csvImport.title"),
           description: t("features.items.csvImport.description"),
           benefits: t("features.items.csvImport.benefits", { returnObjects: true }) as string[],
-          illustration: marketScannerImg,
+          illustration: tradesShot,
         },
       ],
     },
@@ -178,35 +183,35 @@ const Features = () => {
           title: t("features.items.mfeMAE.title"),
           description: t("features.items.mfeMAE.description"),
           benefits: t("features.items.mfeMAE.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: riskShot,
         },
         {
           icon: <BarChart3 className="h-6 w-6" />,
           title: t("features.items.analytics.title"),
           description: t("features.items.analytics.description"),
           benefits: t("features.items.analytics.benefits", { returnObjects: true }) as string[],
-          illustration: performanceAnalyticsImg,
+          illustration: overviewShot,
         },
         {
           icon: <LineChart className="h-6 w-6" />,
           title: t("features.items.equityCurve.title"),
           description: t("features.items.equityCurve.description"),
           benefits: t("features.items.equityCurve.benefits", { returnObjects: true }) as string[],
-          illustration: performanceAnalyticsImg,
+          illustration: equityShot,
         },
         {
           icon: <Activity className="h-6 w-6" />,
           title: t("features.items.consistency.title"),
           description: t("features.items.consistency.description"),
           benefits: t("features.items.consistency.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: consistencyShot,
         },
         {
           icon: <Calendar className="h-6 w-6" />,
           title: t("features.items.calendar.title"),
           description: t("features.items.calendar.description"),
           benefits: t("features.items.calendar.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: calendarShot,
         },
       ],
     },
@@ -221,21 +226,21 @@ const Features = () => {
           title: t("features.items.aiAssistant.title"),
           description: t("features.items.aiAssistant.description"),
           benefits: t("features.items.aiAssistant.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: overviewShot,
         },
         {
           icon: <PieChart className="h-6 w-6" />,
           title: t("features.items.aiCharts.title"),
           description: t("features.items.aiCharts.description"),
           benefits: t("features.items.aiCharts.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: overviewShot,
         },
         {
           icon: <Mail className="h-6 w-6" />,
           title: t("features.items.dailySummary.title"),
           description: t("features.items.dailySummary.description"),
           benefits: t("features.items.dailySummary.benefits", { returnObjects: true }) as string[],
-          illustration: performanceAnalyticsImg,
+          illustration: daysShot,
         },
       ],
     },
@@ -250,35 +255,35 @@ const Features = () => {
           title: t("features.items.symbolReports.title"),
           description: t("features.items.symbolReports.description"),
           benefits: t("features.items.symbolReports.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: symbolsShot,
         },
         {
           icon: <BookOpen className="h-6 w-6" />,
           title: t("features.items.setupReports.title"),
           description: t("features.items.setupReports.description"),
           benefits: t("features.items.setupReports.benefits", { returnObjects: true }) as string[],
-          illustration: marketScannerImg,
+          illustration: setupShot,
         },
         {
           icon: <Clock className="h-6 w-6" />,
           title: t("features.items.hourAnalysis.title"),
           description: t("features.items.hourAnalysis.description"),
           benefits: t("features.items.hourAnalysis.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: timeShot,
         },
         {
           icon: <Flame className="h-6 w-6" />,
           title: t("features.items.streakAnalysis.title"),
           description: t("features.items.streakAnalysis.description"),
           benefits: t("features.items.streakAnalysis.benefits", { returnObjects: true }) as string[],
-          illustration: performanceAnalyticsImg,
+          illustration: streaksShot,
         },
         {
           icon: <Timer className="h-6 w-6" />,
           title: t("features.items.holdingPeriod.title"),
           description: t("features.items.holdingPeriod.description"),
           benefits: t("features.items.holdingPeriod.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: holdingShot,
         },
       ],
     },
@@ -286,33 +291,43 @@ const Features = () => {
       id: "market-intel",
       name: t("features.categories.marketIntel"),
       features: [
+        // needs the Marketaux news integration
+        ...(featureFlags.NEWS_FEATURES
+          ? [
         {
           icon: <Target className="h-6 w-6" />,
           title: t("features.items.portfolioNews.title"),
           description: t("features.items.portfolioNews.description"),
           benefits: t("features.items.portfolioNews.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: tradesShot,
         },
+            ]
+          : []),
         {
           icon: <Globe className="h-6 w-6" />,
           title: t("features.items.politicalEvents.title"),
           description: t("features.items.politicalEvents.description"),
           benefits: t("features.items.politicalEvents.benefits", { returnObjects: true }) as string[],
-          illustration: marketScannerImg,
+          illustration: tradesShot,
         },
+        // needs the Marketaux news integration
+        ...(featureFlags.NEWS_FEATURES
+          ? [
         {
           icon: <BarChart3 className="h-6 w-6" />,
           title: t("features.items.sectorSentiment.title"),
           description: t("features.items.sectorSentiment.description"),
           benefits: t("features.items.sectorSentiment.benefits", { returnObjects: true }) as string[],
-          illustration: analyticsHeatmapImg,
+          illustration: tradesShot,
         },
+            ]
+          : []),
         {
           icon: <Calendar className="h-6 w-6" />,
           title: t("features.items.economicCalendar.title"),
           description: t("features.items.economicCalendar.description"),
           benefits: t("features.items.economicCalendar.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
+          illustration: tradesShot,
         },
       ],
     },

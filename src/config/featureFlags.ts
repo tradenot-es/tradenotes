@@ -24,4 +24,11 @@ export const featureFlags = {
    * Lovable's AI gateway and need a new provider before they can return.
    */
   AI_FEATURES: false,
+
+  /**
+   * Market news widgets (portfolio news, sector sentiment, news context per
+   * trade). They need MARKETAUX_API_KEY on the server; turn on once it is set.
+   * The economic calendar works without it and is always shown.
+   */
+  NEWS_FEATURES: false,
 } as const;

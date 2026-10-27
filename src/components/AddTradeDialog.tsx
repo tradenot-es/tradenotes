@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -13,6 +14,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { db, invoke, uploadScreenshot } from "@/lib/api";
 import { featureFlags } from "@/config/featureFlags";
 import { BehaviorTagPicker } from "@/components/BehaviorTagPicker";
+import { PositionSizeCalculator } from "@/components/PositionSizeCalculator";
 import { EMOTIONS, MISTAKES } from "@/lib/behavior";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -221,7 +223,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         setAccountName(editTrade.account_name || '');
       } else if (preselectedDate) {
         // Set preselected date for new trade
-        const dateStr = preselectedDate.toISOString().split('T')[0];
+        const dateStr = format(preselectedDate, 'yyyy-MM-dd'); // local day, not UTC
         setFormData(prev => ({
           ...prev,
           entryTime: dateStr + 'T09:00',
@@ -1095,6 +1097,14 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               />
             </div>
           </div>
+
+          {/* Position size from account risk; fills the quantity field */}
+          <PositionSizeCalculator
+            entryPrice={parseFloat(formData.entryPrice) || undefined}
+            stopLossPrice={parseFloat(formData.stopLossPrice) || undefined}
+            side={formData.side}
+            onApplySize={(size) => setFormData((prev) => ({ ...prev, qty: String(size) }))}
+          />
 
           {/* Initial Risk and Setup */}
           <div className="grid grid-cols-2 gap-4">

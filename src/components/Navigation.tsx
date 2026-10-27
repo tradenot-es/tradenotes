@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import logo from "@/assets/tradenotes-logo-new-transparent.png";
+import logo from "@/assets/logo.webp";
 
 const languages = [
   { code: "en", name: "English", flag: "🇬🇧" },

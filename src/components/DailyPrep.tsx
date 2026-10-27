@@ -1,3 +1,4 @@
+import { featureFlags } from "@/config/featureFlags";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -175,7 +176,7 @@ export function DailyPrep() {
   return (
     <div className="space-y-6">
       {/* Sector Sentiment Widget at top */}
-      <SectorSentimentWidget />
+      {featureFlags.NEWS_FEATURES && <SectorSentimentWidget />}
 
       <Card>
         <CardHeader>

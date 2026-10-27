@@ -45,6 +45,13 @@ All colors MUST be HSL.
     --chart-loss: 0 72% 51%;
     --chart-track: 0 0% 0% / 0.08;
 
+    /* categorical series in fixed order (dataviz default palette, validated against this surface) */
+    --chart-1: 213 68% 50%;
+    --chart-2: 17 82% 56%;
+    --chart-3: 159 73% 40%;
+    --chart-4: 41 100% 46%;
+    --chart-5: 337 70% 70%;
+
     --border: 0 0% 88%;
     --input: 0 0% 96%;
     --ring: 158 100% 40%;
@@ -114,6 +121,13 @@ All colors MUST be HSL.
     --chart-profit: 158 100% 32%;
     --chart-loss: 0 84% 60%;
     --chart-track: 0 0% 100% / 0.08;
+
+    /* same hues stepped for the dark surface */
+    --chart-1: 213 77% 56%;
+    --chart-2: 17 70% 50%;
+    --chart-3: 159 73% 36%;
+    --chart-4: 40 100% 39%;
+    --chart-5: 338 61% 58%;
 
     --border: 0 0% 15%;
     --input: 0 0% 12%;

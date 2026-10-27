@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { format, parseISO } from "date-fns";
+import { dateLocale } from "@/lib/dateLocale";
 import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -16,12 +18,12 @@ interface ConsistencyTrackerProps {
 }
 
 export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { formatCurrency } = useCurrency();
   const navigate = useNavigate();
 
   const handleDateClick = (date: Date) => {
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = format(date, 'yyyy-MM-dd');
     navigate(`/dashboard/trades?date=${dateStr}`);
   };
 
@@ -59,7 +61,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
   // Build trade data map
   const tradeDataMap: { [key: string]: { count: number; pnl: number } } = {};
   trades.forEach(trade => {
-    const date = new Date(trade.exit_time).toISOString().split('T')[0];
+    const date = format(parseISO(trade.exit_time), 'yyyy-MM-dd');
     if (!tradeDataMap[date]) {
       tradeDataMap[date] = { count: 0, pnl: 0 };
     }
@@ -84,7 +86,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
     const allDates = weeks.flat();
     
     allDates.forEach(date => {
-      const dateKey = date.toISOString().split('T')[0];
+      const dateKey = format(date, 'yyyy-MM-dd');
       const data = tradeDataMap[dateKey] || { count: 0, pnl: 0 };
       
       // Count trades by day of week
@@ -116,12 +118,12 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
       { day: 0, count: 0 }
     );
 
-    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     
     return {
       longestWinStreak,
       longestLossStreak,
-      mostActiveDay: dayNames[mostActiveDay.day],
+      // 7 Jan 2024 is a Sunday, so +day gives that weekday
+      mostActiveDay: format(new Date(2024, 0, 7 + Number(mostActiveDay.day)), 'EEEE', { locale: dateLocale(i18n.language) }),
       avgDailyTrades: daysWithTrades > 0 ? (totalTrades / daysWithTrades).toFixed(1) : '0',
     };
   };
@@ -189,7 +191,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
         <TooltipProvider>
           <div className="flex gap-3 overflow-x-auto pb-2 justify-center">
             {/* Weekday labels - all 7 days */}
-            <div className="flex flex-col gap-1 text-xs text-muted-foreground justify-start pt-1">
+            <div className="flex flex-col gap-1 text-xs text-muted-foreground justify-start pt-6">
               <span className="h-6 flex items-center">{t("weekdays.mon")}</span>
               <span className="h-6 flex items-center">{t("weekdays.tue")}</span>
               <span className="h-6 flex items-center">{t("weekdays.wed")}</span>
@@ -213,7 +215,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                   
                   return (
                     <div key={weekIdx} className="w-6 text-center">
-                      {showMonth && firstDayOfWeek.toLocaleDateString(undefined, { month: 'short' })}
+                      {showMonth && format(firstDayOfWeek, 'MMM', { locale: dateLocale(i18n.language) })}
                     </div>
                   );
                 })}
@@ -225,7 +227,7 @@ export function ConsistencyTracker({ trades }: ConsistencyTrackerProps) {
                   <div key={dayIndex} className="flex gap-1">
                     {weeks.map((week, weekIdx) => {
                       const date = week[dayIndex];
-                      const dateKey = date.toISOString().split('T')[0];
+                      const dateKey = format(date, 'yyyy-MM-dd');
                       const data = tradeDataMap[dateKey] || { count: 0, pnl: 0 };
                       
                       return (

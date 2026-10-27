@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -78,7 +79,7 @@ const Journal = () => {
 
       const { error } = await db.from("journal_entries").insert({
         user_id: currentUser.id,
-        date: new Date().toISOString().split("T")[0],
+        date: format(new Date(), "yyyy-MM-dd"), // local day, not UTC
         content: newEntry,
       });
 

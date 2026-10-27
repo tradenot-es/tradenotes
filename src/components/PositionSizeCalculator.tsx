@@ -68,6 +68,8 @@ export function PositionSizeCalculator({
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className={className}>
       <Card className="border-dashed">
         <CollapsibleTrigger asChild>
+          {/* a real button, so the calculator opens by keyboard too */}
+          <button type="button" className="block w-full rounded-t-lg text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
           <CardHeader className="py-3 cursor-pointer hover:bg-muted/50 transition-colors">
             <CardTitle className="flex items-center justify-between text-sm font-medium">
               <div className="flex items-center gap-2">
@@ -80,6 +82,7 @@ export function PositionSizeCalculator({
               )} />
             </CardTitle>
           </CardHeader>
+          </button>
         </CollapsibleTrigger>
         
         <CollapsibleContent>
