@@ -358,8 +358,8 @@ const Index = () => {
 };
 
 function DisciplineWrapper({ trades }: { trades: Trade[] }) {
-  const { goals, dailyResults } = useTradingGoals(trades);
-  return <DisciplinePanel trades={trades} goals={goals} dailyResults={dailyResults} />;
+  const { goals, cooldown, dailyResults } = useTradingGoals(trades);
+  return <DisciplinePanel trades={trades} goals={goals} cooldown={cooldown} dailyResults={dailyResults} />;
 }
 
 // Wrapper component to use the hook

@@ -8,6 +8,7 @@ import {
   DayGoalResult 
 } from "@/types/tradingGoals";
 import { format, parseISO } from "date-fns";
+import { CooldownRule, defaultCooldownRule } from "@/lib/behavior";
 
 interface Trade {
   id: string;
@@ -21,6 +22,7 @@ interface Trade {
 export function useTradingGoals(trades: Trade[]) {
   const { user } = useAuth();
   const [goals, setGoals] = useState<TradingGoalsConfig>(defaultTradingGoals);
+  const [cooldown, setCooldown] = useState<CooldownRule>(defaultCooldownRule);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -32,12 +34,15 @@ export function useTradingGoals(trades: Trade[]) {
   const loadGoals = async () => {
     const { data, error } = await db
       .from("user_settings")
-      .select("trading_goals")
+      .select("trading_goals, cooldown_rule")
       .maybeSingle();
 
     if (!error && data?.trading_goals) {
       const storedGoals = data.trading_goals as unknown as Partial<TradingGoalsConfig>;
       setGoals({ ...defaultTradingGoals, ...storedGoals });
+    }
+    if (!error && data?.cooldown_rule) {
+      setCooldown({ ...defaultCooldownRule, ...(data.cooldown_rule as Partial<CooldownRule>) });
     }
     setLoading(false);
   };
@@ -157,6 +162,7 @@ export function useTradingGoals(trades: Trade[]) {
 
   return {
     goals,
+    cooldown,
     setGoals: saveGoals,
     enabledGoals,
     dailyResults,

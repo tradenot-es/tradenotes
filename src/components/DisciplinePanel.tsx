@@ -1,8 +1,8 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { format, parseISO } from "date-fns";
-import { AlertTriangle, CheckCircle2, OctagonX, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Coffee, OctagonX, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -10,11 +10,20 @@ import { useCurrency } from "@/hooks/useCurrency";
 import { useCountUp } from "@/hooks/useCountUp";
 import { cn } from "@/lib/utils";
 import type { DayGoalResult, GoalKey, TradingGoalsConfig } from "@/types/tradingGoals";
-import { BehaviorTrade, RuleState, detectPatterns, disciplineSummary, todayRuleStatus } from "@/lib/behavior";
+import {
+  BehaviorTrade,
+  CooldownRule,
+  RuleState,
+  cooldownStatus,
+  detectPatterns,
+  disciplineSummary,
+  todayRuleStatus,
+} from "@/lib/behavior";
 
 interface DisciplinePanelProps {
   trades: BehaviorTrade[];
   goals: TradingGoalsConfig;
+  cooldown: CooldownRule;
   dailyResults: DayGoalResult[];
 }
 
@@ -28,6 +37,15 @@ const LABEL_KEYS: Partial<Record<GoalKey, string>> = {
 };
 const MONEY_RULES: GoalKey[] = ["max_drawdown", "max_worst_trade", "max_risk_per_trade"];
 
+/** mm:ss, or h:mm:ss for breaks over an hour */
+function formatCountdown(ms: number) {
+  const total = Math.max(0, Math.ceil(ms / 1000));
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = String(total % 60).padStart(2, "0");
+  return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
+}
+
 const STATE_STYLE: Record<RuleState, { bar: string; text: string; icon: typeof CheckCircle2 }> = {
   ok: { bar: "bg-primary", text: "text-primary", icon: CheckCircle2 },
   warning: { bar: "bg-warning", text: "text-warning", icon: AlertTriangle },
@@ -39,12 +57,20 @@ const STATE_STYLE: Record<RuleState, { bar: string; text: string; icon: typeof C
  * limit is reached, and the 30-day discipline score. Rules are not enforced at
  * the broker; the panel makes breaking them visible.
  */
-export function DisciplinePanel({ trades, goals, dailyResults }: DisciplinePanelProps) {
+export function DisciplinePanel({ trades, goals, cooldown, dailyResults }: DisciplinePanelProps) {
   const { t } = useTranslation();
   const { formatCurrency } = useCurrency();
   const todayKey = format(new Date(), "yyyy-MM-dd");
+  const [now, setNow] = useState(() => new Date());
+  const pause = useMemo(() => cooldownStatus(trades, cooldown, now), [trades, cooldown, now]);
 
-  const { rules, overall, summary, revengeToday } = useMemo(() => {
+  // tick every second while a break runs, otherwise once a minute so a new break shows up
+  useEffect(() => {
+    const id = setInterval(() => setNow(new Date()), pause.until ? 1000 : 60_000);
+    return () => clearInterval(id);
+  }, [pause.until]);
+
+  const { rules, overall: ruleState, summary, revengeToday } = useMemo(() => {
     const flags = detectPatterns(trades, goals.max_trades.enabled ? goals.max_trades.target : undefined);
     const revengeDays = new Set(
       trades.filter((tr) => flags.revenge.has(tr.id)).map((tr) => format(parseISO(tr.entry_time), "yyyy-MM-dd")),
@@ -64,6 +90,8 @@ export function DisciplinePanel({ trades, goals, dailyResults }: DisciplinePanel
   }, [trades, goals, dailyResults, todayKey]);
 
   const score = useCountUp(summary.score ?? 0);
+  // a running break counts as a warning even when every limit is still fine
+  const overall: RuleState = ruleState === "ok" && pause.until ? "warning" : ruleState;
   const StatusIcon = STATE_STYLE[overall].icon;
 
   return (
@@ -97,6 +125,23 @@ export function DisciplinePanel({ trades, goals, dailyResults }: DisciplinePanel
           <div role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm animate-rise-in">
             <p className="font-semibold text-destructive">{t("discipline.stoppedTitle")}</p>
             <p className="mt-1 text-muted-foreground">{t("discipline.stoppedText")}</p>
+          </div>
+        )}
+        {pause.until && (
+          <div role="timer" className="flex items-center gap-3 rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm animate-rise-in">
+            <Coffee className="h-5 w-5 shrink-0 text-warning" aria-hidden />
+            <div className="min-w-0 flex-1">
+              <p className="font-semibold">{t("discipline.cooldownTitle", { count: cooldown.after_losses })}</p>
+              <p className="text-muted-foreground">{t("discipline.cooldownText", { time: format(pause.until, "HH:mm") })}</p>
+            </div>
+            <span className="tabular text-2xl font-bold text-warning" aria-label={t("discipline.cooldownRemaining")}>
+              {formatCountdown(pause.until.getTime() - now.getTime())}
+            </span>
+          </div>
+        )}
+        {pause.ignored > 0 && (
+          <div role="status" className="rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm">
+            <p className="font-medium">{t("discipline.cooldownIgnored", { count: pause.ignored })}</p>
           </div>
         )}
         {revengeToday > 0 && (

@@ -20,6 +20,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Plus } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { TradingGoalsSettings } from "@/components/settings/TradingGoalsSettings";
+import { CooldownSettings } from "@/components/settings/CooldownSettings";
+import { CooldownRule, defaultCooldownRule } from "@/lib/behavior";
 import { TradingGoalsConfig, defaultTradingGoals, GoalKey, TradingGoal } from "@/types/tradingGoals";
 
 const Settings = () => {
@@ -50,6 +52,7 @@ const Settings = () => {
   const [notificationSound, setNotificationSound] = useState(false);
   const [drawdownWarningThreshold, setDrawdownWarningThreshold] = useState(50);
   const [tradingGoals, setTradingGoals] = useState<TradingGoalsConfig>(defaultTradingGoals);
+  const [cooldownRule, setCooldownRule] = useState<CooldownRule>(defaultCooldownRule);
 
   const timezones = [
     "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
@@ -89,7 +92,7 @@ const Settings = () => {
     // Explicitly select only needed columns - exclude webhook_api_key for security
     const { data, error } = await db
       .from("user_settings")
-      .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold, trading_goals")
+      .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold, trading_goals, cooldown_rule")
       .maybeSingle();
 
     if (!error && data) {
@@ -111,6 +114,7 @@ const Settings = () => {
       // Load trading goals from JSONB field
       const storedGoals = (data.trading_goals as unknown as Partial<TradingGoalsConfig>) || {};
       setTradingGoals({ ...defaultTradingGoals, ...storedGoals });
+      setCooldownRule({ ...defaultCooldownRule, ...((data.cooldown_rule as Partial<CooldownRule>) || {}) });
     }
     setLoading(false);
   };
@@ -154,6 +158,7 @@ const Settings = () => {
           notification_sound: notificationSound,
           drawdown_warning_threshold: drawdownWarningThreshold,
           trading_goals: tradingGoals as any,
+          cooldown_rule: cooldownRule as any,
         })
         .eq("id", settingsId);
 
@@ -467,6 +472,8 @@ const Settings = () => {
             onGoalChange={handleGoalChange}
           />
           </div>
+
+          <CooldownSettings rule={cooldownRule} onChange={setCooldownRule} />
 
           {/* Trading Setups with Checklists */}
           <Card>

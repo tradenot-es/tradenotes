@@ -17,11 +17,7 @@ import {
 } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 
-// Collage: real screenshots of the app
-import disciplineShot from "@/assets/screens/discipline-score.webp";
-import daysShot from "@/assets/screens/days.webp";
-import behaviorShot from "@/assets/screens/reports-behavior.webp";
-import equityShot from "@/assets/screens/equity.webp";
+import { useScreens } from "@/lib/screens";
 
 interface FeaturesHeroProps {
   onCategoryClick: (categoryId: string) => void;
@@ -80,6 +76,8 @@ const categoryFilters = [
 
 export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroProps) {
   const { t } = useTranslation();
+  // collage: real screenshots of the app in the current language
+  const shot = useScreens();
   const [searchQuery, setSearchQuery] = useState("");
   const parallaxOffset = useParallax(0.15);
 
@@ -203,8 +201,8 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               {/* Top Left - discipline & score */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={disciplineShot}
-                  alt="Disziplin & TradeNot.es Score"
+                  src={shot("discipline-score")}
+                  alt={`${t("discipline.title")} · ${t("score.title")}`}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
@@ -214,8 +212,8 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               {/* Top Right - day view */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={daysShot}
-                  alt="Tagesansicht"
+                  src={shot("days")}
+                  alt={t("days.title")}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
@@ -225,8 +223,8 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               {/* Bottom Left - behaviour report */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={behaviorShot}
-                  alt="Fehler- & Emotions-Analyse"
+                  src={shot("reports-behavior")}
+                  alt={t("behavior.reportTitle")}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
@@ -236,8 +234,8 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               {/* Bottom Right - equity curve */}
               <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
                 <img
-                  src={equityShot}
-                  alt="Equity Curve"
+                  src={shot("equity")}
+                  alt={t("dashboard.equityCurve")}
                   className="w-full h-full object-cover object-top"
                   loading="lazy"
                   decoding="async"

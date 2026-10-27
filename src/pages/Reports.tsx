@@ -29,6 +29,8 @@ import { PnLChart } from "@/components/PnLChart";
 import { MFEMAEAnalysis } from "@/components/reports/MFEMAEAnalysis";
 import { RiskSimulator } from "@/components/reports/RiskSimulator";
 import { PageHeader } from "@/components/PageHeader";
+import { RuleAdherence } from "@/components/reports/RuleAdherence";
+import { InsightsSummary } from "@/components/reports/InsightsSummary";
 
 interface Trade {
   id: string;
@@ -47,6 +49,7 @@ interface Trade {
   account_type?: string | null;
   mistakes?: string[] | null;
   emotions?: string[] | null;
+  setup_checklist_completed?: boolean[] | null;
 }
 
 export default function Reports() {
@@ -292,7 +295,7 @@ export default function Reports() {
       />
 
       <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-4 lg:grid-cols-9">
+        <TabsList className="h-auto w-full flex-wrap justify-start gap-1">
           <HoverCard>
             <HoverCardTrigger asChild>
               <TabsTrigger value="overview">{t("reports.overview")}</TabsTrigger>
@@ -349,6 +352,15 @@ export default function Reports() {
           
           <HoverCard>
             <HoverCardTrigger asChild>
+              <TabsTrigger value="rules">{t("reports.rules")}</TabsTrigger>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <p className="text-sm">{t("reports.rulesTooltip")}</p>
+            </HoverCardContent>
+          </HoverCard>
+
+          <HoverCard>
+            <HoverCardTrigger asChild>
               <TabsTrigger value="symbols">{t("reports.symbols")}</TabsTrigger>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
@@ -387,6 +399,8 @@ export default function Reports() {
             worstTrade={filteredTrades.length > 0 ? Math.min(...filteredTrades.map(t => t.pnl_net)) : 0}
             totalTrades={filteredTrades.length}
           />
+
+          <InsightsSummary trades={filteredTrades} />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card>
@@ -599,6 +613,10 @@ export default function Reports() {
         </TabsContent>
 
         {/* Symbols Tab */}
+        <TabsContent value="rules" className="space-y-6">
+          <RuleAdherence trades={filteredTrades} />
+        </TabsContent>
+
         <TabsContent value="symbols" className="space-y-6">
           <SymbolPerformance trades={filteredTrades} />
         </TabsContent>

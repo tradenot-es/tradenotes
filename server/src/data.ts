@@ -46,7 +46,7 @@ const TABLES: Record<string, TableConfig> = {
     protected: BASE_PROTECTED,
     conflict: ["user_id,source_id"],
   },
-  ninjatrader_executions: { owner: "user_id", actions: ["select", "delete"], protected: BASE_PROTECTED },
+  executions: { owner: "user_id", actions: ["select", "delete"], protected: BASE_PROTECTED },
   sector_sentiments: { owner: null, actions: ["select"], protected: [] },
 };
 

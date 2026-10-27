@@ -119,17 +119,25 @@ check("upsert daily_prep", up.body.data?.[0]?.id === up2.body.data?.[0]?.id && u
 const upd = await anna.db({ table: "user_settings", action: "update", values: { setup_definitions: [{ name: "ORB" }], webhook_api_key: "x" }, returning: true });
 check("jsonb array saved, protected column ignored", upd.body.data?.[0]?.setup_definitions?.[0]?.name === "ORB" && upd.body.data[0].webhook_api_key !== "x", upd.body);
 
-// webhook import (NinjaTrader entry + exit)
+// webhook import (NinjaTrader add-on)
 const key = (await anna.req("/api/webhook-key")).body.webhook_api_key;
 check("webhook key exists", typeof key === "string" && key.length === 48);
 const hook = (payload: object, k = key) =>
   fetch(base + "/api/import-trades", { method: "POST", headers: { "content-type": "application/json", "x-api-key": k }, body: JSON.stringify(payload) }).then(async (r) => ({ status: r.status, body: await r.json() }));
-const nt = { source: "ninjatrader", account: "Sim101", instrument: "NQ 12-26", quantity: 2, accountType: "sim" };
-const e1 = await hook({ ...nt, action: "Buy", price: 20000, timestamp: "2026-10-27T15:00:00Z", executionId: `e1-${stamp}`, marketPosition: "Long" });
-const e2 = await hook({ ...nt, action: "Sell", price: 20010, timestamp: "2026-10-27T15:05:00Z", executionId: `e2-${stamp}`, marketPosition: "Flat", highDuringTrade: 20015, lowDuringTrade: 19995 });
-check("NinjaTrader entry stored", e1.body.success === true, e1.body);
-check("NinjaTrader exit creates trade", e2.body.trade?.pnl_net === 400 && e2.body.trade?.mfe_price === 20015, e2.body);
-const badKey = await hook(nt, "nope");
+// add-on batch: scale out of 2 ES with commission, resent once
+const fills = [
+  { id: `a1-${stamp}`, side: "buy", qty: 2, price: 6850, time: "2026-10-27T16:00:00Z" },
+  { id: `a2-${stamp}`, side: "sell", qty: 1, price: 6852, time: "2026-10-27T16:03:00Z" },
+  { id: `a3-${stamp}`, side: "sell", qty: 1, price: 6854, time: "2026-10-27T16:07:00Z", high: 6855, low: 6849 },
+].map((f) => ({ ...f, account: "APEX-1-PA", instrument: "ES 12-26", symbol: "ES", instrumentType: "Future", pointValue: 50, commission: 2.5 * f.qty }));
+const batch = await hook({ source: "ninjatrader", executions: fills });
+check("add-on batch creates one trade", batch.body.tradesCreated === 1 && Number(batch.body.trades[0].pnl_net) === 290, batch.body);
+check("add-on account type detected", batch.body.trades?.[0]?.account_type === "performance", batch.body.trades?.[0]);
+const resend = await hook({ source: "ninjatrader", executions: fills });
+check("resent executions are skipped", resend.body.duplicates === 3 && resend.body.tradesCreated === 0, resend.body);
+const badBatch = await hook({ source: "ninjatrader", executions: [{ id: "x" }] });
+check("invalid execution rejected", badBatch.status === 400, badBatch.body);
+const badKey = await hook({ source: "ninjatrader", executions: [] }, "nope");
 check("wrong webhook key rejected", badKey.status === 401, badKey);
 
 // screenshots

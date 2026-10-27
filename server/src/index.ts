@@ -16,7 +16,8 @@ if (env.staticDir) {
 
 // housekeeping (replaces the Supabase cron jobs)
 const cleanup = async () => {
-  await pool.query("delete from ninjatrader_executions where created_at < now() - interval '24 hours'");
+  // matched executions are only kept to skip resent duplicates (the add-on resends the session)
+  await pool.query("delete from executions where matched and created_at < now() - interval '30 days'");
   await pool.query("delete from news_cache where expires_at < now()");
   await pool.query("delete from sector_sentiments where expires_at < now()");
   await pool.query(`delete from verification where "expiresAt" < now()`);

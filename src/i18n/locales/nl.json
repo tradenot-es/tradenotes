@@ -572,47 +572,53 @@
     "helpTvStep4": "Plak de webhook-URL en configureer het berichtformaat met trade-details",
     "helpNtTitle": "🔷 NinjaTrader Integratie",
     "helpNtIntro": "Synchroniseer automatisch trades vanuit NinjaTrader:",
-    "helpNtStep1": "Download het NinjaTrader webhook-script (binnenkort beschikbaar)",
-    "helpNtStep2": "Importeer het script in NinjaTrader (Tools > Import > NinjaScript)",
-    "helpNtStep3": "Activeer de strategie en configureer je webhook-URL",
-    "helpNtStep4": "Trades worden automatisch naar je journal gestuurd na elke uitvoering",
+    "helpNtStep1": "Download de NinjaTrader-add-on op deze pagina (ZIP, je sleutel zit er al in)",
+    "helpNtStep2": "Importeer hem in NinjaTrader: Tools → Import → NinjaScript Add-On",
+    "helpNtStep3": "Start NinjaTrader opnieuw; de add-on draait dan op de achtergrond",
+    "helpNtStep4": "Elke uitvoering wordt verstuurd; zodra een positie flat is, wordt het een trade",
     "helpWebhookTitle": "🔗 Webhook URL",
     "helpWebhookInfo": "Je persoonlijke webhook-URL wordt hierboven weergegeven. Houd deze URL privé omdat het directe toegang geeft tot je handelsjournal.",
     "ntTitle": "NinjaTrader-integratie",
-    "ntDescription": "Synchroniseer uw NinjaTrader 8-trades automatisch in realtime met TradeNot.es",
+    "ntDescription": "Elke uitvoering uit NinjaTrader 8 komt automatisch als trade in je journal, inclusief deeluitvoeringen, kosten en MFE/MAE.",
     "ntApiKeyTitle": "Uw persoonlijke API-sleutel",
-    "ntApiKeyInfo": "Houd deze sleutel veilig. Voer deze in bij de NinjaScript-strategie-parameters.",
+    "ntApiKeyInfo": "De sleutel zit al in de add-on-download. Je hebt hem alleen nodig als je het .cs-bestand handmatig installeert.",
     "ntApiKeySecurityWarning": "Houd deze sleutel veilig. Iedereen met deze sleutel kan trades naar uw account importeren. Deel hem nooit in screenshots of openbare kanalen.",
     "ntApiKeyCopied": "API-sleutel gekopieerd naar klembord",
     "ntRegenerateKey": "Sleutel regenereren",
     "ntRegenerateKeyConfirm": "API-sleutel regenereren?",
-    "ntRegenerateKeyWarning": "Uw huidige API-sleutel werkt niet meer. U moet deze bijwerken in NinjaTrader.",
+    "ntRegenerateKeyWarning": "Je huidige API-sleutel werkt daarna niet meer.",
     "ntApiKeyRegenerated": "Nieuwe API-sleutel succesvol gegenereerd",
     "ntApiKeyRegenerateError": "Fout bij regenereren van API-sleutel",
     "ntWebhookUrlTitle": "Webhook-URL",
-    "ntScriptTitle": "NinjaScript-strategie",
-    "ntScriptDescription": "Download de TradeNotesSync-strategie en installeer deze in NinjaTrader 8",
-    "ntDownloadScript": "NinjaScript downloaden (.cs)",
+    "ntScriptTitle": "NinjaTrader-add-on",
+    "ntScriptDescription": "Eén keer installeren, daarna draait het op de achtergrond: zonder grafiek, voor alle accounts (ook prop-firm-accounts). Gemiste uitvoeringen worden bij de volgende start nagestuurd.",
+    "ntDownloadScript": "Add-on downloaden (.zip)",
     "ntScriptDownloaded": "NinjaScript succesvol gedownload",
-    "ntScriptDownloadedWithKey": "NinjaScript gedownload met je API-sleutel ingebouwd",
-    "ntScriptDownloadError": "Fout bij het downloaden van NinjaScript",
+    "ntScriptDownloadedWithKey": "Add-on gedownload met je API-sleutel",
+    "ntScriptDownloadError": "Add-on kon niet worden gedownload",
     "ntNoApiKeyError": "Geen API-sleutel beschikbaar. Genereer er eerst één.",
     "ntScriptIncludesKey": "Bevat je sleutel",
-    "ntScriptKeyEmbeddedInfo": "De download bevat al je persoonlijke API-sleutel - geen handmatige invoer nodig!",
+    "ntScriptKeyEmbeddedInfo": "De download bevat je persoonlijke API-sleutel, je hoeft niets in te vullen.",
     "ntRegenerateKeyNinjaTraderNote": "Belangrijk voor NinjaTrader:",
-    "ntRegenerateKeyOptionA": "NinjaScript opnieuw downloaden (aanbevolen)",
-    "ntRegenerateKeyOptionB": "Of de API-sleutel handmatig bijwerken in de strategie",
-    "ntPendingTitle": "In behandeling zijnde invoer",
-    "ntPendingDescription": "Deze invoeren wachten op een exit-uitvoering om een volledige transactie te maken",
+    "ntRegenerateKeyOptionA": "Add-on opnieuw downloaden en importeren (aanbevolen)",
+    "ntRegenerateKeyOptionB": "Of de sleutel in TradeNotesSync.cs vervangen en opnieuw compileren",
+    "ntPendingTitle": "Open posities",
+    "ntPendingDescription": "Uitvoeringen van posities die nog niet flat zijn. Zodra de positie gesloten is, worden ze een trade.",
     "ntExecutionDeleted": "In behandeling zijnde uitvoering verwijderd",
     "ntExecutionDeleteError": "Fout bij verwijderen van uitvoering",
     "ntDeleteExecutionConfirm": "In behandeling zijnde uitvoering verwijderen?",
-    "ntDeleteExecutionWarning": "Deze invoer wordt permanent verwijderd en wordt niet gekoppeld aan toekomstige exits.",
+    "ntDeleteExecutionWarning": "De uitvoering wordt definitief verwijderd en niet meer gebruikt om trades te berekenen.",
     "ntSelectAll": "Alles selecteren",
     "ntDeleteSelected": "{{count}} geselecteerde verwijderen",
     "ntDeleteSelectedConfirm": "{{count}} uitvoeringen verwijderen?",
     "ntDeleteSelectedWarning": "Alle geselecteerde invoeren worden permanent verwijderd.",
-    "ntExecutionsDeleted": "{{count}} uitvoeringen verwijderd"
+    "ntExecutionsDeleted": "{{count}} uitvoeringen verwijderd",
+    "ntInstallStep1": "Download de ZIP (je sleutel zit er al in).",
+    "ntInstallStep2": "In NinjaTrader: Control Center → Tools → Import → NinjaScript Add-On… en kies het ZIP-bestand.",
+    "ntInstallStep3": "Start NinjaTrader opnieuw. Vanaf nu komt elke uitvoering hier automatisch binnen. Statusmeldingen: New → NinjaScript Output.",
+    "ntInstallFallback": "Werkt de import niet? Download het bronbestand, kopieer het naar Documenten\\NinjaTrader 8\\bin\\Custom\\AddOns en compileer in de NinjaScript Editor met F5:",
+    "ntLastExecution": "Laatste uitvoering ontvangen {{time}}",
+    "ntNoExecutionYet": "Nog geen uitvoering ontvangen"
   },
   "journal": {
     "title": "Trading dagboek",
@@ -785,7 +791,15 @@
     "currentPassword": "Huidig wachtwoord",
     "backupCodes": "Back-upcodes",
     "backupCodesDesc": "Bewaar deze codes op een veilige plek. Met elke code kun je één keer inloggen als je geen toegang hebt tot je authenticator-app.",
-    "emailChangeSent": "We hebben een e-mail naar je huidige adres gestuurd. Bevestig daar de wijziging."
+    "emailChangeSent": "We hebben een e-mail naar je huidige adres gestuurd. Bevestig daar de wijziging.",
+    "cooldown": {
+      "title": "Verplichte pauze na een verliesreeks",
+      "description": "Na meerdere verliezen op rij toont het dashboard een aftelklok tot je weer zou moeten handelen.",
+      "enable": "Verplichte pauze inschakelen",
+      "afterLosses": "Na verliezen op rij",
+      "minutes": "Pauze in minuten",
+      "hint": "De pauze begint bij het sluiten van de laatste verliestrade. tradenot.es blokkeert je brokeraccount niet; de aftelklok is alleen een herinnering."
+    }
   },
   "notFound": {
     "title": "404",
@@ -1803,7 +1817,9 @@
     "dailySummaryTooltip": "Ontvang automatische analyse van je dagelijkse trading prestaties met verbeteringssuggesties.",
     "generateSummary": "Samenvatting Genereren",
     "generatingSummary": "Genereren...",
-    "noTradesForSummary": "Geen transacties gevonden voor deze dag."
+    "noTradesForSummary": "Geen transacties gevonden voor deze dag.",
+    "rules": "Regeltrouw",
+    "rulesTooltip": "Heb je je setup-checklist gevolgd? Proces tegenover resultaat: verdiende winsten, goede verliezen, geluktreffers."
   },
   "filters": {
     "filters": "Filters",
@@ -2220,7 +2236,7 @@
     "howToEnable": "Hoe activeer je deze functie",
     "requiresData": "Deze analyse vereist high/low prijsdata tijdens de trade, die alleen je trading platform automatisch kan bijhouden.",
     "ninjaTraderTitle": "NinjaTrader Gebruikers",
-    "ninjaTraderAutomatic": "Het huidige TradeNotesSync script legt MFE/MAE automatisch vast! Download de nieuwste versie en installeer deze in NinjaTrader.",
+    "ninjaTraderAutomatic": "De TradeNotesSync-add-on legt MFE/MAE automatisch vast. Download de nieuwste versie op de importpagina.",
     "automaticTracking": "✓ Automatische high/low tracking tijdens open posities",
     "ninjaTraderHint": "Breid je TradeNotesSync script uit om highDuringTrade en lowDuringTrade velden te versturen. Deze worden automatisch geconverteerd naar MFE/MAE.",
     "comingSoon": "Functie beschikbaar zodra trades met high/low data zijn geïmporteerd",
@@ -2522,7 +2538,13 @@
     "scoreDetail": "{{clean}} van {{total}} handelsdagen zonder regelbreuk",
     "daysStrip": "Handelsdagen van de afgelopen 30 dagen",
     "dayKept": "Regels nageleefd",
-    "dayBroken": "Regel gebroken"
+    "dayBroken": "Regel gebroken",
+    "cooldownTitle_one": "Pauze na {{count}} verlies",
+    "cooldownTitle_other": "Pauze na {{count}} verliezen op rij",
+    "cooldownText": "Sta even op. Volgende trade niet voor {{time}}.",
+    "cooldownRemaining": "Resterende pauzetijd",
+    "cooldownIgnored_one": "Vandaag is {{count}} trade geopend tijdens een pauze.",
+    "cooldownIgnored_other": "Vandaag zijn {{count}} trades geopend tijdens een pauze."
   },
   "score": {
     "title": "TradeNot.es Score",
@@ -2577,6 +2599,62 @@
     "lossReview": {
       "title": "Verliesanalyse",
       "body": "VERLIESANALYSE\n\nTrade (symbool, tijd, resultaat):\n\nWas de instap onderdeel van mijn plan?\n\nWaar zat de fout: idee, instap, positiegrootte, uitstap?\n\nWat voelde ik op dat moment?\n\nWat doe ik de volgende keer anders?"
+    }
+  },
+  "adherence": {
+    "title": "Regeltrouw",
+    "subtitle": "Proces tegenover resultaat: heb je de regels van je setup gevolgd, en hoe liep de trade af?",
+    "empty": "Nog geen gegevens. Maak in Instellingen een checklist voor je setups en vink die aan bij het vastleggen van een trade. Trades met de fout ‘Regels overtreden’ tellen ook mee.",
+    "defineChecklists": "Checklists maken",
+    "rate": "Regeltrouw",
+    "rateDetail": "{{followed}} van {{rated}} beoordeelde trades volgden alle regels",
+    "unrated_one": "{{count}} trade zonder checklist telt niet mee.",
+    "unrated_other": "{{count}} trades zonder checklist tellen niet mee.",
+    "matrixLabel": "Proces en resultaat",
+    "matrix": {
+      "goodWin": "Verdiende winst",
+      "goodWinHint": "Regels gevolgd · winst",
+      "goodLoss": "Goed verlies",
+      "goodLossHint": "Regels gevolgd · verlies. Hoort erbij.",
+      "badWin": "Geluktreffer",
+      "badWinHint": "Regels overtreden · winst. Gevaarlijk, omdat het fouten beloont.",
+      "badLoss": "Eigen schuld",
+      "badLossHint": "Regels overtreden · verlies"
+    },
+    "groups": {
+      "followed": "Alle regels gevolgd",
+      "partial": "Deels gevolgd",
+      "broken": "Regels overtreden"
+    },
+    "avgByGroup": "Gem. resultaat per trade",
+    "avgByGroupHint": "Loont het om je regels te volgen?",
+    "bySetup": "Per setup",
+    "bySetupHint": "Regeltrouw en gem. resultaat met en zonder gevolgde regels",
+    "setup": "Setup",
+    "avgFollowed": "Gem. gevolgd",
+    "avgNotFollowed": "Gem. niet gevolgd",
+    "tradesCount_one": "{{count}} trade",
+    "tradesCount_other": "{{count}} trades"
+  },
+  "insights": {
+    "title": "Wat voor jou werkt",
+    "subtitle": "Je sterkste en zwakste setups, weekdagen, tijden, symbolen en richtingen (groepen met minstens {{min}} trades)",
+    "strengths": "Sterke punten",
+    "weaknesses": "Zwakke punten",
+    "noStrengths": "Nog geen groep met genoeg trades in de plus.",
+    "noWeaknesses": "Geen groep met genoeg trades in de min.",
+    "detail": "{{count}} trades · {{winRate}}% raak · gem. {{avg}}",
+    "hourRange": "{{from}}:00–{{to}}:00",
+    "dimension": {
+      "setup": "Setup",
+      "weekday": "Weekdag",
+      "hour": "Instaptijd",
+      "symbol": "Symbool",
+      "side": "Richting"
+    },
+    "side": {
+      "long": "Long",
+      "short": "Short"
     }
   }
 }

@@ -172,6 +172,58 @@ export function disciplineSummary(
   };
 }
 
+// --- cooldown -----------------------------------------------------------------
+
+/** Self-imposed break after a losing streak, stored in user_settings.cooldown_rule. */
+export interface CooldownRule {
+  enabled: boolean;
+  /** consecutive losing trades that start the break */
+  after_losses: number;
+  minutes: number;
+}
+
+export const defaultCooldownRule: CooldownRule = { enabled: false, after_losses: 2, minutes: 30 };
+
+export interface CooldownStatus {
+  /** end of the running break, null when none is running */
+  until: Date | null;
+  /** today's trades opened while a break was running */
+  ignored: number;
+}
+
+/**
+ * Walks today's trades in exit order: every `after_losses` losses in a row start a
+ * break of `minutes` from the last loss's exit. A trade entered before a break ended
+ * counts as ignored; a win resets the streak.
+ */
+export function cooldownStatus(trades: BehaviorTrade[], rule: CooldownRule, now = new Date()): CooldownStatus {
+  if (!rule.enabled || rule.after_losses < 1 || rule.minutes <= 0) return { until: null, ignored: 0 };
+  const today = format(now, "yyyy-MM-dd");
+  const dayTrades = trades.filter((t) => dayOf(t.exit_time) === today).sort((a, b) => a.exit_time.localeCompare(b.exit_time));
+
+  const breaks: { from: number; to: number }[] = [];
+  let streak = 0;
+  for (const t of dayTrades) {
+    if (t.pnl_net < 0) {
+      streak++;
+      if (streak >= rule.after_losses) {
+        const from = parseISO(t.exit_time).getTime();
+        breaks.push({ from, to: from + rule.minutes * 60_000 });
+        streak = 0;
+      }
+    } else if (t.pnl_net > 0) {
+      streak = 0;
+    }
+  }
+
+  const ignored = dayTrades.filter((t) => {
+    const entry = parseISO(t.entry_time).getTime();
+    return breaks.some((b) => entry > b.from && entry < b.to);
+  }).length;
+  const last = breaks[breaks.length - 1];
+  return { until: last && last.to > now.getTime() ? new Date(last.to) : null, ignored };
+}
+
 // --- TradeNot.es Score --------------------------------------------------------
 
 export const SCORE_MIN_TRADES = 10;

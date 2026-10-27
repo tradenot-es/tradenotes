@@ -1,458 +1,374 @@
+// TradeNot.es Sync – NinjaTrader 8 add-on
+//
+// Sends every fill of every connected account to your TradeNot.es journal. TradeNot.es
+// turns the fills into trades (partial fills, scaling in/out and reversals included).
+// Runs in the background as soon as NinjaTrader starts; no chart or strategy needed.
+//
+// Install: download the ZIP from the TradeNot.es import page, then in NinjaTrader
+// Control Center → Tools → Import → NinjaScript Add-On. Your API key is already inside.
+// Status messages appear in New → NinjaScript Output.
+//
+// Fills that cannot be sent (no internet) are kept in TradeNotesOutbox.txt in the
+// NinjaTrader user folder and sent later. On start the add-on resends the fills of the
+// current session; TradeNot.es skips the ones it already has.
+
 #region Using declarations
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Xml.Serialization;
 using System.Globalization;
-using NinjaTrader.Cbi;
-using NinjaTrader.Gui;
-using NinjaTrader.Gui.Chart;
-using NinjaTrader.Gui.SuperDom;
-using NinjaTrader.Gui.Tools;
-using NinjaTrader.Data;
-using NinjaTrader.NinjaScript;
-using NinjaTrader.Core.FloatingPoint;
-using NinjaTrader.NinjaScript.Indicators;
-using NinjaTrader.NinjaScript.DrawingTools;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Text;
+using System.Threading;
+using NinjaTrader.Cbi;
+using NinjaTrader.Data;
 #endregion
 
-//This namespace holds Strategies in this folder and is required. Do not change it.
-namespace NinjaTrader.NinjaScript.Strategies
+namespace NinjaTrader.NinjaScript.AddOns
 {
-	/// <summary>
-	/// TradeNot.es Sync for NinjaTrader 8
-	/// Automatically syncs all account trades to your TradeNot.es journal
-	/// 
-	/// Installation:
-	/// 1. Open NinjaScript Editor
-	/// 2. Right-click in the editor and select "References..."
-	/// 3. Click "Add" and add System.Net.Http.dll
-	/// 4. Create new Strategy and paste this code
-	/// 5. Press F5 to compile
-	/// 
-	/// Configuration:
-	/// 1. Get your API Key from TradeNot.es Import page
-	/// 2. Add this strategy to your chart (does not trade, only listens)
-	/// 3. Enter your API Key in the strategy parameters
-	/// 4. All your trades will be automatically synced to TradeNot.es
-	/// </summary>
-	public class TradeNotesSync : Strategy
+	public class TradeNotesSync : AddOnBase
 	{
-		private static readonly HttpClient httpClient = new HttpClient();
-		private object lockObject = new object();
-		
-		// MFE/MAE Tracking: Track high/low prices during open positions
-		private Dictionary<string, PositionTracker> positionTrackers = new Dictionary<string, PositionTracker>();
-		
-		private class PositionTracker
+		// filled in by the TradeNot.es import page when you download the add-on
+		private const string ApiKey = "YOUR_API_KEY_HERE";
+		private const string Endpoint = "https://tradenot.es/api/import-trades";
+		private const string ClientVersion = "2.0";
+		private const int BatchSize = 200;
+
+		private static readonly HttpClient http = new HttpClient { Timeout = TimeSpan.FromSeconds(20) };
+
+		private readonly object sync = new object();
+		private readonly HashSet<Account> attached = new HashSet<Account>();
+		// open position per account + instrument, for the high/low while it is open (MFE/MAE)
+		private readonly Dictionary<string, Tracker> trackers = new Dictionary<string, Tracker>();
+		private readonly Dictionary<Instrument, MarketData> feeds = new Dictionary<Instrument, MarketData>();
+		// JSON objects waiting to be sent
+		private readonly List<string> outbox = new List<string>();
+		private string outboxPath;
+		private Timer flushTimer;
+		private int flushing;
+
+		private class Tracker
 		{
-			public double EntryPrice { get; set; }
-			public double HighPrice { get; set; }
-			public double LowPrice { get; set; }
-			public DateTime EntryTime { get; set; }
-			public string Side { get; set; } // "Long" or "Short"
+			public Instrument Instrument;
+			public double Net;
+			public double High;
+			public double Low;
 		}
 
 		protected override void OnStateChange()
 		{
 			if (State == State.SetDefaults)
 			{
-				Description = @"Automatically syncs ALL account trades to TradeNot.es with MFE/MAE tracking. Install by adding System.Net.Http.dll reference.";
 				Name = "TradeNotesSync";
-				Calculate = Calculate.OnEachTick; // Changed to OnEachTick for MFE/MAE tracking
-				EntriesPerDirection = 1;
-				EntryHandling = EntryHandling.AllEntries;
-				IsExitOnSessionCloseStrategy = true;
-				ExitOnSessionCloseSeconds = 30;
-				IsFillLimitOnTouch = false;
-				MaximumBarsLookBack = MaximumBarsLookBack.TwoHundredFiftySix;
-				OrderFillResolution = OrderFillResolution.Standard;
-				Slippage = 0;
-				StartBehavior = StartBehavior.WaitUntilFlat;
-				TimeInForce = TimeInForce.Gtc;
-				TraceOrders = false;
-				RealtimeErrorHandling = RealtimeErrorHandling.StopCancelClose;
-				StopTargetHandling = StopTargetHandling.PerEntryExecution;
-				BarsRequiredToTrade = 20;
-				
-				// Default values (must be configured by user)
-				WebhookUrl = "https://tradenot.es/api/import-trades";
-				ApiKey = "YOUR_API_KEY_HERE"; // Get from TradeNot.es Import page
+				Description = "Sends your fills to TradeNot.es";
 			}
-		else if (State == State.Configure)
-		{
-			// Configuration is done per-request in SendWebhookAsync
-		}
-			else if (State == State.Realtime)
+			else if (State == State.Active)
 			{
-				// Subscribe to account executions to capture ALL trades (not just strategy trades)
-				if (Account != null && Account.Executions != null)
-				{
-					Account.ExecutionUpdate += OnAccountExecutionUpdate;
-					Print("TradeNot.es Sync: Subscribed to account executions (with MFE/MAE tracking)");
-				}
+				ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+				outboxPath = Path.Combine(NinjaTrader.Core.Globals.UserDataDir, "TradeNotesOutbox.txt");
+				LoadOutbox();
+
+				Account.AccountStatusUpdate += OnAccountStatusUpdate;
+				List<Account> accounts;
+				lock (Account.All)
+					accounts = Account.All.ToList();
+				foreach (Account account in accounts)
+					Attach(account);
+
+				flushTimer = new Timer(_ => Flush(), null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(30));
+				Log("TradeNot.es Sync " + ClientVersion + " aktiv / active (" + accounts.Count + " Konten / accounts)");
 			}
 			else if (State == State.Terminated)
 			{
-				// Unsubscribe when strategy is disabled
-				if (Account != null)
+				Account.AccountStatusUpdate -= OnAccountStatusUpdate;
+				if (flushTimer != null)
+					flushTimer.Dispose();
+				lock (sync)
 				{
-					Account.ExecutionUpdate -= OnAccountExecutionUpdate;
-				}
-				positionTrackers.Clear();
-			}
-		}
-
-		protected override void OnBarUpdate()
-		{
-			// MFE/MAE Tracking: Update high/low prices for all open positions
-			if (State != State.Realtime)
-				return;
-			
-			lock (lockObject)
-			{
-				foreach (var kvp in positionTrackers)
-				{
-					var tracker = kvp.Value;
-					double currentPrice = Close[0];
-					
-					if (currentPrice > tracker.HighPrice)
-						tracker.HighPrice = currentPrice;
-					if (currentPrice < tracker.LowPrice)
-						tracker.LowPrice = currentPrice;
-				}
-			}
-		}
-		
-		protected override void OnMarketData(MarketDataEventArgs marketDataUpdate)
-		{
-			// More granular MFE/MAE tracking on every tick
-			if (marketDataUpdate.MarketDataType != MarketDataType.Last)
-				return;
-			
-			double currentPrice = marketDataUpdate.Price;
-			
-			lock (lockObject)
-			{
-				foreach (var kvp in positionTrackers)
-				{
-					var tracker = kvp.Value;
-					
-					if (currentPrice > tracker.HighPrice)
-						tracker.HighPrice = currentPrice;
-					if (currentPrice < tracker.LowPrice)
-						tracker.LowPrice = currentPrice;
+					foreach (Account account in attached)
+						account.ExecutionUpdate -= OnExecutionUpdate;
+					attached.Clear();
+					foreach (MarketData feed in feeds.Values)
+						feed.Update -= OnMarketData;
+					feeds.Clear();
+					trackers.Clear();
+					SaveOutbox();
 				}
 			}
 		}
 
-		private void OnAccountExecutionUpdate(object sender, ExecutionEventArgs e)
+		// accounts that connect later (e.g. after a connection loss)
+		private void OnAccountStatusUpdate(object sender, AccountStatusEventArgs e)
 		{
-			// This captures ALL executions from the account, not just strategy orders
-			if (e.Execution == null || e.Execution.Order == null)
-				return;
+			if (e.Account != null)
+				Attach(e.Account);
+		}
 
-			// Only send on actual fills (not working orders)
-			if (e.Execution.Order.OrderState == OrderState.Filled || e.Execution.Order.OrderState == OrderState.PartFilled)
+		private void Attach(Account account)
+		{
+			lock (sync)
 			{
-				// Get the ACTUAL account position for this instrument AFTER the execution
-				// This is the key fix - we query the real position, not derive it from the action
-				MarketPosition actualPosition = MarketPosition.Flat;
-				
-				try
+				if (account == null || attached.Contains(account))
+					return;
+				attached.Add(account);
+			}
+			account.ExecutionUpdate += OnExecutionUpdate;
+
+			// positions that are already open: start the high/low from the average price
+			lock (account.Positions)
+			{
+				foreach (Position position in account.Positions)
 				{
-					// Access the account's positions collection to get the real position
-					var instrument = e.Execution.Order.Instrument;
-					var account = e.Execution.Order.Account;
-					string positionKey = account.Name + "_" + instrument.FullName;
-					
-					// Get the actual position from the account
-					// This reflects the position AFTER the execution has been processed
-					if (account != null && account.Positions != null)
-					{
-						foreach (var position in account.Positions)
+					if (position.MarketPosition == MarketPosition.Flat)
+						continue;
+					lock (sync)
+						trackers[Key(account, position.Instrument)] = new Tracker
 						{
-							if (position.Instrument == instrument)
-							{
-								actualPosition = position.MarketPosition;
-								break;
-							}
+							Instrument = position.Instrument,
+							Net = position.MarketPosition == MarketPosition.Long ? position.Quantity : -position.Quantity,
+							High = position.AveragePrice,
+							Low = position.AveragePrice,
+						};
+				}
+			}
+			UpdateFeeds();
+
+			// resend the session's fills; TradeNot.es skips known ones
+			List<Execution> executions;
+			lock (account.Executions)
+				executions = account.Executions.OrderBy(x => x.Time).ToList();
+			foreach (Execution execution in executions)
+				Enqueue(ToJson(execution, double.NaN, double.NaN));
+		}
+
+		private void OnExecutionUpdate(object sender, ExecutionEventArgs e)
+		{
+			Execution execution = e.Execution;
+			if (execution == null || execution.Instrument == null || execution.Account == null || execution.Quantity <= 0)
+				return;
+
+			string key = Key(execution.Account, execution.Instrument);
+			double signed = execution.MarketPosition == MarketPosition.Long ? execution.Quantity : -execution.Quantity;
+			double high, low;
+			lock (sync)
+			{
+				Tracker tracker;
+				if (!trackers.TryGetValue(key, out tracker))
+				{
+					tracker = new Tracker { Instrument = execution.Instrument, Net = 0, High = execution.Price, Low = execution.Price };
+					trackers[key] = tracker;
+				}
+				tracker.High = Math.Max(tracker.High, execution.Price);
+				tracker.Low = Math.Min(tracker.Low, execution.Price);
+				high = tracker.High;
+				low = tracker.Low;
+
+				double before = tracker.Net;
+				tracker.Net += signed;
+				if (Math.Abs(tracker.Net) < 1e-9)
+					trackers.Remove(key);
+				else if (Math.Sign(before) != 0 && Math.Sign(before) != Math.Sign(tracker.Net))
+				{
+					// reversed: the new position starts at this price
+					tracker.High = execution.Price;
+					tracker.Low = execution.Price;
+				}
+			}
+			UpdateFeeds();
+			Enqueue(ToJson(execution, high, low));
+		}
+
+		// last-price feed for every instrument with an open position
+		private void UpdateFeeds()
+		{
+			lock (sync)
+			{
+				HashSet<Instrument> needed = new HashSet<Instrument>(trackers.Values.Select(t => t.Instrument));
+				foreach (Instrument instrument in needed)
+				{
+					if (feeds.ContainsKey(instrument))
+						continue;
+					MarketData feed = new MarketData(instrument);
+					feed.Update += OnMarketData;
+					feeds[instrument] = feed;
+				}
+				foreach (Instrument instrument in feeds.Keys.Where(i => !needed.Contains(i)).ToList())
+				{
+					feeds[instrument].Update -= OnMarketData;
+					feeds.Remove(instrument);
+				}
+			}
+		}
+
+		private void OnMarketData(object sender, MarketDataEventArgs e)
+		{
+			if (e.MarketDataType != MarketDataType.Last || e.Price <= 0)
+				return;
+			lock (sync)
+			{
+				foreach (Tracker tracker in trackers.Values)
+				{
+					if (tracker.Instrument != e.Instrument)
+						continue;
+					tracker.High = Math.Max(tracker.High, e.Price);
+					tracker.Low = Math.Min(tracker.Low, e.Price);
+				}
+			}
+		}
+
+		private static string Key(Account account, Instrument instrument)
+		{
+			return account.Name + "|" + instrument.FullName;
+		}
+
+		private static string ToJson(Execution execution, double high, double low)
+		{
+			Instrument instrument = execution.Instrument;
+			// execution times are in the time zone set in NinjaTrader's options
+			DateTime utc = TimeZoneInfo.ConvertTimeToUtc(
+				DateTime.SpecifyKind(execution.Time, DateTimeKind.Unspecified),
+				NinjaTrader.Core.Globals.GeneralOptions.TimeZoneInfo);
+
+			StringBuilder json = new StringBuilder("{");
+			Field(json, "id", execution.ExecutionId);
+			Field(json, "account", execution.Account.Name);
+			Field(json, "instrument", instrument.FullName);
+			Field(json, "symbol", instrument.MasterInstrument.Name);
+			Field(json, "instrumentType", instrument.MasterInstrument.InstrumentType.ToString());
+			Field(json, "side", execution.MarketPosition == MarketPosition.Long ? "buy" : "sell");
+			Number(json, "qty", execution.Quantity);
+			Number(json, "price", execution.Price);
+			Field(json, "time", utc.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture));
+			Number(json, "commission", Math.Abs(execution.Commission));
+			Number(json, "pointValue", instrument.MasterInstrument.PointValue);
+			if (!double.IsNaN(high))
+				Number(json, "high", high);
+			if (!double.IsNaN(low))
+				Number(json, "low", low);
+			json.Length--; // trailing comma
+			return json.Append('}').ToString();
+		}
+
+		private static void Field(StringBuilder json, string name, string value)
+		{
+			json.Append('"').Append(name).Append("\":\"");
+			foreach (char c in value ?? "")
+			{
+				if (c == '"' || c == '\\')
+					json.Append('\\').Append(c);
+				else if (c < ' ')
+					json.Append("\\u").Append(((int)c).ToString("x4"));
+				else
+					json.Append(c);
+			}
+			json.Append("\",");
+		}
+
+		private static void Number(StringBuilder json, string name, double value)
+		{
+			json.Append('"').Append(name).Append("\":").Append(value.ToString("R", CultureInfo.InvariantCulture)).Append(',');
+		}
+
+		private void Enqueue(string json)
+		{
+			lock (sync)
+			{
+				outbox.Add(json);
+				SaveOutbox();
+			}
+			ThreadPool.QueueUserWorkItem(_ => Flush());
+		}
+
+		// sends the outbox in batches; on failure everything stays for the next try
+		private void Flush()
+		{
+			if (Interlocked.Exchange(ref flushing, 1) == 1)
+				return;
+			try
+			{
+				while (true)
+				{
+					List<string> batch;
+					lock (sync)
+					{
+						if (outbox.Count == 0)
+							return;
+						batch = outbox.Take(BatchSize).ToList();
+					}
+
+					string body = "{\"source\":\"ninjatrader\",\"client\":\"addon-" + ClientVersion + "\",\"executions\":["
+						+ string.Join(",", batch) + "]}";
+					using (HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, Endpoint))
+					{
+						request.Headers.Add("X-API-Key", ApiKey);
+						request.Content = new StringContent(body, Encoding.UTF8, "application/json");
+						HttpResponseMessage response = http.SendAsync(request).Result;
+						string answer = response.Content.ReadAsStringAsync().Result;
+						if (!response.IsSuccessStatusCode)
+						{
+							if (response.StatusCode == HttpStatusCode.Unauthorized)
+								Log("API-Schlüssel ungültig. Lade das Add-on auf der Import-Seite neu herunter. / Invalid API key, download the add-on again.");
+							else
+								Log("Fehler / error " + (int)response.StatusCode + ": " + answer);
+							if (response.StatusCode != HttpStatusCode.BadRequest)
+								return;
+							// a batch the server rejects would block the queue forever
+						}
+						else if (!answer.Contains("\"tradesCreated\":0"))
+						{
+							Log("Trades an TradeNot.es übertragen / sent: " + answer.Substring(0, Math.Min(answer.Length, 120)));
 						}
 					}
-					
-					// MFE/MAE Tracking Logic
-					double highDuringTrade = 0;
-					double lowDuringTrade = 0;
-					
-					if (actualPosition == MarketPosition.Flat)
+					lock (sync)
 					{
-						// Position closed - get MFE/MAE data and clean up tracker
-						lock (lockObject)
-						{
-							if (positionTrackers.ContainsKey(positionKey))
-							{
-								var tracker = positionTrackers[positionKey];
-								highDuringTrade = tracker.HighPrice;
-								lowDuringTrade = tracker.LowPrice;
-								positionTrackers.Remove(positionKey);
-								Print(string.Format("TradeNot.es MFE/MAE: High={0}, Low={1}", highDuringTrade, lowDuringTrade));
-							}
-						}
-					}
-					else
-					{
-						// Position opened or added to - start or update tracking
-						lock (lockObject)
-						{
-							if (!positionTrackers.ContainsKey(positionKey))
-							{
-								positionTrackers[positionKey] = new PositionTracker
-								{
-									EntryPrice = e.Execution.Price,
-									HighPrice = e.Execution.Price,
-									LowPrice = e.Execution.Price,
-									EntryTime = e.Execution.Time,
-									Side = actualPosition.ToString()
-								};
-								Print(string.Format("TradeNot.es: Started MFE/MAE tracking for {0}", positionKey));
-							}
-						}
-					}
-					
-					Print(string.Format("TradeNot.es: Execution {0} {1}, Actual Position: {2}", 
-						e.Execution.Order.OrderAction, 
-						instrument.FullName, 
-						actualPosition));
-					
-					// Send webhook asynchronously with MFE/MAE data
-					Task.Run(() => SendWebhookAsync(
-						e.Execution, 
-						e.Execution.Price, 
-						e.Execution.Quantity, 
-						e.Execution.Time,
-						actualPosition,
-						highDuringTrade,
-						lowDuringTrade
-					));
-				}
-				catch (Exception ex)
-				{
-					Print("TradeNot.es: Error getting position: " + ex.Message);
-					// Fallback: derive from action (less reliable but better than nothing)
-					if (e.Execution.Order.OrderAction == OrderAction.Buy || e.Execution.Order.OrderAction == OrderAction.BuyToCover)
-						actualPosition = MarketPosition.Long;
-					else if (e.Execution.Order.OrderAction == OrderAction.Sell || e.Execution.Order.OrderAction == OrderAction.SellShort)
-						actualPosition = MarketPosition.Short;
-					
-					Task.Run(() => SendWebhookAsync(
-						e.Execution, 
-						e.Execution.Price, 
-						e.Execution.Quantity, 
-						e.Execution.Time,
-						actualPosition,
-						0,
-						0
-					));
-				}
-			}
-		}
-
-	private string DetectAccountType(string accountName)
-	{
-		string accName = accountName.ToUpper();
-		
-		// 1. Simulation (Standard NT8)
-		if (accName.StartsWith("SIM") || accName.Contains("REPLAY") || accName.Contains("DEMO") || accName.Contains("PAPER"))
-			return "sim";
-		
-		// 2. Apex Trader Funding
-		if (accName.Contains("APEX"))
-		{
-			if (accName.Contains("PA") || accName.Contains("FUNDED")) return "performance";
-			return "evaluation";
-		}
-		
-		// 3. Topstep
-		if (accName.Contains("TOPSTEP") || accName.StartsWith("TS"))
-		{
-			if (accName.Contains("XFA") || accName.Contains("FUNDED") || accName.Contains("PRO")) return "performance";
-			return "evaluation";
-		}
-		
-		// 4. Tradeify
-		if (accName.Contains("TRADEIFY") || accName.StartsWith("TF"))
-		{
-			if (accName.Contains("PA") || accName.Contains("FUNDED")) return "performance";
-			return "evaluation";
-		}
-		
-		// 5. MyFundedFutures (MFF)
-		if (accName.Contains("MFF") || accName.Contains("MYFUNDEDFUTURES"))
-		{
-			if (accName.Contains("PRO") || accName.Contains("LIVE")) return "performance";
-			return "evaluation";
-		}
-		
-		// 6. TakeProfitTrader
-		if (accName.Contains("TPT") || accName.Contains("TAKEPROFIT"))
-		{
-			if (accName.Contains("PRO")) return "performance";
-			return "evaluation";
-		}
-		
-		// 7. Bulenox
-		if (accName.Contains("BULENOX"))
-		{
-			if (accName.Contains("MASTER")) return "performance";
-			return "evaluation";
-		}
-		
-		// 8. Earn2Trade
-		if (accName.Contains("E2T") || accName.Contains("EARN2TRADE"))
-		{
-			if (accName.Contains("FUNDED") || accName.Contains("GAUNTLET")) return "performance";
-			return "evaluation";
-		}
-		
-		// 9. Leeloo Trading
-		if (accName.Contains("LEELOO"))
-		{
-			if (accName.Contains("INVESTOR")) return "performance";
-			return "evaluation";
-		}
-		
-		// 10. TradeDay
-		if (accName.Contains("TRADEDAY") || accName.StartsWith("TD"))
-		{
-			if (accName.Contains("FUNDED") || accName.Contains("LIVE")) return "performance";
-			return "evaluation";
-		}
-		
-		// 11. Uprofit
-		if (accName.Contains("UPROFIT"))
-		{
-			if (accName.Contains("FUNDED")) return "performance";
-			return "evaluation";
-		}
-		
-		// 12. TheTradingPit
-		if (accName.Contains("TRADINGPIT") || accName.Contains("TTP"))
-		{
-			if (accName.Contains("FUNDED")) return "performance";
-			return "evaluation";
-		}
-		
-		// Default: Live broker account
-		return "live";
-	}
-
-	private async Task SendWebhookAsync(Execution execution, double price, int quantity, DateTime time, MarketPosition marketPosition, double highDuringTrade, double lowDuringTrade)
-	{
-		try 
-		{
-			string action = execution.Order.OrderAction.ToString(); // "Buy", "Sell", "BuyToCover", "SellShort"
-			string instrument = execution.Order.Instrument.FullName;
-			string account = execution.Order.Account.Name;
-			string accountType = DetectAccountType(account); // Detect account type
-			
-			// ISO 8601 timestamp format - convert local time to UTC
-			string timeStr = time.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture);
-
-			// Build JSON payload with accountType, actual marketPosition, and MFE/MAE data
-			// marketPosition now reflects the ACTUAL position after execution:
-			// - "Flat" = position was closed (this is an EXIT) → includes highDuringTrade/lowDuringTrade
-			// - "Long" = position is long (this is an ENTRY or add-on)
-			// - "Short" = position is short (this is an ENTRY or add-on)
-			string jsonPayload = string.Format(
-				"{{" +
-				"\"source\": \"ninjatrader\"," +
-				"\"account\": \"{0}\"," +
-				"\"instrument\": \"{1}\"," +
-				"\"action\": \"{2}\"," +
-				"\"quantity\": {3}," +
-				"\"price\": {4}," +
-				"\"timestamp\": \"{5}\"," +
-				"\"executionId\": \"{6}\"," +
-				"\"orderId\": \"{7}\"," +
-				"\"marketPosition\": \"{8}\"," +
-				"\"accountType\": \"{9}\"," +
-				"\"highDuringTrade\": {10}," +
-				"\"lowDuringTrade\": {11}" +
-				"}}",
-				account,
-				instrument,
-				action,
-				quantity,
-				price.ToString(CultureInfo.InvariantCulture),
-				timeStr,
-				execution.ExecutionId,
-				execution.Order.OrderId,
-				marketPosition.ToString(), // Now contains the ACTUAL position: "Flat", "Long", or "Short"
-				accountType, // "sim", "evaluation", "performance", or "live"
-				highDuringTrade.ToString(CultureInfo.InvariantCulture), // MFE/MAE: Highest price during trade
-				lowDuringTrade.ToString(CultureInfo.InvariantCulture)   // MFE/MAE: Lowest price during trade
-			);
-
-			var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-			
-			// Create request with explicit API key header
-			using (var request = new HttpRequestMessage(HttpMethod.Post, WebhookUrl))
-			{
-				request.Content = content;
-				
-				// Add API key header for authentication
-				if (!string.IsNullOrEmpty(ApiKey) && ApiKey != "YOUR_API_KEY_HERE")
-				{
-					request.Headers.Add("X-API-Key", ApiKey);
-				}
-				
-				// Send webhook to TradeNot.es
-				HttpResponseMessage response = await httpClient.SendAsync(request);
-				
-				if (!response.IsSuccessStatusCode)
-				{
-					string errorBody = await response.Content.ReadAsStringAsync();
-					Print(string.Format("TradeNot.es Sync Error: {0} - {1}", response.StatusCode, errorBody));
-				}
-				else 
-				{
-					string responseBody = await response.Content.ReadAsStringAsync();
-					// Include MFE/MAE in log if available
-					if (highDuringTrade > 0 || lowDuringTrade > 0)
-					{
-						Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}, High: {4}, Low: {5}) - Response: {6}", 
-							action, instrument, price, marketPosition, highDuringTrade, lowDuringTrade, responseBody));
-					}
-					else
-					{
-						Print(string.Format("Trade synced to TradeNot.es: {0} {1} @ {2} (Position: {3}) - Response: {4}", 
-							action, instrument, price, marketPosition, responseBody));
+						outbox.RemoveRange(0, Math.Min(batch.Count, outbox.Count));
+						SaveOutbox();
 					}
 				}
-			}
 			}
 			catch (Exception ex)
 			{
-				Print("TradeNot.es Sync Exception: " + ex.Message);
+				Exception inner = ex.InnerException ?? ex;
+				Log("Keine Verbindung, neuer Versuch in 30 s / offline, retrying: " + inner.Message);
+			}
+			finally
+			{
+				Interlocked.Exchange(ref flushing, 0);
 			}
 		}
 
-		#region Properties
-		[NinjaScriptProperty]
-		[Display(Name="Webhook URL", Description="The TradeNot.es webhook endpoint (do not change)", Order=1, GroupName="TradeNot.es")]
-		public string WebhookUrl { get; set; }
+		private void LoadOutbox()
+		{
+			try
+			{
+				if (File.Exists(outboxPath))
+					lock (sync)
+						outbox.AddRange(File.ReadAllLines(outboxPath).Where(l => l.StartsWith("{")));
+			}
+			catch (Exception ex)
+			{
+				Log("Outbox nicht lesbar / unreadable: " + ex.Message);
+			}
+		}
 
-		[NinjaScriptProperty]
-		[Display(Name="API Key", Description="Your personal TradeNot.es API Key (get from Import page)", Order=2, GroupName="TradeNot.es")]
-		public string ApiKey { get; set; }
-		#endregion
+		// caller holds the lock
+		private void SaveOutbox()
+		{
+			try
+			{
+				File.WriteAllLines(outboxPath, outbox);
+			}
+			catch (Exception ex)
+			{
+				Log("Outbox nicht speicherbar / not saved: " + ex.Message);
+			}
+		}
+
+		private void Log(string message)
+		{
+			NinjaTrader.Code.Output.Process("TradeNot.es: " + message, PrintTo.OutputTab1);
+		}
 	}
 }

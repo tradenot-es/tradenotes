@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff } from "lucide-react";
+import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff, FileCode2, Radio } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch, db, invoke } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
@@ -30,9 +30,12 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { PageHeader } from "@/components/PageHeader";
+import { createZip } from "@/lib/zip";
+import { formatDistanceToNow } from "date-fns";
+import { dateLocale } from "@/lib/dateLocale";
 
 const Import = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { session } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
@@ -41,6 +44,7 @@ const Import = () => {
   const [apiKey, setApiKey] = useState<string>('');
   const [showApiKey, setShowApiKey] = useState(false);
   const [pendingExecutions, setPendingExecutions] = useState<any[]>([]);
+  const [lastExecutionAt, setLastExecutionAt] = useState<string | null>(null);
   const [loadingApiKey, setLoadingApiKey] = useState(false);
   const [selectedExecutions, setSelectedExecutions] = useState<Set<string>>(new Set());
   
@@ -69,13 +73,21 @@ const Import = () => {
 
   const loadPendingExecutions = async () => {
     try {
+      // fills of positions that are still open (not yet part of a trade)
       const { data, error } = await db
-        .from('ninjatrader_executions')
+        .from('executions')
         .select('*')
-        .order('created_at', { ascending: false });
-      
+        .eq('matched', false)
+        .order('time', { ascending: false });
       if (error) throw error;
       setPendingExecutions(data || []);
+
+      const { data: last } = await db
+        .from('executions')
+        .select('created_at')
+        .order('created_at', { ascending: false })
+        .limit(1);
+      setLastExecutionAt(last?.[0]?.created_at ?? null);
     } catch (error) {
       console.error('Error loading pending executions:', error);
     }
@@ -101,7 +113,7 @@ const Import = () => {
   const deletePendingExecution = async (id: string) => {
     try {
       const { error } = await db
-        .from('ninjatrader_executions')
+        .from('executions')
         .delete()
         .eq('id', id);
       
@@ -125,7 +137,7 @@ const Import = () => {
     
     try {
       const { error } = await db
-        .from('ninjatrader_executions')
+        .from('executions')
         .delete()
         .in('id', Array.from(selectedExecutions));
       
@@ -168,35 +180,47 @@ const Import = () => {
     setTimeout(() => setApiKeyCopied(false), 2000);
   };
 
-  const downloadNinjaScript = async () => {
+  /** The add-on source with the user's key and this server's address filled in. */
+  const addOnSource = async () => {
+    const response = await fetch('/TradeNotesSync.cs');
+    if (!response.ok) throw new Error(`add-on template: ${response.status}`);
+    return (await response.text())
+      .replace('ApiKey = "YOUR_API_KEY_HERE"', `ApiKey = "${apiKey}"`)
+      .replace('Endpoint = "https://tradenot.es/api/import-trades"', `Endpoint = "${webhookUrl}"`);
+  };
+
+  const saveFile = (blob: Blob, name: string) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = name;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  // ZIP in the layout of a NinjaTrader export, for Tools → Import → NinjaScript Add-On
+  const downloadAddOn = async (format: 'zip' | 'cs') => {
     if (!apiKey) {
       toast.error(t("import.ntNoApiKeyError"));
       return;
     }
-    
     try {
-      // 1. Load template file
-      const response = await fetch('/TradeNotesSync.cs');
-      let content = await response.text();
-      
-      // 2. Replace placeholder with actual API key
-      content = content.replace(
-        'ApiKey = "YOUR_API_KEY_HERE"',
-        `ApiKey = "${apiKey}"`
-      );
-      
-      // 3. Create blob and download
-      const blob = new Blob([content], { type: 'text/plain' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'TradeNotesSync.cs';
-      a.click();
-      window.URL.revokeObjectURL(url);
-      
+      const source = await addOnSource();
+      if (format === 'cs') {
+        saveFile(new Blob([source], { type: 'text/plain' }), 'TradeNotesSync.cs');
+      } else {
+        const info = '<?xml version="1.0" encoding="utf-8"?>\r\n<NinjaTrader>\r\n  <Export>\r\n    <Version>8.1.4.1</Version>\r\n  </Export>\r\n</NinjaTrader>\r\n';
+        saveFile(
+          createZip([
+            { name: 'Info.xml', content: info },
+            { name: 'AddOns/TradeNotesSync.cs', content: source },
+          ]),
+          'TradeNotesSync.zip',
+        );
+      }
       toast.success(t("import.ntScriptDownloadedWithKey"));
     } catch (error) {
-      console.error('Error downloading NinjaScript:', error);
+      console.error('Error downloading add-on:', error);
       toast.error(t("import.ntScriptDownloadError"));
     }
   };
@@ -392,6 +416,44 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
               <CardDescription className="text-base">{t("import.ntDescription")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
+              {/* Download add-on */}
+              <div className="space-y-3">
+                <h3 className="text-sm font-semibold">{t("import.ntScriptTitle")}</h3>
+                <p className="text-sm text-muted-foreground">{t("import.ntScriptDescription")}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <Button onClick={() => downloadAddOn('zip')} className="flex-1" disabled={!apiKey}>
+                    <Download className="mr-2 h-4 w-4" />
+                    {t("import.ntDownloadScript")}
+                  </Button>
+                  {apiKey && (
+                    <Badge variant="secondary" className="text-xs shrink-0">
+                      <Key className="h-3 w-3 mr-1" />
+                      {t("import.ntScriptIncludesKey")}
+                    </Badge>
+                  )}
+                </div>
+                <ol className="list-decimal space-y-1 pl-5 text-sm text-muted-foreground">
+                  <li>{t("import.ntInstallStep1")}</li>
+                  <li>{t("import.ntInstallStep2")}</li>
+                  <li>{t("import.ntInstallStep3")}</li>
+                </ol>
+                <p className="text-xs text-muted-foreground">
+                  {t("import.ntInstallFallback")}{" "}
+                  <button type="button" onClick={() => downloadAddOn('cs')} className="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline" disabled={!apiKey}>
+                    <FileCode2 className="h-3 w-3" aria-hidden />
+                    TradeNotesSync.cs
+                  </button>
+                </p>
+                <p className="flex items-center gap-2 text-xs">
+                  <Radio className={`h-3.5 w-3.5 ${lastExecutionAt ? 'text-success' : 'text-muted-foreground'}`} aria-hidden />
+                  {lastExecutionAt
+                    ? t("import.ntLastExecution", { time: formatDistanceToNow(new Date(lastExecutionAt), { addSuffix: true, locale: dateLocale(i18n.language) }) })
+                    : t("import.ntNoExecutionYet")}
+                </p>
+              </div>
+
+              <Separator />
+
               {/* API Key Section */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
@@ -464,34 +526,6 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                 </div>
               </div>
 
-              <Separator />
-
-              {/* Download NinjaScript */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold">{t("import.ntScriptTitle")}</h3>
-                <p className="text-sm text-muted-foreground">{t("import.ntScriptDescription")}</p>
-                <div className="flex items-center gap-2">
-                  <Button 
-                    onClick={downloadNinjaScript} 
-                    variant="outline" 
-                    className="flex-1"
-                    disabled={!apiKey}
-                  >
-                    <Download className="mr-2 h-4 w-4" />
-                    {t("import.ntDownloadScript")}
-                  </Button>
-                  {apiKey && (
-                    <Badge variant="secondary" className="text-xs shrink-0">
-                      <Key className="h-3 w-3 mr-1" />
-                      {t("import.ntScriptIncludesKey")}
-                    </Badge>
-                  )}
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  {t("import.ntScriptKeyEmbeddedInfo")}
-                </p>
-              </div>
-
               {/* Pending Executions */}
               {pendingExecutions.length > 0 && (
                 <>
@@ -549,9 +583,9 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                             onCheckedChange={() => toggleSelectExecution(exec.id)}
                           />
                           <div className="flex-1">
-                            <p className="text-sm font-medium">{exec.symbol} ({exec.market})</p>
+                            <p className="text-sm font-medium">{exec.symbol} ({exec.market}) · {exec.account}</p>
                             <p className="text-xs text-muted-foreground">
-                              {exec.action} {exec.quantity} @ {exec.price} • {new Date(exec.timestamp).toLocaleString()}
+                              {exec.side === 'buy' ? 'Buy' : 'Sell'} {Number(exec.qty)} @ {Number(exec.price)} • {new Date(exec.time).toLocaleString()}
                             </p>
                           </div>
                           <AlertDialog>

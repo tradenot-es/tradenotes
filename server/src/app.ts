@@ -124,7 +124,7 @@ app.post("/api/account/reset", async (c) => {
   const client = await pool.connect();
   try {
     await client.query("begin");
-    for (const table of ["trades", "journal_entries", "daily_prep", "ninjatrader_executions", "news_source_preferences"]) {
+    for (const table of ["trades", "journal_entries", "daily_prep", "executions", "news_source_preferences"]) {
       await client.query(`delete from ${table} where user_id = $1`, [userId]);
     }
     // back to the column defaults

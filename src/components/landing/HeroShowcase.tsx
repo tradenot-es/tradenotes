@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { AlertTriangle, CalendarDays } from "lucide-react";
-import dashboardPreview from "@/assets/screens/hero-dashboard.webp";
+import { useScreens } from "@/lib/screens";
 import { useCountUp } from "@/hooks/useCountUp";
 
 // Illustration values for the product preview (not user data, not a claim)
@@ -31,6 +31,7 @@ function DemoCurve() {
  */
 export function HeroShowcase() {
   const { t } = useTranslation();
+  const shot = useScreens();
   const today = useCountUp(DEMO_CURVE[DEMO_CURVE.length - 1], 1400);
 
   return (
@@ -39,7 +40,7 @@ export function HeroShowcase() {
       <div className="absolute -inset-8 -z-10 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.18),transparent_65%)] blur-2xl" />
 
       <div className="overflow-hidden rounded-2xl border border-primary/20 bg-card/60 shadow-2xl animate-rise-in">
-        <img src={dashboardPreview} alt="" width={1800} height={1250} fetchPriority="high" decoding="async" className="block h-auto w-full" />
+        <img src={shot("hero-dashboard")} alt="" width={1800} height={1250} fetchPriority="high" decoding="async" className="block h-auto w-full" />
       </div>
 
       {/* today's P&L curve: the day view in miniature */}

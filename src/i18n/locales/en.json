@@ -583,47 +583,53 @@
     "helpTvStep4": "Paste the webhook URL and configure the message format with trade details",
     "helpNtTitle": "🔷 NinjaTrader Integration",
     "helpNtIntro": "Automatically sync trades from NinjaTrader:",
-    "helpNtStep1": "Download the NinjaTrader webhook script (coming soon)",
-    "helpNtStep2": "Import the script into NinjaTrader (Tools > Import > NinjaScript)",
-    "helpNtStep3": "Enable the strategy and configure your webhook URL",
-    "helpNtStep4": "Trades will be automatically sent to your journal after each fill",
+    "helpNtStep1": "Download the NinjaTrader add-on on this page (ZIP, your key is already inside)",
+    "helpNtStep2": "Import it in NinjaTrader: Tools → Import → NinjaScript Add-On",
+    "helpNtStep3": "Restart NinjaTrader; the add-on then runs in the background",
+    "helpNtStep4": "Every fill is sent; once a position is flat it becomes a trade",
     "helpWebhookTitle": "🔗 Webhook URL",
     "helpWebhookInfo": "Your personal webhook URL is displayed above. Keep this URL private as it provides direct access to your trading journal.",
     "ntTitle": "NinjaTrader Integration",
-    "ntDescription": "Automatically sync your NinjaTrader 8 trades in real-time to TradeNot.es",
+    "ntDescription": "Every NinjaTrader 8 fill lands in your journal as a trade automatically, including partial fills, commissions and MFE/MAE.",
     "ntApiKeyTitle": "Your Personal API Key",
-    "ntApiKeyInfo": "Keep this key secure. Enter it in the NinjaScript strategy parameters.",
+    "ntApiKeyInfo": "The key is already inside the add-on download. You only need it if you set up the .cs file by hand.",
     "ntApiKeySecurityWarning": "Keep this key secure. Anyone with this key can import trades to your account. Never share it in screenshots or public channels.",
     "ntApiKeyCopied": "API Key copied to clipboard",
     "ntRegenerateKey": "Regenerate Key",
     "ntRegenerateKeyConfirm": "Regenerate API Key?",
-    "ntRegenerateKeyWarning": "Your current API key will stop working. You'll need to update it in NinjaTrader.",
+    "ntRegenerateKeyWarning": "Your current API key will stop working.",
     "ntApiKeyRegenerated": "New API key generated successfully",
     "ntApiKeyRegenerateError": "Failed to regenerate API key",
     "ntWebhookUrlTitle": "Webhook URL",
-    "ntScriptTitle": "NinjaScript Strategy",
-    "ntScriptDescription": "Download the TradeNotesSync strategy and install it in NinjaTrader 8",
-    "ntDownloadScript": "Download NinjaScript (.cs)",
+    "ntScriptTitle": "NinjaTrader add-on",
+    "ntScriptDescription": "Install once and it runs in the background: no chart needed, for all accounts (prop firm accounts too). Missed fills are sent on the next start.",
+    "ntDownloadScript": "Download add-on (.zip)",
     "ntScriptDownloaded": "NinjaScript downloaded successfully",
-    "ntScriptDownloadedWithKey": "NinjaScript downloaded with your API key embedded",
-    "ntScriptDownloadError": "Error downloading NinjaScript",
+    "ntScriptDownloadedWithKey": "Add-on downloaded with your API key",
+    "ntScriptDownloadError": "Could not download the add-on",
     "ntNoApiKeyError": "No API key available. Please generate one first.",
     "ntScriptIncludesKey": "Includes your key",
-    "ntScriptKeyEmbeddedInfo": "The download already includes your personal API key - no manual entry needed!",
+    "ntScriptKeyEmbeddedInfo": "The download contains your personal API key, nothing to enter.",
     "ntRegenerateKeyNinjaTraderNote": "Important for NinjaTrader:",
-    "ntRegenerateKeyOptionA": "Download NinjaScript again (recommended)",
-    "ntRegenerateKeyOptionB": "Or manually update the API key in the strategy",
-    "ntPendingTitle": "Pending Entries",
-    "ntPendingDescription": "These entries are waiting for an exit execution to create a complete trade",
+    "ntRegenerateKeyOptionA": "Download and import the add-on again (recommended)",
+    "ntRegenerateKeyOptionB": "Or replace the key in TradeNotesSync.cs and recompile",
+    "ntPendingTitle": "Open positions",
+    "ntPendingDescription": "Fills of positions that are not flat yet. Once the position is closed, they become a trade.",
     "ntExecutionDeleted": "Pending execution deleted",
     "ntExecutionDeleteError": "Failed to delete execution",
     "ntDeleteExecutionConfirm": "Delete pending execution?",
-    "ntDeleteExecutionWarning": "This entry will be permanently removed and won't be paired with future exits.",
+    "ntDeleteExecutionWarning": "The fill is removed permanently and no longer used to build trades.",
     "ntSelectAll": "Select all",
     "ntDeleteSelected": "Delete {{count}} selected",
     "ntDeleteSelectedConfirm": "Delete {{count}} executions?",
     "ntDeleteSelectedWarning": "All selected entries will be permanently removed.",
-    "ntExecutionsDeleted": "{{count}} executions deleted"
+    "ntExecutionsDeleted": "{{count}} executions deleted",
+    "ntInstallStep1": "Download the ZIP (your key is already inside).",
+    "ntInstallStep2": "In NinjaTrader: Control Center → Tools → Import → NinjaScript Add-On… and pick the ZIP file.",
+    "ntInstallStep3": "Restart NinjaTrader. From now on every fill shows up here automatically. Status messages: New → NinjaScript Output.",
+    "ntInstallFallback": "Import does not work? Download the source file, copy it to Documents\\NinjaTrader 8\\bin\\Custom\\AddOns and compile in the NinjaScript Editor with F5:",
+    "ntLastExecution": "Last fill received {{time}}",
+    "ntNoExecutionYet": "No fill received yet"
   },
   "journal": {
     "title": "Trading Journal",
@@ -797,7 +803,15 @@
     "currentPassword": "Current password",
     "backupCodes": "Backup codes",
     "backupCodesDesc": "Keep these codes somewhere safe. Each one lets you log in once if you lose access to your authenticator app.",
-    "emailChangeSent": "We sent an email to your current address. Please confirm the change there."
+    "emailChangeSent": "We sent an email to your current address. Please confirm the change there.",
+    "cooldown": {
+      "title": "Mandatory break after a losing streak",
+      "description": "After several losses in a row, the dashboard shows a countdown until you should trade again.",
+      "enable": "Enable mandatory break",
+      "afterLosses": "After losses in a row",
+      "minutes": "Break in minutes",
+      "hint": "The break starts when the last losing trade is closed. tradenot.es does not lock your broker account; the countdown is a reminder."
+    }
   },
   "reports": {
     "title": "Reports",
@@ -922,7 +936,9 @@
     "hourOfDayPerformance": "Performance by Hour of Day",
     "bestTradingHours": "Best Trading Hours",
     "worstTradingHours": "Worst Trading Hours",
-    "hourOfDayInsight": "💡 Identify your most profitable trading times and focus on them. Avoid trading during times with poor performance (e.g., lunch time, last trading hour)."
+    "hourOfDayInsight": "💡 Identify your most profitable trading times and focus on them. Avoid trading during times with poor performance (e.g., lunch time, last trading hour).",
+    "rules": "Rule adherence",
+    "rulesTooltip": "Did you follow your setup checklist? Process vs. outcome: earned wins, good losses, lucky wins."
   },
   "notFound": {
     "title": "404",
@@ -2258,7 +2274,7 @@
     "howToEnable": "How to enable this feature",
     "requiresData": "This analysis requires high/low price data during the trade, which only your trading platform can automatically track.",
     "ninjaTraderTitle": "NinjaTrader Users",
-    "ninjaTraderAutomatic": "The current TradeNotesSync script captures MFE/MAE automatically! Download the latest version and install it in NinjaTrader.",
+    "ninjaTraderAutomatic": "The TradeNotesSync add-on captures MFE/MAE automatically. Download the latest version on the import page.",
     "automaticTracking": "✓ Automatic high/low tracking during open positions",
     "ninjaTraderHint": "Extend your TradeNotesSync script to send highDuringTrade and lowDuringTrade fields. These will be automatically converted to MFE/MAE.",
     "comingSoon": "Feature available once trades with high/low data are imported",
@@ -2607,7 +2623,13 @@
     "scoreDetail": "{{clean}} of {{total}} trading days without a broken rule",
     "daysStrip": "Trading days of the last 30 days",
     "dayKept": "Rules kept",
-    "dayBroken": "Rule broken"
+    "dayBroken": "Rule broken",
+    "cooldownTitle_one": "Break after {{count}} loss",
+    "cooldownTitle_other": "Break after {{count}} losses in a row",
+    "cooldownText": "Step away for a moment. Next trade no earlier than {{time}}.",
+    "cooldownRemaining": "Break time remaining",
+    "cooldownIgnored_one": "{{count}} trade was opened during a break today.",
+    "cooldownIgnored_other": "{{count}} trades were opened during a break today."
   },
   "score": {
     "title": "TradeNot.es Score",
@@ -2662,6 +2684,62 @@
     "lossReview": {
       "title": "Loss review",
       "body": "LOSS REVIEW\n\nTrade (symbol, time, result):\n\nWas the entry part of my plan?\n\nWhere was the mistake: idea, entry, size, exit?\n\nWhat did I feel in that moment?\n\nWhat will I do differently next time?"
+    }
+  },
+  "adherence": {
+    "title": "Rule adherence",
+    "subtitle": "Process vs. outcome: did you follow your setup rules, and how did the trade end?",
+    "empty": "No data yet. Add a checklist to your setups in Settings and tick it when you log a trade. Trades tagged with the mistake “Broke rules” count as well.",
+    "defineChecklists": "Create checklists",
+    "rate": "Adherence",
+    "rateDetail": "{{followed}} of {{rated}} rated trades followed every rule",
+    "unrated_one": "{{count}} trade without a checklist is not included.",
+    "unrated_other": "{{count}} trades without a checklist are not included.",
+    "matrixLabel": "Process and outcome",
+    "matrix": {
+      "goodWin": "Earned win",
+      "goodWinHint": "Rules followed · win",
+      "goodLoss": "Good loss",
+      "goodLossHint": "Rules followed · loss. Part of the game.",
+      "badWin": "Lucky win",
+      "badWinHint": "Rules broken · win. Dangerous, because it rewards mistakes.",
+      "badLoss": "Self-inflicted",
+      "badLossHint": "Rules broken · loss"
+    },
+    "groups": {
+      "followed": "All rules followed",
+      "partial": "Partly followed",
+      "broken": "Rules broken"
+    },
+    "avgByGroup": "Avg result per trade",
+    "avgByGroupHint": "Does following your rules pay off?",
+    "bySetup": "By setup",
+    "bySetupHint": "Adherence and avg result with and without the rules kept",
+    "setup": "Setup",
+    "avgFollowed": "Avg followed",
+    "avgNotFollowed": "Avg not followed",
+    "tradesCount_one": "{{count}} trade",
+    "tradesCount_other": "{{count}} trades"
+  },
+  "insights": {
+    "title": "What works for you",
+    "subtitle": "Your strongest and weakest setups, weekdays, hours, symbols and directions (groups with at least {{min}} trades)",
+    "strengths": "Strengths",
+    "weaknesses": "Weaknesses",
+    "noStrengths": "No group with enough trades in profit yet.",
+    "noWeaknesses": "No group with enough trades in loss.",
+    "detail": "{{count}} trades · {{winRate}}% win rate · avg {{avg}}",
+    "hourRange": "{{from}}:00–{{to}}:00",
+    "dimension": {
+      "setup": "Setup",
+      "weekday": "Weekday",
+      "hour": "Entry time",
+      "symbol": "Symbol",
+      "side": "Direction"
+    },
+    "side": {
+      "long": "Long",
+      "short": "Short"
     }
   }
 }

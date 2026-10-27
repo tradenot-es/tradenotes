@@ -574,47 +574,53 @@
     "helpTvStep4": "Incolla l'URL webhook e configura il formato del messaggio con i dettagli dell'operazione",
     "helpNtTitle": "🔷 Integrazione NinjaTrader",
     "helpNtIntro": "Sincronizza automaticamente le operazioni da NinjaTrader:",
-    "helpNtStep1": "Scarica lo script webhook NinjaTrader (prossimamente)",
-    "helpNtStep2": "Importa lo script in NinjaTrader (Strumenti > Importa > NinjaScript)",
-    "helpNtStep3": "Abilita la strategia e configura il tuo URL webhook",
-    "helpNtStep4": "Le operazioni saranno inviate automaticamente al tuo diario dopo ogni esecuzione",
+    "helpNtStep1": "Scarica l’add-on NinjaTrader da questa pagina (ZIP, la tua chiave è già dentro)",
+    "helpNtStep2": "Importalo in NinjaTrader: Tools → Import → NinjaScript Add-On",
+    "helpNtStep3": "Riavvia NinjaTrader; l’add-on funziona poi in background",
+    "helpNtStep4": "Ogni esecuzione viene inviata; quando una posizione è chiusa diventa un trade",
     "helpWebhookTitle": "🔗 URL Webhook",
     "helpWebhookInfo": "Il tuo URL webhook personale è mostrato sopra. Mantieni questo URL privato poiché fornisce accesso diretto al tuo diario di trading.",
     "ntTitle": "Integrazione NinjaTrader",
-    "ntDescription": "Sincronizza automaticamente le tue operazioni NinjaTrader 8 in tempo reale su TradeNot.es",
+    "ntDescription": "Ogni esecuzione di NinjaTrader 8 arriva automaticamente nel tuo diario come trade, con esecuzioni parziali, commissioni e MFE/MAE.",
     "ntApiKeyTitle": "La Tua Chiave API Personale",
-    "ntApiKeyInfo": "Mantieni questa chiave sicura. Inseriscila nei parametri della strategia NinjaScript.",
+    "ntApiKeyInfo": "La chiave è già inclusa nel download dell’add-on. Ti serve solo se configuri il file .cs a mano.",
     "ntApiKeySecurityWarning": "Mantieni questa chiave sicura. Chiunque abbia questa chiave può importare operazioni sul tuo account. Non condividerla mai in screenshot o canali pubblici.",
     "ntApiKeyCopied": "Chiave API copiata negli appunti",
     "ntRegenerateKey": "Rigenera Chiave",
     "ntRegenerateKeyConfirm": "Rigenerare Chiave API?",
-    "ntRegenerateKeyWarning": "La tua chiave API attuale smetterà di funzionare. Dovrai aggiornarla in NinjaTrader.",
+    "ntRegenerateKeyWarning": "La tua chiave API attuale smetterà di funzionare.",
     "ntApiKeyRegenerated": "Nuova chiave API generata con successo",
     "ntApiKeyRegenerateError": "Errore rigenerazione chiave API",
     "ntWebhookUrlTitle": "URL Webhook",
-    "ntScriptTitle": "Strategia NinjaScript",
-    "ntScriptDescription": "Scarica la strategia TradeNotesSync e installala in NinjaTrader 8",
-    "ntDownloadScript": "Scarica NinjaScript (.cs)",
+    "ntScriptTitle": "Add-on NinjaTrader",
+    "ntScriptDescription": "Si installa una volta e poi funziona in background: senza grafico, per tutti i conti (anche prop firm). Le esecuzioni perse vengono inviate al riavvio successivo.",
+    "ntDownloadScript": "Scarica add-on (.zip)",
     "ntScriptDownloaded": "NinjaScript scaricato con successo",
-    "ntScriptDownloadedWithKey": "NinjaScript scaricato con la tua chiave API integrata",
-    "ntScriptDownloadError": "Errore download NinjaScript",
+    "ntScriptDownloadedWithKey": "Add-on scaricato con la tua chiave API",
+    "ntScriptDownloadError": "Impossibile scaricare l’add-on",
     "ntNoApiKeyError": "Nessuna chiave API disponibile. Generane prima una.",
     "ntScriptIncludesKey": "Include la tua chiave",
-    "ntScriptKeyEmbeddedInfo": "Il download include già la tua chiave API personale - nessun inserimento manuale necessario!",
+    "ntScriptKeyEmbeddedInfo": "Il download contiene la tua chiave API personale, non devi inserire nulla.",
     "ntRegenerateKeyNinjaTraderNote": "Importante per NinjaTrader:",
-    "ntRegenerateKeyOptionA": "Scarica di nuovo NinjaScript (consigliato)",
-    "ntRegenerateKeyOptionB": "Oppure aggiorna manualmente la chiave API nella strategia",
-    "ntPendingTitle": "Entrate in Sospeso",
-    "ntPendingDescription": "Queste entrate sono in attesa di un'esecuzione di uscita per creare un'operazione completa",
+    "ntRegenerateKeyOptionA": "Scarica e importa di nuovo l’add-on (consigliato)",
+    "ntRegenerateKeyOptionB": "Oppure sostituisci la chiave in TradeNotesSync.cs e ricompila",
+    "ntPendingTitle": "Posizioni aperte",
+    "ntPendingDescription": "Esecuzioni di posizioni non ancora chiuse. Quando la posizione è chiusa diventano un trade.",
     "ntExecutionDeleted": "Esecuzione in sospeso eliminata",
     "ntExecutionDeleteError": "Errore eliminazione esecuzione",
     "ntDeleteExecutionConfirm": "Eliminare esecuzione in sospeso?",
-    "ntDeleteExecutionWarning": "Questa entrata sarà rimossa permanentemente e non sarà abbinata a future uscite.",
+    "ntDeleteExecutionWarning": "L’esecuzione viene rimossa definitivamente e non è più usata per calcolare i trade.",
     "ntSelectAll": "Seleziona tutto",
     "ntDeleteSelected": "Elimina {{count}} selezionati",
     "ntDeleteSelectedConfirm": "Eliminare {{count}} esecuzioni?",
     "ntDeleteSelectedWarning": "Tutte le voci selezionate verranno rimosse definitivamente.",
-    "ntExecutionsDeleted": "{{count}} esecuzioni eliminate"
+    "ntExecutionsDeleted": "{{count}} esecuzioni eliminate",
+    "ntInstallStep1": "Scarica lo ZIP (la tua chiave è già dentro).",
+    "ntInstallStep2": "In NinjaTrader: Control Center → Tools → Import → NinjaScript Add-On… e scegli il file ZIP.",
+    "ntInstallStep3": "Riavvia NinjaTrader. Da ora ogni esecuzione arriva qui automaticamente. Messaggi di stato: New → NinjaScript Output.",
+    "ntInstallFallback": "L’importazione non funziona? Scarica il file sorgente, copialo in Documenti\\NinjaTrader 8\\bin\\Custom\\AddOns e compilalo nel NinjaScript Editor con F5:",
+    "ntLastExecution": "Ultima esecuzione ricevuta {{time}}",
+    "ntNoExecutionYet": "Nessuna esecuzione ricevuta finora"
   },
   "journal": {
     "title": "Diario di Trading",
@@ -787,7 +793,15 @@
     "currentPassword": "Password attuale",
     "backupCodes": "Codici di backup",
     "backupCodesDesc": "Conserva questi codici in un luogo sicuro. Ognuno ti permette di accedere una volta se perdi l'accesso alla tua app di autenticazione.",
-    "emailChangeSent": "Ti abbiamo inviato un'email al tuo indirizzo attuale. Conferma lì la modifica."
+    "emailChangeSent": "Ti abbiamo inviato un'email al tuo indirizzo attuale. Conferma lì la modifica.",
+    "cooldown": {
+      "title": "Pausa obbligatoria dopo una serie di perdite",
+      "description": "Dopo diverse perdite di fila, la dashboard mostra un conto alla rovescia fino a quando dovresti tornare a fare trading.",
+      "enable": "Attiva pausa obbligatoria",
+      "afterLosses": "Dopo perdite di fila",
+      "minutes": "Pausa in minuti",
+      "hint": "La pausa inizia alla chiusura dell’ultimo trade in perdita. tradenot.es non blocca il tuo conto presso il broker; il conto alla rovescia è solo un promemoria."
+    }
   },
   "notFound": {
     "title": "404",
@@ -1834,7 +1848,9 @@
     "hourOfDayPerformance": "Performance per Ora del Giorno",
     "bestTradingHours": "Migliori Ore Trading",
     "worstTradingHours": "Peggiori Ore Trading",
-    "hourOfDayInsight": "💡 Identifica i tuoi orari di trading più redditizi e concentrati su quelli. Evita di fare trading durante orari con performance scarse (es. pausa pranzo, ultima ora di trading)."
+    "hourOfDayInsight": "💡 Identifica i tuoi orari di trading più redditizi e concentrati su quelli. Evita di fare trading durante orari con performance scarse (es. pausa pranzo, ultima ora di trading).",
+    "rules": "Rispetto regole",
+    "rulesTooltip": "Hai seguito la checklist del tuo setup? Processo contro risultato: guadagni meritati, buone perdite, colpi di fortuna."
   },
   "filters": {
     "filters": "Filtri",
@@ -2251,7 +2267,7 @@
     "howToEnable": "Come abilitare questa funzione",
     "requiresData": "Questa analisi richiede dati di prezzo massimo/minimo durante il trade, che solo la tua piattaforma di trading può tracciare automaticamente.",
     "ninjaTraderTitle": "Utenti NinjaTrader",
-    "ninjaTraderAutomatic": "Lo script TradeNotesSync attuale cattura automaticamente MFE/MAE! Scarica l'ultima versione e installala in NinjaTrader.",
+    "ninjaTraderAutomatic": "L’add-on TradeNotesSync registra MFE/MAE automaticamente. Scarica l’ultima versione dalla pagina di importazione.",
     "automaticTracking": "✓ Tracciamento automatico dei massimi/minimi durante le posizioni aperte",
     "ninjaTraderHint": "Estendi il tuo script TradeNotesSync per inviare i campi highDuringTrade e lowDuringTrade. Questi verranno convertiti automaticamente in MFE/MAE.",
     "comingSoon": "Funzione disponibile una volta importate operazioni con dati high/low",
@@ -2553,7 +2569,13 @@
     "scoreDetail": "{{clean}} giorni di trading su {{total}} senza regole infrante",
     "daysStrip": "Giorni di trading degli ultimi 30 giorni",
     "dayKept": "Regole rispettate",
-    "dayBroken": "Regola infranta"
+    "dayBroken": "Regola infranta",
+    "cooldownTitle_one": "Pausa dopo {{count}} perdita",
+    "cooldownTitle_other": "Pausa dopo {{count}} perdite di fila",
+    "cooldownText": "Alzati un attimo. Prossimo trade non prima delle {{time}}.",
+    "cooldownRemaining": "Tempo di pausa rimanente",
+    "cooldownIgnored_one": "Oggi {{count}} trade è stato aperto durante una pausa.",
+    "cooldownIgnored_other": "Oggi {{count}} trade sono stati aperti durante una pausa."
   },
   "score": {
     "title": "TradeNot.es Score",
@@ -2608,6 +2630,62 @@
     "lossReview": {
       "title": "Analisi della perdita",
       "body": "ANALISI DELLA PERDITA\n\nTrade (simbolo, ora, risultato):\n\nL'ingresso faceva parte del mio piano?\n\nDov'era l'errore: idea, ingresso, dimensione, uscita?\n\nCosa ho provato in quel momento?\n\nCosa farò diversamente la prossima volta?"
+    }
+  },
+  "adherence": {
+    "title": "Rispetto delle regole",
+    "subtitle": "Processo contro risultato: hai seguito le regole del tuo setup e com’è finito il trade?",
+    "empty": "Ancora nessun dato. Crea una checklist per i tuoi setup nelle Impostazioni e spuntala quando registri un trade. Contano anche i trade con l’errore «Regole infrante».",
+    "defineChecklists": "Crea checklist",
+    "rate": "Rispetto",
+    "rateDetail": "{{followed}} trade valutati su {{rated}} hanno seguito tutte le regole",
+    "unrated_one": "{{count}} trade senza checklist non è considerato.",
+    "unrated_other": "{{count}} trade senza checklist non sono considerati.",
+    "matrixLabel": "Processo e risultato",
+    "matrix": {
+      "goodWin": "Guadagno meritato",
+      "goodWinHint": "Regole seguite · guadagno",
+      "goodLoss": "Buona perdita",
+      "goodLossHint": "Regole seguite · perdita. Fa parte del gioco.",
+      "badWin": "Colpo di fortuna",
+      "badWinHint": "Regole infrante · guadagno. Pericoloso, perché premia gli errori.",
+      "badLoss": "Colpa propria",
+      "badLossHint": "Regole infrante · perdita"
+    },
+    "groups": {
+      "followed": "Tutte le regole seguite",
+      "partial": "Seguite in parte",
+      "broken": "Regole infrante"
+    },
+    "avgByGroup": "Risultato medio per trade",
+    "avgByGroupHint": "Conviene seguire le tue regole?",
+    "bySetup": "Per setup",
+    "bySetupHint": "Rispetto e risultato medio con e senza regole seguite",
+    "setup": "Setup",
+    "avgFollowed": "Media seguite",
+    "avgNotFollowed": "Media non seguite",
+    "tradesCount_one": "{{count}} trade",
+    "tradesCount_other": "{{count}} trade"
+  },
+  "insights": {
+    "title": "Cosa funziona per te",
+    "subtitle": "I tuoi setup, giorni, orari, simboli e direzioni più forti e più deboli (gruppi con almeno {{min}} trade)",
+    "strengths": "Punti di forza",
+    "weaknesses": "Punti deboli",
+    "noStrengths": "Ancora nessun gruppo con abbastanza trade in positivo.",
+    "noWeaknesses": "Nessun gruppo con abbastanza trade in negativo.",
+    "detail": "{{count}} trade · {{winRate}} % vincenti · media {{avg}}",
+    "hourRange": "{{from}}:00–{{to}}:00",
+    "dimension": {
+      "setup": "Setup",
+      "weekday": "Giorno",
+      "hour": "Orario di ingresso",
+      "symbol": "Simbolo",
+      "side": "Direzione"
+    },
+    "side": {
+      "long": "Long",
+      "short": "Short"
     }
   }
 }
