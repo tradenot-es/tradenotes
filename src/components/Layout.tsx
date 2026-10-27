@@ -1,13 +1,20 @@
 import { ReactNode } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation, type NavLinkProps } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3 } from "lucide-react";
-import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar";
+import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3, CalendarDays } from "lucide-react";
+import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import { AIAssistantFAB } from "@/components/AIAssistantFAB";
+import { featureFlags } from "@/config/featureFlags";
 import logo from "@/assets/tradenotes-logo-new-transparent.png";
+/** Nav link that also closes the off-canvas sidebar on phones. */
+function SidebarNavLink(props: NavLinkProps) {
+  const { setOpenMobile } = useSidebar();
+  return <NavLink {...props} onClick={() => setOpenMobile(false)} />;
+}
+
 export function Layout({
   children
 }: {
@@ -19,6 +26,7 @@ export function Layout({
   const {
     signOut
   } = useAuth();
+  const location = useLocation();
   const {
     displayName
   } = useProfile();
@@ -30,6 +38,10 @@ export function Layout({
     title: t("nav.trades"),
     url: "/dashboard/trades",
     icon: TrendingUp
+  }, {
+    title: t("nav.days"),
+    url: "/dashboard/days",
+    icon: CalendarDays
   }, {
     title: t("nav.import"),
     url: "/dashboard/import",
@@ -72,12 +84,12 @@ export function Layout({
           </div>
             <SidebarMenu className="p-2 rounded-sm">
               {navItems.map(item => <SidebarMenuItem key={item.url}>
-                     <NavLink to={item.url} end={item.url === "/dashboard"} className={({
+                     <SidebarNavLink to={item.url} end={item.url === "/dashboard"} className={({
                   isActive
                 }) => isActive ? "flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground transition-all border-l-4 border-r-4 border-primary" : "flex items-center gap-3 px-3 py-2 rounded-md text-sidebar-foreground hover:bg-sidebar-accent transition-all border-l-4 border-r-4 border-transparent"}>
                       <item.icon className="h-4 w-4" />
                       <span>{item.title}</span>
-                    </NavLink>
+                    </SidebarNavLink>
                 </SidebarMenuItem>)}
             </SidebarMenu>
             <div className="mt-auto p-4 border-t border-sidebar-border">
@@ -88,8 +100,15 @@ export function Layout({
             </div>
           </SidebarContent>
         </Sidebar>
-        <div className="flex-1 flex flex-col overflow-auto">
-          <main className="flex-1 p-6">{children}</main>
+        <div className="flex-1 flex flex-col overflow-auto min-w-0">
+          {/* below md the sidebar is an off-canvas sheet and needs a trigger */}
+          <header className="sticky top-0 z-30 flex items-center gap-3 border-b border-border/50 bg-background/90 px-4 py-2 backdrop-blur md:hidden">
+            <SidebarTrigger className="h-9 w-9" aria-label={t("nav.openMenu")} />
+            <img src={logo} alt="" className="h-8 w-8" />
+            <span className="font-semibold">TradeNot.es</span>
+          </header>
+          {/* keyed by route so each page enters with a short rise */}
+          <main key={location.pathname} className="flex-1 p-4 sm:p-6 animate-rise-in">{children}</main>
           <footer className="px-6 py-4 border-t border-border/50">
             <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
               <Link to="/datenschutz" className="hover:text-foreground transition-colors">
@@ -106,7 +125,7 @@ export function Layout({
             </div>
           </footer>
         </div>
-        <AIAssistantFAB />
+        {featureFlags.AI_FEATURES && <AIAssistantFAB />}
       </div>
     </SidebarProvider>;
 }

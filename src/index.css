@@ -39,6 +39,12 @@ All colors MUST be HSL.
     --destructive: 0 84% 50%;
     --destructive-foreground: 0 0% 100%;
 
+    /* chart marks for profit/loss (validated with the dataviz palette checks:
+       lightness band, contrast; red/green CVD distance needs sign + baseline as second cue) */
+    --chart-profit: 158 100% 32%;
+    --chart-loss: 0 72% 51%;
+    --chart-track: 0 0% 0% / 0.08;
+
     --border: 0 0% 88%;
     --input: 0 0% 96%;
     --ring: 158 100% 40%;
@@ -104,6 +110,10 @@ All colors MUST be HSL.
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+
+    --chart-profit: 158 100% 32%;
+    --chart-loss: 0 84% 60%;
+    --chart-track: 0 0% 100% / 0.08;
 
     --border: 0 0% 15%;
     --input: 0 0% 12%;
@@ -290,5 +300,47 @@ All colors MUST be HSL.
     .feature-collage-item:hover {
       transform: none;
     }
+  }
+}
+
+/* Motion helpers for the app: cascade entrances by setting style={{ "--stagger": i }} */
+@layer utilities {
+  .motion-stagger {
+    animation-delay: calc(var(--stagger, 0) * 60ms);
+  }
+
+  /* subtle lift for interactive cards */
+  .hover-lift {
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -12px hsl(var(--primary) / 0.35);
+    border-color: hsl(var(--primary) / 0.35);
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* slow drift for the floating hero cards */
+  .hero-float {
+    animation: hero-float 7s ease-in-out infinite;
+  }
+  @keyframes hero-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise-in,
+  .animate-grow-x,
+  .animate-draw-line,
+  .hero-float {
+    animation: none !important;
+  }
+  .hover-lift:hover {
+    transform: none;
   }
 }

@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 
 interface Trade {
@@ -114,7 +114,7 @@ const Trades = () => {
 
   const loadTrades = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("trades")
       .select("*")
       .order("exit_time", { ascending: false });
@@ -199,7 +199,7 @@ const Trades = () => {
   };
 
   const handleDeleteTrade = async (tradeId: string) => {
-    const { error } = await supabase.from("trades").delete().eq("id", tradeId);
+    const { error } = await db.from("trades").delete().eq("id", tradeId);
     if (error) {
       toast.error(t("trades.deleteError"));
     } else {
@@ -215,7 +215,7 @@ const Trades = () => {
   const handleDeleteAllWebhookTrades = async () => {
     if (!user) return;
     
-    const { error } = await supabase
+    const { error } = await db
       .from("trades")
       .delete()
       .eq("user_id", user.id)

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import { getEconomicEventsInRange, type EconomicEvent } from "@/lib/economicCalendar";
 
@@ -129,7 +129,7 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
       try {
         console.log('usePoliticalEvents: Loading news from', dateRange.start, 'to', dateRange.end);
 
-        const { data, error } = await supabase.functions.invoke('marketaux-news', {
+        const { data, error } = await invoke("news", {
           body: { 
             action: 'get-political-events',
             startDate: dateRange.start,

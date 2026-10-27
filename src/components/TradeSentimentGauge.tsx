@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AlertTriangle, TrendingUp, TrendingDown, Minus, HelpCircle } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -33,7 +33,7 @@ export function TradeSentimentGauge({ symbol, side, entryTime, className }: Sent
       const start = new Date(entryDate.getTime() - 24 * 60 * 60 * 1000).toISOString();
       const end = entryDate.toISOString();
 
-      const { data, error: functionError } = await supabase.functions.invoke("marketaux-news", {
+      const { data, error: functionError } = await invoke("news", {
         body: {
           action: "get-sentiment",
           symbols: [symbol],

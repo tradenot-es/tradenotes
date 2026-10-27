@@ -10,7 +10,9 @@
     "settings": "Settings",
     "logout": "Logout",
     "login": "Login",
-    "welcome": "Welcome, {{name}}!"
+    "welcome": "Welcome, {{name}}!",
+    "days": "Day View",
+    "openMenu": "Open menu"
   },
   "auth": {
     "login": "Login",
@@ -45,7 +47,20 @@
     "betaLoginTitle": "Beta Login",
     "betaLoginDesc": "Login for Private Beta Testers",
     "needAccess": "Need beta access?",
-    "joinWaitlist": "Join waitlist"
+    "joinWaitlist": "Join waitlist",
+    "alreadyHaveAccount": "Already have an account? Log in",
+    "checkEmail": "Please confirm your email address using the link we sent you.",
+    "confirmPassword": "Confirm password",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "privacyLink": "Privacy Policy",
+    "termsLink": "Terms of Use",
+    "signup": "Create account",
+    "signupSuccess": "Account created!",
+    "emailNotVerified": "Your email address is not confirmed yet. Please click the link in our email.",
+    "resendVerification": "Resend confirmation email",
+    "verificationResent": "Confirmation email sent again.",
+    "resetLinkInvalid": "The reset link is invalid or has expired. Please request a new one."
   },
   "captcha": {
     "clickToVerify": "Click to verify",
@@ -778,7 +793,11 @@
     "notificationSound": "Enable Sound",
     "notificationSoundDesc": "Play sound for important alerts",
     "drawdownThreshold": "Drawdown Warning Threshold",
-    "drawdownThresholdDesc": "Warn me when I lose this percentage of my daily goal"
+    "drawdownThresholdDesc": "Warn me when I lose this percentage of my daily goal",
+    "currentPassword": "Current password",
+    "backupCodes": "Backup codes",
+    "backupCodesDesc": "Keep these codes somewhere safe. Each one lets you log in once if you lose access to your authenticator app.",
+    "emailChangeSent": "We sent an email to your current address. Please confirm the change there."
   },
   "reports": {
     "title": "Reports",
@@ -954,15 +973,15 @@
     "cta": {
       "startNow": "Get Started"
     },
-    "badge": "Professional Trading Journal",
+    "badge": "Free trading journal",
     "heroTitle": "Become a better trader through",
     "heroTitleHighlightWords": [
-      "systematic",
-      "precise",
-      "AI-powered"
+      "disciplined",
+      "honest",
+      "systematic"
     ],
     "heroTitleHighlightSuffix": "journaling",
-    "heroDescription": "TradeNot.es is the AI-powered trading journal for active traders. Daily market prep, automatic news analysis, and a glossary for learning. Start every trading day informed.",
+    "heroDescription": "Log your trades in seconds, set daily limits and see in black and white which mistakes cost you money. No subscription, no ads.",
     "ctaStart": "Get Started",
     "ctaFeatures": "Explore Features",
     "rating": "4.9/5 from 1000+ Traders",
@@ -1019,11 +1038,11 @@
     "whySection": {
       "badge": "Why a Trading Journal?",
       "title": "Successful traders document every trade",
-      "description": "92% of profitable day traders keep a trading journal. TradeNot.es makes it simple.",
+      "description": "A journal turns gut feeling into data: what works, what doesn't, and which habits hold you back.",
       "benefit1Title": "Spot Patterns",
       "benefit1Desc": "Automatic analysis of your best setups, times and symbols",
       "benefit2Title": "Build Discipline",
-      "benefit2Desc": "Daily prep, consistency tracking and AI alerts for emotional trading",
+      "benefit2Desc": "Daily limits, discipline score and automatic detection of revenge trades",
       "benefit3Title": "Track Performance",
       "benefit3Desc": "Equity curve, R-multiple, expectancy and 20+ KPIs at a glance"
     },
@@ -1119,6 +1138,18 @@
       "glossary": {
         "title": "Trading Glossary",
         "description": "Learn trading terms: Win Rate, R-Multiple, Profit Factor, Expectancy, and more. Build your trading knowledge."
+      },
+      "discipline": {
+        "title": "Discipline & daily limits",
+        "description": "Set limits for trades, loss and losing streaks. A live status warns you in time and tells you when you're done for the day."
+      },
+      "behavior": {
+        "title": "Mistake & emotion analysis",
+        "description": "Tag mistakes and emotional state per trade. Revenge trades and overtrading are detected automatically, and the report shows what each mistake costs you."
+      },
+      "dayView": {
+        "title": "Day view",
+        "description": "Every trading day with an intraday P&L curve, stats, trades and your notes at a glance."
       }
     },
     "allFeatures": {
@@ -1154,13 +1185,69 @@
       "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integration)",
       "propFirmDetection": "Prop Firm Account Detection (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking for Stop-Loss Optimization",
-      "achievements": "Gamification & Achievements System"
+      "achievements": "Gamification & Achievements System",
+      "discipline": "Daily limits with live status and discipline score",
+      "behavior": "Mistake & emotion tracking with automatic revenge-trade detection",
+      "dayView": "Day view with intraday P&L curve",
+      "score": "TradeNot.es Score: one grade for your performance",
+      "templates": "Journal templates (pre-market plan, daily recap, loss review)"
     },
     "free": {
       "badge": "100% free",
       "title": "Completely free. Forever.",
       "description": "No subscriptions, no credit card, no hidden costs. Every feature free for every trader.",
       "cta": "Start for free"
+    },
+    "heroFacts": [
+      "100 % free",
+      "No credit card",
+      "Servers in the EU"
+    ],
+    "habits": {
+      "badge": "The most expensive habits",
+      "title": "A journal that catches your mistakes, not just your trades",
+      "description": "Four patterns cost traders the most money. tradenot.es makes each of them visible.",
+      "items": {
+        "overtrading": {
+          "title": "Overtrading",
+          "description": "More trades than planned, because the market moves and not because your setup is there.",
+          "fix": "Daily trade limit with live status and stop notice"
+        },
+        "revenge": {
+          "title": "Revenge trading",
+          "description": "Straight back in after a loss, often with a bigger size, to win it back.",
+          "fix": "Automatic detection of revenge trades"
+        },
+        "rules": {
+          "title": "Breaking rules",
+          "description": "Moved stop, chased entry, oversized position.",
+          "fix": "Tag mistakes per trade and see what they cost"
+        },
+        "emotions": {
+          "title": "Emotional blindness",
+          "description": "You don't notice in which mood you trade worse.",
+          "fix": "Log your emotional state and review by mood"
+        }
+      }
+    },
+    "howItWorks": {
+      "badge": "How it works",
+      "title": "Three steps to more discipline",
+      "step": "Step {{n}}",
+      "steps": {
+        "capture": {
+          "title": "Log trades",
+          "description": "Manually in seconds, via CSV import or automatically from NinjaTrader."
+        },
+        "rules": {
+          "title": "Set rules",
+          "description": "Max trades, max loss, max losing streak. The dashboard always shows where you stand."
+        },
+        "review": {
+          "title": "Review & improve",
+          "description": "Day view, mistake report and TradeNot.es Score show what to work on next."
+        }
+      }
     }
   },
   "features": {
@@ -1177,14 +1264,16 @@
       "tradingTools": "Fast trade entry & import",
       "analytics": "Track & analyze performance",
       "ai": "AI-powered insights",
-      "marketIntel": "Market data & news"
+      "marketIntel": "Market data & news",
+      "discipline": "Daily limits, mistake analysis and a score that shows where you stand"
     },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analytics",
       "ai": "AI & Automation",
       "reports": "Reports",
-      "marketIntel": "Market Intelligence"
+      "marketIntel": "Market Intelligence",
+      "discipline": "Discipline & behavior"
     },
     "items": {
       "easyEntry": {
@@ -1402,8 +1491,45 @@
           "Estimate market impact",
           "Trade informed"
         ]
+      },
+      "discipline": {
+        "title": "Discipline & daily limits",
+        "description": "Your rules for the day, counted live. Before you reach a limit the dashboard warns you; after that it tells you clearly that you're done for today.",
+        "benefits": [
+          "Limits for trades, drawdown, losing streak and more",
+          "Live status: on plan, careful, stopped",
+          "Discipline score over the last 30 trading days"
+        ]
+      },
+      "behavior": {
+        "title": "Mistake & emotion analysis",
+        "description": "Tag what went wrong in each trade and how you felt. The report calculates what each mistake cost you.",
+        "benefits": [
+          "10 typical mistakes like FOMO, moved stop, revenge trade",
+          "Automatic detection of revenge trades and overtrading",
+          "P&L and win rate by mistake and emotional state"
+        ]
+      },
+      "dayView": {
+        "title": "Day view",
+        "description": "Every trading day as its own card: how your P&L moved through the day, the stats, all trades and your journal note.",
+        "benefits": [
+          "Intraday P&L curve with a tooltip per trade",
+          "Win rate, best and worst trade, fees",
+          "Mistakes and emotions right on every trade"
+        ]
+      },
+      "score": {
+        "title": "TradeNot.es Score",
+        "description": "One grade from 0 to 100 built from six metrics, so you see at a glance whether you're improving and which part holds you back.",
+        "benefits": [
+          "Win rate, profit factor, win/loss ratio",
+          "Drawdown, recovery factor, share of green days",
+          "Transparent: every component visible on its own"
+        ]
       }
-    }
+    },
+    "demoLabel": "Example data"
   },
   "validation": {
     "emailInvalid": "Invalid email format",
@@ -1435,7 +1561,9 @@
     "tagItemTooLong": "Tag must be 30 characters or less",
     "tagMaxReached": "Maximum 30 tags allowed",
     "checklistMaxReached": "Maximum 10 checklist items per setup",
-    "slippageInvalid": "Slippage must be between 0 and 100%"
+    "slippageInvalid": "Slippage must be between 0 and 100%",
+    "passwordMismatch": "Passwords do not match",
+    "termsRequired": "Please accept the terms of use and the privacy policy"
   },
   "glossary": {
     "searchPlaceholder": "Search terms...",
@@ -2021,7 +2149,7 @@
     }
   },
   "alerts": {
-    "title": "AI Trading Alerts",
+    "title": "Trading alerts",
     "allClear": "All Clear",
     "allClearDescription": "No concerning patterns detected in your recent trading activity.",
     "urgent": "Urgent",
@@ -2417,5 +2545,123 @@
     "profitGoals": "Profit Goals",
     "riskLimits": "Risk Limits",
     "performanceGoals": "Performance Goals"
+  },
+  "behavior": {
+    "mistakesLabel": "Mistakes in this trade",
+    "mistakesHint": "tradenot.es also detects revenge trades and overtrading automatically.",
+    "emotionsLabel": "Emotional state",
+    "mistakes": {
+      "revenge": "Revenge trade",
+      "overtrading": "Overtrading",
+      "fomo": "FOMO",
+      "no_plan": "No plan",
+      "broke_rules": "Broke rules",
+      "moved_stop": "Moved stop",
+      "oversized": "Oversized",
+      "early_exit": "Exited too early",
+      "late_exit": "Exited too late",
+      "chased_entry": "Chased entry"
+    },
+    "emotions": {
+      "calm": "Calm",
+      "confident": "Confident",
+      "fearful": "Fearful",
+      "greedy": "Greedy",
+      "frustrated": "Frustrated",
+      "impatient": "Impatient",
+      "euphoric": "Euphoric",
+      "tired": "Tired"
+    },
+    "reportTitle": "Behavior & mistakes",
+    "reportEmpty": "Tag mistakes and your emotional state when you log a trade, and this report shows what each mistake costs you.",
+    "mistakeCost": "P&L of trades with mistakes",
+    "mistakeShare": "{{count}} trades with at least one mistake ({{share}} % of all trades)",
+    "avgClean": "Avg P&L without mistakes",
+    "avgWithMistakes": "Avg P&L with mistakes",
+    "autoDetected": "Detected automatically",
+    "autoDetectedHint": "Revenge trades (entered right after a loss with the same or larger size) and trades beyond your daily limit",
+    "byMistake": "By mistake",
+    "byMistakeDesc": "Total P&L per mistake, most expensive first",
+    "byEmotion": "By emotional state",
+    "byEmotionDesc": "How you trade in which mood",
+    "noMistakes": "No mistakes tagged or detected.",
+    "noEmotions": "No emotional state logged yet.",
+    "tagDetail_one": "{{count}} trade · {{winRate}} % wins",
+    "tagDetail_other": "{{count}} trades · {{winRate}} % wins"
+  },
+  "discipline": {
+    "title": "Discipline today",
+    "subtitle": "Your daily limits and how much of them you have used",
+    "state": {
+      "ok": "On plan",
+      "warning": "Careful",
+      "stopped": "Stopped for today"
+    },
+    "stoppedTitle": "Limit reached – you're done for today.",
+    "stoppedText": "You have used up one of your rules. Every further trade today breaks your plan. Tomorrow is a new day.",
+    "revengeToday_one": "{{count}} possible revenge trade detected today. Take a breath before you continue.",
+    "revengeToday_other": "{{count}} possible revenge trades detected today. Take a breath before you continue.",
+    "noRules": "Set daily limits (e.g. max trades, max drawdown, max losing streak) and this panel always shows where you stand.",
+    "setRules": "Set rules",
+    "scoreLabel": "Discipline score · 30 days",
+    "scoreDetail": "{{clean}} of {{total}} trading days without a broken rule",
+    "daysStrip": "Trading days of the last 30 days",
+    "dayKept": "Rules kept",
+    "dayBroken": "Rule broken"
+  },
+  "score": {
+    "title": "TradeNot.es Score",
+    "subtitle": "One grade for your overall performance",
+    "howTitle": "How the score is calculated",
+    "how": "Average of six values, each 0–100 against a very good target: win rate 60 %, profit factor 2.5, avg win/avg loss 2.5, drawdown below 10 % of gross profit, recovery factor 3, 70 % green days.",
+    "notEnough": "Calculated from {{count}} trades (so far {{have}}).",
+    "band": {
+      "excellent": "Excellent",
+      "good": "Good",
+      "fair": "Room to grow",
+      "weak": "Weak"
+    },
+    "components": {
+      "winRate": "Win rate",
+      "profitFactor": "Profit factor",
+      "winLossRatio": "Win/loss ratio",
+      "drawdown": "Drawdown",
+      "recovery": "Recovery",
+      "consistency": "Green days"
+    }
+  },
+  "days": {
+    "title": "Day View",
+    "subtitle": "Every trading day at a glance: curve, stats, trades and notes",
+    "empty": "No trades yet. Once you log some, every trading day shows up here.",
+    "loadMore": "Load {{count}} more days",
+    "trades": "Trades",
+    "winRate": "Win rate",
+    "best": "Best",
+    "worst": "Worst",
+    "fees": "Fees",
+    "mistakes": "Trades with mistakes",
+    "chartLabel": "Cumulative P&L of the day: {{pnl}} from {{count}} trades",
+    "showTrades": "Show {{count}} trades",
+    "hideTrades": "Hide trades",
+    "time": "Time",
+    "symbol": "Symbol",
+    "side": "Side",
+    "behavior": "Behavior"
+  },
+  "journalTemplates": {
+    "label": "Template:",
+    "premarket": {
+      "title": "Pre-market plan",
+      "body": "PRE-MARKET PLAN\n\nMarket context / bias:\n\nKey levels:\n\nEvents & news today:\n\nMy A setups today:\n\nMax risk today:\n\nWhat I will NOT do today:"
+    },
+    "recap": {
+      "title": "Daily recap",
+      "body": "DAILY RECAP\n\nWhat went well?\n\nWhat went badly?\n\nDid I follow my rules? (yes/no, which not?)\n\nEmotional state during the day:\n\nOne thing I will do better tomorrow:"
+    },
+    "lossReview": {
+      "title": "Loss review",
+      "body": "LOSS REVIEW\n\nTrade (symbol, time, result):\n\nWas the entry part of my plan?\n\nWhere was the mistake: idea, entry, size, exit?\n\nWhat did I feel in that moment?\n\nWhat will I do differently next time?"
+    }
   }
 }

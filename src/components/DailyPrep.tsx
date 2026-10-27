@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Calendar, CheckCircle2, Target, Brain, TrendingUp, Plus } from "lucide-react";
@@ -63,7 +63,7 @@ export function DailyPrep() {
 
   const loadTodaysPrep = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("daily_prep")
       .select("*")
       .eq("date", today)
@@ -110,13 +110,13 @@ export function DailyPrep() {
 
       let error;
       if (prepData.id) {
-        const result = await supabase
+        const result = await db
           .from("daily_prep")
           .update(dataToSave)
           .eq("id", prepData.id);
         error = result.error;
       } else {
-        const result = await supabase.from("daily_prep").insert(dataToSave);
+        const result = await db.from("daily_prep").insert(dataToSave);
         error = result.error;
       }
 

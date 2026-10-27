@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { getCurrencySymbol } from "@/lib/utils";
 
 export function useCurrency() {
@@ -8,7 +8,7 @@ export function useCurrency() {
 
   useEffect(() => {
     const loadCurrency = async () => {
-      const { data: settings } = await supabase
+      const { data: settings } = await db
         .from('user_settings')
         .select('base_currency')
         .maybeSingle();

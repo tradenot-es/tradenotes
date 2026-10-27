@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { format } from "date-fns";
+import { dateLocale } from "@/lib/dateLocale";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   AlertTriangle, 
@@ -49,7 +51,7 @@ interface TradingAlertsWidgetProps {
 }
 
 export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   // Revenge Trading Score Calculation
   const revengeScore = useMemo((): RevengeScore | null => {
@@ -185,7 +187,6 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
 
     // 3. Day-of-Week Performance
     const dayPerformance: { [day: number]: { wins: number; losses: number; pnl: number } } = {};
-    const dayNames = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
     
     trades.forEach(trade => {
       const day = new Date(trade.entry_time).getDay();
@@ -223,7 +224,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
         icon: AlertCircle,
         title: isToday 
           ? t("alerts.weakDayTodayTitle")
-          : t("alerts.weakDayTitle", { day: t(`common.days.${dayNames[worstDay]}`) }),
+          : t("alerts.weakDayTitle", { day: format(new Date(2024, 0, 7 + worstDay), "EEEE", { locale: dateLocale(i18n.language) }) }),
         description: t("alerts.weakDayDescription", { 
           winRate: (worstDayWinRate * 100).toFixed(0),
           trades: worstDayTrades 

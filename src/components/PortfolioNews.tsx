@@ -12,7 +12,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
+import { featureFlags } from "@/config/featureFlags";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
 import { toast } from "sonner";
@@ -114,7 +115,8 @@ export function PortfolioNews() {
   // Auto-translate when new news arrive or language changes
   useEffect(() => {
     const allArticles = groupedNews.flatMap(g => g.articles);
-    const needsTranslation = allArticles.length > 0 && 
+    const needsTranslation = featureFlags.AI_FEATURES &&
+                            allArticles.length > 0 && 
                             i18n.language !== 'en' && 
                             !allArticles.some(a => a.translatedTitle);
     
@@ -169,7 +171,7 @@ export function PortfolioNews() {
       // Fetch news with 3-day range (handled by edge function)
       console.log('PortfolioNews: Fetching news for symbols:', topSymbols);
       
-      const { data, error: functionError } = await supabase.functions.invoke('marketaux-news', {
+      const { data, error: functionError } = await invoke("news", {
         body: { 
           symbols: topSymbols,
           limit: 25  // Increased for better coverage across multiple symbols
@@ -239,7 +241,7 @@ export function PortfolioNews() {
 
       console.log(`PortfolioNews: Batch translating ${articlesToTranslate.length} articles to ${targetLang}`);
 
-      const { data, error } = await supabase.functions.invoke('translate-news', {
+      const { data, error } = await invoke('translate-news', {
         body: { 
           articles: articlesToTranslate,
           targetLanguage: targetLang
@@ -344,7 +346,7 @@ export function PortfolioNews() {
               </HoverCardContent>
             </HoverCard>
           </div>
-          {groupedNews.some(g => g.articles.length > 0) && (
+          {featureFlags.AI_FEATURES && groupedNews.some(g => g.articles.length > 0) && (
             <Button
               variant="outline"
               size="sm"
@@ -392,7 +394,7 @@ export function PortfolioNews() {
               </Badge>
             )}
           </div>
-          {groupedNews.some(g => g.articles.length > 0) && (
+          {featureFlags.AI_FEATURES && groupedNews.some(g => g.articles.length > 0) && (
             <Button
               variant="outline"
               size="sm"

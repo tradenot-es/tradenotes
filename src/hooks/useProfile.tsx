@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "./useAuth";
 
 export function useProfile() {
@@ -20,7 +20,7 @@ export function useProfile() {
 
   const loadProfile = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('profiles')
         .select('first_name, last_name')
         .eq('id', user?.id)

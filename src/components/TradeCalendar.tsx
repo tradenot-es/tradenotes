@@ -11,7 +11,7 @@ import { PoliticalEvents } from "./PoliticalEvents";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import trumpEmoji from "@/assets/trump-emoji.png";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useEffect } from "react";
 import { getCurrencySymbol } from "@/lib/utils";
 import { getCategoryIcon } from "@/lib/economicCalendar";
@@ -48,7 +48,7 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
   // Load currency from settings
   useEffect(() => {
     const loadCurrency = async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from("user_settings")
         .select("base_currency")
         .maybeSingle();
@@ -86,7 +86,8 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
   const today = format(new Date(), 'yyyy-MM-dd');
 
-  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  // 7 Jan 2024 is a Sunday; the grid starts on Sunday
+  const weekDays = Array.from({ length: 7 }, (_, i) => format(new Date(2024, 0, 7 + i), 'EEE', { locale: getLocale() }));
   
   const months = Array.from({ length: 12 }, (_, i) => ({
     value: i.toString(),

@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { apiFetch, db, invoke } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -44,7 +44,7 @@ const Import = () => {
   const [loadingApiKey, setLoadingApiKey] = useState(false);
   const [selectedExecutions, setSelectedExecutions] = useState<Set<string>>(new Set());
   
-  const webhookUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/import-trades`;
+  const webhookUrl = `${window.location.origin}/api/import-trades`;
 
   // Load API key and pending executions
   useEffect(() => {
@@ -56,31 +56,9 @@ const Import = () => {
 
   const loadApiKey = async () => {
     try {
-      // Use secure edge function to retrieve API key (not exposed via direct table query)
-      const { data: sessionData } = await supabase.auth.getSession();
-      const accessToken = sessionData?.session?.access_token;
-      
-      if (!accessToken) {
-        console.error('No access token available');
-        return;
-      }
-      
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/get-webhook-key`,
-        {
-          method: 'GET',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to load API key');
-      }
-      
-      const result = await response.json();
+      // the key is not readable through the data API, only through this endpoint
+      const { data: result, error } = await apiFetch('/api/webhook-key');
+      if (error) throw new Error('Failed to load API key');
       if (result.webhook_api_key) {
         setApiKey(result.webhook_api_key);
       }
@@ -91,10 +69,9 @@ const Import = () => {
 
   const loadPendingExecutions = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('ninjatrader_executions')
         .select('*')
-        .eq('user_id', session?.user.id)
         .order('created_at', { ascending: false });
       
       if (error) throw error;
@@ -107,30 +84,8 @@ const Import = () => {
   const regenerateApiKey = async () => {
     setLoadingApiKey(true);
     try {
-      // Use secure edge function to regenerate API key server-side
-      const { data: sessionData } = await supabase.auth.getSession();
-      const accessToken = sessionData?.session?.access_token;
-      
-      if (!accessToken) {
-        throw new Error('No access token available');
-      }
-      
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/regenerate-webhook-key`,
-        {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error('Failed to regenerate API key');
-      }
-      
-      const result = await response.json();
+      const { data: result, error } = await apiFetch('/api/webhook-key', { method: 'POST' });
+      if (error) throw new Error('Failed to regenerate API key');
       if (result.webhook_api_key) {
         setApiKey(result.webhook_api_key);
         toast.success(t("import.ntApiKeyRegenerated"));
@@ -145,7 +100,7 @@ const Import = () => {
 
   const deletePendingExecution = async (id: string) => {
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('ninjatrader_executions')
         .delete()
         .eq('id', id);
@@ -169,7 +124,7 @@ const Import = () => {
     if (selectedExecutions.size === 0) return;
     
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('ninjatrader_executions')
         .delete()
         .in('id', Array.from(selectedExecutions));
@@ -312,14 +267,7 @@ const Import = () => {
         return;
       }
 
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        toast.error(t("import.notAuthenticated"));
-        setImporting(false);
-        return;
-      }
-
-      const response = await supabase.functions.invoke('import-trades', {
+      const response = await invoke('import-trades', {
         body: trades,
       });
 

@@ -8,7 +8,7 @@ import { AttentionCTA } from "@/components/AttentionCTA";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { Loader2, CheckCircle2, AlertCircle, Wrench, LogIn } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import logo from "@/assets/tradenotes-logo-optimized.webp";
 
 interface PreLaunchProps {
@@ -90,7 +90,7 @@ const PreLaunch = ({ mode }: PreLaunchProps) => {
     setStatus("idle");
 
     try {
-      const { data, error } = await supabase.functions.invoke("join-waitlist", {
+      const { data, error } = await invoke("join-waitlist", {
         body: { email: trimmedEmail, captcha: captchaPayload, language: i18n.language }
       });
 

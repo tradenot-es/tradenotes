@@ -19,9 +19,11 @@ interface FeatureRowProps {
   };
   imagePosition: "left" | "right";
   screenshotUrl?: string;
+  /** live preview rendered instead of a screenshot */
+  visual?: ReactNode;
 }
 
-export function FeatureRow({ feature, imagePosition, screenshotUrl }: FeatureRowProps) {
+export function FeatureRow({ feature, imagePosition, screenshotUrl, visual }: FeatureRowProps) {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -73,7 +75,9 @@ export function FeatureRow({ feature, imagePosition, screenshotUrl }: FeatureRow
 
       {/* Screenshot/Demo Placeholder */}
       <div className="aspect-video rounded-xl border border-primary/20 bg-muted/50 flex items-center justify-center overflow-hidden">
-        {screenshotUrl ? (
+        {visual ? (
+          visual
+        ) : screenshotUrl ? (
           <img
             loading="lazy"
             src={screenshotUrl}

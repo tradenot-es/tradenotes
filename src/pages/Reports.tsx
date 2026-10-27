@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, PieChart, Pie, Legend, LabelList } from "recharts";
 import { format, subDays, subMonths, startOfWeek, endOfWeek, startOfMonth, endOfMonth } from "date-fns";
@@ -22,6 +22,7 @@ import { TopSymbols } from "@/components/TopSymbols";
 import { MarketBreakdown } from "@/components/MarketBreakdown";
 import { PerformanceStats } from "@/components/PerformanceStats";
 import { useCurrency } from "@/hooks/useCurrency";
+import { BehaviorAnalysis } from "@/components/reports/BehaviorAnalysis";
 import { useTradingGoals } from "@/hooks/useTradingGoals";
 import { AccountTypeAnalysis } from "@/components/reports/AccountTypeAnalysis";
 import { PnLChart } from "@/components/PnLChart";
@@ -44,6 +45,8 @@ interface Trade {
   entry_price: number;
   exit_price: number;
   account_type?: string | null;
+  mistakes?: string[] | null;
+  emotions?: string[] | null;
 }
 
 export default function Reports() {
@@ -72,7 +75,7 @@ export default function Reports() {
 
   const loadTrades = async () => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("trades")
       .select("*")
       .order("exit_time", { ascending: false });
@@ -587,6 +590,10 @@ export default function Reports() {
 
         {/* Behavior Tab */}
         <TabsContent value="behavior" className="space-y-6">
+          <BehaviorAnalysis
+            trades={filteredTrades}
+            maxTradesPerDay={goals.max_trades.enabled ? goals.max_trades.target : undefined}
+          />
           <StreakAnalysis trades={filteredTrades} />
           <HoldingPeriodAnalysis trades={filteredTrades} />
         </TabsContent>

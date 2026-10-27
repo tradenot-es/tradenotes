@@ -7,8 +7,8 @@ import {
   Bot, 
   FileText, 
   Globe,
-  LucideIcon 
-} from "lucide-react";
+  LucideIcon, ShieldCheck } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
 
 interface Category {
   id: string;
@@ -25,9 +25,10 @@ export function CategoryNav({ activeCategory, onCategoryClick }: CategoryNavProp
   const { t } = useTranslation();
 
   const categories: Category[] = [
+    { id: "discipline", name: t("features.categories.discipline"), icon: ShieldCheck },
     { id: "trading-tools", name: t("features.categories.tradingTools"), icon: Wrench },
     { id: "analytics", name: t("features.categories.analytics"), icon: BarChart3 },
-    { id: "ai", name: t("features.categories.ai"), icon: Bot },
+    ...(featureFlags.AI_FEATURES ? [{ id: "ai", name: t("features.categories.ai"), icon: Bot }] : []),
     { id: "reports", name: t("features.categories.reports"), icon: FileText },
     { id: "market-intel", name: t("features.categories.marketIntel"), icon: Globe },
   ];

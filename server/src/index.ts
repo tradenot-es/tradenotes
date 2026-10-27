@@ -1,0 +1,39 @@
+import { serve } from "@hono/node-server";
+import { serveStatic } from "@hono/node-server/serve-static";
+import { pool } from "./db.js";
+import { env } from "./env.js";
+import { runMigrations } from "./migrate.js";
+
+await runMigrations(pool);
+// loaded after migrating: Better Auth checks its tables on startup
+const { app } = await import("./app.js");
+
+if (env.staticDir) {
+  // built frontend; unknown paths fall back to index.html for client-side routing
+  app.use("/*", serveStatic({ root: env.staticDir }));
+  app.get("/*", serveStatic({ root: env.staticDir, path: "index.html" }));
+}
+
+// housekeeping (replaces the Supabase cron jobs)
+const cleanup = async () => {
+  await pool.query("delete from ninjatrader_executions where created_at < now() - interval '24 hours'");
+  await pool.query("delete from news_cache where expires_at < now()");
+  await pool.query("delete from sector_sentiments where expires_at < now()");
+  await pool.query(`delete from verification where "expiresAt" < now()`);
+};
+setInterval(() => cleanup().catch((e) => console.error("cleanup failed", e)), 60 * 60 * 1000);
+
+const server = serve({ fetch: app.fetch, port: env.port }, (info) => console.log(`tradenotes server on :${info.port}`));
+
+const shutdownHooks: Array<() => Promise<unknown>> = [];
+/** Lets the dev runner stop its embedded Postgres after the pool is closed. */
+export const onShutdown = (fn: () => Promise<unknown>) => shutdownHooks.push(fn);
+
+const shutdown = async () => {
+  server.close();
+  await pool.end().catch(() => {});
+  for (const fn of shutdownHooks) await fn().catch(() => {});
+  process.exit(0);
+};
+process.on("SIGTERM", shutdown);
+process.on("SIGINT", shutdown);

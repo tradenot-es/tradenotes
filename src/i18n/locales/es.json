@@ -11,7 +11,9 @@
     "settings": "Configuración",
     "logout": "Cerrar sesión",
     "login": "Iniciar sesión",
-    "welcome": "¡Bienvenido, {{name}}!"
+    "welcome": "¡Bienvenido, {{name}}!",
+    "days": "Vista diaria",
+    "openMenu": "Abrir menú"
   },
   "auth": {
     "login": "Iniciar sesión",
@@ -46,7 +48,20 @@
     "betaLoginTitle": "Acceso Beta",
     "betaLoginDesc": "Inicio de sesión para probadores de Beta privada",
     "needAccess": "¿Necesitas acceso beta?",
-    "joinWaitlist": "Únete a la lista de espera"
+    "joinWaitlist": "Únete a la lista de espera",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta? Inicia sesión",
+    "checkEmail": "Confirma tu dirección de correo con el enlace que te hemos enviado.",
+    "confirmPassword": "Confirmar contraseña",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "privacyLink": "Política de privacidad",
+    "termsLink": "Condiciones de uso",
+    "signup": "Crear cuenta",
+    "signupSuccess": "¡Cuenta creada!",
+    "emailNotVerified": "Tu dirección de correo aún no está confirmada. Haz clic en el enlace de nuestro correo.",
+    "resendVerification": "Reenviar correo de confirmación",
+    "verificationResent": "Correo de confirmación reenviado.",
+    "resetLinkInvalid": "El enlace de restablecimiento no es válido o ha caducado. Solicita uno nuevo."
   },
   "captcha": {
     "clickToVerify": "Clic para verificar",
@@ -766,7 +781,11 @@
     "enableNotifications": "Activar Notificaciones",
     "notificationSound": "Sonido de Notificación",
     "drawdownWarningThreshold": "Umbral de Alerta de Drawdown",
-    "drawdownWarningThresholdHelp": "Recibe una advertencia cuando el drawdown diario supere este monto"
+    "drawdownWarningThresholdHelp": "Recibe una advertencia cuando el drawdown diario supere este monto",
+    "currentPassword": "Contraseña actual",
+    "backupCodes": "Códigos de respaldo",
+    "backupCodesDesc": "Guarda estos códigos en un lugar seguro. Cada uno te permite iniciar sesión una vez si pierdes el acceso a tu app de autenticación.",
+    "emailChangeSent": "Te hemos enviado un correo a tu dirección actual. Confirma allí el cambio."
   },
   "notFound": {
     "title": "404",
@@ -817,15 +836,15 @@
     "cta": {
       "startNow": "Empezar"
     },
-    "badge": "Diario de Trading Profesional",
+    "badge": "Diario de trading gratuito",
     "heroTitle": "Conviértete en mejor trader con un",
     "heroTitleHighlightWords": [
-      "journaling sistemático",
-      "journaling preciso",
-      "journaling impulsado por IA"
+      "journaling disciplinado",
+      "journaling honesto",
+      "journaling sistemático"
     ],
     "heroTitleHighlightSuffix": "",
-    "heroDescription": "TradeNotes – el diario de trading para traders activos y ambiciosos. Analytics detallados, noticias IA, eventos políticos y reconocimiento de patrones te ayudan a construir un sistema rentable. Usado por miles de traders en todo el mundo.",
+    "heroDescription": "Registra tus operaciones en segundos, fija límites diarios y ve claramente qué errores te cuestan dinero. Sin suscripción, sin publicidad.",
     "ctaStart": "Comenzar Gratis",
     "ctaFeatures": "Explorar Funciones",
     "rating": "4.9/5 de 1000+ Traders",
@@ -882,11 +901,11 @@
     "whySection": {
       "badge": "¿Por qué un diario de trading?",
       "title": "Los traders exitosos documentan cada operación",
-      "description": "El 92% de los day traders rentables llevan un diario de trading. TradeNot.es lo simplifica.",
+      "description": "Un diario convierte la intuición en datos: qué funciona, qué no y qué hábitos te frenan.",
       "benefit1Title": "Detectar patrones",
       "benefit1Desc": "Análisis automático de tus mejores setups, horarios y símbolos",
       "benefit2Title": "Fortalecer disciplina",
-      "benefit2Desc": "Preparación diaria, seguimiento de consistencia y alertas AI para trading emocional",
+      "benefit2Desc": "Límites diarios, puntuación de disciplina y detección automática de operaciones de venganza",
       "benefit3Title": "Medir rendimiento",
       "benefit3Desc": "Curva de equity, R-múltiple, expectativa y más de 20 KPIs de un vistazo"
     },
@@ -982,6 +1001,18 @@
       "glossary": {
         "title": "Glosario de Trading",
         "description": "Aprende términos de trading: Win Rate, R-Multiple, Profit Factor, Expectancy y más. Construye tu conocimiento de trading."
+      },
+      "discipline": {
+        "title": "Disciplina y límites diarios",
+        "description": "Fija límites de operaciones, pérdida y rachas de pérdidas. Un estado en vivo te avisa a tiempo y te dice cuándo parar por hoy."
+      },
+      "behavior": {
+        "title": "Análisis de errores y emociones",
+        "description": "Marca errores y estado emocional por operación. Las operaciones de venganza y la sobreoperación se detectan automáticamente; el informe muestra lo que te cuesta cada error."
+      },
+      "dayView": {
+        "title": "Vista diaria",
+        "description": "Cada día de trading con curva de P&L intradía, métricas, operaciones y tus notas de un vistazo."
       }
     },
     "allFeatures": {
@@ -1017,13 +1048,69 @@
       "ninjaTraderSync": "NinjaTrader Auto-Sync (Integración Webhook)",
       "propFirmDetection": "Detección Cuentas Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Seguimiento MFE/MAE para Optimización Stop-Loss",
-      "achievements": "Gamificación & Sistema de Logros"
+      "achievements": "Gamificación & Sistema de Logros",
+      "discipline": "Límites diarios con estado en vivo y puntuación de disciplina",
+      "behavior": "Seguimiento de errores y emociones con detección automática de operaciones de venganza",
+      "dayView": "Vista diaria con curva de P&L intradía",
+      "score": "TradeNot.es Score: una nota para tu rendimiento",
+      "templates": "Plantillas de diario (plan pre-market, resumen del día, análisis de pérdida)"
     },
     "free": {
       "badge": "100% gratis",
       "title": "Totalmente gratis. Para siempre.",
       "description": "Sin suscripciones, sin tarjeta de crédito, sin costes ocultos. Todas las funciones gratis para todos los traders.",
       "cta": "Empezar gratis"
+    },
+    "heroFacts": [
+      "100 % gratis",
+      "Sin tarjeta de crédito",
+      "Servidores en la UE"
+    ],
+    "habits": {
+      "badge": "Los hábitos más caros",
+      "title": "Un diario que detecta tus errores, no solo tus operaciones",
+      "description": "Cuatro patrones son los que más dinero cuestan a los traders. tradenot.es hace visible cada uno.",
+      "items": {
+        "overtrading": {
+          "title": "Sobreoperación",
+          "description": "Más operaciones de las previstas porque el mercado se mueve, no porque esté tu setup.",
+          "fix": "Límite diario de operaciones con estado en vivo y aviso de parada"
+        },
+        "revenge": {
+          "title": "Trading de venganza",
+          "description": "Volver a entrar justo después de una pérdida, a menudo con más tamaño, para recuperarla.",
+          "fix": "Detección automática de operaciones de venganza"
+        },
+        "rules": {
+          "title": "Romper reglas",
+          "description": "Stop movido, entrada perseguida, posición demasiado grande.",
+          "fix": "Marca errores por operación y ve lo que cuestan"
+        },
+        "emotions": {
+          "title": "Ceguera emocional",
+          "description": "No notas con qué estado de ánimo operas peor.",
+          "fix": "Registra tu estado emocional y analízalo por ánimo"
+        }
+      }
+    },
+    "howItWorks": {
+      "badge": "Cómo funciona",
+      "title": "Tres pasos hacia más disciplina",
+      "step": "Paso {{n}}",
+      "steps": {
+        "capture": {
+          "title": "Registrar operaciones",
+          "description": "A mano en segundos, por importación CSV o automáticamente desde NinjaTrader."
+        },
+        "rules": {
+          "title": "Definir reglas",
+          "description": "Máx. operaciones, máx. pérdida, máx. racha de pérdidas. El panel te muestra siempre dónde estás."
+        },
+        "review": {
+          "title": "Analizar y mejorar",
+          "description": "La vista diaria, el informe de errores y el TradeNot.es Score te muestran en qué trabajar."
+        }
+      }
     }
   },
   "features": {
@@ -1040,14 +1127,16 @@
       "tradingTools": "Entrada rápida e importación",
       "analytics": "Seguimiento y análisis",
       "ai": "Insights con IA",
-      "marketIntel": "Datos y noticias de mercado"
+      "marketIntel": "Datos y noticias de mercado",
+      "discipline": "Límites diarios, análisis de errores y una puntuación que muestra dónde estás"
     },
     "categories": {
       "tradingTools": "Herramientas",
       "analytics": "Análisis",
       "ai": "IA & Automatización",
       "reports": "Informes",
-      "marketIntel": "Inteligencia de Mercado"
+      "marketIntel": "Inteligencia de Mercado",
+      "discipline": "Disciplina y comportamiento"
     },
     "items": {
       "easyEntry": {
@@ -1265,8 +1354,45 @@
           "Impacto mercado",
           "Trading informado"
         ]
+      },
+      "discipline": {
+        "title": "Disciplina y límites diarios",
+        "description": "Tus reglas del día, contadas en vivo. Antes de alcanzar un límite el panel te avisa; después te dice claramente que por hoy se acabó.",
+        "benefits": [
+          "Límites de operaciones, drawdown, racha de pérdidas y más",
+          "Estado en vivo: según el plan, atención, detenido",
+          "Puntuación de disciplina de los últimos 30 días de trading"
+        ]
+      },
+      "behavior": {
+        "title": "Análisis de errores y emociones",
+        "description": "Marca en cada operación qué salió mal y cómo te sentiste. El informe calcula cuánto te costó cada error.",
+        "benefits": [
+          "10 errores típicos como FOMO, stop movido, operación de venganza",
+          "Detección automática de operaciones de venganza y sobreoperación",
+          "P&L y tasa de acierto por error y estado emocional"
+        ]
+      },
+      "dayView": {
+        "title": "Vista diaria",
+        "description": "Cada día de trading en su propia tarjeta: cómo evolucionó tu P&L durante el día, las métricas, todas las operaciones y tu nota del diario.",
+        "benefits": [
+          "Curva de P&L intradía con tooltip por operación",
+          "Tasa de acierto, mejor y peor operación, comisiones",
+          "Errores y emociones junto a cada operación"
+        ]
+      },
+      "score": {
+        "title": "TradeNot.es Score",
+        "description": "Una nota de 0 a 100 a partir de seis métricas, para ver de un vistazo si mejoras y qué parte te frena.",
+        "benefits": [
+          "Tasa de acierto, profit factor, relación ganancia/pérdida",
+          "Drawdown, factor de recuperación, proporción de días verdes",
+          "Transparente: cada componente visible por separado"
+        ]
       }
-    }
+    },
+    "demoLabel": "Datos de ejemplo"
   },
   "validation": {
     "emailInvalid": "Formato de correo electrónico no válido",
@@ -1298,7 +1424,9 @@
     "tagItemTooLong": "El tag debe tener 30 caracteres o menos",
     "tagMaxReached": "Máximo 30 tags permitidos",
     "checklistMaxReached": "Máximo 10 elementos de lista por setup",
-    "slippageInvalid": "El slippage debe estar entre 0 y 100%"
+    "slippageInvalid": "El slippage debe estar entre 0 y 100%",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "termsRequired": "Acepta las condiciones de uso y la política de privacidad"
   },
   "glossary": {
     "searchPlaceholder": "Buscar términos...",
@@ -1983,7 +2111,7 @@
     }
   },
   "alerts": {
-    "title": "Alertas de Trading IA",
+    "title": "Alertas de trading",
     "allClear": "Todo en orden",
     "allClearDescription": "No se detectaron patrones preocupantes en tu actividad de trading reciente.",
     "urgent": "Urgente",
@@ -2332,5 +2460,123 @@
     "profitGoals": "Objetivos de Ganancia",
     "riskLimits": "Límites de Riesgo",
     "performanceGoals": "Objetivos de Rendimiento"
+  },
+  "behavior": {
+    "mistakesLabel": "Errores en esta operación",
+    "mistakesHint": "tradenot.es también detecta automáticamente operaciones de venganza y sobreoperación.",
+    "emotionsLabel": "Estado emocional",
+    "mistakes": {
+      "revenge": "Operación de venganza",
+      "overtrading": "Sobreoperación",
+      "fomo": "FOMO",
+      "no_plan": "Sin plan",
+      "broke_rules": "Reglas incumplidas",
+      "moved_stop": "Stop movido",
+      "oversized": "Posición demasiado grande",
+      "early_exit": "Salida prematura",
+      "late_exit": "Salida tardía",
+      "chased_entry": "Entrada perseguida"
+    },
+    "emotions": {
+      "calm": "Tranquilo",
+      "confident": "Seguro",
+      "fearful": "Con miedo",
+      "greedy": "Codicioso",
+      "frustrated": "Frustrado",
+      "impatient": "Impaciente",
+      "euphoric": "Eufórico",
+      "tired": "Cansado"
+    },
+    "reportTitle": "Comportamiento y errores",
+    "reportEmpty": "Marca errores y tu estado emocional al registrar una operación y aquí verás cuánto te cuesta cada error.",
+    "mistakeCost": "P&L de operaciones con errores",
+    "mistakeShare": "{{count}} operaciones con al menos un error ({{share}} % del total)",
+    "avgClean": "P&L medio sin errores",
+    "avgWithMistakes": "P&L medio con errores",
+    "autoDetected": "Detectado automáticamente",
+    "autoDetectedHint": "Operaciones de venganza (entrada justo después de una pérdida con igual o mayor tamaño) y operaciones por encima de tu límite diario",
+    "byMistake": "Por error",
+    "byMistakeDesc": "P&L total por tipo de error, el más caro primero",
+    "byEmotion": "Por estado emocional",
+    "byEmotionDesc": "Cómo operas según tu estado de ánimo",
+    "noMistakes": "No hay errores marcados ni detectados.",
+    "noEmotions": "Aún no has registrado ningún estado emocional.",
+    "tagDetail_one": "{{count}} operación · {{winRate}} % ganadoras",
+    "tagDetail_other": "{{count}} operaciones · {{winRate}} % ganadoras"
+  },
+  "discipline": {
+    "title": "Disciplina hoy",
+    "subtitle": "Tus límites diarios y cuánto has usado ya",
+    "state": {
+      "ok": "Según el plan",
+      "warning": "Atención",
+      "stopped": "Detenido por hoy"
+    },
+    "stoppedTitle": "Límite alcanzado: por hoy se acabó.",
+    "stoppedText": "Has agotado una de tus reglas. Cada operación más hoy rompe tu plan. Mañana es otro día.",
+    "revengeToday_one": "Hoy se detectó {{count}} posible operación de venganza. Respira antes de continuar.",
+    "revengeToday_other": "Hoy se detectaron {{count}} posibles operaciones de venganza. Respira antes de continuar.",
+    "noRules": "Define límites diarios (p. ej. máx. operaciones, máx. drawdown, máx. racha de pérdidas) y este panel te mostrará siempre dónde estás.",
+    "setRules": "Definir reglas",
+    "scoreLabel": "Puntuación de disciplina · 30 días",
+    "scoreDetail": "{{clean}} de {{total}} días de trading sin romper reglas",
+    "daysStrip": "Días de trading de los últimos 30 días",
+    "dayKept": "Reglas cumplidas",
+    "dayBroken": "Regla incumplida"
+  },
+  "score": {
+    "title": "TradeNot.es Score",
+    "subtitle": "Una nota para tu rendimiento global",
+    "howTitle": "Cómo se calcula la puntuación",
+    "how": "Media de seis valores, cada uno de 0 a 100 frente a un objetivo muy bueno: tasa de acierto 60 %, profit factor 2,5, ganancia media/pérdida media 2,5, drawdown inferior al 10 % del beneficio bruto, factor de recuperación 3, 70 % de días verdes.",
+    "notEnough": "Se calcula a partir de {{count}} operaciones (por ahora {{have}}).",
+    "band": {
+      "excellent": "Excelente",
+      "good": "Bueno",
+      "fair": "Mejorable",
+      "weak": "Débil"
+    },
+    "components": {
+      "winRate": "Tasa de acierto",
+      "profitFactor": "Profit factor",
+      "winLossRatio": "Ganancia/pérdida",
+      "drawdown": "Drawdown",
+      "recovery": "Recuperación",
+      "consistency": "Días verdes"
+    }
+  },
+  "days": {
+    "title": "Vista diaria",
+    "subtitle": "Cada día de trading de un vistazo: curva, métricas, operaciones y notas",
+    "empty": "Aún no hay operaciones. En cuanto registres alguna, aquí aparecerá cada día de trading.",
+    "loadMore": "Cargar {{count}} días más",
+    "trades": "Operaciones",
+    "winRate": "Tasa de acierto",
+    "best": "Mejor",
+    "worst": "Peor",
+    "fees": "Comisiones",
+    "mistakes": "Operaciones con errores",
+    "chartLabel": "P&L acumulado del día: {{pnl}} de {{count}} operaciones",
+    "showTrades": "Mostrar {{count}} operaciones",
+    "hideTrades": "Ocultar operaciones",
+    "time": "Hora",
+    "symbol": "Símbolo",
+    "side": "Dirección",
+    "behavior": "Comportamiento"
+  },
+  "journalTemplates": {
+    "label": "Plantilla:",
+    "premarket": {
+      "title": "Plan pre-market",
+      "body": "PLAN PRE-MARKET\n\nContexto de mercado / sesgo:\n\nNiveles clave:\n\nEventos y noticias de hoy:\n\nMis setups A de hoy:\n\nRiesgo máximo hoy:\n\nLo que hoy NO haré:"
+    },
+    "recap": {
+      "title": "Resumen del día",
+      "body": "RESUMEN DEL DÍA\n\n¿Qué salió bien?\n\n¿Qué salió mal?\n\n¿Cumplí mis reglas? (sí/no, ¿cuáles no?)\n\nEstado emocional durante el día:\n\nUna cosa que mañana haré mejor:"
+    },
+    "lossReview": {
+      "title": "Análisis de pérdida",
+      "body": "ANÁLISIS DE PÉRDIDA\n\nOperación (símbolo, hora, resultado):\n\n¿La entrada formaba parte de mi plan?\n\n¿Dónde estuvo el error: idea, entrada, tamaño, salida?\n\n¿Qué sentí en ese momento?\n\n¿Qué haré distinto la próxima vez?"
+    }
   }
 }

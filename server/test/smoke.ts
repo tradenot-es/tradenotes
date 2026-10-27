@@ -1,0 +1,156 @@
+// End-to-end smoke test against a running dev server (npm run dev):
+//   npx tsx test/smoke.ts [baseUrl] [devLogFile]
+// Signs up two users (solving the captcha), verifies them via the link the dev
+// server prints instead of mailing, and exercises the data API, isolation between
+// users, webhook import, screenshots, data reset and account deletion.
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+
+const base = process.argv[2] ?? "http://localhost:3000";
+const devLog = process.argv[3];
+const origin = "http://localhost:8080";
+let failures = 0;
+
+function check(name: string, ok: boolean, detail?: unknown) {
+  console.log(`${ok ? "ok  " : "FAIL"} ${name}${ok || detail === undefined ? "" : ` → ${JSON.stringify(detail)}`}`);
+  if (!ok) failures++;
+}
+
+class Client {
+  cookies = new Map<string, string>();
+  async req(path: string, init: RequestInit & { json?: unknown } = {}) {
+    const headers = new Headers(init.headers);
+    headers.set("origin", origin);
+    if (init.json !== undefined) headers.set("content-type", "application/json");
+    if (this.cookies.size) headers.set("cookie", [...this.cookies].map(([k, v]) => `${k}=${v}`).join("; "));
+    const res = await fetch(base + path, {
+      ...init,
+      headers,
+      body: init.json !== undefined ? JSON.stringify(init.json) : init.body,
+      redirect: "manual",
+    });
+    for (const c of res.headers.getSetCookie()) {
+      const [pair] = c.split(";");
+      const [k, v] = pair.split("=");
+      if (v) this.cookies.set(k, v);
+      else this.cookies.delete(k);
+    }
+    const text = await res.text();
+    let body: any = text;
+    try { body = JSON.parse(text); } catch {}
+    return { status: res.status, body, headers: res.headers };
+  }
+  db(query: object) {
+    return this.req("/api/db", { method: "POST", json: query });
+  }
+}
+
+async function solveCaptcha(c: Client) {
+  const { body: ch } = await c.req("/api/altcha/challenge");
+  for (let n = 0; n <= ch.maxnumber; n++) {
+    if (createHash("sha256").update(ch.salt + n).digest("hex") === ch.challenge) {
+      return Buffer.from(JSON.stringify({ challenge: ch.challenge, salt: ch.salt, number: n, algorithm: ch.algorithm })).toString("base64");
+    }
+  }
+  throw new Error("captcha unsolvable");
+}
+
+async function signUpAndVerify(email: string, firstName: string) {
+  const c = new Client();
+  const r = await c.req("/api/auth/sign-up/email", {
+    method: "POST",
+    json: { email, password: "Passwort123", name: firstName, firstName, lastName: "Test", altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
+  });
+  check(`sign up ${email}`, r.status === 200, r.body);
+  const login = await c.req("/api/auth/sign-in/email", { method: "POST", json: { email, password: "Passwort123" } });
+  check("login blocked before email verification", login.status === 403, login.status);
+
+  if (!devLog) throw new Error("pass the dev server log file to read verification links");
+  await new Promise((r) => setTimeout(r, 300));
+  const line = readFileSync(devLog, "utf8").split("\n").reverse().find((l) => l.includes(`verify → ${email}`));
+  const url = line?.split(": ").slice(1).join(": ");
+  check("verification mail logged", !!url);
+  const v = await c.req(new URL(url!).pathname + new URL(url!).search);
+  check("verification link signs in", v.status === 302 && c.cookies.size > 0, v.status);
+  return c;
+}
+
+const stamp = Date.now();
+const anna = await signUpAndVerify(`anna${stamp}@example.com`, "Anna");
+const bob = await signUpAndVerify(`bob${stamp}@example.com`, "Bob");
+
+const profile = await anna.db({ table: "profiles", action: "select", columns: "first_name, last_name" });
+check("profile created on sign up", profile.body.data?.[0]?.first_name === "Anna", profile.body);
+const settings = await anna.db({ table: "user_settings", action: "select", columns: "base_currency, setup_definitions" });
+check("settings created with defaults", settings.body.data?.[0]?.base_currency === "USD", settings.body);
+
+const trade = {
+  symbol: "ES", side: "long", qty: 1, entry_price: 5000, exit_price: 5010,
+  entry_time: "2026-10-27T14:00:00Z", exit_time: "2026-10-27T15:00:00Z", pnl_net: 500,
+  market: "Futures", tags: ["test"], news_context: { a: 1 }, user_id: "00000000-0000-0000-0000-000000000000",
+};
+const ins = await anna.db({ table: "trades", action: "insert", values: trade, returning: true });
+check("insert trade", ins.status === 200 && ins.body.data?.[0]?.pnl_net === 500, ins.body);
+check("owner forced on insert", ins.body.data?.[0]?.user_id !== trade.user_id);
+const tradeId = ins.body.data?.[0]?.id;
+
+const sel = await anna.db({
+  table: "trades", action: "select", columns: "id, symbol, tags",
+  filters: [{ column: "exit_time", op: "gte", value: "2026-10-27T00:00:00" }, { column: "account_name", op: "is", value: null }],
+  order: [{ column: "exit_time", ascending: false }], limit: 5,
+});
+check("select with filters", sel.body.data?.length === 1 && sel.body.data[0].tags[0] === "test", sel.body);
+
+const bobSees = await bob.db({ table: "trades", action: "select" });
+check("other user sees no trades", bobSees.body.data?.length === 0, bobSees.body);
+const bobUpd = await bob.db({ table: "trades", action: "update", values: { note: "hacked" }, filters: [{ column: "id", op: "eq", value: tradeId }], returning: true });
+check("other user cannot update", bobUpd.body.data?.length === 0, bobUpd.body);
+const bad = await anna.db({ table: "trades", action: "select", columns: "id; drop table trades" });
+check("unknown column rejected", bad.status === 400, bad.body);
+const forbidden = await anna.db({ table: "user_settings", action: "delete" });
+check("forbidden action rejected", forbidden.status === 403, forbidden.body);
+const noTable = await anna.db({ table: "user", action: "select" });
+check("auth tables not reachable", noTable.status === 404, noTable.body);
+
+const up = await anna.db({ table: "daily_prep", action: "upsert", values: { date: "2026-10-27", mindset: "calm", checklist: { a: true } }, returning: true });
+const up2 = await anna.db({ table: "daily_prep", action: "upsert", values: { date: "2026-10-27", mindset: "focused" }, returning: true });
+check("upsert daily_prep", up.body.data?.[0]?.id === up2.body.data?.[0]?.id && up2.body.data[0].mindset === "focused", [up.body, up2.body]);
+
+const upd = await anna.db({ table: "user_settings", action: "update", values: { setup_definitions: [{ name: "ORB" }], webhook_api_key: "x" }, returning: true });
+check("jsonb array saved, protected column ignored", upd.body.data?.[0]?.setup_definitions?.[0]?.name === "ORB" && upd.body.data[0].webhook_api_key !== "x", upd.body);
+
+// webhook import (NinjaTrader entry + exit)
+const key = (await anna.req("/api/webhook-key")).body.webhook_api_key;
+check("webhook key exists", typeof key === "string" && key.length === 48);
+const hook = (payload: object, k = key) =>
+  fetch(base + "/api/import-trades", { method: "POST", headers: { "content-type": "application/json", "x-api-key": k }, body: JSON.stringify(payload) }).then(async (r) => ({ status: r.status, body: await r.json() }));
+const nt = { source: "ninjatrader", account: "Sim101", instrument: "NQ 12-26", quantity: 2, accountType: "sim" };
+const e1 = await hook({ ...nt, action: "Buy", price: 20000, timestamp: "2026-10-27T15:00:00Z", executionId: `e1-${stamp}`, marketPosition: "Long" });
+const e2 = await hook({ ...nt, action: "Sell", price: 20010, timestamp: "2026-10-27T15:05:00Z", executionId: `e2-${stamp}`, marketPosition: "Flat", highDuringTrade: 20015, lowDuringTrade: 19995 });
+check("NinjaTrader entry stored", e1.body.success === true, e1.body);
+check("NinjaTrader exit creates trade", e2.body.trade?.pnl_net === 400 && e2.body.trade?.mfe_price === 20015, e2.body);
+const badKey = await hook(nt, "nope");
+check("wrong webhook key rejected", badKey.status === 401, badKey);
+
+// screenshots
+const form = new FormData();
+form.append("file", new Blob([Buffer.from("iVBORw0KGgo=", "base64")], { type: "image/png" }), "x.png");
+const shot = await anna.req("/api/screenshots", { method: "POST", body: form });
+check("screenshot upload", typeof shot.body.url === "string", shot.body);
+check("owner can read screenshot", (await anna.req(shot.body.url)).status === 200);
+check("other user cannot read screenshot", (await bob.req(shot.body.url)).status === 404);
+
+// reset and delete
+const wrongPw = await anna.req("/api/account/reset", { method: "POST", json: { password: "falsch" } });
+check("reset needs correct password", wrongPw.status === 401, wrongPw.body);
+const reset = await anna.req("/api/account/reset", { method: "POST", json: { password: "Passwort123" } });
+const after = await anna.db({ table: "trades", action: "select" });
+check("reset deletes trades", reset.status === 200 && after.body.data?.length === 0, [reset.body, after.body]);
+
+const del = await bob.req("/api/auth/delete-user", { method: "POST", json: { password: "Passwort123" } });
+check("delete account", del.status === 200, del.body);
+const gone = await bob.db({ table: "trades", action: "select" });
+check("deleted user has no session", gone.status === 401, gone.status);
+
+console.log(failures ? `\n${failures} check(s) failed` : "\nall checks passed");
+process.exit(failures ? 1 : 0);

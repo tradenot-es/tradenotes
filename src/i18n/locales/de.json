@@ -10,7 +10,9 @@
     "settings": "Einstellungen",
     "logout": "Abmelden",
     "login": "Anmelden",
-    "welcome": "Willkommen, {{name}}!"
+    "welcome": "Willkommen, {{name}}!",
+    "days": "Tagesansicht",
+    "openMenu": "Menü öffnen"
   },
   "auth": {
     "login": "Anmelden",
@@ -45,7 +47,20 @@
     "betaLoginTitle": "Beta Login",
     "betaLoginDesc": "Anmeldung für Private Beta Tester",
     "needAccess": "Du benötigst einen Beta-Zugang?",
-    "joinWaitlist": "Zur Warteliste"
+    "joinWaitlist": "Zur Warteliste",
+    "alreadyHaveAccount": "Schon ein Konto? Anmelden",
+    "checkEmail": "Bitte bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben.",
+    "confirmPassword": "Passwort bestätigen",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "privacyLink": "Datenschutzerklärung",
+    "termsLink": "Nutzungsbedingungen",
+    "signup": "Konto erstellen",
+    "signupSuccess": "Konto erstellt!",
+    "emailNotVerified": "Deine E-Mail-Adresse ist noch nicht bestätigt. Bitte klicke auf den Link in unserer E-Mail.",
+    "resendVerification": "Bestätigungs-E-Mail erneut senden",
+    "verificationResent": "Bestätigungs-E-Mail wurde erneut gesendet.",
+    "resetLinkInvalid": "Der Link zum Zurücksetzen ist ungültig oder abgelaufen. Bitte fordere einen neuen an."
   },
   "captcha": {
     "clickToVerify": "Klicken zum Verifizieren",
@@ -687,7 +702,11 @@
     "notificationSound": "Ton aktivieren",
     "notificationSoundDesc": "Spiele einen Ton bei wichtigen Alerts",
     "drawdownThreshold": "Drawdown-Warnschwelle",
-    "drawdownThresholdDesc": "Warne mich, wenn ich diesen Prozentsatz meines Tagesziels verliere"
+    "drawdownThresholdDesc": "Warne mich, wenn ich diesen Prozentsatz meines Tagesziels verliere",
+    "currentPassword": "Aktuelles Passwort",
+    "backupCodes": "Backup-Codes",
+    "backupCodesDesc": "Bewahre diese Codes sicher auf. Jeder Code ermöglicht einmal den Login, falls du keinen Zugriff auf deine Authenticator-App hast.",
+    "emailChangeSent": "Wir haben dir eine E-Mail an deine aktuelle Adresse geschickt. Bestätige dort die Änderung."
   },
   "reports": {
     "title": "Reports",
@@ -863,15 +882,15 @@
     "cta": {
       "startNow": "Jetzt starten"
     },
-    "badge": "Professionelles Trading Journal",
+    "badge": "Kostenloses Trading-Journal",
     "heroTitle": "Werde ein besserer Trader durch",
     "heroTitleHighlightWords": [
-      "systematisches",
-      "präzises",
-      "KI-gestütztes"
+      "diszipliniertes",
+      "ehrliches",
+      "systematisches"
     ],
     "heroTitleHighlightSuffix": "Journaling",
-    "heroDescription": "TradeNot.es ist das KI-gestützte Trading Journal für aktive Trader. Tägliche Markt-Vorbereitung, automatische News-Analyse und Glossar zum Lernen. Starte informiert in jeden Handelstag.",
+    "heroDescription": "Erfasse deine Trades in Sekunden, setz dir Tageslimits und sieh schwarz auf weiß, welche Fehler dich Geld kosten. Ohne Abo, ohne Werbung.",
     "ctaStart": "Jetzt starten",
     "ctaFeatures": "Features entdecken",
     "rating": "4.9/5 von 1000+ Tradern",
@@ -1017,6 +1036,18 @@
       "glossary": {
         "title": "Trading Glossar",
         "description": "Trading-Begriffe lernen: Win Rate, R-Multiple, Profit Factor, Expectancy und mehr. Trading-Wissen aufbauen."
+      },
+      "discipline": {
+        "title": "Disziplin & Tageslimits",
+        "description": "Lege Limits für Trades, Verlust und Verlustserien fest. Ein Live-Status warnt rechtzeitig und sagt dir, wann für heute Schluss ist."
+      },
+      "behavior": {
+        "title": "Fehler- & Emotions-Analyse",
+        "description": "Markiere Fehler und Gefühlslage pro Trade. Revenge-Trades und Overtrading werden automatisch erkannt, der Report zeigt, was dich welcher Fehler kostet."
+      },
+      "dayView": {
+        "title": "Tagesansicht",
+        "description": "Jeder Handelstag mit Intraday-P&L-Kurve, Kennzahlen, Trades und deinen Notizen auf einen Blick."
       }
     },
     "allFeatures": {
@@ -1052,16 +1083,21 @@
       "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integration)",
       "propFirmDetection": "Prop-Firm Account-Erkennung (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking für Stop-Loss Optimierung",
-      "achievements": "Gamification & Achievements System"
+      "achievements": "Gamification & Achievements System",
+      "discipline": "Tageslimits mit Live-Status und Disziplin-Score",
+      "behavior": "Fehler- & Emotions-Tracking mit automatischer Revenge-Trade-Erkennung",
+      "dayView": "Tagesansicht mit Intraday-P&L-Kurve",
+      "score": "TradeNot.es Score: eine Note für deine Performance",
+      "templates": "Journal-Vorlagen (Pre-Market-Plan, Tagesrückblick, Verlust-Analyse)"
     },
     "whySection": {
       "badge": "Warum ein Trading Journal?",
       "title": "Erfolgreiche Trader dokumentieren jeden Trade",
-      "description": "92% der profitablen Daytrader führen ein Trading Journal. TradeNot.es macht es einfach.",
+      "description": "Ein Journal macht aus Bauchgefühl Daten: was funktioniert, was nicht, und welche Gewohnheiten dich ausbremsen.",
       "benefit1Title": "Muster erkennen",
       "benefit1Desc": "Automatische Analyse deiner besten Setups, Uhrzeiten und Symbole",
       "benefit2Title": "Disziplin stärken",
-      "benefit2Desc": "Daily Prep, Konsistenz-Tracking und AI-Warnungen bei emotionalem Trading",
+      "benefit2Desc": "Tageslimits, Disziplin-Score und automatische Erkennung von Revenge-Trades",
       "benefit3Title": "Performance messen",
       "benefit3Desc": "Equity Curve, R-Multiple, Expectancy und 20+ KPIs auf einen Blick"
     },
@@ -1070,6 +1106,57 @@
       "title": "Komplett kostenlos. Für immer.",
       "description": "Keine Abos, keine Kreditkarte, keine versteckten Kosten. Alle Funktionen frei für alle Trader.",
       "cta": "Kostenlos starten"
+    },
+    "heroFacts": [
+      "100 % kostenlos",
+      "Keine Kreditkarte",
+      "Server in der EU"
+    ],
+    "habits": {
+      "badge": "Die teuersten Gewohnheiten",
+      "title": "Ein Journal, das deine Fehler erkennt, nicht nur deine Trades",
+      "description": "Vier Muster kosten Trader am meisten Geld. tradenot.es macht jedes davon sichtbar.",
+      "items": {
+        "overtrading": {
+          "title": "Overtrading",
+          "description": "Mehr Trades als geplant, weil der Markt sich bewegt und nicht, weil dein Setup da ist.",
+          "fix": "Tageslimit für Trades mit Live-Status und Stopp-Hinweis"
+        },
+        "revenge": {
+          "title": "Revenge-Trading",
+          "description": "Direkt nach einem Verlust wieder rein, oft mit größerer Position, um es zurückzuholen.",
+          "fix": "Automatische Erkennung von Revenge-Trades"
+        },
+        "rules": {
+          "title": "Regeln brechen",
+          "description": "Stop verschoben, Einstieg hinterhergelaufen, Positionsgröße überzogen.",
+          "fix": "Fehler pro Trade markieren und deren Kosten sehen"
+        },
+        "emotions": {
+          "title": "Emotionale Blindheit",
+          "description": "Du merkst nicht, in welcher Stimmung du schlechter tradest.",
+          "fix": "Gefühlslage erfassen und nach Stimmung auswerten"
+        }
+      }
+    },
+    "howItWorks": {
+      "badge": "So funktioniert's",
+      "title": "In drei Schritten zu mehr Disziplin",
+      "step": "Schritt {{n}}",
+      "steps": {
+        "capture": {
+          "title": "Trades erfassen",
+          "description": "Manuell in Sekunden, per CSV-Import oder automatisch aus NinjaTrader."
+        },
+        "rules": {
+          "title": "Regeln festlegen",
+          "description": "Max. Trades, max. Verlust, max. Verlustserie. Das Dashboard zeigt dir jederzeit, wo du stehst."
+        },
+        "review": {
+          "title": "Auswerten & verbessern",
+          "description": "Tagesansicht, Fehler-Report und TradeNot.es Score zeigen, woran du als Nächstes arbeitest."
+        }
+      }
     }
   },
   "features": {
@@ -1086,14 +1173,16 @@
       "tradingTools": "Schnelle Trade-Erfassung & Import",
       "analytics": "Performance tracken & analysieren",
       "ai": "KI-gestützte Insights",
-      "marketIntel": "Marktdaten & News"
+      "marketIntel": "Marktdaten & News",
+      "discipline": "Tageslimits, Fehler-Analyse und ein Score, der zeigt, wo du stehst"
     },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analysen",
       "ai": "KI & Automatisierung",
       "reports": "Reports",
-      "marketIntel": "Market Intelligence"
+      "marketIntel": "Market Intelligence",
+      "discipline": "Disziplin & Verhalten"
     },
     "items": {
       "easyEntry": {
@@ -1311,8 +1400,45 @@
           "Markt-Impact abschätzen",
           "Informiert handeln"
         ]
+      },
+      "discipline": {
+        "title": "Disziplin & Tageslimits",
+        "description": "Deine Regeln für den Tag, live mitgezählt. Bevor du ein Limit erreichst, warnt dich das Dashboard; danach sagt es dir klar, dass für heute Schluss ist.",
+        "benefits": [
+          "Limits für Trades, Drawdown, Verlustserie und mehr",
+          "Live-Status: im Plan, Achtung, gestoppt",
+          "Disziplin-Score über die letzten 30 Handelstage"
+        ]
+      },
+      "behavior": {
+        "title": "Fehler- & Emotions-Analyse",
+        "description": "Markiere pro Trade, was schiefging und wie du dich gefühlt hast. Der Report rechnet aus, was dich jeder Fehler gekostet hat.",
+        "benefits": [
+          "10 typische Fehler wie FOMO, Stop verschoben, Revenge-Trade",
+          "Automatische Erkennung von Revenge-Trades und Overtrading",
+          "P&L und Trefferquote nach Fehler und Gefühlslage"
+        ]
+      },
+      "dayView": {
+        "title": "Tagesansicht",
+        "description": "Jeder Handelstag als eigene Karte: wie der P&L über den Tag lief, die Kennzahlen, alle Trades und deine Journal-Notiz.",
+        "benefits": [
+          "Intraday-P&L-Kurve mit Tooltip pro Trade",
+          "Trefferquote, bester und schlechtester Trade, Gebühren",
+          "Fehler und Gefühlslage direkt an jedem Trade"
+        ]
+      },
+      "score": {
+        "title": "TradeNot.es Score",
+        "description": "Eine Note von 0 bis 100 aus sechs Kennzahlen. So siehst du auf einen Blick, ob du besser wirst, und welcher Teil dich zurückhält.",
+        "benefits": [
+          "Trefferquote, Profit-Faktor, Gewinn/Verlust-Verhältnis",
+          "Drawdown, Erholungsfaktor, Anteil grüner Tage",
+          "Transparent: jede Komponente einzeln sichtbar"
+        ]
       }
-    }
+    },
+    "demoLabel": "Beispieldaten"
   },
   "validation": {
     "emailInvalid": "Ungültiges E-Mail-Format",
@@ -1344,7 +1470,9 @@
     "tagItemTooLong": "Tag darf maximal 30 Zeichen haben",
     "tagMaxReached": "Maximal 30 Tags erlaubt",
     "checklistMaxReached": "Maximal 10 Checklisten-Punkte pro Setup",
-    "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen"
+    "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen",
+    "passwordMismatch": "Die Passwörter stimmen nicht überein",
+    "termsRequired": "Bitte akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung"
   },
   "glossary": {
     "searchPlaceholder": "Begriffe suchen...",
@@ -1930,7 +2058,7 @@
     }
   },
   "alerts": {
-    "title": "KI Trading Warnungen",
+    "title": "Trading-Warnungen",
     "allClear": "Alles in Ordnung",
     "allClearDescription": "Keine besorgniserregenden Muster in deiner Trading-Aktivität erkannt.",
     "urgent": "Dringend",
@@ -2326,5 +2454,123 @@
     "profitGoals": "Gewinn-Ziele",
     "riskLimits": "Risiko-Limits",
     "performanceGoals": "Performance-Ziele"
+  },
+  "behavior": {
+    "mistakesLabel": "Fehler in diesem Trade",
+    "mistakesHint": "Revenge-Trades und Overtrading erkennt tradenot.es zusätzlich automatisch.",
+    "emotionsLabel": "Gefühlslage",
+    "mistakes": {
+      "revenge": "Revenge-Trade",
+      "overtrading": "Overtrading",
+      "fomo": "FOMO",
+      "no_plan": "Ohne Plan",
+      "broke_rules": "Regeln gebrochen",
+      "moved_stop": "Stop verschoben",
+      "oversized": "Zu große Position",
+      "early_exit": "Zu früh raus",
+      "late_exit": "Zu spät raus",
+      "chased_entry": "Einstieg hinterhergelaufen"
+    },
+    "emotions": {
+      "calm": "Ruhig",
+      "confident": "Selbstsicher",
+      "fearful": "Ängstlich",
+      "greedy": "Gierig",
+      "frustrated": "Frustriert",
+      "impatient": "Ungeduldig",
+      "euphoric": "Euphorisch",
+      "tired": "Müde"
+    },
+    "reportTitle": "Verhalten & Fehler",
+    "reportEmpty": "Markiere beim Erfassen eines Trades Fehler und Gefühlslage. Dann siehst du hier, was dich welcher Fehler kostet.",
+    "mistakeCost": "P&L der Trades mit Fehlern",
+    "mistakeShare": "{{count}} Trades mit mindestens einem Fehler ({{share}} % aller Trades)",
+    "avgClean": "Ø P&L ohne Fehler",
+    "avgWithMistakes": "Ø P&L mit Fehlern",
+    "autoDetected": "Automatisch erkannt",
+    "autoDetectedHint": "Revenge-Trades (Einstieg kurz nach einem Verlust mit gleicher oder größerer Position) und Trades über deinem Tageslimit",
+    "byMistake": "Nach Fehler",
+    "byMistakeDesc": "Summe P&L je Fehlerart, teuerste zuerst",
+    "byEmotion": "Nach Gefühlslage",
+    "byEmotionDesc": "Wie du in welcher Stimmung tradest",
+    "noMistakes": "Keine Fehler markiert oder erkannt.",
+    "noEmotions": "Noch keine Gefühlslage erfasst.",
+    "tagDetail_one": "{{count}} Trade · {{winRate}} % Treffer",
+    "tagDetail_other": "{{count}} Trades · {{winRate}} % Treffer"
+  },
+  "discipline": {
+    "title": "Disziplin heute",
+    "subtitle": "Deine Tageslimits und wie viel davon schon verbraucht ist",
+    "state": {
+      "ok": "Im Plan",
+      "warning": "Achtung",
+      "stopped": "Für heute gestoppt"
+    },
+    "stoppedTitle": "Limit erreicht – für heute ist Schluss.",
+    "stoppedText": "Du hast eine deiner Regeln ausgeschöpft. Jeder weitere Trade heute bricht deinen Plan. Morgen ist ein neuer Tag.",
+    "revengeToday_one": "Heute wurde {{count}} möglicher Revenge-Trade erkannt. Kurz durchatmen, bevor du weitermachst.",
+    "revengeToday_other": "Heute wurden {{count}} mögliche Revenge-Trades erkannt. Kurz durchatmen, bevor du weitermachst.",
+    "noRules": "Lege Tageslimits fest (z. B. max. Trades, max. Drawdown, max. Verlustserie), dann zeigt dir dieses Feld jederzeit, wo du stehst.",
+    "setRules": "Regeln festlegen",
+    "scoreLabel": "Disziplin-Score · 30 Tage",
+    "scoreDetail": "{{clean}} von {{total}} Handelstagen ohne Regelbruch",
+    "daysStrip": "Handelstage der letzten 30 Tage",
+    "dayKept": "Regeln eingehalten",
+    "dayBroken": "Regel gebrochen"
+  },
+  "score": {
+    "title": "TradeNot.es Score",
+    "subtitle": "Eine Note für deine gesamte Performance",
+    "howTitle": "Wie der Score berechnet wird",
+    "how": "Durchschnitt aus sechs Werten, jeweils 0–100 gegen ein sehr gutes Ziel: Trefferquote 60 %, Profit-Faktor 2,5, Ø Gewinn/Ø Verlust 2,5, Drawdown unter 10 % des Bruttogewinns, Erholungsfaktor 3, 70 % grüne Tage.",
+    "notEnough": "Ab {{count}} Trades berechnet (bisher {{have}}).",
+    "band": {
+      "excellent": "Exzellent",
+      "good": "Gut",
+      "fair": "Ausbaufähig",
+      "weak": "Schwach"
+    },
+    "components": {
+      "winRate": "Trefferquote",
+      "profitFactor": "Profit-Faktor",
+      "winLossRatio": "Gewinn/Verlust",
+      "drawdown": "Drawdown",
+      "recovery": "Erholung",
+      "consistency": "Grüne Tage"
+    }
+  },
+  "days": {
+    "title": "Tagesansicht",
+    "subtitle": "Jeder Handelstag auf einen Blick: Verlauf, Kennzahlen, Trades und Notizen",
+    "empty": "Noch keine Trades. Sobald du welche erfasst, erscheint hier jeder Handelstag.",
+    "loadMore": "{{count}} weitere Tage laden",
+    "trades": "Trades",
+    "winRate": "Trefferquote",
+    "best": "Bester",
+    "worst": "Schlechtester",
+    "fees": "Gebühren",
+    "mistakes": "Trades mit Fehlern",
+    "chartLabel": "Kumulierter P&L des Tages: {{pnl}} aus {{count}} Trades",
+    "showTrades": "{{count}} Trades anzeigen",
+    "hideTrades": "Trades ausblenden",
+    "time": "Zeit",
+    "symbol": "Symbol",
+    "side": "Richtung",
+    "behavior": "Verhalten"
+  },
+  "journalTemplates": {
+    "label": "Vorlage:",
+    "premarket": {
+      "title": "Pre-Market-Plan",
+      "body": "PRE-MARKET-PLAN\n\nMarktlage / Bias:\n\nWichtige Levels:\n\nTermine & News heute:\n\nMeine A-Setups heute:\n\nMax. Risiko heute:\n\nWas ich heute NICHT tue:"
+    },
+    "recap": {
+      "title": "Tagesrückblick",
+      "body": "TAGESRÜCKBLICK\n\nWas lief gut?\n\nWas lief schlecht?\n\nHabe ich meine Regeln eingehalten? (ja/nein, welche nicht?)\n\nGefühlslage über den Tag:\n\nEine Sache, die ich morgen besser mache:"
+    },
+    "lossReview": {
+      "title": "Verlust-Analyse",
+      "body": "VERLUST-ANALYSE\n\nTrade (Symbol, Zeit, Ergebnis):\n\nWar der Einstieg Teil meines Plans?\n\nWo lag der Fehler: Idee, Einstieg, Positionsgröße, Ausstieg?\n\nWas habe ich in dem Moment gefühlt?\n\nWas mache ich beim nächsten Mal anders?"
+    }
   }
 }

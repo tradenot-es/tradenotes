@@ -25,10 +25,8 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-
   const fetchChallenge = async (): Promise<Challenge> => {
-    const response = await fetch(`${supabaseUrl}/functions/v1/altcha-challenge?action=create`);
+    const response = await fetch(`/api/altcha/challenge`);
     if (!response.ok) {
       throw new Error('Failed to fetch challenge');
     }
@@ -92,7 +90,7 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
       setErrorMessage(message);
       onError?.(message);
     }
-  }, [state, onVerified, onError, supabaseUrl, t]);
+  }, [state, onVerified, onError, t]);
 
   const getStatusText = () => {
     switch (state) {

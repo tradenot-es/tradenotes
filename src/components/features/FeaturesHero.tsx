@@ -13,7 +13,9 @@ import {
   MessageSquare,
   Globe,
   Zap,
+  ShieldCheck,
 } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
 
 // Feature images for collage - Professional trading screenshots
 import tradingDashboardImg from "@/assets/features/trading-dashboard-pro.webp";
@@ -46,12 +48,19 @@ const teaserCards: TeaserCard[] = [
     titleKey: "features.categories.analytics",
     descriptionKey: "features.teaserCards.analytics",
   },
-  {
-    id: "ai",
-    icon: <MessageSquare className="h-5 w-5" />,
-    titleKey: "features.categories.ai",
-    descriptionKey: "features.teaserCards.ai",
-  },
+  featureFlags.AI_FEATURES
+    ? {
+        id: "ai",
+        icon: <MessageSquare className="h-5 w-5" />,
+        titleKey: "features.categories.ai",
+        descriptionKey: "features.teaserCards.ai",
+      }
+    : {
+        id: "discipline",
+        icon: <ShieldCheck className="h-5 w-5" />,
+        titleKey: "features.categories.discipline",
+        descriptionKey: "features.teaserCards.discipline",
+      },
   {
     id: "market-intel",
     icon: <Globe className="h-5 w-5" />,
@@ -61,9 +70,10 @@ const teaserCards: TeaserCard[] = [
 ];
 
 const categoryFilters = [
+  { id: "discipline", labelKey: "features.categories.discipline" },
   { id: "trading-tools", labelKey: "features.categories.tradingTools" },
   { id: "analytics", labelKey: "features.categories.analytics" },
-  { id: "ai", labelKey: "features.categories.ai" },
+  ...(featureFlags.AI_FEATURES ? [{ id: "ai", labelKey: "features.categories.ai" }] : []),
   { id: "reports", labelKey: "features.categories.reports" },
   { id: "market-intel", labelKey: "features.categories.marketIntel" },
 ];

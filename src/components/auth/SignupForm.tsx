@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { supabase } from "@/integrations/supabase/client";
+import { auth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -26,6 +26,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
+  // bumped to remount the captcha after a failed attempt (each solution is single-use)
+  const [captchaRound, setCaptchaRound] = useState(0);
 
   const signupSchema = z.object({
     email: z.string()
@@ -75,45 +77,23 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
     setLoading(true);
 
     try {
-      // Step 1: Create user with Supabase Auth (email confirmation disabled - we handle it manually)
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      // Creates the account; the server checks the captcha and sends the confirmation email
+      const { error } = await auth.signUp({
         email,
         password,
-        options: {
-          data: {
-            first_name: firstName,
-            last_name: lastName,
-          },
-          // Don't use Supabase's default email confirmation
-          emailRedirectTo: undefined,
-        },
-      });
-
-      if (authError) throw authError;
-
-      // Step 2: Send confirmation email via Lettermint
-      const { data, error } = await supabase.functions.invoke('send-auth-email', {
-        body: {
-          email,
-          type: 'signup',
-          firstName,
-          language: navigator.language.startsWith('de') ? 'de' : 'en',
-          altcha_payload: altchaPayload,
-        },
+        firstName,
+        lastName,
+        altcha: altchaPayload,
       });
 
       if (error) {
-        console.error('Failed to send confirmation email:', error);
-        // User was created but email failed - still show success but with note
-        toast.success(t("auth.signupSuccess"));
-        toast.info(t("auth.emailMayBeDelayed") || "Die Bestätigungs-E-Mail kann etwas verzögert ankommen.");
-      } else if (data?.error) {
-        console.error('Email service error:', data.error);
-        toast.success(t("auth.signupSuccess"));
-      } else {
-        toast.success(t("auth.signupSuccess"));
-        toast.info(t("auth.checkEmail") || "Bitte überprüfe deine E-Mails zur Bestätigung.");
+        setAltchaPayload(null);
+        setCaptchaRound((r) => r + 1);
+        throw error;
       }
+
+      toast.success(t("auth.signupSuccess"));
+      toast.info(t("auth.checkEmail") || "Bitte überprüfe deine E-Mails zur Bestätigung.");
 
       onSuccess?.();
     } catch (error: any) {
@@ -242,6 +222,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       )}
 
       <AltchaWidget 
+        key={captchaRound}
         onVerified={setAltchaPayload}
         onError={() => setAltchaPayload(null)}
       />

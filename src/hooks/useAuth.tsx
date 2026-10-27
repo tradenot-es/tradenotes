@@ -1,36 +1,32 @@
 import { useState, useEffect } from "react";
-import { User, Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
+import { auth, type AuthSession, type AuthUser } from "@/lib/auth";
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const initial = auth.peek();
+  const [session, setSession] = useState<AuthSession | null>(initial.session);
+  const [loading, setLoading] = useState(!initial.loaded);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setSession(session);
-        setUser(session?.user ?? null);
-        setLoading(false);
-      }
-    );
-
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
+    const unsubscribe = auth.subscribe((s) => {
+      setSession(s);
       setLoading(false);
     });
-
-    return () => subscription.unsubscribe();
+    auth.getSession().then((s) => {
+      setSession(s);
+      setLoading(false);
+    });
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    await auth.signOut();
     navigate("/");
   };
 
+  const user: AuthUser | null = session?.user ?? null;
   return { user, session, loading, signOut };
 }

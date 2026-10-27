@@ -10,7 +10,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { supabase } from "@/integrations/supabase/client";
+import { db, invoke, uploadScreenshot } from "@/lib/api";
+import { featureFlags } from "@/config/featureFlags";
+import { BehaviorTagPicker } from "@/components/BehaviorTagPicker";
+import { EMOTIONS, MISTAKES } from "@/lib/behavior";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
@@ -38,6 +41,8 @@ interface Trade {
   mfe_price?: number;
   mae_price?: number;
   rating?: number;
+  mistakes?: string[] | null;
+  emotions?: string[] | null;
   screenshot_url?: string;
   setup?: string;
   note?: string;
@@ -61,7 +66,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [loadingPrice, setLoadingPrice] = useState(false);
   const [analyzingChart, setAnalyzingChart] = useState(false);
   const [entryMode, setEntryMode] = useState<'manual' | 'screenshot'>('manual');
-  const [modeSelected, setModeSelected] = useState(false);
+  const [modeSelected, setModeSelected] = useState(!featureFlags.AI_FEATURES);
   const [screenshotAnalyzed, setScreenshotAnalyzed] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
@@ -72,6 +77,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [rating, setRating] = useState<number>(0);
+  const [mistakes, setMistakes] = useState<string[]>([]);
+  const [emotions, setEmotions] = useState<string[]>([]);
   const [symbolInfo, setSymbolInfo] = useState<{ pointValue?: number; multiplier?: number; info?: string }>({});
   const [extractedData, setExtractedData] = useState<any>(null);
   const [accountType, setAccountType] = useState<AccountType>('live');
@@ -126,7 +133,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   // Load setup definitions and tags
   useEffect(() => {
     const loadSettings = async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from("user_settings")
         .select("setup_definitions, tags")
         .maybeSingle();
@@ -147,16 +154,12 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   // Copy last trade function
   const copyLastTrade = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from("trades")
         .select("*")
-        .eq("user_id", user.id)
         .order("exit_time", { ascending: false })
         .limit(1)
-        .single();
+        .maybeSingle();
 
       if (error || !data) {
         toast.error(t("trades.noTradeFound"));
@@ -211,6 +214,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         setChecklistCompleted(editTrade.setup_checklist_completed || []);
         setSelectedTags(editTrade.tags || []);
         setRating(editTrade.rating || 0);
+        setMistakes(editTrade.mistakes || []);
+        setEmotions(editTrade.emotions || []);
         setScreenshotPreview(editTrade.screenshot_url || null);
         setAccountType((editTrade.account_type as AccountType) || 'live');
         setAccountName(editTrade.account_name || '');
@@ -240,7 +245,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
-      setModeSelected(false);
+      setMistakes([]);
+      setEmotions([]);
+      setModeSelected(!featureFlags.AI_FEATURES);
       setEntryMode('manual');
       setScreenshotAnalyzed(false);
       setAccountType('live');
@@ -298,7 +305,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     
     setLoadingPrice(true);
     try {
-      const { data, error } = await supabase.functions.invoke('get-stock-price', {
+      const { data, error } = await invoke('stock-price', {
         body: { symbol, market }
       });
 
@@ -344,7 +351,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       const imageBase64 = await base64Promise;
 
       // Call the analyze-chart edge function
-      const { data, error } = await supabase.functions.invoke("analyze-chart", {
+      const { data, error } = await invoke("analyze-chart", {
         body: { imageBase64 },
       });
 
@@ -464,26 +471,12 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
     setLoading(true);
 
     try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) throw new Error("Nicht angemeldet");
-
       // Upload screenshot if provided
       let screenshotUrl = editTrade?.screenshot_url || null;
       if (screenshotFile) {
-        const fileExt = screenshotFile.name.split('.').pop();
-        const fileName = `${user.id}/${Date.now()}.${fileExt}`;
-        
-        const { error: uploadError, data: uploadData } = await supabase.storage
-          .from('trade-screenshots')
-          .upload(fileName, screenshotFile);
-
-        if (uploadError) throw uploadError;
-        
-        const { data: { publicUrl } } = supabase.storage
-          .from('trade-screenshots')
-          .getPublicUrl(fileName);
-        
-        screenshotUrl = publicUrl;
+        const { data: upload, error: uploadError } = await uploadScreenshot(screenshotFile);
+        if (uploadError || !upload) throw uploadError ?? new Error("Upload failed");
+        screenshotUrl = upload.url;
       }
 
       // Calculate P&L
@@ -525,6 +518,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         initial_risk: initialRisk,
         r: rMultiple,
         rating: rating > 0 ? rating : null,
+        mistakes,
+        emotions,
         screenshot_url: screenshotUrl,
         setup: formData.setup || null,
         note: formData.note || null,
@@ -537,19 +532,16 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       let error;
       if (editTrade) {
         // Update existing trade
-        const result = await supabase
+        const result = await db
           .from("trades")
           .update(tradeData)
           .eq('id', editTrade.id);
         error = result.error;
       } else {
         // Insert new trade
-        const result = await supabase
+        const result = await db
           .from("trades")
-          .insert({
-            user_id: user.id,
-            ...tradeData
-          });
+          .insert(tradeData);
         error = result.error;
       }
 
@@ -578,7 +570,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setScreenshotFile(null);
       setScreenshotPreview(null);
       setRating(0);
-      setModeSelected(false);
+      setMistakes([]);
+      setEmotions([]);
+      setModeSelected(!featureFlags.AI_FEATURES);
       setScreenshotAnalyzed(false);
       setAccountType('live');
       setAccountName('');
@@ -595,7 +589,7 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              {modeSelected && !editTrade && (
+              {featureFlags.AI_FEATURES && modeSelected && !editTrade && (
                 <Button
                   variant="ghost"
                   size="icon"
@@ -1250,6 +1244,24 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
               {t("trades.ratingHint")}
             </p>
           </div>
+
+          {/* Behaviour: mistakes and emotional state */}
+          <BehaviorTagPicker
+            label={t("behavior.mistakesLabel")}
+            hint={t("behavior.mistakesHint")}
+            options={MISTAKES}
+            i18nPrefix="behavior.mistakes"
+            value={mistakes}
+            onChange={setMistakes}
+            tone="negative"
+          />
+          <BehaviorTagPicker
+            label={t("behavior.emotionsLabel")}
+            options={EMOTIONS}
+            i18nPrefix="behavior.emotions"
+            value={emotions}
+            onChange={setEmotions}
+          />
 
           {/* Screenshot Upload and Analysis */}
           {entryMode === 'manual' && (

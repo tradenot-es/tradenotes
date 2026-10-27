@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Sparkles } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface NewsContextProps {
@@ -38,7 +38,7 @@ export function TradeNewsContext({ symbol, entryTime, className }: NewsContextPr
       const start = new Date(entryDate.getTime() - 60 * 60 * 1000).toISOString();
       const end = new Date(entryDate.getTime() + 60 * 60 * 1000).toISOString();
 
-      const { data, error } = await supabase.functions.invoke("marketaux-news", {
+      const { data, error } = await invoke("news", {
         body: {
           symbols: [symbol],
           timeWindow: { start, end },

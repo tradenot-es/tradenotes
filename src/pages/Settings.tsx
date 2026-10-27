@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { X, HelpCircle, Settings as SettingsIcon } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -25,6 +26,14 @@ const Settings = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  // deep links like /dashboard/settings#trading-goals, once the content is rendered
+  useEffect(() => {
+    if (!loading && location.hash) {
+      document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [loading, location.hash]);
   const [saving, setSaving] = useState(false);
   const [currency, setCurrency] = useState("USD");
   const [timezone, setTimezone] = useState("America/New_York");
@@ -78,7 +87,7 @@ const Settings = () => {
 
   const loadSettings = async () => {
     // Explicitly select only needed columns - exclude webhook_api_key for security
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("user_settings")
       .select("id, base_currency, timezone, default_fees, default_slippage, setup_definitions, tags, daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold, trading_goals")
       .maybeSingle();
@@ -132,7 +141,7 @@ const Settings = () => {
 
     setSaving(true);
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from("user_settings")
         .update({
           base_currency: currency,
@@ -451,11 +460,13 @@ const Settings = () => {
             </CardContent>
           </Card>
 
-          {/* Trading Goals Settings */}
+          {/* Trading Goals Settings (anchor target of the dashboard's discipline panel) */}
+          <div id="trading-goals" className="scroll-mt-24">
           <TradingGoalsSettings
             goals={tradingGoals}
             onGoalChange={handleGoalChange}
           />
+          </div>
 
           {/* Trading Setups with Checklists */}
           <Card>

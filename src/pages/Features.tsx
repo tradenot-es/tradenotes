@@ -24,7 +24,9 @@ import { CategoryNav } from "@/components/features/CategoryNav";
 import { FeatureRow } from "@/components/features/FeatureRow";
 import { FeaturesHero } from "@/components/features/FeaturesHero";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Brain, CalendarDays, Gauge, ShieldCheck } from "lucide-react";
+import { featureFlags } from "@/config/featureFlags";
+import { BehaviorDemo, DayViewDemo, DisciplineDemo, ScoreDemo } from "@/components/features/FeatureDemos";
 import {
   TrendingUp,
   Zap,
@@ -53,7 +55,7 @@ const Features = () => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categoryIds = ["trading-tools", "analytics", "ai", "reports", "market-intel"];
+  const categoryIds = ["discipline", "trading-tools", "analytics", ...(featureFlags.AI_FEATURES ? ["ai"] : []), "reports", "market-intel"];
   const activeCategory = useScrollSpy(categoryIds, 140);
 
   // SEO: Update document metadata
@@ -78,6 +80,54 @@ const Features = () => {
 
   // Feature data organized by category with individual illustrations
   const featureCategories = [
+    {
+      id: "discipline",
+      name: t("features.categories.discipline"),
+      features: [
+        {
+          icon: <ShieldCheck className="h-6 w-6" />,
+          title: t("features.items.discipline.title"),
+          description: t("features.items.discipline.description"),
+          benefits: t("features.items.discipline.benefits", { returnObjects: true }) as string[],
+          visual: <DisciplineDemo />,
+        },
+        {
+          icon: <Brain className="h-6 w-6" />,
+          title: t("features.items.behavior.title"),
+          description: t("features.items.behavior.description"),
+          benefits: t("features.items.behavior.benefits", { returnObjects: true }) as string[],
+          visual: <BehaviorDemo />,
+        },
+        {
+          icon: <CalendarDays className="h-6 w-6" />,
+          title: t("features.items.dayView.title"),
+          description: t("features.items.dayView.description"),
+          benefits: t("features.items.dayView.benefits", { returnObjects: true }) as string[],
+          visual: <DayViewDemo />,
+        },
+        {
+          icon: <Gauge className="h-6 w-6" />,
+          title: t("features.items.score.title"),
+          description: t("features.items.score.description"),
+          benefits: t("features.items.score.benefits", { returnObjects: true }) as string[],
+          visual: <ScoreDemo />,
+        },
+        {
+          icon: <Bell className="h-6 w-6" />,
+          title: t("features.items.goalAlerts.title"),
+          description: t("features.items.goalAlerts.description"),
+          benefits: t("features.items.goalAlerts.benefits", { returnObjects: true }) as string[],
+          illustration: tradingDashboardImg,
+        },
+        {
+          icon: <Calculator className="h-6 w-6" />,
+          title: t("features.items.riskSimulator.title"),
+          description: t("features.items.riskSimulator.description"),
+          benefits: t("features.items.riskSimulator.benefits", { returnObjects: true }) as string[],
+          illustration: riskCalculatorImg,
+        },
+      ],
+    },
     {
       id: "trading-tools",
       name: t("features.categories.tradingTools"),
@@ -160,6 +210,8 @@ const Features = () => {
         },
       ],
     },
+    ...(featureFlags.AI_FEATURES
+      ? [
     {
       id: "ai",
       name: t("features.categories.ai"),
@@ -185,22 +237,10 @@ const Features = () => {
           benefits: t("features.items.dailySummary.benefits", { returnObjects: true }) as string[],
           illustration: performanceAnalyticsImg,
         },
-        {
-          icon: <Bell className="h-6 w-6" />,
-          title: t("features.items.goalAlerts.title"),
-          description: t("features.items.goalAlerts.description"),
-          benefits: t("features.items.goalAlerts.benefits", { returnObjects: true }) as string[],
-          illustration: tradingDashboardImg,
-        },
-        {
-          icon: <Calculator className="h-6 w-6" />,
-          title: t("features.items.riskSimulator.title"),
-          description: t("features.items.riskSimulator.description"),
-          benefits: t("features.items.riskSimulator.benefits", { returnObjects: true }) as string[],
-          illustration: riskCalculatorImg,
-        },
       ],
     },
+        ]
+      : []),
     {
       id: "reports",
       name: t("features.categories.reports"),
@@ -323,7 +363,8 @@ const Features = () => {
                   key={index}
                   feature={feature}
                   imagePosition={index % 2 === 0 ? "right" : "left"}
-                  screenshotUrl={feature.illustration}
+                  screenshotUrl={"illustration" in feature ? feature.illustration : undefined}
+                  visual={"visual" in feature ? feature.visual : undefined}
                 />
               ))}
             </section>

@@ -2,45 +2,37 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useEffect, useState } from "react";
 import { CheckCircle2, AlertCircle, Clock, Activity } from "lucide-react";
 
+type ServiceStatus = "operational" | "down" | "checking";
+
 const Status = () => {
+  // live check: /api/health answers only when the app server and its database are up
+  const [apiStatus, setApiStatus] = useState<ServiceStatus>("checking");
+  const [checkedAt, setCheckedAt] = useState<Date | null>(null);
+
+  useEffect(() => {
+    fetch("/api/health")
+      .then((res) => setApiStatus(res.ok ? "operational" : "down"))
+      .catch(() => setApiStatus("down"))
+      .finally(() => setCheckedAt(new Date()));
+  }, []);
+
   const services = [
     {
       name: "Website",
       status: "operational",
-      description: "Lovable Hauptwebsite"
+      description: "TradeNot.es Website"
     },
     {
-      name: "Login",
-      status: "operational",
-      description: "Authentifizierungssystem"
-    },
-    {
-      name: "Editor",
-      status: "operational",
-      description: "Lovable Editor & KI-Funktionen"
-    },
-    {
-      name: "Hosting",
-      status: "operational",
-      description: "App-Hosting & Deployment"
-    },
-    {
-      name: "Supabase",
-      status: "operational",
-      description: "Datenbank & Backend Services"
+      name: "App & Login",
+      status: apiStatus,
+      description: "Trading-Journal, Authentifizierung & Datenbank"
     }
   ];
 
-  // Status history would be fetched from Lovable's actual status API
-  const statusHistory = [] as Array<{
-    date: string;
-    type: string;
-    title: string;
-    description: string;
-    duration: string;
-  }>;
+  const allOperational = apiStatus === "operational";
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -68,17 +60,6 @@ const Status = () => {
     }
   };
 
-  const getHistoryIcon = (type: string) => {
-    switch (type) {
-      case "resolved":
-        return <CheckCircle2 className="h-5 w-5 text-green-500" />;
-      case "maintenance":
-        return <Clock className="h-5 w-5 text-blue-500" />;
-      default:
-        return <Activity className="h-5 w-5 text-muted-foreground" />;
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -96,19 +77,29 @@ const Status = () => {
           </div>
 
           <div className="max-w-4xl mx-auto mb-12">
-            <Card className="border-green-500/20 bg-green-500/5">
+            <Card className={allOperational ? "border-green-500/20 bg-green-500/5" : "border-yellow-500/20 bg-yellow-500/5"}>
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="h-6 w-6 text-green-500" />
-                  <CardTitle className="text-green-500">Alle Systeme operational</CardTitle>
+                  {allOperational ? (
+                    <CheckCircle2 className="h-6 w-6 text-green-500" />
+                  ) : (
+                    <AlertCircle className="h-6 w-6 text-yellow-500" />
+                  )}
+                  <CardTitle className={allOperational ? "text-green-500" : "text-yellow-500"}>
+                    {apiStatus === "checking" ? "Status wird geprüft …" : allOperational ? "Alle Systeme operational" : "Störung"}
+                  </CardTitle>
                 </div>
                 <CardDescription>
-                  Alle Services laufen normal. Keine aktuellen Probleme bekannt.
+                  {allOperational
+                    ? "Alle Services laufen normal. Keine aktuellen Probleme bekannt."
+                    : apiStatus === "down"
+                      ? "Die App ist gerade nicht erreichbar. Wir arbeiten daran."
+                      : ""}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="text-sm text-muted-foreground">
-                  Letzte Aktualisierung: {new Date().toLocaleString('de-DE')}
+                  Letzte Aktualisierung: {(checkedAt ?? new Date()).toLocaleString('de-DE')}
                 </div>
               </CardContent>
             </Card>
@@ -136,26 +127,6 @@ const Status = () => {
                 </Card>
               ))}
             </div>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Detaillierte Status-Informationen</h2>
-            <Card>
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
-                  Für detaillierte Informationen zu aktuellen und vergangenen Vorfällen, sowie Echtzeit-Updates besuchen Sie bitte die offizielle Lovable Status-Seite:
-                </p>
-                <a 
-                  href="https://status.lovable.dev" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary hover:underline font-medium"
-                >
-                  status.lovable.dev
-                  <Activity className="h-4 w-4" />
-                </a>
-              </CardContent>
-            </Card>
           </div>
 
           <div className="mt-12 text-center">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "./useAuth";
 
 interface SymbolFrequency {
@@ -21,7 +21,7 @@ export function useFrequentSymbols(market?: string) {
 
     const loadFrequentSymbols = async () => {
       try {
-        let query = supabase
+        let query = db
           .from("trades")
           .select("symbol, market");
 
@@ -45,7 +45,7 @@ export function useFrequentSymbols(market?: string) {
           };
 
           // Count symbol frequency with normalization
-          const symbolCounts = data.reduce((acc, trade) => {
+          const symbolCounts: Record<string, SymbolFrequency> = data.reduce((acc: Record<string, SymbolFrequency>, trade: { symbol: string; market: string | null }) => {
             const normalizedSymbol = normalizeSymbol(trade.symbol);
             const key = `${normalizedSymbol}-${trade.market}`;
             if (!acc[key]) {

@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle, Trophy, Trash2 } from "lucide-react";
 import { AchievementsOverview } from "@/components/AchievementsOverview";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { apiFetch, db } from "@/lib/api";
+import { auth } from "@/lib/auth";
+import QRCode from "qrcode";
 import { useAuth } from "@/hooks/useAuth";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -26,6 +28,7 @@ const Account = () => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordStrength, setPasswordStrength] = useState<"weak" | "medium" | "strong" | null>(null);
@@ -37,19 +40,11 @@ const Account = () => {
   const [totpSecret, setTotpSecret] = useState<string>("");
   const [verifyCode, setVerifyCode] = useState("");
   const [showQRDialog, setShowQRDialog] = useState(false);
+  const [backupCodes, setBackupCodes] = useState<string[]>([]);
+  // enabling and disabling 2FA both ask for the password first
+  const [mfaPasswordAction, setMfaPasswordAction] = useState<"enable" | "disable" | null>(null);
+  const [mfaPassword, setMfaPassword] = useState("");
   
-  // Subscription states
-  const [subscriptionStatus, setSubscriptionStatus] = useState<{
-    subscribed: boolean;
-    plan_name?: string;
-    subscription_end?: string;
-    trial_days_remaining?: number | null;
-    trial_end_date?: string | null;
-  } | null>(null);
-  const [loadingSubscription, setLoadingSubscription] = useState(true);
-  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly">("yearly");
-  const [subscribing, setSubscribing] = useState(false);
-
   // Reset states
   const [showResetDialog, setShowResetDialog] = useState(false);
   const [resetPassword, setResetPassword] = useState("");
@@ -68,17 +63,16 @@ const Account = () => {
     if (user) {
       setEmail(user.email || "");
       loadProfile();
-      checkMFAStatus();
+      setMfaEnabled(!!user.twoFactorEnabled);
     }
   }, [user]);
 
   const loadProfile = async () => {
     try {
-      const { data, error } = await supabase
+      const { data, error } = await db
         .from('profiles')
         .select('first_name, last_name')
-        .eq('id', user?.id)
-        .single();
+        .maybeSingle();
 
       if (error && error.code !== 'PGRST116') throw error;
       
@@ -88,39 +82,6 @@ const Account = () => {
       }
     } catch (error) {
       console.error('Error loading profile:', error);
-    }
-  };
-
-  const checkSubscriptionStatus = async () => {
-    setLoadingSubscription(true);
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const { data, error } = await supabase.functions.invoke('check-subscription', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
-
-      if (error) throw error;
-      setSubscriptionStatus(data);
-    } catch (error) {
-      console.error('Error checking subscription:', error);
-      toast.error("Fehler beim Laden des Abonnement-Status");
-    } finally {
-      setLoadingSubscription(false);
-    }
-  };
-
-  const checkMFAStatus = async () => {
-    try {
-      const { data, error } = await supabase.auth.mfa.listFactors();
-      if (error) throw error;
-      const totpFactor = data?.totp?.find(f => f.status === 'verified');
-      setMfaEnabled(!!totpFactor);
-    } catch (error) {
-      console.error('Error checking MFA status:', error);
     }
   };
 
@@ -174,10 +135,9 @@ const Account = () => {
     }
 
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('profiles')
         .upsert({
-          id: user?.id,
           first_name: firstName.trim(),
           last_name: lastName.trim() || null,
         });
@@ -195,43 +155,14 @@ const Account = () => {
       return;
     }
     
-    try {
-      const { data, error } = await supabase.functions.invoke('send-auth-email', {
-        body: {
-          email: user.email, // Current email (for lookup)
-          new_email: email, // New email address
-          type: 'email_change',
-          language: navigator.language.startsWith('de') ? 'de' : 'en',
-        },
-      });
-
-      // Handle edge function errors (including 409 conflict)
-      if (error) {
-        // Parse error message - Supabase functions.invoke includes JSON body in error.message for non-2xx
-        let errorMessage = t("settings.emailUpdateError");
-        
-        // Try to extract JSON error from the error message string
-        const messageMatch = error.message?.match(/\{"error":\s*"([^"]+)"\}/);
-        if (messageMatch && messageMatch[1]) {
-          errorMessage = messageMatch[1];
-        } else if (error.message && !error.message.includes('non-2xx')) {
-          errorMessage = error.message;
-        }
-        
-        toast.error(errorMessage);
-        return;
-      }
-      
-      if (data?.error) {
-        toast.error(data.error);
-        return;
-      }
-      
-      toast.success(t("settings.emailUpdateSuccess"));
-    } catch (error: any) {
-      console.error('Email update error:', error);
+    // Better Auth mails a confirmation link to the current address first,
+    // then a verification link to the new one
+    const { error } = await auth.changeEmail(email.trim());
+    if (error) {
       toast.error(error.message || t("settings.emailUpdateError"));
+      return;
     }
+    toast.success(t("settings.emailChangeSent"));
   };
 
   const handleUpdatePassword = async () => {
@@ -243,9 +174,14 @@ const Account = () => {
       toast.error(t("settings.passwordTooShort"));
       return;
     }
+    if (!currentPassword) {
+      toast.error(t("account.passwordRequired"));
+      return;
+    }
     try {
-      const { error } = await supabase.auth.updateUser({ password: newPassword });
-      if (error) throw error;
+      const { error } = await auth.changePassword(currentPassword, newPassword);
+      if (error) throw new Error(error.code === "INVALID_PASSWORD" ? t("account.incorrectPassword") : error.message);
+      setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
       setPasswordStrength(null);
@@ -255,107 +191,55 @@ const Account = () => {
     }
   };
 
-  const handleEnableMFA = async () => {
+  const handleEnableMFA = () => {
+    setMfaPassword("");
+    setMfaPasswordAction("enable");
+  };
+
+  const handleDisableMFA = () => {
+    setMfaPassword("");
+    setMfaPasswordAction("disable");
+  };
+
+  const handleMfaPasswordConfirm = async () => {
+    const action = mfaPasswordAction;
     setEnrolling(true);
     try {
-      const { data, error } = await supabase.auth.mfa.enroll({ factorType: 'totp' });
-      if (error) throw error;
-      
-      setTotpSecret(data.totp.secret);
-      setQrCode(data.totp.qr_code);
-      setShowQRDialog(true);
+      if (action === "enable") {
+        const { data, error } = await auth.twoFactor.enable(mfaPassword);
+        if (error || !data) throw new Error(error?.code === "INVALID_PASSWORD" ? t("account.incorrectPassword") : t("settings.mfaEnableError"));
+        setTotpSecret(new URL(data.totpURI).searchParams.get("secret") ?? "");
+        setQrCode(await QRCode.toDataURL(data.totpURI, { width: 256, margin: 1 }));
+        setBackupCodes(data.backupCodes);
+        setMfaPasswordAction(null);
+        setShowQRDialog(true);
+      } else if (action === "disable") {
+        const { error } = await auth.twoFactor.disable(mfaPassword);
+        if (error) throw new Error(error.code === "INVALID_PASSWORD" ? t("account.incorrectPassword") : t("settings.mfaDisableError"));
+        setMfaEnabled(false);
+        setMfaPasswordAction(null);
+        toast.success(t("settings.mfaDisabled"));
+      }
     } catch (error: any) {
-      toast.error(error.message || t("settings.mfaEnableError"));
+      toast.error(error.message);
     } finally {
       setEnrolling(false);
+      setMfaPassword("");
     }
   };
 
   const handleVerifyMFA = async () => {
-    try {
-      const factors = await supabase.auth.mfa.listFactors();
-      if (factors.data?.totp?.[0]) {
-        const factorId = factors.data.totp[0].id;
-        const { error } = await supabase.auth.mfa.challengeAndVerify({
-          factorId,
-          code: verifyCode
-        });
-        
-        if (error) throw error;
-        
-        setMfaEnabled(true);
-        setShowQRDialog(false);
-        setVerifyCode("");
-        toast.success(t("settings.mfaEnabled"));
-      }
-    } catch (error: any) {
-      toast.error(error.message || t("settings.mfaVerifyError"));
+    // 2FA only becomes active once the first code from the app is verified
+    const { error } = await auth.twoFactor.verify(verifyCode.trim());
+    if (error) {
+      toast.error(t("settings.mfaVerifyError"));
+      return;
     }
-  };
-
-  const handleDisableMFA = async () => {
-    try {
-      const { data } = await supabase.auth.mfa.listFactors();
-      const factor = data?.totp?.find(f => f.status === 'verified');
-      
-      if (factor) {
-        const { error } = await supabase.auth.mfa.unenroll({ factorId: factor.id });
-        if (error) throw error;
-        
-        setMfaEnabled(false);
-        toast.success(t("settings.mfaDisabled"));
-      }
-    } catch (error: any) {
-      toast.error(error.message || t("settings.mfaDisableError"));
-    }
-  };
-
-  const handleManageSubscription = async () => {
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) return;
-
-      const { data, error } = await supabase.functions.invoke('customer-portal', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      });
-
-      if (error) throw error;
-      if (data?.url) {
-        window.open(data.url, '_blank');
-      }
-    } catch (error: any) {
-      toast.error(error.message || "Fehler beim Öffnen des Kundenportals");
-    }
-  };
-
-  const handleSubscribe = async () => {
-    setSubscribing(true);
-    try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        toast.error(t("auth.error"));
-        return;
-      }
-
-      const { data, error } = await supabase.functions.invoke('create-checkout', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-        body: { plan: selectedPlan },
-      });
-
-      if (error) throw error;
-      if (data?.url) {
-        window.open(data.url, '_blank');
-      }
-    } catch (error: any) {
-      console.error("Subscribe error:", error);
-      toast.error(t("account.subscribeError"));
-    } finally {
-      setSubscribing(false);
-    }
+    setMfaEnabled(true);
+    setShowQRDialog(false);
+    setVerifyCode("");
+    setBackupCodes([]);
+    toast.success(t("settings.mfaEnabled"));
   };
 
   const handleResetAllData = async () => {
@@ -370,25 +254,14 @@ const Account = () => {
 
     setResetting(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error("Not authenticated");
+      const { error } = await apiFetch('/api/account/reset', { method: 'POST', json: { password: resetPassword } });
 
-      const { data, error } = await supabase.functions.invoke('reset-user-data', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-        body: { password: resetPassword },
-      });
-
-      if (error) throw error;
-
-      if (data?.error) {
-        if (data.error === "Incorrect password") {
+      if (error) {
+        if (error.status === 401) {
           toast.error(t("account.incorrectPassword"));
-        } else {
-          throw new Error(data.error);
+          return;
         }
-        return;
+        throw error;
       }
 
       // Show success screen
@@ -419,25 +292,15 @@ const Account = () => {
 
     setDeletingAccount(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) throw new Error("Not authenticated");
+      // deletes the user; all journal data goes with it (foreign keys) and the session ends
+      const { error } = await auth.deleteUser(deleteAccountPassword);
 
-      const { data, error } = await supabase.functions.invoke('delete-account', {
-        headers: {
-          Authorization: `Bearer ${session.access_token}`,
-        },
-        body: { password: deleteAccountPassword },
-      });
-
-      if (error) throw error;
-
-      if (data?.error) {
-        if (data.error === "Incorrect password") {
+      if (error) {
+        if (error.code === "INVALID_PASSWORD") {
           toast.error(t("account.incorrectPassword"));
-        } else {
-          throw new Error(data.error);
+          return;
         }
-        return;
+        throw error;
       }
 
       // Show success screen
@@ -447,8 +310,7 @@ const Account = () => {
       setDeleteAccountConfirmed(false);
       
       // Sign out and redirect to home after showing success animation
-      setTimeout(async () => {
-        await supabase.auth.signOut();
+      setTimeout(() => {
         window.location.href = "/";
       }, 2500);
     } catch (error: any) {
@@ -558,6 +420,16 @@ const Account = () => {
               <CardDescription>{t("settings.securityDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="currentPassword">{t("settings.currentPassword")}</Label>
+                <Input
+                  id="currentPassword"
+                  type="password"
+                  autoComplete="current-password"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                />
+              </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Label htmlFor="newPassword" className="text-base">{t("settings.newPassword")}</Label>
@@ -774,6 +646,17 @@ const Account = () => {
                   {totpSecret}
                 </code>
               </div>
+              {backupCodes.length > 0 && (
+                <div className="space-y-2">
+                  <Label>{t("settings.backupCodes")}</Label>
+                  <p className="text-xs text-muted-foreground">{t("settings.backupCodesDesc")}</p>
+                  <code className="grid grid-cols-2 gap-1 p-3 bg-muted rounded text-sm">
+                    {backupCodes.map((code) => (
+                      <span key={code}>{code}</span>
+                    ))}
+                  </code>
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="verify-code">{t("settings.enterCode")}</Label>
                 <Input
@@ -788,6 +671,34 @@ const Account = () => {
                 {t("settings.verify")}
               </Button>
             </div>
+          </DialogContent>
+        </Dialog>
+
+        {/* Password prompt before enabling or disabling 2FA */}
+        <Dialog open={mfaPasswordAction !== null} onOpenChange={(open) => !open && setMfaPasswordAction(null)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{mfaPasswordAction === "disable" ? t("settings.disable2FA") : t("settings.enable2FA")}</DialogTitle>
+              <DialogDescription>{t("account.enterPasswordToConfirm")}</DialogDescription>
+            </DialogHeader>
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleMfaPasswordConfirm();
+              }}
+            >
+              <Input
+                type="password"
+                autoComplete="current-password"
+                autoFocus
+                value={mfaPassword}
+                onChange={(e) => setMfaPassword(e.target.value)}
+              />
+              <Button type="submit" className="w-full" disabled={enrolling || !mfaPassword}>
+                {mfaPasswordAction === "disable" ? t("settings.disable2FA") : t("settings.enable2FA")}
+              </Button>
+            </form>
           </DialogContent>
         </Dialog>
 

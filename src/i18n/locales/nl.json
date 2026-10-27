@@ -11,7 +11,9 @@
     "settings": "Instellingen",
     "logout": "Uitloggen",
     "login": "Inloggen",
-    "welcome": "Welkom, {{name}}!"
+    "welcome": "Welkom, {{name}}!",
+    "days": "Dagoverzicht",
+    "openMenu": "Menu openen"
   },
   "auth": {
     "login": "Inloggen",
@@ -46,7 +48,20 @@
     "betaLoginTitle": "Beta Login",
     "betaLoginDesc": "Inloggen voor Private Beta Testers",
     "needAccess": "Heb je beta-toegang nodig?",
-    "joinWaitlist": "Naar de wachtlijst"
+    "joinWaitlist": "Naar de wachtlijst",
+    "alreadyHaveAccount": "Al een account? Inloggen",
+    "checkEmail": "Bevestig je e-mailadres via de link die we je hebben gestuurd.",
+    "confirmPassword": "Wachtwoord bevestigen",
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "privacyLink": "Privacyverklaring",
+    "termsLink": "Gebruiksvoorwaarden",
+    "signup": "Account aanmaken",
+    "signupSuccess": "Account aangemaakt!",
+    "emailNotVerified": "Je e-mailadres is nog niet bevestigd. Klik op de link in onze e-mail.",
+    "resendVerification": "Bevestigingsmail opnieuw sturen",
+    "verificationResent": "Bevestigingsmail opnieuw verstuurd.",
+    "resetLinkInvalid": "De resetlink is ongeldig of verlopen. Vraag een nieuwe aan."
   },
   "captcha": {
     "clickToVerify": "Klik om te verifiëren",
@@ -766,7 +781,11 @@
     "enableNotifications": "Meldingen Inschakelen",
     "notificationSound": "Meldingsgeluid",
     "drawdownWarningThreshold": "Drawdown Waarschuwingsdrempel",
-    "drawdownWarningThresholdHelp": "Ontvang een waarschuwing wanneer de dagelijkse drawdown dit bedrag overschrijdt"
+    "drawdownWarningThresholdHelp": "Ontvang een waarschuwing wanneer de dagelijkse drawdown dit bedrag overschrijdt",
+    "currentPassword": "Huidig wachtwoord",
+    "backupCodes": "Back-upcodes",
+    "backupCodesDesc": "Bewaar deze codes op een veilige plek. Met elke code kun je één keer inloggen als je geen toegang hebt tot je authenticator-app.",
+    "emailChangeSent": "We hebben een e-mail naar je huidige adres gestuurd. Bevestig daar de wijziging."
   },
   "notFound": {
     "title": "404",
@@ -817,15 +836,15 @@
     "cta": {
       "startNow": "Nu starten"
     },
-    "badge": "Professioneel Trading Dagboek",
+    "badge": "Gratis tradingdagboek",
     "heroTitle": "Word een betere trader door",
     "heroTitleHighlightWords": [
-      "systematisch",
-      "nauwkeurig",
-      "AI-gestuurd"
+      "gedisciplineerd",
+      "eerlijk",
+      "systematisch"
     ],
     "heroTitleHighlightSuffix": "journaling",
-    "heroDescription": "TradeNotes – het trading dagboek voor ambitieuze en actieve traders. Gedetailleerde analytics, AI-nieuws, politieke evenementen en patroonherkenning helpen je een winstgevend systeem te bouwen. Gebruikt door duizenden traders wereldwijd.",
+    "heroDescription": "Leg je trades in seconden vast, stel daglimieten in en zie zwart op wit welke fouten je geld kosten. Geen abonnement, geen reclame.",
     "ctaStart": "Start Gratis",
     "ctaFeatures": "Ontdek Functies",
     "rating": "4.9/5 van 1000+ Traders",
@@ -882,11 +901,11 @@
     "whySection": {
       "badge": "Waarom een trading journal?",
       "title": "Succesvolle traders documenteren elke trade",
-      "description": "92% van de winstgevende daytraders houdt een trading journal bij. TradeNot.es maakt het eenvoudig.",
+      "description": "Een dagboek maakt van onderbuikgevoel data: wat werkt, wat niet, en welke gewoontes je afremmen.",
       "benefit1Title": "Patronen herkennen",
       "benefit1Desc": "Automatische analyse van je beste setups, tijden en symbolen",
       "benefit2Title": "Discipline versterken",
-      "benefit2Desc": "Dagelijkse voorbereiding, consistentie-tracking en AI-waarschuwingen bij emotioneel traden",
+      "benefit2Desc": "Daglimieten, disciplinescore en automatische herkenning van revenge-trades",
       "benefit3Title": "Prestaties meten",
       "benefit3Desc": "Equity curve, R-multiple, verwachting en 20+ KPI's in één oogopslag"
     },
@@ -982,6 +1001,18 @@
       "glossary": {
         "title": "Trading Woordenlijst",
         "description": "Leer trading termen: Win Rate, R-Multiple, Profit Factor, Expectancy en meer. Bouw je trading kennis op."
+      },
+      "discipline": {
+        "title": "Discipline & daglimieten",
+        "description": "Stel limieten in voor trades, verlies en verliesreeksen. Een live status waarschuwt op tijd en vertelt wanneer het voor vandaag klaar is."
+      },
+      "behavior": {
+        "title": "Fouten- & emotieanalyse",
+        "description": "Markeer fouten en gemoedstoestand per trade. Revenge-trades en overtrading worden automatisch herkend, het rapport toont wat elke fout je kost."
+      },
+      "dayView": {
+        "title": "Dagoverzicht",
+        "description": "Elke handelsdag met intraday P&L-curve, cijfers, trades en je notities in één oogopslag."
       }
     },
     "allFeatures": {
@@ -1017,13 +1048,69 @@
       "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integratie)",
       "propFirmDetection": "Prop Firm Account Detectie (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking voor Stop-Loss Optimalisatie",
-      "achievements": "Gamificatie & Achievements Systeem"
+      "achievements": "Gamificatie & Achievements Systeem",
+      "discipline": "Daglimieten met live status en disciplinescore",
+      "behavior": "Fouten- & emotietracking met automatische revenge-trade-herkenning",
+      "dayView": "Dagoverzicht met intraday P&L-curve",
+      "score": "TradeNot.es Score: één cijfer voor je prestaties",
+      "templates": "Dagboeksjablonen (pre-market plan, dagterugblik, verliesanalyse)"
     },
     "free": {
       "badge": "100% gratis",
       "title": "Volledig gratis. Voor altijd.",
       "description": "Geen abonnementen, geen creditcard, geen verborgen kosten. Alle functies gratis voor elke trader.",
       "cta": "Gratis starten"
+    },
+    "heroFacts": [
+      "100 % gratis",
+      "Geen creditcard",
+      "Servers in de EU"
+    ],
+    "habits": {
+      "badge": "De duurste gewoontes",
+      "title": "Een dagboek dat je fouten herkent, niet alleen je trades",
+      "description": "Vier patronen kosten traders het meeste geld. tradenot.es maakt elk ervan zichtbaar.",
+      "items": {
+        "overtrading": {
+          "title": "Overtrading",
+          "description": "Meer trades dan gepland, omdat de markt beweegt en niet omdat je setup er is.",
+          "fix": "Daglimiet voor trades met live status en stopmelding"
+        },
+        "revenge": {
+          "title": "Revenge trading",
+          "description": "Direct na een verlies weer erin, vaak met een grotere positie, om het terug te halen.",
+          "fix": "Automatische herkenning van revenge-trades"
+        },
+        "rules": {
+          "title": "Regels breken",
+          "description": "Stop verplaatst, instap achternagelopen, positie te groot.",
+          "fix": "Fouten per trade markeren en de kosten zien"
+        },
+        "emotions": {
+          "title": "Emotionele blindheid",
+          "description": "Je merkt niet in welke stemming je slechter handelt.",
+          "fix": "Gemoedstoestand vastleggen en per stemming analyseren"
+        }
+      }
+    },
+    "howItWorks": {
+      "badge": "Zo werkt het",
+      "title": "In drie stappen naar meer discipline",
+      "step": "Stap {{n}}",
+      "steps": {
+        "capture": {
+          "title": "Trades vastleggen",
+          "description": "Handmatig in seconden, via CSV-import of automatisch vanuit NinjaTrader."
+        },
+        "rules": {
+          "title": "Regels instellen",
+          "description": "Max. trades, max. verlies, max. verliesreeks. Het dashboard laat altijd zien waar je staat."
+        },
+        "review": {
+          "title": "Analyseren & verbeteren",
+          "description": "Dagoverzicht, foutenrapport en TradeNot.es Score laten zien waar je als volgende aan werkt."
+        }
+      }
     }
   },
   "features": {
@@ -1040,14 +1127,16 @@
       "tradingTools": "Snelle invoer & import",
       "analytics": "Prestaties volgen & analyseren",
       "ai": "AI-gestuurde inzichten",
-      "marketIntel": "Marktdata & nieuws"
+      "marketIntel": "Marktdata & nieuws",
+      "discipline": "Daglimieten, foutenanalyse en een score die laat zien waar je staat"
     },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analyses",
       "ai": "AI & Automatisering",
       "reports": "Rapporten",
-      "marketIntel": "Markt Intelligentie"
+      "marketIntel": "Markt Intelligentie",
+      "discipline": "Discipline & gedrag"
     },
     "items": {
       "easyEntry": {
@@ -1265,8 +1354,45 @@
           "Markt impact",
           "Geïnformeerd traden"
         ]
+      },
+      "discipline": {
+        "title": "Discipline & daglimieten",
+        "description": "Je regels voor de dag, live meegeteld. Voordat je een limiet bereikt waarschuwt het dashboard je; daarna zegt het duidelijk dat het voor vandaag klaar is.",
+        "benefits": [
+          "Limieten voor trades, drawdown, verliesreeks en meer",
+          "Live status: volgens plan, let op, gestopt",
+          "Disciplinescore over de laatste 30 handelsdagen"
+        ]
+      },
+      "behavior": {
+        "title": "Fouten- & emotieanalyse",
+        "description": "Markeer per trade wat er misging en hoe je je voelde. Het rapport berekent wat elke fout je heeft gekost.",
+        "benefits": [
+          "10 typische fouten zoals FOMO, stop verplaatst, revenge-trade",
+          "Automatische herkenning van revenge-trades en overtrading",
+          "P&L en winrate per fout en gemoedstoestand"
+        ]
+      },
+      "dayView": {
+        "title": "Dagoverzicht",
+        "description": "Elke handelsdag als eigen kaart: hoe je P&L over de dag liep, de cijfers, alle trades en je dagboeknotitie.",
+        "benefits": [
+          "Intraday P&L-curve met tooltip per trade",
+          "Winrate, beste en slechtste trade, kosten",
+          "Fouten en gemoedstoestand direct bij elke trade"
+        ]
+      },
+      "score": {
+        "title": "TradeNot.es Score",
+        "description": "Eén cijfer van 0 tot 100 uit zes kengetallen, zodat je in één oogopslag ziet of je beter wordt en welk deel je tegenhoudt.",
+        "benefits": [
+          "Winrate, profit factor, winst/verlies-verhouding",
+          "Drawdown, herstelfactor, aandeel groene dagen",
+          "Transparant: elk onderdeel afzonderlijk zichtbaar"
+        ]
       }
-    }
+    },
+    "demoLabel": "Voorbeelddata"
   },
   "validation": {
     "emailInvalid": "Ongeldig e-mailformaat",
@@ -1298,7 +1424,9 @@
     "tagItemTooLong": "Tag moet 30 tekens of minder zijn",
     "tagMaxReached": "Maximaal 30 tags toegestaan",
     "checklistMaxReached": "Maximaal 10 checklist items per setup",
-    "slippageInvalid": "Slippage moet tussen 0 en 100% zijn"
+    "slippageInvalid": "Slippage moet tussen 0 en 100% zijn",
+    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "termsRequired": "Accepteer de gebruiksvoorwaarden en de privacyverklaring"
   },
   "glossary": {
     "searchPlaceholder": "Zoek termen...",
@@ -1983,7 +2111,7 @@
     }
   },
   "alerts": {
-    "title": "AI Trading Waarschuwingen",
+    "title": "Trading-waarschuwingen",
     "allClear": "Alles in orde",
     "allClearDescription": "Geen zorgwekkende patronen gedetecteerd in je recente handelsactiviteit.",
     "urgent": "Dringend",
@@ -2332,5 +2460,123 @@
     "profitGoals": "Winstdoelen",
     "riskLimits": "Risicolimieten",
     "performanceGoals": "Prestatiedoelen"
+  },
+  "behavior": {
+    "mistakesLabel": "Fouten in deze trade",
+    "mistakesHint": "Revenge-trades en overtrading herkent tradenot.es daarnaast automatisch.",
+    "emotionsLabel": "Gemoedstoestand",
+    "mistakes": {
+      "revenge": "Revenge-trade",
+      "overtrading": "Overtrading",
+      "fomo": "FOMO",
+      "no_plan": "Zonder plan",
+      "broke_rules": "Regels gebroken",
+      "moved_stop": "Stop verplaatst",
+      "oversized": "Te grote positie",
+      "early_exit": "Te vroeg eruit",
+      "late_exit": "Te laat eruit",
+      "chased_entry": "Instap achternagelopen"
+    },
+    "emotions": {
+      "calm": "Rustig",
+      "confident": "Zelfverzekerd",
+      "fearful": "Angstig",
+      "greedy": "Hebzuchtig",
+      "frustrated": "Gefrustreerd",
+      "impatient": "Ongeduldig",
+      "euphoric": "Euforisch",
+      "tired": "Moe"
+    },
+    "reportTitle": "Gedrag & fouten",
+    "reportEmpty": "Markeer bij het vastleggen van een trade fouten en je gemoedstoestand. Dan zie je hier wat elke fout je kost.",
+    "mistakeCost": "P&L van trades met fouten",
+    "mistakeShare": "{{count}} trades met minstens één fout ({{share}} % van alle trades)",
+    "avgClean": "Gem. P&L zonder fouten",
+    "avgWithMistakes": "Gem. P&L met fouten",
+    "autoDetected": "Automatisch herkend",
+    "autoDetectedHint": "Revenge-trades (instap kort na een verlies met gelijke of grotere positie) en trades boven je daglimiet",
+    "byMistake": "Per fout",
+    "byMistakeDesc": "Totale P&L per soort fout, duurste eerst",
+    "byEmotion": "Per gemoedstoestand",
+    "byEmotionDesc": "Hoe je in welke stemming handelt",
+    "noMistakes": "Geen fouten gemarkeerd of herkend.",
+    "noEmotions": "Nog geen gemoedstoestand vastgelegd.",
+    "tagDetail_one": "{{count}} trade · {{winRate}} % winst",
+    "tagDetail_other": "{{count}} trades · {{winRate}} % winst"
+  },
+  "discipline": {
+    "title": "Discipline vandaag",
+    "subtitle": "Je daglimieten en hoeveel je er al van hebt gebruikt",
+    "state": {
+      "ok": "Volgens plan",
+      "warning": "Let op",
+      "stopped": "Gestopt voor vandaag"
+    },
+    "stoppedTitle": "Limiet bereikt – voor vandaag is het klaar.",
+    "stoppedText": "Je hebt een van je regels opgebruikt. Elke volgende trade vandaag breekt je plan. Morgen is een nieuwe dag.",
+    "revengeToday_one": "Vandaag is {{count}} mogelijke revenge-trade herkend. Haal even adem voordat je verdergaat.",
+    "revengeToday_other": "Vandaag zijn {{count}} mogelijke revenge-trades herkend. Haal even adem voordat je verdergaat.",
+    "noRules": "Stel daglimieten in (bijv. max. trades, max. drawdown, max. verliesreeks), dan laat dit paneel altijd zien waar je staat.",
+    "setRules": "Regels instellen",
+    "scoreLabel": "Disciplinescore · 30 dagen",
+    "scoreDetail": "{{clean}} van {{total}} handelsdagen zonder regelbreuk",
+    "daysStrip": "Handelsdagen van de afgelopen 30 dagen",
+    "dayKept": "Regels nageleefd",
+    "dayBroken": "Regel gebroken"
+  },
+  "score": {
+    "title": "TradeNot.es Score",
+    "subtitle": "Eén cijfer voor je totale prestaties",
+    "howTitle": "Hoe de score wordt berekend",
+    "how": "Gemiddelde van zes waarden, elk 0–100 tegen een zeer goed doel: winrate 60 %, profit factor 2,5, gem. winst/gem. verlies 2,5, drawdown onder 10 % van de brutowinst, herstelfactor 3, 70 % groene dagen.",
+    "notEnough": "Berekend vanaf {{count}} trades (tot nu toe {{have}}).",
+    "band": {
+      "excellent": "Uitstekend",
+      "good": "Goed",
+      "fair": "Kan beter",
+      "weak": "Zwak"
+    },
+    "components": {
+      "winRate": "Winrate",
+      "profitFactor": "Profit factor",
+      "winLossRatio": "Winst/verlies",
+      "drawdown": "Drawdown",
+      "recovery": "Herstel",
+      "consistency": "Groene dagen"
+    }
+  },
+  "days": {
+    "title": "Dagoverzicht",
+    "subtitle": "Elke handelsdag in één oogopslag: verloop, cijfers, trades en notities",
+    "empty": "Nog geen trades. Zodra je er vastlegt, verschijnt hier elke handelsdag.",
+    "loadMore": "{{count}} dagen meer laden",
+    "trades": "Trades",
+    "winRate": "Winrate",
+    "best": "Beste",
+    "worst": "Slechtste",
+    "fees": "Kosten",
+    "mistakes": "Trades met fouten",
+    "chartLabel": "Cumulatieve P&L van de dag: {{pnl}} uit {{count}} trades",
+    "showTrades": "{{count}} trades tonen",
+    "hideTrades": "Trades verbergen",
+    "time": "Tijd",
+    "symbol": "Symbool",
+    "side": "Richting",
+    "behavior": "Gedrag"
+  },
+  "journalTemplates": {
+    "label": "Sjabloon:",
+    "premarket": {
+      "title": "Pre-market plan",
+      "body": "PRE-MARKET PLAN\n\nMarktbeeld / bias:\n\nBelangrijke niveaus:\n\nAgenda & nieuws vandaag:\n\nMijn A-setups vandaag:\n\nMax. risico vandaag:\n\nWat ik vandaag NIET doe:"
+    },
+    "recap": {
+      "title": "Dagterugblik",
+      "body": "DAGTERUGBLIK\n\nWat ging goed?\n\nWat ging slecht?\n\nHeb ik mijn regels nageleefd? (ja/nee, welke niet?)\n\nGemoedstoestand gedurende de dag:\n\nEén ding dat ik morgen beter doe:"
+    },
+    "lossReview": {
+      "title": "Verliesanalyse",
+      "body": "VERLIESANALYSE\n\nTrade (symbool, tijd, resultaat):\n\nWas de instap onderdeel van mijn plan?\n\nWaar zat de fout: idee, instap, positiegrootte, uitstap?\n\nWat voelde ik op dat moment?\n\nWat doe ik de volgende keer anders?"
+    }
   }
 }

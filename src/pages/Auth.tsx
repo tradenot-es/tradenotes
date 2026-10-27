@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { supabase } from "@/integrations/supabase/client";
+import { auth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,12 +10,21 @@ import { toast } from "sonner";
 import { z } from "zod";
 import logo from "@/assets/tradenotes-logo-optimized.webp";
 import { AltchaWidget } from "@/components/AltchaWidget";
+import { SignupForm } from "@/components/auth/SignupForm";
 import { ArrowLeft } from "lucide-react";
 
 const Auth = () => {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const isPasswordReset = searchParams.get("reset") === "true";
+  // set by the server's reset link; it redirects with "error=INVALID_TOKEN" instead when the link is expired or used
+  const resetToken = searchParams.get("token");
+  const [mode, setMode] = useState<"login" | "signup">(searchParams.get("mode") === "signup" ? "signup" : "login");
+  const [twoFactorStep, setTwoFactorStep] = useState(false);
+  const [totpCode, setTotpCode] = useState("");
+  const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
+  // bumped to remount the captcha after a failed attempt (each solution is single-use)
+  const [captchaRound, setCaptchaRound] = useState(0);
   
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +47,7 @@ const Auth = () => {
   });
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    auth.getSession().then((session) => {
       if (session) {
         navigate("/dashboard");
       }
@@ -48,6 +57,7 @@ const Auth = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
+    setUnverifiedEmail(null);
 
     // Validate input
     const validation = authSchema.safeParse({ email, password });
@@ -64,11 +74,18 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      if (error) throw error;
+      const { error, twoFactorRequired } = await auth.signIn(email, password);
+      if (error) {
+        if (error.code === "EMAIL_NOT_VERIFIED") {
+          setUnverifiedEmail(email);
+          return;
+        }
+        throw error;
+      }
+      if (twoFactorRequired) {
+        setTwoFactorStep(true);
+        return;
+      }
       toast.success(t("auth.loginSuccess"));
       navigate("/dashboard");
     } catch (error: any) {
@@ -76,6 +93,29 @@ const Auth = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleTotp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const { error } = await auth.verifyTotp(totpCode.trim());
+      if (error) throw new Error(t("settings.mfaVerifyError"));
+      toast.success(t("auth.loginSuccess"));
+      navigate("/dashboard");
+    } catch (error: any) {
+      toast.error(error.message || t("auth.error"));
+      setTotpCode("");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendVerification = async () => {
+    if (!unverifiedEmail) return;
+    const { error } = await auth.resendVerification(unverifiedEmail);
+    if (error) toast.error(error.message || t("auth.error"));
+    else toast.success(t("auth.verificationResent"));
   };
 
   const handleForgotPassword = async (e: React.FormEvent) => {
@@ -94,23 +134,13 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      // Call send-auth-email Edge Function directly with ALTCHA payload
-      // This generates a secure recovery link via Supabase Admin API and sends via Lettermint
-      const { data, error } = await supabase.functions.invoke('send-auth-email', {
-        body: { 
-          email, 
-          type: 'recovery',
-          altcha_payload: forgotPasswordAltchaPayload,
-          language: navigator.language.startsWith('de') ? 'de' : 'en',
-        },
-      });
+      // the server checks the captcha and mails a reset link (if the address has an account)
+      const { error } = await auth.requestPasswordReset(email, forgotPasswordAltchaPayload);
 
       if (error) {
+        setForgotPasswordAltchaPayload(null);
+        setCaptchaRound((r) => r + 1);
         throw new Error(error.message || t("auth.error"));
-      }
-
-      if (data?.error) {
-        throw new Error(data.error);
       }
 
       toast.success(t("auth.resetEmailSent"));
@@ -136,10 +166,12 @@ const Auth = () => {
     
     setLoading(true);
     try {
-      const { error } = await supabase.auth.updateUser({ password: newPassword });
-      if (error) throw error;
+      if (!resetToken) throw new Error(t("auth.resetLinkInvalid"));
+      const { error } = await auth.resetPassword(resetToken, newPassword);
+      if (error) throw new Error(error.code === "INVALID_TOKEN" ? t("auth.resetLinkInvalid") : error.message);
+      // all sessions are revoked on reset, so log in again with the new password
       toast.success(t("auth.passwordUpdated"));
-      navigate("/dashboard");
+      navigate("/auth", { replace: true });
     } catch (error: any) {
       toast.error(error.message || t("auth.error"));
     } finally {
@@ -246,6 +278,7 @@ const Auth = () => {
                 </div>
                 
                 <AltchaWidget 
+                  key={captchaRound}
                   onVerified={setForgotPasswordAltchaPayload}
                   onError={() => setForgotPasswordAltchaPayload(null)}
                 />
@@ -286,14 +319,61 @@ const Auth = () => {
           <p className="text-muted-foreground text-sm">{t("auth.slogan")}</p>
         </div>
         
+        {mode === "signup" ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("auth.register")}</CardTitle>
+              <CardDescription>{t("auth.registerDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SignupForm onSuccess={() => setMode("login")} onSwitchToLogin={() => setMode("login")} />
+            </CardContent>
+          </Card>
+        ) : twoFactorStep ? (
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("settings.twoFactor")}</CardTitle>
+              <CardDescription>{t("settings.enterCode")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleTotp} className="space-y-4">
+                <Input
+                  id="totp"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  autoFocus
+                  maxLength={6}
+                  placeholder="123456"
+                  value={totpCode}
+                  onChange={(e) => setTotpCode(e.target.value.replace(/\D/g, ""))}
+                />
+                <Button type="submit" className="w-full" disabled={loading || totpCode.length !== 6}>
+                  {loading ? t("auth.loading") : t("auth.login")}
+                </Button>
+                <Button type="button" variant="ghost" className="w-full" onClick={() => setTwoFactorStep(false)}>
+                  {t("auth.backToLogin")}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        ) : (
         <Card>
           <CardHeader>
-            <CardTitle>{t("auth.betaLoginTitle", "Beta Login")}</CardTitle>
-            <CardDescription>
-              {t("auth.betaLoginDesc", "Login für Private Beta Tester")}
-            </CardDescription>
+            <CardTitle>{t("auth.login")}</CardTitle>
+            <CardDescription>{t("auth.loginDesc")}</CardDescription>
           </CardHeader>
           <CardContent>
+            {searchParams.get("error") === "INVALID_TOKEN" && (
+              <p className="mb-4 text-sm text-destructive">{t("auth.resetLinkInvalid")}</p>
+            )}
+            {unverifiedEmail && (
+              <div className="mb-4 rounded-md border border-border p-3 text-sm">
+                <p className="text-muted-foreground">{t("auth.emailNotVerified")}</p>
+                <button type="button" className="mt-1 text-primary hover:underline" onClick={handleResendVerification}>
+                  {t("auth.resendVerification")}
+                </button>
+              </div>
+            )}
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">{t("auth.email")}</Label>
@@ -341,21 +421,14 @@ const Auth = () => {
               </Button>
             </form>
             
-            {/* Beta Access Notice */}
             <div className="mt-6 pt-4 border-t border-border text-center">
-              <p className="text-sm text-muted-foreground">
-                {t("auth.needAccess", "Du benötigst einen Beta-Zugang?")}
-              </p>
-              <Link 
-                to="/" 
-                className="inline-flex items-center gap-1 text-sm text-primary hover:underline mt-1"
-              >
-                <ArrowLeft className="h-3 w-3" />
-                {t("auth.joinWaitlist", "Zur Warteliste")}
-              </Link>
+              <button type="button" className="text-sm text-primary hover:underline" onClick={() => setMode("signup")}>
+                {t("auth.noAccount")}
+              </button>
             </div>
           </CardContent>
         </Card>
+        )}
       </div>
     </div>
   );

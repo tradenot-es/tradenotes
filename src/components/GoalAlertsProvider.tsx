@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import { supabase } from "@/integrations/supabase/client";
+import { db, TRADES_CHANGED_EVENT } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { format } from "date-fns";
@@ -57,7 +57,7 @@ export const GoalAlertsProvider = ({ children }: GoalAlertsProviderProps) => {
     if (!user) return;
     
     const loadSettings = async () => {
-      const { data } = await supabase
+      const { data } = await db
         .from("user_settings")
         .select("daily_goal_amount, daily_goal_max_trades, notifications_enabled, notification_sound, drawdown_warning_threshold")
         .eq("user_id", user.id)
@@ -83,7 +83,7 @@ export const GoalAlertsProvider = ({ children }: GoalAlertsProviderProps) => {
 
     const today = format(new Date(), "yyyy-MM-dd");
     
-    const { data: trades } = await supabase
+    const { data: trades } = await db
       .from("trades")
       .select("pnl_net")
       .eq("user_id", user.id)
@@ -241,25 +241,14 @@ export const GoalAlertsProvider = ({ children }: GoalAlertsProviderProps) => {
 
     checkGoalProgress();
 
-    // Subscribe to real-time trade updates
-    const channel = supabase
-      .channel("trades-goal-alerts")
-      .on(
-        "postgres_changes",
-        {
-          event: "*",
-          schema: "public",
-          table: "trades",
-          filter: `user_id=eq.${user.id}`,
-        },
-        () => {
-          checkGoalProgress();
-        }
-      )
-      .subscribe();
+    // Re-check when trades change in this tab, and poll for trades arriving via the NinjaTrader webhook
+    const onChange = () => checkGoalProgress();
+    window.addEventListener(TRADES_CHANGED_EVENT, onChange);
+    const interval = window.setInterval(onChange, 60_000);
 
     return () => {
-      supabase.removeChannel(channel);
+      window.removeEventListener(TRADES_CHANGED_EVENT, onChange);
+      window.clearInterval(interval);
     };
   }, [user, settings]);
 

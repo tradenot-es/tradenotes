@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { TrendingUp, Building2, HelpCircle, TrendingDown, Minus, ExternalLink, AlertTriangle, RefreshCw } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { db, invoke } from "@/lib/api";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
@@ -61,7 +61,7 @@ export function SectorSentimentWidget() {
 
     try {
       // Load today's sectors
-      const { data, error } = await supabase.functions.invoke("marketaux-news", {
+      const { data, error } = await invoke("news", {
         body: { action: "get-sector-overview", forceRefresh }
       });
 
@@ -74,7 +74,7 @@ export function SectorSentimentWidget() {
         const sevenDaysAgo = new Date();
         sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
         
-        const { data: historyData } = await supabase
+        const { data: historyData } = await db
           .from("sector_sentiments")
           .select("sector, date, avg_sentiment")
           .gte("date", sevenDaysAgo.toISOString().split("T")[0])

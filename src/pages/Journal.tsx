@@ -4,9 +4,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Calendar, BookOpen } from "lucide-react";
+import { Plus, Calendar, BookOpen, LayoutTemplate } from "lucide-react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { z } from "zod";
 import { DailyPrep } from "@/components/DailyPrep";
@@ -17,6 +17,8 @@ interface JournalEntry {
   date: string;
   content: string;
 }
+
+const JOURNAL_TEMPLATES = ["premarket", "recap", "lossReview"] as const;
 
 const Journal = () => {
   const { t } = useTranslation();
@@ -41,7 +43,7 @@ const Journal = () => {
   }, [user]);
 
   const loadEntries = async () => {
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("journal_entries")
       .select("id, date, content")
       .order("date", { ascending: false });
@@ -50,6 +52,14 @@ const Journal = () => {
       setEntries(data);
     }
     setLoading(false);
+  };
+
+  const applyTemplate = (key: (typeof JOURNAL_TEMPLATES)[number]) => {
+    const body = t(`journalTemplates.${key}.body`);
+    const next = newEntry.trim() ? `${newEntry.trimEnd()}\n\n${body}` : body;
+    setNewEntry(next);
+    setCharCount(next.length);
+    setError("");
   };
 
   const handleAddEntry = async () => {
@@ -63,10 +73,10 @@ const Journal = () => {
     }
 
     try {
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      const currentUser = user;
       if (!currentUser) throw new Error(t("journal.notLoggedIn"));
 
-      const { error } = await supabase.from("journal_entries").insert({
+      const { error } = await db.from("journal_entries").insert({
         user_id: currentUser.id,
         date: new Date().toISOString().split("T")[0],
         content: newEntry,
@@ -116,6 +126,23 @@ const Journal = () => {
               <CardTitle>{t("journal.newEntry")}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
+              {/* templates fill (or extend) the entry with a structure to answer */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-sm text-muted-foreground">{t("journalTemplates.label")}</span>
+                {JOURNAL_TEMPLATES.map((key) => (
+                  <Button
+                    key={key}
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    className="h-8 gap-1.5 active:scale-95 transition-transform"
+                    onClick={() => applyTemplate(key)}
+                  >
+                    <LayoutTemplate className="h-3.5 w-3.5" aria-hidden />
+                    {t(`journalTemplates.${key}.title`)}
+                  </Button>
+                ))}
+              </div>
               <div className="space-y-2">
                 <Textarea
                   placeholder={t("journal.placeholder")}
@@ -125,7 +152,7 @@ const Journal = () => {
                     setCharCount(e.target.value.length);
                     setError("");
                   }}
-                  rows={5}
+                  rows={newEntry.includes("\n") ? 12 : 5}
                 />
                 <div className="flex justify-between items-center">
                   <p className="text-sm text-muted-foreground">

@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Sparkles, ChevronDown, ChevronUp, Loader2, Calendar, TrendingUp, TrendingDown, Lightbulb } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { db, invoke } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { format } from "date-fns";
@@ -53,7 +53,7 @@ export const DailySummaryCard = ({ selectedDate }: DailySummaryCardProps) => {
     if (!user) return;
     setLoading(true);
 
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("daily_summaries")
       .select("*")
       .eq("user_id", user.id)
@@ -77,7 +77,7 @@ export const DailySummaryCard = ({ selectedDate }: DailySummaryCardProps) => {
     setGenerating(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke("daily-summary", {
+      const { data, error } = await invoke("daily-summary", {
         body: { date: formattedDate },
       });
 

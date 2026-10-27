@@ -14,6 +14,7 @@ import Landing from "./pages/Landing";
 import PreLaunch from "./pages/PreLaunch";
 import Index from "./pages/Index";
 import Trades from "./pages/Trades";
+import Days from "./pages/Days";
 import Import from "./pages/Import";
 import Journal from "./pages/Journal";
 import Settings from "./pages/Settings";
@@ -77,6 +78,7 @@ const App = () => (
                       <Routes>
                         <Route path="/" element={<Index />} />
                         <Route path="/trades" element={<Trades />} />
+                        <Route path="/days" element={<Days />} />
                         <Route path="/import" element={<Import />} />
                         <Route path="/reports" element={<Reports />} />
                         <Route path="/journal" element={<Journal />} />

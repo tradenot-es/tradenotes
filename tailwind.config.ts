@@ -22,6 +22,8 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          // used by the premium button gradient and hover state; was missing, so the gradient ran into transparent
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -30,6 +32,11 @@ export default {
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
+        },
+        chart: {
+          profit: "hsl(var(--chart-profit) / <alpha-value>)",
+          loss: "hsl(var(--chart-loss) / <alpha-value>)",
+          track: "hsl(var(--chart-track))",
         },
         success: {
           DEFAULT: "hsl(var(--success))",
@@ -120,6 +127,18 @@ export default {
             backgroundPosition: "100% 100%",
           },
         },
+        "rise-in": {
+          from: { opacity: "0", transform: "translateY(12px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "grow-x": {
+          from: { transform: "scaleX(0)" },
+          to: { transform: "scaleX(1)" },
+        },
+        "draw-line": {
+          from: { strokeDashoffset: "var(--path-length, 1000)" },
+          to: { strokeDashoffset: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +146,10 @@ export default {
         "servo-pulse": "servo-pulse 1s cubic-bezier(0.22, 0.61, 0.36, 1)",
         "servo-ripple": "servo-ripple 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards",
         "circuit-scan": "circuit-scan 90s linear infinite",
+        // entrance motion; elements set --stagger (index) to cascade, see .motion-stagger in index.css
+        "rise-in": "rise-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "grow-x": "grow-x 0.7s cubic-bezier(0.22, 1, 0.36, 1) both",
+        "draw-line": "draw-line 1.2s cubic-bezier(0.65, 0, 0.35, 1) both",
       },
     },
   },

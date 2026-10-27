@@ -8,12 +8,13 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { AltchaWidget } from "@/components/AltchaWidget";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 
 const Kontakt = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
+  const [captchaRound, setCaptchaRound] = useState(0);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -76,43 +77,31 @@ const Kontakt = () => {
       return;
     }
 
-    // Verify ALTCHA on backend
-    try {
-      const { data: verifyResult } = await supabase.functions.invoke('altcha-challenge', {
-        body: { payload: altchaPayload },
-        method: 'POST',
-      });
+    // the server checks the captcha and forwards the message by email
+    const form = e.currentTarget;
+    const { error } = await invoke('contact', {
+      body: { name, email, subject, message, altcha: altchaPayload },
+    });
 
-      if (!verifyResult?.valid) {
-        toast({
-          title: "Fehler",
-          description: "Captcha-Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
-          variant: "destructive",
-        });
-        setIsSubmitting(false);
-        setAltchaPayload(null);
-        return;
-      }
-    } catch {
+    // a captcha solution is single-use, so every attempt needs a fresh one
+    setAltchaPayload(null);
+    setCaptchaRound((r) => r + 1);
+    setIsSubmitting(false);
+
+    if (error) {
       toast({
         title: "Fehler",
-        description: "Verifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+        description: "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
         variant: "destructive",
       });
-      setIsSubmitting(false);
       return;
     }
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Nachricht gesendet",
-        description: "Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.",
-      });
-      (e.target as HTMLFormElement).reset();
-      setAltchaPayload(null);
-      setIsSubmitting(false);
-    }, 500);
+    toast({
+      title: "Nachricht gesendet",
+      description: "Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.",
+    });
+    form.reset();
   };
 
   return (
@@ -185,6 +174,7 @@ const Kontakt = () => {
                   </div>
                   
                   <AltchaWidget 
+                    key={captchaRound}
                     onVerified={setAltchaPayload}
                     onError={() => setAltchaPayload(null)}
                   />

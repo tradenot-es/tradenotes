@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { supabase } from '@/integrations/supabase/client';
+import { db } from "@/lib/api";
 import { useAuth } from './useAuth';
 import { toast } from 'sonner';
 import { useTranslation } from 'react-i18next';
@@ -183,16 +183,16 @@ export function useAchievements() {
     try {
       // Fetch achievements, trades and journal entries for progress calculation
       const [achievementsRes, tradesRes, journalRes] = await Promise.all([
-        supabase
+        db
           .from('user_achievements')
           .select('*')
           .eq('user_id', user.id),
-        supabase
+        db
           .from('trades')
           .select('id, pnl_net, entry_time, exit_time, stop_loss_price, r, symbol')
           .eq('user_id', user.id)
           .order('exit_time', { ascending: true }),
-        supabase
+        db
           .from('journal_entries')
           .select('id, date')
           .eq('user_id', user.id),
@@ -202,7 +202,7 @@ export function useAchievements() {
 
       const trades = (tradesRes.data || []) as Trade[];
       const journalEntries = (journalRes.data || []) as JournalEntry[];
-      const achievementMap = new Map(achievementsRes.data?.map(a => [a.achievement_type, a]) || []);
+      const achievementMap = new Map<string, any>(achievementsRes.data?.map((a: any) => [a.achievement_type, a]) || []);
 
       const allAchievements: Achievement[] = ACHIEVEMENT_DEFINITIONS.map(def => {
         const achieved = achievementMap.get(def.type);
@@ -256,7 +256,7 @@ export function useAchievements() {
     if (!user) return false;
 
     try {
-      const { error } = await supabase
+      const { error } = await db
         .from('user_achievements')
         .insert([{
           user_id: user.id,
@@ -308,16 +308,16 @@ export function useAchievements() {
     try {
       // Fetch all needed data in parallel
       const [tradesRes, journalRes, existingRes] = await Promise.all([
-        supabase
+        db
           .from('trades')
           .select('id, pnl_net, entry_time, exit_time, stop_loss_price, r, symbol')
           .eq('user_id', user.id)
           .order('exit_time', { ascending: true }),
-        supabase
+        db
           .from('journal_entries')
           .select('id, date')
           .eq('user_id', user.id),
-        supabase
+        db
           .from('user_achievements')
           .select('achievement_type')
           .eq('user_id', user.id),

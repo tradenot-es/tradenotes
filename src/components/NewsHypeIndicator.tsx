@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Flame, TrendingUp } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import { cn } from "@/lib/utils";
 
 interface HypeIndicatorProps {
@@ -28,7 +28,7 @@ export function NewsHypeIndicator({ symbol, entryTime, className }: HypeIndicato
       const entryDate = new Date(entryTime);
       const start = new Date(entryDate.getTime() - 12 * 60 * 60 * 1000).toISOString();
 
-      const { data, error } = await supabase.functions.invoke("marketaux-news", {
+      const { data, error } = await invoke("news", {
         body: {
           action: "get-news-volume",
           symbols: [symbol],

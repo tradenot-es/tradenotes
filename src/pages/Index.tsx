@@ -14,8 +14,11 @@ import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { PageHeader } from "@/components/PageHeader";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
 import { DailySummaryCard } from "@/components/DailySummaryCard";
+import { featureFlags } from "@/config/featureFlags";
+import { DisciplinePanel } from "@/components/DisciplinePanel";
+import { TradeNotesScoreCard } from "@/components/TradeNotesScoreCard";
 import { TradingGoalsWidget } from "@/components/TradingGoalsWidget";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { useTradingGoals } from "@/hooks/useTradingGoals";
 import { toast } from "sonner";
@@ -40,6 +43,8 @@ interface Trade {
   stop_loss_price?: number;
   setup?: string;
   note?: string;
+  mistakes?: string[] | null;
+  emotions?: string[] | null;
 }
 
 const Index = () => {
@@ -60,7 +65,7 @@ const Index = () => {
   }, [user]);
 
   const loadTrades = async () => {
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("trades")
       .select("*")
       .order("exit_time", { ascending: true });
@@ -79,7 +84,7 @@ const Index = () => {
   const handleDeleteTrade = async (tradeId: string) => {
     if (!confirm(t("trades.confirmDelete"))) return;
 
-    const { error } = await supabase
+    const { error } = await db
       .from("trades")
       .delete()
       .eq('id', tradeId);
@@ -239,6 +244,12 @@ const Index = () => {
             expectancy={kpis.expectancyNum}
           />
 
+          {/* Discipline today + overall score */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            <DisciplineWrapper trades={trades} />
+            <TradeNotesScoreCard trades={trades} />
+          </div>
+
           {/* Achievements Widget - Full Width */}
           <AchievementsWidget />
 
@@ -323,7 +334,7 @@ const Index = () => {
           <TradingGoalsWidgetWrapper trades={trades} />
 
           {/* AI Daily Summary */}
-          <DailySummaryCard />
+          {featureFlags.AI_FEATURES && <DailySummaryCard />}
 
           {/* Sector Sentiment - AI powered */}
           <SectorSentimentWidget />
@@ -345,6 +356,11 @@ const Index = () => {
     </div>
   );
 };
+
+function DisciplineWrapper({ trades }: { trades: Trade[] }) {
+  const { goals, dailyResults } = useTradingGoals(trades);
+  return <DisciplinePanel trades={trades} goals={goals} dailyResults={dailyResults} />;
+}
 
 // Wrapper component to use the hook
 function TradingGoalsWidgetWrapper({ trades }: { trades: Trade[] }) {

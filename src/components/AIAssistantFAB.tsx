@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { supabase } from "@/integrations/supabase/client";
+import { invoke } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
@@ -64,7 +64,7 @@ export const AIAssistantFAB = () => {
     setIsLoading(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('trading-assistant', {
+      const { data, error } = await invoke('trading-assistant', {
         body: { question, timeframe: 'all' }
       });
 

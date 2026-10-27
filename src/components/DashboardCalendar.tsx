@@ -58,7 +58,8 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
   };
 
   const calendarDays = eachDayOfInterval({ start: calendarStart, end: calendarEnd });
-  const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  // 7 Jan 2024 is a Sunday; the grid starts on Sunday
+  const weekDays = Array.from({ length: 7 }, (_, i) => format(new Date(2024, 0, 7 + i), 'EEE', { locale: getLocale() }));
   const today = format(new Date(), 'yyyy-MM-dd');
   
   const months = Array.from({ length: 12 }, (_, i) => ({

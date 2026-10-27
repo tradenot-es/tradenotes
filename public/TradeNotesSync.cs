@@ -84,7 +84,7 @@ namespace NinjaTrader.NinjaScript.Strategies
 				BarsRequiredToTrade = 20;
 				
 				// Default values (must be configured by user)
-				WebhookUrl = "https://REDACTED.supabase.co/functions/v1/import-trades";
+				WebhookUrl = "https://tradenot.es/api/import-trades";
 				ApiKey = "YOUR_API_KEY_HERE"; // Get from TradeNot.es Import page
 			}
 		else if (State == State.Configure)

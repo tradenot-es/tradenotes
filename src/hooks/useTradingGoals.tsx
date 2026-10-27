@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { db } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
 import { 
   TradingGoalsConfig, 
@@ -30,7 +30,7 @@ export function useTradingGoals(trades: Trade[]) {
   }, [user]);
 
   const loadGoals = async () => {
-    const { data, error } = await supabase
+    const { data, error } = await db
       .from("user_settings")
       .select("trading_goals")
       .maybeSingle();
@@ -44,7 +44,7 @@ export function useTradingGoals(trades: Trade[]) {
 
   const saveGoals = async (newGoals: TradingGoalsConfig) => {
     setGoals(newGoals);
-    await supabase
+    await db
       .from("user_settings")
       .update({ trading_goals: newGoals as any })
       .eq("user_id", user?.id);
