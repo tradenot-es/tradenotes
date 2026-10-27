@@ -26,9 +26,15 @@ const executionSchema = z.object({
 });
 type IncomingExecution = z.infer<typeof executionSchema>;
 
+const ACCOUNT_TYPES = ["sim", "evaluation", "performance", "live"] as const;
+type AccountType = (typeof ACCOUNT_TYPES)[number];
+
 const batchSchema = z.object({
-  source: z.literal("ninjatrader"),
-  executions: z.array(executionSchema).max(1000),
+  // ninjatrader: the add-on; tradingview: the trading panel CSV export (src/lib/csvImport.ts)
+  source: z.enum(["ninjatrader", "tradingview"]),
+  executions: z.array(executionSchema).max(5000),
+  /** overrides the detection from the account name (a CSV does not say paper or live) */
+  accountType: z.enum(ACCOUNT_TYPES).optional(),
 });
 
 // Futures point values (value of 1 point movement)
@@ -52,7 +58,9 @@ function parseInstrument(instrument: string): { symbol: string; market: string }
     .replace(/\//g, "") // "EUR/USD" → "EURUSD"
     .toUpperCase();
 
-  const futuresMatch = normalized.match(/^([A-Z]{1,3})[FGHJKMNQUVXZ]\d{2}$/); // "ESH25" → "ES"
+  const continuous = normalized.match(/^([A-Z0-9]{1,4}?)\d!$/); // TradingView "ES1!" → "ES"
+  if (continuous) return { symbol: continuous[1], market: "Futures" };
+  const futuresMatch = normalized.match(/^([A-Z0-9]{1,4}?)[FGHJKMNQUVXZ](\d{2}|\d{4})$/); // "ESH25", "ESZ2025" → "ES"
   if (futuresMatch) return { symbol: futuresMatch[1], market: "Futures" };
   if (FUTURES_POINT_VALUES[normalized]) return { symbol: normalized, market: "Futures" };
   if (normalized.length === 6 && (normalized.includes("USD") || normalized.includes("EUR") || normalized.includes("GBP"))) {
@@ -131,13 +139,13 @@ export function detectAccountType(account: string): "sim" | "evaluation" | "perf
   return "live";
 }
 
-const SOURCE_TAG: Record<string, string> = { ninjatrader: "NinjaTrader" };
+const SOURCE_TAG: Record<string, string> = { ninjatrader: "NinjaTrader", tradingview: "TradingView" };
 
 /**
  * Stores executions (duplicates by execution id are skipped, so clients may resend)
  * and turns every position that went flat into a trade.
  */
-export async function importExecutions(userId: string, source: string, list: IncomingExecution[]) {
+export async function importExecutions(userId: string, source: string, list: IncomingExecution[], accountType?: AccountType) {
   const groups = new Map<string, { account: string; symbol: string }>();
   let duplicates = 0;
   for (const e of list) {
@@ -156,12 +164,12 @@ export async function importExecutions(userId: string, source: string, list: Inc
     groups.set(`${e.account}\u0000${symbol}`, { account: e.account, symbol });
   }
   const trades = [];
-  for (const { account, symbol } of groups.values()) trades.push(...(await settlePosition(userId, account, symbol)));
+  for (const { account, symbol } of groups.values()) trades.push(...(await settlePosition(userId, account, symbol, accountType)));
   return { received: list.length, duplicates, tradesCreated: trades.length, trades };
 }
 
 /** Matches the open executions of one account/symbol and stores finished trades. */
-async function settlePosition(userId: string, account: string, symbol: string) {
+async function settlePosition(userId: string, account: string, symbol: string, accountType?: AccountType) {
   const client = await pool.connect();
   try {
     await client.query("begin");
@@ -198,7 +206,7 @@ async function settlePosition(userId: string, account: string, symbol: string) {
            tags, account_type, account_name, mfe_price, mae_price)
          values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16) returning *`,
         [userId, symbol, first.market, t.side, t.qty, round(t.entryPrice), round(t.exitPrice), t.entryTime, t.exitTime,
-          round(t.commission), round(pnl), [SOURCE_TAG[first.source] ?? first.source], detectAccountType(account), account,
+          round(t.commission), round(pnl), [SOURCE_TAG[first.source] ?? first.source], accountType ?? detectAccountType(account), account,
           t.side === "long" ? t.high : t.low, t.side === "long" ? t.low : t.high],
       );
       created.push(trade);
@@ -245,10 +253,11 @@ export async function userIdForWebhookKey(key: string): Promise<string | null> {
 }
 
 export async function importTrades(userId: string, payload: any): Promise<{ status: number; body: unknown }> {
-  if (payload?.source === "ninjatrader" && Array.isArray(payload.executions)) {
+  if (Array.isArray(payload?.executions)) {
     const parsed = batchSchema.safeParse(payload);
     if (!parsed.success) return { status: 400, body: { error: "Invalid executions", issues: parsed.error.issues.slice(0, 5) } };
-    return { status: 200, body: await importExecutions(userId, "ninjatrader", parsed.data.executions) };
+    const { source, executions, accountType } = parsed.data;
+    return { status: 200, body: await importExecutions(userId, source, executions, accountType) };
   }
   let trades: Record<string, unknown>[];
   if (payload?.symbol && payload.entryPrice && payload.exitPrice) {

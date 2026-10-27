@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff, FileCode2, Radio } from "lucide-react";
+import { Upload, Download, HelpCircle, Copy, Check, Key, RefreshCw, Trash2, Eye, EyeOff, FileCode2, Radio, Zap, FileSpreadsheet } from "lucide-react";
 import { toast } from "sonner";
 import { apiFetch, db, invoke } from "@/lib/api";
 import { useAuth } from "@/hooks/useAuth";
@@ -31,6 +31,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { PageHeader } from "@/components/PageHeader";
 import { createZip } from "@/lib/zip";
+import { CsvImport, detectCsv } from "@/lib/csvImport";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatDistanceToNow } from "date-fns";
 import { dateLocale } from "@/lib/dateLocale";
 
@@ -39,12 +41,14 @@ const Import = () => {
   const { session } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [apiKeyCopied, setApiKeyCopied] = useState(false);
   const [apiKey, setApiKey] = useState<string>('');
   const [showApiKey, setShowApiKey] = useState(false);
   const [pendingExecutions, setPendingExecutions] = useState<any[]>([]);
   const [lastExecutionAt, setLastExecutionAt] = useState<string | null>(null);
+  const [csv, setCsv] = useState<CsvImport | null>(null);
+  // a CSV export does not say whether it was paper or live trading
+  const [csvAccountType, setCsvAccountType] = useState<'sim' | 'evaluation' | 'performance' | 'live'>('sim');
   const [loadingApiKey, setLoadingApiKey] = useState(false);
   const [selectedExecutions, setSelectedExecutions] = useState<Set<string>>(new Set());
   
@@ -225,86 +229,51 @@ const Import = () => {
     }
   };
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
-      toast.success(t("import.fileSelected") + " " + e.target.files[0].name);
-    }
-  };
-
-  const parseCSV = (text: string): any[] => {
-    const lines = text.split('\n').filter(line => line.trim());
-    if (lines.length < 2) return [];
-    
-    const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-    const trades = [];
-    
-    for (let i = 1; i < lines.length; i++) {
-      const values = lines[i].split(',').map(v => v.trim());
-      const trade: any = {};
-      
-      headers.forEach((header, index) => {
-        const value = values[index];
-        
-        // Map CSV headers to trade fields
-        if (header === 'symbol') trade.symbol = value;
-        else if (header === 'side') trade.side = value.toLowerCase();
-        else if (header === 'market') trade.market = value;
-        else if (header === 'qty' || header === 'quantity') trade.qty = parseFloat(value);
-        else if (header === 'entryprice' || header === 'entry_price') trade.entryPrice = parseFloat(value);
-        else if (header === 'exitprice' || header === 'exit_price') trade.exitPrice = parseFloat(value);
-        else if (header === 'entrytime' || header === 'entry_time') trade.entryTime = value;
-        else if (header === 'exittime' || header === 'exit_time') trade.exitTime = value;
-        else if (header === 'fees') trade.fees = parseFloat(value) || 0;
-        else if (header === 'tags') trade.tags = value ? value.split(';') : [];
-        else if (header === 'setup') trade.setup = value;
-        else if (header === 'note') trade.note = value;
-      });
-      
-      // Calculate PnL
-      if (trade.entryPrice && trade.exitPrice && trade.qty) {
-        const multiplier = trade.side === 'long' ? 1 : -1;
-        trade.pnlNet = (trade.exitPrice - trade.entryPrice) * trade.qty * multiplier - (trade.fees || 0);
-      }
-      
-      trades.push(trade);
-    }
-    
-    return trades;
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selected = e.target.files?.[0];
+    // allow picking the same file again, e.g. after the next weekly export
+    e.target.value = '';
+    if (!selected) return;
+    setFile(selected);
+    setCsv(detectCsv(await selected.text()));
   };
 
   const handleImport = async () => {
-    if (!file) {
+    if (!file || !csv) {
       toast.error(t("import.selectFile"));
       return;
     }
-
     setImporting(true);
-    
     try {
-      const text = await file.text();
-      const trades = parseCSV(text);
-      
-      if (trades.length === 0) {
-        toast.error(t("import.noTradesFound"));
-        setImporting(false);
-        return;
+      if (csv.format === 'template') {
+        if (csv.trades.length === 0) throw new Error(t("import.noTradesFound"));
+        const { error } = await invoke('import-trades', { body: csv.trades });
+        if (error) throw error;
+        toast.success(t("import.importSuccess", { count: csv.trades.length }));
+      } else if (csv.format === 'tradingview') {
+        if (csv.executions.length === 0) throw new Error(t("import.noTradesFound"));
+        let created = 0;
+        let duplicates = 0;
+        // in chunks, the server takes up to 5000 per request
+        for (let i = 0; i < csv.executions.length; i += 2000) {
+          const { data, error } = await invoke<{ tradesCreated: number; duplicates: number }>('import-trades', {
+            body: { source: 'tradingview', accountType: csvAccountType, executions: csv.executions.slice(i, i + 2000) },
+          });
+          if (error) throw error;
+          created += data.tradesCreated;
+          duplicates += data.duplicates;
+        }
+        toast.success(t("import.tvImportResult", { created, duplicates }));
+        await loadPendingExecutions();
+      } else {
+        throw new Error(t("import.unknownFormat"));
       }
-
-      const response = await invoke('import-trades', {
-        body: trades,
-      });
-
-      if (response.error) {
-        throw response.error;
-      }
-
-      toast.success(t("import.importSuccess", { count: trades.length }));
       setFile(null);
-      
-    } catch (error: any) {
+      setCsv(null);
+    } catch (error: unknown) {
       console.error('Import error:', error);
-      toast.error(t("import.importError") + ": " + error.message);
+      const message = error && typeof error === 'object' && 'message' in error ? String(error.message) : String(error);
+      toast.error(t("import.importError") + ": " + message);
     } finally {
       setImporting(false);
     }
@@ -324,13 +293,6 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
     window.URL.revokeObjectURL(url);
     
     toast.success(t("import.templateDownloaded"));
-  };
-
-  const copyWebhookUrl = () => {
-    navigator.clipboard.writeText(webhookUrl);
-    setCopied(true);
-    toast.success(t("import.webhookCopied"));
-    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
@@ -366,13 +328,13 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
 
                   {/* TradingView Section */}
                   <div>
-                    <h3 className="font-semibold text-lg mb-2">{t("import.helpTvTitle")}</h3>
-                    <p className="text-sm text-muted-foreground mb-2">{t("import.helpTvIntro")}</p>
+                    <h3 className="font-semibold text-lg mb-2">{t("import.tvTitle")}</h3>
+                    <p className="text-sm text-muted-foreground mb-2">{t("import.tvIntro")}</p>
                     <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
-                      <li>{t("import.helpTvStep1")}</li>
-                      <li>{t("import.helpTvStep2")}</li>
-                      <li>{t("import.helpTvStep3")}</li>
-                      <li>{t("import.helpTvStep4")}</li>
+                      <li>{t("import.tvStep1")}</li>
+                      <li>{t("import.tvStep2")}</li>
+                      <li>{t("import.tvStep3")}</li>
+                      <li>{t("import.tvStep4")}</li>
                     </ol>
                   </div>
 
@@ -390,13 +352,6 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                     </ol>
                   </div>
 
-                  <Separator />
-
-                  {/* Webhook Info */}
-                  <div>
-                    <h3 className="font-semibold text-lg mb-2">{t("import.helpWebhookTitle")}</h3>
-                    <p className="text-sm text-muted-foreground">{t("import.helpWebhookInfo")}</p>
-                  </div>
                 </div>
               </ScrollArea>
             </DialogContent>
@@ -410,7 +365,7 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
           <Card className="mb-6 border-2 border-primary/20 shadow-lg bg-gradient-to-br from-background to-primary/5">
             <CardHeader>
               <CardTitle className="text-xl flex items-center gap-2">
-                <Key className="h-5 w-5" />
+                <Zap className="h-5 w-5 text-primary" />
                 {t("import.ntTitle")}
               </CardTitle>
               <CardDescription className="text-base">{t("import.ntDescription")}</CardDescription>
@@ -511,21 +466,6 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                 </div>
               </div>
 
-              <Separator />
-
-              {/* Webhook URL Section */}
-              <div className="space-y-3">
-                <h3 className="text-sm font-semibold">{t("import.ntWebhookUrlTitle")}</h3>
-                <div className="flex items-center gap-2 p-4 bg-background rounded-lg border-2">
-                  <code className="flex-1 p-3 bg-muted rounded-md text-sm break-all font-mono">
-                    {webhookUrl}
-                  </code>
-                  <Button onClick={copyWebhookUrl} size="icon" variant="default">
-                    {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                  </Button>
-                </div>
-              </div>
-
               {/* Pending Executions */}
               {pendingExecutions.length > 0 && (
                 <>
@@ -618,30 +558,29 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
             </CardContent>
           </Card>
 
-          {/* Generic Webhook Card (for other platforms) */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="text-lg">{t("import.webhookTitle")}</CardTitle>
-              <CardDescription>{t("import.webhookDescription")}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div className="flex items-center gap-2 p-3 bg-muted rounded-lg">
-                <code className="flex-1 text-xs break-all font-mono">
-                  {webhookUrl}
-                </code>
-                <Button onClick={copyWebhookUrl} size="icon" variant="ghost" className="h-8 w-8">
-                  {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-                </Button>
-              </div>
-              <p className="text-xs text-muted-foreground">
-                {t("import.webhookInstructions")}
-              </p>
-            </CardContent>
-          </Card>
         </>
       )}
 
       <div className="grid gap-6 md:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <FileSpreadsheet className="h-5 w-5 text-primary" />
+              {t("import.tvTitle")}
+            </CardTitle>
+            <CardDescription>{t("import.tvIntro")}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <ol className="list-decimal space-y-2 pl-5 text-sm text-muted-foreground">
+              <li>{t("import.tvStep1")}</li>
+              <li>{t("import.tvStep2")}</li>
+              <li>{t("import.tvStep3")}</li>
+              <li>{t("import.tvStep4")}</li>
+            </ol>
+            <p className="text-xs text-muted-foreground">{t("import.tvNote")}</p>
+          </CardContent>
+        </Card>
+
         <Card>
           <CardHeader>
             <CardTitle>{t("import.uploadCSV")}</CardTitle>
@@ -649,7 +588,7 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-center justify-center w-full">
-              <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 border-border">
+              <label className="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 border-border">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <Upload className="w-10 h-10 mb-3 text-muted-foreground" />
                   <p className="mb-2 text-sm text-muted-foreground">
@@ -665,18 +604,41 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                 />
               </label>
             </div>
-            {file && (
-              <div className="p-3 bg-muted rounded-md">
-                <p className="text-sm">{t("import.selected")}: {file.name}</p>
+            {file && csv && (
+              <div className="space-y-3 rounded-md bg-muted p-3 text-sm" role="status">
+                <p className="font-medium">{file.name}</p>
+                {csv.format === 'template' && <p>{t("import.detectedTemplate", { count: csv.trades.length })}</p>}
+                {csv.format === 'tradingview' && (
+                  <>
+                    <p>{t("import.detectedTradingView", { count: csv.executions.length, skipped: csv.skipped })}</p>
+                    <div className="space-y-1.5">
+                      <label htmlFor="csv-account-type" className="text-xs text-muted-foreground">{t("import.csvAccountType")}</label>
+                      <Select value={csvAccountType} onValueChange={(v) => setCsvAccountType(v as typeof csvAccountType)}>
+                        <SelectTrigger id="csv-account-type" className="bg-background">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sim">{t("import.accountTypes.sim")}</SelectItem>
+                          <SelectItem value="evaluation">{t("import.accountTypes.evaluation")}</SelectItem>
+                          <SelectItem value="performance">{t("import.accountTypes.performance")}</SelectItem>
+                          <SelectItem value="live">{t("import.accountTypes.live")}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </>
+                )}
+                {csv.format === 'unknown' && (
+                  <p className="text-destructive">{t("import.unknownFormatDetail", { headers: csv.headers.slice(0, 8).join(", ") })}</p>
+                )}
               </div>
             )}
-            <Button onClick={handleImport} className="w-full" disabled={!file || importing}>
+            <Button onClick={handleImport} className="w-full" disabled={!file || !csv || csv.format === 'unknown' || importing}>
               {importing ? t("import.importing") : t("import.importTrades")}
             </Button>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>{t("import.csvTemplate")}</CardTitle>
             <CardDescription>{t("import.templateDesc")}</CardDescription>
