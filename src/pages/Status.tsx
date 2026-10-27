@@ -4,10 +4,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { CheckCircle2, AlertCircle, Clock, Activity } from "lucide-react";
+import { usePageSeo } from "@/hooks/useSeo";
 
 type ServiceStatus = "operational" | "down" | "checking";
 
 const Status = () => {
+  usePageSeo("status", "/status");
   // live check: /api/health answers only when the app server and its database are up
   const [apiStatus, setApiStatus] = useState<ServiceStatus>("checking");
   const [checkedAt, setCheckedAt] = useState<Date | null>(null);

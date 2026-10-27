@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:server": "npm --prefix server run dev",
-    "build": "vite build",
+    "build": "vite build && node scripts/seo-pages.mjs",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

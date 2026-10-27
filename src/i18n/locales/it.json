@@ -1170,6 +1170,16 @@
           "description": "Vista giornaliera, report degli errori e TradeNot.es Score mostrano su cosa lavorare."
         }
       }
+    },
+    "importSection": {
+      "badge": "Importazione automatica",
+      "title": "I tuoi trade arrivano da soli",
+      "description": "Digitare i trade è il motivo per cui la maggior parte dei diari di trading viene abbandonata dopo due settimane. Con TradeNot.es arrivano da soli nel tuo diario.",
+      "points": [
+        "NinjaTrader: importa un add-on una volta, poi ogni esecuzione in tempo reale, per tutti i conti",
+        "Interactive Brokers: inserisci un token, tradenot.es recupera le tue esecuzioni ogni giorno",
+        "TradingView e altri: carica l’esportazione CSV, i doppioni vengono riconosciuti"
+      ]
     }
   },
   "features": {
@@ -2849,5 +2859,74 @@
     "ctaTitle": "Tieni il tuo diario di trading",
     "ctaText": "Gratis, con importazione automatica da NinjaTrader e Interactive Brokers.",
     "ctaButton": "Inizia gratis"
+  },
+  "seo": {
+    "landing": {
+      "title": "Diario di trading gratuito per futures, azioni e prop firm | TradeNot.es",
+      "description": "Diario di trading gratuito: importa i trade automaticamente da NinjaTrader e Interactive Brokers, imposta limiti giornalieri e scopri quali errori ti costano denaro."
+    },
+    "whyJournal": {
+      "title": "Perché tenere un diario di trading? Vantaggi e guida | TradeNot.es",
+      "description": "Perché i trader di successo tengono un diario di trading: riconoscere schemi, correggere errori, costruire disciplina. Con le risposte alle domande più frequenti."
+    },
+    "help": {
+      "title": "Aiuto e guide del diario di trading | TradeNot.es",
+      "description": "Risposte e guide: importare trade da NinjaTrader, Interactive Brokers e TradingView, impostare limiti giornalieri, capire i report."
+    },
+    "contact": {
+      "title": "Contatti | TradeNot.es",
+      "description": "Domande, feedback o idee sul diario di trading gratuito TradeNot.es? Scrivici con il modulo di contatto."
+    },
+    "status": {
+      "title": "Stato del sistema | TradeNot.es",
+      "description": "Stato attuale di TradeNot.es: app, database e importazione automatica dei trade."
+    },
+    "imprint": {
+      "title": "Note legali | TradeNot.es",
+      "description": "Note legali e informazioni sul fornitore di TradeNot.es."
+    },
+    "privacy": {
+      "title": "Informativa sulla privacy | TradeNot.es",
+      "description": "Come TradeNot.es tratta i tuoi dati: cosa viene salvato, dove si trova il server e quali diritti hai."
+    },
+    "terms": {
+      "title": "Condizioni d’uso | TradeNot.es",
+      "description": "Le condizioni d’uso del diario di trading gratuito TradeNot.es."
+    },
+    "auth": {
+      "title": "Accedi o registrati gratis | TradeNot.es",
+      "description": "Accedi a TradeNot.es o crea gratis un account per il tuo diario di trading."
+    },
+    "notFound": {
+      "title": "Pagina non trovata | TradeNot.es",
+      "description": "Questa pagina non esiste. Torna al diario di trading gratuito TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animazione: le esecuzioni di NinjaTrader diventano automaticamente un trade in tradenot.es",
+      "trade": "Long · 2 · NinjaTrader",
+      "caption": "Entrano esecuzioni parziali, esce un trade completo. Automaticamente."
+    },
+    "flex": {
+      "label": "Animazione: tradenot.es legge ogni giorno il report Flex di Interactive Brokers e crea i trade",
+      "caption": "Una volta al giorno: recuperare il report Flex, creare i trade."
+    },
+    "csv": {
+      "label": "Animazione: caricare un’esportazione TradingView; gli ordini eseguiti diventano trade, quelli annullati vengono saltati",
+      "result": "Long · 2 · TradingView",
+      "caption": "Entra il CSV, formato riconosciuto, annullamenti saltati."
+    },
+    "adherence": {
+      "label": "Animazione: i quattro campi del rispetto delle regole con il numero di trade",
+      "caption": "Quanti guadagni erano meritati e quanti solo fortuna?"
+    },
+    "insights": {
+      "label": "Animazione: gruppi più forti e più deboli come barre"
+    }
   }
 }

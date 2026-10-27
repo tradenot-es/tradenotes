@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Footer } from "@/components/Footer";
 import { ArrowLeft } from "lucide-react";
+import { usePageSeo } from "@/hooks/useSeo";
 
 const AGB = () => {
+  usePageSeo("terms", "/agb");
   const { t } = useTranslation();
 
   return (

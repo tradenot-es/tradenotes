@@ -5,8 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Shield, Server, Lock, Eye, FileText, CheckCircle2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import DOMPurify from "dompurify";
+import { usePageSeo } from "@/hooks/useSeo";
 
 const Datenschutz = () => {
+  usePageSeo("privacy", "/datenschutz");
   const { t } = useTranslation();
 
   const certifications = [

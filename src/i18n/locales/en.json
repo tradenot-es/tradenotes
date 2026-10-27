@@ -1307,6 +1307,16 @@
           "description": "Day view, mistake report and TradeNot.es Score show what to work on next."
         }
       }
+    },
+    "importSection": {
+      "badge": "Automatic import",
+      "title": "Your trades arrive by themselves",
+      "description": "Typing in trades is why most trading journals are abandoned after two weeks. With TradeNot.es they land in your journal automatically.",
+      "points": [
+        "NinjaTrader: import an add-on once, then every fill in real time, for all accounts",
+        "Interactive Brokers: enter a token, tradenot.es fetches your executions daily",
+        "TradingView and others: upload the CSV export, duplicates are recognised"
+      ]
     }
   },
   "features": {
@@ -2903,5 +2913,74 @@
     "ctaTitle": "Keep your own trading journal",
     "ctaText": "Free, with automatic import from NinjaTrader and Interactive Brokers.",
     "ctaButton": "Start for free"
+  },
+  "seo": {
+    "landing": {
+      "title": "Free Trading Journal for Futures, Stocks & Prop Firms | TradeNot.es",
+      "description": "Free trading journal: import trades automatically from NinjaTrader and Interactive Brokers, set daily limits and see which mistakes cost you money."
+    },
+    "whyJournal": {
+      "title": "Why Keep a Trading Journal? Benefits & Guide | TradeNot.es",
+      "description": "Why successful traders keep a trading journal: spot patterns, fix mistakes, build discipline. With answers to the most common questions."
+    },
+    "help": {
+      "title": "Trading Journal Help & Guides | TradeNot.es",
+      "description": "Answers and guides: importing trades from NinjaTrader, Interactive Brokers and TradingView, setting daily limits, reading the reports."
+    },
+    "contact": {
+      "title": "Contact | TradeNot.es",
+      "description": "Questions, feedback or ideas about the free trading journal TradeNot.es? Write to us using the contact form."
+    },
+    "status": {
+      "title": "System Status | TradeNot.es",
+      "description": "Current status of TradeNot.es: app, database and automatic trade import."
+    },
+    "imprint": {
+      "title": "Legal Notice | TradeNot.es",
+      "description": "Legal notice and provider information of TradeNot.es."
+    },
+    "privacy": {
+      "title": "Privacy Policy | TradeNot.es",
+      "description": "How TradeNot.es handles your data: what is stored, where the server is and which rights you have."
+    },
+    "terms": {
+      "title": "Terms of Use | TradeNot.es",
+      "description": "The terms of use of the free trading journal TradeNot.es."
+    },
+    "auth": {
+      "title": "Log In or Sign Up for Free | TradeNot.es",
+      "description": "Log in to TradeNot.es or create a free account for your trading journal."
+    },
+    "notFound": {
+      "title": "Page Not Found | TradeNot.es",
+      "description": "This page does not exist. Back to the free trading journal TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animation: NinjaTrader fills automatically become a trade in tradenot.es",
+      "trade": "Long · 2 · NinjaTrader",
+      "caption": "Partial fills in, one finished trade out. Automatically."
+    },
+    "flex": {
+      "label": "Animation: tradenot.es reads the Interactive Brokers Flex report daily and creates trades",
+      "caption": "Once a day: fetch the Flex report, create the trades."
+    },
+    "csv": {
+      "label": "Animation: upload a TradingView export; filled orders become trades, cancelled ones are skipped",
+      "result": "Long · 2 · TradingView",
+      "caption": "CSV in, format detected, cancellations skipped."
+    },
+    "adherence": {
+      "label": "Animation: the four rule adherence fields with trade counts",
+      "caption": "How many wins were earned and how many just luck?"
+    },
+    "insights": {
+      "label": "Animation: strongest and weakest groups as bars"
+    }
   }
 }

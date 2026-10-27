@@ -1168,6 +1168,16 @@
           "description": "La vue journalière, le rapport d'erreurs et le TradeNot.es Score montrent sur quoi travailler ensuite."
         }
       }
+    },
+    "importSection": {
+      "badge": "Import automatique",
+      "title": "Tes trades arrivent tout seuls",
+      "description": "Saisir ses trades à la main, c’est la raison pour laquelle la plupart des journaux de trading sont abandonnés au bout de deux semaines. Avec TradeNot.es, ils arrivent tout seuls dans ton journal.",
+      "points": [
+        "NinjaTrader : importer un add-on une fois, puis chaque exécution en temps réel, pour tous les comptes",
+        "Interactive Brokers : saisir un token, tradenot.es récupère tes exécutions chaque jour",
+        "TradingView et autres : importer l’export CSV, les doublons sont reconnus"
+      ]
     }
   },
   "features": {
@@ -2818,5 +2828,74 @@
     "ctaTitle": "Tiens ton propre journal de trading",
     "ctaText": "Gratuit, avec import automatique depuis NinjaTrader et Interactive Brokers.",
     "ctaButton": "Commencer gratuitement"
+  },
+  "seo": {
+    "landing": {
+      "title": "Journal de trading gratuit pour futures, actions et prop firms | TradeNot.es",
+      "description": "Journal de trading gratuit : importe automatiquement tes trades depuis NinjaTrader et Interactive Brokers, fixe des limites journalières et vois quelles erreurs te coûtent de l’argent."
+    },
+    "whyJournal": {
+      "title": "Pourquoi tenir un journal de trading ? Avantages et guide | TradeNot.es",
+      "description": "Pourquoi les traders qui réussissent tiennent un journal de trading : repérer les schémas, corriger les erreurs, gagner en discipline. Avec les réponses aux questions fréquentes."
+    },
+    "help": {
+      "title": "Aide et guides du journal de trading | TradeNot.es",
+      "description": "Réponses et guides : importer des trades depuis NinjaTrader, Interactive Brokers et TradingView, configurer les limites journalières, comprendre les rapports."
+    },
+    "contact": {
+      "title": "Contact | TradeNot.es",
+      "description": "Questions, retours ou idées sur le journal de trading gratuit TradeNot.es ? Écris-nous via le formulaire de contact."
+    },
+    "status": {
+      "title": "État du système | TradeNot.es",
+      "description": "État actuel de TradeNot.es : application, base de données et import automatique des trades."
+    },
+    "imprint": {
+      "title": "Mentions légales | TradeNot.es",
+      "description": "Mentions légales et informations sur l’éditeur de TradeNot.es."
+    },
+    "privacy": {
+      "title": "Politique de confidentialité | TradeNot.es",
+      "description": "Comment TradeNot.es traite tes données : ce qui est stocké, où se trouve le serveur et quels sont tes droits."
+    },
+    "terms": {
+      "title": "Conditions d’utilisation | TradeNot.es",
+      "description": "Les conditions d’utilisation du journal de trading gratuit TradeNot.es."
+    },
+    "auth": {
+      "title": "Connexion ou inscription gratuite | TradeNot.es",
+      "description": "Connecte-toi à TradeNot.es ou crée gratuitement un compte pour ton journal de trading."
+    },
+    "notFound": {
+      "title": "Page introuvable | TradeNot.es",
+      "description": "Cette page n’existe pas. Retour au journal de trading gratuit TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animation : les exécutions NinjaTrader deviennent automatiquement un trade dans tradenot.es",
+      "trade": "Long · 2 · NinjaTrader",
+      "caption": "Des exécutions partielles en entrée, un trade complet en sortie. Automatiquement."
+    },
+    "flex": {
+      "label": "Animation : tradenot.es lit chaque jour le rapport Flex d’Interactive Brokers et crée les trades",
+      "caption": "Une fois par jour : récupérer le rapport Flex, créer les trades."
+    },
+    "csv": {
+      "label": "Animation : importer un export TradingView ; les ordres exécutés deviennent des trades, les annulés sont ignorés",
+      "result": "Long · 2 · TradingView",
+      "caption": "Le CSV entre, le format est reconnu, les annulations ignorées."
+    },
+    "adherence": {
+      "label": "Animation : les quatre cases du respect des règles avec le nombre de trades",
+      "caption": "Combien de gains étaient mérités, combien seulement de la chance ?"
+    },
+    "insights": {
+      "label": "Animation : groupes les plus forts et les plus faibles en barres"
+    }
   }
 }

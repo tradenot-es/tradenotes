@@ -1168,6 +1168,16 @@
           "description": "Dagoverzicht, foutenrapport en TradeNot.es Score laten zien waar je als volgende aan werkt."
         }
       }
+    },
+    "importSection": {
+      "badge": "Automatisch importeren",
+      "title": "Je trades komen vanzelf binnen",
+      "description": "Trades overtikken is de reden dat de meeste tradingjournals na twee weken stil komen te liggen. Bij TradeNot.es komen ze automatisch in je journal.",
+      "points": [
+        "NinjaTrader: één keer een add-on importeren, daarna elke uitvoering realtime, voor alle accounts",
+        "Interactive Brokers: token invullen, tradenot.es haalt je uitvoeringen dagelijks op",
+        "TradingView en andere: CSV-export uploaden, dubbelen worden herkend"
+      ]
     }
   },
   "features": {
@@ -2818,5 +2828,74 @@
     "ctaTitle": "Houd je eigen tradingjournal bij",
     "ctaText": "Gratis, met automatische import uit NinjaTrader en Interactive Brokers.",
     "ctaButton": "Gratis beginnen"
+  },
+  "seo": {
+    "landing": {
+      "title": "Gratis tradingjournal voor futures, aandelen & prop firms | TradeNot.es",
+      "description": "Gratis tradingjournal: importeer trades automatisch uit NinjaTrader en Interactive Brokers, stel daglimieten in en zie welke fouten je geld kosten."
+    },
+    "whyJournal": {
+      "title": "Waarom een tradingjournal? Voordelen & uitleg | TradeNot.es",
+      "description": "Waarom succesvolle traders een tradingjournal bijhouden: patronen zien, fouten afleren, discipline opbouwen. Met antwoorden op de meestgestelde vragen."
+    },
+    "help": {
+      "title": "Hulp & handleidingen voor het tradingjournal | TradeNot.es",
+      "description": "Antwoorden en handleidingen: trades importeren uit NinjaTrader, Interactive Brokers en TradingView, daglimieten instellen, rapporten begrijpen."
+    },
+    "contact": {
+      "title": "Contact | TradeNot.es",
+      "description": "Vragen, feedback of ideeën over het gratis tradingjournal TradeNot.es? Schrijf ons via het contactformulier."
+    },
+    "status": {
+      "title": "Systeemstatus | TradeNot.es",
+      "description": "Actuele status van TradeNot.es: app, database en automatische trade-import."
+    },
+    "imprint": {
+      "title": "Colofon | TradeNot.es",
+      "description": "Colofon en aanbiedersinformatie van TradeNot.es."
+    },
+    "privacy": {
+      "title": "Privacyverklaring | TradeNot.es",
+      "description": "Hoe TradeNot.es met je gegevens omgaat: wat wordt opgeslagen, waar de server staat en welke rechten je hebt."
+    },
+    "terms": {
+      "title": "Gebruiksvoorwaarden | TradeNot.es",
+      "description": "De gebruiksvoorwaarden van het gratis tradingjournal TradeNot.es."
+    },
+    "auth": {
+      "title": "Inloggen of gratis registreren | TradeNot.es",
+      "description": "Log in bij TradeNot.es of maak gratis een account aan voor je tradingjournal."
+    },
+    "notFound": {
+      "title": "Pagina niet gevonden | TradeNot.es",
+      "description": "Deze pagina bestaat niet. Terug naar het gratis tradingjournal TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animatie: uitvoeringen uit NinjaTrader worden automatisch een trade in tradenot.es",
+      "trade": "Long · 2 · NinjaTrader",
+      "caption": "Deeluitvoeringen erin, één complete trade eruit. Automatisch."
+    },
+    "flex": {
+      "label": "Animatie: tradenot.es leest dagelijks het Flex-rapport van Interactive Brokers en maakt er trades van",
+      "caption": "Eén keer per dag: Flex-rapport ophalen, trades aanmaken."
+    },
+    "csv": {
+      "label": "Animatie: TradingView-export uploaden; uitgevoerde orders worden trades, geannuleerde worden overgeslagen",
+      "result": "Long · 2 · TradingView",
+      "caption": "CSV erin, formaat herkend, annuleringen overgeslagen."
+    },
+    "adherence": {
+      "label": "Animatie: de vier vakken van regeltrouw met het aantal trades",
+      "caption": "Hoeveel winsten waren verdiend en hoeveel puur geluk?"
+    },
+    "insights": {
+      "label": "Animatie: sterkste en zwakste groepen als balken"
+    }
   }
 }

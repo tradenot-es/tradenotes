@@ -1168,6 +1168,16 @@
           "description": "La vista diaria, el informe de errores y el TradeNot.es Score te muestran en qué trabajar."
         }
       }
+    },
+    "importSection": {
+      "badge": "Importación automática",
+      "title": "Tus operaciones llegan solas",
+      "description": "Teclear operaciones es la razón por la que la mayoría de diarios de trading se abandonan a las dos semanas. Con TradeNot.es llegan solas a tu diario.",
+      "points": [
+        "NinjaTrader: importa un add-on una vez y luego cada ejecución en tiempo real, para todas las cuentas",
+        "Interactive Brokers: introduce un token y tradenot.es recoge tus ejecuciones a diario",
+        "TradingView y otros: sube la exportación CSV, los duplicados se reconocen"
+      ]
     }
   },
   "features": {
@@ -2818,5 +2828,74 @@
     "ctaTitle": "Lleva tu propio diario de trading",
     "ctaText": "Gratis, con importación automática desde NinjaTrader e Interactive Brokers.",
     "ctaButton": "Empezar gratis"
+  },
+  "seo": {
+    "landing": {
+      "title": "Diario de trading gratis para futuros, acciones y prop firms | TradeNot.es",
+      "description": "Diario de trading gratuito: importa operaciones automáticamente desde NinjaTrader e Interactive Brokers, fija límites diarios y descubre qué errores te cuestan dinero."
+    },
+    "whyJournal": {
+      "title": "¿Por qué llevar un diario de trading? Ventajas y guía | TradeNot.es",
+      "description": "Por qué los traders de éxito llevan un diario de trading: detectar patrones, corregir errores, ganar disciplina. Con respuestas a las preguntas más frecuentes."
+    },
+    "help": {
+      "title": "Ayuda y guías del diario de trading | TradeNot.es",
+      "description": "Respuestas y guías: importar operaciones de NinjaTrader, Interactive Brokers y TradingView, configurar límites diarios, entender los informes."
+    },
+    "contact": {
+      "title": "Contacto | TradeNot.es",
+      "description": "¿Preguntas, comentarios o ideas sobre el diario de trading gratuito TradeNot.es? Escríbenos con el formulario de contacto."
+    },
+    "status": {
+      "title": "Estado del sistema | TradeNot.es",
+      "description": "Estado actual de TradeNot.es: aplicación, base de datos e importación automática de operaciones."
+    },
+    "imprint": {
+      "title": "Aviso legal | TradeNot.es",
+      "description": "Aviso legal e información del proveedor de TradeNot.es."
+    },
+    "privacy": {
+      "title": "Política de privacidad | TradeNot.es",
+      "description": "Cómo trata TradeNot.es tus datos: qué se guarda, dónde está el servidor y qué derechos tienes."
+    },
+    "terms": {
+      "title": "Condiciones de uso | TradeNot.es",
+      "description": "Las condiciones de uso del diario de trading gratuito TradeNot.es."
+    },
+    "auth": {
+      "title": "Inicia sesión o regístrate gratis | TradeNot.es",
+      "description": "Inicia sesión en TradeNot.es o crea gratis una cuenta para tu diario de trading."
+    },
+    "notFound": {
+      "title": "Página no encontrada | TradeNot.es",
+      "description": "Esta página no existe. Vuelve al diario de trading gratuito TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animación: las ejecuciones de NinjaTrader se convierten automáticamente en una operación en tradenot.es",
+      "trade": "Largo · 2 · NinjaTrader",
+      "caption": "Entran ejecuciones parciales, sale una operación completa. Automáticamente."
+    },
+    "flex": {
+      "label": "Animación: tradenot.es lee a diario el informe Flex de Interactive Brokers y crea operaciones",
+      "caption": "Una vez al día: recoger el informe Flex y crear las operaciones."
+    },
+    "csv": {
+      "label": "Animación: subir una exportación de TradingView; las órdenes ejecutadas se convierten en operaciones y las canceladas se omiten",
+      "result": "Largo · 2 · TradingView",
+      "caption": "Entra el CSV, se detecta el formato, se omiten las cancelaciones."
+    },
+    "adherence": {
+      "label": "Animación: los cuatro campos del cumplimiento de reglas con número de operaciones",
+      "caption": "¿Cuántas ganancias fueron merecidas y cuántas pura suerte?"
+    },
+    "insights": {
+      "label": "Animación: grupos más fuertes y más débiles como barras"
+    }
   }
 }

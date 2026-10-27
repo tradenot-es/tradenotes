@@ -12,8 +12,10 @@ import logo from "@/assets/logo.webp";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { ArrowLeft } from "lucide-react";
+import { usePageSeo } from "@/hooks/useSeo";
 
 const Auth = () => {
+  usePageSeo("auth", "/auth", { noindex: true });
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const isPasswordReset = searchParams.get("reset") === "true";

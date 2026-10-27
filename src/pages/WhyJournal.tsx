@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { usePageSeo } from "@/hooks/useSeo";
 import {
   TrendingUp, 
   Brain, 
@@ -43,76 +43,28 @@ const WhyJournal = () => {
     },
   ];
 
-  // Schema.org structured data
-  useEffect(() => {
-    const currentLanguage = i18n.language || 'de';
-    const baseUrl = window.location.origin;
-    
-    // Article schema
-    const articleSchema = {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      "headline": t("whyJournal.heroTitle") + " " + t("whyJournal.heroTitleHighlight"),
-      "description": t("whyJournal.heroDescription"),
-      "author": {
-        "@type": "Organization",
-        "name": "TradeNotes"
+  // search engines: page meta plus the article and its FAQ as structured data
+  usePageSeo("whyJournal", "/warum-trading-journal", {
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: `${t("whyJournal.heroTitle")} ${t("whyJournal.heroTitleHighlight")}`,
+        description: t("whyJournal.heroDescription"),
+        author: { "@type": "Organization", name: "TradeNot.es", url: "https://tradenot.es" },
+        publisher: { "@type": "Organization", name: "TradeNot.es", logo: { "@type": "ImageObject", url: "https://tradenot.es/logo.png" } },
+        datePublished: "2025-01-01",
+        dateModified: "2026-10-28",
+        mainEntityOfPage: { "@type": "WebPage", "@id": "https://tradenot.es/warum-trading-journal" },
+        inLanguage: i18n.language || "de",
       },
-      "publisher": {
-        "@type": "Organization",
-        "name": "TradeNotes",
-        "logo": {
-          "@type": "ImageObject",
-          "url": `${baseUrl}/favicon.png`
-        }
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqItems.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })),
       },
-      "datePublished": "2025-01-01",
-      "dateModified": new Date().toISOString().split('T')[0],
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": `${baseUrl}/warum-trading-journal`
-      },
-      "inLanguage": currentLanguage,
-      "keywords": "Trading Journal, Trading Tagebuch, Trading Performance, Handelsjournal, Trading Psychologie"
-    };
-
-    // FAQ schema
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqItems.map(item => ({
-        "@type": "Question",
-        "name": item.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": item.answer
-        }
-      }))
-    };
-
-    // Remove existing schema scripts
-    const existingScripts = document.querySelectorAll('script[type="application/ld+json"][data-schema="whyjournal"]');
-    existingScripts.forEach(script => script.remove());
-
-    // Add Article schema
-    const articleScriptTag = document.createElement('script');
-    articleScriptTag.type = 'application/ld+json';
-    articleScriptTag.setAttribute('data-schema', 'whyjournal');
-    articleScriptTag.textContent = JSON.stringify(articleSchema);
-    document.head.appendChild(articleScriptTag);
-
-    // Add FAQ schema
-    const faqScriptTag = document.createElement('script');
-    faqScriptTag.type = 'application/ld+json';
-    faqScriptTag.setAttribute('data-schema', 'whyjournal');
-    faqScriptTag.textContent = JSON.stringify(faqSchema);
-    document.head.appendChild(faqScriptTag);
-
-    return () => {
-      const scripts = document.querySelectorAll('script[type="application/ld+json"][data-schema="whyjournal"]');
-      scripts.forEach(script => script.remove());
-    };
-  }, [t, i18n.language, faqItems]);
+    ],
+  });
 
   const benefits = [
     {

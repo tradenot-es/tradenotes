@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { useScreens } from "@/lib/screens";
 import { useSeo } from "@/hooks/useSeo";
+import { AdherenceScene, CsvScene, FlexScene, InsightsScene, SyncScene } from "@/components/motion/Scenes";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import { Button } from "@/components/ui/button";
@@ -85,7 +86,7 @@ const Features = () => {
           title: t("features.items.ruleAdherence.title"),
           description: t("features.items.ruleAdherence.description"),
           benefits: t("features.items.ruleAdherence.benefits", { returnObjects: true }) as string[],
-          illustration: shot("reports-rules"),
+          visual: <AdherenceScene />,
         },
         {
           icon: <Coffee className="h-6 w-6" />,
@@ -133,21 +134,21 @@ const Features = () => {
           title: t("features.items.ninjaTrader.title"),
           description: t("features.items.ninjaTrader.description"),
           benefits: t("features.items.ninjaTrader.benefits", { returnObjects: true }) as string[],
-          illustration: shot("import"),
+          visual: <SyncScene />,
         },
         {
           icon: <Landmark className="h-6 w-6" />,
           title: t("features.items.ibkr.title"),
           description: t("features.items.ibkr.description"),
           benefits: t("features.items.ibkr.benefits", { returnObjects: true }) as string[],
-          illustration: shot("import-ibkr"),
+          visual: <FlexScene />,
         },
         {
           icon: <FileSpreadsheet className="h-6 w-6" />,
           title: t("features.items.tradingView.title"),
           description: t("features.items.tradingView.description"),
           benefits: t("features.items.tradingView.benefits", { returnObjects: true }) as string[],
-          illustration: shot("import-tradingview"),
+          visual: <CsvScene />,
         },
         {
           icon: <Import className="h-6 w-6" />,
@@ -201,7 +202,7 @@ const Features = () => {
           title: t("features.items.insights.title"),
           description: t("features.items.insights.description"),
           benefits: t("features.items.insights.benefits", { returnObjects: true }) as string[],
-          illustration: shot("insights"),
+          visual: <InsightsScene />,
         },
         {
           icon: <Crosshair className="h-6 w-6" />,

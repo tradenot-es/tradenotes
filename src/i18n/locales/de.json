@@ -1216,6 +1216,16 @@
           "description": "Tagesansicht, Fehler-Report und TradeNot.es Score zeigen, woran du als Nächstes arbeitest."
         }
       }
+    },
+    "importSection": {
+      "badge": "Automatischer Import",
+      "title": "Deine Trades kommen von selbst",
+      "description": "Das Abtippen von Trades ist der Grund, warum die meisten Trading-Journale nach zwei Wochen verwaisen. Bei TradeNot.es landen sie automatisch im Journal.",
+      "points": [
+        "NinjaTrader: einmal ein Add-on importieren, danach jede Ausführung in Echtzeit, für alle Konten",
+        "Interactive Brokers: Token eintragen, tradenot.es holt deine Ausführungen täglich ab",
+        "TradingView und andere: CSV-Export hochladen, Doppelte werden erkannt"
+      ]
     }
   },
   "features": {
@@ -2812,5 +2822,74 @@
     "ctaTitle": "Führe dein eigenes Trading-Journal",
     "ctaText": "Kostenlos, mit automatischem Import aus NinjaTrader und Interactive Brokers.",
     "ctaButton": "Kostenlos starten"
+  },
+  "seo": {
+    "landing": {
+      "title": "Kostenloses Trading-Journal für Futures, Aktien & Prop Firms | TradeNot.es",
+      "description": "Kostenloses Trading-Journal: Trades automatisch aus NinjaTrader und Interactive Brokers importieren, Tageslimits setzen und sehen, welche Fehler dich Geld kosten."
+    },
+    "whyJournal": {
+      "title": "Warum ein Trading-Journal? Vorteile & Anleitung | TradeNot.es",
+      "description": "Warum erfolgreiche Trader ein Trading-Journal führen: Muster erkennen, Fehler abstellen, Disziplin aufbauen. Mit Antworten auf die häufigsten Fragen."
+    },
+    "help": {
+      "title": "Hilfe & Anleitungen zum Trading-Journal | TradeNot.es",
+      "description": "Antworten und Anleitungen: Trades importieren aus NinjaTrader, Interactive Brokers und TradingView, Tageslimits einrichten, Reports verstehen."
+    },
+    "contact": {
+      "title": "Kontakt | TradeNot.es",
+      "description": "Fragen, Feedback oder Ideen zum kostenlosen Trading-Journal TradeNot.es? Schreib uns über das Kontaktformular."
+    },
+    "status": {
+      "title": "Systemstatus | TradeNot.es",
+      "description": "Aktueller Status von TradeNot.es: App, Datenbank und automatischer Trade-Import."
+    },
+    "imprint": {
+      "title": "Impressum | TradeNot.es",
+      "description": "Impressum und Anbieterkennzeichnung von TradeNot.es."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung | TradeNot.es",
+      "description": "Wie TradeNot.es mit deinen Daten umgeht: welche Daten gespeichert werden, wo der Server steht und welche Rechte du hast."
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen | TradeNot.es",
+      "description": "Die Nutzungsbedingungen des kostenlosen Trading-Journals TradeNot.es."
+    },
+    "auth": {
+      "title": "Anmelden oder kostenlos registrieren | TradeNot.es",
+      "description": "Melde dich bei TradeNot.es an oder erstelle kostenlos ein Konto für dein Trading-Journal."
+    },
+    "notFound": {
+      "title": "Seite nicht gefunden | TradeNot.es",
+      "description": "Diese Seite gibt es nicht. Zurück zum kostenlosen Trading-Journal TradeNot.es."
+    },
+    "checkout": {
+      "title": "TradeNot.es",
+      "description": "TradeNot.es"
+    }
+  },
+  "motion": {
+    "sync": {
+      "label": "Animation: Ausführungen aus NinjaTrader werden automatisch zu einem Trade in tradenot.es",
+      "trade": "Long · 2 · NinjaTrader",
+      "caption": "Teilausführungen rein, ein fertiger Trade raus. Automatisch."
+    },
+    "flex": {
+      "label": "Animation: tradenot.es liest täglich den Flex-Bericht von Interactive Brokers und erstellt daraus Trades",
+      "caption": "Einmal täglich: Flex-Bericht abholen, Trades anlegen."
+    },
+    "csv": {
+      "label": "Animation: TradingView-Export hochladen, ausgeführte Orders werden zu Trades, stornierte übersprungen",
+      "result": "Long · 2 · TradingView",
+      "caption": "CSV rein, Format erkannt, Stornos übersprungen."
+    },
+    "adherence": {
+      "label": "Animation: die vier Felder der Regeltreue mit Anzahl Trades",
+      "caption": "Wie viele Gewinne waren verdient, wie viele nur Glück?"
+    },
+    "insights": {
+      "label": "Animation: stärkste und schwächste Gruppen als Balken"
+    }
   }
 }

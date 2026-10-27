@@ -358,3 +358,81 @@ All colors MUST be HSL.
     transform: none;
   }
 }
+
+/* Motion scenes (src/components/motion/Scenes.tsx): 6 s loops, paused while off screen.
+   Children set --d (delay) to place themselves in the loop. */
+@layer utilities {
+  .scene-row,
+  .scene-travel,
+  .scene-pop,
+  .scene-scan,
+  .scene-drop,
+  .scene-skip,
+  .scene-focus,
+  .scene-spin {
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    animation-delay: var(--d, 0s);
+    animation-fill-mode: both;
+  }
+  .scene-row { animation-name: scene-row; }
+  .scene-travel { animation-name: scene-travel; animation-timing-function: ease-in-out; }
+  .scene-pop { animation-name: scene-pop; }
+  .scene-scan { animation-name: scene-scan; animation-timing-function: linear; }
+  .scene-drop { animation-name: scene-drop; }
+  .scene-skip { animation-name: scene-skip; }
+  .scene-focus { animation-name: scene-focus; }
+  .scene-spin { animation-name: scene-spin; animation-timing-function: linear; }
+  [data-scene]:not([data-playing]) * { animation-play-state: paused !important; }
+
+  @keyframes scene-row {
+    0% { opacity: 0; transform: translateY(6px); }
+    8%, 82% { opacity: 1; transform: none; }
+    92%, 100% { opacity: 0; transform: none; }
+  }
+  @keyframes scene-travel {
+    0% { left: 0%; opacity: 0; }
+    3% { opacity: 1; }
+    17% { opacity: 1; }
+    20%, 100% { left: 100%; opacity: 0; }
+  }
+  @keyframes scene-pop {
+    0%, 50% { opacity: 0; transform: scale(0.92) translateY(8px); }
+    58%, 88% { opacity: 1; transform: none; }
+    96%, 100% { opacity: 0; transform: none; }
+  }
+  @keyframes scene-scan {
+    0% { top: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    40% { top: 100%; opacity: 1; }
+    45%, 100% { top: 100%; opacity: 0; }
+  }
+  @keyframes scene-drop {
+    0% { opacity: 0; transform: translateY(-36px) rotate(-6deg); }
+    14% { opacity: 1; transform: translateY(4px) rotate(0); }
+    20%, 88% { opacity: 1; transform: none; }
+    96%, 100% { opacity: 0; transform: none; }
+  }
+  @keyframes scene-skip {
+    0% { opacity: 0; transform: translateY(6px); }
+    8%, 30% { opacity: 1; transform: none; text-decoration-color: transparent; }
+    40%, 82% { opacity: 0.4; transform: none; text-decoration-color: currentColor; }
+    92%, 100% { opacity: 0; }
+  }
+  @keyframes scene-focus {
+    0%, 22% { box-shadow: 0 0 0 2px hsl(var(--primary) / 0.9), 0 0 24px -4px hsl(var(--primary) / 0.6); }
+    28%, 100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  @keyframes scene-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* the end state of every scene, without motion */
+  .scene-row, .scene-pop, .scene-drop, .scene-focus, .scene-spin { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .scene-skip { animation: none !important; opacity: 0.4 !important; text-decoration-color: currentColor !important; }
+  .scene-travel, .scene-scan { display: none; }
+}

@@ -1,6 +1,12 @@
-# tradenot.es
+<p align="center">
+  <img src="public/logo.png" alt="TradeNot.es Logo" width="160" />
+</p>
 
-Kostenloses Trading-Journal: Trades erfassen und importieren (CSV, NinjaTrader-Webhook), Journal, Reports, Ziele.
+<h1 align="center">tradenot.es</h1>
+
+<p align="center">Kostenloses Trading-Journal für Futures-, Aktien- und Prop-Firm-Trader</p>
+
+Trades automatisch aus NinjaTrader (Add-on) und Interactive Brokers (Flex-Abfrage) importieren, TradingView und andere per CSV; Journal, Disziplin-Limits, Pflichtpause, Fehler- und Regeltreue-Analyse, Reports, Mentor-Modus.
 Ursprünglich mit Lovable gebaut, seit Oktober 2026 selbst gehostet ohne Lovable und Supabase.
 Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC.md).
 
@@ -11,7 +17,8 @@ Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC
   - `src/auth.ts`: Login mit E-Mail/Passwort, E-Mail-Bestätigung, Passwort-Reset, TOTP-2FA
   - `src/data.ts`: generischer Datenzugang für das Frontend (`db.from(...)` in `src/lib/api.ts`).
     Jede Tabelle steht mit erlaubten Aktionen in einer Freigabeliste, die Nutzer-ID setzt immer der Server.
-  - `src/routes/import.ts`: Trade-Import und NinjaTrader/TradingView-Webhook (`POST /api/import-trades`, Header `X-API-Key`)
+  - `src/routes/import.ts`: Trade-Import (`POST /api/import-trades`): Add-on mit Header `X-API-Key`, CSV und Vorlage für eingeloggte Nutzer
+  - `src/matching.ts`: Ausführungen → Trades (FIFO, flat bis flat), `src/ibkr.ts`: Interactive-Brokers-Abruf
   - `src/routes/news.ts`: Marktnews über Marketaux (optional, nur mit API-Key)
   - `migrations/`: SQL-Migrationen, laufen beim Start automatisch
 - KI-Funktionen sind über `AI_FEATURES` in `src/config/featureFlags.ts` abgeschaltet.

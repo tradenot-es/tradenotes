@@ -6,8 +6,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Sparkles } from "lucide-react";
 import logo from "@/assets/logo.webp";
+import { usePageSeo } from "@/hooks/useSeo";
 
 export default function CheckoutSuccess() {
+  usePageSeo("checkout", "/checkout-success", { noindex: true });
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(5);

@@ -12,6 +12,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { apiFetch } from "@/lib/api";
 import { dateLocale } from "@/lib/dateLocale";
 import { cn } from "@/lib/utils";
+import { useSeo } from "@/hooks/useSeo";
 
 interface SharedTradeData {
   symbol: string;
@@ -44,24 +45,20 @@ export default function SharedTrade() {
   const [missing, setMissing] = useState(false);
 
   useEffect(() => {
-    // private links must never show up in search results
-    const robots = document.createElement("meta");
-    robots.name = "robots";
-    robots.content = "noindex, nofollow";
-    document.head.appendChild(robots);
-    return () => robots.remove();
-  }, []);
-
-  useEffect(() => {
     apiFetch<{ trade: SharedTradeData; sharedBy: string | null; currency: string }>(`/api/public/share/${token}`).then(({ data, error }) => {
       if (error) setMissing(true);
       else setData(data);
     });
   }, [token]);
 
-  useEffect(() => {
-    if (data) document.title = `${t("share.pageTitle", { symbol: data.trade.symbol })} | TradeNot.es`;
-  }, [data, t]);
+  // private links must never show up in search results
+  useSeo({
+    title: `${data ? t("share.pageTitle", { symbol: data.trade.symbol }) : t("share.pageTitle", { symbol: "" })} | TradeNot.es`,
+    description: t("share.ctaText"),
+    path: `/share/${token}`,
+    language: i18n.language || "de",
+    noindex: true,
+  });
 
   const money = (v: number) =>
     new Intl.NumberFormat(i18n.language, { style: "currency", currency: data?.currency ?? "USD", maximumFractionDigits: 2 }).format(v);

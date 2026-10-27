@@ -74,7 +74,8 @@ export function FeatureRow({ feature, imagePosition, screenshotUrl, visual }: Fe
       </div>
 
       {/* Screenshot/Demo Placeholder */}
-      <div className="aspect-video rounded-xl border border-primary/20 bg-muted/50 flex items-center justify-center overflow-hidden">
+      {/* live demos grow with their content on phones; screenshots keep 16:9 */}
+      <div className={cn("rounded-xl border border-primary/20 bg-muted/50 flex items-center justify-center overflow-hidden", visual ? "sm:aspect-video" : "aspect-video")}>
         {visual ? (
           visual
         ) : screenshotUrl ? (

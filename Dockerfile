@@ -6,6 +6,7 @@ RUN npm ci --no-audit --no-fund
 COPY index.html vite.config.ts tsconfig*.json tailwind.config.ts postcss.config.js components.json ./
 COPY public ./public
 COPY src ./src
+COPY scripts/seo-pages.mjs ./scripts/
 RUN npm run build
 
 FROM node:22-alpine AS server

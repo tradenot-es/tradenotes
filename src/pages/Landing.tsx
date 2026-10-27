@@ -11,6 +11,8 @@ import { RotatingWord } from "@/components/RotatingWord";
 import { AttentionCTA } from "@/components/AttentionCTA";
 import { HeroShowcase } from "@/components/landing/HeroShowcase";
 import { Reveal } from "@/components/motion/Reveal";
+import { usePageSeo } from "@/hooks/useSeo";
+import { SyncScene } from "@/components/motion/Scenes";
 import {
   ArrowRight,
   BarChart3,
@@ -18,6 +20,7 @@ import {
   Brain,
   CalendarDays,
   Check,
+  CheckCircle2,
   Crosshair,
   EyeOff,
   Flame,
@@ -31,6 +34,7 @@ import {
 } from "lucide-react";
 
 const Landing = () => {
+  usePageSeo("landing", "/");
   const { t } = useTranslation();
   const location = useLocation();
 
@@ -197,6 +201,28 @@ const Landing = () => {
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </Button>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Automatic import: the main chore of a journal, shown as motion */}
+      <section id="import" className="scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+          <Reveal>
+            <Badge className="mb-4">{t("landing.importSection.badge")}</Badge>
+            <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">{t("landing.importSection.title")}</h2>
+            <p className="mb-6 text-lg text-muted-foreground">{t("landing.importSection.description")}</p>
+            <ul className="space-y-3">
+              {(t("landing.importSection.points", { returnObjects: true }) as string[]).map((point) => (
+                <li key={point} className="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal index={1} className="overflow-hidden rounded-xl border shadow-lg">
+            <SyncScene />
           </Reveal>
         </div>
       </section>

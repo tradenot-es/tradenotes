@@ -9,8 +9,10 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { invoke } from "@/lib/api";
+import { usePageSeo } from "@/hooks/useSeo";
 
 const Kontakt = () => {
+  usePageSeo("contact", "/kontakt");
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);

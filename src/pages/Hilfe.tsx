@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { usePageSeo } from "@/hooks/useSeo";
 
 const Hilfe = () => {
+  usePageSeo("help", "/hilfe");
   const faqs = [
     {
       question: "Wie starte ich mit TradeNotes?",

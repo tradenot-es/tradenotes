@@ -61,25 +61,20 @@
           "@type": "Organization",
           "name": "TradeNot.es",
           "url": "https://tradenot.es",
-          "logo": "https://tradenot.es/favicon.png",
-          "description": "Professionelles Trading Journal für aktive Trader – Muster erkennen, Disziplin stärken, Performance messen",
+          "logo": "https://tradenot.es/logo.png",
+          "description": "Kostenloses Trading-Journal für Futures-, Aktien- und Prop-Firm-Trader",
           "sameAs": []
         },
         {
           "@type": "WebSite",
           "name": "TradeNot.es",
           "url": "https://tradenot.es",
-          "description": "Kostenloses Trading-Journal mit Tageslimits, Fehler-Analyse und Disziplin-Score.",
+          "description": "Kostenloses Trading-Journal mit automatischem Import aus NinjaTrader und Interactive Brokers, Tageslimits, Fehler-Analyse und Disziplin-Score.",
           "publisher": {
             "@type": "Organization",
             "name": "TradeNot.es"
           },
-          "inLanguage": ["de", "en", "fr", "es", "nl", "it"],
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://tradenot.es/dashboard/trades?search={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
+          "inLanguage": ["de", "en", "fr", "es", "nl", "it"]
         },
         {
           "@type": "SoftwareApplication",
@@ -91,7 +86,7 @@
             "price": "0",
             "priceCurrency": "EUR"
           },
-          "description": "Kostenloses Trading-Journal mit Tageslimits, Fehler- und Emotions-Analyse, Equity Curve, R-Multiple Tracking und 20+ Performance-KPIs",
+          "description": "Kostenloses Trading-Journal mit automatischem Trade-Import, Tageslimits, Fehler- und Emotions-Analyse, Regeltreue, Equity Curve und R-Multiple Tracking",
           "url": "https://tradenot.es",
           "screenshot": "https://tradenot.es/og-image.jpg",
           "featureList": [
@@ -105,8 +100,13 @@
             "What-If Risk Simulator (Monte Carlo)",
             "Goal Tracking & Smart Alerts",
             "R-Multiple & Expectancy Tracking",
-            "NinjaTrader Auto-Sync",
-            "Multi-Language Support (DE, EN, ES, FR, IT, NL)"
+            "Automatischer Import aus NinjaTrader (Add-on) und Interactive Brokers (Flex-Abfrage)",
+            "TradingView-Import per CSV-Export",
+            "Regeltreue: Prozess gegen Ergebnis",
+            "Pflichtpause nach Verlustserie",
+            "Mentor-Modus: Trades per Link teilen",
+            "Prop-Firm-Konten (Evaluation, Funded)",
+            "Sechs Sprachen (DE, EN, ES, FR, IT, NL)"
           ]
         }
       ]
@@ -116,6 +116,19 @@
 
   <body>
     <div id="root"></div>
+    <!-- for crawlers and visitors without JavaScript -->
+    <noscript>
+      <h1>TradeNot.es – kostenloses Trading-Journal</h1>
+      <p>Kostenloses Trading-Journal für Futures-, Aktien- und Prop-Firm-Trader: Trades automatisch aus NinjaTrader und Interactive Brokers importieren, TradingView per CSV, Tageslimits und Pflichtpausen, Fehler- und Regeltreue-Analyse, Mentor-Modus. Bitte JavaScript aktivieren, um die App zu nutzen.</p>
+      <ul>
+        <li><a href="/features">Alle Funktionen</a></li>
+        <li><a href="/warum-trading-journal">Warum ein Trading-Journal?</a></li>
+        <li><a href="/hilfe">Hilfe</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+        <li><a href="/impressum">Impressum</a></li>
+        <li><a href="/datenschutz">Datenschutz</a></li>
+      </ul>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
