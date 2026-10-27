@@ -362,10 +362,6 @@
     "priceError": "Error loading price",
     "selectSymbolFirst": "Please select symbol first",
     "refreshPrice": "Refresh price",
-    "priceUpdated": "Price updated: {{price}}",
-    "priceNotAvailable": "Price not available",
-    "priceError": "Error loading price",
-    "selectSymbolFirst": "Please select symbol first",
     "side": "Side",
     "qty": "Quantity",
     "entryPrice": "Entry Price",
@@ -387,7 +383,6 @@
     "short": "Short",
     "newTrade": "New Trade",
     "editTrade": "Edit Trade",
-    "addTrade": "Add Trade",
     "updateTrade": "Update Trade",
     "tradeUpdated": "Trade updated successfully",
     "tradeDeleted": "Trade deleted successfully",
@@ -429,7 +424,7 @@
     "rating": "Trade Quality Rating",
     "ratingHint": "Rate this trade from 1 (poor execution) to 5 (excellent execution)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Upload a chart screenshot of this trade",
+    "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details",
     "analyzeChart": "Analyze Chart",
     "analyzing": "Analyzing...",
     "chartAnalyzed": "Chart analyzed successfully",
@@ -440,7 +435,6 @@
     "lowConfidence": "Low Confidence",
     "manualEntry": "Manual Entry",
     "screenshotAnalysis": "Analyze Screenshot",
-    "screenshotHint": "Upload a chart screenshot and our AI will automatically extract all trade details",
     "manualEntryDescription": "Enter all trade details manually",
     "livePnL": "Live P&L Preview",
     "copyLastTrade": "Copy Last Trade",
@@ -532,37 +526,6 @@
     "evaluation": "Evaluation",
     "performance": "Funded",
     "live": "Live"
-  },
-  "import": {
-    "sentiment": {
-      "label": "News Sentiment",
-      "veryBullish": "Very Bullish",
-      "bullish": "Bullish",
-      "slightlyBullish": "Slightly Bullish",
-      "neutral": "Neutral",
-      "slightlyBearish": "Slightly Bearish",
-      "bearish": "Bearish",
-      "veryBearish": "Very Bearish",
-      "highRisk": "High Risk",
-      "contraTrade": "Contra-News Trade"
-    },
-    "newsContext": {
-      "match": "Match"
-    },
-    "hype": {
-      "high": "High Buzz Level",
-      "medium": "Medium Buzz Level",
-      "articles": "{{count}} articles in last 12h"
-    },
-    "accountType": "Account Type",
-    "accountName": "Account Name",
-    "accountNamePlaceholder": "e.g. Apex Eval 1, Topstep PA",
-    "accountTypes": {
-      "sim": "Sim",
-      "evaluation": "Eval",
-      "funded": "Funded",
-      "live": "Live"
-    }
   },
   "import": {
     "title": "Import Trades",
@@ -820,39 +783,127 @@
   "reports": {
     "title": "Reports",
     "subtitle": "Detailed analysis of your trading performance",
-    "totalTrades": "Total Trades",
-    "totalTradesTooltip": "Total number of all executed trades in selected period",
-    "winRate": "Win Rate",
-    "winRateTooltip": "Percentage of winning trades",
-    "profitFactor": "Profit Factor",
-    "profitFactorTooltip": "Ratio of gross profits to gross losses",
-    "netPnL": "Net P&L",
-    "netPnLTooltip": "Total profit or loss after fees",
-    "maxDrawdown": "Max Drawdown",
-    "maxDrawdownTooltip": "Largest capital decline from peak to trough",
-    "avgWin": "Avg Win",
-    "avgLoss": "Avg Loss",
-    "avgTrade": "Avg Trade",
-    "expectancy": "Expectancy",
-    "expectancyTooltip": "Expected profit per trade",
-    "simulator": "Simulator",
-    "simulatorTooltip": "What-If scenarios and Monte Carlo simulation",
     "overview": "Overview",
-    "overviewTooltip": "General performance overview",
-    "setups": "Setups",
-    "setupsTooltip": "Performance by trading setup",
+    "bySetup": "By Setup",
+    "timeAnalysis": "Time Analysis",
+    "behavior": "Behavior",
     "symbols": "Symbols",
-    "symbolsTooltip": "Performance by symbol",
-    "timeOfDay": "Time of Day",
-    "timeOfDayTooltip": "Performance by hour",
-    "holdingPeriod": "Holding Period",
-    "holdingPeriodTooltip": "Performance by holding duration",
-    "streaks": "Streaks",
-    "streaksTooltip": "Win and loss streaks",
-    "mfeMae": "MFE/MAE",
-    "mfeMaeTooltip": "Maximum Favorable/Adverse Excursion analysis",
-    "accounts": "Accounts",
-    "accountsTooltip": "Performance by account type"
+    "riskAnalysis": "Risk Analysis",
+    "riskAnalysisTooltip": "Detailed risk management analysis including R-Multiple distribution, average win/loss ratios, and profit factor. Understanding these metrics is crucial for long-term profitability. See Glossary for detailed explanations of R-Multiple and Profit Factor.",
+    "simulator": "Simulator",
+    "simulatorTooltip": "Simulate what-if scenarios based on your trade data",
+    "mfemae": "MFE/MAE",
+    "mfemaeTooltip": "Maximum Favorable/Adverse Excursion analysis. See how far your trades run in your favor vs against you, optimize stop-loss and take-profit levels.",
+    "accountTypes": "Accounts",
+    "accountTypesTooltip": "Compare performance across different account types (Sim, Evaluation, Funded, Live)",
+    "accountTypesComparison": "Account Type Comparison",
+    "accountType": "Account Type",
+    "pnlByAccountType": "P&L by Account Type",
+    "tradesByAccountType": "Trades by Account Type",
+    "equityCurvesByAccountType": "Equity Curves by Account Type",
+    "avgTrade": "Avg Trade",
+    "trades": "trades",
+    "profitFactor": "Profit Factor",
+    "totalPnL": "Total P&L",
+    "goalAchievementRate": "Goal Achievement Rate",
+    "daysAchieved": "{{achieved}} of {{total}} days",
+    "currentGoal": "Current Goal",
+    "maxTradesPerDay": "Max {{trades}} trades per day",
+    "bestDay": "Best Day",
+    "bestTradingDay": "Best trading day",
+    "noData": "No data available",
+    "goalAchievementRateTooltip": "Shows the percentage of days where you achieved your daily goal. You can adjust your daily goals in Settings.",
+    "currentGoalTooltip": "Your current daily profit goal and maximum number of trades per day. You can change these settings in Settings.",
+    "bestDayTooltip": "Your most profitable trading day in the selected time period.",
+    "overviewTooltip": "General overview of your trading performance with key metrics, day-of-week analysis, and top symbols.",
+    "dailyGoalsTooltip": "Track your progress towards daily profit goals and maximum trades per day. Configure your goals in Settings.",
+    "bySetupTooltip": "Analyze performance by trading setup/strategy. See which setups are most profitable and which need improvement.",
+    "timeAnalysisTooltip": "Discover patterns in your trading based on time: day of week performance and hour of day analysis.",
+    "behaviorTooltip": "Analyze your trading behavior patterns including winning/losing streaks and average holding periods.",
+    "symbolsTooltip": "Performance breakdown by individual symbols. Identify which assets you trade most successfully.",
+    "dailyGoalHistory": "Daily Goal History",
+    "noTradesInPeriod": "No trades in selected period",
+    "dailyPnl": "Daily P&L",
+    "tradesToday": "Trades today",
+    "tradesThisDay": "Trades on this day",
+    "tradesRemaining": "{{remaining}} trades remaining",
+    "tradesUsed": "{{used}} of {{max}} trades used",
+    "tradesOverLimit": "{{over}} trades over limit",
+    "limitReached": "Limit reached",
+    "goalAchievedPerfect": "Perfect! Goal achieved without overtrading",
+    "goalNotAchievedOvertraded": "Trade limit exceeded",
+    "goalAchieved": "Goal achieved",
+    "overtraded": "Overtraded",
+    "allTime": "All Time",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "last3Months": "Last 3 Months",
+    "thisYear": "This Year",
+    "dayOfWeekDistribution": "Trade Distribution by Day of Week",
+    "dayOfWeekDistributionTooltip": "Shows how many trades you executed on each day of the week. Helps identify your most active trading days and potential patterns in your trading behavior.",
+    "performanceByDay": "Performance by Day of Week",
+    "performanceByDayTooltip": "Displays your profitability for each day of the week. Green bars indicate profitable days, red bars show losses. Helps identify which days are most successful for your trading strategy.",
+    "summary": "Summary",
+    "totalTrades": "Total Trades",
+    "winningTrades": "Winning Trades",
+    "losingTrades": "Losing Trades",
+    "setupPerformance": "Setup Performance",
+    "winRate": "win rate",
+    "noSetupData": "No setup data available for the selected period",
+    "dayOfWeekSummary": "Day of Week Summary",
+    "day": "Day",
+    "wins": "Wins",
+    "losses": "Losses",
+    "totalPnl": "Total P&L",
+    "sunday": "Sunday",
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "rMultipleSection": "R-Multiple Analysis",
+    "rMultipleSectionDesc": "Analyze your risk-reward ratio based on your trades' initial risk. Record stop-loss on each trade to calculate R values.",
+    "rMultipleDistribution": "R-Multiple Distribution",
+    "riskMetrics": "Risk Metrics",
+    "avgRMultiple": "Average R-Multiple",
+    "tradesWithRisk": "Trades with Risk Data",
+    "avgWin": "Average Win",
+    "avgLoss": "Average Loss",
+    "totalTradesTooltip": "Total number of executed trades in the selected period",
+    "winningTradesTooltip": "Number of profitable trades",
+    "losingTradesTooltip": "Number of losing trades",
+    "tradesWithRiskTooltip": "Number of trades with defined risk (R)",
+    "avgWinTooltip": "Average profit on winning trades",
+    "avgLossTooltip": "Average loss on losing trades",
+    "noRiskData": "No risk data available. Add initial risk and stop loss to your trades.",
+    "streakAnalysis": "Streak Analysis",
+    "longestWinStreak": "Longest Win Streak",
+    "longestLossStreak": "Longest Loss Streak",
+    "currentStreak": "Current Streak",
+    "avgStreak": "Avg Streak",
+    "winStreak": "Win streak active",
+    "lossStreak": "Loss streak active",
+    "noActiveStreak": "No active streak",
+    "streakInsight": "💡 A longer win streak shows consistency. After loss streaks, review your strategy and consider taking a break to avoid 'revenge trading'.",
+    "holdingPeriodAnalysis": "Holding Period Analysis",
+    "avgWinHold": "Avg Win Hold",
+    "avgLossHold": "Avg Loss Hold",
+    "holdRatio": "Hold Ratio",
+    "days": "days",
+    "optimal": "Optimal ✓",
+    "good": "Good",
+    "needsImprovement": "Needs Improvement",
+    "holdingPeriodInsight": "💡 Ideal is a hold ratio > 1.0: You hold winners longer than losers. A ratio < 1.0 indicates 'cut winners short, let losses run' - a common mistake.",
+    "holdingPeriodDistribution": "Distribution by Holding Period",
+    "topProfitableSymbols": "Top 5 Profitable Symbols",
+    "topUnprofitableSymbols": "Top 5 Unprofitable Symbols",
+    "mostTradedSymbols": "Most Traded Symbols",
+    "totalSymbols": "Total Symbols",
+    "hourOfDayPerformance": "Performance by Hour of Day",
+    "bestTradingHours": "Best Trading Hours",
+    "worstTradingHours": "Worst Trading Hours",
+    "hourOfDayInsight": "💡 Identify your most profitable trading times and focus on them. Avoid trading during times with poor performance (e.g., lunch time, last trading hour)."
   },
   "notFound": {
     "title": "404",
@@ -905,7 +956,11 @@
     },
     "badge": "Professional Trading Journal",
     "heroTitle": "Become a better trader through",
-    "heroTitleHighlightWords": ["systematic", "precise", "AI-powered"],
+    "heroTitleHighlightWords": [
+      "systematic",
+      "precise",
+      "AI-powered"
+    ],
     "heroTitleHighlightSuffix": "journaling",
     "heroDescription": "TradeNot.es is the AI-powered trading journal for active traders. Daily market prep, automatic news analysis, and a glossary for learning. Start every trading day informed.",
     "ctaStart": "Get Started",
@@ -1021,7 +1076,7 @@
         "title": "Trading Calendar",
         "description": "Calendar view with color-coded profit/loss days. Quickly review your trading activity at a glance."
       },
-"ai": {
+      "ai": {
         "title": "AI Trading Assistant",
         "description": "Ask questions about your performance. Get instant data-driven insights and analysis from your trading history."
       },
@@ -1100,6 +1155,12 @@
       "propFirmDetection": "Prop Firm Account Detection (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking for Stop-Loss Optimization",
       "achievements": "Gamification & Achievements System"
+    },
+    "free": {
+      "badge": "100% free",
+      "title": "Completely free. Forever.",
+      "description": "No subscriptions, no credit card, no hidden costs. Every feature free for every trader.",
+      "cta": "Start for free"
     }
   },
   "features": {
@@ -1129,122 +1190,218 @@
       "easyEntry": {
         "title": "Quick Trade Entry",
         "description": "Capture trades in seconds with live P&L preview and symbol quick-chips",
-        "benefits": ["Live P&L preview during entry", "Quick-chips for frequent symbols", "Copy last trade with one click"]
+        "benefits": [
+          "Live P&L preview during entry",
+          "Quick-chips for frequent symbols",
+          "Copy last trade with one click"
+        ]
       },
       "ninjaTrader": {
         "title": "NinjaTrader Auto-Sync",
         "description": "Automatic trade synchronization via webhook in real-time",
-        "benefits": ["Entry, Exit, MFE/MAE captured automatically", "Supports 12+ prop firms", "No manual entry needed"]
+        "benefits": [
+          "Entry, Exit, MFE/MAE captured automatically",
+          "Supports 12+ prop firms",
+          "No manual entry needed"
+        ]
       },
       "propFirm": {
         "title": "Prop Firm Integration",
         "description": "Automatic detection of Sim, Eval, Funded & Live accounts",
-        "benefits": ["Separate analytics per account phase", "Apex, Topstep, Tradeify and more", "Account type auto-detected"]
+        "benefits": [
+          "Separate analytics per account phase",
+          "Apex, Topstep, Tradeify and more",
+          "Account type auto-detected"
+        ]
       },
       "positionCalc": {
         "title": "Position Size Calculator",
         "description": "Calculate optimal position sizes based on risk",
-        "benefits": ["Risk-based lot calculation", "Enter stop-loss distance", "Define max risk per trade"]
+        "benefits": [
+          "Risk-based lot calculation",
+          "Enter stop-loss distance",
+          "Define max risk per trade"
+        ]
       },
       "csvImport": {
         "title": "CSV Import/Export",
         "description": "Import trades from broker or export data",
-        "benefits": ["Supports common broker formats", "Easy data export", "Seamless integration"]
+        "benefits": [
+          "Supports common broker formats",
+          "Easy data export",
+          "Seamless integration"
+        ]
       },
       "mfeMAE": {
         "title": "MFE/MAE Analysis",
         "description": "Optimize stop-loss and take-profit with data-driven analysis",
-        "benefits": ["Automatic high/low tracking", "Visualize missed profits", "Concrete stop-loss recommendations"]
+        "benefits": [
+          "Automatic high/low tracking",
+          "Visualize missed profits",
+          "Concrete stop-loss recommendations"
+        ]
       },
       "analytics": {
         "title": "Performance Analytics",
         "description": "Track win rate, R-multiple, profit factor and expectancy",
-        "benefits": ["20+ KPIs at a glance", "Filter by time period", "Identify strengths and weaknesses"]
+        "benefits": [
+          "20+ KPIs at a glance",
+          "Filter by time period",
+          "Identify strengths and weaknesses"
+        ]
       },
       "equityCurve": {
         "title": "Equity Curve",
         "description": "Visualize capital growth over time",
-        "benefits": ["Spot drawdowns instantly", "Analyze growth trends", "Cumulative performance chart"]
+        "benefits": [
+          "Spot drawdowns instantly",
+          "Analyze growth trends",
+          "Cumulative performance chart"
+        ]
       },
       "consistency": {
         "title": "Consistency Tracker",
         "description": "12-week trading heatmap for pattern recognition",
-        "benefits": ["Profitable days at a glance", "Identify losing streaks", "Develop consistent habits"]
+        "benefits": [
+          "Profitable days at a glance",
+          "Identify losing streaks",
+          "Develop consistent habits"
+        ]
       },
       "calendar": {
         "title": "Trading Calendar",
         "description": "Calendar view with color-coded win/loss days",
-        "benefits": ["Quick monthly overview", "Click day to see trades", "Color coding by P&L"]
+        "benefits": [
+          "Quick monthly overview",
+          "Click day to see trades",
+          "Color coding by P&L"
+        ]
       },
       "aiAssistant": {
         "title": "AI Trading Assistant",
         "description": "Ask questions about your performance and get AI analysis",
-        "benefits": ["Natural language input", "Data-driven insights", "Analyzes your trade history"]
+        "benefits": [
+          "Natural language input",
+          "Data-driven insights",
+          "Analyzes your trade history"
+        ]
       },
       "aiCharts": {
         "title": "AI Chat with Charts",
         "description": "Interactive visualizations directly in chat",
-        "benefits": ["Bar, line and pie charts", "Tables for data overview", "Instant visualization"]
+        "benefits": [
+          "Bar, line and pie charts",
+          "Tables for data overview",
+          "Instant visualization"
+        ]
       },
       "dailySummary": {
         "title": "AI Daily Report",
         "description": "Automatic email summary of your performance",
-        "benefits": ["Daily strengths/weaknesses", "Personalized improvement suggestions", "Delivered via email"]
+        "benefits": [
+          "Daily strengths/weaknesses",
+          "Personalized improvement suggestions",
+          "Delivered via email"
+        ]
       },
       "goalAlerts": {
         "title": "Goal Alerts & Notifications",
         "description": "Real-time alerts for goal achievement or drawdown",
-        "benefits": ["Set daily profit goal", "Define max trades per day", "Receive drawdown warnings"]
+        "benefits": [
+          "Set daily profit goal",
+          "Define max trades per day",
+          "Receive drawdown warnings"
+        ]
       },
       "riskSimulator": {
         "title": "What-If Risk Simulator",
         "description": "Test alternative strategies with Monte Carlo simulation",
-        "benefits": ["What if with 2R exits?", "Simulate different risk management", "1000+ simulations per scenario"]
+        "benefits": [
+          "What if with 2R exits?",
+          "Simulate different risk management",
+          "1000+ simulations per scenario"
+        ]
       },
       "symbolReports": {
         "title": "Symbol Performance",
         "description": "Analyze which instruments perform best",
-        "benefits": ["P&L per symbol", "Win rate comparison", "Find your best markets"]
+        "benefits": [
+          "P&L per symbol",
+          "Win rate comparison",
+          "Find your best markets"
+        ]
       },
       "setupReports": {
         "title": "Setup-based Reports",
         "description": "Analyze performance by trading setup",
-        "benefits": ["Compare your strategies", "Identify top setups", "Setup-specific metrics"]
+        "benefits": [
+          "Compare your strategies",
+          "Identify top setups",
+          "Setup-specific metrics"
+        ]
       },
       "hourAnalysis": {
         "title": "Hour Analysis",
         "description": "Find your most profitable trading times",
-        "benefits": ["P&L by time of day", "Identify best hours", "Avoid losing times"]
+        "benefits": [
+          "P&L by time of day",
+          "Identify best hours",
+          "Avoid losing times"
+        ]
       },
       "streakAnalysis": {
         "title": "Streak Analysis",
         "description": "Understand win and loss streaks",
-        "benefits": ["Show longest streaks", "Average streak length", "Recognize patterns in streaks"]
+        "benefits": [
+          "Show longest streaks",
+          "Average streak length",
+          "Recognize patterns in streaks"
+        ]
       },
       "holdingPeriod": {
         "title": "Holding Period Analysis",
         "description": "Determine optimal trade duration",
-        "benefits": ["P&L by holding time", "Scalps vs. swing trades", "Find optimal duration"]
+        "benefits": [
+          "P&L by holding time",
+          "Scalps vs. swing trades",
+          "Find optimal duration"
+        ]
       },
       "portfolioNews": {
         "title": "Portfolio News Intelligence",
         "description": "Auto-curated news for your symbols",
-        "benefits": ["Futures proxy mapping (NQ→QQQ)", "Smart tags for news types", "AI translation included"]
+        "benefits": [
+          "Futures proxy mapping (NQ→QQQ)",
+          "Smart tags for news types",
+          "AI translation included"
+        ]
       },
       "politicalEvents": {
         "title": "Economic Calendar",
         "description": "FOMC, CPI, NFP, GDP and more preloaded",
-        "benefits": ["Never miss market-moving events", "Show impact level", "Integrated directly in calendar"]
+        "benefits": [
+          "Never miss market-moving events",
+          "Show impact level",
+          "Integrated directly in calendar"
+        ]
       },
       "sectorSentiment": {
         "title": "Sector Sentiment",
         "description": "Daily sentiment analysis by sector",
-        "benefits": ["11 sectors analyzed", "Article count per sector", "Show sentiment score"]
+        "benefits": [
+          "11 sectors analyzed",
+          "Article count per sector",
+          "Show sentiment score"
+        ]
       },
       "economicCalendar": {
         "title": "Economic Data",
         "description": "Fed, Trump, Powell news in real-time",
-        "benefits": ["Track political events", "Estimate market impact", "Trade informed"]
+        "benefits": [
+          "Track political events",
+          "Estimate market impact",
+          "Trade informed"
+        ]
       }
     }
   },
@@ -1557,135 +1714,6 @@
       "definition": "The AI Trading Assistant can answer questions not only with text but also with interactive visualizations. When asking about comparisons, trends, or rankings, the AI automatically generates appropriate charts (bar, line, pie) or tables directly in the chat.",
       "example": "Question: 'Show my performance by weekday' → The AI responds with a bar chart displaying win rate or P&L per weekday. Question: 'Compare Long vs Short' → Pie chart with proportions and performance."
     }
-  },
-  "reports": {
-    "title": "Reports",
-    "subtitle": "Detailed analysis of your trading performance",
-    "overview": "Overview",
-    "bySetup": "By Setup",
-    "timeAnalysis": "Time Analysis",
-    "behavior": "Behavior",
-    "symbols": "Symbols",
-    "riskAnalysis": "Risk Analysis",
-    "riskAnalysisTooltip": "Analyze your risk management using R-values and drawdown metrics",
-    "simulator": "Simulator",
-    "simulatorTooltip": "Simulate what-if scenarios based on your trade data",
-    "mfemae": "MFE/MAE",
-    "mfemaeTooltip": "Maximum Favorable/Adverse Excursion analysis. See how far your trades run in your favor vs against you, optimize stop-loss and take-profit levels.",
-    "accountTypes": "Accounts",
-    "accountTypesTooltip": "Compare performance across different account types (Sim, Evaluation, Funded, Live)",
-    "accountTypesComparison": "Account Type Comparison",
-    "accountType": "Account Type",
-    "pnlByAccountType": "P&L by Account Type",
-    "tradesByAccountType": "Trades by Account Type",
-    "equityCurvesByAccountType": "Equity Curves by Account Type",
-    "avgTrade": "Avg Trade",
-    "trades": "Trades",
-    "profitFactor": "Profit Factor",
-    "totalPnL": "Total P&L",
-    "goalAchievementRate": "Goal Achievement Rate",
-    "daysAchieved": "{{achieved}} of {{total}} days",
-    "currentGoal": "Current Goal",
-    "maxTradesPerDay": "Max {{trades}} trades per day",
-    "bestDay": "Best Day",
-    "bestTradingDay": "Best trading day",
-    "noData": "No data",
-    "goalAchievementRateTooltip": "Shows the percentage of days where you achieved your daily goal. You can adjust your daily goals in Settings.",
-    "currentGoalTooltip": "Your current daily profit goal and maximum number of trades per day. You can change these settings in Settings.",
-    "bestDayTooltip": "Your most profitable trading day in the selected time period.",
-    "overviewTooltip": "General overview of your trading performance with key metrics, day-of-week analysis, and top symbols.",
-    "dailyGoalsTooltip": "Track your progress towards daily profit goals and maximum trades per day. Configure your goals in Settings.",
-    "bySetupTooltip": "Analyze performance by trading setup/strategy. See which setups are most profitable and which need improvement.",
-    "timeAnalysisTooltip": "Discover patterns in your trading based on time: day of week performance and hour of day analysis.",
-    "behaviorTooltip": "Analyze your trading behavior patterns including winning/losing streaks and average holding periods.",
-    "symbolsTooltip": "Performance breakdown by individual symbols. Identify which assets you trade most successfully.",
-    "riskAnalysisTooltip": "Detailed risk management analysis including R-Multiple distribution, average win/loss ratios, and profit factor. Understanding these metrics is crucial for long-term profitability. See Glossary for detailed explanations of R-Multiple and Profit Factor.",
-    "dailyGoalHistory": "Daily Goal History",
-    "noTradesInPeriod": "No trades in selected period",
-    "dailyPnl": "Daily P&L",
-    "tradesToday": "Trades today",
-    "tradesThisDay": "Trades on this day",
-    "tradesRemaining": "{{remaining}} trades remaining",
-    "tradesUsed": "{{used}} of {{max}} trades used",
-    "tradesOverLimit": "{{over}} trades over limit",
-    "limitReached": "Limit reached",
-    "goalAchievedPerfect": "Perfect! Goal achieved without overtrading",
-    "goalNotAchievedOvertraded": "Trade limit exceeded",
-    "goalAchieved": "Goal achieved",
-    "overtraded": "Overtraded",
-    "allTime": "All Time",
-    "thisWeek": "This Week",
-    "thisMonth": "This Month",
-    "last3Months": "Last 3 Months",
-    "thisYear": "This Year",
-    "dayOfWeekDistribution": "Trade Distribution by Day of Week",
-    "dayOfWeekDistributionTooltip": "Shows how many trades you executed on each day of the week. Helps identify your most active trading days and potential patterns in your trading behavior.",
-    "performanceByDay": "Performance by Day of Week",
-    "performanceByDayTooltip": "Displays your profitability for each day of the week. Green bars indicate profitable days, red bars show losses. Helps identify which days are most successful for your trading strategy.",
-    "summary": "Summary",
-    "totalTrades": "Total Trades",
-    "winningTrades": "Winning Trades",
-    "losingTrades": "Losing Trades",
-    "setupPerformance": "Setup Performance",
-    "trades": "trades",
-    "winRate": "win rate",
-    "noSetupData": "No setup data available for the selected period",
-    "dayOfWeekSummary": "Day of Week Summary",
-    "day": "Day",
-    "wins": "Wins",
-    "losses": "Losses",
-    "totalPnl": "Total P&L",
-    "sunday": "Sunday",
-    "monday": "Monday",
-    "tuesday": "Tuesday",
-    "wednesday": "Wednesday",
-    "thursday": "Thursday",
-    "friday": "Friday",
-    "saturday": "Saturday",
-    "rMultipleSection": "R-Multiple Analysis",
-    "rMultipleSectionDesc": "Analyze your risk-reward ratio based on your trades' initial risk. Record stop-loss on each trade to calculate R values.",
-    "rMultipleDistribution": "R-Multiple Distribution",
-    "riskMetrics": "Risk Metrics",
-    "avgRMultiple": "Average R-Multiple",
-    "tradesWithRisk": "Trades with Risk Data",
-    "avgWin": "Average Win",
-    "avgLoss": "Average Loss",
-    "profitFactor": "Profit Factor",
-    "totalTradesTooltip": "Total number of executed trades in the selected period",
-    "winningTradesTooltip": "Number of profitable trades",
-    "losingTradesTooltip": "Number of losing trades",
-    "tradesWithRiskTooltip": "Number of trades with defined risk (R)",
-    "avgWinTooltip": "Average profit on winning trades",
-    "avgLossTooltip": "Average loss on losing trades",
-    "noRiskData": "No risk data available. Add initial risk and stop loss to your trades.",
-    "streakAnalysis": "Streak Analysis",
-    "longestWinStreak": "Longest Win Streak",
-    "longestLossStreak": "Longest Loss Streak",
-    "currentStreak": "Current Streak",
-    "avgStreak": "Avg Streak",
-    "winStreak": "Win streak active",
-    "lossStreak": "Loss streak active",
-    "noActiveStreak": "No active streak",
-    "streakInsight": "💡 A longer win streak shows consistency. After loss streaks, review your strategy and consider taking a break to avoid 'revenge trading'.",
-    "holdingPeriodAnalysis": "Holding Period Analysis",
-    "avgWinHold": "Avg Win Hold",
-    "avgLossHold": "Avg Loss Hold",
-    "holdRatio": "Hold Ratio",
-    "days": "days",
-    "optimal": "Optimal ✓",
-    "good": "Good",
-    "needsImprovement": "Needs Improvement",
-    "holdingPeriodInsight": "💡 Ideal is a hold ratio > 1.0: You hold winners longer than losers. A ratio < 1.0 indicates 'cut winners short, let losses run' - a common mistake.",
-    "holdingPeriodDistribution": "Distribution by Holding Period",
-    "topProfitableSymbols": "Top 5 Profitable Symbols",
-    "topUnprofitableSymbols": "Top 5 Unprofitable Symbols",
-    "mostTradedSymbols": "Most Traded Symbols",
-    "totalSymbols": "Total Symbols",
-    "noData": "No data available",
-    "hourOfDayPerformance": "Performance by Hour of Day",
-    "bestTradingHours": "Best Trading Hours",
-    "worstTradingHours": "Worst Trading Hours",
-    "hourOfDayInsight": "💡 Identify your most profitable trading times and focus on them. Avoid trading during times with poor performance (e.g., lunch time, last trading hour)."
   },
   "filters": {
     "filters": "Filters",

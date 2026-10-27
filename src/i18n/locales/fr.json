@@ -233,7 +233,7 @@
     "equity": "Équité",
     "pnl": "P&L",
     "sectorSentiment": "Sentiment du Marché Aujourd'hui",
-    "sectorSentimentDescription": "Aperçu sectoriel quotidien aide à identifier le biais",
+    "sectorSentimentDescription": "Aperçu sectoriel quotidien pour identifier le biais du marché",
     "articles": "articles",
     "portfolioNews": "Actualités du Portfolio",
     "portfolioNewsTooltip": "Actualités financières automatiquement curées pour vos symboles les plus tradés. Restez informé des événements qui déplacent le marché et des développements qui pourraient impacter vos positions.",
@@ -254,9 +254,6 @@
       "politicalCatalyst": "Catalyseur Politique",
       "newsCatalyst": "Catalyseur d'Actualités"
     },
-    "sectorSentiment": "Sentiment du Marché Aujourd'hui",
-    "sectorSentimentDescription": "Aperçu sectoriel quotidien pour identifier le biais du marché",
-    "articles": "articles",
     "sectorArticles": "{{count}} articles analysés",
     "topArticles": "Articles Principaux",
     "trend7Days": "Tendance sur 7 jours",
@@ -380,7 +377,6 @@
     "short": "Short",
     "newTrade": "Nouvelle transaction",
     "editTrade": "Modifier la transaction",
-    "addTrade": "Ajouter une transaction",
     "updateTrade": "Mettre à jour la transaction",
     "tradeUpdated": "Transaction mise à jour avec succès",
     "tradeDeleted": "Transaction supprimée avec succès",
@@ -418,7 +414,7 @@
     "rating": "Évaluation de la Qualité du Trade",
     "ratingHint": "Évaluez ce trade de 1 (mauvaise exécution) à 5 (excellente exécution)",
     "screenshot": "Capture d'écran",
-    "screenshotHint": "Téléchargez une capture d'écran du graphique de ce trade",
+    "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction",
     "analyzeChart": "Analyser le graphique",
     "analyzing": "Analyse en cours...",
     "chartAnalyzed": "Graphique analysé avec succès",
@@ -429,7 +425,6 @@
     "lowConfidence": "Faible confiance",
     "manualEntry": "Saisie manuelle",
     "screenshotAnalysis": "Analyser capture d'écran",
-    "screenshotHint": "Téléchargez une capture d'écran du graphique et notre IA extraira automatiquement tous les détails de la transaction",
     "manualEntryDescription": "Saisir tous les détails de la transaction manuellement",
     "livePnL": "Aperçu du P&L en direct",
     "copyLastTrade": "Copier la dernière transaction",
@@ -479,16 +474,7 @@
       "description": "Êtes-vous sûr de vouloir supprimer cette transaction {{symbol}} ? Cette action ne peut pas être annulée."
     },
     "deleteSuccess": "Transaction supprimée avec succès",
-    "accountType": {
-      "label": "Compte",
-      "tooltip": "Type de compte: Sim (pratique), Evaluation (test prop firm), Performance (financé), ou Live (capital personnel)",
-      "sim": "SIM",
-      "evaluation": "EVAL",
-      "performance": "FUNDED",
-      "live": "LIVE",
-      "filter": "Filtrer par Type de Compte",
-      "all": "Tous les Comptes"
-    },
+    "accountType": "Type de Compte",
     "sentiment": {
       "label": "Sentiment des Nouvelles",
       "veryBullish": "Très Haussier",
@@ -515,7 +501,6 @@
       "medium": "Niveau de Buzz Moyen",
       "articles": "{{count}} articles dans les dernières 12h"
     },
-    "accountType": "Type de Compte",
     "accountName": "Nom du Compte",
     "accountNamePlaceholder": "ex. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -834,7 +819,11 @@
     },
     "badge": "Journal de Trading Professionnel",
     "heroTitle": "Devenez un meilleur trader grâce à un",
-    "heroTitleHighlightWords": ["journaling systématique", "journaling précis", "journaling alimenté par l'IA"],
+    "heroTitleHighlightWords": [
+      "journaling systématique",
+      "journaling précis",
+      "journaling alimenté par l'IA"
+    ],
     "heroTitleHighlightSuffix": "",
     "heroDescription": "TradeNotes – le journal de trading pour les traders actifs et ambitieux. Analytics détaillés, actualités IA, événements politiques et reconnaissance de patterns vous aident à construire un système rentable. Utilisé par des milliers de traders dans le monde.",
     "ctaStart": "Commencer Gratuitement",
@@ -950,7 +939,7 @@
         "title": "Calendrier de Trading",
         "description": "Vue calendrier avec jours gain/perte codés par couleur. Examinez rapidement votre activité de trading d'un coup d'œil."
       },
-"ai": {
+      "ai": {
         "title": "Assistant Trading IA",
         "description": "Posez des questions sur vos performances. Obtenez insights et analyses instantanés basés sur données de votre historique de trading."
       },
@@ -1029,6 +1018,12 @@
       "propFirmDetection": "Détection Comptes Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Suivi MFE/MAE pour Optimisation Stop-Loss",
       "achievements": "Gamification & Système d'Achievements"
+    },
+    "free": {
+      "badge": "100% gratuit",
+      "title": "Entièrement gratuit. Pour toujours.",
+      "description": "Pas d'abonnement, pas de carte bancaire, aucun coût caché. Toutes les fonctionnalités gratuites pour tous les traders.",
+      "cta": "Commencer gratuitement"
     }
   },
   "features": {
@@ -1055,30 +1050,222 @@
       "marketIntel": "Intelligence de Marché"
     },
     "items": {
-      "easyEntry": { "title": "Saisie Rapide", "description": "Capturez des trades en secondes", "benefits": ["Aperçu P&L en direct", "Quick-chips pour symboles", "Copier le dernier trade"] },
-      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Synchronisation automatique via webhook", "benefits": ["Entry, Exit, MFE/MAE automatiques", "12+ prop firms", "Pas de saisie manuelle"] },
-      "propFirm": { "title": "Intégration Prop Firm", "description": "Détection automatique des comptes", "benefits": ["Analytics séparés par phase", "Apex, Topstep, etc.", "Type de compte auto-détecté"] },
-      "positionCalc": { "title": "Calculateur de Position", "description": "Tailles de position basées sur le risque", "benefits": ["Calcul de lot basé sur le risque", "Distance stop-loss", "Risque max par trade"] },
-      "csvImport": { "title": "Import/Export CSV", "description": "Importer ou exporter des données", "benefits": ["Formats courtier", "Export facile", "Intégration transparente"] },
-      "mfeMAE": { "title": "Analyse MFE/MAE", "description": "Optimiser stop-loss et take-profit", "benefits": ["Suivi high/low automatique", "Visualiser profits manqués", "Recommandations stop-loss"] },
-      "analytics": { "title": "Analytics Performance", "description": "Win rate, R-multiple, profit factor", "benefits": ["20+ KPIs", "Filtrer par période", "Forces et faiblesses"] },
-      "equityCurve": { "title": "Courbe d'Equity", "description": "Croissance du capital dans le temps", "benefits": ["Drawdowns visibles", "Tendances de croissance", "Graphique cumulatif"] },
-      "consistency": { "title": "Suivi Cohérence", "description": "Heatmap 12 semaines", "benefits": ["Jours rentables visibles", "Séries perdantes", "Habitudes cohérentes"] },
-      "calendar": { "title": "Calendrier Trading", "description": "Vue calendrier codée par couleur", "benefits": ["Aperçu mensuel", "Cliquer pour voir trades", "Codage couleur P&L"] },
-      "aiAssistant": { "title": "Assistant IA", "description": "Questions sur votre performance", "benefits": ["Langage naturel", "Insights data-driven", "Analyse historique"] },
-      "aiCharts": { "title": "Chat IA avec Graphiques", "description": "Visualisations interactives", "benefits": ["Barres, lignes, camemberts", "Tableaux de données", "Visualisation instantanée"] },
-      "dailySummary": { "title": "Rapport Quotidien IA", "description": "Résumé email automatique", "benefits": ["Forces/faiblesses", "Suggestions personnalisées", "Livré par email"] },
-      "goalAlerts": { "title": "Alertes Objectifs", "description": "Alertes temps réel", "benefits": ["Objectif profit quotidien", "Max trades par jour", "Alertes drawdown"] },
-      "riskSimulator": { "title": "Simulateur Risque", "description": "Simulation Monte Carlo", "benefits": ["What-if 2R exits", "Gestion risque différente", "1000+ simulations"] },
-      "symbolReports": { "title": "Performance Symboles", "description": "Analyse par instrument", "benefits": ["P&L par symbole", "Comparaison win rate", "Meilleurs marchés"] },
-      "setupReports": { "title": "Rapports Setup", "description": "Performance par setup", "benefits": ["Comparer stratégies", "Top setups", "Métriques spécifiques"] },
-      "hourAnalysis": { "title": "Analyse Horaire", "description": "Heures les plus rentables", "benefits": ["P&L par heure", "Meilleures heures", "Éviter heures perdantes"] },
-      "streakAnalysis": { "title": "Analyse Séries", "description": "Séries gains/pertes", "benefits": ["Plus longues séries", "Longueur moyenne", "Patterns dans séries"] },
-      "holdingPeriod": { "title": "Analyse Durée", "description": "Durée optimale des trades", "benefits": ["P&L par durée", "Scalps vs swings", "Durée optimale"] },
-      "portfolioNews": { "title": "Intelligence Actualités", "description": "News auto-curées", "benefits": ["Proxy-mapping futures", "Smart tags", "Traduction IA"] },
-      "politicalEvents": { "title": "Calendrier Économique", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Événements importants", "Niveau d'impact", "Intégré au calendrier"] },
-      "sectorSentiment": { "title": "Sentiment Sectoriel", "description": "Analyse sentiment quotidienne", "benefits": ["11 secteurs", "Nombre d'articles", "Score sentiment"] },
-      "economicCalendar": { "title": "Données Économiques", "description": "Fed, Trump, Powell en temps réel", "benefits": ["Événements politiques", "Impact marché", "Trader informé"] }
+      "easyEntry": {
+        "title": "Saisie Rapide",
+        "description": "Capturez des trades en secondes",
+        "benefits": [
+          "Aperçu P&L en direct",
+          "Quick-chips pour symboles",
+          "Copier le dernier trade"
+        ]
+      },
+      "ninjaTrader": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Synchronisation automatique via webhook",
+        "benefits": [
+          "Entry, Exit, MFE/MAE automatiques",
+          "12+ prop firms",
+          "Pas de saisie manuelle"
+        ]
+      },
+      "propFirm": {
+        "title": "Intégration Prop Firm",
+        "description": "Détection automatique des comptes",
+        "benefits": [
+          "Analytics séparés par phase",
+          "Apex, Topstep, etc.",
+          "Type de compte auto-détecté"
+        ]
+      },
+      "positionCalc": {
+        "title": "Calculateur de Position",
+        "description": "Tailles de position basées sur le risque",
+        "benefits": [
+          "Calcul de lot basé sur le risque",
+          "Distance stop-loss",
+          "Risque max par trade"
+        ]
+      },
+      "csvImport": {
+        "title": "Import/Export CSV",
+        "description": "Importer ou exporter des données",
+        "benefits": [
+          "Formats courtier",
+          "Export facile",
+          "Intégration transparente"
+        ]
+      },
+      "mfeMAE": {
+        "title": "Analyse MFE/MAE",
+        "description": "Optimiser stop-loss et take-profit",
+        "benefits": [
+          "Suivi high/low automatique",
+          "Visualiser profits manqués",
+          "Recommandations stop-loss"
+        ]
+      },
+      "analytics": {
+        "title": "Analytics Performance",
+        "description": "Win rate, R-multiple, profit factor",
+        "benefits": [
+          "20+ KPIs",
+          "Filtrer par période",
+          "Forces et faiblesses"
+        ]
+      },
+      "equityCurve": {
+        "title": "Courbe d'Equity",
+        "description": "Croissance du capital dans le temps",
+        "benefits": [
+          "Drawdowns visibles",
+          "Tendances de croissance",
+          "Graphique cumulatif"
+        ]
+      },
+      "consistency": {
+        "title": "Suivi Cohérence",
+        "description": "Heatmap 12 semaines",
+        "benefits": [
+          "Jours rentables visibles",
+          "Séries perdantes",
+          "Habitudes cohérentes"
+        ]
+      },
+      "calendar": {
+        "title": "Calendrier Trading",
+        "description": "Vue calendrier codée par couleur",
+        "benefits": [
+          "Aperçu mensuel",
+          "Cliquer pour voir trades",
+          "Codage couleur P&L"
+        ]
+      },
+      "aiAssistant": {
+        "title": "Assistant IA",
+        "description": "Questions sur votre performance",
+        "benefits": [
+          "Langage naturel",
+          "Insights data-driven",
+          "Analyse historique"
+        ]
+      },
+      "aiCharts": {
+        "title": "Chat IA avec Graphiques",
+        "description": "Visualisations interactives",
+        "benefits": [
+          "Barres, lignes, camemberts",
+          "Tableaux de données",
+          "Visualisation instantanée"
+        ]
+      },
+      "dailySummary": {
+        "title": "Rapport Quotidien IA",
+        "description": "Résumé email automatique",
+        "benefits": [
+          "Forces/faiblesses",
+          "Suggestions personnalisées",
+          "Livré par email"
+        ]
+      },
+      "goalAlerts": {
+        "title": "Alertes Objectifs",
+        "description": "Alertes temps réel",
+        "benefits": [
+          "Objectif profit quotidien",
+          "Max trades par jour",
+          "Alertes drawdown"
+        ]
+      },
+      "riskSimulator": {
+        "title": "Simulateur Risque",
+        "description": "Simulation Monte Carlo",
+        "benefits": [
+          "What-if 2R exits",
+          "Gestion risque différente",
+          "1000+ simulations"
+        ]
+      },
+      "symbolReports": {
+        "title": "Performance Symboles",
+        "description": "Analyse par instrument",
+        "benefits": [
+          "P&L par symbole",
+          "Comparaison win rate",
+          "Meilleurs marchés"
+        ]
+      },
+      "setupReports": {
+        "title": "Rapports Setup",
+        "description": "Performance par setup",
+        "benefits": [
+          "Comparer stratégies",
+          "Top setups",
+          "Métriques spécifiques"
+        ]
+      },
+      "hourAnalysis": {
+        "title": "Analyse Horaire",
+        "description": "Heures les plus rentables",
+        "benefits": [
+          "P&L par heure",
+          "Meilleures heures",
+          "Éviter heures perdantes"
+        ]
+      },
+      "streakAnalysis": {
+        "title": "Analyse Séries",
+        "description": "Séries gains/pertes",
+        "benefits": [
+          "Plus longues séries",
+          "Longueur moyenne",
+          "Patterns dans séries"
+        ]
+      },
+      "holdingPeriod": {
+        "title": "Analyse Durée",
+        "description": "Durée optimale des trades",
+        "benefits": [
+          "P&L par durée",
+          "Scalps vs swings",
+          "Durée optimale"
+        ]
+      },
+      "portfolioNews": {
+        "title": "Intelligence Actualités",
+        "description": "News auto-curées",
+        "benefits": [
+          "Proxy-mapping futures",
+          "Smart tags",
+          "Traduction IA"
+        ]
+      },
+      "politicalEvents": {
+        "title": "Calendrier Économique",
+        "description": "FOMC, CPI, NFP, GDP",
+        "benefits": [
+          "Événements importants",
+          "Niveau d'impact",
+          "Intégré au calendrier"
+        ]
+      },
+      "sectorSentiment": {
+        "title": "Sentiment Sectoriel",
+        "description": "Analyse sentiment quotidienne",
+        "benefits": [
+          "11 secteurs",
+          "Nombre d'articles",
+          "Score sentiment"
+        ]
+      },
+      "economicCalendar": {
+        "title": "Données Économiques",
+        "description": "Fed, Trump, Powell en temps réel",
+        "benefits": [
+          "Événements politiques",
+          "Impact marché",
+          "Trader informé"
+        ]
+      }
     }
   },
   "validation": {
@@ -1138,33 +1325,149 @@
       "term": "Évaluation du Trade (Trade Rating)",
       "definition": "Une évaluation subjective (1-5 étoiles) reflétant la qualité de l'exécution du trade. Considère des facteurs comme: suivre votre plan, timing d'entrée/sortie, contrôle émotionnel et gestion des risques. Aide à identifier les trades bien exécutés indépendamment du résultat P&L."
     },
-    "winRate": { "term": "Taux de Gain (Win Rate)", "definition": "Pourcentage de trades rentables.", "formula": "Taux = (Trades Gagnants / Total) × 100%", "example": "60 gains sur 100 → 60%" },
-    "winRateRiskReward": { "term": "Win Rate & Risk-Reward", "definition": "Un faible taux de réussite (ex. 40%) peut être très rentable si le R-Multiple moyen est élevé. Exemple: 40% win rate avec 3R gain moyen et -1R perte moyenne = (0.4 × 3R) + (0.6 × -1R) = +0.6R espérance par trade. Inversement, un taux élevé (ex. 70%) peut ne pas être rentable avec un mauvais risk-reward: 70% win rate avec 1R gain et -3R perte = (0.7 × 1R) + (0.3 × -3R) = -0.2R par trade.", "example": "Stratégie A: 40% win rate, 3:1 R:R → Rentable | Stratégie B: 70% win rate, 1:3 R:R → Perdante" },
-    "profitFactor": { "term": "Facteur de Profit (Profit Factor)", "definition": "Ratio profits bruts sur pertes brutes.", "formula": "Facteur = Profit Brut / Perte Brute", "example": "$10.000 profit, $5.000 perte → 2.0" },
-    "riskReward": { "term": "Ratio Risque-Rendement (Risk-Reward)", "definition": "Compare profit potentiel à perte potentielle.", "formula": "R:R = (Cible - Entrée) / (Entrée - Stop)", "example": "Entrée $50, Cible $56, Stop $48 → 3:1" },
-    "maxDrawdown": { "term": "Drawdown Maximum (Max Drawdown)", "definition": "Plus grande baisse de pic à creux.", "formula": "Max DD = (Pic - Creux) / Pic × 100%", "example": "Pic $10.000, creux $8.000 → 20%" },
-    "avgWinLoss": { "term": "Moy. Gain/Perte (Avg Win/Loss)", "definition": "Gain moyen vs perte moyenne.", "formula": "Moy. = Gain Total / # Gains", "example": "5 gains de $500 → Moy. $100" },
-    "pnl": { "term": "P&L (Profit & Loss)", "definition": "Gain/perte net après frais.", "formula": "P&L = (Sortie - Entrée) × Qté - Frais", "example": "100 @ $50, sortie $55, $2 frais → $498" },
-    "setup": { "term": "Setup", "definition": "Motif spécifique signalant opportunité.", "example": "Breakout, Failed Rally, Gap Fill" },
-    "stopLoss": { "term": "Stop Loss", "definition": "Niveau de prix prédéterminé pour limiter pertes.", "example": "Long $50, stop $48 limite risque à $2/action" },
-    "equityCurve": { "term": "Courbe d'Équité (Equity Curve)", "definition": "Représentation graphique de la performance cumulée de votre compte.", "example": "Visualise croissance du capital et drawdowns" },
-    "consistencyTracker": { "term": "Traceur de Cohérence (Consistency Tracker)", "definition": "Heatmap visuelle de votre activité de trading quotidienne.", "example": "Affiche jours rentables (vert) vs jours de perte (rouge)" },
-    "portfolioNews": { "term": "Actualités du Portfolio (Portfolio News)", "definition": "Flux d'actualités filtré pour vos symboles les plus tradés.", "example": "Actualités automatiques pour AAPL, TSLA, etc." },
-    "dailyTradeGoal": { "term": "Objectif Quotidien (Daily Trade Goal)", "definition": "Objectif de profit quotidien et limite maximale de trades par jour.", "example": "Objectif $500/jour, max 10 trades" },
-    "breakout": { "term": "Breakout", "definition": "Lorsque le prix franchit résistance/support signalant nouvelle tendance.", "example": "Action franchit résistance $50 avec volume élevé" },
-    "consolidation": { "term": "Consolidation", "definition": "Phase latérale où le prix évolue dans une fourchette étroite.", "example": "Après hausse 20%, se négocie 2 semaines dans fourchette 5%" },
-    "edge": { "term": "Edge", "definition": "Avantage statistique ou informationnel augmentant probabilité de gain.", "example": "Votre edge: 55% win rate avec pattern spécifique et 2R moyen" },
-    "gap": { "term": "Gap", "definition": "Écart de prix entre clôture précédente et ouverture suivante.", "example": "Clôture $50, ouverture $55 après earnings positifs = Gap Up $5" },
-    "leverage": { "term": "Effet de Levier (Leverage)", "definition": "Contrôle de positions plus grandes avec capital emprunté.", "formula": "Leverage = Valeur Position / Capital Propre", "example": "$10K compte, 2:1 leverage → peut tenir position $20K" },
-    "liquidity": { "term": "Liquidité (Liquidity)", "definition": "Facilité d'acheter/vendre sans affecter le prix.", "example": "AAPL: millions actions/jour, spread $0.01 = haute liquidité" },
-    "positionSizing": { "term": "Dimensionnement de Position (Position Sizing)", "definition": "Déterminer combien de capital investir selon risque et taille du compte.", "formula": "Taille = Risque $ / Risque par Unité", "example": "$10K compte, 2% risque ($200), entry $50, stop $47: 200/3 = 66 actions" },
-    "scalping": { "term": "Scalping", "definition": "Stratégie court terme avec nombreux trades quotidiens (secondes à minutes).", "example": "Achat $50.10, vente $50.20, gain $0.10 × 1000 actions = $100, 50+ trades/jour" },
-    "slippage": { "term": "Slippage", "definition": "Différence entre prix attendu et prix réel d'exécution.", "example": "Ordre market à $50, exécuté à $50.15 = $0.15 slippage (0.3%)" },
-    "supportResistance": { "term": "Support & Résistance (Support & Resistance)", "definition": "Niveaux où pression d'achat/vente historiquement arrête tendances.", "example": "Tombe 3x à $45 et se reprend = support. Atteint 3x $55 et retombe = résistance" },
-    "takeProfit": { "term": "Prise de Profit (Take Profit)", "definition": "Point de sortie prédéfini pour réaliser gains automatiquement.", "example": "Entry $50, take profit $56 (résistance antérieure), stop $47 = 2:1 R:R" },
-    "trend": { "term": "Tendance (Trend)", "definition": "Direction générale du mouvement des prix dans le temps.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = tendance haussière (creux croissants)" },
-    "volatility": { "term": "Volatilité (Volatility)", "definition": "Ampleur des fluctuations de prix. Haute = grands mouvements.", "example": "Action A: $50 ±$0.50/jour (1%), Action B: $50 ±$2.50/jour (5%) = 5x plus volatile" },
-    "volume": { "term": "Volume", "definition": "Nombre d'actions/contrats échangés dans une période. Volume élevé confirme mouvements.", "example": "Breakout au-dessus $50 avec 10x volume normal = signal fort. Avec volume faible = probable faux" },
+    "winRate": {
+      "term": "Taux de Gain (Win Rate)",
+      "definition": "Pourcentage de trades rentables.",
+      "formula": "Taux = (Trades Gagnants / Total) × 100%",
+      "example": "60 gains sur 100 → 60%"
+    },
+    "winRateRiskReward": {
+      "term": "Win Rate & Risk-Reward",
+      "definition": "Un faible taux de réussite (ex. 40%) peut être très rentable si le R-Multiple moyen est élevé. Exemple: 40% win rate avec 3R gain moyen et -1R perte moyenne = (0.4 × 3R) + (0.6 × -1R) = +0.6R espérance par trade. Inversement, un taux élevé (ex. 70%) peut ne pas être rentable avec un mauvais risk-reward: 70% win rate avec 1R gain et -3R perte = (0.7 × 1R) + (0.3 × -3R) = -0.2R par trade.",
+      "example": "Stratégie A: 40% win rate, 3:1 R:R → Rentable | Stratégie B: 70% win rate, 1:3 R:R → Perdante"
+    },
+    "profitFactor": {
+      "term": "Facteur de Profit (Profit Factor)",
+      "definition": "Ratio profits bruts sur pertes brutes.",
+      "formula": "Facteur = Profit Brut / Perte Brute",
+      "example": "$10.000 profit, $5.000 perte → 2.0"
+    },
+    "riskReward": {
+      "term": "Ratio Risque-Rendement (Risk-Reward)",
+      "definition": "Compare profit potentiel à perte potentielle.",
+      "formula": "R:R = (Cible - Entrée) / (Entrée - Stop)",
+      "example": "Entrée $50, Cible $56, Stop $48 → 3:1"
+    },
+    "maxDrawdown": {
+      "term": "Drawdown Maximum (Max Drawdown)",
+      "definition": "Plus grande baisse de pic à creux.",
+      "formula": "Max DD = (Pic - Creux) / Pic × 100%",
+      "example": "Pic $10.000, creux $8.000 → 20%"
+    },
+    "avgWinLoss": {
+      "term": "Moy. Gain/Perte (Avg Win/Loss)",
+      "definition": "Gain moyen vs perte moyenne.",
+      "formula": "Moy. = Gain Total / # Gains",
+      "example": "5 gains de $500 → Moy. $100"
+    },
+    "pnl": {
+      "term": "P&L (Profit & Loss)",
+      "definition": "Gain/perte net après frais.",
+      "formula": "P&L = (Sortie - Entrée) × Qté - Frais",
+      "example": "100 @ $50, sortie $55, $2 frais → $498"
+    },
+    "setup": {
+      "term": "Setup",
+      "definition": "Motif spécifique signalant opportunité.",
+      "example": "Breakout, Failed Rally, Gap Fill"
+    },
+    "stopLoss": {
+      "term": "Stop Loss",
+      "definition": "Niveau de prix prédéterminé pour limiter pertes.",
+      "example": "Long $50, stop $48 limite risque à $2/action"
+    },
+    "equityCurve": {
+      "term": "Courbe d'Équité (Equity Curve)",
+      "definition": "Représentation graphique de la performance cumulée de votre compte.",
+      "example": "Visualise croissance du capital et drawdowns"
+    },
+    "consistencyTracker": {
+      "term": "Traceur de Cohérence (Consistency Tracker)",
+      "definition": "Heatmap visuelle de votre activité de trading quotidienne.",
+      "example": "Affiche jours rentables (vert) vs jours de perte (rouge)"
+    },
+    "portfolioNews": {
+      "term": "Actualités du Portfolio (Portfolio News)",
+      "definition": "Flux d'actualités filtré pour vos symboles les plus tradés.",
+      "example": "Actualités automatiques pour AAPL, TSLA, etc."
+    },
+    "dailyTradeGoal": {
+      "term": "Objectif Quotidien (Daily Trade Goal)",
+      "definition": "Objectif de profit quotidien et limite maximale de trades par jour.",
+      "example": "Objectif $500/jour, max 10 trades"
+    },
+    "breakout": {
+      "term": "Breakout",
+      "definition": "Lorsque le prix franchit résistance/support signalant nouvelle tendance.",
+      "example": "Action franchit résistance $50 avec volume élevé"
+    },
+    "consolidation": {
+      "term": "Consolidation",
+      "definition": "Phase latérale où le prix évolue dans une fourchette étroite.",
+      "example": "Après hausse 20%, se négocie 2 semaines dans fourchette 5%"
+    },
+    "edge": {
+      "term": "Edge",
+      "definition": "Avantage statistique ou informationnel augmentant probabilité de gain.",
+      "example": "Votre edge: 55% win rate avec pattern spécifique et 2R moyen"
+    },
+    "gap": {
+      "term": "Gap",
+      "definition": "Écart de prix entre clôture précédente et ouverture suivante.",
+      "example": "Clôture $50, ouverture $55 après earnings positifs = Gap Up $5"
+    },
+    "leverage": {
+      "term": "Effet de Levier (Leverage)",
+      "definition": "Contrôle de positions plus grandes avec capital emprunté.",
+      "formula": "Leverage = Valeur Position / Capital Propre",
+      "example": "$10K compte, 2:1 leverage → peut tenir position $20K"
+    },
+    "liquidity": {
+      "term": "Liquidité (Liquidity)",
+      "definition": "Facilité d'acheter/vendre sans affecter le prix.",
+      "example": "AAPL: millions actions/jour, spread $0.01 = haute liquidité"
+    },
+    "positionSizing": {
+      "term": "Dimensionnement de Position (Position Sizing)",
+      "definition": "Déterminer combien de capital investir selon risque et taille du compte.",
+      "formula": "Taille = Risque $ / Risque par Unité",
+      "example": "$10K compte, 2% risque ($200), entry $50, stop $47: 200/3 = 66 actions"
+    },
+    "scalping": {
+      "term": "Scalping",
+      "definition": "Stratégie court terme avec nombreux trades quotidiens (secondes à minutes).",
+      "example": "Achat $50.10, vente $50.20, gain $0.10 × 1000 actions = $100, 50+ trades/jour"
+    },
+    "slippage": {
+      "term": "Slippage",
+      "definition": "Différence entre prix attendu et prix réel d'exécution.",
+      "example": "Ordre market à $50, exécuté à $50.15 = $0.15 slippage (0.3%)"
+    },
+    "supportResistance": {
+      "term": "Support & Résistance (Support & Resistance)",
+      "definition": "Niveaux où pression d'achat/vente historiquement arrête tendances.",
+      "example": "Tombe 3x à $45 et se reprend = support. Atteint 3x $55 et retombe = résistance"
+    },
+    "takeProfit": {
+      "term": "Prise de Profit (Take Profit)",
+      "definition": "Point de sortie prédéfini pour réaliser gains automatiquement.",
+      "example": "Entry $50, take profit $56 (résistance antérieure), stop $47 = 2:1 R:R"
+    },
+    "trend": {
+      "term": "Tendance (Trend)",
+      "definition": "Direction générale du mouvement des prix dans le temps.",
+      "example": "$40 → $45 → $43 → $48 → $46 → $51 = tendance haussière (creux croissants)"
+    },
+    "volatility": {
+      "term": "Volatilité (Volatility)",
+      "definition": "Ampleur des fluctuations de prix. Haute = grands mouvements.",
+      "example": "Action A: $50 ±$0.50/jour (1%), Action B: $50 ±$2.50/jour (5%) = 5x plus volatile"
+    },
+    "volume": {
+      "term": "Volume",
+      "definition": "Nombre d'actions/contrats échangés dans une période. Volume élevé confirme mouvements.",
+      "example": "Breakout au-dessus $50 avec 10x volume normal = signal fort. Avec volume faible = probable faux"
+    },
     "newsSentiment": {
       "term": "Sentiment des Actualités (News Sentiment)",
       "definition": "Le Sentiment des Actualités analyse la tonalité des articles de presse concernant un symbole spécifique. Il calcule une moyenne de toutes les actualités dans les 24 heures précédant votre entrée en position. La valeur varie de -1 (très baissier/négatif) à 0 (neutre) jusqu'à +1 (très haussier/positif). Une valeur de 0.00 signifie soit un sentiment neutre, soit aucun article trouvé dans cette fenêtre temporelle.",
@@ -1290,8 +1593,8 @@
     "tradesByAccountType": "Trades par type de compte",
     "equityCurvesByAccountType": "Courbes d'équité par type de compte",
     "avgTrade": "Trade moyen",
-    "trades": "Trades",
-    "profitFactor": "Facteur de profit",
+    "trades": "trades",
+    "profitFactor": "Facteur de Profit",
     "totalPnL": "P&L Total",
     "allTime": "Tout le temps",
     "thisWeek": "Cette semaine",
@@ -1326,7 +1629,6 @@
     "winningTrades": "Trades Gagnants",
     "losingTrades": "Trades Perdants",
     "setupPerformance": "Performance par Setup",
-    "trades": "trades",
     "winRate": "taux de gain",
     "noSetupData": "Aucune donnée de setup pour la période sélectionnée",
     "dayOfWeekSummary": "Résumé par Jour de la Semaine",
@@ -1349,7 +1651,6 @@
     "tradesWithRisk": "Trades avec Données de Risque",
     "avgWin": "Gain Moyen",
     "avgLoss": "Perte Moyenne",
-    "profitFactor": "Facteur de Profit",
     "totalTradesTooltip": "Nombre total de trades exécutés dans la période sélectionnée",
     "winningTradesTooltip": "Nombre de trades rentables",
     "losingTradesTooltip": "Nombre de trades perdants",

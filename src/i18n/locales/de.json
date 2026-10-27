@@ -278,10 +278,6 @@
     "priceError": "Fehler beim Laden des Preises",
     "selectSymbolFirst": "Bitte zuerst Symbol auswählen",
     "refreshPrice": "Preis aktualisieren",
-    "priceUpdated": "Preis aktualisiert: {{price}}",
-    "priceNotAvailable": "Preis nicht verfügbar",
-    "priceError": "Fehler beim Laden des Preises",
-    "selectSymbolFirst": "Bitte zuerst Symbol auswählen",
     "side": "Seite",
     "qty": "Menge",
     "entryPrice": "Einstiegspreis",
@@ -303,7 +299,6 @@
     "short": "Short",
     "newTrade": "Neuer Trade",
     "editTrade": "Trade bearbeiten",
-    "addTrade": "Trade hinzufügen",
     "updateTrade": "Trade aktualisieren",
     "tradeUpdated": "Trade erfolgreich aktualisiert",
     "tradeDeleted": "Trade erfolgreich gelöscht",
@@ -345,7 +340,7 @@
     "rating": "Trade-Qualitätsbewertung",
     "ratingHint": "Bewerten Sie diesen Trade von 1 (schlechte Ausführung) bis 5 (exzellente Ausführung)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Laden Sie einen Chart-Screenshot dieses Trades hoch",
+    "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details",
     "analyzeChart": "Chart analysieren",
     "analyzing": "Analysiere...",
     "chartAnalyzed": "Chart erfolgreich analysiert",
@@ -356,7 +351,6 @@
     "lowConfidence": "Niedrige Genauigkeit",
     "manualEntry": "Manuell eingeben",
     "screenshotAnalysis": "Screenshot analysieren",
-    "screenshotHint": "Laden Sie einen Chart-Screenshot hoch, und unsere KI extrahiert automatisch alle Trade-Details",
     "manualEntryDescription": "Geben Sie alle Trade-Details manuell ein",
     "livePnL": "Live P&L Vorschau",
     "copyLastTrade": "Letzten Trade kopieren",
@@ -697,40 +691,128 @@
   },
   "reports": {
     "title": "Reports",
-    "subtitle": "Detaillierte Analyse deiner Trading-Performance",
-    "totalTrades": "Gesamt Trades",
-    "totalTradesTooltip": "Gesamtanzahl aller ausgeführten Trades im gewählten Zeitraum",
-    "winRate": "Win Rate",
-    "winRateTooltip": "Prozentsatz gewinnender Trades",
-    "profitFactor": "Profit Factor",
-    "profitFactorTooltip": "Verhältnis von Bruttogewinnen zu Bruttoverlusten",
-    "netPnL": "Net P&L",
-    "netPnLTooltip": "Gesamtgewinn oder -verlust nach Abzug von Gebühren",
-    "maxDrawdown": "Max Drawdown",
-    "maxDrawdownTooltip": "Größter Kapitalrückgang vom Peak zum Tief",
-    "avgWin": "Ø Gewinn",
-    "avgLoss": "Ø Verlust",
-    "avgTrade": "Ø Trade",
-    "expectancy": "Erwartungswert",
-    "expectancyTooltip": "Erwarteter Gewinn pro Trade",
-    "simulator": "Simulator",
-    "simulatorTooltip": "What-If Szenarien und Monte Carlo Simulation",
+    "subtitle": "Detaillierte Analyse Ihrer Trading-Performance",
     "overview": "Übersicht",
-    "overviewTooltip": "Allgemeine Performance-Übersicht",
-    "setups": "Setups",
-    "setupsTooltip": "Performance nach Trading-Setup",
+    "bySetup": "Nach Setup",
+    "timeAnalysis": "Zeit-Analyse",
+    "behavior": "Verhalten",
     "symbols": "Symbole",
-    "symbolsTooltip": "Performance nach Symbol",
-    "timeOfDay": "Tageszeit",
-    "timeOfDayTooltip": "Performance nach Uhrzeit",
-    "holdingPeriod": "Haltedauer",
-    "holdingPeriodTooltip": "Performance nach Haltedauer",
-    "streaks": "Serien",
-    "streaksTooltip": "Gewinn- und Verlustserien",
-    "mfeMae": "MFE/MAE",
-    "mfeMaeTooltip": "Maximum Favorable/Adverse Excursion Analyse",
-    "accounts": "Accounts",
-    "accountsTooltip": "Performance nach Account-Typ"
+    "riskAnalysis": "Risiko-Analyse",
+    "riskAnalysisTooltip": "Detaillierte Risikomanagement-Analyse einschließlich R-Multiple-Verteilung, durchschnittlicher Gewinn-/Verlust-Verhältnisse und Profit Factor. Das Verstehen dieser Kennzahlen ist entscheidend für langfristige Profitabilität. Siehe Glossar für detaillierte Erklärungen zu R-Multiple und Profit Factor.",
+    "simulator": "Simulator",
+    "simulatorTooltip": "Simuliere Was-wäre-wenn-Szenarien basierend auf deinen Trade-Daten",
+    "mfemae": "MFE/MAE",
+    "mfemaeTooltip": "Maximum Favorable/Adverse Excursion Analyse. Zeigt wie weit deine Trades für dich vs. gegen dich laufen, optimiere Stop-Loss und Take-Profit Levels.",
+    "accountTypes": "Accounts",
+    "accountTypesTooltip": "Vergleiche Performance zwischen verschiedenen Account-Typen (Sim, Evaluation, Funded, Live)",
+    "accountTypesComparison": "Account-Typ Vergleich",
+    "accountType": "Account-Typ",
+    "pnlByAccountType": "P&L nach Account-Typ",
+    "tradesByAccountType": "Trades nach Account-Typ",
+    "equityCurvesByAccountType": "Equity-Kurven nach Account-Typ",
+    "avgTrade": "Durchschn. Trade",
+    "trades": "Trades",
+    "profitFactor": "Profit Factor",
+    "totalPnL": "Gesamt P&L",
+    "goalAchievementRate": "Zielerreichungsrate",
+    "daysAchieved": "{{achieved}} von {{total}} Tagen",
+    "currentGoal": "Aktuelles Ziel",
+    "maxTradesPerDay": "Max {{trades}} Trades pro Tag",
+    "bestDay": "Bester Tag",
+    "bestTradingDay": "Bester Handelstag",
+    "noData": "Keine Daten verfügbar",
+    "goalAchievementRateTooltip": "Zeigt den Prozentsatz der Tage, an denen Sie Ihr Tagesziel erreicht haben. Sie können Ihre Tagesziele in den Einstellungen anpassen.",
+    "currentGoalTooltip": "Ihr aktuelles tägliches Gewinnziel und die maximale Anzahl von Trades pro Tag. Sie können diese Einstellungen in den Einstellungen ändern.",
+    "bestDayTooltip": "Ihr profitabelster Handelstag im ausgewählten Zeitraum.",
+    "overviewTooltip": "Allgemeine Übersicht Ihrer Trading-Performance mit Schlüsselkennzahlen, Wochentagsanalyse und Top-Symbolen.",
+    "dailyGoalsTooltip": "Verfolgen Sie Ihren Fortschritt bei täglichen Gewinnzielen und maximalen Trades pro Tag. Konfigurieren Sie Ihre Ziele in den Einstellungen.",
+    "bySetupTooltip": "Analysieren Sie die Performance nach Trading-Setup/Strategie. Sehen Sie, welche Setups am profitabelsten sind und welche verbessert werden müssen.",
+    "timeAnalysisTooltip": "Entdecken Sie zeitbasierte Muster in Ihrem Trading: Performance nach Wochentag und Tageszeit-Analyse.",
+    "behaviorTooltip": "Analysieren Sie Ihre Trading-Verhaltensmuster einschließlich Gewinn-/Verlustserien und durchschnittlicher Haltedauer.",
+    "symbolsTooltip": "Performance-Aufschlüsselung nach einzelnen Symbolen. Identifizieren Sie, mit welchen Assets Sie am erfolgreichsten handeln.",
+    "dailyGoalHistory": "Daily Goal Historie",
+    "noTradesInPeriod": "Keine Trades im ausgewählten Zeitraum",
+    "dailyPnl": "Täglicher P&L",
+    "tradesToday": "Trades heute",
+    "tradesThisDay": "Trades an diesem Tag",
+    "tradesRemaining": "Noch {{remaining}} Trades verfügbar",
+    "tradesUsed": "{{used}} von {{max}} Trades genutzt",
+    "tradesOverLimit": "{{over}} Trades über Limit",
+    "limitReached": "Limit erreicht",
+    "goalAchievedPerfect": "Perfekt! Ziel erreicht ohne Overtrading",
+    "goalNotAchievedOvertraded": "Trade-Limit überschritten",
+    "goalAchieved": "Ziel erreicht",
+    "overtraded": "Übertrieben",
+    "allTime": "Gesamt",
+    "thisWeek": "Diese Woche",
+    "thisMonth": "Dieser Monat",
+    "last3Months": "Letzte 3 Monate",
+    "thisYear": "Dieses Jahr",
+    "dayOfWeekDistribution": "Trade-Verteilung nach Wochentag",
+    "dayOfWeekDistributionTooltip": "Zeigt, wie viele Trades Sie an jedem Wochentag ausgeführt haben. Hilft dabei, Ihre aktivsten Trading-Tage und potenzielle Muster in Ihrem Trading-Verhalten zu identifizieren.",
+    "performanceByDay": "Performance nach Wochentag",
+    "performanceByDayTooltip": "Zeigt Ihre Profitabilität für jeden Wochentag an. Grüne Balken zeigen profitable Tage, rote Balken zeigen Verluste. Hilft zu identifizieren, welche Tage für Ihre Trading-Strategie am erfolgreichsten sind.",
+    "summary": "Zusammenfassung",
+    "totalTrades": "Trades Gesamt",
+    "winningTrades": "Gewinn-Trades",
+    "losingTrades": "Verlust-Trades",
+    "setupPerformance": "Setup-Performance",
+    "winRate": "Gewinnrate",
+    "noSetupData": "Keine Setup-Daten für den gewählten Zeitraum",
+    "dayOfWeekSummary": "Wochentags-Übersicht",
+    "day": "Tag",
+    "wins": "Gewinne",
+    "losses": "Verluste",
+    "totalPnl": "Gesamt P&L",
+    "sunday": "Sonntag",
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday": "Samstag",
+    "rMultipleSection": "R-Multiple Analyse",
+    "rMultipleSectionDesc": "Analysiere dein Risiko-Reward-Verhältnis basierend auf dem initialen Risiko deiner Trades. Erfasse Stop-Loss bei jedem Trade um R-Werte zu berechnen.",
+    "rMultipleDistribution": "R-Multiple Verteilung",
+    "riskMetrics": "Risiko-Kennzahlen",
+    "avgRMultiple": "Durchschn. R-Multiple",
+    "tradesWithRisk": "Trades mit Risiko-Daten",
+    "avgWin": "Durchschn. Gewinn",
+    "avgLoss": "Durchschn. Verlust",
+    "totalTradesTooltip": "Gesamtzahl der ausgeführten Trades im ausgewählten Zeitraum",
+    "winningTradesTooltip": "Anzahl der profitablen Trades",
+    "losingTradesTooltip": "Anzahl der verlustbringenden Trades",
+    "tradesWithRiskTooltip": "Anzahl der Trades mit definiertem Risiko (R)",
+    "avgWinTooltip": "Durchschnittlicher Gewinn bei profitablen Trades",
+    "avgLossTooltip": "Durchschnittlicher Verlust bei verlustbringenden Trades",
+    "noRiskData": "Keine Risiko-Daten verfügbar. Fügen Sie Risiko und Stop Loss zu Ihren Trades hinzu.",
+    "streakAnalysis": "Serien-Analyse",
+    "longestWinStreak": "Längste Gewinnserie",
+    "longestLossStreak": "Längste Verlustserie",
+    "currentStreak": "Aktuelle Serie",
+    "avgStreak": "Ø Serie",
+    "winStreak": "Gewinnserie aktiv",
+    "lossStreak": "Verlustserie aktiv",
+    "noActiveStreak": "Keine aktive Serie",
+    "streakInsight": "💡 Eine längere Gewinnserie zeigt Konsistenz. Nach Verlustserien sollten Sie Ihre Strategie überprüfen und ggf. Pause einlegen, um 'Revenge Trading' zu vermeiden.",
+    "holdingPeriodAnalysis": "Haltedauer-Analyse",
+    "avgWinHold": "Ø Haltedauer Gewinne",
+    "avgLossHold": "Ø Haltedauer Verluste",
+    "holdRatio": "Haltedauer-Ratio",
+    "days": "Tage",
+    "optimal": "Optimal ✓",
+    "good": "Gut",
+    "needsImprovement": "Verbesserungsbedarf",
+    "holdingPeriodInsight": "💡 Ideal ist eine Hold-Ratio > 1.0: Sie halten Gewinner länger als Verlierer. Eine Ratio < 1.0 deutet auf 'Cut winners short, let losses run' hin - ein häufiger Fehler.",
+    "holdingPeriodDistribution": "Verteilung nach Haltedauer",
+    "topProfitableSymbols": "Top 5 Profitable Symbole",
+    "topUnprofitableSymbols": "Top 5 Unprofitable Symbole",
+    "mostTradedSymbols": "Meist Gehandelte Symbole",
+    "totalSymbols": "Gesamt Symbole",
+    "hourOfDayPerformance": "Performance nach Tageszeit",
+    "bestTradingHours": "Beste Trading-Zeiten",
+    "worstTradingHours": "Schlechteste Trading-Zeiten",
+    "hourOfDayInsight": "💡 Identifizieren Sie Ihre profitabelsten Handelszeiten und fokussieren Sie sich darauf. Vermeiden Sie Trading in Zeiten mit schlechter Performance (z.B. Lunch-Zeit, letzte Handelsstunde)."
   },
   "notFound": {
     "title": "404",
@@ -783,7 +865,11 @@
     },
     "badge": "Professionelles Trading Journal",
     "heroTitle": "Werde ein besserer Trader durch",
-    "heroTitleHighlightWords": ["systematisches", "präzises", "KI-gestütztes"],
+    "heroTitleHighlightWords": [
+      "systematisches",
+      "präzises",
+      "KI-gestütztes"
+    ],
     "heroTitleHighlightSuffix": "Journaling",
     "heroDescription": "TradeNot.es ist das KI-gestützte Trading Journal für aktive Trader. Tägliche Markt-Vorbereitung, automatische News-Analyse und Glossar zum Lernen. Starte informiert in jeden Handelstag.",
     "ctaStart": "Jetzt starten",
@@ -888,7 +974,7 @@
         "title": "Trading Kalender",
         "description": "Kalenderansicht mit farbcodierten Gewinn-/Verlusttagen. Trading-Aktivität schnell auf einen Blick überprüfen."
       },
-"ai": {
+      "ai": {
         "title": "KI Trading Assistant",
         "description": "Fragen zu deiner Performance stellen. Sofortige datengetriebene Insights und Analysen aus deiner Trading-Historie erhalten."
       },
@@ -978,6 +1064,12 @@
       "benefit2Desc": "Daily Prep, Konsistenz-Tracking und AI-Warnungen bei emotionalem Trading",
       "benefit3Title": "Performance messen",
       "benefit3Desc": "Equity Curve, R-Multiple, Expectancy und 20+ KPIs auf einen Blick"
+    },
+    "free": {
+      "badge": "100% kostenlos",
+      "title": "Komplett kostenlos. Für immer.",
+      "description": "Keine Abos, keine Kreditkarte, keine versteckten Kosten. Alle Funktionen frei für alle Trader.",
+      "cta": "Kostenlos starten"
     }
   },
   "features": {
@@ -1007,122 +1099,218 @@
       "easyEntry": {
         "title": "Schnelle Trade-Eingabe",
         "description": "Trades in Sekunden erfassen mit Live P&L-Vorschau und Symbol-Quick-Chips",
-        "benefits": ["Live P&L-Vorschau während der Eingabe", "Quick-Chips für häufige Symbole", "Letzten Trade mit einem Klick kopieren"]
+        "benefits": [
+          "Live P&L-Vorschau während der Eingabe",
+          "Quick-Chips für häufige Symbole",
+          "Letzten Trade mit einem Klick kopieren"
+        ]
       },
       "ninjaTrader": {
         "title": "NinjaTrader Auto-Sync",
         "description": "Automatische Trade-Synchronisation via Webhook in Echtzeit",
-        "benefits": ["Entry, Exit, MFE/MAE automatisch erfasst", "Unterstützt 12+ Prop-Firms", "Keine manuelle Eingabe nötig"]
+        "benefits": [
+          "Entry, Exit, MFE/MAE automatisch erfasst",
+          "Unterstützt 12+ Prop-Firms",
+          "Keine manuelle Eingabe nötig"
+        ]
       },
       "propFirm": {
         "title": "Prop-Firm Integration",
         "description": "Automatische Erkennung von Sim, Eval, Funded & Live Accounts",
-        "benefits": ["Separate Analytics pro Account-Phase", "Apex, Topstep, Tradeify und mehr", "Account-Typ wird automatisch erkannt"]
+        "benefits": [
+          "Separate Analytics pro Account-Phase",
+          "Apex, Topstep, Tradeify und mehr",
+          "Account-Typ wird automatisch erkannt"
+        ]
       },
       "positionCalc": {
         "title": "Position Size Calculator",
         "description": "Berechne optimale Positionsgrößen basierend auf Risiko",
-        "benefits": ["Risk-basierte Lot-Berechnung", "Stop-Loss Distanz eingeben", "Max Risiko pro Trade definieren"]
+        "benefits": [
+          "Risk-basierte Lot-Berechnung",
+          "Stop-Loss Distanz eingeben",
+          "Max Risiko pro Trade definieren"
+        ]
       },
       "csvImport": {
         "title": "CSV Import/Export",
         "description": "Trades vom Broker importieren oder Daten exportieren",
-        "benefits": ["Unterstützt gängige Broker-Formate", "Einfacher Daten-Export", "Nahtlose Integration"]
+        "benefits": [
+          "Unterstützt gängige Broker-Formate",
+          "Einfacher Daten-Export",
+          "Nahtlose Integration"
+        ]
       },
       "mfeMAE": {
         "title": "MFE/MAE Analyse",
         "description": "Optimiere Stop-Loss und Take-Profit mit datenbasierter Analyse",
-        "benefits": ["Automatisches High/Low Tracking", "Visualisiere verpasste Gewinne", "Konkrete Stop-Loss Empfehlungen"]
+        "benefits": [
+          "Automatisches High/Low Tracking",
+          "Visualisiere verpasste Gewinne",
+          "Konkrete Stop-Loss Empfehlungen"
+        ]
       },
       "analytics": {
         "title": "Performance Analytics",
         "description": "Win Rate, R-Multiple, Profit Factor und Expectancy tracken",
-        "benefits": ["20+ KPIs auf einen Blick", "Filtere nach Zeitraum", "Identifiziere Stärken und Schwächen"]
+        "benefits": [
+          "20+ KPIs auf einen Blick",
+          "Filtere nach Zeitraum",
+          "Identifiziere Stärken und Schwächen"
+        ]
       },
       "equityCurve": {
         "title": "Equity Curve",
         "description": "Kapitalwachstum über Zeit visualisieren",
-        "benefits": ["Drawdowns sofort erkennen", "Wachstumstrends analysieren", "Kumulativer Performance-Chart"]
+        "benefits": [
+          "Drawdowns sofort erkennen",
+          "Wachstumstrends analysieren",
+          "Kumulativer Performance-Chart"
+        ]
       },
       "consistency": {
         "title": "Consistency Tracker",
         "description": "12-Wochen Trading-Heatmap für Muster-Erkennung",
-        "benefits": ["Profitable Tage auf einen Blick", "Verlustserien identifizieren", "Konsistente Gewohnheiten entwickeln"]
+        "benefits": [
+          "Profitable Tage auf einen Blick",
+          "Verlustserien identifizieren",
+          "Konsistente Gewohnheiten entwickeln"
+        ]
       },
       "calendar": {
         "title": "Trading Kalender",
         "description": "Kalenderansicht mit farbcodierten Gewinn-/Verlusttagen",
-        "benefits": ["Schneller Monatsüberblick", "Klick auf Tag zeigt Trades", "Farbcodierung nach P&L"]
+        "benefits": [
+          "Schneller Monatsüberblick",
+          "Klick auf Tag zeigt Trades",
+          "Farbcodierung nach P&L"
+        ]
       },
       "aiAssistant": {
         "title": "KI Trading Assistant",
         "description": "Stelle Fragen zu deiner Performance und erhalte KI-Analyse",
-        "benefits": ["Natürliche Spracheingabe", "Datengetriebene Insights", "Analysiert deine Trade-Historie"]
+        "benefits": [
+          "Natürliche Spracheingabe",
+          "Datengetriebene Insights",
+          "Analysiert deine Trade-Historie"
+        ]
       },
       "aiCharts": {
         "title": "AI Chat mit Charts",
         "description": "Interaktive Visualisierungen direkt im Chat",
-        "benefits": ["Balken-, Linien- und Kreisdiagramme", "Tabellen für Datenübersicht", "Sofortige Visualisierung"]
+        "benefits": [
+          "Balken-, Linien- und Kreisdiagramme",
+          "Tabellen für Datenübersicht",
+          "Sofortige Visualisierung"
+        ]
       },
       "dailySummary": {
         "title": "KI Tagesreport",
         "description": "Automatische E-Mail-Zusammenfassung deiner Performance",
-        "benefits": ["Tägliche Stärken/Schwächen", "Personalisierte Verbesserungsvorschläge", "Per E-Mail zugestellt"]
+        "benefits": [
+          "Tägliche Stärken/Schwächen",
+          "Personalisierte Verbesserungsvorschläge",
+          "Per E-Mail zugestellt"
+        ]
       },
       "goalAlerts": {
         "title": "Ziel-Alerts & Benachrichtigungen",
         "description": "Echtzeit-Alerts bei Zielerreichung oder Drawdown",
-        "benefits": ["Tägliches Gewinnziel setzen", "Max-Trades pro Tag definieren", "Drawdown-Warnungen erhalten"]
+        "benefits": [
+          "Tägliches Gewinnziel setzen",
+          "Max-Trades pro Tag definieren",
+          "Drawdown-Warnungen erhalten"
+        ]
       },
       "riskSimulator": {
         "title": "What-If Risiko-Simulator",
         "description": "Teste alternative Strategien mit Monte Carlo Simulation",
-        "benefits": ["Was wäre wenn mit 2R-Exits?", "Simuliere anderes Risiko-Management", "1000+ Simulationen pro Szenario"]
+        "benefits": [
+          "Was wäre wenn mit 2R-Exits?",
+          "Simuliere anderes Risiko-Management",
+          "1000+ Simulationen pro Szenario"
+        ]
       },
       "symbolReports": {
         "title": "Symbol Performance",
         "description": "Analysiere welche Instrumente am besten performen",
-        "benefits": ["P&L pro Symbol", "Win Rate Vergleich", "Finde deine besten Märkte"]
+        "benefits": [
+          "P&L pro Symbol",
+          "Win Rate Vergleich",
+          "Finde deine besten Märkte"
+        ]
       },
       "setupReports": {
         "title": "Setup-basierte Reports",
         "description": "Performance nach Trading-Setup analysieren",
-        "benefits": ["Vergleiche deine Strategien", "Identifiziere Top-Setups", "Setup-spezifische Metriken"]
+        "benefits": [
+          "Vergleiche deine Strategien",
+          "Identifiziere Top-Setups",
+          "Setup-spezifische Metriken"
+        ]
       },
       "hourAnalysis": {
         "title": "Stunden-Analyse",
         "description": "Finde deine profitabelsten Handelszeiten",
-        "benefits": ["P&L nach Tageszeit", "Beste Stunden identifizieren", "Verlust-Zeiten vermeiden"]
+        "benefits": [
+          "P&L nach Tageszeit",
+          "Beste Stunden identifizieren",
+          "Verlust-Zeiten vermeiden"
+        ]
       },
       "streakAnalysis": {
         "title": "Streak-Analyse",
         "description": "Gewinn- und Verlustserien verstehen",
-        "benefits": ["Längste Serien anzeigen", "Durchschnittliche Serienlänge", "Muster in Serien erkennen"]
+        "benefits": [
+          "Längste Serien anzeigen",
+          "Durchschnittliche Serienlänge",
+          "Muster in Serien erkennen"
+        ]
       },
       "holdingPeriod": {
         "title": "Haltezeit-Analyse",
         "description": "Optimale Trade-Dauer ermitteln",
-        "benefits": ["P&L nach Haltedauer", "Scalps vs. Swing Trades", "Optimale Dauer finden"]
+        "benefits": [
+          "P&L nach Haltedauer",
+          "Scalps vs. Swing Trades",
+          "Optimale Dauer finden"
+        ]
       },
       "portfolioNews": {
         "title": "Portfolio News Intelligence",
         "description": "Auto-kuratierte News für deine Symbole",
-        "benefits": ["Futures-Proxy-Mapping (NQ→QQQ)", "Smart-Tags für News-Typen", "KI-Übersetzung inklusive"]
+        "benefits": [
+          "Futures-Proxy-Mapping (NQ→QQQ)",
+          "Smart-Tags für News-Typen",
+          "KI-Übersetzung inklusive"
+        ]
       },
       "politicalEvents": {
         "title": "Wirtschaftskalender",
         "description": "FOMC, CPI, NFP, GDP und mehr vorgeladen",
-        "benefits": ["Marktbewegende Events nie verpassen", "Impact-Level anzeigen", "Direkt im Kalender integriert"]
+        "benefits": [
+          "Marktbewegende Events nie verpassen",
+          "Impact-Level anzeigen",
+          "Direkt im Kalender integriert"
+        ]
       },
       "sectorSentiment": {
         "title": "Sektor-Sentiment",
         "description": "Tägliche Stimmungsanalyse nach Sektoren",
-        "benefits": ["11 Sektoren analysiert", "Artikelanzahl pro Sektor", "Sentiment-Score anzeigen"]
+        "benefits": [
+          "11 Sektoren analysiert",
+          "Artikelanzahl pro Sektor",
+          "Sentiment-Score anzeigen"
+        ]
       },
       "economicCalendar": {
         "title": "Wirtschaftsdaten",
         "description": "Fed, Trump, Powell News in Echtzeit",
-        "benefits": ["Politische Events tracken", "Markt-Impact abschätzen", "Informiert handeln"]
+        "benefits": [
+          "Politische Events tracken",
+          "Markt-Impact abschätzen",
+          "Informiert handeln"
+        ]
       }
     }
   },
@@ -1200,14 +1388,24 @@
       "formula": "Profit Factor = Summe aller Gewinne / Summe aller Verluste (absolut)\n\nBeziehung zu Win Rate & R: PF = (Win Rate × Avg Win) / (Loss Rate × Avg Loss)",
       "example": "10.000€ Gesamtgewinne (aus 15 Trades), 6.000€ Gesamtverluste (aus 10 Trades): Profit Factor = 10.000 / 6.000 = 1,67. Das bedeutet: Für jeden verlorenen Euro werden 1,67€ gewonnen. Alternativ: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust → PF = (0,4 × 3) / (0,6 × 1) = 2,0"
     },
-    "riskReward": { "term": "Risiko-Ertrag (Risk-Reward)", "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.", "formula": "R:R = (Ziel - Entry) / (Entry - Stop)", "example": "Entry $50, Ziel $56, Stop $48 → 3:1" },
+    "riskReward": {
+      "term": "Risiko-Ertrag (Risk-Reward)",
+      "definition": "Vergleicht potenziellen Gewinn zu potenziellem Verlust.",
+      "formula": "R:R = (Ziel - Entry) / (Entry - Stop)",
+      "example": "Entry $50, Ziel $56, Stop $48 → 3:1"
+    },
     "maxDrawdown": {
       "term": "Maximaler Drawdown (Max Drawdown)",
       "definition": "Der maximale Drawdown misst den größten prozentualen Rückgang vom Höchststand zum Tiefststand der Equity-Kurve während einer Verlustphase. Es ist eine der wichtigsten Risikokennzahlen, da sie das psychologische und finanzielle Worst-Case-Szenario darstellt. Ein hoher Drawdown kann zur Kapitulation führen, selbst wenn die Strategie langfristig profitabel ist. Professionelle Trader überwachen Drawdowns genau und setzen oft maximale Drawdown-Limits (z.B. 20-25% als Stop-Trading-Level).",
       "formula": "Max Drawdown % = ((Trough Value - Peak Value) / Peak Value) × 100%\n\nMax Drawdown € = Peak Value - Trough Value",
       "example": "Konto erreicht 15.000€ Peak, fällt durch Verlustserie auf 12.000€ Trough, bevor es sich erholt: Max Drawdown = ((12.000 - 15.000) / 15.000) × 100% = -20% oder 3.000€ absolut. Bei 50% Drawdown (15.000€ auf 7.500€) benötigen Sie +100% Gewinn nur um wieder auf Ausgangsniveau zu kommen!"
     },
-    "avgWinLoss": { "term": "Ø Gewinn/Verlust (Avg Win/Loss)", "definition": "Durchschnittlicher Gewinn vs. Verlust.", "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne", "example": "5 Gewinne à $500 → Ø $100" },
+    "avgWinLoss": {
+      "term": "Ø Gewinn/Verlust (Avg Win/Loss)",
+      "definition": "Durchschnittlicher Gewinn vs. Verlust.",
+      "formula": "Ø Gewinn = Gesamtgewinn / # Gewinne",
+      "example": "5 Gewinne à $500 → Ø $100"
+    },
     "pnl": {
       "term": "Profit & Loss (P&L)",
       "definition": "P&L bezeichnet den realisierten Gewinn oder Verlust einer geschlossenen Position oder eines Portfolios über einen bestimmten Zeitraum. Es kann in absoluten Beträgen (€/$) oder relativen Kennzahlen (%, R-Multiple) gemessen werden. Das P&L ist die finale Kennzahl, die über Erfolg oder Misserfolg entscheidet. Wichtig: Nicht realisierte Gewinne (offene Positionen) zählen nicht zum finalen P&L.",
@@ -1425,135 +1623,6 @@
       "definition": "Der AI Trading Assistent kann Fragen nicht nur mit Text, sondern auch mit interaktiven Visualisierungen beantworten. Bei Fragen nach Vergleichen, Trends oder Rankings generiert die KI automatisch passende Charts (Balken-, Linien-, Kreisdiagramme) oder Tabellen direkt im Chat.",
       "example": "Frage: 'Zeige meine Performance nach Wochentag' → Die KI antwortet mit einem Balkendiagramm, das Win-Rate oder P&L pro Wochentag darstellt. Frage: 'Vergleiche Long vs Short' → Kreisdiagramm mit Anteil und Performance."
     }
-  },
-  "reports": {
-    "title": "Reports",
-    "subtitle": "Detaillierte Analyse Ihrer Trading-Performance",
-    "overview": "Übersicht",
-    "bySetup": "Nach Setup",
-    "timeAnalysis": "Zeit-Analyse",
-    "behavior": "Verhalten",
-    "symbols": "Symbole",
-    "riskAnalysis": "Risiko-Analyse",
-    "riskAnalysisTooltip": "Analysiere dein Risiko-Management anhand von R-Werten und Drawdown",
-    "simulator": "Simulator",
-    "simulatorTooltip": "Simuliere Was-wäre-wenn-Szenarien basierend auf deinen Trade-Daten",
-    "mfemae": "MFE/MAE",
-    "mfemaeTooltip": "Maximum Favorable/Adverse Excursion Analyse. Zeigt wie weit deine Trades für dich vs. gegen dich laufen, optimiere Stop-Loss und Take-Profit Levels.",
-    "accountTypes": "Accounts",
-    "accountTypesTooltip": "Vergleiche Performance zwischen verschiedenen Account-Typen (Sim, Evaluation, Funded, Live)",
-    "accountTypesComparison": "Account-Typ Vergleich",
-    "accountType": "Account-Typ",
-    "pnlByAccountType": "P&L nach Account-Typ",
-    "tradesByAccountType": "Trades nach Account-Typ",
-    "equityCurvesByAccountType": "Equity-Kurven nach Account-Typ",
-    "avgTrade": "Durchschn. Trade",
-    "trades": "Trades",
-    "profitFactor": "Profit Factor",
-    "totalPnL": "Gesamt P&L",
-    "goalAchievementRate": "Zielerreichungsrate",
-    "daysAchieved": "{{achieved}} von {{total}} Tagen",
-    "currentGoal": "Aktuelles Ziel",
-    "maxTradesPerDay": "Max {{trades}} Trades pro Tag",
-    "bestDay": "Bester Tag",
-    "bestTradingDay": "Bester Handelstag",
-    "noData": "Keine Daten",
-    "goalAchievementRateTooltip": "Zeigt den Prozentsatz der Tage, an denen Sie Ihr Tagesziel erreicht haben. Sie können Ihre Tagesziele in den Einstellungen anpassen.",
-    "currentGoalTooltip": "Ihr aktuelles tägliches Gewinnziel und die maximale Anzahl von Trades pro Tag. Sie können diese Einstellungen in den Einstellungen ändern.",
-    "bestDayTooltip": "Ihr profitabelster Handelstag im ausgewählten Zeitraum.",
-    "overviewTooltip": "Allgemeine Übersicht Ihrer Trading-Performance mit Schlüsselkennzahlen, Wochentagsanalyse und Top-Symbolen.",
-    "dailyGoalsTooltip": "Verfolgen Sie Ihren Fortschritt bei täglichen Gewinnzielen und maximalen Trades pro Tag. Konfigurieren Sie Ihre Ziele in den Einstellungen.",
-    "bySetupTooltip": "Analysieren Sie die Performance nach Trading-Setup/Strategie. Sehen Sie, welche Setups am profitabelsten sind und welche verbessert werden müssen.",
-    "timeAnalysisTooltip": "Entdecken Sie zeitbasierte Muster in Ihrem Trading: Performance nach Wochentag und Tageszeit-Analyse.",
-    "behaviorTooltip": "Analysieren Sie Ihre Trading-Verhaltensmuster einschließlich Gewinn-/Verlustserien und durchschnittlicher Haltedauer.",
-    "symbolsTooltip": "Performance-Aufschlüsselung nach einzelnen Symbolen. Identifizieren Sie, mit welchen Assets Sie am erfolgreichsten handeln.",
-    "riskAnalysisTooltip": "Detaillierte Risikomanagement-Analyse einschließlich R-Multiple-Verteilung, durchschnittlicher Gewinn-/Verlust-Verhältnisse und Profit Factor. Das Verstehen dieser Kennzahlen ist entscheidend für langfristige Profitabilität. Siehe Glossar für detaillierte Erklärungen zu R-Multiple und Profit Factor.",
-    "dailyGoalHistory": "Daily Goal Historie",
-    "noTradesInPeriod": "Keine Trades im ausgewählten Zeitraum",
-    "dailyPnl": "Täglicher P&L",
-    "tradesToday": "Trades heute",
-    "tradesThisDay": "Trades an diesem Tag",
-    "tradesRemaining": "Noch {{remaining}} Trades verfügbar",
-    "tradesUsed": "{{used}} von {{max}} Trades genutzt",
-    "tradesOverLimit": "{{over}} Trades über Limit",
-    "limitReached": "Limit erreicht",
-    "goalAchievedPerfect": "Perfekt! Ziel erreicht ohne Overtrading",
-    "goalNotAchievedOvertraded": "Trade-Limit überschritten",
-    "goalAchieved": "Ziel erreicht",
-    "overtraded": "Übertrieben",
-    "allTime": "Gesamt",
-    "thisWeek": "Diese Woche",
-    "thisMonth": "Dieser Monat",
-    "last3Months": "Letzte 3 Monate",
-    "thisYear": "Dieses Jahr",
-    "dayOfWeekDistribution": "Trade-Verteilung nach Wochentag",
-    "dayOfWeekDistributionTooltip": "Zeigt, wie viele Trades Sie an jedem Wochentag ausgeführt haben. Hilft dabei, Ihre aktivsten Trading-Tage und potenzielle Muster in Ihrem Trading-Verhalten zu identifizieren.",
-    "performanceByDay": "Performance nach Wochentag",
-    "performanceByDayTooltip": "Zeigt Ihre Profitabilität für jeden Wochentag an. Grüne Balken zeigen profitable Tage, rote Balken zeigen Verluste. Hilft zu identifizieren, welche Tage für Ihre Trading-Strategie am erfolgreichsten sind.",
-    "summary": "Zusammenfassung",
-    "totalTrades": "Trades Gesamt",
-    "winningTrades": "Gewinn-Trades",
-    "losingTrades": "Verlust-Trades",
-    "setupPerformance": "Setup-Performance",
-    "trades": "Trades",
-    "winRate": "Gewinnrate",
-    "noSetupData": "Keine Setup-Daten für den gewählten Zeitraum",
-    "dayOfWeekSummary": "Wochentags-Übersicht",
-    "day": "Tag",
-    "wins": "Gewinne",
-    "losses": "Verluste",
-    "totalPnl": "Gesamt P&L",
-    "sunday": "Sonntag",
-    "monday": "Montag",
-    "tuesday": "Dienstag",
-    "wednesday": "Mittwoch",
-    "thursday": "Donnerstag",
-    "friday": "Freitag",
-    "saturday": "Samstag",
-    "rMultipleSection": "R-Multiple Analyse",
-    "rMultipleSectionDesc": "Analysiere dein Risiko-Reward-Verhältnis basierend auf dem initialen Risiko deiner Trades. Erfasse Stop-Loss bei jedem Trade um R-Werte zu berechnen.",
-    "rMultipleDistribution": "R-Multiple Verteilung",
-    "riskMetrics": "Risiko-Kennzahlen",
-    "avgRMultiple": "Durchschn. R-Multiple",
-    "tradesWithRisk": "Trades mit Risiko-Daten",
-    "avgWin": "Durchschn. Gewinn",
-    "avgLoss": "Durchschn. Verlust",
-    "profitFactor": "Profit Factor",
-    "totalTradesTooltip": "Gesamtzahl der ausgeführten Trades im ausgewählten Zeitraum",
-    "winningTradesTooltip": "Anzahl der profitablen Trades",
-    "losingTradesTooltip": "Anzahl der verlustbringenden Trades",
-    "tradesWithRiskTooltip": "Anzahl der Trades mit definiertem Risiko (R)",
-    "avgWinTooltip": "Durchschnittlicher Gewinn bei profitablen Trades",
-    "avgLossTooltip": "Durchschnittlicher Verlust bei verlustbringenden Trades",
-    "noRiskData": "Keine Risiko-Daten verfügbar. Fügen Sie Risiko und Stop Loss zu Ihren Trades hinzu.",
-    "streakAnalysis": "Serien-Analyse",
-    "longestWinStreak": "Längste Gewinnserie",
-    "longestLossStreak": "Längste Verlustserie",
-    "currentStreak": "Aktuelle Serie",
-    "avgStreak": "Ø Serie",
-    "winStreak": "Gewinnserie aktiv",
-    "lossStreak": "Verlustserie aktiv",
-    "noActiveStreak": "Keine aktive Serie",
-    "streakInsight": "💡 Eine längere Gewinnserie zeigt Konsistenz. Nach Verlustserien sollten Sie Ihre Strategie überprüfen und ggf. Pause einlegen, um 'Revenge Trading' zu vermeiden.",
-    "holdingPeriodAnalysis": "Haltedauer-Analyse",
-    "avgWinHold": "Ø Haltedauer Gewinne",
-    "avgLossHold": "Ø Haltedauer Verluste",
-    "holdRatio": "Haltedauer-Ratio",
-    "days": "Tage",
-    "optimal": "Optimal ✓",
-    "good": "Gut",
-    "needsImprovement": "Verbesserungsbedarf",
-    "holdingPeriodInsight": "💡 Ideal ist eine Hold-Ratio > 1.0: Sie halten Gewinner länger als Verlierer. Eine Ratio < 1.0 deutet auf 'Cut winners short, let losses run' hin - ein häufiger Fehler.",
-    "holdingPeriodDistribution": "Verteilung nach Haltedauer",
-    "topProfitableSymbols": "Top 5 Profitable Symbole",
-    "topUnprofitableSymbols": "Top 5 Unprofitable Symbole",
-    "mostTradedSymbols": "Meist Gehandelte Symbole",
-    "totalSymbols": "Gesamt Symbole",
-    "noData": "Keine Daten verfügbar",
-    "hourOfDayPerformance": "Performance nach Tageszeit",
-    "bestTradingHours": "Beste Trading-Zeiten",
-    "worstTradingHours": "Schlechteste Trading-Zeiten",
-    "hourOfDayInsight": "💡 Identifizieren Sie Ihre profitabelsten Handelszeiten und fokussieren Sie sich darauf. Vermeiden Sie Trading in Zeiten mit schlechter Performance (z.B. Lunch-Zeit, letzte Handelsstunde)."
   },
   "filters": {
     "filters": "Filter",

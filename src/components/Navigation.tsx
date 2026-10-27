@@ -61,13 +61,6 @@ export const Navigation = () => {
               {t("landing.nav.features")}
             </Link>
             <Link 
-              to="/#pricing" 
-              className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
-              style={{ transitionDelay: '50ms' }}
-            >
-              {t("landing.nav.pricing")}
-            </Link>
-            <Link 
               to="/auth" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
               style={{ transitionDelay: '100ms' }}

@@ -27,7 +27,7 @@ const Landing = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
-  // Scroll to hash section (e.g. /#pricing from another page)
+  // Scroll to hash section (e.g. /#free from another page)
   useEffect(() => {
     if (location.hash) {
       const el = document.querySelector(location.hash);
@@ -84,7 +84,6 @@ const Landing = () => {
     t("landing.allFeatures.ninjaTraderSync"),
     t("landing.allFeatures.propFirmDetection"),
     t("landing.allFeatures.news"),
-    t("landing.allFeatures.freeTrial"),
   ];
   return <div className="min-h-screen bg-background">
       <Navigation />
@@ -239,75 +238,29 @@ const Landing = () => {
       <TrustBadges />
 
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Badge className="mb-4 glow-effect">{t("landing.pricingBadge")}</Badge>
-            <h2 className="text-4xl font-bold mb-4">{t("landing.pricingTitle")}</h2>
+      {/* Free Section */}
+      <section id="free" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <Badge className="mb-4 glow-effect">{t("landing.free.badge")}</Badge>
+            <h2 className="text-4xl font-bold mb-4">{t("landing.free.title")}</h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              {t("landing.pricingDescription")}
+              {t("landing.free.description")}
             </p>
           </div>
-          
-          <div className="max-w-4xl mx-auto">
-            <Card className="border-primary glow-effect">
-              <CardHeader className="text-center pb-8">
-                <div className="inline-block mx-auto mb-4">
-                  <Badge className="text-lg px-4 py-2">{t("landing.trialBadge")}</Badge>
-                </div>
-                <CardTitle className="text-3xl mb-2">{t("landing.premiumTitle")}</CardTitle>
-                <CardDescription className="text-lg">
-                  {t("landing.premiumDescription")}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  {/* Monthly Plan */}
-                  <div className="text-center p-6 rounded-lg bg-muted/50">
-                    <p className="text-sm text-muted-foreground mb-2">{t("landing.monthlyPlan")}</p>
-                    <div className="mb-4">
-                      <span className="text-5xl font-bold">{t("landing.monthlyPrice")}</span>
-                      <span className="text-muted-foreground ml-2">{t("landing.monthlyPeriod")}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{t("landing.monthlyCancel")}</p>
-                  </div>
-                  
-                  {/* Yearly Plan */}
-                  <div className="text-center p-6 rounded-lg bg-primary/10 border-2 border-primary relative">
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      {t("landing.yearlyBadge")}
-                    </Badge>
-                    <p className="text-sm text-muted-foreground mb-2">{t("landing.yearlyPlan")}</p>
-                    <div className="mb-4">
-                      <span className="text-5xl font-bold">{t("landing.yearlyPrice")}</span>
-                      <span className="text-muted-foreground ml-2">{t("landing.yearlyPeriod")}</span>
-                    </div>
-                    <p className="text-sm text-primary font-medium">{t("landing.yearlyDiscount")}</p>
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <h3 className="font-semibold text-lg mb-4 text-center">{t("landing.allFeaturesTitle")}</h3>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {allFeatures.map((feature, idx) => <div key={idx} className="flex items-start gap-2">
-                        <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                        <span className="text-sm">{feature}</span>
-                      </div>)}
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <Button className="w-full" size="lg" variant="premium" asChild>
-                    <Link to="/auth">{t("landing.ctaTrial")}</Link>
-                  </Button>
-                  <p className="text-center text-sm text-muted-foreground">
-                    {t("landing.trialNotice")}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <Card className="border-primary glow-effect">
+            <CardContent className="pt-8">
+              <div className="grid md:grid-cols-2 gap-3 mb-8">
+                {allFeatures.map((feature, idx) => <div key={idx} className="flex items-start gap-2">
+                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                    <span className="text-sm">{feature}</span>
+                  </div>)}
+              </div>
+              <Button className="w-full" size="lg" variant="premium" asChild>
+                <Link to="/auth">{t("landing.free.cta")}</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
@@ -321,7 +274,7 @@ const Landing = () => {
             {t("landing.ctaDescription")}
           </p>
           <Button size="lg" variant="premium" asChild>
-            <Link to="/auth">{t("landing.ctaTrial")}</Link>
+            <Link to="/auth">{t("landing.free.cta")}</Link>
           </Button>
         </div>
       </section>
