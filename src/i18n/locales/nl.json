@@ -232,8 +232,8 @@
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
     "equity": "Vermogen",
     "pnl": "P&L",
-    "sectorSentiment": "Marktstemming Vandaag",
-    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van bias",
+    "sectorSentiment": "Marktsentiment Vandaag",
+    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van marktvooroordeel",
     "articles": "artikelen",
     "portfolioNews": "Portfolio Nieuws",
     "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
@@ -254,9 +254,6 @@
       "politicalCatalyst": "Politieke Katalysator",
       "newsCatalyst": "Nieuwskatalysator"
     },
-    "sectorSentiment": "Marktsentiment Vandaag",
-    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van marktvooroordeel",
-    "articles": "artikelen",
     "sectorArticles": "{{count}} artikelen geanalyseerd",
     "topArticles": "Topartikelen",
     "trend7Days": "7-daagse trend",
@@ -380,7 +377,6 @@
     "short": "Short",
     "newTrade": "Nieuwe transactie",
     "editTrade": "Transactie bewerken",
-    "addTrade": "Transactie toevoegen",
     "updateTrade": "Transactie bijwerken",
     "tradeUpdated": "Transactie succesvol bijgewerkt",
     "tradeDeleted": "Transactie succesvol verwijderd",
@@ -418,7 +414,7 @@
     "rating": "Trade Kwaliteitsbeoordeling",
     "ratingHint": "Beoordeel deze trade van 1 (slechte uitvoering) tot 5 (uitstekende uitvoering)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Upload een grafiek screenshot van deze trade",
+    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
     "analyzeChart": "Grafiek analyseren",
     "analyzing": "Analyseren...",
     "chartAnalyzed": "Grafiek succesvol geanalyseerd",
@@ -429,7 +425,6 @@
     "lowConfidence": "Lage betrouwbaarheid",
     "manualEntry": "Handmatige invoer",
     "screenshotAnalysis": "Screenshot analyseren",
-    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
     "manualEntryDescription": "Voer alle handelsdetails handmatig in",
     "livePnL": "Live P&L Preview",
     "copyLastTrade": "Kopieer laatste trade",
@@ -479,16 +474,7 @@
       "description": "Weet u zeker dat u deze {{symbol}} trade wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
     },
     "deleteSuccess": "Trade succesvol verwijderd",
-    "accountType": {
-      "label": "Account",
-      "tooltip": "Accounttype: Sim (oefenen), Evaluation (prop firma test), Performance (gefinancierd), of Live (eigen kapitaal)",
-      "sim": "SIM",
-      "evaluation": "EVAL",
-      "performance": "FUNDED",
-      "live": "LIVE",
-      "filter": "Filteren op Accounttype",
-      "all": "Alle Accounts"
-    },
+    "accountType": "Account Type",
     "sentiment": {
       "label": "Nieuws Sentiment",
       "veryBullish": "Zeer Bullish",
@@ -515,7 +501,6 @@
       "medium": "Gemiddeld Buzz-Niveau",
       "articles": "{{count}} artikelen in laatste 12u"
     },
-    "accountType": "Account Type",
     "accountName": "Account Naam",
     "accountNamePlaceholder": "bv. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -834,7 +819,11 @@
     },
     "badge": "Professioneel Trading Dagboek",
     "heroTitle": "Word een betere trader door",
-    "heroTitleHighlightWords": ["systematisch", "nauwkeurig", "AI-gestuurd"],
+    "heroTitleHighlightWords": [
+      "systematisch",
+      "nauwkeurig",
+      "AI-gestuurd"
+    ],
     "heroTitleHighlightSuffix": "journaling",
     "heroDescription": "TradeNotes – het trading dagboek voor ambitieuze en actieve traders. Gedetailleerde analytics, AI-nieuws, politieke evenementen en patroonherkenning helpen je een winstgevend systeem te bouwen. Gebruikt door duizenden traders wereldwijd.",
     "ctaStart": "Start Gratis",
@@ -874,7 +863,7 @@
     "ctaTrial": "Start 14 Dagen Gratis Proefperiode",
     "trialNotice": "Geen creditcard vereist • Altijd opzegbaar",
     "ctaTitle": "Trade winstgevender – Start nu je gratis AI dagboek",
-    "ctaDescription": "14 dagen gratis proberen • Geen creditcard nodig • Alle premium functies inbegrepen",
+    "ctaDescription": "Geen abonnement, geen creditcard – registreer en begin.",
     "footerTitle": "TradeNot.es",
     "footerDescription": "Het professionele trading dagboek voor ambitieuze traders",
     "footerProduct": "Product",
@@ -950,7 +939,7 @@
         "title": "Trading Kalender",
         "description": "Kalenderweergave met kleurgecodeerde winst/verlies dagen. Bekijk snel je trading activiteit in één oogopslag."
       },
-"ai": {
+      "ai": {
         "title": "AI Trading Assistent",
         "description": "Stel vragen over je prestaties. Krijg directe datagestuurde inzichten en analyses van je trading geschiedenis."
       },
@@ -1029,6 +1018,12 @@
       "propFirmDetection": "Prop Firm Account Detectie (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking voor Stop-Loss Optimalisatie",
       "achievements": "Gamificatie & Achievements Systeem"
+    },
+    "free": {
+      "badge": "100% gratis",
+      "title": "Volledig gratis. Voor altijd.",
+      "description": "Geen abonnementen, geen creditcard, geen verborgen kosten. Alle functies gratis voor elke trader.",
+      "cta": "Gratis starten"
     }
   },
   "features": {
@@ -1047,32 +1042,230 @@
       "ai": "AI-gestuurde inzichten",
       "marketIntel": "Marktdata & nieuws"
     },
-    "categories": { "tradingTools": "Trading Tools", "analytics": "Analyses", "ai": "AI & Automatisering", "reports": "Rapporten", "marketIntel": "Markt Intelligentie" },
+    "categories": {
+      "tradingTools": "Trading Tools",
+      "analytics": "Analyses",
+      "ai": "AI & Automatisering",
+      "reports": "Rapporten",
+      "marketIntel": "Markt Intelligentie"
+    },
     "items": {
-      "easyEntry": { "title": "Snelle Invoer", "description": "Trades vastleggen in seconden", "benefits": ["Live P&L preview", "Quick-chips", "Laatste trade kopiëren"] },
-      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Automatische synchronisatie", "benefits": ["Entry, Exit, MFE/MAE", "12+ prop firms", "Geen handmatige invoer"] },
-      "propFirm": { "title": "Prop Firm Integratie", "description": "Automatische account detectie", "benefits": ["Gescheiden analytics", "Apex, Topstep", "Type auto-gedetecteerd"] },
-      "positionCalc": { "title": "Positie Calculator", "description": "Risico-gebaseerde groottes", "benefits": ["Risico-berekening", "Stop-loss afstand", "Max risico"] },
-      "csvImport": { "title": "CSV Import/Export", "description": "Data importeren of exporteren", "benefits": ["Broker formaten", "Makkelijk exporteren", "Naadloze integratie"] },
-      "mfeMAE": { "title": "MFE/MAE Analyse", "description": "Stop-loss optimaliseren", "benefits": ["Automatische tracking", "Gemiste winst", "Aanbevelingen"] },
-      "analytics": { "title": "Performance Analytics", "description": "Win rate, R-multiple", "benefits": ["20+ KPIs", "Filter op periode", "Sterktes/zwaktes"] },
-      "equityCurve": { "title": "Equity Curve", "description": "Kapitaalgroei over tijd", "benefits": ["Drawdowns zien", "Groeitrends", "Cumulatieve grafiek"] },
-      "consistency": { "title": "Consistentie Tracker", "description": "12-weken heatmap", "benefits": ["Winstgevende dagen", "Verliesreeksen", "Consistente gewoontes"] },
-      "calendar": { "title": "Trading Kalender", "description": "Kalender met kleuren", "benefits": ["Maandoverzicht", "Klik voor trades", "P&L kleuren"] },
-      "aiAssistant": { "title": "AI Assistent", "description": "Vragen over performance", "benefits": ["Natuurlijke taal", "Data-gedreven", "Historische analyse"] },
-      "aiCharts": { "title": "AI Chat met Grafieken", "description": "Interactieve visualisaties", "benefits": ["Staaf, lijn, taart", "Tabellen", "Directe visualisatie"] },
-      "dailySummary": { "title": "Dagelijks AI Rapport", "description": "Automatische email samenvatting", "benefits": ["Sterktes/zwaktes", "Suggesties", "Per email"] },
-      "goalAlerts": { "title": "Doel Alerts", "description": "Realtime meldingen", "benefits": ["Dagelijks winstdoel", "Max trades", "Drawdown alerts"] },
-      "riskSimulator": { "title": "Risico Simulator", "description": "Monte Carlo simulatie", "benefits": ["What-if 2R exits", "Ander risicobeheer", "1000+ simulaties"] },
-      "symbolReports": { "title": "Symbool Performance", "description": "Analyse per instrument", "benefits": ["P&L per symbool", "Win rate vergelijking", "Beste markten"] },
-      "setupReports": { "title": "Setup Rapporten", "description": "Performance per setup", "benefits": ["Strategieën vergelijken", "Top setups", "Specifieke metrics"] },
-      "hourAnalysis": { "title": "Uur Analyse", "description": "Meest winstgevende uren", "benefits": ["P&L per uur", "Beste uren", "Slechte uren vermijden"] },
-      "streakAnalysis": { "title": "Reeks Analyse", "description": "Win/verlies reeksen", "benefits": ["Langste reeksen", "Gemiddelde lengte", "Patronen"] },
-      "holdingPeriod": { "title": "Houdperiode Analyse", "description": "Optimale trade duur", "benefits": ["P&L per duur", "Scalps vs swings", "Optimale duur"] },
-      "portfolioNews": { "title": "Nieuws Intelligentie", "description": "Auto-gecureerd nieuws", "benefits": ["Proxy-mapping", "Smart tags", "AI vertaling"] },
-      "politicalEvents": { "title": "Economische Kalender", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Belangrijke events", "Impact niveau", "In kalender"] },
-      "sectorSentiment": { "title": "Sector Sentiment", "description": "Dagelijkse sentiment analyse", "benefits": ["11 sectoren", "Aantal artikelen", "Sentiment score"] },
-      "economicCalendar": { "title": "Economische Data", "description": "Fed, Powell realtime", "benefits": ["Politieke events", "Markt impact", "Geïnformeerd traden"] }
+      "easyEntry": {
+        "title": "Snelle Invoer",
+        "description": "Trades vastleggen in seconden",
+        "benefits": [
+          "Live P&L preview",
+          "Quick-chips",
+          "Laatste trade kopiëren"
+        ]
+      },
+      "ninjaTrader": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Automatische synchronisatie",
+        "benefits": [
+          "Entry, Exit, MFE/MAE",
+          "12+ prop firms",
+          "Geen handmatige invoer"
+        ]
+      },
+      "propFirm": {
+        "title": "Prop Firm Integratie",
+        "description": "Automatische account detectie",
+        "benefits": [
+          "Gescheiden analytics",
+          "Apex, Topstep",
+          "Type auto-gedetecteerd"
+        ]
+      },
+      "positionCalc": {
+        "title": "Positie Calculator",
+        "description": "Risico-gebaseerde groottes",
+        "benefits": [
+          "Risico-berekening",
+          "Stop-loss afstand",
+          "Max risico"
+        ]
+      },
+      "csvImport": {
+        "title": "CSV Import/Export",
+        "description": "Data importeren of exporteren",
+        "benefits": [
+          "Broker formaten",
+          "Makkelijk exporteren",
+          "Naadloze integratie"
+        ]
+      },
+      "mfeMAE": {
+        "title": "MFE/MAE Analyse",
+        "description": "Stop-loss optimaliseren",
+        "benefits": [
+          "Automatische tracking",
+          "Gemiste winst",
+          "Aanbevelingen"
+        ]
+      },
+      "analytics": {
+        "title": "Performance Analytics",
+        "description": "Win rate, R-multiple",
+        "benefits": [
+          "20+ KPIs",
+          "Filter op periode",
+          "Sterktes/zwaktes"
+        ]
+      },
+      "equityCurve": {
+        "title": "Equity Curve",
+        "description": "Kapitaalgroei over tijd",
+        "benefits": [
+          "Drawdowns zien",
+          "Groeitrends",
+          "Cumulatieve grafiek"
+        ]
+      },
+      "consistency": {
+        "title": "Consistentie Tracker",
+        "description": "12-weken heatmap",
+        "benefits": [
+          "Winstgevende dagen",
+          "Verliesreeksen",
+          "Consistente gewoontes"
+        ]
+      },
+      "calendar": {
+        "title": "Trading Kalender",
+        "description": "Kalender met kleuren",
+        "benefits": [
+          "Maandoverzicht",
+          "Klik voor trades",
+          "P&L kleuren"
+        ]
+      },
+      "aiAssistant": {
+        "title": "AI Assistent",
+        "description": "Vragen over performance",
+        "benefits": [
+          "Natuurlijke taal",
+          "Data-gedreven",
+          "Historische analyse"
+        ]
+      },
+      "aiCharts": {
+        "title": "AI Chat met Grafieken",
+        "description": "Interactieve visualisaties",
+        "benefits": [
+          "Staaf, lijn, taart",
+          "Tabellen",
+          "Directe visualisatie"
+        ]
+      },
+      "dailySummary": {
+        "title": "Dagelijks AI Rapport",
+        "description": "Automatische email samenvatting",
+        "benefits": [
+          "Sterktes/zwaktes",
+          "Suggesties",
+          "Per email"
+        ]
+      },
+      "goalAlerts": {
+        "title": "Doel Alerts",
+        "description": "Realtime meldingen",
+        "benefits": [
+          "Dagelijks winstdoel",
+          "Max trades",
+          "Drawdown alerts"
+        ]
+      },
+      "riskSimulator": {
+        "title": "Risico Simulator",
+        "description": "Monte Carlo simulatie",
+        "benefits": [
+          "What-if 2R exits",
+          "Ander risicobeheer",
+          "1000+ simulaties"
+        ]
+      },
+      "symbolReports": {
+        "title": "Symbool Performance",
+        "description": "Analyse per instrument",
+        "benefits": [
+          "P&L per symbool",
+          "Win rate vergelijking",
+          "Beste markten"
+        ]
+      },
+      "setupReports": {
+        "title": "Setup Rapporten",
+        "description": "Performance per setup",
+        "benefits": [
+          "Strategieën vergelijken",
+          "Top setups",
+          "Specifieke metrics"
+        ]
+      },
+      "hourAnalysis": {
+        "title": "Uur Analyse",
+        "description": "Meest winstgevende uren",
+        "benefits": [
+          "P&L per uur",
+          "Beste uren",
+          "Slechte uren vermijden"
+        ]
+      },
+      "streakAnalysis": {
+        "title": "Reeks Analyse",
+        "description": "Win/verlies reeksen",
+        "benefits": [
+          "Langste reeksen",
+          "Gemiddelde lengte",
+          "Patronen"
+        ]
+      },
+      "holdingPeriod": {
+        "title": "Houdperiode Analyse",
+        "description": "Optimale trade duur",
+        "benefits": [
+          "P&L per duur",
+          "Scalps vs swings",
+          "Optimale duur"
+        ]
+      },
+      "portfolioNews": {
+        "title": "Nieuws Intelligentie",
+        "description": "Auto-gecureerd nieuws",
+        "benefits": [
+          "Proxy-mapping",
+          "Smart tags",
+          "AI vertaling"
+        ]
+      },
+      "politicalEvents": {
+        "title": "Economische Kalender",
+        "description": "FOMC, CPI, NFP, GDP",
+        "benefits": [
+          "Belangrijke events",
+          "Impact niveau",
+          "In kalender"
+        ]
+      },
+      "sectorSentiment": {
+        "title": "Sector Sentiment",
+        "description": "Dagelijkse sentiment analyse",
+        "benefits": [
+          "11 sectoren",
+          "Aantal artikelen",
+          "Sentiment score"
+        ]
+      },
+      "economicCalendar": {
+        "title": "Economische Data",
+        "description": "Fed, Powell realtime",
+        "benefits": [
+          "Politieke events",
+          "Markt impact",
+          "Geïnformeerd traden"
+        ]
+      }
     }
   },
   "validation": {
@@ -1132,33 +1325,149 @@
       "term": "Trade Beoordeling (Trade Rating)",
       "definition": "Een subjectieve beoordeling (1-5 sterren) die de kwaliteit van de trade-uitvoering weerspiegelt. Houdt rekening met factoren zoals: uw plan volgen, entry/exit timing, emotionele controle en risicobeheer. Helpt bij het identificeren van goed uitgevoerde trades ongeacht het P&L-resultaat."
     },
-    "winRate": { "term": "Winstpercentage", "definition": "Percentage winstgevende trades.", "formula": "Winstpercentage = (Winst Trades / Totaal) × 100%", "example": "60 winsten van 100 → 60%" },
-    "winRateRiskReward": { "term": "Winstpercentage & Risk-Reward Relatie", "definition": "Een laag winstpercentage (bijv. 40%) kan zeer winstgevend zijn als het gemiddelde R-Multiple hoog is. Voorbeeld: 40% win rate met 3R gemiddelde winst en -1R gemiddeld verlies = (0.4 × 3R) + (0.6 × -1R) = +0.6R verwachting per trade. Omgekeerd kan een hoog percentage (bijv. 70%) niet winstgevend zijn met slechte risk-reward: 70% win rate met 1R winst en -3R verlies = (0.7 × 1R) + (0.3 × -3R) = -0.2R per trade.", "example": "Strategie A: 40% win rate, 3:1 R:R → Winstgevend | Strategie B: 70% win rate, 1:3 R:R → Verliesgevend" },
-    "profitFactor": { "term": "Profit Factor", "definition": "Verhouding brutowinsten tot brutoverliezen.", "formula": "Factor = Brutowinst / Brutoverlies", "example": "$10.000 winst, $5.000 verlies → 2.0" },
-    "riskReward": { "term": "Risico-Opbrengst", "definition": "Vergelijkt potentiële winst met potentieel verlies.", "formula": "R:R = (Doel - Entry) / (Entry - Stop)", "example": "Entry $50, Doel $56, Stop $48 → 3:1" },
-    "maxDrawdown": { "term": "Maximum Drawdown", "definition": "Grootste piek-tot-dal daling.", "formula": "Max DD = (Piek - Dal) / Piek × 100%", "example": "Piek $10.000, dal $8.000 → 20%" },
-    "avgWinLoss": { "term": "Gem. Winst/Verlies", "definition": "Gemiddelde winst vs gemiddeld verlies.", "formula": "Gem. = Totale Winst / # Winsten", "example": "5 winsten van $500 → Gem. $100" },
-    "pnl": { "term": "P&L (Winst & Verlies)", "definition": "Netto winst/verlies na kosten.", "formula": "P&L = (Exit - Entry) × Aantal - Kosten", "example": "100 @ $50, exit $55, $2 kosten → $498" },
-    "setup": { "term": "Setup", "definition": "Specifiek patroon dat kans signaleert.", "example": "Breakout, Failed Rally, Gap Fill" },
-    "stopLoss": { "term": "Stop Loss", "definition": "Vooraf bepaald prijsniveau om verliezen te beperken.", "example": "Long $50, stop $48 beperkt risico tot $2/aandeel" },
-    "equityCurve": { "term": "Vermogenscurve", "definition": "Grafische weergave van cumulatieve prestaties van uw account.", "example": "Visualiseert kapitaalgroei en drawdowns" },
-    "consistencyTracker": { "term": "Consistentie Tracker", "definition": "Visuele heatmap van uw dagelijkse trading activiteit.", "example": "Toont winstgevende dagen (groen) vs verlies dagen (rood)" },
-    "portfolioNews": { "term": "Portfolio Nieuws", "definition": "Gefilterde nieuws feed voor uw meest verhandelde symbolen.", "example": "Automatisch nieuws voor AAPL, TSLA, etc." },
-    "dailyTradeGoal": { "term": "Dagelijks Trading Doel", "definition": "Dagelijks winstdoel en maximum trades limiet per dag.", "example": "Doel $500/dag, max 10 trades" },
-    "breakout": { "term": "Breakout", "definition": "Wanneer prijs weerstand/support doorbreekt en nieuwe trend signaleert.", "example": "Aandeel doorbreekt $50 weerstand met hoog volume" },
-    "consolidation": { "term": "Consolidatie", "definition": "Zijwaartse fase waar prijs in smalle range handelt.", "example": "Na 20% stijging, handelt 2 weken in 5% range" },
-    "edge": { "term": "Edge / Voorsprong", "definition": "Statistisch of informationeel voordeel dat winstkans verhoogt.", "example": "Uw edge: 55% win rate met specifiek patroon en 2R gemiddeld" },
-    "gap": { "term": "Gap / Koersopening", "definition": "Prijsgat tussen vorige sluiting en volgende opening.", "example": "Sluit $50, opent $55 na positieve earnings = Gap Up $5" },
-    "leverage": { "term": "Hefboomwerking", "definition": "Controle van grotere posities met geleend kapitaal.", "formula": "Leverage = Positiewaarde / Eigen Vermogen", "example": "$10K account, 2:1 leverage → kan $20K positie aanhouden" },
-    "liquidity": { "term": "Liquiditeit", "definition": "Gemak van kopen/verkopen zonder prijs te beïnvloeden.", "example": "AAPL: miljoenen aandelen/dag, spread $0.01 = hoge liquiditeit" },
-    "positionSizing": { "term": "Positiebepaling", "definition": "Bepalen hoeveel kapitaal te investeren op basis van risico en accountgrootte.", "formula": "Grootte = Risico $ / Risico per Eenheid", "example": "$10K account, 2% risico ($200), entry $50, stop $47: 200/3 = 66 aandelen" },
-    "scalping": { "term": "Scalping", "definition": "Korte-termijn strategie met vele dagelijkse trades (seconden tot minuten).", "example": "Koop $50.10, verkoop $50.20, winst $0.10 × 1000 aandelen = $100, 50+ trades/dag" },
-    "slippage": { "term": "Slippage", "definition": "Verschil tussen verwachte prijs en werkelijke uitvoeringsprijs.", "example": "Market order op $50, uitgevoerd op $50.15 = $0.15 slippage (0.3%)" },
-    "supportResistance": { "term": "Support & Weerstand", "definition": "Niveaus waar koop-/verkoopdruk historisch trends stopt.", "example": "Valt 3x naar $45 en herstelt = support. Bereikt 3x $55 en valt = weerstand" },
-    "takeProfit": { "term": "Winst Nemen", "definition": "Vooraf bepaald exit punt om automatisch winst te realiseren.", "example": "Entry $50, take profit $56 (vorige weerstand), stop $47 = 2:1 R:R" },
-    "trend": { "term": "Trend", "definition": "Algemene richting van prijsbeweging over tijd.", "example": "$40 → $45 → $43 → $48 → $46 → $51 = uptrend (stijgende dieptepunten)" },
-    "volatility": { "term": "Volatiliteit", "definition": "Grootte van prijsschommelingen. Hoge = grote bewegingen.", "example": "Aandeel A: $50 ±$0.50/dag (1%), Aandeel B: $50 ±$2.50/dag (5%) = 5x volatieler" },
-    "volume": { "term": "Handelsvolume", "definition": "Aantal verhandelde aandelen/contracten in periode. Hoog volume bevestigt bewegingen.", "example": "Breakout boven $50 met 10x normaal volume = sterk signaal. Met laag volume = waarschijnlijk vals" },
+    "winRate": {
+      "term": "Winstpercentage",
+      "definition": "Percentage winstgevende trades.",
+      "formula": "Winstpercentage = (Winst Trades / Totaal) × 100%",
+      "example": "60 winsten van 100 → 60%"
+    },
+    "winRateRiskReward": {
+      "term": "Winstpercentage & Risk-Reward Relatie",
+      "definition": "Een laag winstpercentage (bijv. 40%) kan zeer winstgevend zijn als het gemiddelde R-Multiple hoog is. Voorbeeld: 40% win rate met 3R gemiddelde winst en -1R gemiddeld verlies = (0.4 × 3R) + (0.6 × -1R) = +0.6R verwachting per trade. Omgekeerd kan een hoog percentage (bijv. 70%) niet winstgevend zijn met slechte risk-reward: 70% win rate met 1R winst en -3R verlies = (0.7 × 1R) + (0.3 × -3R) = -0.2R per trade.",
+      "example": "Strategie A: 40% win rate, 3:1 R:R → Winstgevend | Strategie B: 70% win rate, 1:3 R:R → Verliesgevend"
+    },
+    "profitFactor": {
+      "term": "Profit Factor",
+      "definition": "Verhouding brutowinsten tot brutoverliezen.",
+      "formula": "Factor = Brutowinst / Brutoverlies",
+      "example": "$10.000 winst, $5.000 verlies → 2.0"
+    },
+    "riskReward": {
+      "term": "Risico-Opbrengst",
+      "definition": "Vergelijkt potentiële winst met potentieel verlies.",
+      "formula": "R:R = (Doel - Entry) / (Entry - Stop)",
+      "example": "Entry $50, Doel $56, Stop $48 → 3:1"
+    },
+    "maxDrawdown": {
+      "term": "Maximum Drawdown",
+      "definition": "Grootste piek-tot-dal daling.",
+      "formula": "Max DD = (Piek - Dal) / Piek × 100%",
+      "example": "Piek $10.000, dal $8.000 → 20%"
+    },
+    "avgWinLoss": {
+      "term": "Gem. Winst/Verlies",
+      "definition": "Gemiddelde winst vs gemiddeld verlies.",
+      "formula": "Gem. = Totale Winst / # Winsten",
+      "example": "5 winsten van $500 → Gem. $100"
+    },
+    "pnl": {
+      "term": "P&L (Winst & Verlies)",
+      "definition": "Netto winst/verlies na kosten.",
+      "formula": "P&L = (Exit - Entry) × Aantal - Kosten",
+      "example": "100 @ $50, exit $55, $2 kosten → $498"
+    },
+    "setup": {
+      "term": "Setup",
+      "definition": "Specifiek patroon dat kans signaleert.",
+      "example": "Breakout, Failed Rally, Gap Fill"
+    },
+    "stopLoss": {
+      "term": "Stop Loss",
+      "definition": "Vooraf bepaald prijsniveau om verliezen te beperken.",
+      "example": "Long $50, stop $48 beperkt risico tot $2/aandeel"
+    },
+    "equityCurve": {
+      "term": "Vermogenscurve",
+      "definition": "Grafische weergave van cumulatieve prestaties van uw account.",
+      "example": "Visualiseert kapitaalgroei en drawdowns"
+    },
+    "consistencyTracker": {
+      "term": "Consistentie Tracker",
+      "definition": "Visuele heatmap van uw dagelijkse trading activiteit.",
+      "example": "Toont winstgevende dagen (groen) vs verlies dagen (rood)"
+    },
+    "portfolioNews": {
+      "term": "Portfolio Nieuws",
+      "definition": "Gefilterde nieuws feed voor uw meest verhandelde symbolen.",
+      "example": "Automatisch nieuws voor AAPL, TSLA, etc."
+    },
+    "dailyTradeGoal": {
+      "term": "Dagelijks Trading Doel",
+      "definition": "Dagelijks winstdoel en maximum trades limiet per dag.",
+      "example": "Doel $500/dag, max 10 trades"
+    },
+    "breakout": {
+      "term": "Breakout",
+      "definition": "Wanneer prijs weerstand/support doorbreekt en nieuwe trend signaleert.",
+      "example": "Aandeel doorbreekt $50 weerstand met hoog volume"
+    },
+    "consolidation": {
+      "term": "Consolidatie",
+      "definition": "Zijwaartse fase waar prijs in smalle range handelt.",
+      "example": "Na 20% stijging, handelt 2 weken in 5% range"
+    },
+    "edge": {
+      "term": "Edge / Voorsprong",
+      "definition": "Statistisch of informationeel voordeel dat winstkans verhoogt.",
+      "example": "Uw edge: 55% win rate met specifiek patroon en 2R gemiddeld"
+    },
+    "gap": {
+      "term": "Gap / Koersopening",
+      "definition": "Prijsgat tussen vorige sluiting en volgende opening.",
+      "example": "Sluit $50, opent $55 na positieve earnings = Gap Up $5"
+    },
+    "leverage": {
+      "term": "Hefboomwerking",
+      "definition": "Controle van grotere posities met geleend kapitaal.",
+      "formula": "Leverage = Positiewaarde / Eigen Vermogen",
+      "example": "$10K account, 2:1 leverage → kan $20K positie aanhouden"
+    },
+    "liquidity": {
+      "term": "Liquiditeit",
+      "definition": "Gemak van kopen/verkopen zonder prijs te beïnvloeden.",
+      "example": "AAPL: miljoenen aandelen/dag, spread $0.01 = hoge liquiditeit"
+    },
+    "positionSizing": {
+      "term": "Positiebepaling",
+      "definition": "Bepalen hoeveel kapitaal te investeren op basis van risico en accountgrootte.",
+      "formula": "Grootte = Risico $ / Risico per Eenheid",
+      "example": "$10K account, 2% risico ($200), entry $50, stop $47: 200/3 = 66 aandelen"
+    },
+    "scalping": {
+      "term": "Scalping",
+      "definition": "Korte-termijn strategie met vele dagelijkse trades (seconden tot minuten).",
+      "example": "Koop $50.10, verkoop $50.20, winst $0.10 × 1000 aandelen = $100, 50+ trades/dag"
+    },
+    "slippage": {
+      "term": "Slippage",
+      "definition": "Verschil tussen verwachte prijs en werkelijke uitvoeringsprijs.",
+      "example": "Market order op $50, uitgevoerd op $50.15 = $0.15 slippage (0.3%)"
+    },
+    "supportResistance": {
+      "term": "Support & Weerstand",
+      "definition": "Niveaus waar koop-/verkoopdruk historisch trends stopt.",
+      "example": "Valt 3x naar $45 en herstelt = support. Bereikt 3x $55 en valt = weerstand"
+    },
+    "takeProfit": {
+      "term": "Winst Nemen",
+      "definition": "Vooraf bepaald exit punt om automatisch winst te realiseren.",
+      "example": "Entry $50, take profit $56 (vorige weerstand), stop $47 = 2:1 R:R"
+    },
+    "trend": {
+      "term": "Trend",
+      "definition": "Algemene richting van prijsbeweging over tijd.",
+      "example": "$40 → $45 → $43 → $48 → $46 → $51 = uptrend (stijgende dieptepunten)"
+    },
+    "volatility": {
+      "term": "Volatiliteit",
+      "definition": "Grootte van prijsschommelingen. Hoge = grote bewegingen.",
+      "example": "Aandeel A: $50 ±$0.50/dag (1%), Aandeel B: $50 ±$2.50/dag (5%) = 5x volatieler"
+    },
+    "volume": {
+      "term": "Handelsvolume",
+      "definition": "Aantal verhandelde aandelen/contracten in periode. Hoog volume bevestigt bewegingen.",
+      "example": "Breakout boven $50 met 10x normaal volume = sterk signaal. Met laag volume = waarschijnlijk vals"
+    },
     "newsSentiment": {
       "term": "Nieuws Sentiment (News Sentiment)",
       "definition": "Nieuws Sentiment analyseert de stemming van nieuwsartikelen over een specifiek symbool. Het berekent een gemiddelde van al het nieuws in de 24 uur voor je trade-entry. De waarde varieert van -1 (zeer bearish/negatief) via 0 (neutraal) tot +1 (zeer bullish/positief). Een waarde van 0.00 betekent neutraal sentiment of geen nieuwsartikelen gevonden in dat tijdvenster.",
@@ -1284,8 +1593,8 @@
     "tradesByAccountType": "Trades per accounttype",
     "equityCurvesByAccountType": "Kapitaalcurves per accounttype",
     "avgTrade": "Gemiddelde trade",
-    "trades": "Trades",
-    "profitFactor": "Winstfactor",
+    "trades": "trades",
+    "profitFactor": "Profit Factor",
     "totalPnL": "Totaal P&L",
     "allTime": "Alle Tijd",
     "thisWeek": "Deze Week",
@@ -1320,7 +1629,6 @@
     "winningTrades": "Winnende Trades",
     "losingTrades": "Verliezende Trades",
     "setupPerformance": "Setup Prestatie",
-    "trades": "trades",
     "winRate": "winstpercentage",
     "noSetupData": "Geen setup gegevens beschikbaar voor de geselecteerde periode",
     "dayOfWeekSummary": "Weekdag Samenvatting",
@@ -1343,7 +1651,6 @@
     "tradesWithRisk": "Trades met Risico Gegevens",
     "avgWin": "Gemiddelde Winst",
     "avgLoss": "Gemiddeld Verlies",
-    "profitFactor": "Profit Factor",
     "totalTradesTooltip": "Totaal aantal uitgevoerde trades in de geselecteerde periode",
     "winningTradesTooltip": "Aantal winstgevende trades",
     "losingTradesTooltip": "Aantal verliesgevende trades",

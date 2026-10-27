@@ -378,7 +378,6 @@
     "short": "Short",
     "newTrade": "Nuova Operazione",
     "editTrade": "Modifica Operazione",
-    "addTrade": "Aggiungi Operazione",
     "updateTrade": "Aggiorna Operazione",
     "tradeUpdated": "Operazione aggiornata con successo",
     "tradeDeleted": "Operazione eliminata con successo",
@@ -416,7 +415,7 @@
     "rating": "Valutazione Qualità Operazione",
     "ratingHint": "Valuta questa operazione da 1 (esecuzione scarsa) a 5 (esecuzione eccellente)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Carica uno screenshot del grafico di questa operazione",
+    "screenshotHint": "Carica uno screenshot del grafico e la nostra AI estrarrà automaticamente tutti i dettagli dell'operazione",
     "analyzeChart": "Analizza Grafico",
     "analyzing": "Analizzando...",
     "chartAnalyzed": "Grafico analizzato con successo",
@@ -427,7 +426,6 @@
     "lowConfidence": "Bassa Confidenza",
     "manualEntry": "Inserimento Manuale",
     "screenshotAnalysis": "Analizza Screenshot",
-    "screenshotHint": "Carica uno screenshot del grafico e la nostra AI estrarrà automaticamente tutti i dettagli dell'operazione",
     "manualEntryDescription": "Inserisci tutti i dettagli dell'operazione manualmente",
     "livePnL": "Anteprima P&L Live",
     "copyLastTrade": "Copia Ultima Operazione",
@@ -519,37 +517,6 @@
     "evaluation": "Valutazione",
     "performance": "Finanziato",
     "live": "Live"
-  },
-  "import": {
-    "sentiment": {
-      "label": "Sentiment Notizie",
-      "veryBullish": "Molto Rialzista",
-      "bullish": "Rialzista",
-      "slightlyBullish": "Leggermente Rialzista",
-      "neutral": "Neutrale",
-      "slightlyBearish": "Leggermente Ribassista",
-      "bearish": "Ribassista",
-      "veryBearish": "Molto Ribassista",
-      "highRisk": "Alto Rischio",
-      "contraTrade": "Operazione Contro-Notizie"
-    },
-    "newsContext": {
-      "match": "Corrispondenza"
-    },
-    "hype": {
-      "high": "Livello Alto di Buzz",
-      "medium": "Livello Medio di Buzz",
-      "articles": "{{count}} articoli nelle ultime 12h"
-    },
-    "accountType": "Tipo Account",
-    "accountName": "Nome Account",
-    "accountNamePlaceholder": "es. Apex Eval 1, Topstep PA",
-    "accountTypes": {
-      "sim": "Sim",
-      "evaluation": "Eval",
-      "funded": "Funded",
-      "live": "Live"
-    }
   },
   "import": {
     "title": "Importa Operazioni",
@@ -854,7 +821,11 @@
     },
     "badge": "Diario di Trading Professionale",
     "heroTitle": "Diventa un trader migliore con un",
-    "heroTitleHighlightWords": ["journaling sistematico", "journaling preciso", "journaling basato su IA"],
+    "heroTitleHighlightWords": [
+      "journaling sistematico",
+      "journaling preciso",
+      "journaling basato su IA"
+    ],
     "heroTitleHighlightSuffix": "",
     "heroDescription": "TradeNotes – il diario di trading per trader attivi e ambiziosi. Analytics dettagliati, notizie AI, eventi politici e riconoscimento pattern ti aiutano a costruire un sistema redditizio. Usato da migliaia di trader in tutto il mondo.",
     "ctaStart": "Inizia Gratis",
@@ -894,7 +865,7 @@
     "ctaTrial": "Inizia Prova Gratuita 14 Giorni",
     "trialNotice": "Nessuna carta di credito richiesta • Disdici in qualsiasi momento",
     "ctaTitle": "Fai trading più profittevole – Inizia ora il tuo diario AI gratuito",
-    "ctaDescription": "14 giorni di prova gratuita • Nessuna carta di credito • Tutte le funzionalità premium incluse",
+    "ctaDescription": "Nessun abbonamento, nessuna carta – registrati e inizia.",
     "footerTitle": "TradeNot.es",
     "footerDescription": "Il diario di trading professionale per trader ambiziosi",
     "footerProduct": "Prodotto",
@@ -970,7 +941,7 @@
         "title": "Calendario Trading",
         "description": "Vista calendario con giorni profitto/perdita codificati a colori. Rivedi rapidamente la tua attività di trading a colpo d'occhio."
       },
-"ai": {
+      "ai": {
         "title": "Assistente Trading AI",
         "description": "Fai domande sulla tua performance. Ottieni insight e analisi istantanei basati sui dati dalla tua cronologia di trading."
       },
@@ -1049,6 +1020,12 @@
       "propFirmDetection": "Rilevamento Account Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Tracking MFE/MAE per Ottimizzazione Stop-Loss",
       "achievements": "Gamificazione & Sistema Achievement"
+    },
+    "free": {
+      "badge": "100% gratuito",
+      "title": "Completamente gratuito. Per sempre.",
+      "description": "Nessun abbonamento, nessuna carta di credito, nessun costo nascosto. Tutte le funzioni gratuite per ogni trader.",
+      "cta": "Inizia gratis"
     }
   },
   "features": {
@@ -1067,32 +1044,230 @@
       "ai": "Insights con IA",
       "marketIntel": "Dati e notizie di mercato"
     },
-    "categories": { "tradingTools": "Strumenti Trading", "analytics": "Analisi", "ai": "IA & Automazione", "reports": "Report", "marketIntel": "Intelligenza di Mercato" },
+    "categories": {
+      "tradingTools": "Strumenti Trading",
+      "analytics": "Analisi",
+      "ai": "IA & Automazione",
+      "reports": "Report",
+      "marketIntel": "Intelligenza di Mercato"
+    },
     "items": {
-      "easyEntry": { "title": "Inserimento Rapido", "description": "Cattura operazioni in secondi", "benefits": ["Anteprima P&L", "Quick-chips", "Copia ultima operazione"] },
-      "ninjaTrader": { "title": "NinjaTrader Auto-Sync", "description": "Sincronizzazione automatica", "benefits": ["Entry, Exit, MFE/MAE", "12+ prop firm", "Nessun inserimento manuale"] },
-      "propFirm": { "title": "Integrazione Prop Firm", "description": "Rilevamento automatico account", "benefits": ["Analytics separati", "Apex, Topstep", "Tipo auto-rilevato"] },
-      "positionCalc": { "title": "Calcolatore Posizione", "description": "Dimensioni basate sul rischio", "benefits": ["Calcolo basato sul rischio", "Distanza stop-loss", "Rischio massimo"] },
-      "csvImport": { "title": "Import/Export CSV", "description": "Importa o esporta dati", "benefits": ["Formati broker", "Export facile", "Integrazione fluida"] },
-      "mfeMAE": { "title": "Analisi MFE/MAE", "description": "Ottimizza stop-loss", "benefits": ["Tracking automatico", "Profitti mancati", "Raccomandazioni"] },
-      "analytics": { "title": "Analytics Performance", "description": "Win rate, R-multiple", "benefits": ["20+ KPI", "Filtra per periodo", "Punti di forza/debolezza"] },
-      "equityCurve": { "title": "Curva Equity", "description": "Crescita capitale nel tempo", "benefits": ["Drawdown visibili", "Trend crescita", "Grafico cumulativo"] },
-      "consistency": { "title": "Tracker Consistenza", "description": "Heatmap 12 settimane", "benefits": ["Giorni profittevoli", "Serie negative", "Abitudini consistenti"] },
-      "calendar": { "title": "Calendario Trading", "description": "Vista calendario colorata", "benefits": ["Panoramica mensile", "Click per trades", "Codifica colori P&L"] },
-      "aiAssistant": { "title": "Assistente IA", "description": "Domande sulla performance", "benefits": ["Linguaggio naturale", "Insights data-driven", "Analisi storica"] },
-      "aiCharts": { "title": "Chat IA con Grafici", "description": "Visualizzazioni interattive", "benefits": ["Barre, linee, torte", "Tabelle", "Visualizzazione istantanea"] },
-      "dailySummary": { "title": "Report Giornaliero IA", "description": "Riepilogo email automatico", "benefits": ["Punti di forza/debolezza", "Suggerimenti", "Via email"] },
-      "goalAlerts": { "title": "Alert Obiettivi", "description": "Alert in tempo reale", "benefits": ["Obiettivo profitto", "Max trades", "Alert drawdown"] },
-      "riskSimulator": { "title": "Simulatore Rischio", "description": "Simulazione Monte Carlo", "benefits": ["What-if 2R", "Gestione diversa", "1000+ simulazioni"] },
-      "symbolReports": { "title": "Performance Simboli", "description": "Analisi per strumento", "benefits": ["P&L per simbolo", "Confronto win rate", "Migliori mercati"] },
-      "setupReports": { "title": "Report Setup", "description": "Performance per setup", "benefits": ["Confronta strategie", "Top setup", "Metriche specifiche"] },
-      "hourAnalysis": { "title": "Analisi Oraria", "description": "Ore più profittevoli", "benefits": ["P&L per ora", "Migliori ore", "Evita ore negative"] },
-      "streakAnalysis": { "title": "Analisi Serie", "description": "Serie vittorie/perdite", "benefits": ["Serie più lunghe", "Lunghezza media", "Pattern"] },
-      "holdingPeriod": { "title": "Analisi Durata", "description": "Durata ottimale trade", "benefits": ["P&L per durata", "Scalp vs swing", "Durata ottimale"] },
-      "portfolioNews": { "title": "Intelligence Notizie", "description": "News auto-curate", "benefits": ["Proxy-mapping", "Smart tag", "Traduzione IA"] },
-      "politicalEvents": { "title": "Calendario Economico", "description": "FOMC, CPI, NFP, GDP", "benefits": ["Eventi importanti", "Livello impatto", "Nel calendario"] },
-      "sectorSentiment": { "title": "Sentiment Settoriale", "description": "Analisi sentiment giornaliera", "benefits": ["11 settori", "Numero articoli", "Punteggio sentiment"] },
-      "economicCalendar": { "title": "Dati Economici", "description": "Fed, Powell in tempo reale", "benefits": ["Eventi politici", "Impatto mercato", "Trading informato"] }
+      "easyEntry": {
+        "title": "Inserimento Rapido",
+        "description": "Cattura operazioni in secondi",
+        "benefits": [
+          "Anteprima P&L",
+          "Quick-chips",
+          "Copia ultima operazione"
+        ]
+      },
+      "ninjaTrader": {
+        "title": "NinjaTrader Auto-Sync",
+        "description": "Sincronizzazione automatica",
+        "benefits": [
+          "Entry, Exit, MFE/MAE",
+          "12+ prop firm",
+          "Nessun inserimento manuale"
+        ]
+      },
+      "propFirm": {
+        "title": "Integrazione Prop Firm",
+        "description": "Rilevamento automatico account",
+        "benefits": [
+          "Analytics separati",
+          "Apex, Topstep",
+          "Tipo auto-rilevato"
+        ]
+      },
+      "positionCalc": {
+        "title": "Calcolatore Posizione",
+        "description": "Dimensioni basate sul rischio",
+        "benefits": [
+          "Calcolo basato sul rischio",
+          "Distanza stop-loss",
+          "Rischio massimo"
+        ]
+      },
+      "csvImport": {
+        "title": "Import/Export CSV",
+        "description": "Importa o esporta dati",
+        "benefits": [
+          "Formati broker",
+          "Export facile",
+          "Integrazione fluida"
+        ]
+      },
+      "mfeMAE": {
+        "title": "Analisi MFE/MAE",
+        "description": "Ottimizza stop-loss",
+        "benefits": [
+          "Tracking automatico",
+          "Profitti mancati",
+          "Raccomandazioni"
+        ]
+      },
+      "analytics": {
+        "title": "Analytics Performance",
+        "description": "Win rate, R-multiple",
+        "benefits": [
+          "20+ KPI",
+          "Filtra per periodo",
+          "Punti di forza/debolezza"
+        ]
+      },
+      "equityCurve": {
+        "title": "Curva Equity",
+        "description": "Crescita capitale nel tempo",
+        "benefits": [
+          "Drawdown visibili",
+          "Trend crescita",
+          "Grafico cumulativo"
+        ]
+      },
+      "consistency": {
+        "title": "Tracker Consistenza",
+        "description": "Heatmap 12 settimane",
+        "benefits": [
+          "Giorni profittevoli",
+          "Serie negative",
+          "Abitudini consistenti"
+        ]
+      },
+      "calendar": {
+        "title": "Calendario Trading",
+        "description": "Vista calendario colorata",
+        "benefits": [
+          "Panoramica mensile",
+          "Click per trades",
+          "Codifica colori P&L"
+        ]
+      },
+      "aiAssistant": {
+        "title": "Assistente IA",
+        "description": "Domande sulla performance",
+        "benefits": [
+          "Linguaggio naturale",
+          "Insights data-driven",
+          "Analisi storica"
+        ]
+      },
+      "aiCharts": {
+        "title": "Chat IA con Grafici",
+        "description": "Visualizzazioni interattive",
+        "benefits": [
+          "Barre, linee, torte",
+          "Tabelle",
+          "Visualizzazione istantanea"
+        ]
+      },
+      "dailySummary": {
+        "title": "Report Giornaliero IA",
+        "description": "Riepilogo email automatico",
+        "benefits": [
+          "Punti di forza/debolezza",
+          "Suggerimenti",
+          "Via email"
+        ]
+      },
+      "goalAlerts": {
+        "title": "Alert Obiettivi",
+        "description": "Alert in tempo reale",
+        "benefits": [
+          "Obiettivo profitto",
+          "Max trades",
+          "Alert drawdown"
+        ]
+      },
+      "riskSimulator": {
+        "title": "Simulatore Rischio",
+        "description": "Simulazione Monte Carlo",
+        "benefits": [
+          "What-if 2R",
+          "Gestione diversa",
+          "1000+ simulazioni"
+        ]
+      },
+      "symbolReports": {
+        "title": "Performance Simboli",
+        "description": "Analisi per strumento",
+        "benefits": [
+          "P&L per simbolo",
+          "Confronto win rate",
+          "Migliori mercati"
+        ]
+      },
+      "setupReports": {
+        "title": "Report Setup",
+        "description": "Performance per setup",
+        "benefits": [
+          "Confronta strategie",
+          "Top setup",
+          "Metriche specifiche"
+        ]
+      },
+      "hourAnalysis": {
+        "title": "Analisi Oraria",
+        "description": "Ore più profittevoli",
+        "benefits": [
+          "P&L per ora",
+          "Migliori ore",
+          "Evita ore negative"
+        ]
+      },
+      "streakAnalysis": {
+        "title": "Analisi Serie",
+        "description": "Serie vittorie/perdite",
+        "benefits": [
+          "Serie più lunghe",
+          "Lunghezza media",
+          "Pattern"
+        ]
+      },
+      "holdingPeriod": {
+        "title": "Analisi Durata",
+        "description": "Durata ottimale trade",
+        "benefits": [
+          "P&L per durata",
+          "Scalp vs swing",
+          "Durata ottimale"
+        ]
+      },
+      "portfolioNews": {
+        "title": "Intelligence Notizie",
+        "description": "News auto-curate",
+        "benefits": [
+          "Proxy-mapping",
+          "Smart tag",
+          "Traduzione IA"
+        ]
+      },
+      "politicalEvents": {
+        "title": "Calendario Economico",
+        "description": "FOMC, CPI, NFP, GDP",
+        "benefits": [
+          "Eventi importanti",
+          "Livello impatto",
+          "Nel calendario"
+        ]
+      },
+      "sectorSentiment": {
+        "title": "Sentiment Settoriale",
+        "description": "Analisi sentiment giornaliera",
+        "benefits": [
+          "11 settori",
+          "Numero articoli",
+          "Punteggio sentiment"
+        ]
+      },
+      "economicCalendar": {
+        "title": "Dati Economici",
+        "description": "Fed, Powell in tempo reale",
+        "benefits": [
+          "Eventi politici",
+          "Impatto mercato",
+          "Trading informato"
+        ]
+      }
     }
   },
   "validation": {
@@ -1422,7 +1597,7 @@
     "tradesByAccountType": "Operazioni per Tipo Account",
     "equityCurvesByAccountType": "Curve Equity per Tipo Account",
     "avgTrade": "Operazione Media",
-    "trades": "Operazioni",
+    "trades": "operazioni",
     "profitFactor": "Profit Factor",
     "totalPnL": "P&L Totale",
     "goalAchievementRate": "Tasso Raggiungimento Obiettivi",
@@ -1431,7 +1606,7 @@
     "maxTradesPerDay": "Max {{trades}} operazioni al giorno",
     "bestDay": "Giorno Migliore",
     "bestTradingDay": "Miglior giorno di trading",
-    "noData": "Nessun dato",
+    "noData": "Nessun dato disponibile",
     "goalAchievementRateTooltip": "Mostra la percentuale di giorni in cui hai raggiunto il tuo obiettivo giornaliero. Puoi regolare i tuoi obiettivi giornalieri nelle Impostazioni.",
     "currentGoalTooltip": "Il tuo obiettivo di profitto giornaliero corrente e numero massimo di operazioni al giorno. Puoi cambiare queste impostazioni nelle Impostazioni.",
     "bestDayTooltip": "Il tuo giorno di trading più redditizio nel periodo selezionato.",
@@ -1476,7 +1651,6 @@
     "winningTrades": "Operazioni Vincenti",
     "losingTrades": "Operazioni Perdenti",
     "setupPerformance": "Performance Setup",
-    "trades": "operazioni",
     "winRate": "win rate",
     "noSetupData": "Nessun dato setup disponibile per il periodo selezionato",
     "dayOfWeekSummary": "Riepilogo Giorno Settimana",
@@ -1499,7 +1673,6 @@
     "tradesWithRisk": "Operazioni con Dati Rischio",
     "avgWin": "Guadagno Medio",
     "avgLoss": "Perdita Media",
-    "profitFactor": "Profit Factor",
     "totalTradesTooltip": "Numero totale di operazioni eseguite nel periodo selezionato",
     "winningTradesTooltip": "Numero di operazioni redditizie",
     "losingTradesTooltip": "Numero di operazioni in perdita",
@@ -1530,7 +1703,6 @@
     "topUnprofitableSymbols": "Top 5 Simboli Non Redditizi",
     "mostTradedSymbols": "Simboli Più Scambiati",
     "totalSymbols": "Simboli Totali",
-    "noData": "Nessun dato disponibile",
     "hourOfDayPerformance": "Performance per Ora del Giorno",
     "bestTradingHours": "Migliori Ore Trading",
     "worstTradingHours": "Peggiori Ore Trading",

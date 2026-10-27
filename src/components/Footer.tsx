@@ -23,7 +23,6 @@ export function Footer() {
             <h4 className="font-semibold mb-4">{t("landing.footerProduct")}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link to="/features" className="hover:text-primary">{t("landing.footerAllFeatures")}</Link></li>
-              <li><Link to="/#pricing" className="hover:text-primary">{t("landing.footerPricing")}</Link></li>
               <li><Link to="/auth" className="hover:text-primary">{t("landing.footerLogin")}</Link></li>
             </ul>
           </div>
