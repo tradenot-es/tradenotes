@@ -49,6 +49,9 @@ Disallow: /auth
 Disallow: /account
 Disallow: /settings
 
+# Shared trades (mentor mode) are private links
+Disallow: /share/
+
 # Disallow API endpoints
 Disallow: /api/
 

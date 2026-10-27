@@ -1171,8 +1171,8 @@
     }
   },
   "features": {
-    "heroTitle": "Alle Functies Overzicht",
-    "heroDescription": "Ontdek de complete set functies voor professioneel trading journaling",
+    "heroTitle": "Alle functies van je gratis tradingjournal",
+    "heroDescription": "Trades automatisch importeren uit NinjaTrader en Interactive Brokers, TradingView via CSV, daglimieten en verplichte pauzes, analyse van fouten en regeltrouw, prop-firm-accounts in één oogopslag. Zonder abonnement, zonder creditcard.",
     "featureCount": "20+ Functies",
     "backToLanding": "Terug naar Home",
     "learnMore": "Meer info",
@@ -1494,9 +1494,56 @@
           "P&L, winrate en gem. resultaat per groep",
           "Dubbele uitspraken worden samengevoegd"
         ]
+      },
+      "mentor": {
+        "title": "Mentormodus: trades delen",
+        "description": "Deel één trade via een link met je mentor, coach of tradingmaatje. Die ziet instap, uitstap, resultaat, setup, fouten en screenshot, zonder account en zonder toegang tot de rest van je journal.",
+        "benefits": [
+          "Eén klik op de trade, link kopiëren, klaar",
+          "Notitie delen of privé houden; de accountnaam blijft altijd privé",
+          "Zie hoe vaak de link bekeken is en stop met delen wanneer je wilt"
+        ]
       }
     },
-    "demoLabel": "Voorbeelddata"
+    "demoLabel": "Voorbeelddata",
+    "seo": {
+      "title": "Tradingjournal-functies: NinjaTrader-, IBKR- en TradingView-import | TradeNot.es",
+      "description": "Gratis tradingjournal met automatische import uit NinjaTrader en Interactive Brokers, TradingView via CSV, daglimieten, foutenanalyse, regeltrouw en mentormodus.",
+      "breadcrumb": "Functies"
+    },
+    "faq": {
+      "title": "Veelgestelde vragen over het tradingjournal",
+      "items": [
+        {
+          "q": "Is TradeNot.es echt gratis?",
+          "a": "Ja. Er is geen abonnement, geen premium-versie en geen creditcard nodig. Alle functies op deze pagina zijn voor iedereen gratis."
+        },
+        {
+          "q": "Hoe komen mijn NinjaTrader-trades in het journal?",
+          "a": "Download op de importpagina de NinjaTrader-add-on (je persoonlijke sleutel zit er al in) en importeer hem één keer via Tools → Import → NinjaScript Add-On. Daarna wordt elke uitvoering automatisch verstuurd, voor alle accounts, met deeluitvoeringen, kosten en MFE/MAE."
+        },
+        {
+          "q": "Kan ik trades van Interactive Brokers automatisch importeren?",
+          "a": "Ja. Maak bij IBKR een Flex Query aan en vul één keer token en query-ID in. TradeNot.es haalt je uitvoeringen daarna dagelijks automatisch op. Het token kan alleen rapporten lezen, geen orders plaatsen."
+        },
+        {
+          "q": "Hoe importeer ik trades uit TradingView?",
+          "a": "TradingView biedt geen koppeling voor je eigen trades. Exporteer in plaats daarvan de ordergeschiedenis uit het handelspaneel als CSV en upload die op de importpagina. Het formaat wordt herkend en al geïmporteerde orders worden overgeslagen."
+        },
+        {
+          "q": "Is het tradingjournal geschikt voor prop-firm-traders?",
+          "a": "Ja. Trades zijn per accounttype (evaluatie, funded, live, simulatie) te analyseren, en NinjaTrader-accounts van Apex, Topstep en andere prop firms worden automatisch herkend. Daglimieten voor drawdown, aantal trades en verliesreeksen helpen je binnen de regels van de prop firm te blijven."
+        },
+        {
+          "q": "Kan ik trades delen met mijn mentor?",
+          "a": "Ja, met de mentormodus. Je maakt voor een trade een link die alleen mensen met de link kunnen zien. De accountnaam en je andere trades blijven privé, en je kunt het delen op elk moment stoppen."
+        },
+        {
+          "q": "Waar worden mijn tradinggegevens opgeslagen?",
+          "a": "Op een eigen server in Nederland (EU). Je gegevens worden nooit verkocht of voor advertenties gebruikt."
+        }
+      ]
+    }
   },
   "validation": {
     "emailInvalid": "Ongeldig e-mailformaat",
@@ -2746,5 +2793,30 @@
       "long": "Long",
       "short": "Short"
     }
+  },
+  "share": {
+    "button": "Trade delen",
+    "title": "{{symbol}}-trade delen",
+    "description": "Maak een link waarmee je mentor of tradingmaatje deze ene trade kan bekijken, zonder account en zonder toegang tot de rest van je journal.",
+    "showNote": "Notitie meesturen",
+    "create": "Link maken",
+    "link": "Deellink",
+    "copy": "Link kopiëren",
+    "revoke": "Delen stoppen",
+    "revoked": "Delen gestopt, de link werkt niet meer",
+    "error": "Link kon niet worden gemaakt",
+    "views_one": "{{count}} keer bekeken, laatst {{time}}",
+    "views_other": "{{count}} keer bekeken, laatst {{time}}",
+    "noViews": "Nog niet bekeken",
+    "privacy": "Zichtbaar: symbool, prijzen, tijden, resultaat, setup, beoordeling, fouten, gemoedstoestand en screenshot. Accountnaam en alle andere trades blijven privé. Zoekmachines nemen de link niet op.",
+    "pageTitle": "Gedeelde {{symbol}}-trade",
+    "sharedBy": "{{name}} deelt deze trade met je",
+    "sharedAnonymous": "Een gedeelde trade",
+    "missingTitle": "Link niet gevonden",
+    "missingText": "Deze deellink bestaat niet of is gestopt.",
+    "screenshotAlt": "Grafiekscreenshot van de {{symbol}}-trade",
+    "ctaTitle": "Houd je eigen tradingjournal bij",
+    "ctaText": "Gratis, met automatische import uit NinjaTrader en Interactive Brokers.",
+    "ctaButton": "Gratis beginnen"
   }
 }

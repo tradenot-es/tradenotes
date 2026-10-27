@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ShareTradeDialog } from "@/components/ShareTradeDialog";
 import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle, Circle, Award, TrendingUpIcon, DollarSign, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -355,6 +356,8 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                             )}
                           </div>
                           <div className="flex gap-2">
+                            {/* only the owner's table can edit, and so share */}
+                            {onEditTrade && <ShareTradeDialog tradeId={trade.id} symbol={trade.symbol} />}
                             {onEditTrade && (
                               <Button 
                                 variant="ghost" 

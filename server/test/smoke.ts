@@ -140,6 +140,21 @@ check("invalid execution rejected", badBatch.status === 400, badBatch.body);
 const badKey = await hook({ source: "ninjatrader", executions: [] }, "nope");
 check("wrong webhook key rejected", badKey.status === 401, badKey);
 
+// mentor mode: read-only link to one trade
+const shareTrade = (await anna.db({ table: "trades", action: "insert", values: { ...trade, note: "private thoughts", account_name: "Apex-PA-1" }, returning: true })).body.data[0];
+const share = await anna.req("/api/shares", { method: "POST", json: { tradeId: shareTrade.id, showNote: false } });
+check("share created", typeof share.body.share?.token === "string" && share.body.share.token.length >= 20, share.body);
+const anon = new Client();
+const pub = await anon.req(`/api/public/share/${share.body.share.token}`);
+check("shared trade readable without login", pub.status === 200 && pub.body.trade?.symbol === "ES" && pub.body.sharedBy === "Anna", pub.body);
+check("shared trade hides account name, user id and hidden note", !("account_name" in pub.body.trade) && !("user_id" in pub.body.trade) && pub.body.trade.note === null, pub.body.trade);
+check("share page not indexed", pub.headers.get("x-robots-tag")?.includes("noindex") === true);
+check("other user cannot share foreign trade", (await bob.req("/api/shares", { method: "POST", json: { tradeId: shareTrade.id } })).status === 404);
+check("share view counted", (await anna.req(`/api/shares/${shareTrade.id}`)).body.share?.view_count === 1);
+await anna.req(`/api/shares/${shareTrade.id}`, { method: "DELETE" });
+check("revoked share is gone", (await anon.req(`/api/public/share/${share.body.share.token}`)).status === 404);
+check("unknown token 404", (await anon.req("/api/public/share/aaaaaaaaaaaaaaaaaaaaaaaa")).status === 404);
+
 // Interactive Brokers connection (the Flex fetch itself is covered by test/ibkr.ts)
 const badIbkr = await anna.req("/api/connections/ibkr", { method: "PUT", json: { token: "x", queryId: "1" } });
 check("ibkr: invalid token rejected", badIbkr.status === 400, badIbkr.body);

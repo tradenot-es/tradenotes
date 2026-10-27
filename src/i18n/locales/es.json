@@ -1171,8 +1171,8 @@
     }
   },
   "features": {
-    "heroTitle": "Todas las Funciones",
-    "heroDescription": "Descubre el conjunto completo de funciones para journaling profesional",
+    "heroTitle": "Todas las funciones de tu diario de trading gratuito",
+    "heroDescription": "Importa operaciones automáticamente desde NinjaTrader e Interactive Brokers, TradingView por CSV, límites diarios y pausas obligatorias, análisis de errores y de cumplimiento de reglas, cuentas de prop firms a la vista. Sin suscripción ni tarjeta de crédito.",
     "featureCount": "20+ Funciones",
     "backToLanding": "Volver al Inicio",
     "learnMore": "Saber más",
@@ -1494,9 +1494,56 @@
           "P&L, tasa de acierto y resultado medio por grupo",
           "Las afirmaciones duplicadas se agrupan"
         ]
+      },
+      "mentor": {
+        "title": "Modo mentor: compartir operaciones",
+        "description": "Comparte una operación con tu mentor, coach o compañero de trading mediante un enlace. Verá entrada, salida, resultado, setup, errores y captura, sin cuenta y sin acceso al resto de tu diario.",
+        "benefits": [
+          "Un clic en la operación, copiar el enlace y listo",
+          "Comparte tu nota o mantenla privada; el nombre de la cuenta siempre es privado",
+          "Ve las visitas y deja de compartir cuando quieras"
+        ]
       }
     },
-    "demoLabel": "Datos de ejemplo"
+    "demoLabel": "Datos de ejemplo",
+    "seo": {
+      "title": "Funciones del diario de trading: importación NinjaTrader, IBKR y TradingView | TradeNot.es",
+      "description": "Diario de trading gratuito con importación automática desde NinjaTrader e Interactive Brokers, TradingView por CSV, límites diarios, análisis de errores, cumplimiento de reglas y modo mentor.",
+      "breadcrumb": "Funciones"
+    },
+    "faq": {
+      "title": "Preguntas frecuentes sobre el diario de trading",
+      "items": [
+        {
+          "q": "¿TradeNot.es es realmente gratis?",
+          "a": "Sí. No hay suscripción, ni nivel premium, ni tarjeta de crédito. Todas las funciones de esta página son gratuitas para todos."
+        },
+        {
+          "q": "¿Cómo llegan mis operaciones de NinjaTrader al diario?",
+          "a": "Descarga el add-on de NinjaTrader en la página de importación (tu clave personal ya va incluida) e impórtalo una vez en Tools → Import → NinjaScript Add-On. A partir de ahí cada ejecución se envía automáticamente, para todas las cuentas, con ejecuciones parciales, comisiones y MFE/MAE."
+        },
+        {
+          "q": "¿Puedo importar operaciones de Interactive Brokers automáticamente?",
+          "a": "Sí. Crea una Flex Query en IBKR e introduce una vez el token y el ID de la consulta. TradeNot.es recogerá tus ejecuciones a diario. El token solo puede leer informes, no enviar órdenes."
+        },
+        {
+          "q": "¿Cómo importo operaciones de TradingView?",
+          "a": "TradingView no ofrece interfaz para tus propias operaciones. Exporta el historial de órdenes del panel de trading como CSV y súbelo en la página de importación. El formato se detecta y las órdenes ya importadas se omiten."
+        },
+        {
+          "q": "¿Sirve el diario para traders de prop firms?",
+          "a": "Sí. Las operaciones se pueden analizar por tipo de cuenta (evaluación, fondeada, real, simulación) y las cuentas de NinjaTrader de Apex, Topstep y otras prop firms se reconocen automáticamente. Los límites diarios de drawdown, operaciones y rachas de pérdidas ayudan a cumplir las reglas de la prop firm."
+        },
+        {
+          "q": "¿Puedo compartir operaciones con mi mentor?",
+          "a": "Sí, con el modo mentor. Creas un enlace para una operación que solo ve quien tiene el enlace. El nombre de la cuenta y tus demás operaciones siguen siendo privados, y puedes dejar de compartir cuando quieras."
+        },
+        {
+          "q": "¿Dónde se guardan mis datos de trading?",
+          "a": "En un servidor propio en los Países Bajos (UE). Tus datos nunca se venden ni se usan para publicidad."
+        }
+      ]
+    }
   },
   "validation": {
     "emailInvalid": "Formato de correo electrónico no válido",
@@ -2746,5 +2793,30 @@
       "long": "Largo",
       "short": "Corto"
     }
+  },
+  "share": {
+    "button": "Compartir operación",
+    "title": "Compartir operación de {{symbol}}",
+    "description": "Crea un enlace para que tu mentor o compañero de trading vea esta operación, sin cuenta y sin acceso al resto de tu diario.",
+    "showNote": "Incluir nota",
+    "create": "Crear enlace",
+    "link": "Enlace para compartir",
+    "copy": "Copiar enlace",
+    "revoke": "Dejar de compartir",
+    "revoked": "Ya no se comparte; el enlace ha dejado de funcionar",
+    "error": "No se pudo crear el enlace",
+    "views_one": "Vista {{count}} vez, la última {{time}}",
+    "views_other": "Vista {{count}} veces, la última {{time}}",
+    "noViews": "Aún no se ha visto",
+    "privacy": "Visible: símbolo, precios, horas, resultado, setup, valoración, errores, emociones y captura. El nombre de la cuenta y el resto de operaciones siguen siendo privados. Los buscadores no indexan el enlace.",
+    "pageTitle": "Operación de {{symbol}} compartida",
+    "sharedBy": "{{name}} comparte esta operación contigo",
+    "sharedAnonymous": "Una operación compartida",
+    "missingTitle": "Enlace no encontrado",
+    "missingText": "Este enlace no existe o ya no se comparte.",
+    "screenshotAlt": "Captura del gráfico de la operación de {{symbol}}",
+    "ctaTitle": "Lleva tu propio diario de trading",
+    "ctaText": "Gratis, con importación automática desde NinjaTrader e Interactive Brokers.",
+    "ctaButton": "Empezar gratis"
   }
 }

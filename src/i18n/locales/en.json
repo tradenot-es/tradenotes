@@ -1310,8 +1310,8 @@
     }
   },
   "features": {
-    "heroTitle": "All Features Overview",
-    "heroDescription": "Discover the complete feature set for professional trading journaling",
+    "heroTitle": "Every feature of your free trading journal",
+    "heroDescription": "Import trades automatically from NinjaTrader and Interactive Brokers, TradingView via CSV, daily limits and mandatory breaks, mistake and rule adherence analysis, prop firm accounts at a glance. No subscription, no credit card.",
     "featureCount": "20+ Features",
     "backToLanding": "Back to Home",
     "learnMore": "Learn more",
@@ -1633,9 +1633,56 @@
           "P&L, win rate and avg result per group",
           "Duplicate statements are merged"
         ]
+      },
+      "mentor": {
+        "title": "Mentor mode: share trades",
+        "description": "Share a single trade by link with your mentor, coach or trading buddy. They see entry, exit, result, setup, mistakes and screenshot, without an account and without access to the rest of your journal.",
+        "benefits": [
+          "One click on the trade, copy the link, done",
+          "Share your note or keep it private; the account name always stays private",
+          "See views and stop sharing at any time"
+        ]
       }
     },
-    "demoLabel": "Example data"
+    "demoLabel": "Example data",
+    "seo": {
+      "title": "Trading Journal Features: NinjaTrader, IBKR & TradingView Import | TradeNot.es",
+      "description": "Free trading journal with automatic import from NinjaTrader and Interactive Brokers, TradingView via CSV, daily limits, mistake analysis, rule adherence and mentor mode.",
+      "breadcrumb": "Features"
+    },
+    "faq": {
+      "title": "Trading journal FAQ",
+      "items": [
+        {
+          "q": "Is TradeNot.es really free?",
+          "a": "Yes. There is no subscription, no premium tier and no credit card. Every feature on this page is free for everyone."
+        },
+        {
+          "q": "How do my NinjaTrader trades get into the journal?",
+          "a": "Download the NinjaTrader add-on on the import page (your personal key is already inside) and import it once via Tools → Import → NinjaScript Add-On. From then on every fill is sent automatically, for all accounts, with partial fills, commissions and MFE/MAE."
+        },
+        {
+          "q": "Can I import trades from Interactive Brokers automatically?",
+          "a": "Yes. Create a Flex Query at IBKR and enter token and query ID once. TradeNot.es then fetches your executions daily. The token can only read reports, it cannot place orders."
+        },
+        {
+          "q": "How do I import trades from TradingView?",
+          "a": "TradingView has no interface for your own trades. Instead, export the order history from the trading panel as CSV and upload it on the import page. The format is detected and orders already imported are skipped."
+        },
+        {
+          "q": "Is the trading journal suitable for prop firm traders?",
+          "a": "Yes. Trades can be analysed by account type (evaluation, funded, live, simulation), and NinjaTrader accounts from Apex, Topstep and other prop firms are recognised automatically. Daily limits for drawdown, trades and losing streaks help you stay within the prop firm's rules."
+        },
+        {
+          "q": "Can I share trades with my mentor?",
+          "a": "Yes, with mentor mode. You create a link for a trade that only people with the link can see. The account name and your other trades stay private, and you can stop sharing at any time."
+        },
+        {
+          "q": "Where is my trading data stored?",
+          "a": "On our own server in the Netherlands (EU). Your data is never sold or used for advertising."
+        }
+      ]
+    }
   },
   "validation": {
     "emailInvalid": "Invalid email format",
@@ -2831,5 +2878,30 @@
       "long": "Long",
       "short": "Short"
     }
+  },
+  "share": {
+    "button": "Share trade",
+    "title": "Share {{symbol}} trade",
+    "description": "Create a link so your mentor or trading buddy can look at this one trade, without an account and without access to the rest of your journal.",
+    "showNote": "Include note",
+    "create": "Create link",
+    "link": "Share link",
+    "copy": "Copy link",
+    "revoke": "Stop sharing",
+    "revoked": "Sharing stopped, the link no longer works",
+    "error": "Could not create the link",
+    "views_one": "Viewed {{count}} time, last {{time}}",
+    "views_other": "Viewed {{count}} times, last {{time}}",
+    "noViews": "Not viewed yet",
+    "privacy": "Visible: symbol, prices, times, result, setup, rating, mistakes, emotions and screenshot. Account name and all other trades stay private. The link is not indexed by search engines.",
+    "pageTitle": "Shared {{symbol}} trade",
+    "sharedBy": "{{name}} shares this trade with you",
+    "sharedAnonymous": "A shared trade",
+    "missingTitle": "Link not found",
+    "missingText": "This share does not exist or has been stopped.",
+    "screenshotAlt": "Chart screenshot of the {{symbol}} trade",
+    "ctaTitle": "Keep your own trading journal",
+    "ctaText": "Free, with automatic import from NinjaTrader and Interactive Brokers.",
+    "ctaButton": "Start for free"
   }
 }

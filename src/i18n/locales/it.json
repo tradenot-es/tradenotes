@@ -1173,8 +1173,8 @@
     }
   },
   "features": {
-    "heroTitle": "Panoramica Funzionalità",
-    "heroDescription": "Scopri il set completo di funzionalità per il journaling professionale",
+    "heroTitle": "Tutte le funzioni del tuo diario di trading gratuito",
+    "heroDescription": "Importa i trade automaticamente da NinjaTrader e Interactive Brokers, TradingView via CSV, limiti giornalieri e pause obbligatorie, analisi degli errori e del rispetto delle regole, conti prop firm sotto controllo. Senza abbonamento né carta di credito.",
     "featureCount": "20+ Funzionalità",
     "backToLanding": "Torna alla Home",
     "learnMore": "Scopri di più",
@@ -1496,9 +1496,56 @@
           "P&L, percentuale di successo e risultato medio per gruppo",
           "Le affermazioni doppie vengono unite"
         ]
+      },
+      "mentor": {
+        "title": "Modalità mentor: condividi i trade",
+        "description": "Condividi un singolo trade tramite link con il tuo mentor, coach o compagno di trading. Vede ingresso, uscita, risultato, setup, errori e screenshot, senza account e senza accesso al resto del tuo diario.",
+        "benefits": [
+          "Un clic sul trade, copia il link, fatto",
+          "Condividi la nota o tienila privata; il nome del conto resta sempre privato",
+          "Vedi le visualizzazioni e interrompi la condivisione quando vuoi"
+        ]
       }
     },
-    "demoLabel": "Dati di esempio"
+    "demoLabel": "Dati di esempio",
+    "seo": {
+      "title": "Funzioni del diario di trading: import NinjaTrader, IBKR e TradingView | TradeNot.es",
+      "description": "Diario di trading gratuito con importazione automatica da NinjaTrader e Interactive Brokers, TradingView via CSV, limiti giornalieri, analisi degli errori, rispetto delle regole e modalità mentor.",
+      "breadcrumb": "Funzioni"
+    },
+    "faq": {
+      "title": "Domande frequenti sul diario di trading",
+      "items": [
+        {
+          "q": "TradeNot.es è davvero gratuito?",
+          "a": "Sì. Nessun abbonamento, nessun livello premium, nessuna carta di credito. Tutte le funzioni di questa pagina sono gratuite per tutti."
+        },
+        {
+          "q": "Come arrivano i miei trade di NinjaTrader nel diario?",
+          "a": "Scarica l’add-on NinjaTrader dalla pagina di importazione (la tua chiave personale è già inclusa) e importalo una volta tramite Tools → Import → NinjaScript Add-On. Da allora ogni esecuzione viene inviata automaticamente, per tutti i conti, con esecuzioni parziali, commissioni e MFE/MAE."
+        },
+        {
+          "q": "Posso importare automaticamente i trade da Interactive Brokers?",
+          "a": "Sì. Crea una Flex Query su IBKR e inserisci una volta token e ID della query. TradeNot.es recupera poi le tue esecuzioni ogni giorno. Il token può solo leggere report, non può inviare ordini."
+        },
+        {
+          "q": "Come importo i trade da TradingView?",
+          "a": "TradingView non offre un’interfaccia per i tuoi trade. Esporta invece lo storico ordini dal pannello di trading come CSV e caricalo nella pagina di importazione. Il formato viene riconosciuto e gli ordini già importati vengono saltati."
+        },
+        {
+          "q": "Il diario è adatto ai trader di prop firm?",
+          "a": "Sì. I trade si analizzano per tipo di conto (valutazione, finanziato, reale, simulazione) e i conti NinjaTrader di Apex, Topstep e altre prop firm vengono riconosciuti automaticamente. I limiti giornalieri su drawdown, numero di trade e serie di perdite aiutano a rispettare le regole della prop firm."
+        },
+        {
+          "q": "Posso condividere i trade con il mio mentor?",
+          "a": "Sì, con la modalità mentor. Crei per un trade un link visibile solo a chi lo possiede. Il nome del conto e gli altri trade restano privati e puoi interrompere la condivisione in qualsiasi momento."
+        },
+        {
+          "q": "Dove vengono salvati i miei dati di trading?",
+          "a": "Su un nostro server nei Paesi Bassi (UE). I tuoi dati non vengono mai venduti né usati per pubblicità."
+        }
+      ]
+    }
   },
   "validation": {
     "emailInvalid": "Formato email non valido",
@@ -2777,5 +2824,30 @@
       "long": "Long",
       "short": "Short"
     }
+  },
+  "share": {
+    "button": "Condividi trade",
+    "title": "Condividi il trade {{symbol}}",
+    "description": "Crea un link perché il tuo mentor o compagno di trading veda questo trade, senza account e senza accesso al resto del tuo diario.",
+    "showNote": "Includi nota",
+    "create": "Crea link",
+    "link": "Link di condivisione",
+    "copy": "Copia link",
+    "revoke": "Interrompi condivisione",
+    "revoked": "Condivisione interrotta, il link non funziona più",
+    "error": "Impossibile creare il link",
+    "views_one": "Visto {{count}} volta, l’ultima {{time}}",
+    "views_other": "Visto {{count}} volte, l’ultima {{time}}",
+    "noViews": "Non ancora visto",
+    "privacy": "Visibili: simbolo, prezzi, orari, risultato, setup, valutazione, errori, emozioni e screenshot. Nome del conto e tutti gli altri trade restano privati. Il link non viene indicizzato dai motori di ricerca.",
+    "pageTitle": "Trade {{symbol}} condiviso",
+    "sharedBy": "{{name}} condivide questo trade con te",
+    "sharedAnonymous": "Un trade condiviso",
+    "missingTitle": "Link non trovato",
+    "missingText": "Questa condivisione non esiste o è stata interrotta.",
+    "screenshotAlt": "Screenshot del grafico del trade {{symbol}}",
+    "ctaTitle": "Tieni il tuo diario di trading",
+    "ctaText": "Gratis, con importazione automatica da NinjaTrader e Interactive Brokers.",
+    "ctaButton": "Inizia gratis"
   }
 }

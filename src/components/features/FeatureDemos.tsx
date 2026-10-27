@@ -1,7 +1,7 @@
 // Live previews of the discipline features for the public features page,
 // rendered from the real chart components with fixed example data.
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, CheckCircle2, Coffee, OctagonX } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Coffee, Eye, Link2, OctagonX } from "lucide-react";
 import { DivergingBarList } from "@/components/charts/DivergingBarList";
 import { IntradayPnlChart } from "@/components/charts/IntradayPnlChart";
 import { cn } from "@/lib/utils";
@@ -169,6 +169,33 @@ export function CooldownDemo() {
       <div className="mt-3 rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm">
         <p className="font-medium">{t("discipline.cooldownIgnored", { count: 1 })}</p>
       </div>
+    </DemoFrame>
+  );
+}
+
+/** Mentor mode: the share link and what the mentor sees. */
+export function MentorDemo() {
+  const { t } = useTranslation();
+  return (
+    <DemoFrame>
+      <div className="flex items-center gap-2 rounded-lg border bg-muted/40 px-3 py-2 text-sm">
+        <Link2 className="h-4 w-4 shrink-0 text-primary" aria-hidden />
+        <span className="truncate font-mono text-xs text-muted-foreground">tradenot.es/share/q7pZl7G5vsxog…</span>
+      </div>
+      <div className="mt-3 rounded-lg border p-4">
+        <p className="text-xs text-muted-foreground">{t("share.sharedBy", { name: "Alex" })}</p>
+        <div className="mt-2 flex items-end justify-between">
+          <div>
+            <p className="text-2xl font-bold">NQ</p>
+            <p className="text-xs text-muted-foreground">Long · Opening Range · 2 × 25.412,50 → 25.431,75</p>
+          </div>
+          <p className="tabular text-2xl font-bold text-success">+$770</p>
+        </div>
+      </div>
+      <p className="mt-3 flex items-center gap-1.5 text-xs text-muted-foreground">
+        <Eye className="h-3.5 w-3.5" aria-hidden />
+        {t("share.views", { count: 3, time: "12 min" })}
+      </p>
     </DemoFrame>
   );
 }

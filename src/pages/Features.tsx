@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { useScreens } from "@/lib/screens";
+import { useSeo } from "@/hooks/useSeo";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
@@ -11,9 +13,9 @@ import { CategoryNav } from "@/components/features/CategoryNav";
 import { FeatureRow } from "@/components/features/FeatureRow";
 import { FeaturesHero } from "@/components/features/FeaturesHero";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { ArrowRight, Brain, CalendarDays, ClipboardCheck, Coffee, FileSpreadsheet, Gauge, Landmark, Lightbulb, ShieldCheck } from "lucide-react";
+import { ArrowRight, Brain, CalendarDays, ClipboardCheck, Coffee, FileSpreadsheet, Gauge, Landmark, Lightbulb, Share2, ShieldCheck } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
-import { BehaviorDemo, CooldownDemo, DayViewDemo, DisciplineDemo, ScoreDemo } from "@/components/features/FeatureDemos";
+import { BehaviorDemo, CooldownDemo, DayViewDemo, DisciplineDemo, MentorDemo, ScoreDemo } from "@/components/features/FeatureDemos";
 import {
   TrendingUp,
   Zap,
@@ -39,22 +41,13 @@ import {
 } from "lucide-react";
 
 const Features = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // feature illustrations: real screenshots of the app in the current language
   const shot = useScreens();
   const [searchQuery, setSearchQuery] = useState("");
 
   const categoryIds = ["discipline", "import", "trading-tools", "analytics", ...(featureFlags.AI_FEATURES ? ["ai"] : []), "reports", "market-intel"];
   const activeCategory = useScrollSpy(categoryIds, 140);
-
-  // SEO: Update document metadata
-  useEffect(() => {
-    document.title = `${t("features.heroTitle")} | TradeNot.es`;
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", t("features.heroDescription"));
-    }
-  }, [t]);
 
   const handleCategoryClick = (categoryId: string) => {
     const element = document.getElementById(categoryId);
@@ -169,6 +162,13 @@ const Features = () => {
       id: "trading-tools",
       name: t("features.categories.tradingTools"),
       features: [
+        {
+          icon: <Share2 className="h-6 w-6" />,
+          title: t("features.items.mentor.title"),
+          description: t("features.items.mentor.description"),
+          benefits: t("features.items.mentor.benefits", { returnObjects: true }) as string[],
+          visual: <MentorDemo />,
+        },
         {
           icon: <TrendingUp className="h-6 w-6" />,
           title: t("features.items.easyEntry.title"),
@@ -359,6 +359,42 @@ const Features = () => {
   ];
 
   // Filter features based on search query
+  const faq = t("features.faq.items", { returnObjects: true }) as { q: string; a: string }[];
+
+  // search engines: page meta, the app with its feature list, the FAQ and the breadcrumb
+  useSeo({
+    title: t("features.seo.title"),
+    description: t("features.seo.description"),
+    path: "/features",
+    language: i18n.language,
+    structuredData: [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "TradeNot.es",
+        url: "https://tradenot.es/features",
+        applicationCategory: "FinanceApplication",
+        operatingSystem: "Web",
+        description: t("features.seo.description"),
+        offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+        featureList: featureCategories.flatMap((c) => c.features.map((f) => f.title)),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map((item) => ({ "@type": "Question", name: item.q, acceptedAnswer: { "@type": "Answer", text: item.a } })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "TradeNot.es", item: "https://tradenot.es/" },
+          { "@type": "ListItem", position: 2, name: t("features.seo.breadcrumb"), item: "https://tradenot.es/features" },
+        ],
+      },
+    ],
+  });
+
   const filterFeatures = (features: typeof featureCategories[0]["features"]) => {
     if (!searchQuery.trim()) return features;
     const query = searchQuery.toLowerCase();
@@ -411,6 +447,21 @@ const Features = () => {
           );
         })}
       </div>
+
+      {/* FAQ (also as FAQPage structured data above) */}
+      <section id="faq" className="px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-3xl font-bold md:text-4xl">{t("features.faq.title")}</h2>
+          <Accordion type="single" collapsible className="w-full">
+            {faq.map((item, i) => (
+              <AccordionItem key={item.q} value={`faq-${i}`}>
+                <AccordionTrigger className="text-left text-base font-semibold">{item.q}</AccordionTrigger>
+                <AccordionContent className="text-base text-muted-foreground">{item.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
+      </section>
 
       {/* Final CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">

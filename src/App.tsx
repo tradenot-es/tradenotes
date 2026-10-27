@@ -28,6 +28,7 @@ import Status from "./pages/Status";
 import Datenschutz from "./pages/Datenschutz";
 import AGB from "./pages/AGB";
 import Impressum from "./pages/Impressum";
+import SharedTrade from "./pages/SharedTrade";
 import CheckoutSuccess from "./pages/CheckoutSuccess";
 import NotFound from "./pages/NotFound";
 import WhyJournal from "./pages/WhyJournal";
@@ -68,6 +69,7 @@ const App = () => (
             <Route path="/datenschutz" element={<Datenschutz />} />
             <Route path="/agb" element={<AGB />} />
             <Route path="/impressum" element={<Impressum />} />
+            <Route path="/share/:token" element={<SharedTrade />} />
             <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route
               path="/dashboard/*"
