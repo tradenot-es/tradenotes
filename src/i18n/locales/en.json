@@ -544,7 +544,7 @@
   },
   "import": {
     "title": "Import Trades",
-    "subtitle": "NinjaTrader automatically, TradingView and other platforms via CSV",
+    "subtitle": "NinjaTrader and Interactive Brokers automatically, TradingView and other platforms via CSV",
     "uploadCSV": "Upload CSV File",
     "uploadDesc": "TradingView export or the TradeNot.es template. The format is detected automatically.",
     "clickUpload": "Click to upload",
@@ -648,7 +648,31 @@
     },
     "tvImportResult": "{{created}} trades created, {{duplicates}} orders were already imported.",
     "unknownFormat": "Unknown CSV format",
-    "unknownFormatDetail": "Format not recognised. Expected a TradingView export or the TradeNot.es template. Columns found: {{headers}}"
+    "unknownFormatDetail": "Format not recognised. Expected a TradingView export or the TradeNot.es template. Columns found: {{headers}}",
+    "ibkr": {
+      "title": "Interactive Brokers: automatic via Flex Query",
+      "description": "Nothing to install: tradenot.es fetches your executions from IBKR once a day and turns them into trades.",
+      "step1": "In the IBKR portal: Performance & Reports → Flex Queries → create a new Activity Flex Query.",
+      "step2": "Select the “Trades” section with “Executions” and all fields. Format XML, period “Last 30 Calendar Days”. Save it and note the query ID.",
+      "step3": "On the same page, open “Flex Web Service Configuration”, enable the service and generate a token.",
+      "step4": "Enter token and query ID here. The first fetch runs right away, then once a day.",
+      "note": "The token can only fetch reports: no orders, no access to your money. It expires after the period you chose at IBKR; then just enter a new one. Menu names in the IBKR portal may differ slightly. Paper accounts (DU…) are recognised as simulation automatically.",
+      "token": "Flex token",
+      "queryId": "Query ID",
+      "connect": "Connect",
+      "saving": "Saving…",
+      "connected": "Connected to Flex Query {{queryId}}",
+      "lastSync": "Last fetch {{time}}",
+      "neverSynced": "Not fetched yet",
+      "lastError": "Last fetch failed: {{message}}",
+      "syncNow": "Fetch now",
+      "changeToken": "Change token",
+      "disconnect": "Disconnect",
+      "invalid": "Invalid token or query ID. The token consists of digits and letters, the query ID only of digits.",
+      "syncResult": "{{received}} executions fetched, {{created}} new trades.",
+      "syncError": "Fetching from IBKR failed: {{message}}",
+      "removed": "IBKR connection removed"
+    }
   },
   "journal": {
     "title": "Trading Journal",
@@ -1002,7 +1026,7 @@
       "ssl": "SSL Encrypted",
       "gdpr": "GDPR Compliant",
       "traders": "By Traders for Traders",
-      "sync": "NinjaTrader Auto-Sync"
+      "sync": "NinjaTrader & IBKR auto-sync"
     },
     "footerAllFeatures": "All Features",
     "cta": {
@@ -1272,7 +1296,7 @@
       "steps": {
         "capture": {
           "title": "Log trades",
-          "description": "Manually in seconds, via CSV import or automatically from NinjaTrader."
+          "description": "Automatically from NinjaTrader and Interactive Brokers, via CSV from TradingView, or manually in seconds."
         },
         "rules": {
           "title": "Set rules",
@@ -1300,7 +1324,8 @@
       "analytics": "Track & analyze performance",
       "ai": "AI-powered insights",
       "marketIntel": "Market data & news",
-      "discipline": "Daily limits, mistake analysis and a score that shows where you stand"
+      "discipline": "Daily limits, mistake analysis and a score that shows where you stand",
+      "import": "NinjaTrader and IBKR automatically, TradingView via CSV"
     },
     "categories": {
       "tradingTools": "Trading Tools",
@@ -1308,7 +1333,8 @@
       "ai": "AI & Automation",
       "reports": "Reports",
       "marketIntel": "Market Intelligence",
-      "discipline": "Discipline & behavior"
+      "discipline": "Discipline & behavior",
+      "import": "Automatic import"
     },
     "items": {
       "easyEntry": {
@@ -1321,12 +1347,12 @@
         ]
       },
       "ninjaTrader": {
-        "title": "NinjaTrader Auto-Sync",
-        "description": "Automatic trade synchronization via webhook in real-time",
+        "title": "NinjaTrader: automatic",
+        "description": "Import an add-on once and every fill lands in your journal by itself. No chart, no strategy, no settings: your key is already in the download.",
         "benefits": [
-          "Entry, Exit, MFE/MAE captured automatically",
-          "Supports 12+ prop firms",
-          "No manual entry needed"
+          "All accounts, prop firm accounts included (Apex, Topstep & co. are recognised)",
+          "Partial fills, scaling in/out and reversals matched correctly, commissions included",
+          "MFE/MAE automatically, missed fills are sent later"
         ]
       },
       "propFirm": {
@@ -1348,12 +1374,12 @@
         ]
       },
       "csvImport": {
-        "title": "CSV Import/Export",
-        "description": "Import trades from broker or export data",
+        "title": "Other platforms: CSV template",
+        "description": "For any other platform: fill in the template, one row per trade, and upload it. Or log a trade manually in seconds.",
         "benefits": [
-          "Supports common broker formats",
-          "Easy data export",
-          "Seamless integration"
+          "Template to download",
+          "Commissions, tags, setup and notes in one go",
+          "Manual entry with live P&L preview"
         ]
       },
       "mfeMAE": {
@@ -1561,6 +1587,51 @@
           "Win rate, profit factor, win/loss ratio",
           "Drawdown, recovery factor, share of green days",
           "Transparent: every component visible on its own"
+        ]
+      },
+      "ibkr": {
+        "title": "Interactive Brokers: automatic",
+        "description": "Nothing to install: create a Flex Query at IBKR and enter token and query ID. tradenot.es then fetches your executions once a day.",
+        "benefits": [
+          "Stocks, futures and options",
+          "The token can only read reports, no orders",
+          "Paper accounts are recognised as simulation automatically"
+        ]
+      },
+      "tradingView": {
+        "title": "TradingView: via CSV export",
+        "description": "TradingView has no interface for your trades. Export the order history from the trading panel and drop the file on the import page; the guide there walks you through it.",
+        "benefits": [
+          "Format detected automatically",
+          "Filled orders become trades, cancelled ones are skipped",
+          "Export regularly without duplicates: orders already imported are recognised"
+        ]
+      },
+      "ruleAdherence": {
+        "title": "Rule adherence: process over outcome",
+        "description": "Did you follow your setup checklist? The report separates earned wins from lucky ones and good losses from self-inflicted ones, per setup too.",
+        "benefits": [
+          "Four fields: earned win, good loss, lucky win, self-inflicted",
+          "Avg result with and without the rules kept",
+          "Shows which setup you water down most often"
+        ]
+      },
+      "cooldown": {
+        "title": "Mandatory break after a losing streak",
+        "description": "After two (or as many as you like) losses in a row, the dashboard shows a countdown until you should trade again. Trades you open during the break anyway are counted.",
+        "benefits": [
+          "Number of losses and break length up to you",
+          "Countdown right in the discipline panel",
+          "Breaks the chain of loss and revenge trade"
+        ]
+      },
+      "insights": {
+        "title": "What works for you",
+        "description": "Your strengths and weaknesses at a glance: best and worst setups, weekdays, entry times, symbols and directions, calculated from your trades, no AI.",
+        "benefits": [
+          "Only groups with enough trades, no flukes",
+          "P&L, win rate and avg result per group",
+          "Duplicate statements are merged"
         ]
       }
     },

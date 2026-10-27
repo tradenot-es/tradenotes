@@ -7,6 +7,7 @@ import { createChallenge, verifyPayload } from "./altcha.js";
 import { QueryError, querySchema, runQuery } from "./data.js";
 import { readScreenshot, saveScreenshot } from "./uploads.js";
 import { importTrades, userIdForWebhookKey } from "./routes/import.js";
+import { FlexError, syncIbkr } from "./ibkr.js";
 import { news } from "./routes/news.js";
 import { sendContactMail } from "./mail.js";
 
@@ -108,6 +109,47 @@ app.post("/api/webhook-key", async (c) => {
   return c.json({ success: true, webhook_api_key: key });
 });
 
+// --- Interactive Brokers (Flex Web Service) ----------------------------------
+
+const ibkrSchema = z.object({
+  token: z.string().trim().regex(/^[A-Za-z0-9]{10,64}$/, "token"),
+  queryId: z.string().trim().regex(/^\d{3,12}$/, "queryId"),
+});
+
+app.get("/api/connections/ibkr", async (c) => {
+  const { rows } = await pool.query(
+    "select query_id, last_sync_at, last_status, last_error from broker_connections where user_id = $1 and broker = 'ibkr'",
+    [c.get("userId")],
+  );
+  // the token is never sent back
+  return c.json({ connection: rows[0] ?? null });
+});
+
+app.put("/api/connections/ibkr", async (c) => {
+  const parsed = ibkrSchema.safeParse(await c.req.json());
+  if (!parsed.success) return c.json({ error: "Invalid token or query id", field: parsed.error.issues[0]?.message }, 400);
+  await pool.query(
+    `insert into broker_connections (user_id, broker, token, query_id) values ($1, 'ibkr', $2, $3)
+     on conflict (user_id, broker) do update set token = excluded.token, query_id = excluded.query_id,
+       last_sync_at = null, last_status = null, last_error = null`,
+    [c.get("userId"), parsed.data.token, parsed.data.queryId],
+  );
+  return c.json({ success: true });
+});
+
+app.delete("/api/connections/ibkr", async (c) => {
+  await pool.query("delete from broker_connections where user_id = $1 and broker = 'ibkr'", [c.get("userId")]);
+  return c.json({ success: true });
+});
+
+app.post("/api/connections/ibkr/sync", async (c) => {
+  try {
+    return c.json({ success: true, ...(await syncIbkr(c.get("userId"))) });
+  } catch (e) {
+    return c.json({ error: (e as Error).message }, e instanceof FlexError ? 400 : 500);
+  }
+});
+
 // re-checks the password for destructive actions without touching the session
 async function checkPassword(userId: string, password: unknown) {
   if (typeof password !== "string" || !password) return false;
@@ -124,7 +166,7 @@ app.post("/api/account/reset", async (c) => {
   const client = await pool.connect();
   try {
     await client.query("begin");
-    for (const table of ["trades", "journal_entries", "daily_prep", "executions", "news_source_preferences"]) {
+    for (const table of ["trades", "journal_entries", "daily_prep", "executions", "broker_connections", "news_source_preferences"]) {
       await client.query(`delete from ${table} where user_id = $1`, [userId]);
     }
     // back to the column defaults

@@ -122,6 +122,8 @@ function pointValueFor(symbol: string, market: string, reported?: number) {
 export function detectAccountType(account: string): "sim" | "evaluation" | "performance" | "live" {
   const a = account.toUpperCase();
   if (a.startsWith("SIM") || /REPLAY|PLAYBACK|DEMO|PAPER/.test(a)) return "sim";
+  // Interactive Brokers paper accounts: DU1234567
+  if (/^DU\d/.test(a)) return "sim";
   const firms: [RegExp, RegExp][] = [
     [/APEX/, /PA|FUNDED/],
     [/TOPSTEP|^TS/, /XFA|FUNDED|PRO/],
@@ -139,7 +141,7 @@ export function detectAccountType(account: string): "sim" | "evaluation" | "perf
   return "live";
 }
 
-const SOURCE_TAG: Record<string, string> = { ninjatrader: "NinjaTrader", tradingview: "TradingView" };
+const SOURCE_TAG: Record<string, string> = { ninjatrader: "NinjaTrader", tradingview: "TradingView", ibkr: "IBKR" };
 
 /**
  * Stores executions (duplicates by execution id are skipped, so clients may resend)

@@ -533,7 +533,7 @@
   },
   "import": {
     "title": "Transacties importeren",
-    "subtitle": "NinjaTrader automatisch, TradingView en andere platforms via CSV",
+    "subtitle": "NinjaTrader en Interactive Brokers automatisch, TradingView en andere platforms via CSV",
     "uploadCSV": "CSV-bestand uploaden",
     "uploadDesc": "TradingView-export of het TradeNot.es-sjabloon. Het formaat wordt automatisch herkend.",
     "clickUpload": "Klik om te uploaden",
@@ -637,7 +637,31 @@
     },
     "tvImportResult": "{{created}} trades aangemaakt, {{duplicates}} orders waren al geïmporteerd.",
     "unknownFormat": "Onbekend CSV-formaat",
-    "unknownFormatDetail": "Formaat niet herkend. Verwacht wordt een TradingView-export of het TradeNot.es-sjabloon. Gevonden kolommen: {{headers}}"
+    "unknownFormatDetail": "Formaat niet herkend. Verwacht wordt een TradingView-export of het TradeNot.es-sjabloon. Gevonden kolommen: {{headers}}",
+    "ibkr": {
+      "title": "Interactive Brokers: automatisch via Flex Query",
+      "description": "Niets te installeren: tradenot.es haalt je uitvoeringen één keer per dag bij IBKR op en maakt er trades van.",
+      "step1": "In het IBKR-portaal: Prestaties & rapporten → Flex Queries → maak een nieuwe Activity Flex Query aan.",
+      "step2": "Kies de sectie ‘Trades’ met ‘Executions’ en alle velden. Formaat XML, periode ‘Laatste 30 kalenderdagen’. Opslaan en de query-ID noteren.",
+      "step3": "Open op dezelfde pagina ‘Flex Web Service Configuration’, activeer de dienst en genereer een token.",
+      "step4": "Vul hier token en query-ID in. De eerste ophaling gebeurt meteen, daarna één keer per dag.",
+      "note": "Het token kan alleen rapporten ophalen: geen orders, geen toegang tot je geld. Het verloopt na de bij IBKR gekozen duur; vul dan gewoon een nieuw in. Menunamen in het IBKR-portaal kunnen iets afwijken. Paper-accounts (DU…) worden automatisch als simulatie herkend.",
+      "token": "Flex-token",
+      "queryId": "Query-ID",
+      "connect": "Verbinden",
+      "saving": "Opslaan…",
+      "connected": "Verbonden met Flex Query {{queryId}}",
+      "lastSync": "Laatst opgehaald {{time}}",
+      "neverSynced": "Nog niet opgehaald",
+      "lastError": "Laatste ophaling mislukt: {{message}}",
+      "syncNow": "Nu ophalen",
+      "changeToken": "Token wijzigen",
+      "disconnect": "Ontkoppelen",
+      "invalid": "Ongeldig token of query-ID. Het token bestaat uit cijfers en letters, de query-ID alleen uit cijfers.",
+      "syncResult": "{{received}} uitvoeringen opgehaald, {{created}} nieuwe trades.",
+      "syncError": "Ophalen bij IBKR mislukt: {{message}}",
+      "removed": "IBKR-koppeling verwijderd"
+    }
   },
   "journal": {
     "title": "Trading dagboek",
@@ -863,7 +887,7 @@
       "ssl": "SSL Versleuteld",
       "gdpr": "AVG Conform",
       "traders": "Door Traders voor Traders",
-      "sync": "NinjaTrader Auto-Sync"
+      "sync": "NinjaTrader & IBKR auto-sync"
     },
     "footerAllFeatures": "Alle Functies",
     "cta": {
@@ -1133,7 +1157,7 @@
       "steps": {
         "capture": {
           "title": "Trades vastleggen",
-          "description": "Handmatig in seconden, via CSV-import of automatisch vanuit NinjaTrader."
+          "description": "Automatisch uit NinjaTrader en Interactive Brokers, via CSV uit TradingView of handmatig in seconden."
         },
         "rules": {
           "title": "Regels instellen",
@@ -1161,7 +1185,8 @@
       "analytics": "Prestaties volgen & analyseren",
       "ai": "AI-gestuurde inzichten",
       "marketIntel": "Marktdata & nieuws",
-      "discipline": "Daglimieten, foutenanalyse en een score die laat zien waar je staat"
+      "discipline": "Daglimieten, foutenanalyse en een score die laat zien waar je staat",
+      "import": "NinjaTrader en IBKR automatisch, TradingView via CSV"
     },
     "categories": {
       "tradingTools": "Trading Tools",
@@ -1169,7 +1194,8 @@
       "ai": "AI & Automatisering",
       "reports": "Rapporten",
       "marketIntel": "Markt Intelligentie",
-      "discipline": "Discipline & gedrag"
+      "discipline": "Discipline & gedrag",
+      "import": "Automatisch importeren"
     },
     "items": {
       "easyEntry": {
@@ -1182,12 +1208,12 @@
         ]
       },
       "ninjaTrader": {
-        "title": "NinjaTrader Auto-Sync",
-        "description": "Automatische synchronisatie",
+        "title": "NinjaTrader: automatisch",
+        "description": "Importeer één keer een add-on en elke uitvoering komt vanzelf in je journal. Geen grafiek, geen strategie, geen instellingen: je sleutel zit al in de download.",
         "benefits": [
-          "Entry, Exit, MFE/MAE",
-          "12+ prop firms",
-          "Geen handmatige invoer"
+          "Alle accounts, ook prop-firm-accounts (Apex, Topstep & co. worden herkend)",
+          "Deeluitvoeringen, bij-/afbouwen en omdraaien correct verrekend, inclusief kosten",
+          "MFE/MAE automatisch, gemiste uitvoeringen worden nagestuurd"
         ]
       },
       "propFirm": {
@@ -1209,12 +1235,12 @@
         ]
       },
       "csvImport": {
-        "title": "CSV Import/Export",
-        "description": "Data importeren of exporteren",
+        "title": "Andere platforms: CSV-sjabloon",
+        "description": "Voor elk ander platform: vul het sjabloon in, één regel per trade, en upload het. Of leg een trade handmatig vast in seconden.",
         "benefits": [
-          "Broker formaten",
-          "Makkelijk exporteren",
-          "Naadloze integratie"
+          "Sjabloon om te downloaden",
+          "Kosten, tags, setup en notitie in één keer",
+          "Handmatige invoer met live P&L-voorbeeld"
         ]
       },
       "mfeMAE": {
@@ -1422,6 +1448,51 @@
           "Winrate, profit factor, winst/verlies-verhouding",
           "Drawdown, herstelfactor, aandeel groene dagen",
           "Transparant: elk onderdeel afzonderlijk zichtbaar"
+        ]
+      },
+      "ibkr": {
+        "title": "Interactive Brokers: automatisch",
+        "description": "Niets te installeren: maak bij IBKR een Flex Query aan en vul token en query-ID in. tradenot.es haalt je uitvoeringen daarna één keer per dag op.",
+        "benefits": [
+          "Aandelen, futures en opties",
+          "Het token kan alleen rapporten lezen, geen orders",
+          "Paper-accounts worden automatisch als simulatie herkend"
+        ]
+      },
+      "tradingView": {
+        "title": "TradingView: via CSV-export",
+        "description": "TradingView heeft geen koppeling voor je trades. Exporteer de ordergeschiedenis uit het handelspaneel en sleep het bestand naar de importpagina; de handleiding daar loodst je stap voor stap.",
+        "benefits": [
+          "Formaat wordt automatisch herkend",
+          "Uitgevoerde orders worden trades, geannuleerde worden overgeslagen",
+          "Regelmatig exporteren zonder dubbelen: al geïmporteerde orders worden herkend"
+        ]
+      },
+      "ruleAdherence": {
+        "title": "Regeltrouw: proces boven resultaat",
+        "description": "Heb je je setup-checklist gevolgd? Het rapport scheidt verdiende winsten van geluktreffers en goede verliezen van eigen schuld, ook per setup.",
+        "benefits": [
+          "Vier vakken: verdiende winst, goed verlies, geluktreffer, eigen schuld",
+          "Gem. resultaat met en zonder gevolgde regels",
+          "Laat zien welke setup je het vaakst verwatert"
+        ]
+      },
+      "cooldown": {
+        "title": "Verplichte pauze na een verliesreeks",
+        "description": "Na twee (of zoveel als je wilt) verliezen op rij toont het dashboard een aftelklok tot je weer zou moeten handelen. Trades die je tijdens de pauze toch opent, worden geteld.",
+        "benefits": [
+          "Aantal verliezen en pauzeduur zelf te kiezen",
+          "Aftelklok direct in het discipline-paneel",
+          "Doorbreekt de keten van verlies en revenge-trade"
+        ]
+      },
+      "insights": {
+        "title": "Wat voor jou werkt",
+        "description": "Je sterke en zwakke punten in één oogopslag: beste en slechtste setups, weekdagen, instaptijden, symbolen en richtingen, berekend uit je trades, zonder AI.",
+        "benefits": [
+          "Alleen groepen met genoeg trades, geen toevalstreffers",
+          "P&L, winrate en gem. resultaat per groep",
+          "Dubbele uitspraken worden samengevoegd"
         ]
       }
     },

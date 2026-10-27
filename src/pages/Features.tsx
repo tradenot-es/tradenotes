@@ -11,9 +11,9 @@ import { CategoryNav } from "@/components/features/CategoryNav";
 import { FeatureRow } from "@/components/features/FeatureRow";
 import { FeaturesHero } from "@/components/features/FeaturesHero";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
-import { ArrowRight, Brain, CalendarDays, Gauge, ShieldCheck } from "lucide-react";
+import { ArrowRight, Brain, CalendarDays, ClipboardCheck, Coffee, FileSpreadsheet, Gauge, Landmark, Lightbulb, ShieldCheck } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
-import { BehaviorDemo, DayViewDemo, DisciplineDemo, ScoreDemo } from "@/components/features/FeatureDemos";
+import { BehaviorDemo, CooldownDemo, DayViewDemo, DisciplineDemo, ScoreDemo } from "@/components/features/FeatureDemos";
 import {
   TrendingUp,
   Zap,
@@ -44,7 +44,7 @@ const Features = () => {
   const shot = useScreens();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categoryIds = ["discipline", "trading-tools", "analytics", ...(featureFlags.AI_FEATURES ? ["ai"] : []), "reports", "market-intel"];
+  const categoryIds = ["discipline", "import", "trading-tools", "analytics", ...(featureFlags.AI_FEATURES ? ["ai"] : []), "reports", "market-intel"];
   const activeCategory = useScrollSpy(categoryIds, 140);
 
   // SEO: Update document metadata
@@ -88,6 +88,20 @@ const Features = () => {
           visual: <BehaviorDemo />,
         },
         {
+          icon: <ClipboardCheck className="h-6 w-6" />,
+          title: t("features.items.ruleAdherence.title"),
+          description: t("features.items.ruleAdherence.description"),
+          benefits: t("features.items.ruleAdherence.benefits", { returnObjects: true }) as string[],
+          illustration: shot("reports-rules"),
+        },
+        {
+          icon: <Coffee className="h-6 w-6" />,
+          title: t("features.items.cooldown.title"),
+          description: t("features.items.cooldown.description"),
+          benefits: t("features.items.cooldown.benefits", { returnObjects: true }) as string[],
+          visual: <CooldownDemo />,
+        },
+        {
           icon: <CalendarDays className="h-6 w-6" />,
           title: t("features.items.dayView.title"),
           description: t("features.items.dayView.description"),
@@ -118,6 +132,40 @@ const Features = () => {
       ],
     },
     {
+      id: "import",
+      name: t("features.categories.import"),
+      features: [
+        {
+          icon: <Zap className="h-6 w-6" />,
+          title: t("features.items.ninjaTrader.title"),
+          description: t("features.items.ninjaTrader.description"),
+          benefits: t("features.items.ninjaTrader.benefits", { returnObjects: true }) as string[],
+          illustration: shot("import"),
+        },
+        {
+          icon: <Landmark className="h-6 w-6" />,
+          title: t("features.items.ibkr.title"),
+          description: t("features.items.ibkr.description"),
+          benefits: t("features.items.ibkr.benefits", { returnObjects: true }) as string[],
+          illustration: shot("import-ibkr"),
+        },
+        {
+          icon: <FileSpreadsheet className="h-6 w-6" />,
+          title: t("features.items.tradingView.title"),
+          description: t("features.items.tradingView.description"),
+          benefits: t("features.items.tradingView.benefits", { returnObjects: true }) as string[],
+          illustration: shot("import-tradingview"),
+        },
+        {
+          icon: <Import className="h-6 w-6" />,
+          title: t("features.items.csvImport.title"),
+          description: t("features.items.csvImport.description"),
+          benefits: t("features.items.csvImport.benefits", { returnObjects: true }) as string[],
+          illustration: shot("trades"),
+        },
+      ],
+    },
+    {
       id: "trading-tools",
       name: t("features.categories.tradingTools"),
       features: [
@@ -127,13 +175,6 @@ const Features = () => {
           description: t("features.items.easyEntry.description"),
           benefits: t("features.items.easyEntry.benefits", { returnObjects: true }) as string[],
           illustration: shot("trade-dialog"),
-        },
-        {
-          icon: <Zap className="h-6 w-6" />,
-          title: t("features.items.ninjaTrader.title"),
-          description: t("features.items.ninjaTrader.description"),
-          benefits: t("features.items.ninjaTrader.benefits", { returnObjects: true }) as string[],
-          illustration: shot("import"),
         },
         {
           icon: <Building2 className="h-6 w-6" />,
@@ -149,19 +190,19 @@ const Features = () => {
           benefits: t("features.items.positionCalc.benefits", { returnObjects: true }) as string[],
           illustration: shot("position-calc"),
         },
-        {
-          icon: <Import className="h-6 w-6" />,
-          title: t("features.items.csvImport.title"),
-          description: t("features.items.csvImport.description"),
-          benefits: t("features.items.csvImport.benefits", { returnObjects: true }) as string[],
-          illustration: shot("trades"),
-        },
       ],
     },
     {
       id: "analytics",
       name: t("features.categories.analytics"),
       features: [
+        {
+          icon: <Lightbulb className="h-6 w-6" />,
+          title: t("features.items.insights.title"),
+          description: t("features.items.insights.description"),
+          benefits: t("features.items.insights.benefits", { returnObjects: true }) as string[],
+          illustration: shot("insights"),
+        },
         {
           icon: <Crosshair className="h-6 w-6" />,
           title: t("features.items.mfeMAE.title"),

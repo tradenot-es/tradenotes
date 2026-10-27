@@ -3,6 +3,7 @@ import { serveStatic } from "@hono/node-server/serve-static";
 import { pool } from "./db.js";
 import { env } from "./env.js";
 import { runMigrations } from "./migrate.js";
+import { syncDueIbkr } from "./ibkr.js";
 
 await runMigrations(pool);
 // loaded after migrating: Better Auth checks its tables on startup
@@ -17,12 +18,15 @@ if (env.staticDir) {
 // housekeeping (replaces the Supabase cron jobs)
 const cleanup = async () => {
   // matched executions are only kept to skip resent duplicates (the add-on resends the session)
-  await pool.query("delete from executions where matched and created_at < now() - interval '30 days'");
+  // (IBKR Flex reports can cover up to a year, so they are kept that long)
+  await pool.query("delete from executions where matched and time < now() - interval '400 days'");
   await pool.query("delete from news_cache where expires_at < now()");
   await pool.query("delete from sector_sentiments where expires_at < now()");
   await pool.query(`delete from verification where "expiresAt" < now()`);
 };
 setInterval(() => cleanup().catch((e) => console.error("cleanup failed", e)), 60 * 60 * 1000);
+// Interactive Brokers: fetch each connection's Flex report once a day
+setInterval(() => syncDueIbkr().catch((e) => console.error("ibkr sync failed", e)), 60 * 60 * 1000);
 
 const server = serve({ fetch: app.fetch, port: env.port }, (info) => console.log(`tradenotes server on :${info.port}`));
 

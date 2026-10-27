@@ -140,6 +140,16 @@ check("invalid execution rejected", badBatch.status === 400, badBatch.body);
 const badKey = await hook({ source: "ninjatrader", executions: [] }, "nope");
 check("wrong webhook key rejected", badKey.status === 401, badKey);
 
+// Interactive Brokers connection (the Flex fetch itself is covered by test/ibkr.ts)
+const badIbkr = await anna.req("/api/connections/ibkr", { method: "PUT", json: { token: "x", queryId: "1" } });
+check("ibkr: invalid token rejected", badIbkr.status === 400, badIbkr.body);
+const putIbkr = await anna.req("/api/connections/ibkr", { method: "PUT", json: { token: "123456789012345678901234", queryId: "987654" } });
+const getIbkr = await anna.req("/api/connections/ibkr");
+check("ibkr: connection saved, token not returned", putIbkr.status === 200 && getIbkr.body.connection?.query_id === "987654" && !("token" in getIbkr.body.connection), getIbkr.body);
+check("ibkr: other user sees no connection", (await bob.req("/api/connections/ibkr")).body.connection === null);
+await anna.req("/api/connections/ibkr", { method: "DELETE" });
+check("ibkr: connection removed", (await anna.req("/api/connections/ibkr")).body.connection === null);
+
 // screenshots
 const form = new FormData();
 form.append("file", new Blob([Buffer.from("iVBORw0KGgo=", "base64")], { type: "image/png" }), "x.png");

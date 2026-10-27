@@ -11,9 +11,9 @@ import {
   TrendingUp,
   BarChart3,
   MessageSquare,
-  Globe,
   Zap,
   ShieldCheck,
+  Plug,
 } from "lucide-react";
 import { featureFlags } from "@/config/featureFlags";
 
@@ -58,15 +58,16 @@ const teaserCards: TeaserCard[] = [
         descriptionKey: "features.teaserCards.discipline",
       },
   {
-    id: "market-intel",
-    icon: <Globe className="h-5 w-5" />,
-    titleKey: "features.categories.marketIntel",
-    descriptionKey: "features.teaserCards.marketIntel",
+    id: "import",
+    icon: <Plug className="h-5 w-5" />,
+    titleKey: "features.categories.import",
+    descriptionKey: "features.teaserCards.import",
   },
 ];
 
 const categoryFilters = [
   { id: "discipline", labelKey: "features.categories.discipline" },
+  { id: "import", labelKey: "features.categories.import" },
   { id: "trading-tools", labelKey: "features.categories.tradingTools" },
   { id: "analytics", labelKey: "features.categories.analytics" },
   ...(featureFlags.AI_FEATURES ? [{ id: "ai", labelKey: "features.categories.ai" }] : []),

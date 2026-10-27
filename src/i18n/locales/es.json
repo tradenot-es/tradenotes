@@ -533,7 +533,7 @@
   },
   "import": {
     "title": "Importar operaciones",
-    "subtitle": "NinjaTrader automáticamente, TradingView y otras plataformas por CSV",
+    "subtitle": "NinjaTrader e Interactive Brokers automáticamente, TradingView y otras plataformas por CSV",
     "uploadCSV": "Subir archivo CSV",
     "uploadDesc": "Exportación de TradingView o la plantilla de TradeNot.es. El formato se detecta automáticamente.",
     "clickUpload": "Haz clic para subir",
@@ -637,7 +637,31 @@
     },
     "tvImportResult": "{{created}} operaciones creadas, {{duplicates}} órdenes ya estaban importadas.",
     "unknownFormat": "Formato CSV desconocido",
-    "unknownFormatDetail": "Formato no reconocido. Se espera una exportación de TradingView o la plantilla de TradeNot.es. Columnas encontradas: {{headers}}"
+    "unknownFormatDetail": "Formato no reconocido. Se espera una exportación de TradingView o la plantilla de TradeNot.es. Columnas encontradas: {{headers}}",
+    "ibkr": {
+      "title": "Interactive Brokers: automático por Flex Query",
+      "description": "Sin instalar nada: tradenot.es recoge tus ejecuciones de IBKR una vez al día y las convierte en operaciones.",
+      "step1": "En el portal de IBKR: Rendimiento e informes → Flex Queries → crea una nueva Activity Flex Query.",
+      "step2": "Elige la sección «Trades» con «Executions» y todos los campos. Formato XML, periodo «Últimos 30 días naturales». Guarda y anota el ID de la consulta.",
+      "step3": "En la misma página, abre «Flex Web Service Configuration», activa el servicio y genera un token.",
+      "step4": "Introduce aquí el token y el ID de la consulta. La primera descarga se hace al momento y luego una vez al día.",
+      "note": "El token solo permite descargar informes: ni órdenes ni acceso a tu dinero. Caduca tras el periodo elegido en IBKR; entonces introduce uno nuevo. Los nombres de los menús del portal pueden variar un poco. Las cuentas paper (DU…) se reconocen automáticamente como simulación.",
+      "token": "Token Flex",
+      "queryId": "ID de consulta",
+      "connect": "Conectar",
+      "saving": "Guardando…",
+      "connected": "Conectado a la Flex Query {{queryId}}",
+      "lastSync": "Última descarga {{time}}",
+      "neverSynced": "Aún sin descargar",
+      "lastError": "La última descarga falló: {{message}}",
+      "syncNow": "Descargar ahora",
+      "changeToken": "Cambiar token",
+      "disconnect": "Desconectar",
+      "invalid": "Token o ID de consulta no válidos. El token tiene cifras y letras; el ID de consulta solo cifras.",
+      "syncResult": "{{received}} ejecuciones descargadas, {{created}} operaciones nuevas.",
+      "syncError": "Falló la descarga de IBKR: {{message}}",
+      "removed": "Conexión con IBKR eliminada"
+    }
   },
   "journal": {
     "title": "Diario de trading",
@@ -863,7 +887,7 @@
       "ssl": "Cifrado SSL",
       "gdpr": "Conforme RGPD",
       "traders": "Por Traders para Traders",
-      "sync": "NinjaTrader Auto-Sync"
+      "sync": "Sincronización NinjaTrader e IBKR"
     },
     "footerAllFeatures": "Todas las Funciones",
     "cta": {
@@ -1133,7 +1157,7 @@
       "steps": {
         "capture": {
           "title": "Registrar operaciones",
-          "description": "A mano en segundos, por importación CSV o automáticamente desde NinjaTrader."
+          "description": "Automáticamente desde NinjaTrader e Interactive Brokers, por CSV desde TradingView o a mano en segundos."
         },
         "rules": {
           "title": "Definir reglas",
@@ -1161,7 +1185,8 @@
       "analytics": "Seguimiento y análisis",
       "ai": "Insights con IA",
       "marketIntel": "Datos y noticias de mercado",
-      "discipline": "Límites diarios, análisis de errores y una puntuación que muestra dónde estás"
+      "discipline": "Límites diarios, análisis de errores y una puntuación que muestra dónde estás",
+      "import": "NinjaTrader e IBKR automáticamente, TradingView por CSV"
     },
     "categories": {
       "tradingTools": "Herramientas",
@@ -1169,7 +1194,8 @@
       "ai": "IA & Automatización",
       "reports": "Informes",
       "marketIntel": "Inteligencia de Mercado",
-      "discipline": "Disciplina y comportamiento"
+      "discipline": "Disciplina y comportamiento",
+      "import": "Importación automática"
     },
     "items": {
       "easyEntry": {
@@ -1182,12 +1208,12 @@
         ]
       },
       "ninjaTrader": {
-        "title": "NinjaTrader Auto-Sync",
-        "description": "Sincronización automática",
+        "title": "NinjaTrader: automático",
+        "description": "Importa un add-on una vez y cada ejecución llega sola a tu diario. Sin gráfico, sin estrategia, sin ajustes: tu clave ya viene en la descarga.",
         "benefits": [
-          "Entry, Exit, MFE/MAE",
-          "12+ prop firms",
-          "Sin entrada manual"
+          "Todas las cuentas, también de prop firms (Apex, Topstep y otras se reconocen)",
+          "Ejecuciones parciales, aumentos/reducciones y giros bien calculados, con comisiones",
+          "MFE/MAE automático; las ejecuciones perdidas se envían después"
         ]
       },
       "propFirm": {
@@ -1209,12 +1235,12 @@
         ]
       },
       "csvImport": {
-        "title": "Import/Export CSV",
-        "description": "Importar o exportar datos",
+        "title": "Otras plataformas: plantilla CSV",
+        "description": "Para cualquier otra plataforma: rellena la plantilla, una fila por operación, y súbela. O registra una operación a mano en segundos.",
         "benefits": [
-          "Formatos broker",
-          "Export fácil",
-          "Integración fluida"
+          "Plantilla para descargar",
+          "Comisiones, etiquetas, setup y notas de una vez",
+          "Registro manual con vista previa del P&L"
         ]
       },
       "mfeMAE": {
@@ -1422,6 +1448,51 @@
           "Tasa de acierto, profit factor, relación ganancia/pérdida",
           "Drawdown, factor de recuperación, proporción de días verdes",
           "Transparente: cada componente visible por separado"
+        ]
+      },
+      "ibkr": {
+        "title": "Interactive Brokers: automático",
+        "description": "Sin instalar nada: crea una Flex Query en IBKR e introduce el token y el ID de la consulta. tradenot.es recoge tus ejecuciones una vez al día.",
+        "benefits": [
+          "Acciones, futuros y opciones",
+          "El token solo puede leer informes, no enviar órdenes",
+          "Las cuentas paper se reconocen automáticamente como simulación"
+        ]
+      },
+      "tradingView": {
+        "title": "TradingView: por exportación CSV",
+        "description": "TradingView no ofrece interfaz para tus operaciones. Exporta el historial de órdenes desde el panel de trading y arrastra el archivo a la página de importación; la guía te lleva paso a paso.",
+        "benefits": [
+          "Formato detectado automáticamente",
+          "Las órdenes ejecutadas se convierten en operaciones; las canceladas se omiten",
+          "Exporta con regularidad sin duplicados: las órdenes ya importadas se reconocen"
+        ]
+      },
+      "ruleAdherence": {
+        "title": "Cumplimiento: proceso antes que resultado",
+        "description": "¿Seguiste la checklist de tu setup? El informe separa las ganancias merecidas de los golpes de suerte y las buenas pérdidas de las culpa propia, también por setup.",
+        "benefits": [
+          "Cuatro campos: ganancia merecida, buena pérdida, golpe de suerte, culpa propia",
+          "Resultado medio con y sin reglas cumplidas",
+          "Muestra qué setup diluyes más a menudo"
+        ]
+      },
+      "cooldown": {
+        "title": "Pausa obligatoria tras una racha de pérdidas",
+        "description": "Tras dos (o las que quieras) pérdidas seguidas, el panel muestra una cuenta atrás hasta que debas volver a operar. Las operaciones abiertas igualmente durante la pausa se cuentan.",
+        "benefits": [
+          "Número de pérdidas y duración de la pausa a tu elección",
+          "Cuenta atrás en el panel de disciplina",
+          "Rompe la cadena de pérdida y revenge trade"
+        ]
+      },
+      "insights": {
+        "title": "Lo que te funciona",
+        "description": "Tus fortalezas y debilidades de un vistazo: mejores y peores setups, días, horas de entrada, símbolos y direcciones, calculado a partir de tus operaciones, sin IA.",
+        "benefits": [
+          "Solo grupos con suficientes operaciones, sin casualidades",
+          "P&L, tasa de acierto y resultado medio por grupo",
+          "Las afirmaciones duplicadas se agrupan"
         ]
       }
     },

@@ -1,7 +1,7 @@
 // Live previews of the discipline features for the public features page,
 // rendered from the real chart components with fixed example data.
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, CheckCircle2, OctagonX } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Coffee, OctagonX } from "lucide-react";
 import { DivergingBarList } from "@/components/charts/DivergingBarList";
 import { IntradayPnlChart } from "@/components/charts/IntradayPnlChart";
 import { cn } from "@/lib/utils";
@@ -148,6 +148,26 @@ export function ScoreDemo() {
             </li>
           ))}
         </ul>
+      </div>
+    </DemoFrame>
+  );
+}
+
+/** The break after a losing streak, as the discipline panel shows it. */
+export function CooldownDemo() {
+  const { t } = useTranslation();
+  return (
+    <DemoFrame>
+      <div className="flex items-center gap-3 rounded-lg border border-warning/40 bg-warning/10 p-4 text-sm">
+        <Coffee className="h-6 w-6 shrink-0 text-warning" aria-hidden />
+        <div className="min-w-0 flex-1">
+          <p className="font-semibold">{t("discipline.cooldownTitle", { count: 2 })}</p>
+          <p className="text-muted-foreground">{t("discipline.cooldownText", { time: "15:42" })}</p>
+        </div>
+        <span className="tabular text-3xl font-bold text-warning">18:24</span>
+      </div>
+      <div className="mt-3 rounded-lg border border-destructive/40 bg-destructive/10 p-3 text-sm">
+        <p className="font-medium">{t("discipline.cooldownIgnored", { count: 1 })}</p>
       </div>
     </DemoFrame>
   );

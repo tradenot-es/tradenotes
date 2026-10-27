@@ -31,6 +31,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { PageHeader } from "@/components/PageHeader";
 import { createZip } from "@/lib/zip";
+import { IbkrConnection } from "@/components/import/IbkrConnection";
 import { CsvImport, detectCsv } from "@/lib/csvImport";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { formatDistanceToNow } from "date-fns";
@@ -558,6 +559,8 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
             </CardContent>
           </Card>
 
+
+          <IbkrConnection onImported={loadPendingExecutions} />
         </>
       )}
 

@@ -39,6 +39,10 @@ const SHOTS = [
   },
   { name: "days", path: "/dashboard/days", anchor: { css: "main .glossy-card", nth: 1 } },
   { name: "import", path: "/dashboard/import", anchor: { css: "main .glossy-card", nth: 1 } },
+  { name: "import-ibkr", path: "/dashboard/import", anchor: { key: "import.ibkr.title" } },
+  // guide and upload side by side
+  { name: "import-tradingview", path: "/dashboard/import", anchor: { key: "import.tvTitle" } },
+  { name: "insights", path: "/dashboard/reports?tab=overview", anchor: { key: "insights.title" } },
   { name: "rules", path: "/dashboard/settings", anchor: { css: "#trading-goals" } },
   { name: "reports-overview", path: "/dashboard/reports?tab=overview", anchor: { css: "[role=tabpanel][data-state=active]" } },
   { name: "reports-accounts", path: "/dashboard/reports?tab=accounts", anchor: { css: "[role=tabpanel][data-state=active]" } },
