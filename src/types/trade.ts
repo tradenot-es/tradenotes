@@ -31,7 +31,7 @@ export interface JournalEntry {
 export interface Settings {
   id: string;
   baseCurrency: string;
-  timezone: string;
+  timezone: string | null;
   defaultFees: number;
   setups: string[];
   tags: string[];

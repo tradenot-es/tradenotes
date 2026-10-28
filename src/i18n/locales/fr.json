@@ -178,7 +178,8 @@
       "other": "Autre",
       "trump": "Trump"
     },
-    "liveSourcesNote": "Les discours de la Fed et les apparitions du président américain sont récupérés toutes les heures sur federalreserve.gov et Roll Call Factba.se, en général 1 jour à 2 semaines à l’avance. Les déclarations spontanées, par exemple sur Truth Social, ne sont pas incluses. Heures de la côte Est des États-Unis."
+    "liveSourcesNote": "Les discours de la Fed et les apparitions du président américain sont récupérés toutes les heures sur federalreserve.gov et Roll Call Factba.se, en général 1 jour à 2 semaines à l’avance. Les déclarations spontanées, par exemple sur Truth Social, ne sont pas incluses.",
+    "timesInZone": "Toutes les heures dans votre fuseau horaire ({{zone}}, modifiable dans les Paramètres)."
   },
   "trades": {
     "title": "Transactions",
@@ -512,6 +513,7 @@
     "tagsDesc": "Créez des tags pour organiser vos transactions",
     "currency": "Devise de Base",
     "timezone": "Fuseau Horaire",
+    "timezoneAuto": "Automatique ({{zone}})",
     "defaultFees": "Frais par Défaut",
     "defaultSlippage": "Slippage par Défaut",
     "save": "Enregistrer les Paramètres",
@@ -558,7 +560,7 @@
     "mfaVerifyError": "Code de vérification invalide",
     "mfaDisableError": "Erreur lors de la désactivation de l'authentification à deux facteurs",
     "currencyHelp": "Définit la devise de base pour tous les calculs de P&L et les affichages dans votre journal. Changer cela affectera la façon dont vos résultats de trading sont affichés.",
-    "timezoneHelp": "Détermine comment les horodatages des transactions sont affichés. Sélectionnez votre fuseau horaire local ou celui du marché que vous tradez. Cela ne change pas les temps réels des transactions, seulement leur affichage.",
+    "timezoneHelp": "Le calendrier économique affiche ses dates dans ce fuseau horaire, heure d’été et d’hiver comprises. « Automatique » utilise le fuseau de votre appareil. Les trades sont affichés à l’heure de votre appareil.",
     "feesHelp": "Commission/frais par défaut appliqués automatiquement aux nouvelles transactions. Cela aide à calculer votre P&L net plus précisément. Vous pouvez remplacer cette valeur pour des transactions individuelles si nécessaire.",
     "slippageHelp": "Différence de prix attendue entre le placement de l'ordre et l'exécution (en pourcentage). Utilisé pour un backtesting et une analyse de performance plus réalistes. Valeurs typiques : 0.1-1% selon votre marché et instrument.",
     "setupsHelp": "Stratégies ou modèles de trading que vous utilisez (par ex., 'Breakout', 'Mean Reversion', 'Momentum'). Ceux-ci vous aident à analyser quels setups fonctionnent le mieux pour vous au fil du temps.",

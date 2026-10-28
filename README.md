@@ -19,6 +19,7 @@ Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC
     Jede Tabelle steht mit erlaubten Aktionen in einer Freigabeliste, die Nutzer-ID setzt immer der Server.
   - `src/routes/import.ts`: Trade-Import (`POST /api/import-trades`): Add-on mit Header `X-API-Key`, CSV und Vorlage für eingeloggte Nutzer
   - `src/matching.ts`: Ausführungen → Trades (FIFO, flat bis flat), `src/ibkr.ts`: Interactive-Brokers-Abruf
+  - Kalenderzeiten: jeder Termin steht in der Zeitzone seiner Institution (`eventTimeZone` in `src/lib/economicCalendar.ts`) und wird mit `src/lib/timezone.ts` in die Zeitzone des Nutzers umgerechnet (Einstellung oder Gerät); Prüfungen rund um die Zeitumstellung: `npx tsx src/lib/timezone.check.ts`
   - `src/marketEvents.ts`: holt stündlich Fed-Reden/FOMC-Protokolle (federalreserve.gov) und angekündigte Auftritte des US-Präsidenten (Roll Call Factba.se) für den Kalender; Tests in `test/marketEvents.ts`
   - `migrations/`: SQL-Migrationen, laufen beim Start automatisch
 - `src/config/operator.ts`: Betreiber und E-Mail-Adresse für Impressum, Datenschutz, Kontakt; die Texte selbst stehen unter `legal.*` in den Sprachdateien

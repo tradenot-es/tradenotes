@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -22,9 +23,13 @@ import { PageHeader } from "@/components/PageHeader";
 import { TradingGoalsSettings } from "@/components/settings/TradingGoalsSettings";
 import { CooldownSettings } from "@/components/settings/CooldownSettings";
 import { CooldownRule, defaultCooldownRule } from "@/lib/behavior";
+import { deviceTimeZone } from "@/lib/timezone";
 import { TradingGoalsConfig, defaultTradingGoals, GoalKey, TradingGoal } from "@/types/tradingGoals";
 
+const AUTO_TIMEZONE = "auto";
+
 const Settings = () => {
+  const queryClient = useQueryClient();
   const { t } = useTranslation();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
@@ -38,7 +43,8 @@ const Settings = () => {
   }, [loading, location.hash]);
   const [saving, setSaving] = useState(false);
   const [currency, setCurrency] = useState("USD");
-  const [timezone, setTimezone] = useState("America/New_York");
+  // "auto" = the device's zone, stored as null
+  const [timezone, setTimezone] = useState(AUTO_TIMEZONE);
   const [defaultFees, setDefaultFees] = useState("2.00");
   const [defaultSlippage, setDefaultSlippage] = useState("0.5");
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
@@ -55,11 +61,11 @@ const Settings = () => {
   const [cooldownRule, setCooldownRule] = useState<CooldownRule>(defaultCooldownRule);
 
   const timezones = [
-    "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
-    "America/Toronto", "America/Sao_Paulo", "Europe/London", "Europe/Paris",
-    "Europe/Berlin", "Europe/Zurich", "Europe/Amsterdam", "Asia/Tokyo",
-    "Asia/Shanghai", "Asia/Hong_Kong", "Asia/Singapore", "Asia/Dubai",
-    "Australia/Sydney", "Pacific/Auckland"
+    "America/New_York", "America/Chicago", "America/Denver", "America/Phoenix", "America/Los_Angeles",
+    "America/Toronto", "America/Mexico_City", "America/Sao_Paulo", "Europe/London", "Europe/Paris",
+    "Europe/Berlin", "Europe/Madrid", "Europe/Rome", "Europe/Vienna", "Europe/Zurich", "Europe/Amsterdam",
+    "Africa/Johannesburg", "Asia/Dubai", "Asia/Kolkata", "Asia/Singapore", "Asia/Hong_Kong",
+    "Asia/Shanghai", "Asia/Tokyo", "Australia/Sydney", "Pacific/Auckland"
   ];
 
   const settingsSchema = z.object({
@@ -98,7 +104,7 @@ const Settings = () => {
     if (!error && data) {
       setSettingsId(data.id);
       setCurrency(data.base_currency);
-      setTimezone(data.timezone);
+      setTimezone(data.timezone ?? AUTO_TIMEZONE);
       setDefaultFees(data.default_fees?.toString() || "2.00");
       setDefaultSlippage(data.default_slippage?.toString() || "0.5");
       
@@ -149,7 +155,7 @@ const Settings = () => {
         .from("user_settings")
         .update({
           base_currency: currency,
-          timezone: timezone,
+          timezone: timezone === AUTO_TIMEZONE ? null : timezone,
           default_fees: parseFloat(defaultFees),
           default_slippage: parseFloat(defaultSlippage),
           setup_definitions: setupDefinitions as any,
@@ -163,6 +169,7 @@ const Settings = () => {
         .eq("id", settingsId);
 
       if (error) throw error;
+      queryClient.invalidateQueries({ queryKey: ["user-settings", "timezone"] });
       toast.success(t("settings.settingsSaved"));
     } catch (error: any) {
       toast.error(error.message || t("settings.saveError"));
@@ -345,6 +352,7 @@ const Settings = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="max-h-[300px]">
+                    <SelectItem value={AUTO_TIMEZONE}>{t("settings.timezoneAuto", { zone: deviceTimeZone() })}</SelectItem>
                     {timezones.map((tz) => (
                       <SelectItem key={tz} value={tz}>{tz}</SelectItem>
                     ))}

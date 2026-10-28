@@ -158,7 +158,8 @@
       "other": "Sonstige",
       "trump": "Trump"
     },
-    "liveSourcesNote": "Fed-Reden und Auftritte des US-Präsidenten werden stündlich von federalreserve.gov und Roll Call Factba.se abgerufen, meist mit 1 Tag bis 2 Wochen Vorlauf. Spontane Äußerungen, etwa auf Truth Social, sind nicht enthalten. Zeiten in US-Ostküstenzeit."
+    "liveSourcesNote": "Fed-Reden und Auftritte des US-Präsidenten werden stündlich von federalreserve.gov und Roll Call Factba.se abgerufen, meist mit 1 Tag bis 2 Wochen Vorlauf. Spontane Äußerungen, etwa auf Truth Social, sind nicht enthalten.",
+    "timesInZone": "Alle Zeiten in deiner Zeitzone ({{zone}}, einstellbar unter Einstellungen)."
   },
   "weekdays": {
     "mon": "Mo",
@@ -511,6 +512,7 @@
     "tagsDesc": "Erstelle Tags zur Organisation deiner Trades",
     "currency": "Basiswährung",
     "timezone": "Zeitzone",
+    "timezoneAuto": "Automatisch ({{zone}})",
     "defaultFees": "Standardgebühren",
     "defaultSlippage": "Standard-Slippage",
     "save": "Einstellungen speichern",
@@ -557,7 +559,7 @@
     "mfaVerifyError": "Ungültiger Bestätigungscode",
     "mfaDisableError": "Fehler beim Deaktivieren der Zwei-Faktor-Authentifizierung",
     "currencyHelp": "Legt die Basiswährung für alle P&L-Berechnungen und Anzeigen in deinem Journal fest. Änderungen wirken sich auf die Darstellung deiner Trading-Ergebnisse aus.",
-    "timezoneHelp": "Bestimmt, wie Trade-Zeitstempel angezeigt werden. Wähle deine lokale Zeitzone oder die Zeitzone des gehandelten Marktes. Dies ändert nicht die tatsächlichen Trade-Zeiten, sondern nur deren Anzeige.",
+    "timezoneHelp": "In dieser Zeitzone zeigt der Wirtschaftskalender Termine an, mit Sommer- und Winterzeit. „Automatisch“ nimmt die Zeitzone deines Geräts. Trades werden in der Zeit deines Geräts angezeigt.",
     "feesHelp": "Standard-Kommission/Gebühren, die automatisch auf neue Trades angewendet werden. Hilft bei der genaueren Berechnung deines Netto-P&L. Kann für einzelne Trades überschrieben werden.",
     "slippageHelp": "Erwartete Preisdifferenz zwischen Orderaufgabe und Ausführung (in Prozent). Wird für realistischeres Backtesting und Performance-Analyse verwendet. Typische Werte: 0,1-1% je nach Markt und Instrument.",
     "setupsHelp": "Trading-Strategien oder Muster, die du verwendest (z.B. 'Breakout', 'Mean Reversion', 'Momentum'). Diese helfen dir, im Laufe der Zeit zu analysieren, welche Setups am besten für dich funktionieren.",

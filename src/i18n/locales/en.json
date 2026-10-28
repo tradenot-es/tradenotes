@@ -177,7 +177,8 @@
       "other": "Other",
       "trump": "Trump"
     },
-    "liveSourcesNote": "Fed speeches and the US President's appearances are fetched hourly from federalreserve.gov and Roll Call Factba.se, usually 1 day to 2 weeks ahead. Unannounced statements, e.g. on Truth Social, are not included. Times in US Eastern time."
+    "liveSourcesNote": "Fed speeches and the US President's appearances are fetched hourly from federalreserve.gov and Roll Call Factba.se, usually 1 day to 2 weeks ahead. Unannounced statements, e.g. on Truth Social, are not included.",
+    "timesInZone": "All times in your time zone ({{zone}}, change it in Settings)."
   },
   "trades": {
     "title": "Trades",
@@ -503,6 +504,7 @@
     "tagsDesc": "Create tags to organize your trades",
     "currency": "Base Currency",
     "timezone": "Timezone",
+    "timezoneAuto": "Automatic ({{zone}})",
     "defaultFees": "Default Fees",
     "defaultSlippage": "Default Slippage",
     "save": "Save Settings",
@@ -549,7 +551,7 @@
     "mfaVerifyError": "Invalid verification code",
     "mfaDisableError": "Error disabling two-factor authentication",
     "currencyHelp": "Sets the base currency for all P&L calculations and displays throughout your journal. Changing this will affect how your trading results are shown.",
-    "timezoneHelp": "Determines how trade timestamps are displayed. Select your local timezone or the timezone of the market you're trading. This doesn't change the actual trade times, only how they're shown.",
+    "timezoneHelp": "The economic calendar shows its dates in this time zone, including daylight saving time. “Automatic” uses your device's time zone. Trades are shown in your device's time.",
     "feesHelp": "Default commission/fees automatically applied to new trades. This helps calculate your net P&L more accurately. You can override this value for individual trades if needed.",
     "slippageHelp": "Expected price difference between order placement and execution (in percentage). Used for more realistic backtesting and performance analysis. Typical values: 0.1-1% depending on your market and instrument.",
     "setupsHelp": "Trading strategies or patterns you use (e.g., 'Breakout', 'Mean Reversion', 'Momentum'). These help you analyze which setups work best for you over time.",

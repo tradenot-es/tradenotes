@@ -177,7 +177,8 @@
       "other": "Altro",
       "trump": "Trump"
     },
-    "liveSourcesNote": "I discorsi della Fed e le apparizioni del presidente degli Stati Uniti vengono scaricati ogni ora da federalreserve.gov e Roll Call Factba.se, di solito con 1 giorno - 2 settimane di anticipo. Le dichiarazioni improvvise, ad esempio su Truth Social, non sono incluse. Orari della costa est degli USA."
+    "liveSourcesNote": "I discorsi della Fed e le apparizioni del presidente degli Stati Uniti vengono scaricati ogni ora da federalreserve.gov e Roll Call Factba.se, di solito con 1 giorno - 2 settimane di anticipo. Le dichiarazioni improvvise, ad esempio su Truth Social, non sono incluse.",
+    "timesInZone": "Tutti gli orari nel tuo fuso orario ({{zone}}, modificabile nelle Impostazioni)."
   },
   "trades": {
     "title": "Operazioni",
@@ -503,6 +504,7 @@
     "tagsDesc": "Crea tag per organizzare le tue operazioni",
     "currency": "Valuta Base",
     "timezone": "Fuso Orario",
+    "timezoneAuto": "Automatico ({{zone}})",
     "defaultFees": "Commissioni Predefinite",
     "defaultSlippage": "Slippage Predefinito",
     "save": "Salva Impostazioni",
@@ -549,7 +551,7 @@
     "mfaVerifyError": "Codice di verifica non valido",
     "mfaDisableError": "Errore disabilitazione autenticazione a due fattori",
     "currencyHelp": "Imposta la valuta base per tutti i calcoli P&L e visualizzazioni nel tuo diario. Cambiare questo influenzerà come vengono mostrati i tuoi risultati di trading.",
-    "timezoneHelp": "Determina come vengono visualizzati i timestamp delle operazioni. Seleziona il tuo fuso orario locale o il fuso orario del mercato che stai scambiando. Questo non cambia gli orari effettivi delle operazioni, solo come vengono mostrati.",
+    "timezoneHelp": "Il calendario economico mostra le date in questo fuso orario, con ora legale e solare. «Automatico» usa il fuso del tuo dispositivo. I trade vengono mostrati nell’ora del tuo dispositivo.",
     "feesHelp": "Commissioni predefinite applicate automaticamente alle nuove operazioni. Questo aiuta a calcolare il tuo P&L netto in modo più accurato. Puoi sovrascrivere questo valore per singole operazioni se necessario.",
     "slippageHelp": "Differenza di prezzo attesa tra piazzamento ordine ed esecuzione (in percentuale). Usato per backtesting e analisi delle performance più realistici. Valori tipici: 0.1-1% a seconda del tuo mercato e strumento.",
     "setupsHelp": "Strategie di trading o pattern che usi (es. 'Breakout', 'Mean Reversion', 'Momentum'). Questi ti aiutano ad analizzare quali setup funzionano meglio per te nel tempo.",

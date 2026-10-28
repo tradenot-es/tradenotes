@@ -5,6 +5,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home, Mic, ExternalLink } from "lucide-react";
 import trumpHead from "@/assets/trump-head.webp";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
+import { useTimeZone } from "@/hooks/useTimeZone";
 
 interface PoliticalEventsProps {
   date: Date;
@@ -15,6 +16,7 @@ interface PoliticalEventsProps {
 
 export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }: PoliticalEventsProps) {
   const { t } = useTranslation();
+  const timeZone = useTimeZone();
 
   // Get country flag based on category and title (for mixed categories like CPI, GDP)
   const getCountryFlag = (category?: string, title?: string): string => {
@@ -218,7 +220,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                         )}
                         {event.time && (
                           <Badge variant="secondary" className="text-xs bg-blue-100 dark:bg-blue-900/30">
-                            {event.time} EST
+                            {event.time} {event.zoneLabel}
                           </Badge>
                         )}
                       </div>
@@ -228,7 +230,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
               ))}
             </div>
             <p className="text-[11px] text-muted-foreground mt-3 pt-3 border-t border-blue-200/50 dark:border-blue-900/50">
-              {t("calendar.liveSourcesNote")}
+              {t("calendar.timesInZone", { zone: timeZone.replace(/_/g, " ") })} {t("calendar.liveSourcesNote")}
             </p>
           </CardContent>
         </Card>

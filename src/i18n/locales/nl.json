@@ -178,7 +178,8 @@
       "other": "Overig",
       "trump": "Trump"
     },
-    "liveSourcesNote": "Fed-toespraken en optredens van de Amerikaanse president worden elk uur opgehaald van federalreserve.gov en Roll Call Factba.se, meestal 1 dag tot 2 weken van tevoren. Spontane uitspraken, bijvoorbeeld op Truth Social, zitten er niet in. Tijden in Amerikaanse oostkusttijd."
+    "liveSourcesNote": "Fed-toespraken en optredens van de Amerikaanse president worden elk uur opgehaald van federalreserve.gov en Roll Call Factba.se, meestal 1 dag tot 2 weken van tevoren. Spontane uitspraken, bijvoorbeeld op Truth Social, zitten er niet in.",
+    "timesInZone": "Alle tijden in jouw tijdzone ({{zone}}, aan te passen in Instellingen)."
   },
   "trades": {
     "title": "Transacties",
@@ -512,6 +513,7 @@
     "tagsDesc": "Maak tags om je transacties te organiseren",
     "currency": "Basisvaluta",
     "timezone": "Tijdzone",
+    "timezoneAuto": "Automatisch ({{zone}})",
     "defaultFees": "Standaard Kosten",
     "defaultSlippage": "Standaard Slippage",
     "save": "Instellingen Opslaan",
@@ -558,7 +560,7 @@
     "mfaVerifyError": "Ongeldige verificatiecode",
     "mfaDisableError": "Fout bij deactiveren van twee-factor authenticatie",
     "currencyHelp": "Stelt de basisvaluta in voor alle P&L berekeningen en weergaven in je dagboek. Het wijzigen hiervan beïnvloedt hoe je handelsresultaten worden getoond.",
-    "timezoneHelp": "Bepaalt hoe handelstijdstempels worden weergegeven. Selecteer je lokale tijdzone of de tijdzone van de markt waar je handelt. Dit verandert niet de werkelijke handelstijden, alleen hoe ze worden getoond.",
+    "timezoneHelp": "De economische kalender toont zijn tijden in deze tijdzone, inclusief zomer- en wintertijd. ‘Automatisch’ gebruikt de tijdzone van je apparaat. Trades worden getoond in de tijd van je apparaat.",
     "feesHelp": "Standaard commissie/kosten die automatisch worden toegepast op nieuwe transacties. Dit helpt je netto P&L nauwkeuriger te berekenen. Je kunt deze waarde indien nodig overschrijven voor individuele transacties.",
     "slippageHelp": "Verwacht prijsverschil tussen orderplaatsing en uitvoering (in percentage). Gebruikt voor realistischer backtesting en prestatieanalyse. Typische waarden: 0.1-1% afhankelijk van je markt en instrument.",
     "setupsHelp": "Handelsstrategieën of patronen die je gebruikt (bijv. 'Breakout', 'Mean Reversion', 'Momentum'). Deze helpen je analyseren welke setups in de loop van de tijd het beste voor je werken.",
