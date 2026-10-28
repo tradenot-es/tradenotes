@@ -1763,7 +1763,7 @@
         },
         {
           "title": "Cuánto tiempo guardamos los datos",
-          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días."
+          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días.\n\nPor seguridad, hacemos cada día una copia de la base de datos y de las capturas en el mismo servidor. Estas copias se borran a los 14 días, así que los datos eliminados desaparecen también de las copias como máximo 14 días después."
         },
         {
           "title": "Tus derechos",

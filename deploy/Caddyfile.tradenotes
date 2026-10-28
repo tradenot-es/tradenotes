@@ -1,0 +1,24 @@
+# Site block for tradenot.es. Goes into the Caddyfile of the Caddy that already serves
+# ports 80/443 on the VPS (the REDACTED one), see deploy/README.md.
+# No "log" directive on purpose: the privacy policy says there are no access logs.
+
+www.tradenot.es {
+	redir https://tradenot.es{uri} permanent
+}
+
+tradenot.es {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "DENY"
+		Permissions-Policy "camera=(), microphone=(), geolocation=()"
+		-Server
+	}
+
+	# Caddy on the host: the app listens on 127.0.0.1:3010 (compose.yaml).
+	# Caddy in a container: use the app's address on a shared Docker network instead.
+	reverse_proxy 127.0.0.1:3010
+}

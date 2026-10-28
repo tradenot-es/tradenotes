@@ -1754,7 +1754,7 @@
         },
         {
           "title": "Per quanto tempo conserviamo i dati",
-          "text": "I tuoi dati restano salvati finché non li cancelli o elimini il tuo account. Quando elimini l’account, cancelliamo subito tutti i dati, screenshot compresi. Le sessioni scadute vengono eliminate automaticamente, così come gli account il cui indirizzo e-mail non è stato confermato entro 7 giorni."
+          "text": "I tuoi dati restano salvati finché non li cancelli o elimini il tuo account. Quando elimini l’account, cancelliamo subito tutti i dati, screenshot compresi. Le sessioni scadute vengono eliminate automaticamente, così come gli account il cui indirizzo e-mail non è stato confermato entro 7 giorni.\n\nPer sicurezza, salviamo ogni giorno il database e gli screenshot sullo stesso server. Questi backup vengono cancellati dopo 14 giorni, quindi i dati eliminati spariscono anche dai backup al più tardi 14 giorni dopo."
         },
         {
           "title": "I tuoi diritti",

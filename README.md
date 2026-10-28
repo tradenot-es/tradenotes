@@ -20,7 +20,8 @@ Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC
   - `src/routes/import.ts`: Trade-Import (`POST /api/import-trades`): Add-on mit Header `X-API-Key`, CSV und Vorlage für eingeloggte Nutzer
   - `src/matching.ts`: Ausführungen → Trades (FIFO, flat bis flat), `src/ibkr.ts`: Interactive-Brokers-Abruf
   - `migrations/`: SQL-Migrationen, laufen beim Start automatisch
-- KI-Funktionen sind über `AI_FEATURES` in `src/config/featureFlags.ts` abgeschaltet.
+- `src/config/operator.ts`: Betreiber und E-Mail-Adresse für Impressum, Datenschutz, Kontakt; die Texte selbst stehen unter `legal.*` in den Sprachdateien
+- `src/export.ts` (Server): Datenexport als ZIP (`GET /api/export`)
 
 ## Entwicklung
 
@@ -43,17 +44,31 @@ cd server && npx tsx test/smoke.ts http://localhost:3000 /tmp/tradenotes-dev.log
 ## Betrieb
 
 `compose.yaml` startet App und Datenbank als eigenen Stack. Die App lauscht nur auf `127.0.0.1:3010`,
-davor sitzt der Caddy des Servers.
+davor sitzt der Caddy des Servers. Alles für den Server liegt in `deploy/`:
+
+- `deploy/Caddyfile.tradenotes`: Site-Block (HTTPS, www → ohne www, Sicherheits-Header, **kein Zugriffslog**,
+  so steht es in der Datenschutzerklärung)
+- `deploy/deploy.sh`: `git pull`, Image bauen, neu starten, auf den Health-Check warten
+- `deploy/backup.sh`: täglich Datenbank-Dump und Screenshots nach `/opt/tradenotes-backups`, 14 Tage aufbewahrt
+  (die Datenschutzerklärung nennt diese 14 Tage)
+
+Erstes Einrichten:
 
 ```sh
-cp .env.example .env   # Werte eintragen
+git clone -b eigenes-backend git@github.com:tradenot-es/tradenotes.git /opt/tradenotes
+cd /opt/tradenotes
+cp .env.example .env   # Werte eintragen, Geheimnisse mit openssl rand -hex 32 / -hex 24
 docker compose up -d --build
+# Caddy: Inhalt von deploy/Caddyfile.tradenotes in den Caddyfile übernehmen, Caddy neu laden
+# Backup: Cron-Zeile aus deploy/backup.sh eintragen
 ```
 
-Caddy-Site-Block:
+Danach genügt für Updates `deploy/deploy.sh`. Migrationen laufen beim Start der App.
 
-```
-tradenot.es, www.tradenot.es {
-	reverse_proxy 127.0.0.1:3010
-}
+Wiederherstellen aus dem Backup:
+
+```sh
+docker compose exec -T db pg_restore -U tradenotes -d tradenotes --clean --if-exists < /opt/tradenotes-backups/db_<stempel>.dump
+docker run --rm -v tradenotes_uploads:/data -v /opt/tradenotes-backups:/backup alpine \
+  sh -c 'rm -rf /data/* && tar xzf /backup/uploads_<stempel>.tar.gz -C /data'
 ```

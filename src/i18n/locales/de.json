@@ -1752,7 +1752,7 @@
         },
         {
           "title": "Wie lange wir Daten speichern",
-          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde."
+          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde.\n\nZur Sicherheit sichern wir Datenbank und Screenshots täglich auf demselben Server. Diese Sicherungen werden nach 14 Tagen gelöscht; gelöschte Daten verschwinden also spätestens 14 Tage später auch aus den Sicherungen."
         },
         {
           "title": "Deine Rechte",

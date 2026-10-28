@@ -1744,7 +1744,7 @@
         },
         {
           "title": "How long we keep data",
-          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days."
+          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days.\n\nFor safety, we back up the database and screenshots daily on the same server. These backups are deleted after 14 days, so deleted data disappears from the backups no later than 14 days afterwards."
         },
         {
           "title": "Your rights",

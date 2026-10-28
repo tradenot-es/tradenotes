@@ -1763,7 +1763,7 @@
         },
         {
           "title": "Hoe lang we gegevens bewaren",
-          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd."
+          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd.\n\nVoor de zekerheid maken we dagelijks een back-up van de database en de screenshots op dezelfde server. Die back-ups worden na 14 dagen verwijderd; verwijderde gegevens verdwijnen dus uiterlijk 14 dagen later ook uit de back-ups."
         },
         {
           "title": "Je rechten",
