@@ -1,14 +1,61 @@
 <p align="center">
-  <img src="public/logo.png" alt="TradeNot.es Logo" width="160" />
+  <a href="https://tradenot.es"><img src="public/logo.png" alt="TradeNot.es" width="140" /></a>
 </p>
 
-<h1 align="center">tradenot.es</h1>
+<h1 align="center">TradeNot.es</h1>
 
-<p align="center">Kostenloses Trading-Journal für Futures-, Aktien- und Prop-Firm-Trader</p>
+<p align="center">
+  <strong>Kostenloses Trading-Journal für Futures-, Aktien- und Prop-Firm-Trader.</strong><br />
+  Ohne Abo, ohne Werbung, ohne Tracking. Als Dienst auf <a href="https://tradenot.es">tradenot.es</a> und selbst hostbar.
+</p>
 
-Trades automatisch aus NinjaTrader (Add-on) und Interactive Brokers (Flex-Abfrage) importieren, TradingView und andere per CSV; Journal, Disziplin-Limits, Pflichtpause, Fehler- und Regeltreue-Analyse, Reports, Mentor-Modus.
-Ursprünglich mit Lovable gebaut, seit Oktober 2026 selbst gehostet ohne Lovable und Supabase.
-Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC.md).
+<p align="center">
+  <a href="https://tradenot.es">Website</a> ·
+  <a href="https://tradenot.es/features">Funktionen</a> ·
+  <a href="https://tradenot.es/hilfe">Hilfe</a> ·
+  <a href="#selbst-hosten">Selbst hosten</a> ·
+  <a href="#lizenz">Lizenz</a>
+</p>
+
+<p align="center">
+  <img alt="Lizenz AGPL-3.0" src="https://img.shields.io/badge/Lizenz-AGPL--3.0-10b981" />
+  <img alt="Sprachen" src="https://img.shields.io/badge/Sprachen-DE%20·%20EN%20·%20ES%20·%20FR%20·%20IT%20·%20NL-10b981" />
+  <img alt="Selbst hostbar" src="https://img.shields.io/badge/selbst%20hostbar-Docker-10b981" />
+</p>
+
+<p align="center">
+  <img src="src/assets/screens/de/hero-dashboard.webp" alt="Dashboard von TradeNot.es" width="860" />
+</p>
+
+> *English: TradeNot.es is a free, open-source trading journal (AGPL-3.0) with automatic import from
+> NinjaTrader and Interactive Brokers, discipline limits, behaviour and rule-adherence analytics. Use it at
+> [tradenot.es](https://tradenot.es) or host it yourself with Docker. The app is available in six languages.*
+
+## Was TradeNot.es kann
+
+- **Trades kommen von selbst:** NinjaTrader-Add-on (alle Konten, Teilausführungen, Gebühren, MFE/MAE),
+  Interactive Brokers per Flex-Abfrage (täglicher Abruf), TradingView-Export und eigene CSV-Vorlage
+- **Disziplin:** Tageslimits für Trades, Verlust und Verlustserien, Pflichtpause nach Verlustserie,
+  automatische Erkennung von Revenge-Trades und Overtrading
+- **Auswertungen:** Fehler und Gefühlslage pro Trade, Regeltreue (Prozess gegen Ergebnis), „Was bei dir funktioniert“,
+  Equity-Kurve, R-Multiple, Risiko-Simulator, Reports nach Setup, Symbol, Zeit, Konto (Sim/Evaluation/Funded/Live)
+- **Wirtschaftskalender:** Fed, EZB, BoE, BoJ, CPI, NFP, dazu Fed-Reden und angekündigte Auftritte des US-Präsidenten,
+  jede Uhrzeit in der Zeitzone des Nutzers
+- **Journal, Tagesvorbereitung, Mentor-Modus** (einzelne Trades per Link teilen)
+- **Deine Daten gehören dir:** Export als ZIP (inkl. wieder importierbarer CSV und Screenshots), Löschen jederzeit,
+  Server in der EU, keine Analyse- oder Werbedienste
+- **6 Sprachen:** Deutsch, Englisch, Spanisch, Französisch, Italienisch, Niederländisch
+
+## Selbst hosten
+
+TradeNot.es läuft als ein Container (API und Frontend) plus PostgreSQL, siehe [`compose.yaml`](compose.yaml) und
+den Abschnitt [Betrieb](#betrieb) weiter unten. Mindestens nötig sind `BASE_URL`, `BETTER_AUTH_SECRET` und
+`POSTGRES_PASSWORD`; für Bestätigungs- und Passwort-Mails ein SMTP-Zugang. Updates: neues Image, Neustart,
+die Datenbank-Migrationen laufen automatisch.
+
+Hinweis: Die Rechtstexte (Impressum, Datenschutz) und die Startseite sind die der offiziellen Instanz
+tradenot.es; Betreiberangaben stehen in [`src/config/operator.ts`](src/config/operator.ts). Eine vereinfachte
+Selbsthost-Variante (nur App, ohne Startseite und Rechtstexte, auch ohne Mailserver, fertige Images) ist geplant.
 
 ## Aufbau
 
@@ -82,3 +129,8 @@ tradenot.es steht unter der **GNU Affero General Public License v3.0 oder späte
 siehe [LICENSE](LICENSE). Jeder darf den Code nutzen, ändern und selbst betreiben. Wer eine veränderte
 Version als Dienst im Netz anbietet, muss deren Quellcode den Nutzern ebenfalls unter der AGPL zugänglich
 machen. Eingebundene Fremdbausteine (z. B. shadcn/ui, Radix, Recharts) behalten ihre eigenen Lizenzen (MIT u. a.).
+
+## Geschichte
+
+Ursprünglich 2025 mit Lovable gebaut, seit Oktober 2026 mit eigenem Backend ohne Lovable und Supabase. Die damalige
+Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC.md).
