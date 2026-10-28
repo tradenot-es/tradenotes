@@ -1864,6 +1864,14 @@
     "error": "Senden fehlgeschlagen. Bitte versuch es noch einmal.",
     "tooMany": "Du hast gerade viele Nachrichten geschickt. Bitte versuch es in einer Stunde wieder."
   },
+  "twoFactorReminder": {
+    "title": "Konto zusätzlich absichern?",
+    "description": "Mit der Zwei-Faktor-Anmeldung brauchst du beim Anmelden neben dem Passwort einen Code aus einer Authenticator-App. Selbst wer dein Passwort kennt, kommt dann nicht an dein Journal. Einrichten dauert etwa eine Minute; bewahre die Ersatzcodes gut auf.",
+    "later": "Später",
+    "setUp": "Jetzt einrichten",
+    "banner": "Schütze dein Journal mit der Zwei-Faktor-Anmeldung: Neben dem Passwort braucht es dann einen Code aus deiner Authenticator-App.",
+    "dismiss": "Nicht mehr anzeigen"
+  },
   "help": {
     "title": "Hilfe & häufige Fragen",
     "subtitle": "Antworten rund um TradeNot.es: Start, Import, Auswertungen und deine Daten.",

@@ -1875,6 +1875,14 @@
     "error": "No se pudo enviar. Inténtalo de nuevo.",
     "tooMany": "Acabas de enviar varios mensajes. Vuelve a intentarlo dentro de una hora."
   },
+  "twoFactorReminder": {
+    "title": "¿Proteger más tu cuenta?",
+    "description": "Con el inicio de sesión en dos pasos necesitas, además de la contraseña, un código de una app de autenticación. Aunque alguien conozca tu contraseña, no podrá entrar en tu diario. Configurarlo lleva un minuto; guarda bien los códigos de respaldo.",
+    "later": "Más tarde",
+    "setUp": "Configurar ahora",
+    "banner": "Protege tu diario con el inicio de sesión en dos pasos: además de la contraseña se necesita un código de tu app de autenticación.",
+    "dismiss": "No volver a mostrar"
+  },
   "help": {
     "title": "Ayuda y preguntas frecuentes",
     "subtitle": "Respuestas sobre TradeNot.es: primeros pasos, importación, informes y tus datos.",

@@ -151,7 +151,8 @@ const goals = {
 };
 await pool.query(
   `update user_settings set setup_definitions = $2, setups = $3, trading_goals = trading_goals || $4::jsonb,
-     cooldown_rule = '{"enabled": true, "after_losses": 2, "minutes": 30}'
+     cooldown_rule = '{"enabled": true, "after_losses": 2, "minutes": 30}',
+     two_factor_reminder = 'dismissed' -- screenshots without the two-factor dialog
    where user_id = $1`,
   [userId, JSON.stringify(SETUPS.map(({ name, checklist }) => ({ name, checklist }))), SETUPS.map((s) => s.name), JSON.stringify(goals)],
 );

@@ -1875,6 +1875,14 @@
     "error": "Échec de l’envoi. Veuillez réessayer.",
     "tooMany": "Vous venez d’envoyer plusieurs messages. Veuillez réessayer dans une heure."
   },
+  "twoFactorReminder": {
+    "title": "Mieux protéger votre compte ?",
+    "description": "Avec la connexion à deux facteurs, il vous faut, en plus du mot de passe, un code issu d’une application d’authentification. Même quelqu’un qui connaît votre mot de passe ne pourra pas accéder à votre journal. La configuration prend environ une minute ; conservez précieusement les codes de secours.",
+    "later": "Plus tard",
+    "setUp": "Configurer maintenant",
+    "banner": "Protégez votre journal avec la connexion à deux facteurs : en plus du mot de passe, un code de votre application d’authentification est nécessaire.",
+    "dismiss": "Ne plus afficher"
+  },
   "help": {
     "title": "Aide et questions fréquentes",
     "subtitle": "Réponses sur TradeNot.es : démarrage, import, rapports et vos données.",

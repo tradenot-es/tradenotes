@@ -318,6 +318,13 @@ const Account = () => {
     }
   };
 
+  // "/dashboard/account#security" (from the two-factor reminder) scrolls to the security card
+  useEffect(() => {
+    if (window.location.hash === "#security") {
+      setTimeout(() => document.getElementById("security")?.scrollIntoView({ behavior: "smooth", block: "start" }), 300);
+    }
+  }, []);
+
   return (
     <TooltipProvider delayDuration={0}>
       <div className="space-y-6">
@@ -394,7 +401,7 @@ const Account = () => {
           </Card>
 
           {/* Security Section */}
-          <Card>
+          <Card id="security" className="scroll-mt-24">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Lock className="h-5 w-5" />

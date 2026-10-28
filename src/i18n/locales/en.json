@@ -1856,6 +1856,14 @@
     "error": "Sending failed. Please try again.",
     "tooMany": "You have just sent several messages. Please try again in an hour."
   },
+  "twoFactorReminder": {
+    "title": "Add extra protection to your account?",
+    "description": "With two-factor login you need a code from an authenticator app in addition to your password. Even someone who knows your password cannot get into your journal. Setting it up takes about a minute; keep the backup codes somewhere safe.",
+    "later": "Later",
+    "setUp": "Set up now",
+    "banner": "Protect your journal with two-factor login: besides your password, a code from your authenticator app is needed.",
+    "dismiss": "Don't show again"
+  },
   "help": {
     "title": "Help & FAQ",
     "subtitle": "Answers about TradeNot.es: getting started, importing, reports and your data.",

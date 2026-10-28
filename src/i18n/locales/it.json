@@ -1866,6 +1866,14 @@
     "error": "Invio non riuscito. Riprova.",
     "tooMany": "Hai appena inviato diversi messaggi. Riprova tra un’ora."
   },
+  "twoFactorReminder": {
+    "title": "Proteggere meglio il tuo account?",
+    "description": "Con l’accesso a due fattori ti serve, oltre alla password, un codice da un’app di autenticazione. Anche chi conosce la tua password non potrà entrare nel tuo diario. La configurazione richiede circa un minuto; conserva con cura i codici di backup.",
+    "later": "Più tardi",
+    "setUp": "Configura ora",
+    "banner": "Proteggi il tuo diario con l’accesso a due fattori: oltre alla password serve un codice dalla tua app di autenticazione.",
+    "dismiss": "Non mostrare più"
+  },
   "help": {
     "title": "Aiuto e domande frequenti",
     "subtitle": "Risposte su TradeNot.es: primi passi, importazione, report e i tuoi dati.",

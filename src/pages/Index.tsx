@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { TwoFactorBanner } from "@/components/TwoFactorReminder";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { Target, Scale, Award, Plus } from "lucide-react";
@@ -222,6 +223,8 @@ const Index = () => {
           </Button>
         }
       />
+
+      <TwoFactorBanner />
 
       {trades.length === 0 ? (
         <div className="glossy-card p-12 text-center rounded-2xl">

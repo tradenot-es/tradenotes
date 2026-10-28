@@ -8,6 +8,7 @@ import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.webp";
 import { FeedbackDialog } from "@/components/FeedbackDialog";
+import { TwoFactorDialog } from "@/components/TwoFactorReminder";
 /** Nav link that also closes the off-canvas sidebar on phones. */
 function SidebarNavLink(props: NavLinkProps) {
   const { setOpenMobile } = useSidebar();
@@ -109,6 +110,7 @@ export function Layout({
           </header>
           {/* keyed by route so each page enters with a short rise */}
           <main key={location.pathname} className="flex-1 p-4 sm:p-6 animate-rise-in">{children}</main>
+          <TwoFactorDialog />
           <footer className="px-6 py-4 border-t border-border/50">
             <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
               <Link to="/datenschutz" className="hover:text-foreground transition-colors">

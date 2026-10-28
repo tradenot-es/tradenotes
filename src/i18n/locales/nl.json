@@ -1875,6 +1875,14 @@
     "error": "Versturen mislukt. Probeer het opnieuw.",
     "tooMany": "Je hebt net meerdere berichten gestuurd. Probeer het over een uur opnieuw."
   },
+  "twoFactorReminder": {
+    "title": "Je account extra beveiligen?",
+    "description": "Met inloggen in twee stappen heb je naast je wachtwoord een code uit een authenticator-app nodig. Zelfs wie je wachtwoord kent, komt dan niet in je journal. Instellen duurt ongeveer een minuut; bewaar de herstelcodes goed.",
+    "later": "Later",
+    "setUp": "Nu instellen",
+    "banner": "Bescherm je journal met inloggen in twee stappen: naast je wachtwoord is dan een code uit je authenticator-app nodig.",
+    "dismiss": "Niet meer tonen"
+  },
   "help": {
     "title": "Hulp en veelgestelde vragen",
     "subtitle": "Antwoorden over TradeNot.es: starten, importeren, rapporten en je gegevens.",
