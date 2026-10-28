@@ -651,6 +651,7 @@
     "footerDescription": "Il diario di trading professionale per trader ambiziosi",
     "footerProduct": "Prodotto",
     "footerLogin": "Accedi",
+    "footerSource": "Codice sorgente (GitHub)",
     "footerSupport": "Supporto",
     "footerHelp": "Centro Assistenza",
     "footerContact": "Contatto",
@@ -1714,7 +1715,7 @@
       "sections": [
         {
           "title": "Gestore",
-          "text": "TradeNot.es è un progetto privato e non commerciale: senza pubblicità, senza funzioni a pagamento e senza tracciamento.\n\n{{name}}\nPaesi Bassi\nE-mail: {{email}}"
+          "text": "TradeNot.es è un progetto privato e non commerciale: senza pubblicità, senza funzioni a pagamento e senza tracciamento.\n\nE-mail: {{email}}"
         },
         {
           "title": "Nessuna consulenza finanziaria",

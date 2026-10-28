@@ -660,6 +660,7 @@
     "footerDescription": "Het professionele trading dagboek voor ambitieuze traders",
     "footerProduct": "Product",
     "footerLogin": "Inloggen",
+    "footerSource": "Broncode (GitHub)",
     "footerSupport": "Ondersteuning",
     "footerHelp": "Helpcentrum",
     "footerContact": "Contact",
@@ -1723,7 +1724,7 @@
       "sections": [
         {
           "title": "Beheerder",
-          "text": "TradeNot.es is een privé, niet-commercieel project: zonder advertenties, zonder betaalde functies en zonder tracking.\n\n{{name}}\nNederland\nE-mail: {{email}}"
+          "text": "TradeNot.es is een privé, niet-commercieel project: zonder advertenties, zonder betaalde functies en zonder tracking.\n\nE-mail: {{email}}"
         },
         {
           "title": "Geen beleggingsadvies",

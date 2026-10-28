@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { operator } from "@/config/operator";
 import { useTranslation } from "react-i18next";
 import footerLogo from "@/assets/logo.webp";
 
@@ -24,6 +25,13 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li><Link to="/features" className="hover:text-primary">{t("landing.footerAllFeatures")}</Link></li>
               <li><Link to="/auth" className="hover:text-primary">{t("landing.footerLogin")}</Link></li>
+              {operator.sourceUrl && (
+                <li>
+                  <a href={operator.sourceUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                    {t("landing.footerSource")}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
           <div>

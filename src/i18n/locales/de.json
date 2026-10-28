@@ -782,6 +782,7 @@
     "footerDescription": "Das professionelle Trading Journal für ambitionierte Trader",
     "footerProduct": "Produkt",
     "footerLogin": "Login",
+    "footerSource": "Quellcode (GitHub)",
     "footerSupport": "Support",
     "footerHelp": "Hilfe Center",
     "footerContact": "Kontakt",
@@ -1712,7 +1713,7 @@
       "sections": [
         {
           "title": "Betreiber",
-          "text": "TradeNot.es ist ein privates, nicht-kommerzielles Projekt: ohne Werbung, ohne Bezahlfunktionen und ohne Tracking.\n\n{{name}}\nNiederlande\nE-Mail: {{email}}"
+          "text": "TradeNot.es ist ein privates, nicht-kommerzielles Projekt: ohne Werbung, ohne Bezahlfunktionen und ohne Tracking.\n\nE-Mail: {{email}}"
         },
         {
           "title": "Keine Anlageberatung",

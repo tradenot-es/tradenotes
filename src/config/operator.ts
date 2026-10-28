@@ -7,4 +7,7 @@ export const operator = {
   email: "info@tradenot.es",
   // date of the current version of the privacy policy and terms (shown as "last updated")
   legalUpdated: "2026-10-28",
+  // public source code (AGPL): shown in the footer once set. Stays null while the repo is private,
+  // a link to a private repo would only show visitors a 404.
+  sourceUrl: null as string | null, // "https://github.com/tradenot-es/tradenotes"
 };
