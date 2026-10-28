@@ -167,7 +167,7 @@ function DayCard({ day, index, notes, flags, formatCurrency, locale }: DayCardPr
           <div className="space-y-3">
             <div>
               <p className="text-sm text-muted-foreground">{format(parseISO(day.date), "EEEE", { locale })}</p>
-              <p className="text-lg font-semibold">{format(parseISO(day.date), "d. MMMM yyyy", { locale })}</p>
+              <p className="text-lg font-semibold">{format(parseISO(day.date), "PPP", { locale })}</p>
             </div>
             <div className="flex items-center gap-2">
               <span

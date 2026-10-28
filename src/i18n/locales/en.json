@@ -219,7 +219,9 @@
         "description": "Electric, Water, Gas Utilities",
         "examples": "NextEra Energy, Duke Energy, Southern Company"
       }
-    }
+    },
+    "tradeCount_one": "{{count}} trade",
+    "tradeCount_other": "{{count}} trades"
   },
   "weekdays": {
     "mon": "Mon",
@@ -981,7 +983,8 @@
     "worstTradingHours": "Worst Trading Hours",
     "hourOfDayInsight": "💡 Identify your most profitable trading times and focus on them. Avoid trading during times with poor performance (e.g., lunch time, last trading hour).",
     "rules": "Rule adherence",
-    "rulesTooltip": "Did you follow your setup checklist? Process vs. outcome: earned wins, good losses, lucky wins."
+    "rulesTooltip": "Did you follow your setup checklist? Process vs. outcome: earned wins, good losses, lucky wins.",
+    "dailyGoals": "Daily goals"
   },
   "notFound": {
     "title": "404",

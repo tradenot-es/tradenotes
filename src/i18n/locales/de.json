@@ -138,6 +138,8 @@
     "accountPerformanceTooltip": "Performance-Übersicht nach Account-Typ (Sim, Evaluation, Funded, Live). Klicken für Details.",
     "clickForDetails": "Klicken für Details",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
+    "equity": "Equity",
+    "pnl": "P&L",
     "portfolioNews": "Portfolio-Nachrichten",
     "portfolioNewsTooltip": "Automatisch kuratierte Finanznachrichten zu Ihren am häufigsten gehandelten Symbolen. Bleiben Sie über marktbewegende Events und Entwicklungen informiert, die Ihre Positionen beeinflussen könnten.",
     "newsTranslated": "Nachrichten erfolgreich übersetzt!",
@@ -217,7 +219,9 @@
         "description": "Strom-, Wasser-, Gasversorger",
         "examples": "NextEra Energy, Duke Energy, Dominion"
       }
-    }
+    },
+    "tradeCount_one": "{{count}} Trade",
+    "tradeCount_other": "{{count}} Trades"
   },
   "calendar": {
     "politicalEvent": "Politisches Event",
@@ -278,8 +282,90 @@
     "avgLoss": "Ø Verlust",
     "bestTrade": "Bester Trade",
     "worstTrade": "Schlechtester Trade",
+    "maxDrawdown": "Max. Drawdown",
+    "maxDrawdownTooltip": "Größter Kapitalrückgang vom Hoch bis zum Tief. Immer negativ – misst das maximale Risiko und die emotionale Belastung deiner Strategie.",
+    "equityCurve": "Equity-Kurve",
+    "equityCurveTooltip": "Zeigt, wie sich dein Trading-Kapital über die Zeit entwickelt. Eine gleichmäßig steigende Kurve spricht für beständige Profitabilität, größere Einbrüche zeigen Drawdown-Phasen.",
+    "portfolioNews": "Portfolio-News",
+    "portfolioNewsTooltip": "Automatisch ausgewählte Finanznachrichten zu deinen am häufigsten gehandelten Symbolen. So erfährst du rechtzeitig von marktbewegenden Ereignissen, die deine Positionen betreffen könnten.",
+    "newsTranslated": "News erfolgreich übersetzt!",
+    "translationFailed": "Übersetzung fehlgeschlagen. Bitte versuch es noch einmal.",
+    "autoTranslated": "Automatisch übersetzt",
+    "stocksOnlyNews": "Portfolio-News gibt es nur für Aktien (z. B. AAPL, GOOGL, TSLA). Futures und Indizes unterstützt der News-Anbieter nicht.",
+    "noNewsProxiesAvailable": "Keine Symbole mit News-Abdeckung vorhanden. Füge Aktien-Trades oder gängige Futures (NQ, ES, GC) hinzu, um passende News zu sehen.",
+    "dynamicDashboard": "Dynamisches Dashboard",
+    "dynamicDashboardInfo": "News automatisch nach deinen Top-Performern gefiltert",
+    "noSymbolsForNews": "Noch keine Symbole vorhanden. Füge Trades hinzu, um passende News zu bekommen.",
+    "newsCount": "{{count}} News",
+    "noNewsForSymbol": "Keine News zu diesem Symbol",
+    "via": "über",
+    "smartTags": {
+      "earningsPlay": "Earnings-Play",
+      "macroEvent": "Makro-Ereignis",
+      "politicalCatalyst": "Politischer Auslöser",
+      "newsCatalyst": "News-Auslöser"
+    },
+    "pnlByMonth": "P&L nach Monat",
+    "pnlChartTooltip": "Monatliche Gewinn- und Verlustübersicht. Zeigt die Performance jedes Monats und hilft dir, saisonale Muster und langfristige Trends zu erkennen.",
+    "accountPerformance": "Performance nach Konto",
+    "accountPerformanceTooltip": "Performance aufgeschlüsselt nach Kontotyp (Sim, Evaluation, Funded, Live). Klicke für die detaillierte Auswertung.",
+    "clickForDetails": "Für Details klicken",
+    "noTrades": "Noch keine Trades. Füge deinen ersten Trade hinzu!",
     "equity": "Equity",
-    "pnl": "P&L"
+    "pnl": "P&L",
+    "sectorSentiment": "Marktstimmung heute",
+    "sectorSentimentDescription": "Der tägliche Sektorüberblick zeigt dir, in welche Richtung der Markt tendiert",
+    "articles": "Artikel",
+    "sectorArticles": "{{count}} Artikel ausgewertet",
+    "topArticles": "Top-Artikel",
+    "trend7Days": "7-Tage-Trend",
+    "sectors": {
+      "examples_label": "z. B.",
+      "technology": {
+        "description": "Hardware, Software, Halbleiter, IT-Dienstleistungen",
+        "examples": "Apple, Microsoft, NVIDIA, Adobe"
+      },
+      "communication_services": {
+        "description": "Medien, Werbung, Telekommunikation, Social Media",
+        "examples": "Google, Meta, Netflix, Disney"
+      },
+      "energy": {
+        "description": "Öl, Gas, erneuerbare Energien",
+        "examples": "ExxonMobil, Chevron, Shell"
+      },
+      "healthcare": {
+        "description": "Pharma, Biotech, Medizintechnik",
+        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
+      },
+      "financials": {
+        "description": "Banken, Versicherungen, Vermögensverwaltung",
+        "examples": "JPMorgan, Berkshire Hathaway, Visa"
+      },
+      "consumer_cyclical": {
+        "description": "Einzelhandel, Automobil, Freizeit, Luxusgüter",
+        "examples": "Amazon, Tesla, Nike, McDonald's"
+      },
+      "industrials": {
+        "description": "Luft- und Raumfahrt, Verteidigung, Bau, Transport",
+        "examples": "Boeing, Caterpillar, UPS"
+      },
+      "consumer_defensive": {
+        "description": "Lebensmittel, Getränke, Haushaltswaren",
+        "examples": "Coca-Cola, Procter & Gamble, Walmart"
+      },
+      "basic_materials": {
+        "description": "Metalle, Bergbau, Chemie",
+        "examples": "Dow, Freeport-McMoRan, Nucor"
+      },
+      "real_estate": {
+        "description": "REITs, Projektentwicklung",
+        "examples": "American Tower, Prologis, Simon Property"
+      },
+      "utilities": {
+        "description": "Strom-, Wasser- und Gasversorger",
+        "examples": "NextEra Energy, Duke Energy, Dominion"
+      }
+    }
   },
   "trades": {
     "title": "Trades",
@@ -450,6 +536,22 @@
       "funded": "Funded",
       "live": "Live"
     }
+  },
+  "accountType": {
+    "label": "Konto",
+    "tooltip": "Kontotyp: Sim (Übung), Evaluation (Prop-Firm-Test), Performance (Funded) oder Live (eigenes Kapital)",
+    "sim": "SIM",
+    "evaluation": "EVAL",
+    "performance": "FUNDED",
+    "live": "LIVE",
+    "filter": "Nach Kontotyp filtern",
+    "all": "Alle Konten"
+  },
+  "accountTypes": {
+    "sim": "Simulation",
+    "evaluation": "Evaluation",
+    "performance": "Funded",
+    "live": "Live"
   },
   "import": {
     "title": "Trades importieren",
@@ -890,7 +992,8 @@
     "worstTradingHours": "Schlechteste Trading-Zeiten",
     "hourOfDayInsight": "💡 Identifizieren Sie Ihre profitabelsten Handelszeiten und fokussieren Sie sich darauf. Vermeiden Sie Trading in Zeiten mit schlechter Performance (z.B. Lunch-Zeit, letzte Handelsstunde).",
     "rules": "Regeltreue",
-    "rulesTooltip": "Hast du deine Setup-Checkliste eingehalten? Prozess gegen Ergebnis: verdiente Gewinne, gute Verluste, Glückstreffer."
+    "rulesTooltip": "Hast du deine Setup-Checkliste eingehalten? Prozess gegen Ergebnis: verdiente Gewinne, gute Verluste, Glückstreffer.",
+    "dailyGoals": "Tagesziele"
   },
   "notFound": {
     "title": "404",

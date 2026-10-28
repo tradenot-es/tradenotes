@@ -110,11 +110,16 @@
     "featured": {
       "totalBalance": "Saldo totale",
       "netProfit": "Profitto netto",
+      "netProfitTooltip": "Profitto totale al netto di tutte le perdite e commissioni.",
       "tradingDays": "Giorni di trading",
+      "tradingDaysTooltip": "Numero di giorni con almeno un trade eseguito.",
       "winRate": "Win Rate",
       "avgTrade": "Media/Trade",
+      "avgTradeTooltip": "Profitto o perdita medio per trade.",
       "totalTrades": "Operazioni",
-      "expectancy": "Aspettativa"
+      "totalTradesTooltip": "Numero totale di trade eseguiti.",
+      "expectancy": "Aspettativa",
+      "expectancyTooltip": "Profitto atteso per trade, calcolato in base al tuo win rate e al guadagno/perdita medio."
     },
     "bestWorstTrade": "Miglior / Peggior Trade",
     "bestWorstTradeTooltip": "Mostra la tua operazione più redditizia e quella più in perdita. Aiuta ad analizzare i valori estremi e la gestione del rischio.",
@@ -214,7 +219,9 @@
         "description": "Servizi Elettrici, Acqua, Gas",
         "examples": "NextEra Energy, Duke Energy, Southern Company"
       }
-    }
+    },
+    "tradeCount_one": "{{count}} trade",
+    "tradeCount_other": "{{count}} trade"
   },
   "weekdays": {
     "mon": "Lun",
@@ -427,6 +434,10 @@
     "stopLossPrice": "Prezzo Stop Loss",
     "initialRisk": "Rischio Iniziale",
     "initialRiskHint": "Per calcolo R-Multiple: (Entrata - Stop Loss) × Qty",
+    "mfePrice": "Prezzo MFE",
+    "mfePriceHint": "Maximum Favorable Excursion: miglior prezzo raggiunto durante il trade",
+    "maePrice": "Prezzo MAE",
+    "maePriceHint": "Maximum Adverse Excursion: peggior prezzo raggiunto durante il trade",
     "rating": "Valutazione Qualità Operazione",
     "ratingHint": "Valuta questa operazione da 1 (esecuzione scarsa) a 5 (esecuzione eccellente)",
     "screenshot": "Screenshot",
@@ -826,11 +837,17 @@
     "dailyGoalDesc": "Definisci il tuo obiettivo di trading giornaliero e traccialo nei Report",
     "dailyGoalAmount": "Obiettivo Profitto Giornaliero ($)",
     "dailyGoalMaxTrades": "Operazioni Massime al Giorno",
+    "notifications": "Notifiche",
+    "notificationsDesc": "Ricevi avvisi quando raggiungi l'obiettivo o entri in drawdown",
     "goalAlerts": "Avvisi Obiettivi",
     "goalAlertsTooltip": "Ricevi notifiche in tempo reale quando raggiungi i tuoi obiettivi giornalieri o ti avvicini ai limiti di drawdown.",
     "goalAlertsDesc": "Attiva le notifiche e imposta i limiti di drawdown",
     "enableNotifications": "Attiva Notifiche",
+    "enableNotificationsDesc": "Notifiche a comparsa per gli eventi di trading",
     "notificationSound": "Suono Notifica",
+    "notificationSoundDesc": "Riproduci un suono per gli avvisi importanti",
+    "drawdownThreshold": "Soglia di avviso drawdown",
+    "drawdownThresholdDesc": "Avvisami quando perdo questa percentuale del mio obiettivo giornaliero",
     "drawdownWarningThreshold": "Soglia Avviso Drawdown",
     "drawdownWarningThresholdHelp": "Ricevi un avviso quando il drawdown giornaliero supera questo importo",
     "currentPassword": "Password attuale",
@@ -1921,6 +1938,8 @@
     "overtraded": "Overtrading",
     "simulator": "Simulatore",
     "simulatorTooltip": "Simula scenari What-If con diverse uscite R-Multiple e dimensioni posizione per ottimizzare la tua strategia.",
+    "mfemae": "MFE/MAE",
+    "mfemaeTooltip": "Analisi di Maximum Favorable/Adverse Excursion. Scopri quanto i tuoi trade vanno a tuo favore e contro di te, e ottimizza i livelli di stop-loss e take-profit.",
     "dailySummary": "Riepilogo Giornaliero IA",
     "dailySummaryTooltip": "Ricevi un'analisi automatica delle tue performance di trading giornaliere con suggerimenti di miglioramento.",
     "generateSummary": "Genera Riepilogo",
@@ -1997,7 +2016,8 @@
     "worstTradingHours": "Peggiori Ore Trading",
     "hourOfDayInsight": "💡 Identifica i tuoi orari di trading più redditizi e concentrati su quelli. Evita di fare trading durante orari con performance scarse (es. pausa pranzo, ultima ora di trading).",
     "rules": "Rispetto regole",
-    "rulesTooltip": "Hai seguito la checklist del tuo setup? Processo contro risultato: guadagni meritati, buone perdite, colpi di fortuna."
+    "rulesTooltip": "Hai seguito la checklist del tuo setup? Processo contro risultato: guadagni meritati, buone perdite, colpi di fortuna.",
+    "dailyGoals": "Obiettivi giornalieri"
   },
   "filters": {
     "filters": "Filtri",
@@ -2617,6 +2637,53 @@
       "title": "TradeNot.es - Beta Privata | Diario di Trading",
       "description": "TradeNot.es - Il tuo diario di trading professionale. Attualmente in Beta Privata. Assicurati l'accesso anticipato!"
     }
+  },
+  "goalAlerts": {
+    "goalAchieved": "🎯 Obiettivo giornaliero raggiunto!",
+    "goalAchievedDesc": "Complimenti! Oggi hai guadagnato {{amount}}.",
+    "drawdownWarning": "⚠️ Avviso drawdown",
+    "drawdownWarningDesc": "Hai perso il {{percent}}% del tuo obiettivo giornaliero. Valuta di fare una pausa.",
+    "drawdownCritical": "🚨 Drawdown critico!",
+    "drawdownCriticalDesc": "Hai perso l'intero obiettivo giornaliero. Per oggi smetti di fare trading.",
+    "tradeLimitReached": "📊 Limite di trade raggiunto",
+    "tradeLimitReachedDesc": "Oggi hai fatto {{limit}} trade."
+  },
+  "dailySummary": {
+    "title": "Riepilogo giornaliero con IA",
+    "generate": "Genera riepilogo",
+    "generating": "Generazione in corso…",
+    "generated": "Riepilogo generato!",
+    "generateError": "Errore durante la generazione del riepilogo",
+    "regenerate": "Rigenera",
+    "noSummary": "Nessun riepilogo per questo giorno. Clicca su 'Genera' per ottenere un'analisi con IA.",
+    "trades": "Trade",
+    "netPnL": "P&L netto",
+    "showMore": "Mostra dettagli",
+    "showLess": "Nascondi dettagli",
+    "bestTrade": "Trade migliore",
+    "worstTrade": "Trade peggiore",
+    "suggestions": "Suggerimenti per migliorare"
+  },
+  "riskSimulator": {
+    "title": "Simulatore di rischio \"E se…?\"",
+    "description": "Simula scenari diversi partendo dai tuoi trade reali",
+    "scenario": "Scenario",
+    "rExit": "Uscita a R-Multiple",
+    "positionSize": "Dimensione della posizione",
+    "monteCarlo": "Monte Carlo",
+    "targetR": "R-Multiple obiettivo",
+    "sizeMultiplier": "Moltiplicatore di size",
+    "monteCarloDesc": "Simula {{iterations}} sequenze casuali di trade",
+    "tradesWithR": "{{count}} trade su {{total}} hanno dati R",
+    "originalResult": "Originale",
+    "simulatedResult": "Simulato",
+    "difference": "Differenza",
+    "percentChange": "Variazione",
+    "median": "Mediana",
+    "bestCase": "Caso migliore (95%)",
+    "worstCase": "Caso peggiore (5%)",
+    "original": "Originale",
+    "simulated": "Simulato"
   },
   "tradingGoals": {
     "title": "Tracker Obiettivi",

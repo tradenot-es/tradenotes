@@ -155,7 +155,7 @@ export function WeeklyPerformanceEnhanced({ trades }: WeeklyPerformanceEnhancedP
                   </span>
                   {tradeCount > 0 && (
                     <span className="text-xs text-muted-foreground">
-                      {tradeCount} {tradeCount === 1 ? 'trade' : 'trades'}
+                      {t("dashboard.tradeCount", { count: tradeCount })}
                     </span>
                   )}
                 </div>

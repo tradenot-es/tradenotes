@@ -146,9 +146,10 @@ export default function Reports() {
 
     return dayStats.map(stat => ({
       ...stat,
+      label: t(`reports.${stat.day.toLowerCase()}`),
       winRate: stat.trades > 0 ? ((stat.wins / stat.trades) * 100).toFixed(1) : "0"
     }));
-  }, [filteredTrades]);
+  }, [filteredTrades, t]);
 
   // Setup Performance
   const setupPerformance = useMemo(() => {
@@ -316,7 +317,7 @@ export default function Reports() {
           
           <HoverCard>
             <HoverCardTrigger asChild>
-              <TabsTrigger value="goals">Daily Goals</TabsTrigger>
+              <TabsTrigger value="goals">{t("reports.dailyGoals")}</TabsTrigger>
             </HoverCardTrigger>
             <HoverCardContent className="w-80">
               <p className="text-sm">{t("reports.dailyGoalsTooltip")}</p>
@@ -421,10 +422,10 @@ export default function Reports() {
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={dayOfWeekData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" angle={-45} textAnchor="end" height={80} />
+                    <XAxis dataKey="label" angle={-45} textAnchor="end" height={80} />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="trades" fill="hsl(var(--primary))" />
+                    <Bar dataKey="trades" name={t("reports.trades")} fill="hsl(var(--primary))" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -448,10 +449,10 @@ export default function Reports() {
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={dayOfWeekData}>
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="day" angle={-45} textAnchor="end" height={80} />
+                    <XAxis dataKey="label" angle={-45} textAnchor="end" height={80} />
                     <YAxis />
                     <Tooltip />
-                    <Bar dataKey="pnl">
+                    <Bar dataKey="pnl" name={t("reports.totalPnl")}>
                       {dayOfWeekData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.pnl >= 0 ? "hsl(var(--success))" : "hsl(var(--destructive))"} />
                       ))}

@@ -197,7 +197,7 @@ export function DashboardCalendar({ trades, currentMonth, onMonthChange, onEditT
                         {formatCurrency(dayPnL)}
                       </div>
                       <div className="text-[10px] text-muted-foreground">
-                        {dayTrades.length} {dayTrades.length === 1 ? 'trade' : 'trades'}
+                        {t("dashboard.tradeCount", { count: dayTrades.length })}
                       </div>
                     </div>
                   )}
