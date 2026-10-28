@@ -1,4 +1,4 @@
-// Static Economic Calendar for 2025-2026
+// Static Economic Calendar for 2025-2027
 // Contains scheduled high-impact events from central banks, economic reports, and global summits
 
 export interface EconomicEvent {
@@ -11,9 +11,9 @@ export interface EconomicEvent {
   description: string;
 }
 
-// 2025-2026 Economic Calendar
+// 2025-2027 Economic Calendar
 // Sources: Federal Reserve, ECB, BoE, BoJ, OPEC, G7/G20 schedules
-export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
+export const ECONOMIC_CALENDAR: EconomicEvent[] = [
   // ==================== 2025 EVENTS ====================
   
   // --- JANUARY 2025 ---
@@ -308,8 +308,8 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'eu-gdp-2026-q1', date: '2026-04-30', time: '05:00', title: 'EU GDP Q1 (Flash)', category: 'gdp', impact: 'high', description: 'Eurozone GDP flash estimate - Q1 2026' },
   { id: 'uk-gdp-2026-04', date: '2026-04-10', time: '02:00', title: 'UK GDP (Monthly)', category: 'gdp', impact: 'medium', description: 'UK Monthly GDP estimate' },
 
-  { id: 'fomc-2026-05', date: '2026-05-06', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
-  { id: 'boe-2026-05', date: '2026-05-07', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'fomc-2026-04', date: '2026-04-29', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2026-04', date: '2026-04-30', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
   { id: 'nfp-2026-05', date: '2026-05-01', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
   { id: 'cpi-2026-05', date: '2026-05-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
   { id: 'opec-2026-05', date: '2026-05-27', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
@@ -364,7 +364,7 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'eu-gdp-2026-q2', date: '2026-07-30', time: '05:00', title: 'EU GDP Q2 (Flash)', category: 'gdp', impact: 'high', description: 'Eurozone GDP flash estimate - Q2 2026' },
   { id: 'uk-gdp-2026-07', date: '2026-07-10', time: '02:00', title: 'UK GDP (Monthly)', category: 'gdp', impact: 'medium', description: 'UK Monthly GDP estimate' },
 
-  { id: 'boe-2026-08', date: '2026-08-06', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'boe-2026-07', date: '2026-07-30', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
   { id: 'nfp-2026-08', date: '2026-08-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
   { id: 'cpi-2026-08', date: '2026-08-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
   { id: 'jackson-hole-2026', date: '2026-08-27', title: 'Jackson Hole Symposium', category: 'fomc', impact: 'high', description: 'Fed Chair Powell speech at Jackson Hole' },
@@ -401,6 +401,7 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'eu-gdp-2026-q2-3rd', date: '2026-09-04', time: '05:00', title: 'EU GDP Q2 (Final)', category: 'gdp', impact: 'medium', description: 'Eurozone GDP final estimate - Q2 2026' },
   { id: 'uk-gdp-2026-09', date: '2026-09-11', time: '02:00', title: 'UK GDP (Monthly)', category: 'gdp', impact: 'medium', description: 'UK Monthly GDP estimate' },
 
+  { id: 'fomc-2026-10', date: '2026-10-28', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
   { id: 'ecb-2026-10', date: '2026-10-29', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
   { id: 'boj-2026-10', date: '2026-10-30', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
   { id: 'nfp-2026-10', date: '2026-10-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
@@ -418,18 +419,16 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'eu-gdp-2026-q3', date: '2026-10-30', time: '05:00', title: 'EU GDP Q3 (Flash)', category: 'gdp', impact: 'high', description: 'Eurozone GDP flash estimate - Q3 2026' },
   { id: 'uk-gdp-2026-10', date: '2026-10-09', time: '02:00', title: 'UK GDP (Monthly)', category: 'gdp', impact: 'medium', description: 'UK Monthly GDP estimate' },
 
-  { id: 'fomc-2026-11', date: '2026-11-04', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
   { id: 'us-midterm-2026', date: '2026-11-03', title: 'US Midterm Elections', category: 'election', impact: 'high', description: 'US Congressional midterm elections' },
   { id: 'boe-2026-11', date: '2026-11-05', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
   { id: 'nfp-2026-11', date: '2026-11-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
-  { id: 'cpi-2026-11', date: '2026-11-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
-  { id: 'g20-2026', date: '2026-11-21', title: 'G20 Summit', category: 'summit', impact: 'medium', description: 'G20 Leaders Summit - Brazil' },
+  { id: 'cpi-2026-11', date: '2026-11-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
   { id: 'opec-2026-11', date: '2026-11-25', title: 'OPEC+ Meeting', category: 'opec', impact: 'medium', description: 'OPEC+ production decision meeting' },
   { id: 'gdp-2026-q3-2nd', date: '2026-11-25', time: '08:30', title: 'US GDP Q3 (Second)', category: 'gdp', impact: 'medium', description: 'Q3 2026 GDP second estimate' },
   { id: 'ism-mfg-2026-11', date: '2026-11-02', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
   { id: 'ism-svc-2026-11', date: '2026-11-04', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
   { id: 'retail-2026-11', date: '2026-11-13', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
-  { id: 'ppi-2026-11', date: '2026-11-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'ppi-2026-11', date: '2026-11-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
   { id: 'pce-2026-11', date: '2026-11-25', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
   // EU/UK Events November 2026
   { id: 'eu-hicp-2026-11', date: '2026-11-02', time: '05:00', title: 'EU HICP Inflation (Flash)', category: 'cpi', impact: 'high', description: 'Eurozone Harmonized Index of Consumer Prices - Flash estimate' },
@@ -438,7 +437,7 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'eu-gdp-2026-q3-2nd', date: '2026-11-13', time: '05:00', title: 'EU GDP Q3 (Second)', category: 'gdp', impact: 'medium', description: 'Eurozone GDP second estimate - Q3 2026' },
   { id: 'uk-gdp-2026-q3', date: '2026-11-13', time: '02:00', title: 'UK GDP Q3 (Prelim)', category: 'gdp', impact: 'high', description: 'UK GDP preliminary estimate - Q3 2026' },
 
-  { id: 'fomc-2026-12', date: '2026-12-16', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'fomc-2026-12', date: '2026-12-09', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
   { id: 'ecb-2026-12', date: '2026-12-17', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
   { id: 'boj-2026-12', date: '2026-12-18', time: '03:00', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision' },
   { id: 'boe-2026-12', date: '2026-12-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
@@ -449,7 +448,7 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'ism-mfg-2026-12', date: '2026-12-01', time: '10:00', title: 'ISM Manufacturing PMI', category: 'ism', impact: 'high', description: 'Institute for Supply Management Manufacturing Index' },
   { id: 'ism-svc-2026-12', date: '2026-12-03', time: '10:00', title: 'ISM Services PMI', category: 'ism', impact: 'medium', description: 'Institute for Supply Management Services Index' },
   { id: 'retail-2026-12', date: '2026-12-15', time: '08:30', title: 'US Retail Sales', category: 'retail', impact: 'high', description: 'Monthly retail and food services sales' },
-  { id: 'ppi-2026-12', date: '2026-12-10', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'ppi-2026-12', date: '2026-12-15', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
   { id: 'pce-2026-12', date: '2026-12-18', time: '08:30', title: 'PCE Price Index', category: 'pce', impact: 'high', description: "Fed's preferred inflation measure" },
   // EU/UK Events December 2026
   { id: 'eu-hicp-2026-12', date: '2026-12-01', time: '05:00', title: 'EU HICP Inflation (Flash)', category: 'cpi', impact: 'high', description: 'Eurozone Harmonized Index of Consumer Prices - Flash estimate' },
@@ -457,6 +456,103 @@ export const ECONOMIC_CALENDAR_2025_2026: EconomicEvent[] = [
   { id: 'uk-retail-2026-12', date: '2026-12-18', time: '02:00', title: 'UK Retail Sales', category: 'retail', impact: 'medium', description: 'UK Monthly retail sales data' },
   { id: 'eu-gdp-2026-q3-3rd', date: '2026-12-04', time: '05:00', title: 'EU GDP Q3 (Final)', category: 'gdp', impact: 'medium', description: 'Eurozone GDP final estimate - Q3 2026' },
   { id: 'uk-gdp-2026-12', date: '2026-12-11', time: '02:00', title: 'UK GDP (Monthly)', category: 'gdp', impact: 'medium', description: 'UK Monthly GDP estimate' },
+
+  // ==================== 2027 EVENTS ====================
+  // Only officially published schedules (as of 28.10.2026): FOMC (federalreserve.gov, tentative until the
+  // preceding meeting), ECB (ecb.europa.eu), BoE (bankofengland.co.uk), BoJ (boj.or.jp, 31.07.2026),
+  // Employment Situation, CPI and PPI (bls.gov/schedule/2027). Other releases follow once their dates are out.
+
+  // --- JANUARY 2027 ---
+  { id: 'nfp-2027-01', date: '2027-01-08', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-01', date: '2027-01-13', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-01', date: '2027-01-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'boj-2027-01', date: '2027-01-22', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+  { id: 'fomc-2027-01', date: '2027-01-27', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+
+  // --- FEBRUARY 2027 ---
+  { id: 'ecb-2027-02', date: '2027-02-04', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boe-2027-02', date: '2027-02-04', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2027-02', date: '2027-02-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-02', date: '2027-02-11', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-02', date: '2027-02-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+
+  // --- MARCH 2027 ---
+  { id: 'nfp-2027-03', date: '2027-03-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-03', date: '2027-03-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-03', date: '2027-03-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'fomc-2027-03', date: '2027-03-17', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2027-03', date: '2027-03-18', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boe-2027-03', date: '2027-03-18', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'boj-2027-03', date: '2027-03-18', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+
+  // --- APRIL 2027 ---
+  { id: 'nfp-2027-04', date: '2027-04-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-04', date: '2027-04-13', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-04', date: '2027-04-14', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'fomc-2027-04', date: '2027-04-28', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boj-2027-04', date: '2027-04-28', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+  { id: 'ecb-2027-04', date: '2027-04-29', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boe-2027-04', date: '2027-04-29', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+
+  // --- MAY 2027 ---
+  { id: 'nfp-2027-05', date: '2027-05-07', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-05', date: '2027-05-12', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-05', date: '2027-05-13', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+
+  // --- JUNE 2027 ---
+  { id: 'nfp-2027-06', date: '2027-06-04', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'fomc-2027-06', date: '2027-06-09', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2027-06', date: '2027-06-10', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'cpi-2027-06', date: '2027-06-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'boj-2027-06', date: '2027-06-11', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+  { id: 'ppi-2027-06', date: '2027-06-11', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'boe-2027-06', date: '2027-06-17', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+
+  // --- JULY 2027 ---
+  { id: 'nfp-2027-07', date: '2027-07-02', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-07', date: '2027-07-14', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-07', date: '2027-07-15', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'ecb-2027-07', date: '2027-07-22', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2027-07', date: '2027-07-22', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+  { id: 'fomc-2027-07', date: '2027-07-28', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2027-07', date: '2027-07-29', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+
+  // --- AUGUST 2027 ---
+  { id: 'nfp-2027-08', date: '2027-08-06', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'ppi-2027-08', date: '2027-08-10', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'cpi-2027-08', date: '2027-08-11', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+
+  // --- SEPTEMBER 2027 ---
+  { id: 'nfp-2027-09', date: '2027-09-03', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'ecb-2027-09', date: '2027-09-09', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'ppi-2027-09', date: '2027-09-10', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'cpi-2027-09', date: '2027-09-14', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'fomc-2027-09', date: '2027-09-15', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'boe-2027-09', date: '2027-09-16', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'boj-2027-09', date: '2027-09-22', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+
+  // --- OCTOBER 2027 ---
+  { id: 'nfp-2027-10', date: '2027-10-08', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-10', date: '2027-10-14', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-10', date: '2027-10-15', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'fomc-2027-10', date: '2027-10-27', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'ecb-2027-10', date: '2027-10-28', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boj-2027-10', date: '2027-10-29', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
+
+  // --- NOVEMBER 2027 ---
+  { id: 'boe-2027-11', date: '2027-11-04', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'nfp-2027-11', date: '2027-11-05', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'cpi-2027-11', date: '2027-11-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-11', date: '2027-11-12', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+
+  // --- DECEMBER 2027 ---
+  { id: 'nfp-2027-12', date: '2027-12-03', time: '08:30', title: 'US Jobs Report (NFP)', category: 'nfp', impact: 'high', description: 'Non-Farm Payrolls - Key employment data' },
+  { id: 'fomc-2027-12', date: '2027-12-08', time: '14:00', title: 'FOMC Rate Decision', category: 'fomc', impact: 'high', description: 'Federal Reserve interest rate decision and press conference' },
+  { id: 'cpi-2027-12', date: '2027-12-10', time: '08:30', title: 'US CPI Inflation', category: 'cpi', impact: 'high', description: 'Consumer Price Index - Key inflation measure' },
+  { id: 'ppi-2027-12', date: '2027-12-15', time: '08:30', title: 'US PPI', category: 'ppi', impact: 'medium', description: 'Producer Price Index - Wholesale inflation' },
+  { id: 'ecb-2027-12', date: '2027-12-16', time: '08:15', title: 'ECB Rate Decision', category: 'ecb', impact: 'high', description: 'European Central Bank monetary policy decision' },
+  { id: 'boe-2027-12', date: '2027-12-16', time: '07:00', title: 'BoE Rate Decision', category: 'boe', impact: 'high', description: 'Bank of England monetary policy decision' },
+  { id: 'boj-2027-12', date: '2027-12-17', title: 'BoJ Rate Decision', category: 'boj', impact: 'high', description: 'Bank of Japan monetary policy decision (second meeting day)' },
 ];
 
 // Helper function to get events within a date range
@@ -464,7 +560,7 @@ export function getEconomicEventsInRange(startDate: Date, endDate: Date): Econom
   const start = startDate.toISOString().split('T')[0];
   const end = endDate.toISOString().split('T')[0];
   
-  return ECONOMIC_CALENDAR_2025_2026.filter(event => {
+  return ECONOMIC_CALENDAR.filter(event => {
     return event.date >= start && event.date <= end;
   });
 }
@@ -472,7 +568,7 @@ export function getEconomicEventsInRange(startDate: Date, endDate: Date): Econom
 // Helper function to get events for a specific date
 export function getEconomicEventsForDate(date: Date): EconomicEvent[] {
   const dateStr = date.toISOString().split('T')[0];
-  return ECONOMIC_CALENDAR_2025_2026.filter(event => event.date === dateStr);
+  return ECONOMIC_CALENDAR.filter(event => event.date === dateStr);
 }
 
 // Category icons for UI display
