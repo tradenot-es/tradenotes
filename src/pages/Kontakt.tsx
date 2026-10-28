@@ -7,182 +7,103 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { invoke } from "@/lib/api";
 import { usePageSeo } from "@/hooks/useSeo";
+import { operator } from "@/config/operator";
+
+// field → maximum length, same limits as the server
+const FIELDS = { name: 100, email: 255, subject: 200, message: 2000 } as const;
 
 const Kontakt = () => {
   usePageSeo("contact", "/kontakt");
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
   const [captchaRound, setCaptchaRound] = useState(0);
 
+  const fail = (description: string) => toast({ title: t("contact.errorTitle"), description, variant: "destructive" });
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!altchaPayload) {
-      toast({
-        title: "Fehler",
-        description: "Bitte bestätigen Sie, dass Sie kein Roboter sind.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    setIsSubmitting(true);
+    if (!altchaPayload) return fail(t("contact.errors.captcha"));
 
-    const formData = new FormData(e.currentTarget);
-    const name = formData.get('name') as string;
-    const email = formData.get('email') as string;
-    const subject = formData.get('subject') as string;
-    const message = formData.get('message') as string;
-
-    // Basic validation
-    if (!name.trim() || name.length > 100) {
-      toast({
-        title: "Fehler",
-        description: "Bitte geben Sie einen gültigen Namen ein (max. 100 Zeichen).",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!email.trim() || email.length > 255 || !email.includes('@')) {
-      toast({
-        title: "Fehler",
-        description: "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!subject.trim() || subject.length > 200) {
-      toast({
-        title: "Fehler",
-        description: "Bitte geben Sie einen gültigen Betreff ein (max. 200 Zeichen).",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    if (!message.trim() || message.length > 2000) {
-      toast({
-        title: "Fehler",
-        description: "Bitte geben Sie eine gültige Nachricht ein (max. 2000 Zeichen).",
-        variant: "destructive",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    // the server checks the captcha and forwards the message by email
     const form = e.currentTarget;
-    const { error } = await invoke('contact', {
-      body: { name, email, subject, message, altcha: altchaPayload },
-    });
+    const formData = new FormData(form);
+    const values = Object.fromEntries(
+      Object.keys(FIELDS).map((field) => [field, String(formData.get(field) ?? "").trim()]),
+    ) as Record<keyof typeof FIELDS, string>;
+    for (const [field, max] of Object.entries(FIELDS) as [keyof typeof FIELDS, number][]) {
+      if (!values[field] || values[field].length > max || (field === "email" && !values.email.includes("@"))) {
+        return fail(t(`contact.errors.${field}`, { max }));
+      }
+    }
 
+    setIsSubmitting(true);
+    // the server checks the captcha and forwards the message by email
+    const { error } = await invoke("contact", { body: { ...values, altcha: altchaPayload } });
     // a captcha solution is single-use, so every attempt needs a fresh one
     setAltchaPayload(null);
     setCaptchaRound((r) => r + 1);
     setIsSubmitting(false);
+    if (error) return fail(t("contact.errors.send"));
 
-    if (error) {
-      toast({
-        title: "Fehler",
-        description: "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    toast({
-      title: "Nachricht gesendet",
-      description: "Wir haben Ihre Nachricht erhalten und melden uns bald bei Ihnen.",
-    });
+    toast({ title: t("contact.sentTitle"), description: t("contact.sentDescription") });
     form.reset();
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      
+
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold mb-4">Kontakt</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Haben Sie Fragen oder benötigen Unterstützung? Wir sind für Sie da.
-            </p>
+            <h1 className="text-4xl font-bold mb-4">{t("contact.title")}</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">{t("contact.subtitle")}</p>
           </div>
 
           <div className="max-w-2xl mx-auto">
             <Card>
               <CardHeader>
-                <CardTitle>Senden Sie uns eine Nachricht</CardTitle>
+                <CardTitle>{t("contact.formTitle")}</CardTitle>
                 <CardDescription>
-                  Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.
+                  {t("contact.formDescription")}{" "}
+                  <a href={`mailto:${operator.email}`} className="text-primary hover:underline">
+                    {operator.email}
+                  </a>
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Name *</Label>
-                    <Input 
-                      id="name" 
-                      name="name"
-                      placeholder="Ihr Name" 
-                      maxLength={100}
-                      required 
-                    />
+                    <Label htmlFor="name">{t("contact.name")} *</Label>
+                    <Input id="name" name="name" placeholder={t("contact.namePlaceholder")} maxLength={FIELDS.name} required />
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="email">E-Mail *</Label>
-                    <Input 
-                      id="email" 
-                      name="email"
-                      type="email" 
-                      placeholder="ihre@email.de" 
-                      maxLength={255}
-                      required 
-                    />
+                    <Label htmlFor="email">{t("contact.email")} *</Label>
+                    <Input id="email" name="email" type="email" placeholder={t("contact.emailPlaceholder")} maxLength={FIELDS.email} required />
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Betreff *</Label>
-                    <Input 
-                      id="subject" 
-                      name="subject"
-                      placeholder="Worum geht es?" 
-                      maxLength={200}
-                      required 
-                    />
+                    <Label htmlFor="subject">{t("contact.subject")} *</Label>
+                    <Input id="subject" name="subject" placeholder={t("contact.subjectPlaceholder")} maxLength={FIELDS.subject} required />
                   </div>
-                  
+
                   <div className="space-y-2">
-                    <Label htmlFor="message">Nachricht *</Label>
-                    <Textarea 
-                      id="message" 
-                      name="message"
-                      placeholder="Ihre Nachricht..." 
-                      rows={6}
-                      maxLength={2000}
-                      required 
-                    />
+                    <Label htmlFor="message">{t("contact.message")} *</Label>
+                    <Textarea id="message" name="message" placeholder={t("contact.messagePlaceholder")} rows={6} maxLength={FIELDS.message} required />
                   </div>
-                  
-                  <AltchaWidget 
-                    key={captchaRound}
-                    onVerified={setAltchaPayload}
-                    onError={() => setAltchaPayload(null)}
-                  />
-                  
+
+                  <AltchaWidget key={captchaRound} onVerified={setAltchaPayload} onError={() => setAltchaPayload(null)} />
+
+                  <p className="text-xs text-muted-foreground">{t("contact.privacyNote")}</p>
+
                   <Button type="submit" className="w-full" disabled={isSubmitting || !altchaPayload}>
-                    {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
+                    {isSubmitting ? t("contact.sending") : t("contact.send")}
                   </Button>
                 </form>
               </CardContent>
@@ -190,6 +111,7 @@ const Kontakt = () => {
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );

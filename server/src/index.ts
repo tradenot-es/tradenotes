@@ -21,6 +21,9 @@ const cleanup = async () => {
   // (IBKR Flex reports can cover up to a year, so they are kept that long)
   await pool.query("delete from executions where matched and time < now() - interval '400 days'");
   await pool.query(`delete from verification where "expiresAt" < now()`);
+  // the privacy policy promises both: sessions hold IP address and browser
+  await pool.query(`delete from session where "expiresAt" < now()`);
+  await pool.query(`delete from "user" where not "emailVerified" and "createdAt" < now() - interval '7 days'`);
 };
 setInterval(() => cleanup().catch((e) => console.error("cleanup failed", e)), 60 * 60 * 1000);
 // Interactive Brokers: fetch each connection's Flex report once a day

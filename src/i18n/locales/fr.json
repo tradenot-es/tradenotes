@@ -1579,249 +1579,6 @@
     "saved": "Préparation quotidienne sauvegardée avec succès",
     "saveError": "Erreur lors de la sauvegarde"
   },
-  "privacy": {
-    "title": "Politique de Confidentialité",
-    "subtitle": "Nous prenons au sérieux la protection de vos données personnelles. Découvrez comment nous collectons, utilisons et protégeons vos données.",
-    "certifications": {
-      "title": "Certifications & Conformité",
-      "soc2": {
-        "name": "SOC 2 Type 2",
-        "description": "Audité indépendamment selon les normes de sécurité les plus élevées pour les services cloud"
-      },
-      "iso": {
-        "name": "ISO 27001:2022",
-        "description": "Système de gestion de la sécurité de l'information certifié selon les normes internationales"
-      },
-      "gdpr": {
-        "name": "Conforme RGPD",
-        "description": "Conformité totale avec le Règlement Général sur la Protection des Données de l'UE"
-      }
-    },
-    "dataStorage": {
-      "title": "Stockage et Sécurité des Données",
-      "euRegion": {
-        "badge": "Cloud",
-        "title": "Stockage Cloud Sécurisé",
-        "description": "Toutes vos données sont stockées et traitées dans des centres de données cloud sécurisés."
-      },
-      "encrypted": {
-        "badge": "Chiffré",
-        "title": "Chiffrement de Bout en Bout",
-        "description": "Vos données sont chiffrées à la fois en transit (TLS 1.3) et au repos (AES-256)."
-      }
-    },
-    "sections": {
-      "controller": {
-        "title": "Responsable du Traitement",
-        "content": "Le responsable du traitement des données pour ce site web est:",
-        "company": "[Nom de l'entreprise]\n[Rue et numéro]\n[Code postal et ville]\n[Pays]\n\nEmail: [Adresse email]\nTéléphone: [Numéro de téléphone]"
-      },
-      "collection": {
-        "title": "Collecte de Données",
-        "website": {
-          "title": "Visites du Site Web",
-          "intro": "Les données techniques suivantes sont automatiquement collectées à chaque accès à notre site web:",
-          "items": [
-            "Adresse IP de l'ordinateur accédant",
-            "Date et heure d'accès",
-            "Nom et URL du fichier récupéré",
-            "Quantité de données transférées",
-            "Notification de récupération réussie",
-            "Type et version du navigateur",
-            "Système d'exploitation de l'utilisateur",
-            "URL de référence (page précédemment visitée)"
-          ]
-        },
-        "registration": {
-          "title": "Inscription",
-          "intro": "Pour utiliser nos services, nous collectons les données personnelles suivantes:",
-          "items": [
-            "Adresse email (obligatoire)",
-            "Nom (optionnel)",
-            "Photo de profil (optionnelle)",
-            "Paramètres de fuseau horaire",
-            "Préférences linguistiques"
-          ]
-        },
-        "trading": {
-          "title": "Données de Trading",
-          "description": "Toutes les données de trading que vous saisissez (trades, entrées de journal, setups, tags) sont stockées de manière chiffrée et ne sont accessibles qu'à vous."
-        }
-      },
-      "legalBasis": {
-        "title": "Base Légale",
-        "intro": "Le traitement de vos données personnelles repose sur les bases légales suivantes:",
-        "items": [
-          "<strong>Art. 6(1)(b) RGPD:</strong> Traitement pour l'exécution d'un contrat ou de mesures précontractuelles",
-          "<strong>Art. 6(1)(a) RGPD:</strong> Traitement basé sur votre consentement",
-          "<strong>Art. 6(1)(f) RGPD:</strong> Traitement pour nos intérêts légitimes (par ex., pour améliorer nos services)"
-        ]
-      },
-      "dataSharing": {
-        "title": "Partage des Données",
-        "intro": "Vos données personnelles ne sont partagées avec des tiers que dans les cas suivants:",
-        "serviceProviders": {
-          "title": "Prestataires de Services",
-          "intro": "Nous travaillons avec des prestataires de services soigneusement sélectionnés qui nous aident à fournir nos services:",
-          "items": [
-            "<strong>Lovable Cloud:</strong> Hébergement et services backend",
-            "<strong>Stripe:</strong> Traitement des paiements (soumis à sa propre politique de confidentialité)",
-            "<strong>Lettermint:</strong> Envoi d'emails (emails transactionnels, rappels d'essai)",
-            "<strong>Marketaux:</strong> API d'actualités financières pour les nouvelles du portefeuille et l'analyse du sentiment du marché",
-            "<strong>Lovable AI:</strong> Passerelle IA pour l'assistant de trading (utilise les modèles Google Gemini / OpenAI pour l'analyse)",
-            "<strong>ALTCHA:</strong> Service captcha auto-hébergé pour la protection contre les bots (preuve de travail, pas d'appels externes)"
-          ],
-          "compliance": "Tous les prestataires de services sont conformes au RGPD et ont signé des accords de traitement de données avec nous selon l'art. 28 RGPD."
-        },
-        "legal": {
-          "title": "Obligations Légales",
-          "description": "Nous partageons vos données lorsque nous sommes légalement tenus de le faire ou lorsque cela est nécessaire pour faire valoir nos droits."
-        }
-      },
-      "rights": {
-        "title": "Vos Droits",
-        "intro": "Vous disposez des droits suivants concernant vos données personnelles:",
-        "items": {
-          "access": "<strong>Droit d'Accès:</strong> Vous pouvez demander des informations sur vos données stockées à tout moment",
-          "rectification": "<strong>Droit de Rectification:</strong> Vous pouvez demander la correction de données inexactes",
-          "erasure": "<strong>Droit à l'Effacement:</strong> Vous pouvez demander la suppression de vos données, sauf si des obligations légales de conservation s'appliquent",
-          "restriction": "<strong>Droit à la Limitation:</strong> Vous pouvez demander la limitation du traitement",
-          "portability": "<strong>Portabilité des Données:</strong> Vous pouvez recevoir vos données dans un format structuré, couramment utilisé et lisible par machine",
-          "objection": "<strong>Droit d'Opposition:</strong> Vous pouvez vous opposer au traitement de vos données"
-        },
-        "contact": "Pour exercer vos droits, veuillez nous contacter en utilisant les coordonnées fournies ci-dessus."
-      },
-      "security": {
-        "title": "Mesures de Sécurité",
-        "intro": "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles complètes:",
-        "items": [
-          "Chiffrement TLS 1.3 pour toutes les transmissions de données",
-          "Chiffrement AES-256 pour les données stockées",
-          "Audits de sécurité réguliers et tests de pénétration",
-          "Contrôle d'accès et authentification avec des normes modernes",
-          "Surveillance continue et réponse aux incidents",
-          "Sauvegardes régulières dans des centres de données géographiquement séparés"
-        ]
-      },
-      "cookies": {
-        "title": "Cookies & Suivi",
-        "intro": "Nous utilisons des cookies et des technologies similaires aux fins suivantes:",
-        "items": [
-          "Cookies Essentiels: Pour la fonctionnalité du site web (par ex., gestion de session, authentification)",
-          "Cookies de Préférence: Pour stocker vos paramètres (par ex., langue, thème)",
-          "Cookies de Performance: Pour améliorer les performances du site web"
-        ],
-        "noTracking": "Nous n'utilisons pas de cookies de suivi tiers et ne vendons pas de données à des tiers."
-      },
-      "retention": {
-        "title": "Durée de Conservation",
-        "intro": "Nous ne conservons vos données personnelles que le temps nécessaire pour atteindre les objectifs respectifs:",
-        "items": [
-          "Données de compte: Pendant la durée de votre adhésion plus 30 jours",
-          "Données de trading: Tant que vous avez un compte actif ou selon les exigences du droit commercial allemand",
-          "Fichiers journaux: Maximum 90 jours",
-          "Données de facturation: 10 ans (exigence légale de conservation)"
-        ],
-        "deletion": "Après expiration de la période de conservation, les données sont supprimées de manière routinière et automatique, sauf si des obligations légales de conservation l'empêchent."
-      },
-      "changes": {
-        "title": "Modifications de cette Politique de Confidentialité",
-        "description": "Nous nous réservons le droit de mettre à jour occasionnellement cette politique de confidentialité pour nous assurer qu'elle respecte toujours les exigences légales actuelles ou pour mettre en œuvre des modifications de nos services. La nouvelle politique de confidentialité s'appliquera à votre prochaine visite.",
-        "lastUpdated": "Dernière mise à jour:"
-      },
-      "complaint": {
-        "title": "Droit de Réclamation",
-        "intro": "Vous avez le droit de déposer une réclamation auprès d'une autorité de contrôle de la protection des données:",
-        "authority": "Autorité de contrôle compétente pour la France:\nCommission Nationale de l'Informatique et des Libertés (CNIL)\n3 Place de Fontenoy\nTSA 80715\n75334 Paris Cedex 07\nTéléphone: +33 1 53 73 22 22\nSite web: cnil.fr"
-      }
-    }
-  },
-  "terms": {
-    "title": "Conditions Générales d'Utilisation (CGU)",
-    "lastUpdated": "Dernière mise à jour : Janvier 2025",
-    "scope": {
-      "title": "1. Champ d'application",
-      "content1": "Ces Conditions Générales d'Utilisation (CGU) régissent l'utilisation de la plateforme de journal de trading (ci-après dénommée 'Plateforme'). En vous inscrivant et en utilisant la Plateforme, vous acceptez ces CGU.",
-      "content2": "Ces CGU s'appliquent exclusivement. Les CGU divergentes, contradictoires ou complémentaires de l'utilisateur ne font partie du contrat que si elles ont été expressément acceptées."
-    },
-    "parties": {
-      "title": "2. Parties contractantes",
-      "content": "Le contrat est conclu entre l'utilisateur et l'exploitant de la Plateforme. Les coordonnées se trouvent dans les mentions légales."
-    },
-    "contract": {
-      "title": "3. Conclusion du contrat",
-      "content1": "En s'inscrivant, l'utilisateur fait une offre de conclusion d'un contrat d'utilisation. Le contrat est conclu par la confirmation de l'inscription par e-mail.",
-      "content2": "L'inscription n'est autorisée qu'aux personnes majeures ayant la pleine capacité juridique."
-    },
-    "trial": {
-      "title": "4. Période d'essai gratuite",
-      "content1": "Les nouveaux utilisateurs bénéficient d'une période d'essai gratuite de 14 jours avec accès complet à toutes les fonctionnalités. La résiliation est possible à tout moment pendant la période d'essai.",
-      "content2": "À l'expiration de la période d'essai, le compte se transforme automatiquement en abonnement payant sauf résiliation."
-    },
-    "pricing": {
-      "title": "5. Prix et conditions de paiement",
-      "content1": "Les prix actuels sont affichés sur le site web. Tous les prix incluent la TVA applicable.",
-      "content2": "Le paiement est effectué à l'avance pour la période de facturation choisie (mensuelle ou annuelle). La facturation est traitée via notre prestataire de paiement Stripe."
-    },
-    "withdrawal": {
-      "title": "6. Droit de rétractation (pour les consommateurs de l'UE)",
-      "content1": "Les consommateurs ont le droit de se rétracter de ce contrat dans un délai de quatorze jours sans avoir à motiver leur décision. Le délai de rétractation expire quatorze jours après la conclusion du contrat.",
-      "content2": "Pour exercer votre droit de rétractation, vous devez nous informer par une déclaration claire (par exemple par e-mail) de votre décision de vous rétracter du contrat.",
-      "content3": "Si vous avez déjà utilisé le service pendant la période de rétractation et accepté expressément que nous commencions à fournir le service, votre droit de rétractation expire."
-    },
-    "license": {
-      "title": "7. Droits d'utilisation et licence",
-      "content1": "L'utilisateur reçoit un droit d'utilisation simple et non transférable de la Plateforme pour la durée du contrat. Sont notamment interdits :",
-      "restriction1": "Le partage des identifiants de connexion avec des tiers",
-      "restriction2": "L'ingénierie inverse ou la décompilation du logiciel",
-      "restriction3": "La redistribution commerciale du contenu de la Plateforme",
-      "restriction4": "L'utilisation à des fins illégales ou frauduleuses"
-    },
-    "obligations": {
-      "title": "8. Obligations de l'utilisateur",
-      "content1": "L'utilisateur s'engage à :",
-      "rule1": "Fournir uniquement des informations véridiques lors de l'inscription",
-      "rule2": "Garder les identifiants de connexion confidentiels et les protéger contre l'accès de tiers",
-      "rule3": "Ne pas stocker ou diffuser de contenu illégal ou nuisible",
-      "rule4": "Ne pas utiliser la Plateforme pour des accès automatisés massifs"
-    },
-    "liability": {
-      "title": "9. Responsabilité",
-      "content1": "L'exploitant n'est responsable des dommages qu'en cas d'intention et de négligence grave. Cela ne s'applique pas aux atteintes à la vie, au corps ou à la santé, ni à la violation d'obligations contractuelles essentielles.",
-      "content2": "La Plateforme sert uniquement à des fins de documentation et d'analyse. Elle ne constitue pas un conseil en investissement et ne remplace pas la consultation d'un conseiller financier professionnel.",
-      "content3": "L'utilisateur est responsable de la sauvegarde de ses propres données. L'exploitant recommande des exports réguliers des données importantes."
-    },
-    "security": {
-      "title": "10. Sécurité des données et certifications",
-      "content1": "La Plateforme répond aux normes de sécurité les plus élevées :",
-      "cert1": "Certification SOC 2 Type 2 – Preuve d'un traitement et d'une protection sécurisés des données",
-      "cert2": "Certification ISO 27001:2022 – Norme internationale pour les systèmes de gestion de la sécurité de l'information",
-      "cert3": "Conformité RGPD – Toutes les données sont stockées et traitées dans des centres de données de l'UE (Francfort)"
-    },
-    "termination": {
-      "title": "11. Durée et résiliation",
-      "content1": "Le contrat a une durée minimale correspondant à la période de facturation choisie et se renouvelle automatiquement s'il n'est pas résilié avant l'expiration.",
-      "content2": "La résiliation peut être effectuée à tout moment via les paramètres du compte et prend effet à la fin de la période payée. Le droit à la résiliation extraordinaire pour motif valable reste intact."
-    },
-    "changes": {
-      "title": "12. Modifications des CGU",
-      "content": "L'exploitant se réserve le droit de modifier ces CGU. Les utilisateurs seront informés par e-mail au moins 30 jours avant l'entrée en vigueur. Si l'utilisateur ne s'oppose pas dans les 30 jours, les nouvelles CGU sont considérées comme acceptées."
-    },
-    "law": {
-      "title": "13. Loi applicable et juridiction",
-      "content1": "Pour les utilisateurs de l'UE, la loi du pays dans lequel l'utilisateur a sa résidence habituelle s'applique. Les dispositions impératives de protection des consommateurs restent intactes.",
-      "content2": "Pour les utilisateurs hors UE, le droit néerlandais s'applique, à l'exclusion de la Convention des Nations Unies sur les contrats de vente internationale de marchandises (CVIM). Pour les commerçants, le lieu de juridiction est le siège de l'exploitant aux Pays-Bas."
-    },
-    "final": {
-      "title": "14. Dispositions finales",
-      "content": "Si des dispositions individuelles de ces CGU sont ou deviennent invalides, la validité des dispositions restantes n'est pas affectée. Une disposition efficace qui se rapproche le plus de l'objectif économique de la disposition invalide remplacera la disposition invalide."
-    },
-    "contact": {
-      "title": "Questions sur les CGU ?",
-      "content": "Si vous avez des questions sur ces Conditions Générales, n'hésitez pas à nous contacter à tout moment.",
-      "button": "Nous contacter"
-    }
-  },
   "alerts": {
     "title": "Alertes de trading",
     "allClear": "Tout est en ordre",
@@ -1954,40 +1711,138 @@
     "insight2Title": "Take-Profit",
     "insight2": "En moyenne, vos trades montent de {{value}}% (MFE) avant que vous sortiez. Vous laissez {{missed}}% sur la table."
   },
-  "imprint": {
-    "title": "Mentions Légales",
-    "subtitle": "Informations légales conformément aux réglementations e-commerce de l'UE. Exploité depuis les Pays-Bas.",
-    "provider": {
-      "title": "Éditeur",
-      "address": "TradeNot.es\n[Votre nom complet]\n[Rue et numéro]\n[Code postal Ville]\nPays-Bas",
-      "kvk": "Numéro KvK : [XXXXXXXX]",
-      "btw": "N° TVA : NL[XXXXXXXXX]B01"
+  "legal": {
+    "updated": "Dernière mise à jour : {{date}}",
+    "imprint": {
+      "title": "Mentions légales",
+      "sections": [
+        {
+          "title": "Éditeur",
+          "text": "TradeNot.es est un projet privé et non commercial : sans publicité, sans fonctions payantes et sans pistage.\n\n{{name}}\nPays-Bas\nE-mail : {{email}}"
+        },
+        {
+          "title": "Pas de conseil en investissement",
+          "text": "TradeNot.es est un outil pour consigner et analyser vos propres trades. Rien sur ce site ne constitue un conseil en investissement ni une recommandation d’acheter ou de vendre un instrument financier. Le trading d’actions, de futures, d’options, de devises ou de cryptomonnaies est risqué et peut entraîner la perte totale du capital investi."
+        },
+        {
+          "title": "Liens vers d’autres sites",
+          "text": "Les exploitants des sites externes vers lesquels nous renvoyons sont seuls responsables de leur contenu."
+        }
+      ]
     },
-    "contact": {
-      "title": "Contact"
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "sections": [
+        {
+          "title": "Responsable du traitement",
+          "text": "Le responsable du traitement de vos données sur tradenot.es est {{name}}, Pays-Bas, joignable à {{email}}.\n\nTradeNot.es est un projet privé et non commercial. Nous ne vendons aucune donnée, n’affichons aucune publicité et n’utilisons aucun service d’analyse ou de pistage."
+        },
+        {
+          "title": "Données que nous enregistrons",
+          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, prénom et nom. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite."
+        },
+        {
+          "title": "Finalités et base juridique",
+          "text": "Nous traitons ces données uniquement pour vous fournir le journal de trading (art. 6, par. 1, point b du RGPD). Les données de session et le captcha lors de l’inscription, de la réinitialisation du mot de passe et du formulaire de contact protègent contre les abus (intérêt légitime, art. 6, par. 1, point f du RGPD). Nous répondons aux demandes envoyées via le formulaire de contact sur la base de l’art. 6, par. 1, point b ou f du RGPD.\n\nLes analyses de l’application, comme la détection du revenge trading, ne sont visibles que par vous. Elles n’ont aucun effet juridique à votre égard."
+        },
+        {
+          "title": "Où se trouvent les données",
+          "text": "Toutes les données sont stockées sur notre propre serveur aux Pays-Bas (centre de données de Leaseweb à Amsterdam). Leaseweb est notre sous-traitant pour l’hébergement. Pour l’envoi des e-mails (confirmation, réinitialisation du mot de passe, formulaire de contact), nous faisons appel à un prestataire d’e-mail en tant que sous-traitant. Vos données ne sont pas transférées vers des pays situés hors de l’UE."
+        },
+        {
+          "title": "Requêtes vers d’autres services",
+          "text": "- Cours : lorsque vous choisissez un symbole dans la fenêtre de saisie d’un trade, notre serveur demande le cours actuel à Yahoo Finance. Seul le symbole est transmis, aucune donnée vous concernant.\n- Interactive Brokers : si vous configurez la connexion, notre serveur utilise votre jeton pour récupérer vos rapports Flex chez Interactive Brokers une fois par jour et lorsque vous cliquez sur le bouton.\n\nLe site ne charge ni polices, ni scripts, ni autre contenu depuis des serveurs tiers."
+        },
+        {
+          "title": "Cookies et stockage du navigateur",
+          "text": "Nous n’utilisons qu’un seul cookie : le cookie de session pour la connexion. Il est strictement nécessaire et ne requiert donc pas de consentement. Dans le stockage de votre navigateur (localStorage), nous mémorisons aussi le thème de couleurs. Ce réglage ne quitte jamais votre navigateur."
+        },
+        {
+          "title": "Trades partagés",
+          "text": "Lorsque vous partagez un trade, toute personne disposant du lien peut voir ce trade : sans le nom du compte, et la note uniquement si vous l’incluez. Nous comptons les consultations. Les moteurs de recherche n’indexent pas la page. Vous pouvez arrêter le partage à tout moment."
+        },
+        {
+          "title": "Durée de conservation",
+          "text": "Vos données sont conservées jusqu’à ce que vous les supprimiez ou que vous supprimiez votre compte. Lors de la suppression du compte, nous effaçons immédiatement toutes les données, captures d’écran comprises. Les sessions expirées sont supprimées automatiquement, de même que les comptes dont l’adresse e-mail n’a pas été confirmée dans les 7 jours."
+        },
+        {
+          "title": "Vos droits",
+          "text": "Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation du traitement, de portabilité et d’opposition. Vous pouvez en exercer une grande partie directement dans l’application : sous « Compte », vous pouvez exporter toutes vos données dans un fichier ZIP, réinitialiser vos données et supprimer votre compte. Pour tout le reste, écrivez à {{email}}.\n\nVous pouvez également introduire une réclamation auprès d’une autorité de protection des données : aux Pays-Bas l’Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl), ou l’autorité de votre pays de résidence."
+        },
+        {
+          "title": "Sécurité",
+          "text": "La connexion est chiffrée en HTTPS. Les mots de passe ne sont enregistrés que sous forme de hash, et vous pouvez sécuriser votre connexion avec un second facteur (application d’authentification)."
+        },
+        {
+          "title": "Modifications",
+          "text": "Si notre manière de traiter les données change, nous mettrons cette politique à jour. La date en haut de page indique la version en vigueur."
+        }
+      ]
     },
-    "responsible": {
-      "title": "Responsable du Contenu",
-      "content": "L'exploitant de ce site web est responsable du contenu conformément au droit néerlandais et européen applicable.\n\nPour toute question, veuillez contacter : info@tradenot.es"
-    },
-    "disclaimer": {
-      "title": "Clause de Non-Responsabilité",
-      "content": {
-        "title": "Responsabilité du Contenu",
-        "text": "Le contenu de nos pages a été créé avec le plus grand soin. Cependant, nous ne pouvons garantir l'exactitude, l'exhaustivité et l'actualité du contenu. En tant que prestataire de services, nous sommes responsables de notre propre contenu sur ces pages conformément au droit applicable."
-      },
-      "links": {
-        "title": "Responsabilité des Liens",
-        "text": "Notre offre contient des liens vers des sites web externes de tiers, sur le contenu desquels nous n'avons aucune influence. Par conséquent, nous ne pouvons assumer aucune responsabilité pour ces contenus externes. Le fournisseur ou l'exploitant respectif des pages est toujours responsable du contenu des pages liées."
-      },
-      "copyright": {
-        "title": "Droits d'Auteur",
-        "text": "Le contenu et les œuvres créés par les exploitants du site sur ces pages sont protégés par le droit d'auteur applicable. La reproduction, le traitement, la distribution ou toute forme de commercialisation de ces matériaux au-delà du cadre du droit d'auteur nécessite le consentement écrit préalable de l'auteur ou du créateur respectif."
-      },
-      "trading": {
-        "title": "Avertissement sur les Risques",
-        "text": "TradeNot.es est un journal de trading pour documenter et analyser les trades. L'utilisation de ce logiciel ne constitue pas un conseil en investissement. Le trading d'instruments financiers (actions, futures, options, etc.) comporte des risques importants et peut entraîner la perte totale du capital investi. Les performances passées ne garantissent pas les résultats futurs."
-      }
+    "terms": {
+      "title": "Conditions d’utilisation",
+      "sections": [
+        {
+          "title": "De quoi il s’agit",
+          "text": "TradeNot.es est un journal de trading gratuit, exploité par {{name}} en tant que projet privé et non commercial. En vous inscrivant, vous acceptez ces conditions."
+        },
+        {
+          "title": "Gratuit",
+          "text": "L’utilisation est gratuite. Il n’y a ni fonctions payantes, ni abonnements, ni publicité."
+        },
+        {
+          "title": "Pas de conseil en investissement",
+          "text": "TradeNot.es vous aide à consigner et analyser vos propres trades. L’application ne fournit ni conseil en investissement ni recommandation. Vous prenez vos décisions de trading vous-même et à vos propres risques."
+        },
+        {
+          "title": "Votre compte",
+          "text": "Vous avez besoin d’une adresse e-mail valide. Gardez votre mot de passe secret. Vous ne devez pas faire un usage abusif du service, par exemple par des requêtes massives automatisées, des attaques contre l’infrastructure ou le téléversement de contenus illicites."
+        },
+        {
+          "title": "Vos données",
+          "text": "Vos données vous appartiennent. Vous pouvez les exporter et les supprimer à tout moment. Ce que nous en faisons est décrit dans la politique de confidentialité."
+        },
+        {
+          "title": "Disponibilité et responsabilité",
+          "text": "Nous exploitons TradeNot.es au mieux de nos connaissances, mais sans garantie. Des interruptions, des erreurs de calcul ou des pertes de données peuvent survenir ; exportez donc régulièrement vos données importantes. Notre responsabilité n’est engagée qu’en cas de faute intentionnelle ou de négligence grave, ainsi qu’en cas d’atteinte à la vie, à l’intégrité physique ou à la santé."
+        },
+        {
+          "title": "Modifications et fin du service",
+          "text": "Nous pouvons modifier ou arrêter le service. Avant de l’arrêter, nous vous en informerons par e-mail au moins 30 jours à l’avance afin que vous puissiez exporter vos données. Vous pouvez supprimer votre compte à tout moment. Nous pouvons suspendre les comptes qui font un usage abusif du service."
+        },
+        {
+          "title": "Droit applicable",
+          "text": "Le droit néerlandais s’applique. Les dispositions impératives de protection des consommateurs de votre pays de résidence restent applicables. En cas de divergence entre les versions linguistiques, la version allemande prévaut.\n\nDes questions ? Écrivez à {{email}}."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Une question, un bug ou une idée ? Écrivez-nous.",
+    "formTitle": "Envoyer un message",
+    "formDescription": "Nous vous répondrons par e-mail. Vous pouvez aussi nous écrire directement à",
+    "name": "Nom",
+    "namePlaceholder": "Votre nom",
+    "email": "E-mail",
+    "emailPlaceholder": "vous@exemple.fr",
+    "subject": "Objet",
+    "subjectPlaceholder": "De quoi s’agit-il ?",
+    "message": "Message",
+    "messagePlaceholder": "Votre message …",
+    "privacyNote": "Votre message nous est transmis par e-mail et sert uniquement à vous répondre.",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours …",
+    "sentTitle": "Message envoyé",
+    "sentDescription": "Merci ! Nous vous répondrons par e-mail.",
+    "errorTitle": "Erreur",
+    "errors": {
+      "captcha": "Veuillez d’abord confirmer que vous n’êtes pas un robot.",
+      "name": "Veuillez saisir votre nom ({{max}} caractères au maximum).",
+      "email": "Veuillez saisir une adresse e-mail valide.",
+      "subject": "Veuillez saisir un objet ({{max}} caractères au maximum).",
+      "message": "Veuillez saisir un message ({{max}} caractères au maximum).",
+      "send": "Le message n’a pas pu être envoyé. Veuillez réessayer."
     }
   },
   "whyJournal": {
@@ -2086,29 +1941,6 @@
     "finalCtaFeatures": "Voir toutes les fonctionnalités",
     "backToHome": "Retour à l'accueil",
     "readMore": "En savoir plus"
-  },
-  "cookieConsent": {
-    "title": "Paramètres des cookies",
-    "description": "Nous utilisons des cookies pour améliorer votre expérience. Les cookies nécessaires sont requis pour les fonctionnalités de base du site. Vous pouvez ajuster vos paramètres à tout moment.",
-    "moreInfo": "Pour plus d'informations, veuillez consulter notre",
-    "privacyPolicy": "Politique de confidentialité",
-    "necessary": {
-      "label": "Cookies nécessaires",
-      "description": "Requis pour les fonctions de base comme la connexion et la navigation."
-    },
-    "functional": {
-      "label": "Cookies fonctionnels",
-      "description": "Stockent vos préférences comme la langue et le thème."
-    },
-    "analytics": {
-      "label": "Cookies analytiques",
-      "description": "Nous aident à comprendre comment les visiteurs utilisent le site."
-    },
-    "acceptAll": "Tout accepter",
-    "acceptNecessary": "Nécessaires uniquement",
-    "settings": "Paramètres",
-    "saveSelection": "Enregistrer la sélection",
-    "back": "Retour"
   },
   "prelaunch": {
     "badge": "BÊTA PRIVÉE",

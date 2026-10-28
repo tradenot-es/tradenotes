@@ -651,7 +651,7 @@
     "footerHelp": "Centro Assistenza",
     "footerContact": "Contatto",
     "footerStatus": "Stato",
-    "footerLegal": "Legale",
+    "footerLegal": "Note legali",
     "footerPrivacy": "Privacy",
     "footerTerms": "Termini",
     "footerImprint": "Note Legali",
@@ -1570,249 +1570,6 @@
     "saved": "Preparazione giornaliera salvata con successo",
     "saveError": "Errore salvataggio preparazione giornaliera"
   },
-  "privacy": {
-    "title": "Informativa Privacy",
-    "subtitle": "Prendiamo sul serio la protezione dei tuoi dati personali. Scopri come raccogliamo, utilizziamo e proteggiamo i tuoi dati.",
-    "certifications": {
-      "title": "Certificazioni & Conformità",
-      "soc2": {
-        "name": "SOC 2 Type 2",
-        "description": "Auditato indipendentemente ai più alti standard di sicurezza per servizi cloud"
-      },
-      "iso": {
-        "name": "ISO 27001:2022",
-        "description": "Sistema di gestione sicurezza informazioni certificato secondo standard internazionali"
-      },
-      "gdpr": {
-        "name": "Conforme GDPR",
-        "description": "Piena conformità al Regolamento Generale sulla Protezione dei Dati UE"
-      }
-    },
-    "dataStorage": {
-      "title": "Archiviazione & Sicurezza Dati",
-      "euRegion": {
-        "badge": "Cloud",
-        "title": "Archiviazione Cloud Sicura",
-        "description": "Tutti i tuoi dati sono archiviati ed elaborati in data center cloud sicuri."
-      },
-      "encrypted": {
-        "badge": "Crittografato",
-        "title": "Crittografia End-to-End",
-        "description": "I tuoi dati sono crittografati sia in transito (TLS 1.3) che a riposo (AES-256)."
-      }
-    },
-    "sections": {
-      "controller": {
-        "title": "Titolare del Trattamento",
-        "content": "Il titolare del trattamento per questo sito web è:",
-        "company": "[Nome Azienda]\n[Via e Numero]\n[CAP e Città]\n[Paese]\n\nEmail: [Indirizzo Email]\nTelefono: [Numero Telefono]"
-      },
-      "collection": {
-        "title": "Raccolta Dati",
-        "website": {
-          "title": "Visite Sito Web",
-          "intro": "I seguenti dati tecnici vengono raccolti automaticamente con ogni accesso al nostro sito web:",
-          "items": [
-            "Indirizzo IP del computer di accesso",
-            "Data e ora dell'accesso",
-            "Nome e URL del file recuperato",
-            "Quantità di dati trasferiti",
-            "Notifica di recupero riuscito",
-            "Tipo e versione browser",
-            "Sistema operativo utente",
-            "URL Referrer (pagina visitata precedentemente)"
-          ]
-        },
-        "registration": {
-          "title": "Registrazione",
-          "intro": "Per utilizzare i nostri servizi, raccogliamo i seguenti dati personali:",
-          "items": [
-            "Indirizzo email (obbligatorio)",
-            "Nome (opzionale)",
-            "Immagine profilo (opzionale)",
-            "Impostazioni fuso orario",
-            "Preferenze lingua"
-          ]
-        },
-        "trading": {
-          "title": "Dati Trading",
-          "description": "Tutti i dati di trading che inserisci (operazioni, voci diario, setup, tag) sono archiviati crittografati e accessibili solo a te."
-        }
-      },
-      "legalBasis": {
-        "title": "Base Giuridica",
-        "intro": "Il trattamento dei tuoi dati personali si basa sulle seguenti basi giuridiche:",
-        "items": [
-          "<strong>Art. 6(1)(b) GDPR:</strong> Trattamento per l'esecuzione di un contratto o misure precontrattuali",
-          "<strong>Art. 6(1)(a) GDPR:</strong> Trattamento basato sul tuo consenso",
-          "<strong>Art. 6(1)(f) GDPR:</strong> Trattamento per i nostri interessi legittimi (es. per migliorare i nostri servizi)"
-        ]
-      },
-      "dataSharing": {
-        "title": "Condivisione Dati",
-        "intro": "I tuoi dati personali sono condivisi con terze parti solo nei seguenti casi:",
-        "serviceProviders": {
-          "title": "Fornitori Servizi",
-          "intro": "Lavoriamo con fornitori di servizi selezionati che ci supportano nella fornitura dei nostri servizi:",
-          "items": [
-            "<strong>Lovable Cloud:</strong> Servizi hosting e backend",
-            "<strong>Stripe:</strong> Elaborazione pagamenti (soggetto alla propria informativa privacy)",
-            "<strong>Lettermint:</strong> Consegna email (email transazionali, promemoria di prova)",
-            "<strong>Marketaux:</strong> API notizie finanziarie per notizie del portafoglio e analisi del sentiment di mercato",
-            "<strong>Lovable AI:</strong> Gateway IA per l'assistente di trading (utilizza modelli Google Gemini / OpenAI per l'analisi)",
-            "<strong>ALTCHA:</strong> Servizio captcha auto-ospitato per protezione bot (proof-of-work, nessuna chiamata esterna)"
-          ],
-          "compliance": "Tutti i fornitori di servizi sono conformi GDPR e hanno firmato accordi di trattamento dati con noi secondo l'Art. 28 GDPR."
-        },
-        "legal": {
-          "title": "Obblighi Legali",
-          "description": "Condividiamo i tuoi dati quando siamo legalmente tenuti a farlo o quando necessario per far valere i nostri diritti."
-        }
-      },
-      "rights": {
-        "title": "I Tuoi Diritti",
-        "intro": "Hai i seguenti diritti riguardo ai tuoi dati personali:",
-        "items": {
-          "access": "<strong>Diritto di Accesso:</strong> Puoi richiedere informazioni sui tuoi dati archiviati in qualsiasi momento",
-          "rectification": "<strong>Diritto di Rettifica:</strong> Puoi richiedere correzione di dati inesatti",
-          "erasure": "<strong>Diritto alla Cancellazione:</strong> Puoi richiedere cancellazione dei tuoi dati, salvo obblighi legali di conservazione",
-          "restriction": "<strong>Diritto di Limitazione:</strong> Puoi richiedere limitazione del trattamento",
-          "portability": "<strong>Portabilità Dati:</strong> Puoi ricevere i tuoi dati in formato strutturato, comune e leggibile da macchina",
-          "objection": "<strong>Diritto di Opposizione:</strong> Puoi opporti al trattamento dei tuoi dati"
-        },
-        "contact": "Per esercitare i tuoi diritti, contattaci usando i dettagli forniti sopra."
-      },
-      "security": {
-        "title": "Misure di Sicurezza",
-        "intro": "Implementiamo misure di sicurezza tecniche e organizzative complete:",
-        "items": [
-          "Crittografia TLS 1.3 per tutte le trasmissioni dati",
-          "Crittografia AES-256 per dati archiviati",
-          "Audit di sicurezza regolari e test di penetrazione",
-          "Controllo accessi e autenticazione con standard moderni",
-          "Monitoraggio continuo e risposta incidenti",
-          "Backup regolari in data center geograficamente separati"
-        ]
-      },
-      "cookies": {
-        "title": "Cookie & Tracking",
-        "intro": "Utilizziamo cookie e tecnologie simili per i seguenti scopi:",
-        "items": [
-          "Cookie Essenziali: Per funzionalità sito web (es. gestione sessione, autenticazione)",
-          "Cookie Preferenze: Per archiviare le tue impostazioni (es. lingua, tema)",
-          "Cookie Performance: Per migliorare performance sito web"
-        ],
-        "noTracking": "Non utilizziamo cookie di tracking di terze parti e non vendiamo dati a terze parti."
-      },
-      "retention": {
-        "title": "Periodo di Conservazione",
-        "intro": "Archiviamo i tuoi dati personali solo per il tempo necessario a soddisfare i rispettivi scopi:",
-        "items": [
-          "Dati account: Per la durata della tua iscrizione più 30 giorni",
-          "Dati trading: Finché hai un account attivo o come richiesto dalla legge commerciale tedesca",
-          "File log: Massimo 90 giorni",
-          "Dati fattura: 10 anni (requisito conservazione legale)"
-        ],
-        "deletion": "Dopo scadenza del periodo di conservazione, i dati vengono eliminati routinariamente e automaticamente salvo obblighi legali di conservazione che impediscano ciò."
-      },
-      "changes": {
-        "title": "Modifiche a questa Informativa Privacy",
-        "description": "Ci riserviamo il diritto di aggiornare occasionalmente questa informativa privacy per garantire che sia sempre conforme ai requisiti legali attuali o per implementare modifiche ai nostri servizi. La nuova informativa privacy si applicherà alla tua prossima visita.",
-        "lastUpdated": "Ultimo aggiornamento:"
-      },
-      "complaint": {
-        "title": "Diritto di Reclamo",
-        "intro": "Hai il diritto di presentare un reclamo a un'autorità di controllo per la protezione dei dati:",
-        "authority": "Autorità di controllo competente per l'Italia:\nGarante per la protezione dei dati personali\nPiazza Venezia, 11\n00187 Roma\nTelefono: +39 06 696771\nEmail: garante@gpdp.it\nSito web: garanteprivacy.it"
-      }
-    }
-  },
-  "terms": {
-    "title": "Termini e Condizioni",
-    "lastUpdated": "Ultimo Aggiornamento: Gennaio 2025",
-    "scope": {
-      "title": "1. Ambito di Applicazione",
-      "content1": "Questi Termini e Condizioni regolano l'uso della Piattaforma Diario di Trading (di seguito 'Piattaforma'). Registrandoti e utilizzando la Piattaforma, accetti questi Termini e Condizioni.",
-      "content2": "Questi Termini e Condizioni si applicano esclusivamente. Termini divergenti, contrastanti o supplementari dell'utente diventeranno parte del contratto solo se esplicitamente concordati."
-    },
-    "parties": {
-      "title": "2. Parti Contraenti",
-      "content": "Il contratto è concluso tra l'utente e l'operatore della Piattaforma. I dettagli di contatto si trovano nell'impronta."
-    },
-    "contract": {
-      "title": "3. Conclusione Contratto",
-      "content1": "Registrandoti, l'utente fa un'offerta per concludere un accordo di utilizzo. Il contratto è concluso con la conferma della registrazione via email.",
-      "content2": "La registrazione è consentita solo a persone maggiorenni con piena capacità legale."
-    },
-    "trial": {
-      "title": "4. Periodo Prova Gratuita",
-      "content1": "I nuovi utenti ricevono una prova gratuita di 14 giorni con accesso completo a tutte le funzionalità. La disdetta è possibile in qualsiasi momento durante il periodo di prova.",
-      "content2": "Dopo scadenza del periodo di prova, l'account si converte automaticamente in abbonamento a pagamento salvo disdetta."
-    },
-    "pricing": {
-      "title": "5. Prezzi e Termini Pagamento",
-      "content1": "I prezzi attuali sono mostrati sul sito web. Tutti i prezzi includono IVA/tasse vendite applicabili.",
-      "content2": "Il pagamento è effettuato in anticipo per il periodo di fatturazione selezionato (mensile o annuale). La fatturazione è elaborata tramite il nostro fornitore pagamenti Stripe."
-    },
-    "withdrawal": {
-      "title": "6. Diritto di Recesso (per Consumatori UE)",
-      "content1": "I consumatori hanno il diritto di recedere da questo contratto entro quattordici giorni senza fornire alcuna motivazione. Il periodo di recesso è di quattordici giorni dalla data di conclusione del contratto.",
-      "content2": "Per esercitare il tuo diritto di recesso, devi informarci mediante dichiarazione chiara (es. per email) della tua decisione di recedere da questo contratto.",
-      "content3": "Se hai già utilizzato il servizio durante il periodo di recesso e hai espressamente accettato che iniziassimo a fornire il servizio, il tuo diritto di recesso scade."
-    },
-    "license": {
-      "title": "7. Diritti di Utilizzo e Licenza",
-      "content1": "L'utente riceve un diritto semplice e non trasferibile di utilizzare la Piattaforma per la durata del contratto. Attività vietate includono:",
-      "restriction1": "Condivisione credenziali login con terze parti",
-      "restriction2": "Reverse engineering o decompilazione del software",
-      "restriction3": "Ridistribuzione commerciale di contenuti Piattaforma",
-      "restriction4": "Utilizzo per scopi illegali o fraudolenti"
-    },
-    "obligations": {
-      "title": "8. Obblighi Utente",
-      "content1": "L'utente si impegna a:",
-      "rule1": "Fornire solo informazioni veritiere durante la registrazione",
-      "rule2": "Mantenere credenziali login confidenziali e proteggerle da accesso terze parti",
-      "rule3": "Non archiviare o distribuire contenuti illegali o dannosi",
-      "rule4": "Non utilizzare la Piattaforma per accesso automatizzato di massa"
-    },
-    "liability": {
-      "title": "9. Responsabilità",
-      "content1": "L'operatore è responsabile solo per danni in casi di intenzione e negligenza grave. Questo non si applica a lesioni alla vita, corpo o salute, o violazione di obblighi contrattuali essenziali (obblighi cardinali).",
-      "content2": "La Piattaforma serve esclusivamente a scopi di documentazione e analisi. Non costituisce consulenza investimenti e non sostituisce consultazione con consulente finanziario professionale.",
-      "content3": "L'utente è responsabile del backup dei propri dati. L'operatore raccomanda esportazioni regolari di dati importanti."
-    },
-    "security": {
-      "title": "10. Sicurezza Dati e Certificazioni",
-      "content1": "La Piattaforma soddisfa i più alti standard di sicurezza:",
-      "cert1": "Certificazione SOC 2 Type 2 – Prova di elaborazione e protezione dati sicuri",
-      "cert2": "Certificazione ISO 27001:2022 – Standard internazionale per sistemi gestione sicurezza informazioni",
-      "cert3": "Conformità GDPR – Tutti i dati sono archiviati ed elaborati in data center UE (Francoforte)"
-    },
-    "termination": {
-      "title": "11. Durata e Risoluzione",
-      "content1": "Il contratto ha una durata minima corrispondente al periodo di fatturazione selezionato e si rinnova automaticamente salvo disdetta prima della scadenza.",
-      "content2": "La disdetta può essere effettuata in qualsiasi momento tramite le impostazioni account e diventa effettiva alla fine del periodo pagato. Il diritto a risoluzione straordinaria per giusta causa rimane inalterato."
-    },
-    "changes": {
-      "title": "12. Modifiche ai Termini",
-      "content": "L'operatore si riserva il diritto di modificare questi Termini. Gli utenti saranno notificati via email almeno 30 giorni prima che le modifiche diventino effettive. Se l'utente non obietta entro 30 giorni, i nuovi Termini sono considerati accettati."
-    },
-    "law": {
-      "title": "13. Legge Applicabile e Giurisdizione",
-      "content1": "Per utenti nell'UE, si applica la legge del paese in cui l'utente ha la propria residenza abituale. Le disposizioni obbligatorie di protezione consumatori rimangono inalterate.",
-      "content2": "Per utenti fuori dall'UE, si applica la legge olandese, escludendo la Convenzione ONU sui Contratti per la Vendita Internazionale di Merci (CISG). Per commercianti, il luogo di giurisdizione è la sede legale dell'operatore nei Paesi Bassi."
-    },
-    "final": {
-      "title": "14. Disposizioni Finali",
-      "content": "Qualora singole disposizioni di questi Termini siano o diventino invalide, la validità delle restanti disposizioni rimane inalterata. Una disposizione efficace che si avvicini maggiormente allo scopo economico della disposizione invalida sostituirà la disposizione invalida."
-    },
-    "contact": {
-      "title": "Domande sui Termini?",
-      "content": "Se hai domande su questi Termini e Condizioni, non esitare a contattarci in qualsiasi momento.",
-      "button": "Contattaci"
-    }
-  },
   "alerts": {
     "title": "Avvisi di trading",
     "allClear": "Tutto a posto",
@@ -1945,40 +1702,138 @@
     "insight2Title": "Take-Profit",
     "insight2": "In media, le tue operazioni salgono del {{value}}% (MFE) prima che tu esca. Stai lasciando il {{missed}}% sul tavolo."
   },
-  "imprint": {
-    "title": "Note Legali",
-    "subtitle": "Informazioni legali ai sensi delle normative e-commerce dell'UE. Gestito dai Paesi Bassi.",
-    "provider": {
-      "title": "Fornitore",
-      "address": "TradeNot.es\n[Il tuo nome completo]\n[Via e numero]\n[CAP Città]\nPaesi Bassi",
-      "kvk": "Numero KvK: [XXXXXXXX]",
-      "btw": "Partita IVA: NL[XXXXXXXXX]B01"
+  "legal": {
+    "updated": "Ultimo aggiornamento: {{date}}",
+    "imprint": {
+      "title": "Note legali",
+      "sections": [
+        {
+          "title": "Gestore",
+          "text": "TradeNot.es è un progetto privato e non commerciale: senza pubblicità, senza funzioni a pagamento e senza tracciamento.\n\n{{name}}\nPaesi Bassi\nE-mail: {{email}}"
+        },
+        {
+          "title": "Nessuna consulenza finanziaria",
+          "text": "TradeNot.es è uno strumento per registrare e analizzare i tuoi trade. Nulla su questo sito costituisce consulenza in materia di investimenti o una raccomandazione ad acquistare o vendere strumenti finanziari. Il trading di azioni, futures, opzioni, valute o criptovalute è rischioso e può portare alla perdita totale del capitale investito."
+        },
+        {
+          "title": "Link ad altri siti",
+          "text": "Dei contenuti dei siti esterni a cui rimandiamo sono responsabili esclusivamente i rispettivi gestori."
+        }
+      ]
     },
-    "contact": {
-      "title": "Contatto"
+    "privacy": {
+      "title": "Informativa sulla privacy",
+      "sections": [
+        {
+          "title": "Chi è il titolare",
+          "text": "Il titolare del trattamento dei tuoi dati su tradenot.es è {{name}}, Paesi Bassi, raggiungibile all’indirizzo {{email}}.\n\nTradeNot.es è un progetto privato e non commerciale. Non vendiamo dati, non mostriamo pubblicità e non usiamo servizi di analisi o di tracciamento."
+        },
+        {
+          "title": "Quali dati salviamo",
+          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, nome e cognome. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori."
+        },
+        {
+          "title": "Finalità e base giuridica",
+          "text": "Trattiamo questi dati solo per fornirti il diario di trading (art. 6, par. 1, lett. b GDPR). I dati di sessione e il captcha in registrazione, reimpostazione della password e modulo di contatto proteggono dagli abusi (legittimo interesse, art. 6, par. 1, lett. f GDPR). Rispondiamo alle richieste inviate tramite il modulo di contatto sulla base dell’art. 6, par. 1, lett. b o f GDPR.\n\nLe analisi dell’app, come il riconoscimento del revenge trading, sono visibili solo a te. Non hanno alcun effetto giuridico nei tuoi confronti."
+        },
+        {
+          "title": "Dove si trovano i dati",
+          "text": "Tutti i dati si trovano su un nostro server nei Paesi Bassi (data center di Leaseweb ad Amsterdam). Leaseweb è il nostro responsabile del trattamento per l’hosting. Per l’invio delle e-mail (conferma, reimpostazione della password, modulo di contatto) ci avvaliamo di un fornitore di servizi e-mail come responsabile del trattamento. I tuoi dati non vengono trasferiti in paesi al di fuori dell’UE."
+        },
+        {
+          "title": "Richieste ad altri servizi",
+          "text": "- Quotazioni: quando scegli un simbolo nella finestra del trade, il nostro server chiede il prezzo attuale a Yahoo Finance. Viene inviato solo il simbolo, nessun dato su di te.\n- Interactive Brokers: se configuri il collegamento, il nostro server usa il tuo token per scaricare i tuoi report Flex da Interactive Brokers una volta al giorno e quando premi il pulsante.\n\nIl sito non carica font, script o altri contenuti da server di terzi."
+        },
+        {
+          "title": "Cookie e memoria del browser",
+          "text": "Usiamo un solo cookie: il cookie di sessione per l’accesso. È tecnicamente necessario e quindi non richiede consenso. Nella memoria del tuo browser (localStorage) salviamo inoltre il tema dei colori. Questa impostazione non lascia mai il tuo browser."
+        },
+        {
+          "title": "Trade condivisi",
+          "text": "Se condividi un trade, chiunque abbia il link può vedere quel trade: senza il nome del conto, e la nota solo se la includi. Contiamo le visualizzazioni. I motori di ricerca non indicizzano la pagina. Puoi interrompere la condivisione in qualsiasi momento."
+        },
+        {
+          "title": "Per quanto tempo conserviamo i dati",
+          "text": "I tuoi dati restano salvati finché non li cancelli o elimini il tuo account. Quando elimini l’account, cancelliamo subito tutti i dati, screenshot compresi. Le sessioni scadute vengono eliminate automaticamente, così come gli account il cui indirizzo e-mail non è stato confermato entro 7 giorni."
+        },
+        {
+          "title": "I tuoi diritti",
+          "text": "Hai diritto di accesso, rettifica, cancellazione, limitazione del trattamento, portabilità dei dati e opposizione. Gran parte di questo puoi farlo direttamente nell’app: in «Account» puoi esportare tutti i tuoi dati in un file ZIP, reimpostare i tuoi dati ed eliminare il tuo account. Per tutto il resto scrivi a {{email}}.\n\nPuoi inoltre presentare reclamo a un’autorità di controllo per la protezione dei dati: nei Paesi Bassi l’Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl), oppure l’autorità del tuo paese di residenza."
+        },
+        {
+          "title": "Sicurezza",
+          "text": "La connessione è cifrata con HTTPS. Le password vengono salvate solo come hash e puoi proteggere l’accesso con un secondo fattore (app di autenticazione)."
+        },
+        {
+          "title": "Modifiche",
+          "text": "Se cambia il modo in cui trattiamo i dati, aggiorneremo questa informativa. La data in alto indica la versione in vigore."
+        }
+      ]
     },
-    "responsible": {
-      "title": "Responsabile del Contenuto",
-      "content": "L'operatore di questo sito web è responsabile del contenuto ai sensi del diritto olandese ed europeo applicabile.\n\nPer domande contattare: info@tradenot.es"
-    },
-    "disclaimer": {
-      "title": "Esclusione di Responsabilità",
-      "content": {
-        "title": "Responsabilità per il Contenuto",
-        "text": "Il contenuto delle nostre pagine è stato creato con la massima cura. Tuttavia, non possiamo garantire l'accuratezza, la completezza e l'attualità del contenuto. Come fornitore di servizi, siamo responsabili dei nostri contenuti su queste pagine ai sensi della legge applicabile."
-      },
-      "links": {
-        "title": "Responsabilità per i Link",
-        "text": "La nostra offerta contiene link a siti web esterni di terze parti, sui cui contenuti non abbiamo alcuna influenza. Pertanto, non possiamo assumerci alcuna responsabilità per questi contenuti esterni. Il rispettivo fornitore o operatore delle pagine è sempre responsabile del contenuto delle pagine collegate."
-      },
-      "copyright": {
-        "title": "Diritti d'Autore",
-        "text": "I contenuti e le opere creati dagli operatori del sito su queste pagine sono protetti dalla legge sul diritto d'autore applicabile. La duplicazione, l'elaborazione, la distribuzione o qualsiasi forma di commercializzazione di tale materiale al di fuori dell'ambito della legge sul diritto d'autore richiede il previo consenso scritto del rispettivo autore o creatore."
-      },
-      "trading": {
-        "title": "Avviso sui Rischi",
-        "text": "TradeNot.es è un diario di trading per documentare e analizzare le operazioni. L'uso di questo software non costituisce consulenza sugli investimenti. Il trading con strumenti finanziari (azioni, futures, opzioni, ecc.) comporta rischi significativi e può comportare la perdita totale del capitale investito. Le performance passate non garantiscono risultati futuri."
-      }
+    "terms": {
+      "title": "Condizioni d’uso",
+      "sections": [
+        {
+          "title": "Di cosa si tratta",
+          "text": "TradeNot.es è un diario di trading gratuito, gestito da {{name}} come progetto privato e non commerciale. Registrandoti accetti queste condizioni."
+        },
+        {
+          "title": "Gratuito",
+          "text": "L’uso è gratuito. Non ci sono funzioni a pagamento, abbonamenti né pubblicità."
+        },
+        {
+          "title": "Nessuna consulenza finanziaria",
+          "text": "TradeNot.es ti aiuta a registrare e analizzare i tuoi trade. L’app non fornisce consulenza finanziaria né raccomandazioni. Le decisioni di trading le prendi tu, a tuo rischio."
+        },
+        {
+          "title": "Il tuo account",
+          "text": "Ti serve un indirizzo e-mail valido. Tieni segreta la tua password. Non devi usare il servizio in modo improprio, ad esempio con richieste automatizzate di massa, attacchi all’infrastruttura o caricando contenuti illeciti."
+        },
+        {
+          "title": "I tuoi dati",
+          "text": "I tuoi dati ti appartengono. Puoi esportarli e cancellarli in qualsiasi momento. Cosa ne facciamo è descritto nell’informativa sulla privacy."
+        },
+        {
+          "title": "Disponibilità e responsabilità",
+          "text": "Gestiamo TradeNot.es al meglio delle nostre conoscenze, ma senza garanzia. Possono verificarsi interruzioni, errori di calcolo o perdite di dati: esporta quindi regolarmente i dati importanti. Rispondiamo solo per dolo e colpa grave, nonché per danni alla vita, all’integrità fisica o alla salute."
+        },
+        {
+          "title": "Modifiche e cessazione",
+          "text": "Possiamo modificare o cessare il servizio. Prima di cessarlo ti avviseremo via e-mail con almeno 30 giorni di anticipo, così potrai esportare i tuoi dati. Puoi eliminare il tuo account in qualsiasi momento. Possiamo sospendere gli account che usano il servizio in modo improprio."
+        },
+        {
+          "title": "Legge applicabile",
+          "text": "Si applica il diritto olandese. Restano salve le norme imperative a tutela dei consumatori del tuo paese di residenza. In caso di differenze tra le versioni linguistiche prevale la versione tedesca.\n\nDomande? Scrivi a {{email}}."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Contatti",
+    "subtitle": "Una domanda, un errore o un’idea? Scrivici.",
+    "formTitle": "Invia un messaggio",
+    "formDescription": "Ti risponderemo via e-mail. Puoi anche scriverci direttamente a",
+    "name": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "email": "E-mail",
+    "emailPlaceholder": "tu@esempio.it",
+    "subject": "Oggetto",
+    "subjectPlaceholder": "Di cosa si tratta?",
+    "message": "Messaggio",
+    "messagePlaceholder": "Il tuo messaggio …",
+    "privacyNote": "Il tuo messaggio ci viene inoltrato via e-mail e usato solo per risponderti.",
+    "send": "Invia messaggio",
+    "sending": "Invio in corso …",
+    "sentTitle": "Messaggio inviato",
+    "sentDescription": "Grazie! Ti risponderemo via e-mail.",
+    "errorTitle": "Errore",
+    "errors": {
+      "captcha": "Conferma prima di non essere un robot.",
+      "name": "Inserisci il tuo nome (al massimo {{max}} caratteri).",
+      "email": "Inserisci un indirizzo e-mail valido.",
+      "subject": "Inserisci un oggetto (al massimo {{max}} caratteri).",
+      "message": "Inserisci un messaggio (al massimo {{max}} caratteri).",
+      "send": "Non è stato possibile inviare il messaggio. Riprova."
     }
   },
   "whyJournal": {
@@ -2077,29 +1932,6 @@
     "finalCtaFeatures": "Vedi tutte le funzionalità",
     "backToHome": "Torna alla home",
     "readMore": "Scopri di più"
-  },
-  "cookieConsent": {
-    "title": "Impostazioni cookie",
-    "description": "Utilizziamo i cookie per migliorare la tua esperienza. I cookie necessari sono richiesti per le funzionalità di base del sito. Puoi modificare le tue impostazioni in qualsiasi momento.",
-    "moreInfo": "Per maggiori informazioni, consulta la nostra",
-    "privacyPolicy": "Informativa sulla privacy",
-    "necessary": {
-      "label": "Cookie necessari",
-      "description": "Richiesti per funzioni di base come login e navigazione."
-    },
-    "functional": {
-      "label": "Cookie funzionali",
-      "description": "Memorizzano le tue preferenze come lingua e tema."
-    },
-    "analytics": {
-      "label": "Cookie analitici",
-      "description": "Ci aiutano a capire come i visitatori utilizzano il sito."
-    },
-    "acceptAll": "Accetta tutti",
-    "acceptNecessary": "Solo necessari",
-    "settings": "Impostazioni",
-    "saveSelection": "Salva selezione",
-    "back": "Indietro"
   },
   "prelaunch": {
     "badge": "BETA PRIVATA",

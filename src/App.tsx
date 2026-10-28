@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom"
 import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { CookieConsent } from "./components/CookieConsent";
 import { GoalAlertsProvider } from "./components/GoalAlertsProvider";
 import { featureFlags } from "./config/featureFlags";
 // the landing page is the usual entry, everything else is loaded when it is opened
@@ -105,7 +104,6 @@ const App = () => (
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <CookieConsent />
         </BrowserRouter>
       </TooltipProvider>
     </ThemeProvider>

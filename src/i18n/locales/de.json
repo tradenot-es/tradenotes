@@ -782,9 +782,9 @@
     "footerHelp": "Hilfe Center",
     "footerContact": "Kontakt",
     "footerStatus": "Status",
-    "footerLegal": "Legal",
+    "footerLegal": "Rechtliches",
     "footerPrivacy": "Datenschutz",
-    "footerTerms": "AGB",
+    "footerTerms": "Nutzungsbedingungen",
     "footerImprint": "Impressum",
     "footerCopyright": "© {{year}} TradeNot.es. Alle Rechte vorbehalten.",
     "features": {
@@ -1568,249 +1568,6 @@
     "saved": "Tägliche Vorbereitung erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der täglichen Vorbereitung"
   },
-  "privacy": {
-    "title": "Datenschutzerklärung",
-    "subtitle": "Wir nehmen den Schutz Ihrer persönlichen Daten ernst. Erfahren Sie, wie wir Ihre Daten sammeln, verwenden und schützen.",
-    "certifications": {
-      "title": "Zertifizierungen & Compliance",
-      "soc2": {
-        "name": "SOC 2 Type 2",
-        "description": "Unabhängig geprüft nach höchsten Sicherheitsstandards für Cloud-Dienste"
-      },
-      "iso": {
-        "name": "ISO 27001:2022",
-        "description": "Zertifiziertes Informationssicherheits-Managementsystem nach internationalen Standards"
-      },
-      "gdpr": {
-        "name": "DSGVO-konform",
-        "description": "Vollständige Einhaltung der EU-Datenschutz-Grundverordnung"
-      }
-    },
-    "dataStorage": {
-      "title": "Datenspeicherung & Sicherheit",
-      "euRegion": {
-        "badge": "Cloud",
-        "title": "Sichere Cloud-Speicherung",
-        "description": "Alle Ihre Daten werden in sicheren Cloud-Rechenzentren gespeichert und verarbeitet."
-      },
-      "encrypted": {
-        "badge": "Verschlüsselt",
-        "title": "End-to-End Verschlüsselung",
-        "description": "Ihre Daten sind sowohl bei der Übertragung (TLS 1.3) als auch im Ruhezustand (AES-256) verschlüsselt."
-      }
-    },
-    "sections": {
-      "controller": {
-        "title": "Verantwortlicher",
-        "content": "Verantwortlich für die Datenverarbeitung auf dieser Website ist:",
-        "company": "[Firmenname]\n[Straße und Hausnummer]\n[PLZ und Ort]\n[Land]\n\nE-Mail: [E-Mail-Adresse]\nTelefon: [Telefonnummer]"
-      },
-      "collection": {
-        "title": "Datenerhebung",
-        "website": {
-          "title": "Beim Besuch der Website",
-          "intro": "Bei jedem Zugriff auf unsere Website werden automatisch folgende technische Daten erhoben:",
-          "items": [
-            "IP-Adresse des zugreifenden Rechners",
-            "Datum und Uhrzeit des Zugriffs",
-            "Name und URL der abgerufenen Datei",
-            "Übertragene Datenmenge",
-            "Meldung über erfolgreichen Abruf",
-            "Browsertyp und Browserversion",
-            "Betriebssystem des Nutzers",
-            "Referrer URL (zuvor besuchte Seite)"
-          ]
-        },
-        "registration": {
-          "title": "Bei der Registrierung",
-          "intro": "Für die Nutzung unserer Dienste erheben wir folgende personenbezogene Daten:",
-          "items": [
-            "E-Mail-Adresse (erforderlich)",
-            "Name (optional)",
-            "Profilbild (optional)",
-            "Zeitzone-Einstellungen",
-            "Sprach-Präferenzen"
-          ]
-        },
-        "trading": {
-          "title": "Trading-Daten",
-          "description": "Alle von Ihnen eingegebenen Trading-Daten (Trades, Journal-Einträge, Setups, Tags) werden verschlüsselt gespeichert und sind nur für Sie zugänglich."
-        }
-      },
-      "legalBasis": {
-        "title": "Rechtsgrundlage",
-        "intro": "Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage folgender Rechtsgrundlagen:",
-        "items": [
-          "<strong>Art. 6 Abs. 1 lit. b DSGVO:</strong> Verarbeitung zur Erfüllung des Vertrages bzw. zur Durchführung vorvertraglicher Maßnahmen",
-          "<strong>Art. 6 Abs. 1 lit. a DSGVO:</strong> Verarbeitung aufgrund Ihrer Einwilligung",
-          "<strong>Art. 6 Abs. 1 lit. f DSGVO:</strong> Verarbeitung zur Wahrung unserer berechtigten Interessen (z.B. zur Verbesserung unserer Dienste)"
-        ]
-      },
-      "dataSharing": {
-        "title": "Weitergabe von Daten",
-        "intro": "Ihre personenbezogenen Daten werden nur in folgenden Fällen an Dritte weitergegeben:",
-        "serviceProviders": {
-          "title": "Dienstleister",
-          "intro": "Wir arbeiten mit sorgfältig ausgewählten Dienstleistern zusammen, die uns bei der Erbringung unserer Dienste unterstützen:",
-          "items": [
-            "<strong>Lovable Cloud:</strong> Hosting und Backend-Dienste",
-            "<strong>Stripe:</strong> Zahlungsabwicklung (unterliegt eigener Datenschutzerklärung)",
-            "<strong>Lettermint:</strong> E-Mail-Versand (transaktionale E-Mails, Trial-Erinnerungen)",
-            "<strong>Marketaux:</strong> Finanznachrichten-API für Portfolio-News und Marktstimmungsanalyse",
-            "<strong>Lovable AI:</strong> KI-Gateway für den Trading-Assistenten (nutzt Google Gemini / OpenAI-Modelle zur Analyse)",
-            "<strong>ALTCHA:</strong> Selbst-gehosteter Captcha-Dienst zum Bot-Schutz (Proof-of-Work, keine externen Aufrufe)"
-          ],
-          "compliance": "Alle Dienstleister sind DSGVO-konform und haben mit uns Auftragsverarbeitungsverträge nach Art. 28 DSGVO geschlossen."
-        },
-        "legal": {
-          "title": "Rechtliche Verpflichtungen",
-          "description": "Wir geben Ihre Daten weiter, wenn wir gesetzlich dazu verpflichtet sind oder dies zur Durchsetzung unserer Rechte erforderlich ist."
-        }
-      },
-      "rights": {
-        "title": "Ihre Rechte",
-        "intro": "Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:",
-        "items": {
-          "access": "<strong>Auskunftsrecht:</strong> Sie können jederzeit Auskunft über die von uns gespeicherten Daten verlangen",
-          "rectification": "<strong>Berichtigungsrecht:</strong> Sie können die Berichtigung unrichtiger Daten verlangen",
-          "erasure": "<strong>Löschungsrecht:</strong> Sie können die Löschung Ihrer Daten verlangen, soweit keine gesetzlichen Aufbewahrungspflichten bestehen",
-          "restriction": "<strong>Einschränkungsrecht:</strong> Sie können die Einschränkung der Verarbeitung verlangen",
-          "portability": "<strong>Datenübertragbarkeit:</strong> Sie können Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format erhalten",
-          "objection": "<strong>Widerspruchsrecht:</strong> Sie können der Verarbeitung Ihrer Daten widersprechen"
-        },
-        "contact": "Zur Ausübung Ihrer Rechte wenden Sie sich bitte an die oben genannten Kontaktdaten."
-      },
-      "security": {
-        "title": "Sicherheitsmaßnahmen",
-        "intro": "Wir setzen umfangreiche technische und organisatorische Sicherheitsmaßnahmen ein:",
-        "items": [
-          "TLS 1.3 Verschlüsselung für alle Datenübertragungen",
-          "AES-256 Verschlüsselung für gespeicherte Daten",
-          "Regelmäßige Sicherheitsaudits und Penetrationstests",
-          "Zugriffskontrolle und Authentifizierung mit modernen Standards",
-          "Kontinuierliches Monitoring und Incident Response",
-          "Regelmäßige Backups in geografisch getrennten Rechenzentren"
-        ]
-      },
-      "cookies": {
-        "title": "Cookies & Tracking",
-        "intro": "Wir verwenden Cookies und ähnliche Technologien für folgende Zwecke:",
-        "items": [
-          "Notwendige Cookies: Für die Funktion der Website (z.B. Session-Management, Authentifizierung)",
-          "Präferenz-Cookies: Zum Speichern Ihrer Einstellungen (z.B. Sprache, Theme)",
-          "Performance-Cookies: Zur Verbesserung der Website-Performance"
-        ],
-        "noTracking": "Wir verwenden keine Tracking-Cookies von Drittanbietern und verkaufen keine Daten an Dritte."
-      },
-      "retention": {
-        "title": "Speicherdauer",
-        "intro": "Wir speichern Ihre personenbezogenen Daten nur so lange, wie es für die Erfüllung der jeweiligen Zwecke erforderlich ist:",
-        "items": [
-          "Account-Daten: Für die Dauer Ihrer Mitgliedschaft plus 30 Tage",
-          "Trading-Daten: Solange Sie ein aktives Konto haben oder nach deutschem Handelsrecht erforderlich",
-          "Log-Dateien: Maximal 90 Tage",
-          "Rechnungsdaten: 10 Jahre (gesetzliche Aufbewahrungspflicht)"
-        ],
-        "deletion": "Nach Ablauf der Speicherdauer werden die Daten routinemäßig und automatisch gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten entgegenstehen."
-      },
-      "changes": {
-        "title": "Änderungen dieser Datenschutzerklärung",
-        "description": "Wir behalten uns vor, diese Datenschutzerklärung gelegentlich anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um Änderungen unserer Leistungen umzusetzen. Für Ihren erneuten Besuch gilt dann die neue Datenschutzerklärung.",
-        "lastUpdated": "Stand:"
-      },
-      "complaint": {
-        "title": "Beschwerderecht",
-        "intro": "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren:",
-        "authority": "Zuständige Aufsichtsbehörde für Deutschland:\nDer Bundesbeauftragte für den Datenschutz und die Informationsfreiheit (BfDI)\nGraurheindorfer Str. 153\n53117 Bonn\nTelefon: +49 (0)228-997799-0\nE-Mail: poststelle@bfdi.bund.de"
-      }
-    }
-  },
-  "terms": {
-    "title": "Allgemeine Geschäftsbedingungen (AGB)",
-    "lastUpdated": "Stand: Januar 2025",
-    "scope": {
-      "title": "1. Geltungsbereich",
-      "content1": "Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für die Nutzung der Trading-Journal-Plattform (nachfolgend 'Plattform' genannt). Mit der Registrierung und Nutzung stimmen Sie diesen AGB zu.",
-      "content2": "Diese AGB gelten ausschließlich. Abweichende, entgegenstehende oder ergänzende AGB des Nutzers werden nur dann und insoweit Vertragsbestandteil, als ihrer Geltung ausdrücklich zugestimmt wurde."
-    },
-    "parties": {
-      "title": "2. Vertragspartner",
-      "content": "Der Vertrag kommt zustande zwischen dem Nutzer und dem Betreiber der Plattform. Kontaktdaten finden Sie im Impressum."
-    },
-    "contract": {
-      "title": "3. Vertragsschluss",
-      "content1": "Mit der Registrierung gibt der Nutzer ein Angebot zum Abschluss eines Nutzungsvertrages ab. Der Vertrag kommt durch die Bestätigung der Registrierung per E-Mail zustande.",
-      "content2": "Die Registrierung ist nur volljährigen, voll geschäftsfähigen Personen gestattet."
-    },
-    "trial": {
-      "title": "4. Kostenlose Testphase",
-      "content1": "Neue Nutzer erhalten eine 14-tägige kostenlose Testphase mit vollem Funktionsumfang. Eine Kündigung ist jederzeit während der Testphase möglich.",
-      "content2": "Nach Ablauf der Testphase wandelt sich der Account automatisch in ein kostenpflichtiges Abonnement um, sofern keine Kündigung erfolgt ist."
-    },
-    "pricing": {
-      "title": "5. Preise und Zahlungsbedingungen",
-      "content1": "Die aktuellen Preise sind auf der Website ersichtlich. Alle Preise verstehen sich inklusive der gesetzlichen Mehrwertsteuer.",
-      "content2": "Die Zahlung erfolgt im Voraus für den gewählten Abrechnungszeitraum (monatlich oder jährlich). Die Abrechnung erfolgt über unseren Zahlungsdienstleister Stripe."
-    },
-    "withdrawal": {
-      "title": "6. Widerrufsrecht (für Verbraucher in der EU)",
-      "content1": "Verbraucher haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsschlusses.",
-      "content2": "Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erklärung (z. B. per E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.",
-      "content3": "Haben Sie die Leistung während der Widerrufsfrist bereits in Anspruch genommen und ausdrücklich zugestimmt, dass wir mit der Leistung beginnen, erlischt Ihr Widerrufsrecht."
-    },
-    "license": {
-      "title": "7. Nutzungsrechte und Lizenz",
-      "content1": "Der Nutzer erhält ein einfaches, nicht übertragbares Nutzungsrecht an der Plattform für die Vertragslaufzeit. Untersagt ist insbesondere:",
-      "restriction1": "Die Weitergabe von Zugangsdaten an Dritte",
-      "restriction2": "Das Reverse Engineering oder Dekompilieren der Software",
-      "restriction3": "Die kommerzielle Weitergabe von Inhalten der Plattform",
-      "restriction4": "Die Nutzung für illegale oder betrügerische Zwecke"
-    },
-    "obligations": {
-      "title": "8. Nutzerpflichten",
-      "content1": "Der Nutzer verpflichtet sich:",
-      "rule1": "Nur wahrheitsgemäße Angaben bei der Registrierung zu machen",
-      "rule2": "Die Zugangsdaten vertraulich zu behandeln und vor dem Zugriff Dritter zu schützen",
-      "rule3": "Keine rechtsverletzenden oder schädlichen Inhalte zu speichern oder zu verbreiten",
-      "rule4": "Die Plattform nicht für automatisierte Massenzugriffe zu nutzen"
-    },
-    "liability": {
-      "title": "9. Haftung",
-      "content1": "Für Schäden haftet der Betreiber nur bei Vorsatz und grober Fahrlässigkeit. Dies gilt nicht für die Verletzung von Leben, Körper und Gesundheit oder die Verletzung wesentlicher Vertragspflichten (Kardinalspflichten).",
-      "content2": "Die Plattform dient ausschließlich zu Dokumentations- und Analysezwecken. Sie stellt keine Anlageberatung dar und ersetzt nicht die Beratung durch einen professionellen Finanzberater.",
-      "content3": "Der Nutzer ist selbst für die Sicherung seiner Daten verantwortlich. Der Betreiber empfiehlt regelmäßige Exporte wichtiger Daten."
-    },
-    "security": {
-      "title": "10. Datensicherheit und Zertifizierungen",
-      "content1": "Die Plattform erfüllt höchste Sicherheitsstandards:",
-      "cert1": "SOC 2 Type 2 Zertifizierung – Nachweis über sichere Datenverarbeitung und -schutz",
-      "cert2": "ISO 27001:2022 Zertifizierung – Internationaler Standard für Informationssicherheits-Managementsysteme",
-      "cert3": "DSGVO-Konformität – Alle Daten werden in EU-Rechenzentren (Frankfurt) gespeichert und verarbeitet"
-    },
-    "termination": {
-      "title": "11. Laufzeit und Kündigung",
-      "content1": "Der Vertrag hat eine Mindestlaufzeit entsprechend dem gewählten Abrechnungszeitraum und verlängert sich automatisch, wenn er nicht vor Ablauf gekündigt wird.",
-      "content2": "Die Kündigung kann jederzeit über die Account-Einstellungen erfolgen und wird zum Ende des bezahlten Zeitraums wirksam. Das Recht zur außerordentlichen Kündigung aus wichtigem Grund bleibt unberührt."
-    },
-    "changes": {
-      "title": "12. Änderungen der AGB",
-      "content": "Der Betreiber behält sich vor, diese AGB zu ändern. Nutzer werden mindestens 30 Tage vor Inkrafttreten per E-Mail informiert. Widerspricht der Nutzer nicht innerhalb von 30 Tagen, gelten die neuen AGB als angenommen."
-    },
-    "law": {
-      "title": "13. Anwendbares Recht und Gerichtsstand",
-      "content1": "Für Nutzer in der EU gilt das Recht des Landes, in dem der Nutzer seinen gewöhnlichen Aufenthalt hat. Zwingende Verbraucherschutzvorschriften bleiben unberührt.",
-      "content2": "Für Nutzer außerhalb der EU gilt niederländisches Recht unter Ausschluss des UN-Kaufrechts (CISG). Gerichtsstand ist bei Kaufleuten der Sitz des Betreibers in den Niederlanden."
-    },
-    "final": {
-      "title": "14. Schlussbestimmungen",
-      "content": "Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt eine wirksame Regelung, die dem wirtschaftlichen Zweck der unwirksamen Bestimmung am nächsten kommt."
-    },
-    "contact": {
-      "title": "Fragen zu den AGB?",
-      "content": "Bei Fragen zu diesen Geschäftsbedingungen können Sie uns jederzeit kontaktieren.",
-      "button": "Kontakt aufnehmen"
-    }
-  },
   "alerts": {
     "title": "Trading-Warnungen",
     "allClear": "Alles in Ordnung",
@@ -1943,40 +1700,138 @@
     "insight2Title": "Take-Profit",
     "insight2": "Im Durchschnitt laufen deine Trades {{value}}% ins Plus (MFE) bevor du aussteigst. Du verlässt {{missed}}% auf dem Tisch."
   },
-  "imprint": {
-    "title": "Impressum",
-    "subtitle": "Rechtliche Angaben gemäß EU E-Commerce-Richtlinie. Betrieben von einem Unternehmen mit Sitz in den Niederlanden.",
-    "provider": {
-      "title": "Anbieter",
-      "address": "TradeNot.es\n[Ihr vollständiger Name]\n[Straße und Hausnummer]\n[Postleitzahl Stadt]\nNiederlande",
-      "kvk": "KvK-Nummer: [XXXXXXXX]",
-      "btw": "BTW-id: NL[XXXXXXXXX]B01"
+  "legal": {
+    "updated": "Stand: {{date}}",
+    "imprint": {
+      "title": "Impressum",
+      "sections": [
+        {
+          "title": "Betreiber",
+          "text": "TradeNot.es ist ein privates, nicht-kommerzielles Projekt: ohne Werbung, ohne Bezahlfunktionen und ohne Tracking.\n\n{{name}}\nNiederlande\nE-Mail: {{email}}"
+        },
+        {
+          "title": "Keine Anlageberatung",
+          "text": "TradeNot.es ist ein Werkzeug, mit dem du deine eigenen Trades dokumentierst und auswertest. Nichts auf dieser Website ist eine Anlageberatung oder eine Empfehlung, Finanzinstrumente zu kaufen oder zu verkaufen. Der Handel mit Aktien, Futures, Optionen, Devisen oder Kryptowährungen ist riskant und kann zum Totalverlust des eingesetzten Kapitals führen."
+        },
+        {
+          "title": "Links zu anderen Websites",
+          "text": "Für die Inhalte externer Websites, auf die wir verlinken, sind ausschließlich deren Betreiber verantwortlich."
+        }
+      ]
     },
-    "contact": {
-      "title": "Kontakt"
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "sections": [
+        {
+          "title": "Wer verantwortlich ist",
+          "text": "Verantwortlich für die Verarbeitung deiner Daten auf tradenot.es ist {{name}}, Niederlande, erreichbar unter {{email}}.\n\nTradeNot.es ist ein privates, nicht-kommerzielles Projekt. Wir verkaufen keine Daten, zeigen keine Werbung und nutzen keine Analyse- oder Tracking-Dienste."
+        },
+        {
+          "title": "Welche Daten wir speichern",
+          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig Vor- und Nachname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht."
+        },
+        {
+          "title": "Wofür und auf welcher Grundlage",
+          "text": "Wir verarbeiten diese Daten nur, um dir das Trading-Journal bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Sitzungsdaten und das Captcha bei Registrierung, Passwort-Reset und Kontaktformular schützen vor Missbrauch (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Anfragen über das Kontaktformular beantworten wir auf Grundlage von Art. 6 Abs. 1 lit. b bzw. f DSGVO.\n\nDie Auswertungen der App, etwa die Erkennung von Revenge-Trades, siehst nur du. Sie haben keine rechtliche Wirkung für dich."
+        },
+        {
+          "title": "Wo die Daten liegen",
+          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Deine Daten werden nicht in Länder außerhalb der EU übermittelt."
+        },
+        {
+          "title": "Abrufe bei anderen Diensten",
+          "text": "- Kurse: Wenn du im Trade-Dialog ein Symbol wählst, fragt unser Server den aktuellen Kurs bei Yahoo Finance ab. Dabei wird nur das Symbol übermittelt, keine Daten über dich.\n- Interactive Brokers: Wenn du die Verbindung einrichtest, ruft unser Server mit deinem Token einmal täglich und auf Knopfdruck deine Flex-Berichte bei Interactive Brokers ab.\n\nDie Website lädt keine Schriften, Skripte oder sonstigen Inhalte von fremden Servern."
+        },
+        {
+          "title": "Cookies und Speicher im Browser",
+          "text": "Wir setzen nur ein Cookie: das Sitzungs-Cookie für die Anmeldung. Es ist technisch notwendig und braucht deshalb keine Einwilligung. Im Speicher deines Browsers (localStorage) merken wir uns außerdem das Farbschema. Diese Angabe verlässt deinen Browser nicht."
+        },
+        {
+          "title": "Geteilte Trades",
+          "text": "Wenn du einen Trade teilst, kann jeder, der den Link kennt, diesen einen Trade sehen: ohne Kontoname und die Notiz nur, wenn du sie freigibst. Wir zählen die Aufrufe. Suchmaschinen erfassen die Seite nicht. Du kannst die Freigabe jederzeit beenden."
+        },
+        {
+          "title": "Wie lange wir Daten speichern",
+          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde."
+        },
+        {
+          "title": "Deine Rechte",
+          "text": "Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Vieles erledigst du direkt in der App: Unter „Konto“ kannst du alle Daten als ZIP-Datei exportieren, deine Daten zurücksetzen und dein Konto löschen. Für alles andere schreib an {{email}}.\n\nDu kannst dich außerdem bei einer Datenschutz-Aufsichtsbehörde beschweren, in den Niederlanden bei der Autoriteit Persoonsgegevens (autoriteitpersoonsgegevens.nl) oder bei der Behörde deines Wohnsitzlandes."
+        },
+        {
+          "title": "Sicherheit",
+          "text": "Die Verbindung ist per HTTPS verschlüsselt. Passwörter speichern wir nur als Hash, und die Anmeldung lässt sich mit einem zweiten Faktor (Authenticator-App) absichern."
+        },
+        {
+          "title": "Änderungen",
+          "text": "Wenn sich an der Verarbeitung etwas ändert, passen wir diese Erklärung an. Das Datum oben zeigt den aktuellen Stand."
+        }
+      ]
     },
-    "responsible": {
-      "title": "Verantwortlich für den Inhalt",
-      "content": "Der Betreiber dieser Website ist für die Inhalte gemäß niederländischem und europäischem Recht verantwortlich.\n\nBei Fragen wenden Sie sich bitte an: info@tradenot.es"
-    },
-    "disclaimer": {
-      "title": "Haftungsausschluss",
-      "content": {
-        "title": "Haftung für Inhalte",
-        "text": "Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich."
-      },
-      "links": {
-        "title": "Haftung für Links",
-        "text": "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich."
-      },
-      "copyright": {
-        "title": "Urheberrecht",
-        "text": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem anwendbaren Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers."
-      },
-      "trading": {
-        "title": "Risikohinweis",
-        "text": "TradeNot.es ist ein Trading-Journal zur Dokumentation und Analyse von Trades. Die Nutzung dieser Software stellt keine Anlageberatung dar. Trading mit Finanzinstrumenten (Aktien, Futures, Optionen etc.) birgt erhebliche Risiken und kann zum Totalverlust des eingesetzten Kapitals führen. Vergangene Performance ist keine Garantie für zukünftige Ergebnisse."
-      }
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "sections": [
+        {
+          "title": "Worum es geht",
+          "text": "TradeNot.es ist ein kostenloses Trading-Journal, betrieben von {{name}} als privates, nicht-kommerzielles Projekt. Mit der Registrierung akzeptierst du diese Bedingungen."
+        },
+        {
+          "title": "Kostenlos",
+          "text": "Die Nutzung ist kostenlos. Es gibt keine Bezahlfunktionen, keine Abos und keine Werbung."
+        },
+        {
+          "title": "Keine Anlageberatung",
+          "text": "TradeNot.es hilft dir, deine eigenen Trades zu dokumentieren und auszuwerten. Die App gibt keine Anlageberatung und keine Empfehlungen. Deine Handelsentscheidungen triffst du selbst und auf eigenes Risiko."
+        },
+        {
+          "title": "Dein Konto",
+          "text": "Du brauchst eine gültige E-Mail-Adresse. Halte dein Passwort geheim. Du darfst den Dienst nicht missbrauchen, etwa durch automatisierte Massenanfragen, Angriffe auf die Technik oder das Hochladen rechtswidriger Inhalte."
+        },
+        {
+          "title": "Deine Daten",
+          "text": "Deine Daten gehören dir. Du kannst sie jederzeit exportieren und löschen. Was wir damit tun, steht in der Datenschutzerklärung."
+        },
+        {
+          "title": "Verfügbarkeit und Haftung",
+          "text": "Wir betreiben TradeNot.es nach bestem Wissen, aber ohne Gewähr. Es kann Ausfälle, Fehler in Berechnungen oder Datenverluste geben. Exportiere wichtige Daten deshalb regelmäßig. Wir haften nur für Vorsatz und grobe Fahrlässigkeit sowie für Schäden an Leben, Körper oder Gesundheit."
+        },
+        {
+          "title": "Änderungen und Ende",
+          "text": "Wir können den Dienst ändern oder einstellen. Bevor wir ihn einstellen, informieren wir dich mindestens 30 Tage vorher per E-Mail, damit du deine Daten exportieren kannst. Du kannst dein Konto jederzeit löschen. Bei Missbrauch können wir ein Konto sperren."
+        },
+        {
+          "title": "Anwendbares Recht",
+          "text": "Es gilt niederländisches Recht. Zwingende Verbraucherschutzvorschriften deines Wohnsitzlandes bleiben unberührt. Bei Abweichungen zwischen den Sprachfassungen gilt die deutsche Fassung.\n\nFragen? Schreib an {{email}}."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Eine Frage, einen Fehler gefunden oder eine Idee? Schreib uns.",
+    "formTitle": "Nachricht senden",
+    "formDescription": "Wir antworten dir per E-Mail. Du erreichst uns auch direkt unter",
+    "name": "Name",
+    "namePlaceholder": "Dein Name",
+    "email": "E-Mail",
+    "emailPlaceholder": "du@beispiel.de",
+    "subject": "Betreff",
+    "subjectPlaceholder": "Worum geht es?",
+    "message": "Nachricht",
+    "messagePlaceholder": "Deine Nachricht …",
+    "privacyNote": "Deine Nachricht wird per E-Mail an uns weitergeleitet und nur verwendet, um sie zu beantworten.",
+    "send": "Nachricht senden",
+    "sending": "Wird gesendet …",
+    "sentTitle": "Nachricht gesendet",
+    "sentDescription": "Danke! Wir melden uns per E-Mail bei dir.",
+    "errorTitle": "Fehler",
+    "errors": {
+      "captcha": "Bitte bestätige zuerst, dass du kein Roboter bist.",
+      "name": "Bitte gib deinen Namen ein (höchstens {{max}} Zeichen).",
+      "email": "Bitte gib eine gültige E-Mail-Adresse ein.",
+      "subject": "Bitte gib einen Betreff ein (höchstens {{max}} Zeichen).",
+      "message": "Bitte gib eine Nachricht ein (höchstens {{max}} Zeichen).",
+      "send": "Die Nachricht konnte nicht gesendet werden. Bitte versuch es noch einmal."
     }
   },
   "whyJournal": {
@@ -2075,29 +1930,6 @@
     "finalCtaFeatures": "Alle Features ansehen",
     "backToHome": "Zurück zur Startseite",
     "readMore": "Mehr erfahren"
-  },
-  "cookieConsent": {
-    "title": "Cookie-Einstellungen",
-    "description": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Notwendige Cookies sind für die Grundfunktionen der Website erforderlich. Sie können Ihre Einstellungen jederzeit anpassen.",
-    "moreInfo": "Mehr Informationen finden Sie in unserer",
-    "privacyPolicy": "Datenschutzerklärung",
-    "necessary": {
-      "label": "Notwendige Cookies",
-      "description": "Erforderlich für grundlegende Funktionen wie Login und Navigation."
-    },
-    "functional": {
-      "label": "Funktionale Cookies",
-      "description": "Speichern Ihre Präferenzen wie Sprache und Theme."
-    },
-    "analytics": {
-      "label": "Analyse-Cookies",
-      "description": "Helfen uns zu verstehen, wie Besucher die Website nutzen."
-    },
-    "acceptAll": "Alle akzeptieren",
-    "acceptNecessary": "Nur notwendige",
-    "settings": "Einstellungen",
-    "saveSelection": "Auswahl speichern",
-    "back": "Zurück"
   },
   "prelaunch": {
     "badge": "PRIVATE BETA",
