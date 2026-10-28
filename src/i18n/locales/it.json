@@ -1747,7 +1747,7 @@
         },
         {
           "title": "Dove si trovano i dati",
-          "text": "Tutti i dati si trovano su un nostro server nei Paesi Bassi (data center di Leaseweb ad Amsterdam). Leaseweb è il nostro responsabile del trattamento per l’hosting. Per l’invio delle e-mail (conferma, reimpostazione della password, modulo di contatto) ci avvaliamo di un fornitore di servizi e-mail come responsabile del trattamento. Inoltre registriamo titolo e testo dei feedback inviati dall’app come attività nel nostro progetto non pubblico su GitHub (GitHub Inc., USA, certificata secondo il Data Privacy Framework UE-USA), senza il tuo nome né il tuo indirizzo e-mail. A parte questo, i tuoi dati non vengono trasferiti in paesi al di fuori dell’UE."
+          "text": "Tutti i dati si trovano su un nostro server nei Paesi Bassi (data center di Leaseweb ad Amsterdam). Leaseweb è il nostro responsabile del trattamento per l’hosting. Per l’invio delle e-mail (conferma, reimpostazione della password, modulo di contatto) ci avvaliamo di un fornitore di servizi e-mail come responsabile del trattamento. Inoltre pubblichiamo titolo e testo dei feedback inviati dall’app come issue nel nostro progetto su GitHub (GitHub Inc., USA, certificata secondo il Data Privacy Framework UE-USA). Lì sono visibili pubblicamente, ma senza il tuo nome, il tuo indirizzo e-mail e i dati tecnici. A parte questo, i tuoi dati non vengono trasferiti in paesi al di fuori dell’UE."
         },
         {
           "title": "Richieste ad altri servizi",
@@ -1763,7 +1763,7 @@
         },
         {
           "title": "Per quanto tempo conserviamo i dati",
-          "text": "I tuoi dati restano salvati finché non li cancelli o elimini il tuo account. Quando elimini l’account, cancelliamo subito tutti i dati, screenshot compresi. Le sessioni scadute vengono eliminate automaticamente, così come gli account il cui indirizzo e-mail non è stato confermato entro 7 giorni. Conserviamo le e-mail di feedback e le attività su GitHub finché ci servono per lavorarci.\n\nPer sicurezza, salviamo ogni giorno il database e gli screenshot sullo stesso server. Questi backup vengono cancellati dopo 14 giorni, quindi i dati eliminati spariscono anche dai backup al più tardi 14 giorni dopo."
+          "text": "I tuoi dati restano salvati finché non li cancelli o elimini il tuo account. Quando elimini l’account, cancelliamo subito tutti i dati, screenshot compresi. Le sessioni scadute vengono eliminate automaticamente, così come gli account il cui indirizzo e-mail non è stato confermato entro 7 giorni. Conserviamo le e-mail di feedback finché ci servono per lavorarci. Su richiesta cancelliamo l’issue su GitHub.\n\nPer sicurezza, salviamo ogni giorno il database e gli screenshot sullo stesso server. Questi backup vengono cancellati dopo 14 giorni, quindi i dati eliminati spariscono anche dai backup al più tardi 14 giorni dopo."
         },
         {
           "title": "I tuoi diritti",
@@ -1868,7 +1868,7 @@
       "other": "Il tuo messaggio …"
     },
     "includeContext": "Invia pagina e dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Aiuta con gli errori.",
-    "privacyNote": "Ti rispondiamo via e-mail all’indirizzo del tuo account. Titolo e testo finiscono nel nostro elenco di attività su GitHub senza nome né indirizzo e-mail; per favore non inserire dati personali.",
+    "privacyNote": "Ti rispondiamo via e-mail all’indirizzo del tuo account. Titolo e testo compaiono come issue pubblica su GitHub, senza nome né indirizzo e-mail, così tutti vedono cosa è stato segnalato e pianificato. Non inserire quindi dati personali o dettagli del conto. I dati tecnici arrivano solo a noi via e-mail.",
     "send": "Invia",
     "sending": "Invio in corso …",
     "thanks": "Grazie! Il tuo messaggio è arrivato.",

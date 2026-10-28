@@ -1737,7 +1737,7 @@
         },
         {
           "title": "Where the data is kept",
-          "text": "All data is stored on our own server in the Netherlands (Leaseweb data center in Amsterdam). Leaseweb acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. We also file the title and text of feedback from the app as a task in our non-public project on GitHub (GitHub Inc., USA, certified under the EU-US Data Privacy Framework), without your name or email address. Apart from that, your data is not transferred to countries outside the EU."
+          "text": "All data is stored on our own server in the Netherlands (Leaseweb data center in Amsterdam). Leaseweb acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. We also publish the title and text of feedback from the app as an issue in our project on GitHub (GitHub Inc., USA, certified under the EU-US Data Privacy Framework). There they are publicly visible, but without your name, email address or the technical details. Apart from that, your data is not transferred to countries outside the EU."
         },
         {
           "title": "Requests to other services",
@@ -1753,7 +1753,7 @@
         },
         {
           "title": "How long we keep data",
-          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days. We keep feedback emails and the tasks on GitHub as long as we need them to work on them.\n\nFor safety, we back up the database and screenshots daily on the same server. These backups are deleted after 14 days, so deleted data disappears from the backups no later than 14 days afterwards."
+          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days. We keep feedback emails as long as we need them to work on them. We delete a GitHub issue on request.\n\nFor safety, we back up the database and screenshots daily on the same server. These backups are deleted after 14 days, so deleted data disappears from the backups no later than 14 days afterwards."
         },
         {
           "title": "Your rights",
@@ -1858,7 +1858,7 @@
       "other": "Your message …"
     },
     "includeContext": "Include page and technical details (page, browser, language, time zone, window size). This helps with bugs.",
-    "privacyNote": "We reply by email to your account address. Title and text go into our task list on GitHub without your name or email address, so please do not put personal data in them.",
+    "privacyNote": "We reply by email to your account address. Title and text appear as a public issue on GitHub, without your name or email address, so everyone can see what has been reported and planned. Please do not include personal data or account details. Only we receive the technical details, by email.",
     "send": "Send",
     "sending": "Sending …",
     "thanks": "Thanks! Your message has arrived.",

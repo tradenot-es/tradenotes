@@ -1745,7 +1745,7 @@
         },
         {
           "title": "Wo die Daten liegen",
-          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Titel und Text von Feedback aus der App legen wir zusätzlich als Aufgabe in unserem nicht öffentlichen Projekt bei GitHub an (GitHub Inc., USA, zertifiziert nach dem EU-US Data Privacy Framework), ohne deinen Namen und deine E-Mail-Adresse. Davon abgesehen werden deine Daten nicht in Länder außerhalb der EU übermittelt."
+          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Titel und Text von Feedback aus der App veröffentlichen wir zusätzlich als Issue in unserem Projekt bei GitHub (GitHub Inc., USA, zertifiziert nach dem EU-US Data Privacy Framework). Dort sind sie öffentlich sichtbar, aber ohne deinen Namen, deine E-Mail-Adresse und die technischen Angaben. Davon abgesehen werden deine Daten nicht in Länder außerhalb der EU übermittelt."
         },
         {
           "title": "Abrufe bei anderen Diensten",
@@ -1761,7 +1761,7 @@
         },
         {
           "title": "Wie lange wir Daten speichern",
-          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde. Feedback-Mails und die Aufgaben auf GitHub behalten wir, solange wir sie für die Bearbeitung brauchen.\n\nZur Sicherheit sichern wir Datenbank und Screenshots täglich auf demselben Server. Diese Sicherungen werden nach 14 Tagen gelöscht; gelöschte Daten verschwinden also spätestens 14 Tage später auch aus den Sicherungen."
+          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde. Feedback-Mails behalten wir, solange wir sie für die Bearbeitung brauchen. Ein Issue auf GitHub löschen wir auf Wunsch.\n\nZur Sicherheit sichern wir Datenbank und Screenshots täglich auf demselben Server. Diese Sicherungen werden nach 14 Tagen gelöscht; gelöschte Daten verschwinden also spätestens 14 Tage später auch aus den Sicherungen."
         },
         {
           "title": "Deine Rechte",
@@ -1866,7 +1866,7 @@
       "other": "Deine Nachricht …"
     },
     "includeContext": "Seite und technische Angaben mitschicken (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Das hilft bei Fehlern.",
-    "privacyNote": "Wir antworten per E-Mail an deine Konto-Adresse. Titel und Text landen ohne Namen und E-Mail-Adresse in unserer Aufgabenliste auf GitHub; schreib dort bitte keine persönlichen Daten hinein.",
+    "privacyNote": "Wir antworten per E-Mail an deine Konto-Adresse. Titel und Text erscheinen ohne Namen und E-Mail-Adresse als öffentliches Issue auf GitHub, damit alle sehen, was gemeldet und geplant ist. Schreib deshalb keine persönlichen Daten oder Kontodetails hinein. Die technischen Angaben bekommen nur wir per E-Mail.",
     "send": "Senden",
     "sending": "Wird gesendet …",
     "thanks": "Danke! Deine Nachricht ist angekommen.",

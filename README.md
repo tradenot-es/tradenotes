@@ -20,7 +20,7 @@ Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC
   - `src/routes/import.ts`: Trade-Import (`POST /api/import-trades`): Add-on mit Header `X-API-Key`, CSV und Vorlage für eingeloggte Nutzer
   - `src/matching.ts`: Ausführungen → Trades (FIFO, flat bis flat), `src/ibkr.ts`: Interactive-Brokers-Abruf
   - Kalenderzeiten: jeder Termin steht in der Zeitzone seiner Institution (`eventTimeZone` in `src/lib/economicCalendar.ts`) und wird mit `src/lib/timezone.ts` in die Zeitzone des Nutzers umgerechnet (Einstellung oder Gerät); Prüfungen rund um die Zeitumstellung: `npx tsx src/lib/timezone.check.ts`
-  - `src/feedback.ts`: „Verbesserungsvorschlag?“ in der Seitenleiste (Fehler/Idee/Sonstiges) → Mail an `CONTACT_TO` (Antwort an den Nutzer) und, wenn `GITHUB_FEEDBACK_TOKEN`/`GITHUB_FEEDBACK_REPO` gesetzt sind, ein GitHub-Issue ohne Name und E-Mail-Adresse; höchstens 5 pro Nutzer und Stunde. Tests: `test/feedback.ts`
+  - `src/feedback.ts`: „Verbesserungsvorschlag?“ in der Seitenleiste (Fehler/Idee/Sonstiges) → Mail an `CONTACT_TO` (Antwort an den Nutzer) und, wenn `GITHUB_FEEDBACK_TOKEN`/`GITHUB_FEEDBACK_REPO` gesetzt sind, ein öffentliches GitHub-Issue nur mit Titel und Text (Name, E-Mail und technische Angaben nur in der Mail); höchstens 5 pro Nutzer und Stunde. Tests: `test/feedback.ts`
   - `src/marketEvents.ts`: holt stündlich Fed-Reden/FOMC-Protokolle (federalreserve.gov) und angekündigte Auftritte des US-Präsidenten (Roll Call Factba.se) für den Kalender; Tests in `test/marketEvents.ts`
   - `migrations/`: SQL-Migrationen, laufen beim Start automatisch
 - `src/config/operator.ts`: Betreiber und E-Mail-Adresse für Impressum, Datenschutz, Kontakt; die Texte selbst stehen unter `legal.*` in den Sprachdateien

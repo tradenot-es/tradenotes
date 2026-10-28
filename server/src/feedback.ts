@@ -1,6 +1,6 @@
 // "Bug or idea?" from inside the app. Every message goes by mail to the operator (reply goes to
-// the user). If a GitHub token is configured, it also becomes an issue in the (private) repo, so
-// ideas and bugs can be tracked there. The issue never contains the user's name or address.
+// the user). If a GitHub token is configured, it also becomes a public issue in the project's
+// repo, so everyone sees what is reported and planned. The issue contains only title and text.
 import { randomBytes } from "node:crypto";
 import { z } from "zod";
 import { env } from "./env.js";
@@ -40,16 +40,12 @@ function contextLines(context: Feedback["context"]) {
   return rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`);
 }
 
-/** Issue text: the message and the optional technical details, nothing that identifies the user. */
+/**
+ * Issue text: only the message. Issues are public, so neither the user's name, address nor the
+ * technical details (page, browser, time zone) go there; those are in the mail to the operator.
+ */
 export function issueBody(feedback: Feedback, ref: string) {
-  const details = contextLines(feedback.context);
-  return [
-    feedback.message,
-    "",
-    "---",
-    `Gemeldet über die App (${TYPE_LABEL[feedback.type]}, Referenz ${ref}).`,
-    ...(details.length ? ["", "<details><summary>Technische Angaben</summary>", "", ...details.map((l) => `- ${l}`), "", "</details>"] : []),
-  ].join("\n");
+  return [feedback.message, "", "---", `Gemeldet über die App (${TYPE_LABEL[feedback.type]}, Referenz ${ref}).`].join("\n");
 }
 
 async function createIssue(feedback: Feedback, ref: string): Promise<string | null> {

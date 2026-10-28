@@ -23,7 +23,7 @@ check("too short message rejected", !feedbackSchema.safeParse({ type: "bug", tit
 check("unknown type rejected", !feedbackSchema.safeParse({ type: "spam", title: "abc", message: "0123456789" }).success);
 
 const body = issueBody(feedback, "abc123");
-check("issue body has message and details", body.includes("Monatsbericht") && body.includes("Seite: /dashboard/reports") && body.includes("Referenz abc123"));
+check("issue body has the message and reference only", body.includes("Monatsbericht") && body.includes("Referenz abc123") && !body.includes("dashboard") && !body.includes("Firefox"));
 
 // GitHub call with a stubbed fetch
 const calls: { url: string; init: RequestInit }[] = [];
@@ -40,8 +40,8 @@ const sent = JSON.parse(String(calls[0]?.init.body ?? "{}"));
 check("issue created in the repo", calls[0]?.url === "https://api.github.com/repos/tradenot-es/tradenotes/issues");
 check("token sent as bearer", new Headers(calls[0]?.init.headers).get("authorization") === "Bearer test-token");
 check("issue title and labels", sent.title === "[Idee] Export als PDF" && JSON.stringify(sent.labels) === '["enhancement","feedback"]', sent);
-check("issue has no e-mail address", !JSON.stringify(sent).includes("anna@example.com"));
-check("mail has reply address, reference and issue link", logs.some((l) => l.includes("anna@example.com") && l.includes(result.ref) && l.includes("issues/1")), logs);
+check("issue has no e-mail address or technical details", !JSON.stringify(sent).includes("anna@example.com") && !JSON.stringify(sent).includes("Europe/Berlin"));
+check("mail has reply address, reference, issue link and details", logs.some((l) => l.includes("anna@example.com") && l.includes(result.ref) && l.includes("issues/1") && l.includes("Seite: /dashboard/reports")), logs);
 
 // GitHub down: the mail still goes out
 globalThis.fetch = (async () => new Response("boom", { status: 502 })) as typeof fetch;

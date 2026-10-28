@@ -1756,7 +1756,7 @@
         },
         {
           "title": "Dónde se guardan los datos",
-          "text": "Todos los datos se guardan en nuestro propio servidor en los Países Bajos (centro de datos de Leaseweb en Ámsterdam). Leaseweb actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Además, guardamos el título y el texto de los comentarios desde la app como tarea en nuestro proyecto no público en GitHub (GitHub Inc., EE. UU., certificada según el Marco de Privacidad de Datos UE-EE. UU.), sin tu nombre ni tu correo. Aparte de esto, tus datos no se transfieren a países fuera de la UE."
+          "text": "Todos los datos se guardan en nuestro propio servidor en los Países Bajos (centro de datos de Leaseweb en Ámsterdam). Leaseweb actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Además, publicamos el título y el texto de los comentarios desde la app como issue en nuestro proyecto en GitHub (GitHub Inc., EE. UU., certificada según el Marco de Privacidad de Datos UE-EE. UU.). Allí son visibles públicamente, pero sin tu nombre, tu correo ni los datos técnicos. Aparte de esto, tus datos no se transfieren a países fuera de la UE."
         },
         {
           "title": "Consultas a otros servicios",
@@ -1772,7 +1772,7 @@
         },
         {
           "title": "Cuánto tiempo guardamos los datos",
-          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días. Conservamos los correos de comentarios y las tareas en GitHub mientras los necesitemos para trabajar en ellos.\n\nPor seguridad, hacemos cada día una copia de la base de datos y de las capturas en el mismo servidor. Estas copias se borran a los 14 días, así que los datos eliminados desaparecen también de las copias como máximo 14 días después."
+          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días. Conservamos los correos de comentarios mientras los necesitemos para trabajar en ellos. Si nos lo pides, borramos el issue en GitHub.\n\nPor seguridad, hacemos cada día una copia de la base de datos y de las capturas en el mismo servidor. Estas copias se borran a los 14 días, así que los datos eliminados desaparecen también de las copias como máximo 14 días después."
         },
         {
           "title": "Tus derechos",
@@ -1877,7 +1877,7 @@
       "other": "Tu mensaje …"
     },
     "includeContext": "Enviar la página y datos técnicos (página, navegador, idioma, zona horaria, tamaño de ventana). Ayuda con los errores.",
-    "privacyNote": "Te respondemos por correo a la dirección de tu cuenta. El título y el texto van a nuestra lista de tareas en GitHub sin tu nombre ni tu correo; por favor, no incluyas datos personales.",
+    "privacyNote": "Te respondemos por correo a la dirección de tu cuenta. El título y el texto aparecen como issue público en GitHub, sin tu nombre ni tu correo, para que todos vean lo que se ha comunicado y planificado. Por eso, no incluyas datos personales ni datos de tu cuenta. Los datos técnicos solo nos llegan a nosotros por correo.",
     "send": "Enviar",
     "sending": "Enviando …",
     "thanks": "¡Gracias! Hemos recibido tu mensaje.",

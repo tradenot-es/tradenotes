@@ -1756,7 +1756,7 @@
         },
         {
           "title": "Waar de gegevens staan",
-          "text": "Alle gegevens staan op onze eigen server in Nederland (datacenter van Leaseweb in Amsterdam). Leaseweb is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Titel en tekst van feedback uit de app zetten we daarnaast als taak in ons niet-openbare project op GitHub (GitHub Inc., VS, gecertificeerd onder het EU-VS Data Privacy Framework), zonder je naam en e-mailadres. Verder worden je gegevens niet doorgegeven aan landen buiten de EU."
+          "text": "Alle gegevens staan op onze eigen server in Nederland (datacenter van Leaseweb in Amsterdam). Leaseweb is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Titel en tekst van feedback uit de app publiceren we daarnaast als issue in ons project op GitHub (GitHub Inc., VS, gecertificeerd onder het EU-VS Data Privacy Framework). Daar zijn ze openbaar zichtbaar, maar zonder je naam, e-mailadres en de technische gegevens. Verder worden je gegevens niet doorgegeven aan landen buiten de EU."
         },
         {
           "title": "Opvragingen bij andere diensten",
@@ -1772,7 +1772,7 @@
         },
         {
           "title": "Hoe lang we gegevens bewaren",
-          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd. Feedbackmails en de taken op GitHub bewaren we zolang we ze nodig hebben om eraan te werken.\n\nVoor de zekerheid maken we dagelijks een back-up van de database en de screenshots op dezelfde server. Die back-ups worden na 14 dagen verwijderd; verwijderde gegevens verdwijnen dus uiterlijk 14 dagen later ook uit de back-ups."
+          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd. Feedbackmails bewaren we zolang we ze nodig hebben om eraan te werken. Een issue op GitHub verwijderen we op verzoek.\n\nVoor de zekerheid maken we dagelijks een back-up van de database en de screenshots op dezelfde server. Die back-ups worden na 14 dagen verwijderd; verwijderde gegevens verdwijnen dus uiterlijk 14 dagen later ook uit de back-ups."
         },
         {
           "title": "Je rechten",
@@ -1877,7 +1877,7 @@
       "other": "Je bericht …"
     },
     "includeContext": "Pagina en technische gegevens meesturen (pagina, browser, taal, tijdzone, venstergrootte). Dat helpt bij fouten.",
-    "privacyNote": "We antwoorden per e-mail op het adres van je account. Titel en tekst komen zonder naam en e-mailadres in onze takenlijst op GitHub; zet daar dus geen persoonlijke gegevens in.",
+    "privacyNote": "We antwoorden per e-mail op het adres van je account. Titel en tekst verschijnen zonder naam en e-mailadres als openbare issue op GitHub, zodat iedereen ziet wat er gemeld en gepland is. Zet er dus geen persoonlijke gegevens of accountgegevens in. De technische gegevens krijgen alleen wij per e-mail.",
     "send": "Versturen",
     "sending": "Wordt verstuurd …",
     "thanks": "Bedankt! Je bericht is aangekomen.",
