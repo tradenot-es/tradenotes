@@ -6,6 +6,14 @@ import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { verifyPayload } from "./altcha.js";
 import { deleteUserFiles } from "./uploads.js";
+import { networkInterfaces } from "node:os";
+
+// In development the Vite server is also opened from other machines in the LAN (http://<ip>:8080)
+const devOrigins = () =>
+  Object.values(networkInterfaces())
+    .flat()
+    .filter((i) => i?.family === "IPv4")
+    .map((i) => `http://${i!.address === "127.0.0.1" ? "localhost" : i!.address}:8080`);
 
 const uiLang = (request?: Request) =>
   request?.headers.get("x-ui-lang") ?? request?.headers.get("accept-language") ?? "en";
@@ -19,7 +27,7 @@ export const auth = betterAuth({
   basePath: "/api/auth",
   secret: env.authSecret,
   database: pool,
-  trustedOrigins: [env.baseUrl, ...(process.env.NODE_ENV === "production" ? [] : ["http://localhost:8080"])],
+  trustedOrigins: [env.baseUrl, ...(process.env.NODE_ENV === "production" ? [] : devOrigins())],
   advanced: {
     database: { generateId: "uuid" },
   },
