@@ -161,7 +161,7 @@ function DayCard({ day, index, notes, flags, formatCurrency, locale }: DayCardPr
   ];
 
   return (
-    <Card className="overflow-hidden animate-rise-in motion-stagger hover-lift" style={{ "--stagger": Math.min(index, 6) } as React.CSSProperties}>
+    <Card className="overflow-hidden animate-rise-in motion-stagger" style={{ "--stagger": Math.min(index, 6) } as React.CSSProperties}>
       <CardContent className="p-0">
         <div className="grid gap-6 p-5 md:grid-cols-[14rem_1fr]">
           <div className="space-y-3">

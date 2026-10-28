@@ -3,7 +3,8 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("glossy-card rounded-xl smooth-transition hover:shadow-glow", className)} {...props} />
+  // no hover effect: most cards are not clickable, clickable ones bring their own
+  <div ref={ref} className={cn("glossy-card rounded-xl", className)} {...props} />
 ));
 Card.displayName = "Card";
 

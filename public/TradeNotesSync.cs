@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 nevs84 / tradenot.es
 // TradeNot.es Sync – NinjaTrader 8 add-on
 //
 // Sends every fill of every connected account to your TradeNot.es journal. TradeNot.es

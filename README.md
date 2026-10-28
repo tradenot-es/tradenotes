@@ -75,3 +75,10 @@ docker compose exec -T db pg_restore -U tradenotes -d tradenotes --clean --if-ex
 docker run --rm -v tradenotes_uploads:/data -v /opt/tradenotes-backups:/backup alpine \
   sh -c 'rm -rf /data/* && tar xzf /backup/uploads_<stempel>.tar.gz -C /data'
 ```
+
+## Lizenz
+
+tradenot.es steht unter der **GNU Affero General Public License v3.0 oder später** (`AGPL-3.0-or-later`),
+siehe [LICENSE](LICENSE). Jeder darf den Code nutzen, ändern und selbst betreiben. Wer eine veränderte
+Version als Dienst im Netz anbietet, muss deren Quellcode den Nutzern ebenfalls unter der AGPL zugänglich
+machen. Eingebundene Fremdbausteine (z. B. shadcn/ui, Radix, Recharts) behalten ihre eigenen Lizenzen (MIT u. a.).

@@ -82,7 +82,7 @@
     "profitFactor": "Profit Factor",
     "profitFactorTooltip": "Bruttogewinne / Bruttoverluste. Grün ab 1.5 (sehr profitabel), Gelb 1.0-1.5 (profitabel), Rot unter 1.0 (Verluste). Ein Wert über 1 bedeutet Profitabilität.",
     "consistencyTracker": "Trading Konsistenz",
-    "consistencyTrackerTooltip": "Visualisiert Ihre tägliche Trading-Aktivität und Performance über die letzten 12 Wochen. Grüne Kacheln zeigen profitable Tage, rote Kacheln Verlusttage. Je intensiver die Farbe, desto mehr Trades wurden ausgeführt.",
+    "consistencyTrackerTooltip": "Zeigt deine tägliche Trading-Aktivität und Performance der letzten 12 Wochen. Grüne Kacheln sind profitable Tage, rote Kacheln Verlusttage. Je kräftiger die Farbe, desto mehr Trades waren es.",
     "less": "Weniger",
     "more": "Mehr",
     "trades": "Trades",
@@ -95,7 +95,7 @@
       "netProfit": "Nettogewinn",
       "netProfitTooltip": "Gesamtgewinn abzüglich aller Verluste und Gebühren.",
       "tradingDays": "Handelstage",
-      "tradingDaysTooltip": "Anzahl der Tage, an denen Sie mindestens einen Trade ausgeführt haben.",
+      "tradingDaysTooltip": "Anzahl der Tage, an denen du mindestens einen Trade gemacht hast.",
       "avgTrade": "Ø/Trade",
       "avgTradeTooltip": "Durchschnittlicher Gewinn oder Verlust pro Trade.",
       "totalTrades": "Trades",
@@ -109,9 +109,9 @@
     "mostActiveDay": "Aktivster Tag",
     "avgDailyTrades": "Ø Tägliche Trades",
     "maxDrawdown": "Max Drawdown",
-    "maxDrawdownTooltip": "Größter Kapitalrückgang vom Peak zum Tief. Immer negativ - misst das maximale Risiko und die emotionale Belastung Ihrer Strategie.",
+    "maxDrawdownTooltip": "Größter Kapitalrückgang vom Hoch zum Tief. Immer negativ – misst das maximale Risiko und die emotionale Belastung deiner Strategie.",
     "equityCurve": "Equity Curve",
-    "equityCurveTooltip": "Zeigt die kumulative Entwicklung Ihres Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konsistente Profitabilität hin. Große Rückgänge zeigen Drawdown-Phasen.",
+    "equityCurveTooltip": "Zeigt die kumulierte Entwicklung deines Trading-Kapitals über die Zeit. Eine stetig steigende Kurve deutet auf konstante Profitabilität hin, große Rückgänge zeigen Drawdown-Phasen.",
     "pnlByMonth": "P&L nach Monat",
     "pnlChartTooltip": "Monatliche Profit & Loss Übersicht. Zeigt die Performance für jeden Monat und hilft dabei, saisonale Muster und langfristige Trends zu erkennen.",
     "accountPerformance": "Account-Performance",
@@ -211,7 +211,7 @@
     "updateTrade": "Trade aktualisieren",
     "tradeUpdated": "Trade erfolgreich aktualisiert",
     "tradeDeleted": "Trade erfolgreich gelöscht",
-    "confirmDelete": "Möchten Sie diesen Trade wirklich löschen?",
+    "confirmDelete": "Möchtest du diesen Trade wirklich löschen?",
     "deleteError": "Fehler beim Löschen des Trades",
     "cancel": "Abbrechen",
     "save": "Speichern",
@@ -234,7 +234,7 @@
     "initialRisk": "Geplantes Risiko",
     "initialRiskHint": "Für R-Multiple Berechnung: (Entry - Stop Loss) × Menge",
     "rating": "Trade-Qualitätsbewertung",
-    "ratingHint": "Bewerten Sie diesen Trade von 1 (schlechte Ausführung) bis 5 (exzellente Ausführung)",
+    "ratingHint": "Bewerte diesen Trade von 1 (schlechte Ausführung) bis 5 (exzellente Ausführung)",
     "screenshot": "Screenshot",
     "livePnL": "Live P&L Vorschau",
     "copyLastTrade": "Letzten Trade kopieren",
@@ -281,7 +281,7 @@
     "deleteAllWebhookError": "Fehler beim Löschen der Webhook-Trades",
     "deleteDialog": {
       "title": "Trade löschen?",
-      "description": "Möchten Sie diesen {{symbol}} Trade wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+      "description": "Möchtest du diesen {{symbol}}-Trade wirklich löschen? Das lässt sich nicht rückgängig machen."
     },
     "deleteSuccess": "Trade erfolgreich gelöscht",
     "accountName": "Account-Name",
@@ -595,7 +595,7 @@
   },
   "reports": {
     "title": "Reports",
-    "subtitle": "Detaillierte Analyse Ihrer Trading-Performance",
+    "subtitle": "Detaillierte Analyse deiner Trading-Performance",
     "overview": "Übersicht",
     "bySetup": "Nach Setup",
     "timeAnalysis": "Zeit-Analyse",
@@ -625,15 +625,15 @@
     "bestDay": "Bester Tag",
     "bestTradingDay": "Bester Handelstag",
     "noData": "Keine Daten verfügbar",
-    "goalAchievementRateTooltip": "Zeigt den Prozentsatz der Tage, an denen Sie Ihr Tagesziel erreicht haben. Sie können Ihre Tagesziele in den Einstellungen anpassen.",
-    "currentGoalTooltip": "Ihr aktuelles tägliches Gewinnziel und die maximale Anzahl von Trades pro Tag. Sie können diese Einstellungen in den Einstellungen ändern.",
-    "bestDayTooltip": "Ihr profitabelster Handelstag im ausgewählten Zeitraum.",
-    "overviewTooltip": "Allgemeine Übersicht Ihrer Trading-Performance mit Schlüsselkennzahlen, Wochentagsanalyse und Top-Symbolen.",
-    "dailyGoalsTooltip": "Verfolgen Sie Ihren Fortschritt bei täglichen Gewinnzielen und maximalen Trades pro Tag. Konfigurieren Sie Ihre Ziele in den Einstellungen.",
-    "bySetupTooltip": "Analysieren Sie die Performance nach Trading-Setup/Strategie. Sehen Sie, welche Setups am profitabelsten sind und welche verbessert werden müssen.",
-    "timeAnalysisTooltip": "Entdecken Sie zeitbasierte Muster in Ihrem Trading: Performance nach Wochentag und Tageszeit-Analyse.",
-    "behaviorTooltip": "Analysieren Sie Ihre Trading-Verhaltensmuster einschließlich Gewinn-/Verlustserien und durchschnittlicher Haltedauer.",
-    "symbolsTooltip": "Performance-Aufschlüsselung nach einzelnen Symbolen. Identifizieren Sie, mit welchen Assets Sie am erfolgreichsten handeln.",
+    "goalAchievementRateTooltip": "Anteil der Tage, an denen du dein Tagesziel erreicht hast. Deine Tagesziele kannst du in den Einstellungen anpassen.",
+    "currentGoalTooltip": "Dein aktuelles tägliches Gewinnziel und die maximale Anzahl Trades pro Tag. Beides kannst du in den Einstellungen ändern.",
+    "bestDayTooltip": "Dein profitabelster Handelstag im gewählten Zeitraum.",
+    "overviewTooltip": "Überblick über deine Trading-Performance mit Kennzahlen, Wochentagsanalyse und Top-Symbolen.",
+    "dailyGoalsTooltip": "Verfolge deinen Fortschritt bei täglichen Gewinnzielen und der maximalen Anzahl Trades pro Tag. Deine Ziele legst du in den Einstellungen fest.",
+    "bySetupTooltip": "Performance nach Setup bzw. Strategie: Sieh, welche Setups am profitabelsten sind und welche du verbessern solltest.",
+    "timeAnalysisTooltip": "Entdecke zeitliche Muster in deinem Trading: Performance nach Wochentag und Tageszeit.",
+    "behaviorTooltip": "Analysiere deine Verhaltensmuster beim Trading, einschließlich Gewinn- und Verlustserien und durchschnittlicher Haltedauer.",
+    "symbolsTooltip": "Performance nach einzelnen Symbolen. Finde heraus, mit welchen Werten du am erfolgreichsten handelst.",
     "dailyGoalHistory": "Daily Goal Historie",
     "noTradesInPeriod": "Keine Trades im ausgewählten Zeitraum",
     "dailyPnl": "Täglicher P&L",
@@ -653,9 +653,9 @@
     "last3Months": "Letzte 3 Monate",
     "thisYear": "Dieses Jahr",
     "dayOfWeekDistribution": "Trade-Verteilung nach Wochentag",
-    "dayOfWeekDistributionTooltip": "Zeigt, wie viele Trades Sie an jedem Wochentag ausgeführt haben. Hilft dabei, Ihre aktivsten Trading-Tage und potenzielle Muster in Ihrem Trading-Verhalten zu identifizieren.",
+    "dayOfWeekDistributionTooltip": "Zeigt, wie viele Trades du an jedem Wochentag gemacht hast. So erkennst du deine aktivsten Handelstage und Muster in deinem Verhalten.",
     "performanceByDay": "Performance nach Wochentag",
-    "performanceByDayTooltip": "Zeigt Ihre Profitabilität für jeden Wochentag an. Grüne Balken zeigen profitable Tage, rote Balken zeigen Verluste. Hilft zu identifizieren, welche Tage für Ihre Trading-Strategie am erfolgreichsten sind.",
+    "performanceByDayTooltip": "Zeigt deine Profitabilität je Wochentag. Grüne Balken sind profitable Tage, rote Balken Verluste. So siehst du, an welchen Tagen deine Strategie am besten funktioniert.",
     "summary": "Zusammenfassung",
     "totalTrades": "Trades Gesamt",
     "winningTrades": "Gewinn-Trades",
@@ -689,7 +689,7 @@
     "tradesWithRiskTooltip": "Anzahl der Trades mit definiertem Risiko (R)",
     "avgWinTooltip": "Durchschnittlicher Gewinn bei profitablen Trades",
     "avgLossTooltip": "Durchschnittlicher Verlust bei verlustbringenden Trades",
-    "noRiskData": "Keine Risiko-Daten verfügbar. Fügen Sie Risiko und Stop Loss zu Ihren Trades hinzu.",
+    "noRiskData": "Keine Risikodaten vorhanden. Trag bei deinen Trades Risiko und Stop-Loss ein.",
     "streakAnalysis": "Serien-Analyse",
     "longestWinStreak": "Längste Gewinnserie",
     "longestLossStreak": "Längste Verlustserie",
@@ -698,7 +698,7 @@
     "winStreak": "Gewinnserie aktiv",
     "lossStreak": "Verlustserie aktiv",
     "noActiveStreak": "Keine aktive Serie",
-    "streakInsight": "💡 Eine längere Gewinnserie zeigt Konsistenz. Nach Verlustserien sollten Sie Ihre Strategie überprüfen und ggf. Pause einlegen, um 'Revenge Trading' zu vermeiden.",
+    "streakInsight": "💡 Eine längere Gewinnserie zeigt Konstanz. Nach Verlustserien solltest du deine Strategie überprüfen und ggf. eine Pause einlegen, um Revenge-Trading zu vermeiden.",
     "holdingPeriodAnalysis": "Haltedauer-Analyse",
     "avgWinHold": "Ø Haltedauer Gewinne",
     "avgLossHold": "Ø Haltedauer Verluste",
@@ -707,7 +707,7 @@
     "optimal": "Optimal ✓",
     "good": "Gut",
     "needsImprovement": "Verbesserungsbedarf",
-    "holdingPeriodInsight": "💡 Ideal ist eine Hold-Ratio > 1.0: Sie halten Gewinner länger als Verlierer. Eine Ratio < 1.0 deutet auf 'Cut winners short, let losses run' hin - ein häufiger Fehler.",
+    "holdingPeriodInsight": "💡 Ideal ist eine Hold-Ratio > 1,0: Du hältst Gewinner länger als Verlierer. Eine Ratio < 1,0 deutet auf „Cut winners short, let losses run“ hin – ein häufiger Fehler.",
     "holdingPeriodDistribution": "Verteilung nach Haltedauer",
     "topProfitableSymbols": "Top 5 Profitable Symbole",
     "topUnprofitableSymbols": "Top 5 Unprofitable Symbole",
@@ -716,7 +716,7 @@
     "hourOfDayPerformance": "Performance nach Tageszeit",
     "bestTradingHours": "Beste Trading-Zeiten",
     "worstTradingHours": "Schlechteste Trading-Zeiten",
-    "hourOfDayInsight": "💡 Identifizieren Sie Ihre profitabelsten Handelszeiten und fokussieren Sie sich darauf. Vermeiden Sie Trading in Zeiten mit schlechter Performance (z.B. Lunch-Zeit, letzte Handelsstunde).",
+    "hourOfDayInsight": "💡 Finde deine profitabelsten Handelszeiten und konzentrier dich darauf. Meide Zeiten mit schwacher Performance (z. B. Mittagszeit, letzte Handelsstunde).",
     "rules": "Regeltreue",
     "rulesTooltip": "Hast du deine Setup-Checkliste eingehalten? Prozess gegen Ergebnis: verdiente Gewinne, gute Verluste, Glückstreffer.",
     "dailyGoals": "Tagesziele"
@@ -1274,30 +1274,30 @@
     },
     "initialRisk": {
       "term": "Anfängliches Risiko (Initial Risk)",
-      "definition": "Das initiale Risiko (R) definiert den maximalen Verlustbetrag, den Sie bei einem Trade akzeptieren, bevor Sie die Position schließen. Es ist die Grundlage für Positionsgrößenbestimmung und Trade-Management. Das Risiko sollte als fester Prozentsatz des Kontos (z.B. 1-2% pro Trade) festgelegt werden, um das Gesamtrisiko des Portfolios zu kontrollieren. Dies ist der Ausgangspunkt für alle R-Multiple-Berechnungen.",
+      "definition": "Das initiale Risiko (R) ist der maximale Verlust, den du bei einem Trade akzeptierst, bevor du die Position schließt. Es ist die Grundlage für die Positionsgröße und das Trade-Management. Lege das Risiko als festen Prozentsatz des Kontos fest (z. B. 1–2 % pro Trade), um das Gesamtrisiko im Griff zu behalten. Davon gehen alle R-Multiple-Berechnungen aus.",
       "formula": "Initial Risk (R) = |Entry Price - Stop Loss Price| × Position Size\n\nOder als Kontoprozentsatz: R = Account Size × Risk Percentage",
       "example": "Entry bei 50€, Stop-Loss bei 48€, Position 100 Aktien: Initial Risk = 2€ × 100 = 200€. Bei einem 10.000€ Konto entspricht dies 2% Risiko. Alternative: 10.000€ Konto, 1% Risiko = 100€ R"
     },
     "expectancy": {
       "term": "Erwartungswert (Expectancy)",
-      "definition": "Der Erwartungswert ist eine statistische Kennzahl, die den durchschnittlichen Gewinn oder Verlust pro Trade über eine große Anzahl von Trades prognostiziert. Er kombiniert Win Rate mit durchschnittlichem Gewinn und Verlust zu einer einzigen Metrik. Ein positiver Erwartungswert ist essentiell für langfristige Profitabilität - er zeigt, dass Ihre Strategie einen statistischen Edge hat. Je höher der Erwartungswert, desto profitabler ist Ihre Strategie über viele Trades hinweg.",
+      "definition": "Der Erwartungswert ist eine statistische Kennzahl, die den durchschnittlichen Gewinn oder Verlust pro Trade über viele Trades vorhersagt. Er verbindet Win Rate mit durchschnittlichem Gewinn und Verlust zu einer Zahl. Ein positiver Erwartungswert ist die Voraussetzung für langfristige Profitabilität – er zeigt, dass deine Strategie einen statistischen Edge hat. Je höher er ist, desto profitabler ist deine Strategie über viele Trades.",
       "formula": "Expectancy = (Win Rate × Avg Win) - (Loss Rate × Avg Loss)\n\nOder in R: Expectancy in R = (Win Rate × Avg Win in R) - (Loss Rate × Avg Loss in R)",
-      "example": "50% Win Rate, Ø Win 200€, Ø Loss 100€: Expectancy = (0,5 × 200) - (0,5 × 100) = 50€ pro Trade. Bei 100 Trades erwarten Sie 5.000€ Gewinn. Mit R-Multiple: 40% Win Rate, Ø 3R Gewinn, Ø 1R Verlust: Expectancy = (0,4 × 3R) - (0,6 × 1R) = 0,6R pro Trade"
+      "example": "50 % Win Rate, Ø Gewinn 200 €, Ø Verlust 100 €: Expectancy = (0,5 × 200) − (0,5 × 100) = 50 € pro Trade. Bei 100 Trades kannst du mit 5.000 € Gewinn rechnen. Mit R-Multiple: 40 % Win Rate, Ø 3R Gewinn, Ø 1R Verlust: Expectancy = (0,4 × 3R) − (0,6 × 1R) = 0,6R pro Trade"
     },
     "tradeRating": {
       "term": "Trade-Qualitätsbewertung (Trade Rating)",
-      "definition": "Eine subjektive Bewertung (1-5 Sterne), die die Qualität der Trade-Ausführung widerspiegelt. Berücksichtigt Faktoren wie: Befolgen Ihres Plans, Entry/Exit-Timing, emotionale Kontrolle und Risikomanagement. Hilft, gut ausgeführte Trades unabhängig vom P&L-Ergebnis zu identifizieren."
+      "definition": "Eine subjektive Bewertung (1–5 Sterne) der Qualität deiner Trade-Ausführung. Berücksichtigt zum Beispiel: Hast du deinen Plan befolgt, wie war das Timing von Einstieg und Ausstieg, wie die emotionale Kontrolle und das Risikomanagement? Hilft, gut ausgeführte Trades unabhängig vom Ergebnis zu erkennen."
     },
     "winRate": {
       "term": "Trefferquote (Win Rate)",
       "definition": "Die Trefferquote misst den Prozentsatz erfolgreicher Trades im Verhältnis zur Gesamtzahl aller Trades. Sie ist eine wichtige Kennzahl, muss aber immer im Kontext von Risk-Reward betrachtet werden. Eine hohe Win Rate garantiert keine Profitabilität, wenn die Gewinne klein und Verluste groß sind. Umgekehrt kann eine niedrige Win Rate mit hohen durchschnittlichen Gewinnen sehr profitabel sein.",
       "formula": "Win Rate = (Anzahl Gewinn-Trades / Anzahl aller Trades) × 100%\n\nMinimale Win Rate für Profitabilität = 1 / (1 + Avg R-Multiple)",
-      "example": "60 gewinnbringende Trades von 100 insgesamt: Win Rate = (60 / 100) × 100% = 60%. Bei Ø R-Multiple von 2R benötigen Sie nur: 1/(1+2) = 33,3% Win Rate für Breakeven. Bei R-Multiple 1R benötigen Sie 50% Win Rate"
+      "example": "60 Gewinner-Trades von 100: Win Rate = (60 / 100) × 100 % = 60 %. Bei einem Ø R-Multiple von 2R brauchst du nur 1/(1+2) = 33,3 % Win Rate für Breakeven. Bei 1R brauchst du 50 %."
     },
     "winRateRiskReward": {
       "term": "Win Rate & Risk-Reward Zusammenhang",
-      "definition": "Win Rate und Risk-Reward-Verhältnis (R-Multiple) sind die beiden fundamentalen Säulen der Trading-Profitabilität. Sie stehen in einem inversen Verhältnis: Je höher Ihr durchschnittliches R-Multiple, desto niedriger kann Ihre Win Rate sein und Sie bleiben trotzdem profitabel. Dies ist essentiell zu verstehen, da viele Trader fälschlicherweise nur auf hohe Win Rates fokussieren. Momentum-Strategien haben oft nur 30-40% Win Rate, sind aber durch hohe R-Multiples (3R+) sehr profitabel. Mean-Reversion-Strategien haben oft 60-70% Win Rate, aber niedrigere R-Multiples (0,5-1,5R).",
-      "example": "Szenario A (Momentum): 35% Win Rate, Ø Gewinn 4R, Ø Verlust 1R → Expectancy = (0,35 × 4R) - (0,65 × 1R) = 0,75R pro Trade (sehr profitabel).\n\nSzenario B (Mean-Reversion): 65% Win Rate, Ø Gewinn 0,8R, Ø Verlust 1R → Expectancy = (0,65 × 0,8R) - (0,35 × 1R) = 0,17R pro Trade (profitabel, aber weniger).\n\nSzenario C (verlustreich): 60% Win Rate, Ø Gewinn 0,5R, Ø Verlust 1R → Expectancy = (0,6 × 0,5R) - (0,4 × 1R) = -0,1R pro Trade (Verlust trotz hoher Win Rate!).\n\nBreakeven-Formel: Bei Ø R-Multiple von X benötigen Sie mindestens 1/(1+X) Win Rate. Bei 2R: 33,3%, bei 1R: 50%, bei 0,5R: 66,7%"
+      "definition": "Win Rate und Risk-Reward-Verhältnis (R-Multiple) sind die beiden Säulen der Trading-Profitabilität. Sie hängen umgekehrt zusammen: Je höher dein durchschnittliches R-Multiple, desto niedriger darf deine Win Rate sein, und du bleibst trotzdem profitabel. Das ist wichtig, weil viele Trader nur auf eine hohe Win Rate schauen. Momentum-Strategien haben oft nur 30–40 % Win Rate, sind aber durch hohe R-Multiples (3R+) sehr profitabel. Mean-Reversion-Strategien haben oft 60–70 % Win Rate, aber niedrigere R-Multiples (0,5–1,5R).",
+      "example": "Szenario A (Momentum): 35 % Win Rate, Ø Gewinn 4R, Ø Verlust 1R → Expectancy = (0,35 × 4R) − (0,65 × 1R) = 0,75R pro Trade (sehr profitabel).\n\nSzenario B (Mean-Reversion): 65 % Win Rate, Ø Gewinn 0,8R, Ø Verlust 1R → Expectancy = (0,65 × 0,8R) − (0,35 × 1R) = 0,17R pro Trade (profitabel, aber weniger).\n\nSzenario C (verlustreich): 60 % Win Rate, Ø Gewinn 0,5R, Ø Verlust 1R → Expectancy = (0,6 × 0,5R) − (0,4 × 1R) = −0,1R pro Trade (Verlust trotz hoher Win Rate!).\n\nBreakeven-Formel: Bei einem Ø R-Multiple von X brauchst du mindestens 1/(1+X) Win Rate. Bei 2R: 33,3 %, bei 1R: 50 %, bei 0,5R: 66,7 %"
     },
     "profitFactor": {
       "term": "Profit Factor",
@@ -1315,7 +1315,7 @@
       "term": "Maximaler Drawdown (Max Drawdown)",
       "definition": "Der maximale Drawdown misst den größten prozentualen Rückgang vom Höchststand zum Tiefststand der Equity-Kurve während einer Verlustphase. Es ist eine der wichtigsten Risikokennzahlen, da sie das psychologische und finanzielle Worst-Case-Szenario darstellt. Ein hoher Drawdown kann zur Kapitulation führen, selbst wenn die Strategie langfristig profitabel ist. Professionelle Trader überwachen Drawdowns genau und setzen oft maximale Drawdown-Limits (z.B. 20-25% als Stop-Trading-Level).",
       "formula": "Max Drawdown % = ((Trough Value - Peak Value) / Peak Value) × 100%\n\nMax Drawdown € = Peak Value - Trough Value",
-      "example": "Konto erreicht 15.000€ Peak, fällt durch Verlustserie auf 12.000€ Trough, bevor es sich erholt: Max Drawdown = ((12.000 - 15.000) / 15.000) × 100% = -20% oder 3.000€ absolut. Bei 50% Drawdown (15.000€ auf 7.500€) benötigen Sie +100% Gewinn nur um wieder auf Ausgangsniveau zu kommen!"
+      "example": "Das Konto erreicht ein Hoch von 15.000 €, fällt durch eine Verlustserie auf 12.000 € und erholt sich dann: Max Drawdown = ((12.000 − 15.000) / 15.000) × 100 % = −20 % oder 3.000 € absolut. Bei 50 % Drawdown (15.000 € auf 7.500 €) brauchst du +100 % Gewinn, nur um wieder auf das Ausgangsniveau zu kommen!"
     },
     "avgWinLoss": {
       "term": "Ø Gewinn/Verlust (Avg Win/Loss)",
@@ -1341,18 +1341,18 @@
     },
     "equityCurve": {
       "term": "Equity Curve",
-      "definition": "Die Equity Curve ist eine grafische Darstellung der kumulativen Performance Ihres Trading-Kontos über die Zeit. Sie zeigt die Entwicklung Ihres Kapitals von Trade zu Trade und visualisiert Wachstumsphasen sowie Drawdown-Perioden. Eine ideale Equity Curve steigt kontinuierlich mit moderaten Rückgängen. Die Analyse der Equity Curve hilft, Muster zu erkennen: Ist Ihre Performance konsistent oder von wenigen großen Gewinnern abhängig? Zeigt die Kurve lange Seitwärtsphasen oder tiefe Drawdowns? Dies ist essentiell für psychologisches Trading-Management.",
+      "definition": "Die Equity Curve zeigt die kumulierte Performance deines Trading-Kontos über die Zeit: die Entwicklung deines Kapitals von Trade zu Trade, mit Wachstumsphasen und Drawdowns. Eine ideale Equity Curve steigt stetig mit moderaten Rückgängen. Die Kurve hilft, Muster zu erkennen: Ist deine Performance konstant oder hängt sie an wenigen großen Gewinnern? Gibt es lange Seitwärtsphasen oder tiefe Drawdowns? Das ist wichtig für den psychologischen Umgang mit dem Trading.",
       "example": "Start mit 10.000€: Nach 5 Trades (Gewinne: +200€, +150€, Verluste: -100€, -80€, +300€) zeigt die Equity Curve: 10.000€ → 10.200€ → 10.350€ → 10.250€ → 10.170€ → 10.470€. Die Visualisierung macht sofort sichtbar, dass trotz 3 von 5 gewinnenden Trades (60% Win Rate) der größte Gewinn (+300€) entscheidend war. Eine flache oder fallende Equity Curve über längere Zeit signalisiert Strategieanpassung."
     },
     "consistencyTracker": {
       "term": "Consistency Tracker / Trading-Aktivitäts-Heatmap",
-      "definition": "Der Consistency Tracker ist eine visuelle Heatmap Ihrer täglichen Trading-Aktivität über mehrere Wochen/Monate. Jede Kachel repräsentiert einen Tag: Grün = profitabler Tag, Rot = Verlusttag, Intensität = Anzahl der Trades. Dieses Tool offenbart Muster in Ihrem Trading-Verhalten: Traden Sie zu häufig? Gibt es wochentagsspezifische Muster? Sind Sie konsistent aktiv oder sporadisch? Konsistenz ist kritisch für statistisch signifikante Ergebnisse. Wenn Sie nur 5 Trades pro Monat machen, sind 100+ Trades für valide Strategie-Bewertung nötig - das dauert 20 Monate. Mehr Konsistenz = schnellere Lernkurve.",
-      "example": "Die Heatmap zeigt: Montag-Mittwoch meist grün mit hoher Intensität (viele profitable Trades), Donnerstag-Freitag gemischt oder leer (weniger/keine Aktivität). Dies könnte bedeuten: Sie performen besser am Wochenanfang wenn der Markt Trends etabliert. Oder: Sie werden gegen Wochenende weniger diszipliniert. Die Analyse führt zu Anpassung: Fokus auf Montag-Mittwoch Trading, strikte Pause Donnerstag-Freitag → sofortige Performance-Verbesserung durch Elimination schwacher Tage."
+      "definition": "Der Consistency Tracker ist eine Heatmap deiner täglichen Trading-Aktivität über mehrere Wochen. Jede Kachel ist ein Tag: Grün = profitabler Tag, Rot = Verlusttag, Farbstärke = Anzahl der Trades. So siehst du Muster in deinem Verhalten: Tradest du zu oft? Gibt es Muster je Wochentag? Bist du regelmäßig aktiv oder nur sporadisch? Regelmäßigkeit ist wichtig für aussagekräftige Ergebnisse: Wenn du nur 5 Trades pro Monat machst, dauert es 20 Monate, bis du die 100+ Trades für eine belastbare Bewertung deiner Strategie hast. Mehr Konstanz = schnelleres Lernen.",
+      "example": "Die Heatmap zeigt: Montag bis Mittwoch meist grün und kräftig (viele profitable Trades), Donnerstag und Freitag gemischt oder leer. Das könnte heißen: Du performst am Wochenanfang besser, wenn der Markt Trends ausbildet. Oder: Gegen Wochenende wirst du weniger diszipliniert. Daraus folgt eine Anpassung: Fokus auf Montag bis Mittwoch, Pause am Donnerstag und Freitag → bessere Performance, weil die schwachen Tage wegfallen."
     },
     "dailyTradeGoal": {
       "term": "Daily Trade Goal / Tägliches Handelsziel",
-      "definition": "Das Daily Trade Goal ist ein Risikomanagement-Tool, das zwei kritische Parameter festlegt: (1) Ein tägliches Gewinnziel in Dollar und (2) eine maximale Anzahl von Trades pro Tag. Dieses Feature hilft Ihnen, diszipliniert zu bleiben und zwei häufige Trading-Fehler zu vermeiden: Overtrading (zu viele Trades aus Langeweile oder 'Revenge Trading' nach Verlusten) und mangelnde Zielsetzung (endloses Traden ohne klares Exit-Kriterium). Sobald Sie Ihr Tagesziel erreichen ODER Ihr Trade-Limit überschreiten, sollten Sie den Handelstag beenden. Dies fördert Qualität über Quantität und schützt vor emotionalen Entscheidungen.",
-      "example": "Sie setzen ein Daily Goal von $500 bei maximal 10 Trades. Szenario 1: Nach 6 Trades haben Sie $520 Gewinn → Sie stoppen für den Tag, nehmen den Profit mit und vermeiden Rückgabe durch Overtrading. Szenario 2: Nach 10 Trades haben Sie $200 Gewinn → Sie stoppen trotz Nicht-Erreichen des Ziels, da Sie Ihr Trade-Limit erreicht haben. Dies verhindert Revenge-Trading oder verzweifeltes Nachjagen des Ziels. Das System trackt Ihre Erfolgsrate: Wie oft erreichen Sie Ihr Ziel? Wie oft überschreiten Sie das Trade-Limit? Diese Daten offenbaren Muster und helfen bei der Optimierung Ihrer Trading-Strategie."
+      "definition": "Das Tagesziel ist ein Werkzeug fürs Risikomanagement mit zwei Werten: (1) ein tägliches Gewinnziel und (2) eine maximale Anzahl Trades pro Tag. Es hilft dir, diszipliniert zu bleiben und zwei häufige Fehler zu vermeiden: Overtrading (zu viele Trades aus Langeweile oder Revenge-Trading nach Verlusten) und fehlende Ziele (endloses Traden ohne klares Ende). Sobald du dein Tagesziel erreichst ODER dein Trade-Limit voll ist, solltest du den Handelstag beenden. Das fördert Qualität statt Menge und schützt vor emotionalen Entscheidungen.",
+      "example": "Du setzt ein Tagesziel von 500 $ bei maximal 10 Trades. Szenario 1: Nach 6 Trades hast du 520 $ Gewinn → du hörst für heute auf, nimmst den Gewinn mit und gibst ihn nicht durch Overtrading zurück. Szenario 2: Nach 10 Trades hast du 200 $ Gewinn → du hörst trotzdem auf, weil dein Trade-Limit erreicht ist. Das verhindert Revenge-Trading und verzweifeltes Hinterherjagen. Die App zählt mit: Wie oft erreichst du dein Ziel, wie oft überschreitest du das Limit? Diese Zahlen zeigen Muster und helfen dir, deine Strategie zu verbessern."
     },
     "breakout": {
       "term": "Breakout",
@@ -1366,7 +1366,7 @@
     },
     "edge": {
       "term": "Edge / Handelsvorteil",
-      "definition": "Ein Edge ist ein statistischer oder informationeller Vorteil, der Ihre Gewinnwahrscheinlichkeit über den Zufall hinaus erhöht. Kann durch Strategie, Timing, Information oder Execution kommen.",
+      "definition": "Ein Edge ist ein statistischer oder informationeller Vorteil, der deine Gewinnwahrscheinlichkeit über den Zufall hinaus erhöht. Er kann aus Strategie, Timing, Information oder Ausführung kommen.",
       "example": "Dein Edge: Trades nur bei spezifischen Chart-Mustern mit 55% Win Rate und 2R Avg Win → positiver Erwartungswert"
     },
     "gap": {
@@ -1376,7 +1376,7 @@
     },
     "leverage": {
       "term": "Hebel / Leverage",
-      "definition": "Leverage ermöglicht es, mit geliehenem Kapital größere Positionen zu kontrollieren als Ihr tatsächliches Kapital erlaubt. Verstärkt sowohl Gewinne als auch Verluste proportional.",
+      "definition": "Mit Leverage (Hebel) kontrollierst du mit geliehenem Kapital größere Positionen, als dein eigenes Kapital erlauben würde. Verstärkt Gewinne und Verluste gleichermaßen.",
       "formula": "Leverage Ratio = Positionswert / Eigenkapital\n\nMargin Required = Positionswert / Leverage",
       "example": "10.000€ Konto, 2:1 Leverage → können 20.000€ Position halten. Bei 5% Gewinn: 1.000€ (10% auf Eigenkapital). Bei 5% Verlust: -1.000€ (-10% auf Eigenkapital)"
     },
@@ -1387,7 +1387,7 @@
     },
     "positionSizing": {
       "term": "Positionsgrößenbestimmung (Position Sizing)",
-      "definition": "Position Sizing definiert, wie viel Kapital Sie in einen einzelnen Trade investieren basierend auf Risiko, Konto-Größe und Trade-Setup. Kritisch für langfristiges Überleben und Wachstum.",
+      "definition": "Position Sizing legt fest, wie viel Kapital du in einen einzelnen Trade steckst, abhängig von Risiko, Kontogröße und Setup. Entscheidend, um langfristig zu überleben und zu wachsen.",
       "formula": "Position Size = Risikobetrag / Risiko pro Einheit\n\nRisikobetrag = Kontogröße × Risiko% (z.B. 1-2%)",
       "example": "10.000€ Konto, 2% Risiko (200€), Entry 50€, Stop 47€ (3€ Risiko): Position Size = 200€ / 3€ = 66 Aktien"
     },
@@ -1399,7 +1399,7 @@
     "slippage": {
       "term": "Slippage",
       "definition": "Slippage ist die Differenz zwischen dem erwarteten Trade-Preis und dem tatsächlichen Ausführungspreis. Tritt bei Market Orders in schnellen/illiquiden Märkten auf.",
-      "example": "Sie wollen bei 50€ kaufen (Market Order), aber werden bei 50.15€ ausgeführt = 0.15€ Slippage pro Aktie (0.3%)"
+      "example": "Du willst bei 50 € kaufen (Market Order), wirst aber bei 50,15 € ausgeführt = 0,15 € Slippage pro Aktie (0,3 %)"
     },
     "supportResistance": {
       "term": "Unterstützung & Widerstand (Support & Resistance)",
@@ -1408,7 +1408,7 @@
     },
     "takeProfit": {
       "term": "Take Profit / Gewinnmitnahme",
-      "definition": "Take Profit ist ein vordefinierter Ausstiegspunkt, wo Sie automatisch Gewinne realisieren. Sollte auf technischer Analyse basieren (Widerstand, Fibonacci, etc.) nicht Gier.",
+      "definition": "Take Profit ist ein vorher festgelegter Ausstiegspunkt, an dem du automatisch Gewinne mitnimmst. Er sollte auf technischer Analyse beruhen (Widerstand, Fibonacci usw.), nicht auf Gier.",
       "example": "Entry 50€, Take Profit bei 56€ (vorheriger Widerstand). Bei 3€ Stop = 2:1 Risk-Reward"
     },
     "trend": {
@@ -1561,13 +1561,13 @@
     "checkedRiskManagement": "Risikomanagement-Regeln überprüft",
     "addChecklistItem": "Checklistenpunkt hinzufügen...",
     "marketOutlook": "Marktausblick",
-    "marketOutlookPlaceholder": "Wie sehen Sie den Markt heute? Bullish, bearish oder neutral?",
+    "marketOutlookPlaceholder": "Wie siehst du den Markt heute? Bullish, bearish oder neutral?",
     "keyLevels": "Wichtige Levels",
-    "keyLevelsPlaceholder": "Listen Sie wichtige Unterstützungs- und Widerstandsniveaus auf...",
+    "keyLevelsPlaceholder": "Wichtige Unterstützungen und Widerstände …",
     "tradingPlan": "Trading-Plan",
-    "tradingPlanPlaceholder": "Was ist Ihr Plan für heute? Setups nach denen Sie suchen, Strategien...",
+    "tradingPlanPlaceholder": "Was ist dein Plan für heute? Welche Setups suchst du, welche Strategien …",
     "mindset": "Mindset & Ziele",
-    "mindsetPlaceholder": "Wie fühlen Sie sich? Was sind Ihre Ziele für heute?",
+    "mindsetPlaceholder": "Wie fühlst du dich? Was sind deine Ziele für heute?",
     "savePrep": "Tägliche Vorbereitung speichern",
     "saved": "Tägliche Vorbereitung erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der täglichen Vorbereitung"

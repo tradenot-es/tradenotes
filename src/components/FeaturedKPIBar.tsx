@@ -89,8 +89,7 @@ export function FeaturedKPIBar({
             ${kpi.bgClass}
             border border-border/30
             backdrop-blur-sm
-            transition-all duration-300
-            hover:scale-[1.02] hover:shadow-lg
+            transition-colors duration-300
           `}
         >
           <div className="flex items-center gap-3">

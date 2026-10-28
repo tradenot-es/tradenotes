@@ -66,7 +66,7 @@ export function TradingGoalsWidget({ dailyResults, enabledGoalsCount }: TradingG
   }
 
   return (
-    <Card className="hover:shadow-glow transition-all">
+    <Card>
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center justify-between text-lg">
           <div 
