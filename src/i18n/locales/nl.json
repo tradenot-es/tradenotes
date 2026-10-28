@@ -65,11 +65,9 @@
     "resetLinkInvalid": "De resetlink is ongeldig of verlopen. Vraag een nieuwe aan."
   },
   "captcha": {
-    "clickToVerify": "Klik om te verifiëren",
     "loading": "Challenge wordt geladen...",
     "verifying": "Verifiëren...",
     "verified": "Geverifieerd!",
-    "error": "Fout opgetreden",
     "clickToRetry": "Klik om opnieuw te proberen"
   },
   "dashboard": {

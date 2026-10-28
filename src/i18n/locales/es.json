@@ -65,11 +65,9 @@
     "resetLinkInvalid": "El enlace de restablecimiento no es válido o ha caducado. Solicita uno nuevo."
   },
   "captcha": {
-    "clickToVerify": "Clic para verificar",
     "loading": "Cargando desafío...",
     "verifying": "Verificando...",
     "verified": "¡Verificado!",
-    "error": "Error ocurrido",
     "clickToRetry": "Clic para reintentar"
   },
   "dashboard": {

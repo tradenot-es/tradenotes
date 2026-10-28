@@ -65,11 +65,9 @@
     "resetLinkInvalid": "Le lien de réinitialisation est invalide ou a expiré. Demandes-en un nouveau."
   },
   "captcha": {
-    "clickToVerify": "Cliquer pour vérifier",
     "loading": "Chargement du défi...",
     "verifying": "Vérification en cours...",
     "verified": "Vérifié !",
-    "error": "Erreur survenue",
     "clickToRetry": "Cliquer pour réessayer"
   },
   "dashboard": {

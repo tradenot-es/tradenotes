@@ -64,11 +64,9 @@
     "resetLinkInvalid": "Der Link zum Zurücksetzen ist ungültig oder abgelaufen. Bitte fordere einen neuen an."
   },
   "captcha": {
-    "clickToVerify": "Klicken zum Verifizieren",
     "loading": "Challenge wird geladen...",
     "verifying": "Verifizierung läuft...",
     "verified": "Verifiziert!",
-    "error": "Fehler aufgetreten",
     "clickToRetry": "Klicken zum erneuten Versuch"
   },
   "dashboard": {

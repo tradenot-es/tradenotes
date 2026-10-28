@@ -1,7 +1,8 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Loader2, CheckCircle2, Shield } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { sha256Hex } from '@/lib/sha256';
 
 interface AltchaWidgetProps {
   onVerified: (payload: string) => void;
@@ -23,7 +24,6 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
   const { t } = useTranslation();
   const [state, setState] = useState<WidgetState>('idle');
   const [progress, setProgress] = useState(0);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const fetchChallenge = async (): Promise<Challenge> => {
     const response = await fetch(`/api/altcha/challenge`);
@@ -33,38 +33,22 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
     return response.json();
   };
 
+  // proof of work: find n with SHA-256(salt + n) === challenge. Plain-JS hashing works in every
+  // context (crypto.subtle only exists over HTTPS/localhost) and, being synchronous, is faster
+  // than awaiting crypto.subtle for each of up to 100 000 tries.
   const solveChallenge = async (challenge: Challenge): Promise<string> => {
     const { salt, algorithm, maxnumber } = challenge;
-    const targetHash = challenge.challenge;
-    
-    // ALTCHA v2 PoW: Find number n where SHA-256(salt + n) === challenge
+    if (algorithm !== 'SHA-256') throw new Error(`unsupported algorithm ${algorithm}`);
     for (let i = 0; i <= maxnumber; i++) {
-      // Update progress every 2000 iterations for smoother UI
-      if (i % 2000 === 0) {
+      // yield every 5000 tries so the page stays responsive
+      if (i % 5000 === 0) {
         setProgress(Math.round((i / maxnumber) * 100));
-        // Allow UI to update
-        await new Promise(resolve => setTimeout(resolve, 0));
+        await new Promise((resolve) => setTimeout(resolve, 0));
       }
-
-      const data = `${salt}${i}`;
-      const encoder = new TextEncoder();
-      const hashBuffer = await crypto.subtle.digest(algorithm, encoder.encode(data));
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-      
-      // Check if hash matches the challenge exactly
-      if (hashHex === targetHash) {
-        // Found solution
-        const payload = {
-          challenge: targetHash,
-          salt,
-          number: i,
-          algorithm,
-        };
-        return btoa(JSON.stringify(payload));
+      if (sha256Hex(`${salt}${i}`) === challenge.challenge) {
+        return btoa(JSON.stringify({ challenge: challenge.challenge, salt, number: i, algorithm }));
       }
     }
-    
     throw new Error('Could not solve challenge');
   };
 
@@ -73,7 +57,6 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
 
     setState('loading');
     setProgress(0);
-    setErrorMessage(null);
 
     try {
       const challenge = await fetchChallenge();
@@ -86,32 +69,35 @@ export const AltchaWidget = ({ onVerified, onError, className }: AltchaWidgetPro
       onVerified(payload);
     } catch (error) {
       setState('error');
-      const message = error instanceof Error ? error.message : t('auth.captchaError');
-      setErrorMessage(message);
-      onError?.(message);
+      onError?.(error instanceof Error ? error.message : t('auth.captchaError'));
     }
   }, [state, onVerified, onError, t]);
+
+  // runs by itself as soon as the form is shown; a click is only needed to retry after an error
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    startVerification();
+  }, [startVerification]);
 
   const getStatusText = () => {
     switch (state) {
       case 'idle':
-        return t('captcha.clickToVerify', 'Klicken zum Verifizieren');
+        return t('captcha.loading');
       case 'loading':
-        return t('captcha.loading', 'Challenge wird geladen...');
+        return t('captcha.loading');
       case 'solving':
-        return t('captcha.verifying', 'Verifizierung läuft...') + ` ${progress}%`;
+        return `${t('captcha.verifying')} ${progress}%`;
       case 'verified':
-        return t('captcha.verified', 'Verifiziert!');
+        return t('captcha.verified');
       case 'error':
-        return errorMessage || t('captcha.error', 'Fehler aufgetreten');
+        return t('captcha.clickToRetry');
     }
   };
 
   const handleRetry = () => {
-    if (state === 'error') {
-      setState('idle');
-      setErrorMessage(null);
-    }
+    if (state === 'error') startVerification();
   };
 
   return (
