@@ -1,4 +1,3 @@
-import { featureFlags } from "@/config/featureFlags";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +10,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { toast } from "sonner";
 import { Calendar, CheckCircle2, Target, Brain, TrendingUp, Plus } from "lucide-react";
 import { format } from "date-fns";
-import { SectorSentimentWidget } from "./SectorSentimentWidget";
 
 interface ChecklistItem {
   id: string;
@@ -175,9 +173,6 @@ export function DailyPrep() {
 
   return (
     <div className="space-y-6">
-      {/* Sector Sentiment Widget at top */}
-      {featureFlags.NEWS_FEATURES && <SectorSentimentWidget />}
-
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">

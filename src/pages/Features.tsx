@@ -15,7 +15,6 @@ import { FeatureRow } from "@/components/features/FeatureRow";
 import { FeaturesHero } from "@/components/features/FeaturesHero";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { ArrowRight, Brain, CalendarDays, ClipboardCheck, Coffee, FileSpreadsheet, Gauge, Landmark, Lightbulb, Share2, ShieldCheck } from "lucide-react";
-import { featureFlags } from "@/config/featureFlags";
 import { BehaviorDemo, CooldownDemo, DayViewDemo, DisciplineDemo, MentorDemo, ScoreDemo } from "@/components/features/FeatureDemos";
 import {
   TrendingUp,
@@ -27,11 +26,7 @@ import {
   LineChart,
   Activity,
   Calendar,
-  Target,
   Bell,
-  MessageSquare,
-  PieChart,
-  Mail,
   Calculator,
   FileText,
   Import,
@@ -47,7 +42,7 @@ const Features = () => {
   const shot = useScreens();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const categoryIds = ["discipline", "import", "trading-tools", "analytics", ...(featureFlags.AI_FEATURES ? ["ai"] : []), "reports", "market-intel"];
+  const categoryIds = ["discipline", "import", "trading-tools", "analytics", "reports", "market-intel"];
   const activeCategory = useScrollSpy(categoryIds, 140);
 
   const handleCategoryClick = (categoryId: string) => {
@@ -241,37 +236,6 @@ const Features = () => {
         },
       ],
     },
-    ...(featureFlags.AI_FEATURES
-      ? [
-    {
-      id: "ai",
-      name: t("features.categories.ai"),
-      features: [
-        {
-          icon: <MessageSquare className="h-6 w-6" />,
-          title: t("features.items.aiAssistant.title"),
-          description: t("features.items.aiAssistant.description"),
-          benefits: t("features.items.aiAssistant.benefits", { returnObjects: true }) as string[],
-          illustration: shot("reports-overview"),
-        },
-        {
-          icon: <PieChart className="h-6 w-6" />,
-          title: t("features.items.aiCharts.title"),
-          description: t("features.items.aiCharts.description"),
-          benefits: t("features.items.aiCharts.benefits", { returnObjects: true }) as string[],
-          illustration: shot("reports-overview"),
-        },
-        {
-          icon: <Mail className="h-6 w-6" />,
-          title: t("features.items.dailySummary.title"),
-          description: t("features.items.dailySummary.description"),
-          benefits: t("features.items.dailySummary.benefits", { returnObjects: true }) as string[],
-          illustration: shot("days"),
-        },
-      ],
-    },
-        ]
-      : []),
     {
       id: "reports",
       name: t("features.categories.reports"),
@@ -317,42 +281,11 @@ const Features = () => {
       id: "market-intel",
       name: t("features.categories.marketIntel"),
       features: [
-        // needs the Marketaux news integration
-        ...(featureFlags.NEWS_FEATURES
-          ? [
-        {
-          icon: <Target className="h-6 w-6" />,
-          title: t("features.items.portfolioNews.title"),
-          description: t("features.items.portfolioNews.description"),
-          benefits: t("features.items.portfolioNews.benefits", { returnObjects: true }) as string[],
-          illustration: shot("trades"),
-        },
-            ]
-          : []),
         {
           icon: <Globe className="h-6 w-6" />,
           title: t("features.items.politicalEvents.title"),
           description: t("features.items.politicalEvents.description"),
           benefits: t("features.items.politicalEvents.benefits", { returnObjects: true }) as string[],
-          illustration: shot("trades"),
-        },
-        // needs the Marketaux news integration
-        ...(featureFlags.NEWS_FEATURES
-          ? [
-        {
-          icon: <BarChart3 className="h-6 w-6" />,
-          title: t("features.items.sectorSentiment.title"),
-          description: t("features.items.sectorSentiment.description"),
-          benefits: t("features.items.sectorSentiment.benefits", { returnObjects: true }) as string[],
-          illustration: shot("trades"),
-        },
-            ]
-          : []),
-        {
-          icon: <Calendar className="h-6 w-6" />,
-          title: t("features.items.economicCalendar.title"),
-          description: t("features.items.economicCalendar.description"),
-          benefits: t("features.items.economicCalendar.benefits", { returnObjects: true }) as string[],
           illustration: shot("trades"),
         },
       ],

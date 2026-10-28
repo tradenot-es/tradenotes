@@ -71,33 +71,17 @@
     "error": "Fout opgetreden",
     "clickToRetry": "Klik om opnieuw te proberen"
   },
-  "checkout": {
-    "successTitle": "Welkom bij Premium!",
-    "successDescription": "Je betaling is gelukt. Je Premium-toegang is nu actief.",
-    "premiumActivated": "Je hebt nu toegang tot alle Premium-functies:",
-    "feature1": "Onbeperkte trade-registratie",
-    "feature2": "Geavanceerde rapporten & analyses",
-    "feature3": "AI-aangedreven trading-assistent",
-    "goToDashboard": "Naar dashboard",
-    "redirecting": "Automatische doorverwijzing in {{seconds}} seconden..."
-  },
   "dashboard": {
     "title": "Dashboard",
     "subtitle": "Overzicht van je trading prestaties",
     "addTrade": "Trade toevoegen",
-    "totalTrades": "Totaal transacties",
     "winRate": "Winstpercentage",
     "winRateTooltip": "Percentage winnende trades. Groen vanaf 50%, Geel 40-50%, Rood onder 40%. Een lager winstpercentage kan winstgevend zijn als R-Multiple > 1.",
     "netPnL": "Netto P&L",
-    "netPnLTooltip": "Totale winst of verlies van alle trades na kosten. Groen = Winstgevend, Rood = Verliezen.",
     "avgRMultiple": "Gem. R-Multiple",
     "avgRMultipleTooltip": "Gemiddelde winst/risico ratio. Groen vanaf 1.0 (winsten > risico), Geel 0.5-1.0, Rood onder 0.5. Cruciaal voor winstgevendheid met lagere winstpercentages.",
-    "expectancy": "Verwachting",
-    "expectancyTooltip": "Verwachte winst per trade gebaseerd op Win Rate, Avg Win en Avg Loss. Positief = winstgevend systeem, Negatief = verliesgevend systeem.",
     "profitFactor": "Winstfactor",
     "profitFactorTooltip": "Brutowinsten / Brutoverliezen. Groen vanaf 1.5 (zeer winstgevend), Geel 1.0-1.5 (winstgevend), Rood onder 1.0 (verliezen). Een waarde boven 1 geeft winstgevendheid aan.",
-    "avgWinLoss": "Gem. Winst / Verlies",
-    "avgWinLossTooltip": "Toont de verhouding tussen gemiddelde winst en gemiddeld verlies. Een hogere Avg Win maakt winstgevendheid mogelijk ondanks lager winstpercentage.",
     "consistencyTracker": "Trading consistentie",
     "consistencyTrackerTooltip": "Visualiseert je dagelijkse trading activiteit en prestaties over de afgelopen 12 weken. Groene vierkanten tonen winstgevende dagen, rode vierkanten verlies dagen. Hoe intenser de kleur, hoe meer transacties zijn uitgevoerd.",
     "less": "Minder",
@@ -109,12 +93,10 @@
     "avgTrade": "Gem/Trade",
     "dailyBreakdown": "Dagelijkse uitsplitsing",
     "featured": {
-      "totalBalance": "Totale balans",
       "netProfit": "Nettowinst",
       "netProfitTooltip": "Totale winst min alle verliezen en kosten.",
       "tradingDays": "Handelsdagen",
       "tradingDaysTooltip": "Aantal dagen met minstens één uitgevoerde trade.",
-      "winRate": "Winstpercentage",
       "avgTrade": "Gem/Trade",
       "avgTradeTooltip": "Gemiddelde winst of verlies per trade.",
       "totalTrades": "Transacties",
@@ -122,8 +104,6 @@
       "expectancy": "Verwachting",
       "expectancyTooltip": "Verwachte winst per trade op basis van je winstpercentage en je gemiddelde winst/verlies."
     },
-    "bestWorstTrade": "Beste / Slechtste Trade",
-    "bestWorstTradeTooltip": "Toont uw meest winstgevende en meest verliesgevende trade. Helpt bij het analyseren van uitschieters en risicobeheer.",
     "tradesPerDay": "transacties/dag",
     "longestWinStreak": "Langste winstreeks",
     "longestLossStreak": "Langste verliesreeks",
@@ -139,88 +119,6 @@
     "accountPerformanceTooltip": "Prestatie-overzicht per accounttype (Sim, Evaluatie, Gefinancierd, Live). Klik voor gedetailleerde analyse.",
     "clickForDetails": "Klik voor details",
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
-    "equity": "Vermogen",
-    "pnl": "P&L",
-    "portfolioNews": "Portfolio Nieuws",
-    "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
-    "newsTranslated": "Nieuws succesvol vertaald!",
-    "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
-    "autoTranslated": "Automatisch vertaald",
-    "stocksOnlyNews": "Portfolio nieuws is alleen beschikbaar voor aandelensymbolen (bijv. AAPL, GOOGL, TSLA). Futures en indices worden niet ondersteund door de nieuwsaanbieder.",
-    "noNewsProxiesAvailable": "Geen ondersteunde symbolen beschikbaar. Voeg aandelentransacties of populaire futures (NQ, ES, GC) toe om relevant nieuws te zien.",
-    "dynamicDashboard": "Dynamisch Dashboard",
-    "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
-    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
-    "newsCount": "{{count}} Nieuws",
-    "noNewsForSymbol": "Geen nieuws voor dit symbool",
-    "via": "via",
-    "smartTags": {
-      "earningsPlay": "Earnings Play",
-      "macroEvent": "Macro Gebeurtenis",
-      "politicalCatalyst": "Politieke Katalysator",
-      "newsCatalyst": "Nieuws Katalysator"
-    },
-    "sectorSentiment": "Marktstemming Vandaag",
-    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van bias",
-    "articles": "artikelen",
-    "sectorArticles": "{{count}} artikelen geanalyseerd",
-    "topArticles": "Top Artikelen",
-    "negativeArticles": "Negatief Nieuws",
-    "trend7Days": "7-dagen trend",
-    "sentiment": {
-      "mixed": "Gemengd",
-      "average": "Gemiddeld",
-      "warningTooltip": "Bevat sterk negatief nieuws ondanks positief gemiddelde",
-      "highVolatility": "Hoge volatiliteit: Sentiment varieert sterk tussen artikelen",
-      "negativeWarning": "{{count}} sterk negatieve artikel(en) ondanks positief gemiddelde"
-    },
-    "sectors": {
-      "examples_label": "bijv.",
-      "technology": {
-        "description": "Hardware, Software, Halfgeleiders, IT Diensten",
-        "examples": "Apple, Microsoft, NVIDIA, Adobe"
-      },
-      "communication_services": {
-        "description": "Media, Reclame, Telecommunicatie, Social Media",
-        "examples": "Google, Meta, Netflix, Disney"
-      },
-      "energy": {
-        "description": "Olie, Gas, Hernieuwbare Energie",
-        "examples": "ExxonMobil, Chevron, Shell"
-      },
-      "healthcare": {
-        "description": "Farmaceutica, Biotech, Medische Apparatuur",
-        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
-      },
-      "financials": {
-        "description": "Banken, Verzekeringen, Vermogensbeheer",
-        "examples": "JPMorgan, Berkshire Hathaway, Visa"
-      },
-      "consumer_cyclical": {
-        "description": "Detailhandel, Auto, Vrije tijd, Luxe Goederen",
-        "examples": "Amazon, Tesla, Nike, McDonald's"
-      },
-      "industrials": {
-        "description": "Lucht- en ruimtevaart, Defensie, Bouw, Transport",
-        "examples": "Boeing, Caterpillar, UPS"
-      },
-      "consumer_defensive": {
-        "description": "Voeding, Dranken, Huishoudelijke Producten",
-        "examples": "Coca-Cola, Procter & Gamble, Walmart"
-      },
-      "basic_materials": {
-        "description": "Metalen, Mijnbouw, Chemicaliën",
-        "examples": "Dow, Freeport-McMoRan, Nucor"
-      },
-      "real_estate": {
-        "description": "REITs, Vastgoedbeheer, Ontwikkeling",
-        "examples": "American Tower, Prologis, Simon Property"
-      },
-      "utilities": {
-        "description": "Elektriciteit, Water, Gas Voorzieningen",
-        "examples": "NextEra Energy, Duke Energy, Southern Company"
-      }
-    },
     "tradeCount_one": "{{count}} trade",
     "tradeCount_other": "{{count}} trades"
   },
@@ -238,99 +136,12 @@
     "title": "Prestatie details",
     "performanceBreakdownTooltip": "Gedetailleerde prestatiestatistieken: winst/verlies ratio, gemiddelde winsten/verliezen, evenals beste en slechtste transacties. Geeft inzicht in de kwaliteit van je trading beslissingen.",
     "winLossRatio": "Winst/Verlies Ratio",
-    "wins": "Winsten",
-    "losses": "Verliezen",
     "avgWin": "Gem. winst",
     "avgLoss": "Gem. verlies",
     "bestTrade": "Beste transactie",
-    "worstTrade": "Slechtste transactie",
-    "maxDrawdown": "Max drawdown",
-    "maxDrawdownTooltip": "Grootste kapitaaldaling van piek tot dal. Altijd negatief - meet maximaal risico en emotionele belasting van je strategie.",
-    "equityCurve": "Vermogenscurve",
-    "equityCurveTooltip": "Toont hoe je tradingkapitaal zich in de loop van de tijd cumulatief ontwikkelt. Een gestaag stijgende curve wijst op consistente winstgevendheid; grote dalingen tonen drawdownfases.",
-    "pnlByMonth": "P&L per maand",
-    "pnlChartTooltip": "Maandelijks overzicht van winst en verlies. Toont de prestaties per maand en helpt je seizoenspatronen en langetermijntrends te herkennen.",
-    "accountPerformance": "Account prestaties",
-    "accountPerformanceTooltip": "Prestatie-overzicht per accounttype (Sim, Evaluatie, Gefinancierd, Live). Klik voor details.",
-    "clickForDetails": "Klik voor details",
-    "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
-    "equity": "Vermogen",
-    "pnl": "P&L",
-    "sectorSentiment": "Marktsentiment Vandaag",
-    "sectorSentimentDescription": "Dagelijks sectoroverzicht helpt bij het identificeren van marktvooroordeel",
-    "articles": "artikelen",
-    "portfolioNews": "Portfolio Nieuws",
-    "portfolioNewsTooltip": "Automatisch geselecteerd financieel nieuws voor je meest verhandelde symbolen. Blijf op de hoogte van marktbewegende gebeurtenissen en ontwikkelingen die je posities kunnen beïnvloeden.",
-    "newsTranslated": "Nieuws succesvol vertaald!",
-    "translationFailed": "Vertaling mislukt. Probeer het opnieuw.",
-    "autoTranslated": "Automatisch vertaald",
-    "stocksOnlyNews": "Portfolio nieuws is alleen beschikbaar voor aandelensymbolen (bijv. AAPL, GOOGL, TSLA). Futures en indices worden niet ondersteund door de nieuwsaanbieder.",
-    "noNewsProxiesAvailable": "Geen ondersteunde symbolen beschikbaar. Voeg aandelentransacties of populaire futures (NQ, ES, GC) toe om relevant nieuws te zien.",
-    "dynamicDashboard": "Dynamisch Dashboard",
-    "dynamicDashboardInfo": "Nieuws automatisch gefilterd op je top presteerders",
-    "noSymbolsForNews": "Nog geen symbolen beschikbaar. Voeg transacties toe om relevant nieuws te ontvangen.",
-    "newsCount": "{{count}} Nieuws",
-    "noNewsForSymbol": "Geen nieuws voor dit symbool",
-    "via": "via",
-    "smartTags": {
-      "earningsPlay": "Resultaten",
-      "macroEvent": "Macro-evenement",
-      "politicalCatalyst": "Politieke Katalysator",
-      "newsCatalyst": "Nieuwskatalysator"
-    },
-    "sectorArticles": "{{count}} artikelen geanalyseerd",
-    "topArticles": "Topartikelen",
-    "trend7Days": "7-daagse trend",
-    "sectors": {
-      "examples_label": "bijv.",
-      "technology": {
-        "description": "Hardware, Software, Halfgeleiders, IT-Diensten",
-        "examples": "Apple, Microsoft, NVIDIA, Adobe"
-      },
-      "communication_services": {
-        "description": "Media, Advertenties, Telecommunicatie, Social Media",
-        "examples": "Google, Meta, Netflix, Disney"
-      },
-      "energy": {
-        "description": "Olie, Gas, Hernieuwbare Energie",
-        "examples": "ExxonMobil, Chevron, Shell"
-      },
-      "healthcare": {
-        "description": "Farmaceutica, Biotech, Medische Apparatuur",
-        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
-      },
-      "financials": {
-        "description": "Banken, Verzekeringen, Vermogensbeheer",
-        "examples": "JPMorgan, Berkshire Hathaway, Visa"
-      },
-      "consumer_cyclical": {
-        "description": "Retail, Automotive, Vrije Tijd, Luxegoederen",
-        "examples": "Amazon, Tesla, Nike, McDonald's"
-      },
-      "industrials": {
-        "description": "Lucht- & Ruimtevaart, Defensie, Bouw, Transport",
-        "examples": "Boeing, Caterpillar, UPS"
-      },
-      "consumer_defensive": {
-        "description": "Voedsel, Dranken, Huishoudproducten",
-        "examples": "Coca-Cola, Procter & Gamble, Walmart"
-      },
-      "basic_materials": {
-        "description": "Metalen, Mijnbouw, Chemicaliën",
-        "examples": "Dow, Freeport-McMoRan, Nucor"
-      },
-      "real_estate": {
-        "description": "REITs, Vastgoedontwikkeling",
-        "examples": "American Tower, Prologis, Simon Property"
-      },
-      "utilities": {
-        "description": "Elektriciteitsbedrijven, Water, Gas",
-        "examples": "NextEra Energy, Duke Energy, Dominion"
-      }
-    }
+    "worstTrade": "Slechtste transactie"
   },
   "calendar": {
-    "politicalEvent": "Impact Gebeurtenis",
     "politicalEventsToday": "Impact events vandaag",
     "moreEvents": "meer gebeurtenissen",
     "loadingPoliticalEvents": "Impact events laden...",
@@ -344,9 +155,7 @@
     "impactMediumTooltip": "Gematigde volatiliteit mogelijk. Marktreactie hangt af van resultaten of uitspraken.",
     "impactLowTooltip": "Weinig directe marktreactie verwacht. Lange termijn effecten mogelijk.",
     "impactPoliticalTooltip": "Politieke gebeurtenis met potentiële marktinvloed. Reactie moeilijk te voorspellen.",
-    "impactLegend": "Legenda",
     "scheduledEvents": "Geplande evenementen",
-    "relatedNews": "Gerelateerd nieuws",
     "confirmed": "Bevestigd",
     "categories": {
       "fomc": "FOMC",
@@ -373,7 +182,6 @@
     "subtitle": "Beheer en analyseer je trading geschiedenis",
     "addTrade": "Transactie toevoegen",
     "filter": "Filteren",
-    "filterBy": "Filteren op",
     "symbol": "Symbool",
     "priceUpdated": "Prijs bijgewerkt: {{price}}",
     "priceNotAvailable": "Prijs niet beschikbaar",
@@ -384,7 +192,6 @@
     "qty": "Aantal",
     "entryPrice": "Instapprijs",
     "exitPrice": "Uitstapprijs",
-    "pnl": "P&L",
     "fees": "Kosten",
     "entryTime": "Instaptijd",
     "exitTime": "Uitstaptijd",
@@ -393,10 +200,6 @@
     "tagsSelected": "geselecteerd",
     "searchTags": "Tags zoeken...",
     "note": "Notitie",
-    "actions": "Acties",
-    "view": "Bekijken",
-    "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
-    "tradeDetails": "Transactie details",
     "long": "Long",
     "short": "Short",
     "newTrade": "Nieuwe transactie",
@@ -408,7 +211,6 @@
     "deleteError": "Fout bij verwijderen van transactie",
     "cancel": "Annuleren",
     "save": "Opslaan",
-    "close": "Sluiten",
     "optional": "optioneel",
     "selectSetup": "Selecteer een setup...",
     "setupChecklist": "Setup Checklist",
@@ -416,15 +218,7 @@
     "tradeAdded": "Transactie succesvol toegevoegd",
     "addError": "Fout bij toevoegen van transactie",
     "required": "Alle verplichte velden moeten worden ingevuld",
-    "calendarView": "Kalenderweergave",
-    "selectDate": "Selecteer een datum om trades toe te voegen of te bekijken",
-    "tradesOnDate": "Trades op",
-    "newsOnDate": "Financieel Nieuws",
     "noTradesOnDate": "Geen trades op deze datum",
-    "noNewsAvailable": "Geen nieuws beschikbaar",
-    "newsAnalyzedFor": "Geanalyseerd voor uw verhandelde symbolen",
-    "loadingNews": "Nieuws laden...",
-    "selectCurrency": "Selecteer Valuta",
     "market": "Markt",
     "stock": "Aandeel",
     "futures": "Futures",
@@ -435,25 +229,9 @@
     "stopLossPrice": "Stop Loss Prijs",
     "initialRisk": "Initieel Risico",
     "initialRiskHint": "Voor R-Multiple berekening: (Entry - Stop Loss) × Hoeveelheid",
-    "mfePrice": "MFE-prijs",
-    "mfePriceHint": "Maximum Favorable Excursion: beste prijs tijdens de trade",
-    "maePrice": "MAE-prijs",
-    "maePriceHint": "Maximum Adverse Excursion: slechtste prijs tijdens de trade",
     "rating": "Trade Kwaliteitsbeoordeling",
     "ratingHint": "Beoordeel deze trade van 1 (slechte uitvoering) tot 5 (uitstekende uitvoering)",
     "screenshot": "Screenshot",
-    "screenshotHint": "Upload een grafiek screenshot en onze AI extraheert automatisch alle handelsdetails",
-    "analyzeChart": "Grafiek analyseren",
-    "analyzing": "Analyseren...",
-    "chartAnalyzed": "Grafiek succesvol geanalyseerd",
-    "chartAnalysisError": "Fout bij het analyseren van de grafiek",
-    "noScreenshotSelected": "Geen screenshot geselecteerd",
-    "highConfidence": "Hoge betrouwbaarheid",
-    "mediumConfidence": "Gemiddelde betrouwbaarheid",
-    "lowConfidence": "Lage betrouwbaarheid",
-    "manualEntry": "Handmatige invoer",
-    "screenshotAnalysis": "Screenshot analyseren",
-    "manualEntryDescription": "Voer alle handelsdetails handmatig in",
     "livePnL": "Live P&L Preview",
     "copyLastTrade": "Kopieer laatste trade",
     "lastTradeCopied": "Laatste trade succesvol gekopieerd",
@@ -503,32 +281,6 @@
     },
     "deleteSuccess": "Trade succesvol verwijderd",
     "accountType": "Account Type",
-    "sentiment": {
-      "label": "Nieuws Sentiment",
-      "veryBullish": "Zeer Bullish",
-      "bullish": "Bullish",
-      "slightlyBullish": "Licht Bullish",
-      "neutral": "Neutraal",
-      "slightlyBearish": "Licht Bearish",
-      "bearish": "Bearish",
-      "veryBearish": "Zeer Bearish",
-      "highRisk": "Hoog Risico",
-      "contraTrade": "Contra-Nieuws Trade",
-      "contraTradeShort": "Trade tegen nieuwssentiment",
-      "noNews": "geen nieuws",
-      "tooltipTitle": "Nieuws Sentiment Analyse",
-      "tooltipDescription": "Gemiddeld sentiment van nieuwsartikelen over dit symbool in de 24 uur voor je entry. Sentiment varieert van -1 (zeer bearish) tot +1 (zeer bullish). Een waarschuwing verschijnt wanneer je traderichting het marktsentiment tegenspreekt.",
-      "score": "Score",
-      "articles": "artikelen"
-    },
-    "newsContext": {
-      "match": "Overeenkomst"
-    },
-    "hype": {
-      "high": "Hoog Buzz-Niveau",
-      "medium": "Gemiddeld Buzz-Niveau",
-      "articles": "{{count}} artikelen in laatste 12u"
-    },
     "accountName": "Account Naam",
     "accountNamePlaceholder": "bv. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -570,10 +322,6 @@
     "importError": "Import mislukt",
     "noTradesFound": "Geen geldige trades gevonden in CSV",
     "notAuthenticated": "Log in om trades te importeren",
-    "webhookTitle": "Automatische import via Webhook",
-    "webhookDescription": "Gebruik deze URL om automatisch trades te importeren vanuit TradingView of NinjaTrader",
-    "webhookCopied": "Webhook-URL gekopieerd naar klembord",
-    "webhookInstructions": "Kopieer deze URL en configureer deze in je handelsplatform. Zie de help (?) voor gedetailleerde instructies.",
     "csvTemplate": "Andere platforms: CSV-sjabloon",
     "templateDesc": "Voor alle andere platforms: vul je trades in (één regel per afgesloten trade) en upload het bestand hierboven.",
     "requiredFields": "Verplichte velden:",
@@ -587,20 +335,12 @@
     "helpCsvStep1": "Download de CSV-sjabloon door op 'Sjabloon downloaden' te klikken",
     "helpCsvStep2": "Vul je handelsgegevens in volgens het sjabloonformaat",
     "helpCsvStep3": "Upload het ingevulde CSV-bestand met behulp van het upload-gebied",
-    "helpTvTitle": "📊 TradingView Webhook",
-    "helpTvIntro": "Importeer automatisch trades vanuit TradingView alerts:",
-    "helpTvStep1": "Maak een alert aan in TradingView voor je strategie",
-    "helpTvStep2": "Schakel in de alert-instellingen 'Webhook URL' in",
-    "helpTvStep3": "Kopieer je webhook-URL vanaf de sectie 'Automatische import via Webhook' hierboven",
-    "helpTvStep4": "Plak de webhook-URL en configureer het berichtformaat met trade-details",
     "helpNtTitle": "🔷 NinjaTrader Integratie",
     "helpNtIntro": "Synchroniseer automatisch trades vanuit NinjaTrader:",
     "helpNtStep1": "Download de NinjaTrader-add-on op deze pagina (ZIP, je sleutel zit er al in)",
     "helpNtStep2": "Importeer hem in NinjaTrader: Tools → Import → NinjaScript Add-On",
     "helpNtStep3": "Start NinjaTrader opnieuw; de add-on draait dan op de achtergrond",
     "helpNtStep4": "Elke uitvoering wordt verstuurd; zodra een positie flat is, wordt het een trade",
-    "helpWebhookTitle": "🔗 Webhook URL",
-    "helpWebhookInfo": "Je persoonlijke webhook-URL wordt hierboven weergegeven. Houd deze URL privé omdat het directe toegang geeft tot je handelsjournal.",
     "ntTitle": "NinjaTrader: automatisch",
     "ntDescription": "Elke uitvoering uit NinjaTrader 8 komt automatisch als trade in je journal, inclusief deeluitvoeringen, kosten en MFE/MAE.",
     "ntApiKeyTitle": "Uw persoonlijke API-sleutel",
@@ -612,7 +352,6 @@
     "ntRegenerateKeyWarning": "Je huidige API-sleutel werkt daarna niet meer.",
     "ntApiKeyRegenerated": "Nieuwe API-sleutel succesvol gegenereerd",
     "ntApiKeyRegenerateError": "Fout bij regenereren van API-sleutel",
-    "ntWebhookUrlTitle": "Webhook-URL",
     "ntScriptTitle": "NinjaTrader-add-on",
     "ntScriptDescription": "Eén keer installeren, daarna draait het op de achtergrond: zonder grafiek, voor alle accounts (ook prop-firm-accounts). Gemiste uitvoeringen worden bij de volgende start nagestuurd.",
     "ntDownloadScript": "Add-on downloaden (.zip)",
@@ -704,25 +443,6 @@
     "subtitle": "Beheer je email, wachtwoord en beveiligingsinstellingen",
     "accountInfo": "Accountinformatie",
     "accountInfoDesc": "Update je email en authenticatie-instellingen",
-    "subscription": "Abonnement",
-    "subscriptionDesc": "Beheer je abonnement en krijg toegang tot alle premium functies",
-    "loadingSubscription": "Abonnementsstatus laden...",
-    "activeSubscription": "Actief Abonnement",
-    "plan": "Plan",
-    "validUntil": "Geldig tot",
-    "allFeaturesUnlocked": "✓ Alle functies ontgrendeld",
-    "manageSubscription": "Abonnement Beheren",
-    "trialActive": "14-Daagse Proefperiode Actief",
-    "trialDaysRemaining": "Nog {{days}} dagen",
-    "trialExpired": "Proefperiode verlopen",
-    "trialDescription": "Test TradeNotes 14 dagen gratis met de meeste functies. Upgrade op elk moment voor volledige toegang.",
-    "availablePlans": "Beschikbare Abonnementen:",
-    "monthlyPlan": "Maandelijks Abonnement - Volledige Flexibiliteit",
-    "yearlyPlan": "Jaarabonnement - Bespaar tot 20%",
-    "trialLimitations": "Je proeffuncties:",
-    "limitationAI": "AI-assistent: 5 vragen per dag",
-    "limitationMetrics": "Geavanceerde Prestatie Metrieken beschikbaar",
-    "allOtherFeatures": "Volledige toegang tot alle functies",
     "dangerZone": "Gevarenzone",
     "dangerZoneDesc": "Onomkeerbare acties voor je account",
     "resetAll": "Alles Resetten",
@@ -757,15 +477,7 @@
     "deleteAccountSuccess": "Account succesvol verwijderd",
     "deleteAccountSuccessMessage": "Je account is volledig verwijderd. Je wordt nu doorgestuurd naar de homepagina...",
     "deleteAccountError": "Fout bij verwijderen van account",
-    "deletingAccount": "Account verwijderen...",
-    "choosePlan": "Kies je plan",
-    "monthlyLabel": "Maandelijks",
-    "yearlyLabel": "Jaarlijks",
-    "savePercent": "Bespaar 17%",
-    "perMonth": "per maand",
-    "perYear": "per jaar",
-    "subscribeNow": "Nu upgraden",
-    "subscribeError": "Fout bij starten van betaling"
+    "deletingAccount": "Account verwijderen..."
   },
   "settings": {
     "title": "Instellingen",
@@ -881,10 +593,6 @@
   "common": {
     "back": "Terug",
     "loading": "Laden...",
-    "readMore": "Lees meer",
-    "translate": "Vertalen",
-    "translating": "Vertalen...",
-    "showOriginal": "Toon Origineel",
     "delete": "Verwijderen",
     "edit": "Bewerken",
     "cancel": "Annuleren",
@@ -905,9 +613,7 @@
   },
   "landing": {
     "nav": {
-      "features": "Functies",
-      "pricing": "Prijzen",
-      "allFeatures": "Alle Functies"
+      "features": "Functies"
     },
     "topFeaturesTitle": "Wat TradeNotes bijzonder maakt",
     "topFeaturesDescription": "De essentiële tools voor jouw trading succes",
@@ -933,47 +639,12 @@
     "heroDescription": "Leg je trades in seconden vast, stel daglimieten in en zie zwart op wit welke fouten je geld kosten. Geen abonnement, geen reclame.",
     "ctaStart": "Start Gratis",
     "ctaFeatures": "Ontdek Functies",
-    "rating": "4.9/5 van 1000+ Traders",
-    "dashboardAlt": "TradeNot.es Dashboard met Performance Charts, Trading Kalender en Analytics",
-    "videosBadge": "Zo werkt het",
-    "videosTitle": "Zie TradeNotes in Actie",
-    "videosDescription": "Ontdek hoe eenvoudig professionele trading journaling kan zijn",
-    "videoTradeEntry": "Bliksemsnelle Trade-Invoer",
-    "videoTradeEntryDesc": "Leg je trades vast in seconden met live P&L-voorbeeld, quick-chips voor frequente symbolen en automatisch invullen van prijzen",
-    "videoChartAnalysis": "AI-Gestuurde Chartanalyse",
-    "videoChartAnalysisDesc": "Upload je trading charts en ontvang directe AI-analyse met patroonherkenning en setup-identificatie",
-    "videoDashboard": "Slim Dashboard",
-    "videoDashboardDesc": "Blijf op de hoogte met realtime KPI's, equity curve, prestatiestatistieken en interactieve handelskalender",
-    "videoJournal": "Journaal & Gedetailleerde Rapporten",
-    "videoJournalDesc": "Analyseer je prestaties met setup-rapporten, streak-analyse, symboolprestaties en statistieken over de houdperiode",
     "featuresBadge": "Functies",
-    "featuresTitle": "Alles voor succesvol trading journaling",
-    "featuresDescription": "Alle tools die je nodig hebt om van je trades te leren en consistent winstgevend te worden",
-    "pricingBadge": "Transparant & Eerlijk",
-    "pricingTitle": "Alle Functies. Één Prijs. Voor Professionals.",
-    "pricingDescription": "Geen niveaus, geen verborgen pro-functies, geen paywalls. Alles ontgrendeld vanaf dag één.",
-    "trialBadge": "14 Dagen Gratis Proberen",
-    "premiumTitle": "TradeNot.es Premium",
-    "premiumDescription": "De AI-gestuurde trading-edge voor actieve traders",
-    "monthlyPlan": "Maandelijks",
-    "monthlyPrice": "€19,99",
-    "monthlyPeriod": "/maand",
-    "monthlyCancel": "Altijd opzegbaar",
-    "yearlyPlan": "Jaarlijks",
-    "yearlyBadge": "2 Maanden Gratis!",
-    "yearlyPrice": "€199,90",
-    "yearlyPeriod": "/jaar",
-    "yearlyDiscount": "Bespaar €40 (i.p.v. €239,88)",
-    "allFeaturesTitle": "Alle Functies Inbegrepen:",
     "ctaTrial": "Gratis starten",
-    "trialNotice": "Geen creditcard vereist • Altijd opzegbaar",
     "ctaTitle": "Trade winstgevender – Start nu je gratis AI dagboek",
     "ctaDescription": "Geen abonnement, geen creditcard – registreer en begin.",
-    "footerTitle": "TradeNot.es",
     "footerDescription": "Het professionele trading dagboek voor ambitieuze traders",
     "footerProduct": "Product",
-    "footerFeatures": "Functies",
-    "footerPricing": "Prijzen",
     "footerLogin": "Inloggen",
     "footerSupport": "Ondersteuning",
     "footerHelp": "Helpcentrum",
@@ -987,27 +658,9 @@
     "whySection": {
       "badge": "Waarom een trading journal?",
       "title": "Succesvolle traders documenteren elke trade",
-      "description": "Een dagboek maakt van onderbuikgevoel data: wat werkt, wat niet, en welke gewoontes je afremmen.",
-      "benefit1Title": "Patronen herkennen",
-      "benefit1Desc": "Automatische analyse van je beste setups, tijden en symbolen",
-      "benefit2Title": "Discipline versterken",
-      "benefit2Desc": "Daglimieten, disciplinescore en automatische herkenning van revenge-trades",
-      "benefit3Title": "Prestaties meten",
-      "benefit3Desc": "Equity curve, R-multiple, verwachting en 20+ KPI's in één oogopslag"
+      "description": "Een dagboek maakt van onderbuikgevoel data: wat werkt, wat niet, en welke gewoontes je afremmen."
     },
     "features": {
-      "easyEntry": {
-        "title": "Snelle Trade Invoer",
-        "description": "Leg trades vast in seconden met live P&L preview, snelle symbool selectie en auto-invulling. Kopieer laatste trade voor direct journaling."
-      },
-      "webhookSync": {
-        "title": "NinjaTrader Auto-Sync",
-        "description": "Trades synchroniseren automatisch via webhook—entry, exit, MFE/MAE en accounttype. Ondersteunt 12+ prop firms zoals Apex, Topstep, Tradeify."
-      },
-      "propFirm": {
-        "title": "Prop Firm Integratie",
-        "description": "Automatische detectie van Sim, Eval, Funded & Live accounts. Aparte analytics voor elke accountfase bij Apex, Topstep en 10+ andere prop firms."
-      },
       "mfeMAE": {
         "title": "MFE/MAE Analyse",
         "description": "Tick-by-tick Maximum Favorable & Adverse Excursion tracking. Optimaliseer stop-loss en take-profit met datagestuurde risicoanalyse."
@@ -1019,74 +672,6 @@
       "analytics": {
         "title": "Performance Analytics",
         "description": "Volg Win Rate, R-Multiple, Profit Factor en Expectancy. Begrijp je edge met uitgebreide trading statistieken."
-      },
-      "equity": {
-        "title": "Equity Curve",
-        "description": "Visualiseer kapitaalgroei in de tijd. Spot drawdowns en groeitrends direct met cumulatieve performance grafieken."
-      },
-      "consistency": {
-        "title": "Consistency Tracker",
-        "description": "12-weken trading heatmap toont winstgevende patronen en verliezende streaks. Ontwikkel consistente winnende gewoontes."
-      },
-      "news": {
-        "title": "Portfolio News Intelligence",
-        "description": "Auto-gecureerde nieuws voor je symbolen met futures proxy-mapping (NQ→QQQ), smart-tags (Earnings, Macro) en AI vertaling."
-      },
-      "politicalEvents": {
-        "title": "Politieke Event Tracking",
-        "description": "Volg Trump-toespraken, Fed-aankondigingen, Powell-opmerkingen en verkiezingen. Time trades rond macro katalysatoren met visuele kalender."
-      },
-      "newsTranslation": {
-        "title": "AI Nieuwsvertaling",
-        "description": "Één-klik vertaling naar 5 talen (EN, DE, ES, FR, NL). Begrijp wereldwijd marktnieuws direct."
-      },
-      "calendar": {
-        "title": "Trading Kalender",
-        "description": "Kalenderweergave met kleurgecodeerde winst/verlies dagen. Bekijk snel je trading activiteit in één oogopslag."
-      },
-      "ai": {
-        "title": "AI Trading Assistent",
-        "description": "Stel vragen over je prestaties. Krijg directe datagestuurde inzichten en analyses van je trading geschiedenis."
-      },
-      "aiAlerts": {
-        "title": "Proactieve AI Waarschuwingen",
-        "description": "Realtime waarschuwingen voor verliesreeksen, zwakke handelsuren en contra-nieuws trades. AI-gestuurde risicopreventie."
-      },
-      "aiCharts": {
-        "title": "AI Chat met Grafieken",
-        "description": "Stel vragen en ontvang interactieve visualisaties—staaf-, lijn- en cirkeldiagrammen direct in de chat."
-      },
-      "dailySummary": {
-        "title": "AI Dagrapport",
-        "description": "Automatische e-mailsamenvatting van je trading prestaties met sterktes, zwaktes en gepersonaliseerde verbetervoorstellen."
-      },
-      "riskSimulator": {
-        "title": "What-If Risicosimulator",
-        "description": "Test alternatieve strategieën met Monte Carlo simulatie. Hoe zou je kapitaal hebben gepresteerd met 2R exits of 1% risico?"
-      },
-      "reports": {
-        "title": "Geavanceerde Rapporten",
-        "description": "Analyseer per setup, symbool, tijdstip, houdperiode en reeksen. Vind je meest winstgevende trading patronen."
-      },
-      "pnl": {
-        "title": "P&L Grafieken",
-        "description": "Maandelijkse winst/verlies visualisatie met staafdiagrammen. Volg voortgang en identificeer seizoenspatronen."
-      },
-      "weekly": {
-        "title": "Wekelijkse Prestaties",
-        "description": "Week-voor-week uitsplitsing van trades en P&L. Monitor effectief kortetermijn prestatie trends."
-      },
-      "prep": {
-        "title": "Dagelijkse Markt Voorbereiding",
-        "description": "Pre-markt prep met politieke events, sector sentiment en nieuws voor je watchlist. Start geïnformeerd met traden."
-      },
-      "import": {
-        "title": "CSV Import/Export",
-        "description": "Importeer trades van je broker of exporteer data voor analyse. Naadloze integratie met bestaande workflows."
-      },
-      "glossary": {
-        "title": "Trading Woordenlijst",
-        "description": "Leer trading termen: Win Rate, R-Multiple, Profit Factor, Expectancy en meer. Bouw je trading kennis op."
       },
       "discipline": {
         "title": "Discipline & daglimieten",
@@ -1105,36 +690,11 @@
       "unlimited": "Onbeperkt trades documenteren",
       "fullAnalytics": "Volledige Performance Analytics (Win Rate, R-Multiple, Profit Factor, Expectancy)",
       "journal": "Trading Dagboek met notities & screenshots",
-      "equity": "Equity Curve voor kapitaalvolging",
-      "consistency": "Consistency Tracker (12-weken heatmap)",
-      "news": "Smart Portfolio Nieuws met proxy-mapping (futures), smart-tags & vertaling",
-      "politicalEvents": "Economische Kalender (FOMC, CPI, NFP, GDP) + Politiek Nieuws",
-      "sectorSentiment": "Dagelijks Sector Sentiment Dashboard (9 sectoren gevolgd)",
-      "ai": "AI Trading Assistent",
-      "aiCharts": "AI Chat met interactieve Grafieken & Tabellen",
-      "dailySummary": "Automatische AI Dagrapporten via Email",
       "goalAlerts": "Doel-Alerts & Realtime Notificaties",
       "riskSimulator": "What-If Risicosimulator (Monte Carlo)",
-      "winLoss": "Win/Loss Analytics & Performance Breakdown",
-      "calendar": "Trading Kalender Weergave",
-      "pnlCharts": "P&L Grafieken & Visualisaties",
-      "csvImport": "CSV Import & Export",
-      "setupReports": "Setup-gebaseerde Performance Rapporten",
-      "hourAnalysis": "Uur-van-de-Dag Analytics (beste trading tijden)",
-      "symbolReports": "Symbool Performance Rapporten",
-      "streakAnalysis": "Streak Analyse (winst/verlies series)",
-      "holdingPeriod": "Houdperiode Analyse",
-      "weeklyTracking": "Wekelijkse Performance Tracking",
-      "dailyPrep": "Dagelijkse Voorbereiding met politieke evenementen",
-      "glossary": "Trading Woordenlijst met alle belangrijke termen",
-      "darkMode": "Donkere/Lichte Modus",
-      "multiLanguage": "Meertalige Ondersteuning (DE, EN, ES, FR, NL, IT)",
-      "futureFeatures": "Alle toekomstige functies inbegrepen",
-      "freeTrial": "14 Dagen Gratis Proberen",
-      "ninjaTraderSync": "NinjaTrader Auto-Sync (Webhook Integratie)",
+      "ninjaTraderSync": "NinjaTrader-sync via add-on (automatisch)",
       "propFirmDetection": "Prop Firm Account Detectie (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "MFE/MAE Tracking voor Stop-Loss Optimalisatie",
-      "achievements": "Gamificatie & Achievements Systeem",
       "discipline": "Daglimieten met live status en disciplinescore",
       "behavior": "Fouten- & emotietracking met automatische revenge-trade-herkenning",
       "dayView": "Dagoverzicht met intraday P&L-curve",
@@ -1222,17 +782,14 @@
     "teaserCards": {
       "tradingTools": "Snelle invoer & import",
       "analytics": "Prestaties volgen & analyseren",
-      "ai": "AI-gestuurde inzichten",
-      "marketIntel": "Marktdata & nieuws",
       "discipline": "Daglimieten, foutenanalyse en een score die laat zien waar je staat",
       "import": "NinjaTrader en IBKR automatisch, TradingView via CSV"
     },
     "categories": {
       "tradingTools": "Trading Tools",
       "analytics": "Analyses",
-      "ai": "AI & Automatisering",
       "reports": "Rapporten",
-      "marketIntel": "Markt Intelligentie",
+      "marketIntel": "Marktevenementen",
       "discipline": "Discipline & gedrag",
       "import": "Automatisch importeren"
     },
@@ -1327,33 +884,6 @@
           "P&L kleuren"
         ]
       },
-      "aiAssistant": {
-        "title": "AI Assistent",
-        "description": "Vragen over performance",
-        "benefits": [
-          "Natuurlijke taal",
-          "Data-gedreven",
-          "Historische analyse"
-        ]
-      },
-      "aiCharts": {
-        "title": "AI Chat met Grafieken",
-        "description": "Interactieve visualisaties",
-        "benefits": [
-          "Staaf, lijn, taart",
-          "Tabellen",
-          "Directe visualisatie"
-        ]
-      },
-      "dailySummary": {
-        "title": "Dagelijks AI Rapport",
-        "description": "Automatische email samenvatting",
-        "benefits": [
-          "Sterktes/zwaktes",
-          "Suggesties",
-          "Per email"
-        ]
-      },
       "goalAlerts": {
         "title": "Doel Alerts",
         "description": "Realtime meldingen",
@@ -1417,15 +947,6 @@
           "Optimale duur"
         ]
       },
-      "portfolioNews": {
-        "title": "Nieuws Intelligentie",
-        "description": "Auto-gecureerd nieuws",
-        "benefits": [
-          "Proxy-mapping",
-          "Smart tags",
-          "AI vertaling"
-        ]
-      },
       "politicalEvents": {
         "title": "Economische Kalender",
         "description": "FOMC, CPI, NFP, GDP",
@@ -1433,24 +954,6 @@
           "Belangrijke events",
           "Impact niveau",
           "In kalender"
-        ]
-      },
-      "sectorSentiment": {
-        "title": "Sector Sentiment",
-        "description": "Dagelijkse sentiment analyse",
-        "benefits": [
-          "11 sectoren",
-          "Aantal artikelen",
-          "Sentiment score"
-        ]
-      },
-      "economicCalendar": {
-        "title": "Economische Data",
-        "description": "Fed, Powell realtime",
-        "benefits": [
-          "Politieke events",
-          "Markt impact",
-          "Geïnformeerd traden"
         ]
       },
       "discipline": {
@@ -1704,11 +1207,6 @@
       "definition": "Visuele heatmap van uw dagelijkse trading activiteit.",
       "example": "Toont winstgevende dagen (groen) vs verlies dagen (rood)"
     },
-    "portfolioNews": {
-      "term": "Portfolio Nieuws",
-      "definition": "Gefilterde nieuws feed voor uw meest verhandelde symbolen.",
-      "example": "Automatisch nieuws voor AAPL, TSLA, etc."
-    },
     "dailyTradeGoal": {
       "term": "Dagelijks Trading Doel",
       "definition": "Dagelijks winstdoel en maximum trades limiet per dag.",
@@ -1785,11 +1283,6 @@
       "term": "Handelsvolume",
       "definition": "Aantal verhandelde aandelen/contracten in periode. Hoog volume bevestigt bewegingen.",
       "example": "Breakout boven $50 met 10x normaal volume = sterk signaal. Met laag volume = waarschijnlijk vals"
-    },
-    "newsSentiment": {
-      "term": "Nieuws Sentiment (News Sentiment)",
-      "definition": "Nieuws Sentiment analyseert de stemming van nieuwsartikelen over een specifiek symbool. Het berekent een gemiddelde van al het nieuws in de 24 uur voor je trade-entry. De waarde varieert van -1 (zeer bearish/negatief) via 0 (neutraal) tot +1 (zeer bullish/positief). Een waarde van 0.00 betekent neutraal sentiment of geen nieuwsartikelen gevonden in dat tijdvenster.",
-      "example": "Entry op NQ Long om 14:30. Systeem analyseert al het nieuws van 14:30 gisteren tot 14:30 vandaag. Resultaat: 0.35 (bullish) - past bij Long positie. Als het -0.35 was, verschijnt een 'Contra-News Trade' waarschuwing omdat je tegen het marktsentiment handelt."
     },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
@@ -1889,11 +1382,6 @@
       "definition": "De Risico Simulator is een tool om What-If scenario's te testen op basis van je echte trading data. Hiermee kun je simuleren hoe je equity curve zou zijn ontwikkeld met verschillende exit-strategieën (R-Multiple) of positiegroottes.",
       "formula": "Gesimuleerde Equity = Startkapitaal × ∏(1 + Ri × Risico%) waarbij Ri = gesimuleerde R-Multiple voor elke trade",
       "example": "Je laatste 100 trades hadden een gemiddelde R van 1.2R. De simulator toont: Met 2% risico per trade, zou je $10.000 $15.400 kunnen zijn geworden."
-    },
-    "aiAssistantCharts": {
-      "term": "AI Chat met Inline Grafieken (AI Chat with Inline Charts)",
-      "definition": "De AI Trading Assistent kan vragen niet alleen met tekst beantwoorden, maar ook met interactieve visualisaties. Bij vragen over vergelijkingen, trends of rankings genereert de AI automatisch passende grafieken (staaf-, lijn-, taartdiagrammen) of tabellen direct in de chat.",
-      "example": "Vraag: 'Toon mijn prestaties per weekdag' → De AI antwoordt met een staafdiagram dat winstpercentage of P&L per dag toont. Vraag: 'Vergelijk Long vs Short' → Cirkeldiagram met verhoudingen en prestaties."
     }
   },
   "reports": {
@@ -2074,22 +1562,6 @@
     "savePrep": "Dagelijkse Voorbereiding Opslaan",
     "saved": "Dagelijkse voorbereiding succesvol opgeslagen",
     "saveError": "Fout bij opslaan dagelijkse voorbereiding"
-  },
-  "assistant": {
-    "title": "AI Trading Assistent",
-    "subtitle": "Stel vragen over je trading prestaties en krijg datagestuurde antwoorden",
-    "welcome": "Welkom bij de AI Assistent",
-    "welcomeDescription": "Stel me vragen over je trading prestaties, setups, symbolen of andere analyses.",
-    "suggestedQuestions": "Voorgestelde Vragen:",
-    "inputPlaceholder": "Stel een vraag...",
-    "error": "Verwerkingsfout",
-    "errorDescription": "Kon het verzoek niet verwerken. Probeer het opnieuw.",
-    "creditsExhausted": "Lovable AI credits op. Voeg credits toe via Instellingen → Workspace → Gebruik.",
-    "dailyLimitReached": "Daglimiet bereikt. Probeer het morgen opnieuw.",
-    "questionsRemaining": "vragen over vandaag",
-    "upgradeForMore": "Morgen meer vragen",
-    "chartsTooltip": "Bij geschikte vragen genereert de AI automatisch grafieken om je data te visualiseren.",
-    "showingTopResults": "Toont {{count}} van {{total}} resultaten"
   },
   "privacy": {
     "title": "Privacybeleid",
@@ -2354,7 +1826,7 @@
     "overtradingTitle": "{{count}} Trades vandaag",
     "overtradingDescription": "Een hoog aantal trades kan wijzen op overtrading. Kwaliteit boven kwantiteit.",
     "needsMoreData": "Handelsgegevens verzamelen",
-    "needsMoreDataDescription": "{{current}} van {{required}} trades geregistreerd. Blijf handelen om gepersonaliseerde AI-inzichten te ontgrendelen.",
+    "needsMoreDataDescription": "{{current}} van {{required}} trades geregistreerd. Blijf handelen om je persoonlijke inzichten te ontgrendelen.",
     "revengeScore": "Revenge Trading Score",
     "revengeScoreExcellent": "Uitstekend",
     "revengeScoreGood": "Goed",
@@ -2657,22 +2129,6 @@
     "drawdownCriticalDesc": "Je bent je volledige dagdoel kwijt. Stop vandaag met handelen.",
     "tradeLimitReached": "📊 Tradelimiet bereikt",
     "tradeLimitReachedDesc": "Je hebt vandaag {{limit}} trades gedaan."
-  },
-  "dailySummary": {
-    "title": "AI-dagsamenvatting",
-    "generate": "Samenvatting maken",
-    "generating": "Bezig met maken…",
-    "generated": "Samenvatting gemaakt!",
-    "generateError": "Fout bij het maken van de samenvatting",
-    "regenerate": "Opnieuw maken",
-    "noSummary": "Nog geen samenvatting voor deze dag. Klik op 'Maken' voor een AI-analyse.",
-    "trades": "Trades",
-    "netPnL": "Netto P&L",
-    "showMore": "Details tonen",
-    "showLess": "Details verbergen",
-    "bestTrade": "Beste trade",
-    "worstTrade": "Slechtste trade",
-    "suggestions": "Verbetersuggesties"
   },
   "riskSimulator": {
     "title": "Wat-als-risicosimulator",
@@ -2977,10 +2433,6 @@
     "notFound": {
       "title": "Pagina niet gevonden | TradeNot.es",
       "description": "Deze pagina bestaat niet. Terug naar het gratis tradingjournal TradeNot.es."
-    },
-    "checkout": {
-      "title": "TradeNot.es",
-      "description": "TradeNot.es"
     }
   },
   "motion": {

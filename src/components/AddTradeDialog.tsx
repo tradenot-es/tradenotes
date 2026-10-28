@@ -9,17 +9,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { db, invoke, uploadScreenshot } from "@/lib/api";
-import { featureFlags } from "@/config/featureFlags";
 import { BehaviorTagPicker } from "@/components/BehaviorTagPicker";
 import { PositionSizeCalculator } from "@/components/PositionSizeCalculator";
 import { EMOTIONS, MISTAKES } from "@/lib/behavior";
 import { toast } from "sonner";
 import { z } from "zod";
 import { SetupDefinition } from "@/types/setup";
-import { Star, Upload, X, Info, Sparkles, Edit3, Camera, ArrowLeft, Copy, TrendingUp, TrendingDown } from "lucide-react";
+import { Star, Upload, X, Info, Copy, TrendingUp, TrendingDown } from "lucide-react";
 import { SymbolCombobox } from "./SymbolCombobox";
 import { getSymbolInfo, getMarketDefaultFee, detectMarketFromSymbol } from "@/lib/symbolData";
 import { useFrequentSymbols } from "@/hooks/useFrequentSymbols";
@@ -66,10 +65,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [loadingPrice, setLoadingPrice] = useState(false);
-  const [analyzingChart, setAnalyzingChart] = useState(false);
-  const [entryMode, setEntryMode] = useState<'manual' | 'screenshot'>('manual');
-  const [modeSelected, setModeSelected] = useState(!featureFlags.AI_FEATURES);
-  const [screenshotAnalyzed, setScreenshotAnalyzed] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [setupDefinitions, setSetupDefinitions] = useState<SetupDefinition[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
@@ -82,7 +77,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
   const [mistakes, setMistakes] = useState<string[]>([]);
   const [emotions, setEmotions] = useState<string[]>([]);
   const [symbolInfo, setSymbolInfo] = useState<{ pointValue?: number; multiplier?: number; info?: string }>({});
-  const [extractedData, setExtractedData] = useState<any>(null);
   const [accountType, setAccountType] = useState<AccountType>('live');
   const [accountName, setAccountName] = useState('');
   const [formData, setFormData] = useState({
@@ -249,12 +243,8 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setRating(0);
       setMistakes([]);
       setEmotions([]);
-      setModeSelected(!featureFlags.AI_FEATURES);
-      setEntryMode('manual');
-      setScreenshotAnalyzed(false);
       setAccountType('live');
       setAccountName('');
-      setExtractedData(null);
     }
   }, [preselectedDate, open, editTrade]);
 
@@ -324,85 +314,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       toast.error(t("trades.priceError"));
     } finally {
       setLoadingPrice(false);
-    }
-  };
-
-  // Analyze chart screenshot with AI
-  const analyzeChartScreenshot = async () => {
-    if (!screenshotFile) {
-      toast.error(t("trades.noScreenshotSelected"));
-      return;
-    }
-
-    setAnalyzingChart(true);
-    try {
-      // Convert file to base64
-      const reader = new FileReader();
-      const base64Promise = new Promise<string>((resolve, reject) => {
-        reader.onloadend = () => {
-          if (reader.result && typeof reader.result === 'string') {
-            resolve(reader.result);
-          } else {
-            reject(new Error('Failed to read file'));
-          }
-        };
-        reader.onerror = reject;
-      });
-      
-      reader.readAsDataURL(screenshotFile);
-      const imageBase64 = await base64Promise;
-
-      // Call the analyze-chart edge function
-      const { data, error } = await invoke("analyze-chart", {
-        body: { imageBase64 },
-      });
-
-      if (error) {
-        console.error("Error analyzing chart:", error);
-        toast.error(t("trades.chartAnalysisError"));
-        return;
-      }
-
-      if (data?.success && data?.data) {
-        const extracted = data.data;
-        setExtractedData(extracted);
-        
-        // Update form with extracted data using new field names
-        setFormData((prev) => ({
-          ...prev,
-          symbol: extracted.symbol || prev.symbol,
-          side: extracted.side || prev.side,
-          market: extracted.market || prev.market,
-          qty: extracted.size ? String(extracted.size) : prev.qty,
-          entryPrice: extracted.entry_price ? String(extracted.entry_price) : prev.entryPrice,
-          exitPrice: extracted.exit_price ? String(extracted.exit_price) : prev.exitPrice,
-          stopLossPrice: extracted.stop_loss_price ? String(extracted.stop_loss_price) : prev.stopLossPrice,
-          initialRisk: extracted.planned_risk ? String(extracted.planned_risk) : prev.initialRisk,
-          fees: extracted.fees !== undefined ? String(extracted.fees) : prev.fees,
-          entryTime: extracted.entry_time || prev.entryTime,
-          exitTime: extracted.exit_time || prev.exitTime,
-          setup: extracted.setup || prev.setup,
-          note: extracted.notes ? (prev.note ? `${prev.note}\n\n${extracted.notes}` : extracted.notes) : prev.note,
-        }));
-
-        if (extracted.tags) {
-          setSelectedTags(extracted.tags);
-        }
-        
-        if (extracted.trade_quality_rating) {
-          setRating(extracted.trade_quality_rating);
-        }
-
-        // Show success message with confidence level
-        const confidencePercent = Math.round((extracted.overall_confidence || 0) * 100);
-        toast.success(`${t("trades.chartAnalyzed")} (${confidencePercent}% Confidence)`);
-        setScreenshotAnalyzed(true);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error(t("trades.chartAnalysisError"));
-    } finally {
-      setAnalyzingChart(false);
     }
   };
 
@@ -574,8 +485,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
       setRating(0);
       setMistakes([]);
       setEmotions([]);
-      setModeSelected(!featureFlags.AI_FEATURES);
-      setScreenshotAnalyzed(false);
       setAccountType('live');
       setAccountName('');
     } catch (error: any) {
@@ -591,20 +500,9 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
         <DialogHeader>
           <DialogTitle className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-              {featureFlags.AI_FEATURES && modeSelected && !editTrade && (
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => setModeSelected(false)}
-                  className="h-8 w-8"
-                  type="button"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </Button>
-              )}
               {editTrade ? t("trades.editTrade") : t("trades.newTrade")}
             </div>
-            {!editTrade && modeSelected && (
+            {!editTrade && (
               <Button
                 variant="outline"
                 size="sm"
@@ -619,134 +517,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
           </DialogTitle>
         </DialogHeader>
         
-        {/* Mode Selection Cards - only show for new trades */}
-        {!editTrade && !modeSelected && (
-          <div className="grid md:grid-cols-2 gap-6 py-6">
-            <Card 
-              className="cursor-pointer transition-all hover:shadow-lg hover:border-primary/50 group"
-              onClick={() => {
-                setEntryMode('manual');
-                setModeSelected(true);
-              }}
-            >
-              <CardHeader className="text-center space-y-4">
-                <div className="flex items-center justify-center">
-                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <Edit3 className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <CardTitle className="mb-2">{t('trades.manualEntry')}</CardTitle>
-                  <CardDescription>
-                    {t('trades.manualEntryDescription')}
-                  </CardDescription>
-                </div>
-              </CardHeader>
-            </Card>
-            
-            <Card 
-              className="cursor-pointer transition-all hover:shadow-lg hover:border-primary/50 group relative"
-              onClick={() => {
-                setEntryMode('screenshot');
-                setModeSelected(true);
-              }}
-            >
-              <div className="absolute top-3 right-3">
-                <Badge variant="secondary" className="gap-1">
-                  <Sparkles className="h-3 w-3" />
-                  AI
-                </Badge>
-              </div>
-              <CardHeader className="text-center space-y-4">
-                <div className="flex items-center justify-center">
-                  <div className="p-4 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <Camera className="h-8 w-8 text-primary" />
-                  </div>
-                </div>
-                <div>
-                  <CardTitle className="mb-2">{t('trades.screenshotAnalysis')}</CardTitle>
-                  <CardDescription>
-                    {t('trades.screenshotHint')}
-                  </CardDescription>
-                </div>
-              </CardHeader>
-            </Card>
-          </div>
-        )}
-
-        {/* Screenshot Upload Screen - only for screenshot mode before analysis */}
-        {modeSelected && entryMode === 'screenshot' && !screenshotAnalyzed && (
-          <div className="space-y-6 py-4">
-            <div className="space-y-4">
-              <div className="text-center space-y-2">
-                <div className="flex items-center justify-center">
-                  <div className="p-6 rounded-full bg-primary/10">
-                    <Camera className="h-12 w-12 text-primary" />
-                  </div>
-                </div>
-                <h3 className="text-lg font-semibold">{t('trades.screenshotAnalysis')}</h3>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                  {t('trades.screenshotHint')}
-                </p>
-              </div>
-              
-              <div className="space-y-2">
-                {screenshotFile && (
-                  <div className="relative">
-                    <img
-                      src={URL.createObjectURL(screenshotFile)}
-                      alt="Screenshot preview"
-                      className="w-full h-64 object-contain rounded-lg border"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2 h-8 w-8"
-                      onClick={() => {
-                        setScreenshotFile(null);
-                      }}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-                
-                <div className="flex flex-col gap-3">
-                  <Input
-                    id="screenshot"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setScreenshotFile(file);
-                      }
-                    }}
-                    className="cursor-pointer"
-                  />
-                  
-                  {screenshotFile && (
-                    <Button
-                      type="button"
-                      variant="default"
-                      size="lg"
-                      onClick={analyzeChartScreenshot}
-                      disabled={analyzingChart}
-                      className="w-full"
-                    >
-                      <Sparkles className="h-5 w-5 mr-2" />
-                      {analyzingChart ? t('trades.analyzing') : t('trades.analyzeChart')}
-                    </Button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Form - only show after mode selection or for edit */}
-        {(editTrade || (modeSelected && (entryMode === 'manual' || screenshotAnalyzed))) && (
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Live P&L Preview */}
           {livePnL && (
@@ -796,17 +566,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="symbol">{t("trades.symbol")} *</Label>
-                {extractedData?.field_confidence?.symbol !== undefined && (
-                  <Badge variant="outline" className={`text-xs ${
-                    extractedData.field_confidence.symbol >= 0.8 
-                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
-                      : extractedData.field_confidence.symbol >= 0.5
-                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
-                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
-                  }`}>
-                    {Math.round(extractedData.field_confidence.symbol * 100)}%
-                  </Badge>
-                )}
               </div>
               
               {/* Frequent Symbols Quick Chips */}
@@ -914,17 +673,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="qty">{t("trades.qty")} *</Label>
-                {extractedData?.field_confidence?.size !== undefined && (
-                  <Badge variant="outline" className={`text-xs ${
-                    extractedData.field_confidence.size >= 0.8 
-                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
-                      : extractedData.field_confidence.size >= 0.5
-                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
-                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
-                  }`}>
-                    {Math.round(extractedData.field_confidence.size * 100)}%
-                  </Badge>
-                )}
               </div>
               <Input
                 id="qty"
@@ -943,17 +691,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="entryPrice">{t("trades.entryPrice")} *</Label>
-                {extractedData?.field_confidence?.entry_price !== undefined && (
-                  <Badge variant="outline" className={`text-xs ${
-                    extractedData.field_confidence.entry_price >= 0.8 
-                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
-                      : extractedData.field_confidence.entry_price >= 0.5
-                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
-                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
-                  }`}>
-                    {Math.round(extractedData.field_confidence.entry_price * 100)}%
-                  </Badge>
-                )}
               </div>
               <div className="flex gap-2">
                 <Input
@@ -994,17 +731,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="exitPrice">{t("trades.exitPrice")} *</Label>
-                {extractedData?.field_confidence?.exit_price !== undefined && (
-                  <Badge variant="outline" className={`text-xs ${
-                    extractedData.field_confidence.exit_price >= 0.8 
-                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
-                      : extractedData.field_confidence.exit_price >= 0.5
-                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
-                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
-                  }`}>
-                    {Math.round(extractedData.field_confidence.exit_price * 100)}%
-                  </Badge>
-                )}
               </div>
               <Input
                 id="exitPrice"
@@ -1059,17 +785,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="fees">{t("trades.fees")} ($)</Label>
-                {extractedData?.field_confidence?.fees !== undefined && (
-                  <Badge variant="outline" className={`text-xs ${
-                    extractedData.field_confidence.fees >= 0.8 
-                      ? 'bg-green-500/10 text-green-700 dark:text-green-300 border-green-500/20' 
-                      : extractedData.field_confidence.fees >= 0.5
-                      ? 'bg-yellow-500/10 text-yellow-700 dark:text-yellow-300 border-yellow-500/20'
-                      : 'bg-red-500/10 text-red-700 dark:text-red-300 border-red-500/20'
-                  }`}>
-                    {Math.round(extractedData.field_confidence.fees * 100)}%
-                  </Badge>
-                )}
               </div>
               <Input
                 id="fees"
@@ -1273,74 +988,54 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             onChange={setEmotions}
           />
 
-          {/* Screenshot Upload and Analysis */}
-          {entryMode === 'manual' && (
+          {/* Screenshot Upload */}
+          <div className="space-y-2">
+            <Label htmlFor="screenshot">{t('trades.screenshot')} ({t('trades.optional')})</Label>
             <div className="space-y-2">
-              <Label htmlFor="screenshot">{t('trades.screenshot')} ({t('trades.optional')})</Label>
-              <div className="space-y-2">
-                {screenshotPreview && !screenshotFile && (
-                  <div className="relative">
-                    <img
-                      src={screenshotPreview}
-                      alt="Current screenshot"
-                      className="w-full h-32 object-cover rounded border"
-                    />
-                  </div>
-                )}
-                {screenshotFile && (
-                  <div className="relative">
-                    <img
-                      src={URL.createObjectURL(screenshotFile)}
-                      alt="Screenshot preview"
-                      className="w-full h-32 object-cover rounded border"
-                    />
-                    <Button
-                      type="button"
-                      variant="destructive"
-                      size="icon"
-                      className="absolute top-2 right-2 h-6 w-6"
-                      onClick={() => {
-                        setScreenshotFile(null);
-                      }}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
-                )}
-                <Input
-                  id="screenshot"
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) {
-                      setScreenshotFile(file);
-                    }
-                  }}
-                  className="cursor-pointer"
-                />
-              </div>
+              {screenshotPreview && !screenshotFile && (
+                <div className="relative">
+                  <img
+                    src={screenshotPreview}
+                    alt="Current screenshot"
+                    className="w-full h-32 object-cover rounded border"
+                  />
+                </div>
+              )}
+              {screenshotFile && (
+                <div className="relative">
+                  <img
+                    src={URL.createObjectURL(screenshotFile)}
+                    alt="Screenshot preview"
+                    className="w-full h-32 object-cover rounded border"
+                  />
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    size="icon"
+                    className="absolute top-2 right-2 h-6 w-6"
+                    onClick={() => {
+                      setScreenshotFile(null);
+                    }}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              )}
+              <Input
+                id="screenshot"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    setScreenshotFile(file);
+                  }
+                }}
+                className="cursor-pointer"
+              />
             </div>
-          )}
+          </div>
           
-          {/* Screenshot Preview for analyzed mode */}
-          {entryMode === 'screenshot' && screenshotFile && (
-            <div className="space-y-2">
-              <Label>{t('trades.screenshot')}</Label>
-              <div className="relative">
-                <img
-                  src={URL.createObjectURL(screenshotFile)}
-                  alt="Analyzed screenshot"
-                  className="w-full h-48 object-contain rounded-lg border"
-                />
-                <Badge className="absolute top-2 left-2 gap-1">
-                  <Sparkles className="h-3 w-3" />
-                  {t('trades.chartAnalyzed')}
-                </Badge>
-              </div>
-            </div>
-          )}
-
           <div className="space-y-2">
             <Label htmlFor="note">{t("trades.note")}</Label>
             <Textarea
@@ -1367,7 +1062,6 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
             </Button>
           </div>
         </form>
-        )}
       </DialogContent>
     </Dialog>
   );

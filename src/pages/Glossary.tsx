@@ -139,12 +139,6 @@ export default function Glossary() {
       example: t("glossary.pnl.example")
     },
     {
-      id: "portfolio-news",
-      term: t("glossary.portfolioNews.term"),
-      definition: t("glossary.portfolioNews.definition"),
-      example: t("glossary.portfolioNews.example")
-    },
-    {
       id: "position-sizing",
       term: t("glossary.positionSizing.term"),
       definition: t("glossary.positionSizing.definition"),
@@ -225,12 +219,6 @@ export default function Glossary() {
       term: t("glossary.volume.term"),
       definition: t("glossary.volume.definition"),
       example: t("glossary.volume.example")
-    },
-    {
-      id: "news-sentiment",
-      term: t("glossary.newsSentiment.term"),
-      definition: t("glossary.newsSentiment.definition"),
-      example: t("glossary.newsSentiment.example")
     },
     {
       id: "win-rate",
@@ -349,12 +337,6 @@ export default function Glossary() {
       definition: t("glossary.riskSimulator.definition"),
       formula: t("glossary.riskSimulator.formula"),
       example: t("glossary.riskSimulator.example")
-    },
-    {
-      id: "ai-assistant-charts",
-      term: t("glossary.aiAssistantCharts.term"),
-      definition: t("glossary.aiAssistantCharts.definition"),
-      example: t("glossary.aiAssistantCharts.example")
     }
   ];
 

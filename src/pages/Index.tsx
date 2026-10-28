@@ -7,14 +7,10 @@ import { FeaturedKPIBar } from "@/components/FeaturedKPIBar";
 import { EquityCurveChart } from "@/components/EquityCurveChart";
 import { DashboardCalendar } from "@/components/DashboardCalendar";
 import { WeeklyPerformanceEnhanced } from "@/components/WeeklyPerformanceEnhanced";
-import { PortfolioNews } from "@/components/PortfolioNews";
 import { AddTradeDialog } from "@/components/AddTradeDialog";
-import { SectorSentimentWidget } from "@/components/SectorSentimentWidget";
 import { TradingAlertsWidget } from "@/components/TradingAlertsWidget";
 import { PageHeader } from "@/components/PageHeader";
 import { AchievementsWidget } from "@/components/AchievementsWidget";
-import { DailySummaryCard } from "@/components/DailySummaryCard";
-import { featureFlags } from "@/config/featureFlags";
 import { DisciplinePanel } from "@/components/DisciplinePanel";
 import { TradeNotesScoreCard } from "@/components/TradeNotesScoreCard";
 import { TradingGoalsWidget } from "@/components/TradingGoalsWidget";
@@ -332,15 +328,6 @@ const Index = () => {
 
           {/* Trading Goals Tracker - Full Width */}
           <TradingGoalsWidgetWrapper trades={trades} />
-
-          {/* AI Daily Summary */}
-          {featureFlags.AI_FEATURES && <DailySummaryCard />}
-
-          {/* Sector Sentiment - AI powered */}
-          {featureFlags.NEWS_FEATURES && <SectorSentimentWidget />}
-
-          {/* Portfolio News - Full width */}
-          {featureFlags.NEWS_FEATURES && <PortfolioNews />}
         </>
       )}
 

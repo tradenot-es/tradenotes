@@ -6,8 +6,6 @@ import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem,
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
-import { AIAssistantFAB } from "@/components/AIAssistantFAB";
-import { featureFlags } from "@/config/featureFlags";
 import logo from "@/assets/logo.webp";
 /** Nav link that also closes the off-canvas sidebar on phones. */
 function SidebarNavLink(props: NavLinkProps) {
@@ -125,7 +123,6 @@ export function Layout({
             </div>
           </footer>
         </div>
-        {featureFlags.AI_FEATURES && <AIAssistantFAB />}
       </div>
     </SidebarProvider>;
 }

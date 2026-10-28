@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { ExternalLink, Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home } from "lucide-react";
+import { Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home } from "lucide-react";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
 interface PoliticalEventsProps {
@@ -146,9 +146,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
     );
   }
 
-  // Separate scheduled events from news
   const scheduledEvents = events.filter(e => e.isScheduled);
-  const newsEvents = events.filter(e => !e.isScheduled);
 
   // Show message when no events for this specific day
   if (!events || events.length === 0) {
@@ -210,53 +208,6 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                         )}
                       </div>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* News Events */}
-      {newsEvents.length > 0 && (
-        <Card className="border-amber-200 dark:border-amber-900 bg-amber-50/30 dark:bg-amber-950/10">
-          <CardHeader className="pb-2">
-            <div className="flex items-center gap-2">
-              <span className="text-lg">📰</span>
-              <CardTitle className="text-amber-900 dark:text-amber-100 text-base">
-                {t("calendar.relatedNews")}
-              </CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent className="pt-0">
-            <div className="space-y-3">
-              {newsEvents.map((article, index) => (
-                <div key={`${date.toISOString()}-${article.uuid}-${index}`} className="border-b border-amber-200/50 dark:border-amber-900/50 pb-3 last:border-0 last:pb-0">
-                  <h4 className="text-sm font-medium line-clamp-2 mb-1">{article.title}</h4>
-                  {article.snippet && (
-                    <p className="text-xs text-muted-foreground line-clamp-2 mb-2">
-                      {article.snippet}
-                    </p>
-                  )}
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {getImpactBadge(article.impact_level)}
-                    <Badge variant="outline" className="text-xs border-amber-300 dark:border-amber-800">
-                      {article.source}
-                    </Badge>
-                    <Badge variant="secondary" className="text-xs bg-amber-100 dark:bg-amber-900/30">
-                      {new Date(article.published_at).toLocaleDateString()}
-                    </Badge>
-                    {article.url && (
-                      <a
-                        href={article.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto text-xs text-amber-700 dark:text-amber-400 hover:underline flex items-center gap-1"
-                      >
-                        {t("common.readMore")} <ExternalLink className="h-3 w-3" />
-                      </a>
-                    )}
                   </div>
                 </div>
               ))}

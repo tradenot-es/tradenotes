@@ -1,4 +1,3 @@
-import { featureFlags } from "@/config/featureFlags";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { formatDistanceToNow, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
@@ -17,9 +16,6 @@ import { ShareTradeDialog } from "@/components/ShareTradeDialog";
 import { ChevronDown, ChevronRight, TrendingUp, TrendingDown, HelpCircle, Circle, Award, TrendingUpIcon, DollarSign, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { TradeSentimentGauge } from "./TradeSentimentGauge";
-import { TradeNewsContext } from "./TradeNewsContext";
-import { NewsHypeIndicator } from "./NewsHypeIndicator";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -346,14 +342,6 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                                 {trade.setup}
                               </Badge>
                             )}
-                            {/* Compact Sentiment Inline */}
-                            {featureFlags.NEWS_FEATURES && (
-                              <TradeSentimentGauge
-                                symbol={trade.symbol}
-                                side={trade.side as "long" | "short"}
-                                entryTime={trade.entry_time}
-                              />
-                            )}
                           </div>
                           <div className="flex gap-2">
                             {/* only the owner's table can edit, and so share */}
@@ -421,14 +409,6 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                               />
                             )}
                           </div>
-
-                          {/* Right: News Context & Hype */}
-                          {featureFlags.NEWS_FEATURES && (
-                            <div className="space-y-2">
-                              <TradeNewsContext symbol={trade.symbol} entryTime={trade.entry_time} />
-                              <NewsHypeIndicator symbol={trade.symbol} entryTime={trade.entry_time} />
-                            </div>
-                          )}
                         </div>
                       </div>
                     </TableCell>

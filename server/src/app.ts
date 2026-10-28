@@ -8,7 +8,6 @@ import { QueryError, querySchema, runQuery } from "./data.js";
 import { readScreenshot, saveScreenshot } from "./uploads.js";
 import { importTrades, userIdForWebhookKey } from "./routes/import.js";
 import { FlexError, syncIbkr } from "./ibkr.js";
-import { news } from "./routes/news.js";
 import { sendContactMail } from "./mail.js";
 
 type Vars = { userId: string; userEmail: string };
@@ -240,7 +239,7 @@ app.post("/api/account/reset", async (c) => {
   const client = await pool.connect();
   try {
     await client.query("begin");
-    for (const table of ["trade_shares", "trades", "journal_entries", "daily_prep", "executions", "broker_connections", "news_source_preferences"]) {
+    for (const table of ["trade_shares", "trades", "journal_entries", "daily_prep", "executions", "broker_connections"]) {
       await client.query(`delete from ${table} where user_id = $1`, [userId]);
     }
     // back to the column defaults
@@ -259,11 +258,6 @@ app.post("/api/account/reset", async (c) => {
     client.release();
   }
   return c.json({ success: true, message: "All data reset successfully" });
-});
-
-app.post("/api/news", async (c) => {
-  const result = await news(c.get("userId"), await c.req.json());
-  return c.json(result.body as object, result.status as 200);
 });
 
 const stockPriceSchema = z.object({

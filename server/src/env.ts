@@ -24,5 +24,4 @@ export const env = {
   },
   // recipient of the contact form
   contactTo: process.env.CONTACT_TO,
-  marketauxApiKey: process.env.MARKETAUX_API_KEY,
 };

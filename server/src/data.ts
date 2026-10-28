@@ -40,14 +40,7 @@ const TABLES: Record<string, TableConfig> = {
     protected: BASE_PROTECTED,
     conflict: ["user_id,achievement_type"],
   },
-  news_source_preferences: {
-    owner: "user_id",
-    actions: ["select", "insert", "update", "upsert", "delete"],
-    protected: BASE_PROTECTED,
-    conflict: ["user_id,source_id"],
-  },
   executions: { owner: "user_id", actions: ["select", "delete"], protected: BASE_PROTECTED },
-  sector_sentiments: { owner: null, actions: ["select"], protected: [] },
 };
 
 const filterSchema = z.object({

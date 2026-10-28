@@ -10,12 +10,10 @@ import {
   ArrowRight,
   TrendingUp,
   BarChart3,
-  MessageSquare,
   Zap,
   ShieldCheck,
   Plug,
 } from "lucide-react";
-import { featureFlags } from "@/config/featureFlags";
 
 import { useScreens } from "@/lib/screens";
 
@@ -44,19 +42,12 @@ const teaserCards: TeaserCard[] = [
     titleKey: "features.categories.analytics",
     descriptionKey: "features.teaserCards.analytics",
   },
-  featureFlags.AI_FEATURES
-    ? {
-        id: "ai",
-        icon: <MessageSquare className="h-5 w-5" />,
-        titleKey: "features.categories.ai",
-        descriptionKey: "features.teaserCards.ai",
-      }
-    : {
-        id: "discipline",
-        icon: <ShieldCheck className="h-5 w-5" />,
-        titleKey: "features.categories.discipline",
-        descriptionKey: "features.teaserCards.discipline",
-      },
+  {
+    id: "discipline",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    titleKey: "features.categories.discipline",
+    descriptionKey: "features.teaserCards.discipline",
+  },
   {
     id: "import",
     icon: <Plug className="h-5 w-5" />,
@@ -70,7 +61,6 @@ const categoryFilters = [
   { id: "import", labelKey: "features.categories.import" },
   { id: "trading-tools", labelKey: "features.categories.tradingTools" },
   { id: "analytics", labelKey: "features.categories.analytics" },
-  ...(featureFlags.AI_FEATURES ? [{ id: "ai", labelKey: "features.categories.ai" }] : []),
   { id: "reports", labelKey: "features.categories.reports" },
   { id: "market-intel", labelKey: "features.categories.marketIntel" },
 ];

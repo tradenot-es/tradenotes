@@ -60,10 +60,6 @@ const Hilfe = () => {
       answer: "Gehen Sie zu Einstellungen > Trading Setups und fügen Sie Ihre Strategien hinzu (z.B. 'Breakout', 'Pullback', 'Trendfolge'). Sie können dann jeden Trade einem Setup zuordnen und die Performance einzelner Strategien analysieren."
     },
     {
-      question: "Wie funktioniert der KI-Assistent?",
-      answer: "Der KI-Assistent analysiert Ihre Trading-Daten und gibt Ihnen personalisierte Einblicke und Empfehlungen. Er kann Muster in Ihrem Trading erkennen und Verbesserungsvorschläge machen."
-    },
-    {
       question: "Kann ich mehrere Konten verwalten?",
       answer: "Ja, Sie können mehrere Trading-Konten in TradeNotes verwalten und zwischen ihnen wechseln oder alle zusammen analysieren."
     },

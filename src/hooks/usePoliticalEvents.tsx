@@ -1,5 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
-import { invoke } from "@/lib/api";
+import { useMemo } from "react";
 import { format, startOfWeek, endOfWeek } from "date-fns";
 import { getEconomicEventsInRange, type EconomicEvent } from "@/lib/economicCalendar";
 
@@ -17,42 +16,7 @@ export interface PoliticalEvent {
   time?: string;
 }
 
-// Impact-Level Keywords - expanded to include geopolitical events, global summits, central banks, and economic indicators
-const HIGH_IMPACT_KEYWORDS = [
-  'FOMC', 'CPI', 'NFP', 'jobs report', 'interest rate', 'rate hike', 'rate cut', 
-  'Federal Reserve', 'Fed rate', 'war', 'invasion', 'military', 'sanctions', 
-  'crash', 'default', 'debt ceiling', 'shutdown', 'recession',
-  'Davos', 'WEF', 'World Economic Forum', 'G7', 'G20', 'Jackson Hole',
-  'UN General Assembly', 'BRICS Summit', 'EU Summit',
-  'ECB', 'Lagarde', 'European Central Bank', 'OPEC', 'oil production',
-  'Bank of England', 'BoE', 'Bailey', 'Bank of Japan', 'BoJ', 'Ueda',
-  'midterm', 'election', 'congress', 'senate',
-  'PCE', 'Personal Consumption', 'ISM Manufacturing', 'ISM Services',
-  'retail sales', 'consumer spending'
-];
-const MEDIUM_IMPACT_KEYWORDS = [
-  'GDP', 'unemployment', 'inflation', 'earnings', 'ISM', 'PPI', 'retail', 
-  'housing', 'oil', 'China trade', 'tariff', 'stimulus', 'volatility',
-  'VIX', 'selloff', 'rally', 'carry trade', 'yen', 'euro', 'pound',
-  'producer prices', 'housing starts', 'building permits', 'PMI'
-];
-const POLITICAL_KEYWORDS = [
-  'Trump', 'Biden', 'policy', 'White House',
-  'geopolitical', 'NATO', 'Europe', 'Russia', 'China', 'conflict', 'nuclear'
-];
-
-function categorizeEvent(title: string): 'high' | 'medium' | 'political' {
-  const lowerTitle = title.toLowerCase();
-  if (HIGH_IMPACT_KEYWORDS.some(kw => lowerTitle.includes(kw.toLowerCase()))) return 'high';
-  if (MEDIUM_IMPACT_KEYWORDS.some(kw => lowerTitle.includes(kw.toLowerCase()))) return 'medium';
-  return 'political';
-}
-
 export function usePoliticalEvents(startDate: Date, endDate: Date) {
-  const [newsEvents, setNewsEvents] = useState<PoliticalEvent[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [eventsByDate, setEventsByDate] = useState<Map<string, PoliticalEvent[]>>(new Map());
-
   // Memoize date range to prevent unnecessary re-fetches
   const dateRange = useMemo(() => {
     const weekStart = startOfWeek(startDate, { weekStartsOn: 0 });
@@ -83,90 +47,15 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
     }));
   }, [dateRange.startDate, dateRange.endDate]);
 
-  // Combine scheduled + news events
-  const allEvents = useMemo(() => {
-    // Merge scheduled events with news events
-    const combined = [...scheduledEvents, ...newsEvents];
-    
-    // Sort by date, then scheduled events first
-    combined.sort((a, b) => {
-      if (a.date !== b.date) {
-        return a.date.localeCompare(b.date);
-      }
-      // Scheduled events come first
-      if (a.isScheduled && !b.isScheduled) return -1;
-      if (!a.isScheduled && b.isScheduled) return 1;
-      return 0;
-    });
-    
-    return combined;
-  }, [scheduledEvents, newsEvents]);
-
-  // Group all events by date
-  useEffect(() => {
+  // Group events by date
+  const eventsByDate = useMemo(() => {
     const grouped = new Map<string, PoliticalEvent[]>();
-    
-    allEvents.forEach(event => {
-      const dateKey = event.date;
-      if (!grouped.has(dateKey)) {
-        grouped.set(dateKey, []);
-      }
-      grouped.get(dateKey)!.push(event);
-    });
-    
-    setEventsByDate(grouped);
-  }, [allEvents]);
-
-  // Fetch news events from API
-  useEffect(() => {
-    let isMounted = true;
-
-    const loadWeeklyEvents = async () => {
-      if (loading) return; // Prevent concurrent calls
-      
-      setLoading(true);
-      
-      try {
-        console.log('usePoliticalEvents: Loading news from', dateRange.start, 'to', dateRange.end);
-
-        const { data, error } = await invoke("news", {
-          body: { 
-            action: 'get-political-events',
-            startDate: dateRange.start,
-            endDate: dateRange.end,
-            keywords: 'Trump,Fed,Powell,Biden,FOMC,CPI,inflation,NFP,jobs report,interest rate,GDP,earnings,tariff,rate hike,rate cut,war,invasion,sanctions,military,China,Russia,OPEC,oil,recession,crash,stimulus,Davos,WEF,World Economic Forum,G7,G20,BRICS,EU Summit,UN General Assembly,Jackson Hole,ECB,Lagarde,European Central Bank,Bank of England,BoE,Bailey,Bank of Japan,BoJ,Ueda,midterm,election,oil production,carry trade',
-            limit: 50
-          }
-        });
-
-        if (!isMounted) return;
-
-        console.log('usePoliticalEvents: Response', { success: data?.success, articleCount: data?.articles?.length, error });
-
-        if (!error && data?.success && data.articles) {
-          // Add impact level categorization to each news event
-          const fetchedEvents: PoliticalEvent[] = data.articles.map((article: any) => ({
-            ...article,
-            impact_level: categorizeEvent(article.title),
-            isScheduled: false
-          }));
-          setNewsEvents(fetchedEvents);
-        }
-      } catch (err) {
-        console.error('Error loading political events:', err);
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    loadWeeklyEvents();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [dateRange.start, dateRange.end]); // Only re-fetch when date range actually changes
+    for (const event of scheduledEvents) {
+      if (!grouped.has(event.date)) grouped.set(event.date, []);
+      grouped.get(event.date)!.push(event);
+    }
+    return grouped;
+  }, [scheduledEvents]);
 
   const hasEventsOnDate = (date: Date): boolean => {
     const dateStr = format(date, 'yyyy-MM-dd');
@@ -183,9 +72,9 @@ export function usePoliticalEvents(startDate: Date, endDate: Date) {
     return events.some(e => e.isScheduled);
   };
 
-  return { 
-    events: allEvents, 
-    loading, 
+  return {
+    events: scheduledEvents,
+    loading: false,
     hasEventsOnDate, 
     getEventsForDate,
     hasScheduledEventsOnDate

@@ -71,33 +71,17 @@
     "error": "Error ocurrido",
     "clickToRetry": "Clic para reintentar"
   },
-  "checkout": {
-    "successTitle": "¡Bienvenido a Premium!",
-    "successDescription": "Tu pago fue exitoso. Tu acceso Premium ya está activo.",
-    "premiumActivated": "Ahora tienes acceso a todas las funciones Premium:",
-    "feature1": "Registro ilimitado de operaciones",
-    "feature2": "Informes y análisis avanzados",
-    "feature3": "Asistente de trading con IA",
-    "goToDashboard": "Ir al panel",
-    "redirecting": "Redirigiendo en {{seconds}} segundos..."
-  },
   "dashboard": {
     "title": "Panel",
     "subtitle": "Resumen de tu rendimiento de trading",
     "addTrade": "Añadir trade",
-    "totalTrades": "Total de operaciones",
     "winRate": "Tasa de éxito",
     "winRateTooltip": "Porcentaje de operaciones ganadoras. Verde desde 50%, Amarillo 40-50%, Rojo por debajo de 40%. Una tasa de ganancia baja puede ser rentable si R-Multiple > 1.",
     "netPnL": "P&L neto",
-    "netPnLTooltip": "Beneficio o pérdida total de todas las operaciones después de comisiones. Verde = Rentable, Rojo = Pérdidas.",
     "avgRMultiple": "R-Multiple promedio",
     "avgRMultipleTooltip": "Ratio promedio de ganancia/riesgo. Verde desde 1.0 (ganancias > riesgo), Amarillo 0.5-1.0, Rojo por debajo de 0.5. Crítico para rentabilidad con tasas de ganancia bajas.",
-    "expectancy": "Expectativa",
-    "expectancyTooltip": "Beneficio esperado por operación basado en Win Rate, Avg Win y Avg Loss. Positivo = sistema rentable, Negativo = sistema perdedor.",
     "profitFactor": "Factor de beneficio",
     "profitFactorTooltip": "Ganancias brutas / Pérdidas brutas. Verde desde 1.5 (muy rentable), Amarillo 1.0-1.5 (rentable), Rojo por debajo de 1.0 (pérdidas). Un valor superior a 1 indica rentabilidad.",
-    "avgWinLoss": "Ganancia / Pérdida promedio",
-    "avgWinLossTooltip": "Muestra la relación entre ganancia promedio y pérdida promedio. Un Avg Win más alto permite rentabilidad a pesar de una tasa de ganancia más baja.",
     "consistencyTracker": "Consistencia del trading",
     "consistencyTrackerTooltip": "Visualiza tu actividad de trading diaria y rendimiento durante las últimas 12 semanas. Los cuadrados verdes muestran días rentables, los cuadrados rojos muestran días de pérdida. Cuanto más intensa sea el color, más operaciones se ejecutaron.",
     "less": "Menos",
@@ -109,12 +93,10 @@
     "avgTrade": "Prom/Trade",
     "dailyBreakdown": "Desglose diario",
     "featured": {
-      "totalBalance": "Saldo total",
       "netProfit": "Beneficio neto",
       "netProfitTooltip": "Beneficio total menos todas las pérdidas y comisiones.",
       "tradingDays": "Días de trading",
       "tradingDaysTooltip": "Número de días con al menos un trade ejecutado.",
-      "winRate": "Tasa de éxito",
       "avgTrade": "Prom/Trade",
       "avgTradeTooltip": "Ganancia o pérdida media por trade.",
       "totalTrades": "Operaciones",
@@ -122,8 +104,6 @@
       "expectancy": "Expectativa",
       "expectancyTooltip": "Beneficio esperado por trade según tu tasa de acierto y tu ganancia/pérdida media."
     },
-    "bestWorstTrade": "Mejor / Peor Trade",
-    "bestWorstTradeTooltip": "Muestra su operación más rentable y la más perdedora. Ayuda a analizar valores extremos y gestión de riesgos.",
     "tradesPerDay": "operaciones/día",
     "longestWinStreak": "Racha de ganancias más larga",
     "longestLossStreak": "Racha de pérdidas más larga",
@@ -139,88 +119,6 @@
     "accountPerformanceTooltip": "Desglose de rendimiento por tipo de cuenta (Sim, Evaluación, Financiada, Real). Haz clic para un análisis detallado.",
     "clickForDetails": "Clic para detalles",
     "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
-    "equity": "Capital",
-    "pnl": "P&L",
-    "portfolioNews": "Noticias del Portfolio",
-    "portfolioNewsTooltip": "Noticias financieras curadas automáticamente para sus símbolos más negociados. Manténgase informado sobre eventos que mueven el mercado y desarrollos que podrían impactar sus posiciones.",
-    "newsTranslated": "¡Noticias traducidas con éxito!",
-    "translationFailed": "Traducción fallida. Por favor, inténtalo de nuevo.",
-    "autoTranslated": "Traducido automáticamente",
-    "stocksOnlyNews": "Las noticias del portfolio solo están disponibles para símbolos de acciones (p. ej., AAPL, GOOGL, TSLA). Los futuros e índices no son compatibles con el proveedor de noticias.",
-    "noNewsProxiesAvailable": "No hay símbolos compatibles disponibles. Añade operaciones de acciones o futuros populares (NQ, ES, GC) para ver noticias relevantes.",
-    "dynamicDashboard": "Panel Dinámico",
-    "dynamicDashboardInfo": "Noticias filtradas automáticamente por sus mejores resultados",
-    "noSymbolsForNews": "No hay símbolos disponibles aún. Añade operaciones para recibir noticias relevantes.",
-    "newsCount": "{{count}} Noticias",
-    "noNewsForSymbol": "Sin noticias para este símbolo",
-    "via": "via",
-    "smartTags": {
-      "earningsPlay": "Earnings Play",
-      "macroEvent": "Evento Macro",
-      "politicalCatalyst": "Catalizador Político",
-      "newsCatalyst": "Catalizador de Noticias"
-    },
-    "sectorSentiment": "Sentimiento del Mercado Hoy",
-    "sectorSentimentDescription": "Resumen sectorial diario ayuda a identificar sesgo",
-    "articles": "artículos",
-    "sectorArticles": "{{count}} artículos analizados",
-    "topArticles": "Artículos Principales",
-    "negativeArticles": "Noticias Negativas",
-    "trend7Days": "Tendencia 7 días",
-    "sentiment": {
-      "mixed": "Mixto",
-      "average": "Promedio",
-      "warningTooltip": "Contiene noticias fuertemente negativas a pesar del promedio positivo",
-      "highVolatility": "Alta volatilidad: El sentimiento varía ampliamente entre artículos",
-      "negativeWarning": "{{count}} artículo(s) fuertemente negativo(s) a pesar del promedio positivo"
-    },
-    "sectors": {
-      "examples_label": "p. ej.",
-      "technology": {
-        "description": "Hardware, Software, Semiconductores, Servicios TI",
-        "examples": "Apple, Microsoft, NVIDIA, Adobe"
-      },
-      "communication_services": {
-        "description": "Medios, Publicidad, Telecomunicaciones, Redes Sociales",
-        "examples": "Google, Meta, Netflix, Disney"
-      },
-      "energy": {
-        "description": "Petróleo, Gas, Energía Renovable",
-        "examples": "ExxonMobil, Chevron, Shell"
-      },
-      "healthcare": {
-        "description": "Farmacéutica, Biotech, Equipamiento Médico",
-        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
-      },
-      "financials": {
-        "description": "Bancos, Seguros, Gestión de Activos",
-        "examples": "JPMorgan, Berkshire Hathaway, Visa"
-      },
-      "consumer_cyclical": {
-        "description": "Minorista, Automotriz, Ocio, Productos de Lujo",
-        "examples": "Amazon, Tesla, Nike, McDonald's"
-      },
-      "industrials": {
-        "description": "Aeroespacial, Defensa, Construcción, Transporte",
-        "examples": "Boeing, Caterpillar, UPS"
-      },
-      "consumer_defensive": {
-        "description": "Alimentos, Bebidas, Productos del Hogar",
-        "examples": "Coca-Cola, Procter & Gamble, Walmart"
-      },
-      "basic_materials": {
-        "description": "Metales, Minería, Productos Químicos",
-        "examples": "Dow, Freeport-McMoRan, Nucor"
-      },
-      "real_estate": {
-        "description": "REITs, Gestión de Propiedades, Desarrollo",
-        "examples": "American Tower, Prologis, Simon Property"
-      },
-      "utilities": {
-        "description": "Servicios Públicos Eléctricos, Agua, Gas",
-        "examples": "NextEra Energy, Duke Energy, Southern Company"
-      }
-    },
     "tradeCount_one": "{{count}} trade",
     "tradeCount_other": "{{count}} trades"
   },
@@ -238,99 +136,12 @@
     "title": "Desglose de rendimiento",
     "performanceBreakdownTooltip": "Estadísticas de rendimiento detalladas: ratio de ganancia/pérdida, ganancias/pérdidas promedio, así como mejores y peores operaciones. Proporciona información sobre la calidad de tus decisiones de trading.",
     "winLossRatio": "Ratio Ganancia/Pérdida",
-    "wins": "Ganancias",
-    "losses": "Pérdidas",
     "avgWin": "Ganancia promedio",
     "avgLoss": "Pérdida promedio",
     "bestTrade": "Mejor operación",
-    "worstTrade": "Peor operación",
-    "maxDrawdown": "Drawdown máx",
-    "maxDrawdownTooltip": "Mayor caída de capital de pico a valle. Siempre negativo - mide el riesgo máximo y la carga emocional de su estrategia.",
-    "equityCurve": "Curva de capital",
-    "equityCurveTooltip": "Muestra la evolución acumulada de tu capital de trading a lo largo del tiempo. Una curva que sube de forma constante indica rentabilidad sostenida; las caídas grandes señalan fases de drawdown.",
-    "pnlByMonth": "P&L por mes",
-    "pnlChartTooltip": "Resumen mensual de pérdidas y ganancias. Muestra el rendimiento de cada mes y te ayuda a detectar patrones estacionales y tendencias a largo plazo.",
-    "accountPerformance": "Rendimiento de cuenta",
-    "accountPerformanceTooltip": "Desglose de rendimiento por tipo de cuenta (Sim, Evaluación, Financiada, Real). Haz clic para detalles.",
-    "clickForDetails": "Clic para detalles",
-    "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
-    "equity": "Capital",
-    "pnl": "P&L",
-    "sectorSentiment": "Sentimiento del Mercado Hoy",
-    "sectorSentimentDescription": "Resumen sectorial diario para identificar el sesgo del mercado",
-    "articles": "artículos",
-    "portfolioNews": "Noticias del Portfolio",
-    "portfolioNewsTooltip": "Noticias financieras curadas automáticamente para sus símbolos más negociados. Manténgase informado sobre eventos que mueven el mercado y desarrollos que podrían impactar sus posiciones.",
-    "newsTranslated": "¡Noticias traducidas con éxito!",
-    "translationFailed": "Traducción fallida. Por favor, inténtalo de nuevo.",
-    "autoTranslated": "Traducido automáticamente",
-    "stocksOnlyNews": "Las noticias del portfolio solo están disponibles para símbolos de acciones (p. ej., AAPL, GOOGL, TSLA). Los futuros e índices no son compatibles con el proveedor de noticias.",
-    "noNewsProxiesAvailable": "No hay símbolos compatibles disponibles. Añade operaciones de acciones o futuros populares (NQ, ES, GC) para ver noticias relevantes.",
-    "dynamicDashboard": "Panel Dinámico",
-    "dynamicDashboardInfo": "Noticias filtradas automáticamente por sus mejores resultados",
-    "noSymbolsForNews": "No hay símbolos disponibles aún. Añade operaciones para recibir noticias relevantes.",
-    "newsCount": "{{count}} Noticias",
-    "noNewsForSymbol": "Sin noticias para este símbolo",
-    "via": "vía",
-    "smartTags": {
-      "earningsPlay": "Resultados",
-      "macroEvent": "Evento Macro",
-      "politicalCatalyst": "Catalizador Político",
-      "newsCatalyst": "Catalizador de Noticias"
-    },
-    "sectorArticles": "{{count}} artículos analizados",
-    "topArticles": "Artículos Principales",
-    "trend7Days": "Tendencia de 7 días",
-    "sectors": {
-      "examples_label": "ej.",
-      "technology": {
-        "description": "Hardware, Software, Semiconductores, Servicios IT",
-        "examples": "Apple, Microsoft, NVIDIA, Adobe"
-      },
-      "communication_services": {
-        "description": "Medios, Publicidad, Telecomunicaciones, Redes Sociales",
-        "examples": "Google, Meta, Netflix, Disney"
-      },
-      "energy": {
-        "description": "Petróleo, Gas, Energías Renovables",
-        "examples": "ExxonMobil, Chevron, Shell"
-      },
-      "healthcare": {
-        "description": "Farmacéuticas, Biotech, Equipamiento Médico",
-        "examples": "Pfizer, Johnson & Johnson, UnitedHealth"
-      },
-      "financials": {
-        "description": "Bancos, Seguros, Gestión de Activos",
-        "examples": "JPMorgan, Berkshire Hathaway, Visa"
-      },
-      "consumer_cyclical": {
-        "description": "Comercio, Automotriz, Ocio, Bienes de Lujo",
-        "examples": "Amazon, Tesla, Nike, McDonald's"
-      },
-      "industrials": {
-        "description": "Aeroespacial, Defensa, Construcción, Transporte",
-        "examples": "Boeing, Caterpillar, UPS"
-      },
-      "consumer_defensive": {
-        "description": "Alimentos, Bebidas, Productos del Hogar",
-        "examples": "Coca-Cola, Procter & Gamble, Walmart"
-      },
-      "basic_materials": {
-        "description": "Metales, Minería, Química",
-        "examples": "Dow, Freeport-McMoRan, Nucor"
-      },
-      "real_estate": {
-        "description": "REITs, Desarrollo Inmobiliario",
-        "examples": "American Tower, Prologis, Simon Property"
-      },
-      "utilities": {
-        "description": "Servicios Públicos de Electricidad, Agua, Gas",
-        "examples": "NextEra Energy, Duke Energy, Dominion"
-      }
-    }
+    "worstTrade": "Peor operación"
   },
   "calendar": {
-    "politicalEvent": "Evento de Impacto",
     "politicalEventsToday": "Eventos de impacto hoy",
     "moreEvents": "más eventos",
     "loadingPoliticalEvents": "Cargando eventos de impacto...",
@@ -344,9 +155,7 @@
     "impactMediumTooltip": "Volatilidad moderada posible. Reacción del mercado depende de resultados o declaraciones.",
     "impactLowTooltip": "Se espera poca reacción inmediata del mercado. Posibles efectos a largo plazo.",
     "impactPoliticalTooltip": "Evento político con potencial influencia en el mercado. Reacción difícil de predecir.",
-    "impactLegend": "Leyenda",
     "scheduledEvents": "Eventos programados",
-    "relatedNews": "Noticias relacionadas",
     "confirmed": "Confirmado",
     "categories": {
       "fomc": "FOMC",
@@ -373,7 +182,6 @@
     "subtitle": "Gestiona y analiza tu historial de trading",
     "addTrade": "Añadir operación",
     "filter": "Filtrar",
-    "filterBy": "Filtrar por",
     "symbol": "Símbolo",
     "priceUpdated": "Precio actualizado: {{price}}",
     "priceNotAvailable": "Precio no disponible",
@@ -384,7 +192,6 @@
     "qty": "Cantidad",
     "entryPrice": "Precio de entrada",
     "exitPrice": "Precio de salida",
-    "pnl": "P&L",
     "fees": "Comisiones",
     "entryTime": "Hora de entrada",
     "exitTime": "Hora de salida",
@@ -393,10 +200,6 @@
     "tagsSelected": "seleccionado",
     "searchTags": "Buscar etiquetas...",
     "note": "Nota",
-    "actions": "Acciones",
-    "view": "Ver",
-    "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
-    "tradeDetails": "Detalles de la operación",
     "long": "Largo",
     "short": "Corto",
     "newTrade": "Nueva operación",
@@ -408,7 +211,6 @@
     "deleteError": "Error al eliminar la operación",
     "cancel": "Cancelar",
     "save": "Guardar",
-    "close": "Cerrar",
     "optional": "opcional",
     "selectSetup": "Seleccionar setup...",
     "setupChecklist": "Lista de Verificación del Setup",
@@ -416,15 +218,7 @@
     "tradeAdded": "Operación añadida con éxito",
     "addError": "Error al añadir la operación",
     "required": "Todos los campos obligatorios deben completarse",
-    "calendarView": "Vista de Calendario",
-    "selectDate": "Selecciona una fecha para añadir o ver trades",
-    "tradesOnDate": "Trades del",
-    "newsOnDate": "Noticias Financieras",
     "noTradesOnDate": "No hay trades en esta fecha",
-    "noNewsAvailable": "No hay noticias disponibles",
-    "newsAnalyzedFor": "Analizado para sus símbolos negociados",
-    "loadingNews": "Cargando noticias...",
-    "selectCurrency": "Seleccionar Moneda",
     "market": "Mercado",
     "stock": "Acción",
     "futures": "Futuros",
@@ -435,25 +229,9 @@
     "stopLossPrice": "Precio Stop Loss",
     "initialRisk": "Riesgo Inicial",
     "initialRiskHint": "Para cálculo R-Multiple: (Entrada - Stop Loss) × Cantidad",
-    "mfePrice": "Precio MFE",
-    "mfePriceHint": "Maximum Favorable Excursion: el mejor precio durante el trade",
-    "maePrice": "Precio MAE",
-    "maePriceHint": "Maximum Adverse Excursion: el peor precio durante el trade",
     "rating": "Calificación de Calidad del Trade",
     "ratingHint": "Califique este trade de 1 (mala ejecución) a 5 (ejecución excelente)",
     "screenshot": "Captura de Pantalla",
-    "screenshotHint": "Sube una captura del gráfico y nuestra IA extraerá automáticamente todos los detalles de la operación",
-    "analyzeChart": "Analizar gráfico",
-    "analyzing": "Analizando...",
-    "chartAnalyzed": "Gráfico analizado correctamente",
-    "chartAnalysisError": "Error al analizar el gráfico",
-    "noScreenshotSelected": "No se seleccionó ninguna captura",
-    "highConfidence": "Alta confianza",
-    "mediumConfidence": "Confianza media",
-    "lowConfidence": "Baja confianza",
-    "manualEntry": "Entrada manual",
-    "screenshotAnalysis": "Analizar captura",
-    "manualEntryDescription": "Introduce todos los detalles de la operación manualmente",
     "livePnL": "Vista previa de P&L en vivo",
     "copyLastTrade": "Copiar última operación",
     "lastTradeCopied": "Última operación copiada con éxito",
@@ -503,32 +281,6 @@
     },
     "deleteSuccess": "Operación eliminada exitosamente",
     "accountType": "Tipo de Cuenta",
-    "sentiment": {
-      "label": "Sentimiento de Noticias",
-      "veryBullish": "Muy Alcista",
-      "bullish": "Alcista",
-      "slightlyBullish": "Ligeramente Alcista",
-      "neutral": "Neutral",
-      "slightlyBearish": "Ligeramente Bajista",
-      "bearish": "Bajista",
-      "veryBearish": "Muy Bajista",
-      "highRisk": "Alto Riesgo",
-      "contraTrade": "Operación Contra-Noticias",
-      "contraTradeShort": "Operación contra el sentimiento",
-      "noNews": "sin noticias",
-      "tooltipTitle": "Análisis de Sentimiento",
-      "tooltipDescription": "Sentimiento promedio de los artículos de noticias sobre este símbolo en las 24 horas antes de tu entrada. El sentimiento va de -1 (muy bajista) a +1 (muy alcista). Aparece una advertencia de 'Operación Contra-Noticias' cuando tu dirección de operación contradice el sentimiento del mercado.",
-      "score": "Puntuación",
-      "articles": "artículos"
-    },
-    "newsContext": {
-      "match": "Coincidencia"
-    },
-    "hype": {
-      "high": "Nivel de Rumor Alto",
-      "medium": "Nivel de Rumor Medio",
-      "articles": "{{count}} artículos en últimas 12h"
-    },
     "accountName": "Nombre de Cuenta",
     "accountNamePlaceholder": "ej. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -570,10 +322,6 @@
     "importError": "Error al importar",
     "noTradesFound": "No se encontraron operaciones válidas en el CSV",
     "notAuthenticated": "Por favor, inicia sesión para importar operaciones",
-    "webhookTitle": "Importación automática mediante Webhook",
-    "webhookDescription": "Usa esta URL para importar operaciones automáticamente desde TradingView o NinjaTrader",
-    "webhookCopied": "URL del Webhook copiada al portapapeles",
-    "webhookInstructions": "Copia esta URL y configúrala en tu plataforma de trading. Consulta la ayuda (?) para instrucciones detalladas.",
     "csvTemplate": "Otras plataformas: plantilla CSV",
     "templateDesc": "Para cualquier otra plataforma: rellena tus operaciones (una fila por operación cerrada) y sube el archivo arriba.",
     "requiredFields": "Campos requeridos:",
@@ -587,20 +335,12 @@
     "helpCsvStep1": "Descarga la plantilla CSV haciendo clic en 'Descargar plantilla'",
     "helpCsvStep2": "Completa tus datos de trading siguiendo el formato de la plantilla",
     "helpCsvStep3": "Sube el archivo CSV completado usando el área de carga",
-    "helpTvTitle": "📊 Webhook TradingView",
-    "helpTvIntro": "Importa operaciones automáticamente desde alertas de TradingView:",
-    "helpTvStep1": "Crea una alerta en TradingView para tu estrategia",
-    "helpTvStep2": "En la configuración de la alerta, activa 'URL del Webhook'",
-    "helpTvStep3": "Copia tu URL de webhook desde la sección 'Importación automática mediante Webhook' arriba",
-    "helpTvStep4": "Pega la URL del webhook y configura el formato del mensaje con los detalles de la operación",
     "helpNtTitle": "🔷 Integración NinjaTrader",
     "helpNtIntro": "Sincroniza operaciones automáticamente desde NinjaTrader:",
     "helpNtStep1": "Descarga el add-on de NinjaTrader en esta página (ZIP, tu clave ya está dentro)",
     "helpNtStep2": "Impórtalo en NinjaTrader: Tools → Import → NinjaScript Add-On",
     "helpNtStep3": "Reinicia NinjaTrader; el add-on funciona entonces en segundo plano",
     "helpNtStep4": "Se envía cada ejecución; cuando una posición se cierra, se convierte en una operación",
-    "helpWebhookTitle": "🔗 URL del Webhook",
-    "helpWebhookInfo": "Tu URL de webhook personal se muestra arriba. Mantén esta URL privada ya que proporciona acceso directo a tu diario de trading.",
     "ntTitle": "NinjaTrader: automático",
     "ntDescription": "Cada ejecución de NinjaTrader 8 llega automáticamente a tu diario como operación, con ejecuciones parciales, comisiones y MFE/MAE.",
     "ntApiKeyTitle": "Su clave API personal",
@@ -612,7 +352,6 @@
     "ntRegenerateKeyWarning": "Tu clave API actual dejará de funcionar.",
     "ntApiKeyRegenerated": "Nueva clave API generada con éxito",
     "ntApiKeyRegenerateError": "Error al regenerar la clave API",
-    "ntWebhookUrlTitle": "URL Webhook",
     "ntScriptTitle": "Add-on de NinjaTrader",
     "ntScriptDescription": "Se instala una vez y funciona en segundo plano: sin gráfico, para todas las cuentas (también de prop firms). Las ejecuciones perdidas se envían en el siguiente inicio.",
     "ntDownloadScript": "Descargar add-on (.zip)",
@@ -704,25 +443,6 @@
     "subtitle": "Gestiona tu correo, contraseña y configuración de seguridad",
     "accountInfo": "Información de Cuenta",
     "accountInfoDesc": "Actualiza tu correo y configuración de autenticación",
-    "subscription": "Suscripción",
-    "subscriptionDesc": "Gestiona tu suscripción y accede a todas las funciones premium",
-    "loadingSubscription": "Cargando estado de suscripción...",
-    "activeSubscription": "Suscripción Activa",
-    "plan": "Plan",
-    "validUntil": "Válido hasta",
-    "allFeaturesUnlocked": "✓ Todas las funciones desbloqueadas",
-    "manageSubscription": "Gestionar Suscripción",
-    "trialActive": "Prueba Gratuita de 14 Días Activa",
-    "trialDaysRemaining": "{{days}} días restantes",
-    "trialExpired": "Prueba expirada",
-    "trialDescription": "Prueba TradeNotes gratis durante 14 días con la mayoría de las funciones. Actualiza en cualquier momento para acceso completo.",
-    "availablePlans": "Planes Disponibles:",
-    "monthlyPlan": "Suscripción Mensual - Máxima Flexibilidad",
-    "yearlyPlan": "Suscripción Anual - Ahorra hasta 20%",
-    "trialLimitations": "Tus funciones de prueba:",
-    "limitationAI": "Asistente IA: 5 preguntas por día",
-    "limitationMetrics": "Métricas de Rendimiento Avanzadas disponibles",
-    "allOtherFeatures": "Acceso completo a todas las funciones",
     "dangerZone": "Zona de Peligro",
     "dangerZoneDesc": "Acciones irreversibles para tu cuenta",
     "resetAll": "Restablecer Todo",
@@ -757,15 +477,7 @@
     "deleteAccountSuccess": "Cuenta eliminada con éxito",
     "deleteAccountSuccessMessage": "Tu cuenta ha sido eliminada completamente. Serás redirigido a la página de inicio...",
     "deleteAccountError": "Error al eliminar la cuenta",
-    "deletingAccount": "Eliminando cuenta...",
-    "choosePlan": "Elige tu plan",
-    "monthlyLabel": "Mensual",
-    "yearlyLabel": "Anual",
-    "savePercent": "Ahorra 17%",
-    "perMonth": "por mes",
-    "perYear": "por año",
-    "subscribeNow": "Actualizar ahora",
-    "subscribeError": "Error al iniciar el pago"
+    "deletingAccount": "Eliminando cuenta..."
   },
   "settings": {
     "title": "Configuración",
@@ -881,10 +593,6 @@
   "common": {
     "back": "Volver",
     "loading": "Cargando...",
-    "readMore": "Leer más",
-    "translate": "Traducir",
-    "translating": "Traduciendo...",
-    "showOriginal": "Mostrar Original",
     "delete": "Eliminar",
     "edit": "Editar",
     "cancel": "Cancelar",
@@ -905,9 +613,7 @@
   },
   "landing": {
     "nav": {
-      "features": "Funciones",
-      "pricing": "Precios",
-      "allFeatures": "Todas las Funciones"
+      "features": "Funciones"
     },
     "topFeaturesTitle": "Lo que hace especial a TradeNotes",
     "topFeaturesDescription": "Las herramientas esenciales para tu éxito en trading",
@@ -933,47 +639,12 @@
     "heroDescription": "Registra tus operaciones en segundos, fija límites diarios y ve claramente qué errores te cuestan dinero. Sin suscripción, sin publicidad.",
     "ctaStart": "Comenzar Gratis",
     "ctaFeatures": "Explorar Funciones",
-    "rating": "4.9/5 de 1000+ Traders",
-    "dashboardAlt": "Panel de TradeNot.es con Gráficos de Rendimiento, Calendario de Trading y Analytics",
-    "videosBadge": "Cómo funciona",
-    "videosTitle": "Mira TradeNotes en Acción",
-    "videosDescription": "Descubre lo simple que puede ser el registro profesional de trading",
-    "videoTradeEntry": "Entrada de Operaciones Ultrarrápida",
-    "videoTradeEntryDesc": "Captura tus operaciones en segundos con vista previa de P&L en vivo, quick-chips para símbolos frecuentes y autocompletado de precios",
-    "videoChartAnalysis": "Análisis de Gráficos con IA",
-    "videoChartAnalysisDesc": "Sube tus gráficos de trading y recibe análisis instantáneo de IA con reconocimiento de patrones e identificación de configuraciones",
-    "videoDashboard": "Panel Inteligente",
-    "videoDashboardDesc": "Mantente al día con KPIs en tiempo real, curva de equity, estadísticas de rendimiento y calendario de operaciones interactivo",
-    "videoJournal": "Diario e Informes Detallados",
-    "videoJournalDesc": "Analiza tu rendimiento con informes de configuración, análisis de rachas, rendimiento por símbolo y estadísticas de período de tenencia",
     "featuresBadge": "Funciones",
-    "featuresTitle": "Todo para un diario de trading exitoso",
-    "featuresDescription": "Todas las herramientas que necesitas para aprender de tus operaciones y ser consistentemente rentable",
-    "pricingBadge": "Transparente y Justo",
-    "pricingTitle": "Todas las Funciones. Un Precio. Para Profesionales.",
-    "pricingDescription": "Sin niveles, sin funciones pro ocultas, sin paywalls. Todo desbloqueado desde el primer día.",
-    "trialBadge": "14 Días de Prueba Gratis",
-    "premiumTitle": "TradeNot.es Premium",
-    "premiumDescription": "La ventaja de trading impulsada por IA para traders activos",
-    "monthlyPlan": "Mensual",
-    "monthlyPrice": "19,99€",
-    "monthlyPeriod": "/mes",
-    "monthlyCancel": "Cancelar en cualquier momento",
-    "yearlyPlan": "Anual",
-    "yearlyBadge": "¡2 Meses Gratis!",
-    "yearlyPrice": "199,90€",
-    "yearlyPeriod": "/año",
-    "yearlyDiscount": "Ahorra 40€ (vs 239,88€)",
-    "allFeaturesTitle": "Todas las Funciones Incluidas:",
     "ctaTrial": "Empezar gratis",
-    "trialNotice": "No se requiere tarjeta de crédito • Cancelar en cualquier momento",
     "ctaTitle": "Opera más rentablemente – Comienza tu diario IA gratis ahora",
     "ctaDescription": "Sin suscripción, sin tarjeta – regístrate y empieza.",
-    "footerTitle": "TradeNot.es",
     "footerDescription": "El diario de trading profesional para traders ambiciosos",
     "footerProduct": "Producto",
-    "footerFeatures": "Funciones",
-    "footerPricing": "Precios",
     "footerLogin": "Iniciar Sesión",
     "footerSupport": "Soporte",
     "footerHelp": "Centro de Ayuda",
@@ -987,27 +658,9 @@
     "whySection": {
       "badge": "¿Por qué un diario de trading?",
       "title": "Los traders exitosos documentan cada operación",
-      "description": "Un diario convierte la intuición en datos: qué funciona, qué no y qué hábitos te frenan.",
-      "benefit1Title": "Detectar patrones",
-      "benefit1Desc": "Análisis automático de tus mejores setups, horarios y símbolos",
-      "benefit2Title": "Fortalecer disciplina",
-      "benefit2Desc": "Límites diarios, puntuación de disciplina y detección automática de operaciones de venganza",
-      "benefit3Title": "Medir rendimiento",
-      "benefit3Desc": "Curva de equity, R-múltiple, expectativa y más de 20 KPIs de un vistazo"
+      "description": "Un diario convierte la intuición en datos: qué funciona, qué no y qué hábitos te frenan."
     },
     "features": {
-      "easyEntry": {
-        "title": "Entrada Rápida de Operaciones",
-        "description": "Registra operaciones en segundos con vista previa P&L en vivo, selección rápida de símbolos y autocompletado. Copia última operación para journaling instantáneo."
-      },
-      "webhookSync": {
-        "title": "NinjaTrader Auto-Sync",
-        "description": "Las operaciones se sincronizan automáticamente via webhook—entrada, salida, MFE/MAE y tipo de cuenta. Soporta 12+ prop firms como Apex, Topstep, Tradeify."
-      },
-      "propFirm": {
-        "title": "Integración Prop Firm",
-        "description": "Detección automática de cuentas Sim, Eval, Funded y Live. Analytics separados para cada fase de cuenta con Apex, Topstep y 10+ otras prop firms."
-      },
       "mfeMAE": {
         "title": "Análisis MFE/MAE",
         "description": "Seguimiento tick-by-tick del Maximum Favorable & Adverse Excursion. Optimiza stop-loss y take-profit con análisis de riesgo basado en datos."
@@ -1019,74 +672,6 @@
       "analytics": {
         "title": "Analytics de Rendimiento",
         "description": "Rastrea Win Rate, R-Multiple, Profit Factor y Expectancy. Entiende tu ventaja con estadísticas completas de trading."
-      },
-      "equity": {
-        "title": "Curva de Capital",
-        "description": "Visualiza crecimiento de capital en el tiempo. Detecta drawdowns y tendencias de crecimiento instantáneamente con gráficos acumulativos."
-      },
-      "consistency": {
-        "title": "Rastreador de Consistencia",
-        "description": "Mapa de calor de trading de 12 semanas muestra patrones rentables y rachas perdedoras. Desarrolla hábitos ganadores consistentes."
-      },
-      "news": {
-        "title": "Inteligencia de Noticias del Portfolio",
-        "description": "Noticias auto-curadas para tus símbolos con proxy-mapping de futuros (NQ→QQQ), smart-tags (Earnings, Macro) y traducción IA."
-      },
-      "politicalEvents": {
-        "title": "Seguimiento de Eventos Políticos",
-        "description": "Rastrea discursos de Trump, anuncios de Fed, comentarios de Powell y elecciones. Cronometra trades alrededor de catalizadores macro con calendario visual."
-      },
-      "newsTranslation": {
-        "title": "Traducción IA de Noticias",
-        "description": "Traducción en un clic a 5 idiomas (EN, DE, ES, FR, NL). Comprende noticias del mercado global instantáneamente."
-      },
-      "calendar": {
-        "title": "Calendario de Trading",
-        "description": "Vista de calendario con días de ganancia/pérdida codificados por color. Revisa rápidamente tu actividad de trading de un vistazo."
-      },
-      "ai": {
-        "title": "Asistente Trading IA",
-        "description": "Haz preguntas sobre tu rendimiento. Obtén insights y análisis instantáneos basados en datos de tu historial de trading."
-      },
-      "aiAlerts": {
-        "title": "Alertas IA Proactivas",
-        "description": "Avisos en tiempo real para rachas de pérdidas, horas de trading débiles y trades contra-noticias. Prevención de riesgos con IA."
-      },
-      "aiCharts": {
-        "title": "Chat IA con Gráficos",
-        "description": "Haz preguntas y recibe visualizaciones interactivas—gráficos de barras, líneas y circulares directamente en el chat."
-      },
-      "dailySummary": {
-        "title": "Reporte Diario IA",
-        "description": "Resumen automático por email de tu rendimiento de trading con fortalezas, debilidades y sugerencias de mejora personalizadas."
-      },
-      "riskSimulator": {
-        "title": "Simulador de Riesgo What-If",
-        "description": "Prueba estrategias alternativas con simulación Monte Carlo. ¿Cómo habría rendido tu capital con salidas 2R o 1% de riesgo?"
-      },
-      "reports": {
-        "title": "Informes Avanzados",
-        "description": "Analiza por setup, símbolo, hora del día, período de tenencia y rachas. Encuentra tus patrones de trading más rentables."
-      },
-      "pnl": {
-        "title": "Gráficos P&L",
-        "description": "Visualización mensual de ganancias/pérdidas con gráficos de barras. Rastrea tu progreso e identifica patrones estacionales."
-      },
-      "weekly": {
-        "title": "Rendimiento Semanal",
-        "description": "Desglose semanal de operaciones y P&L. Monitorea tendencias de rendimiento a corto plazo efectivamente."
-      },
-      "prep": {
-        "title": "Preparación Diaria del Mercado",
-        "description": "Prep pre-mercado con eventos políticos, sentimiento sectorial y noticias para tu watchlist. Comienza a operar informado."
-      },
-      "import": {
-        "title": "Importar/Exportar CSV",
-        "description": "Importa operaciones de tu broker o exporta datos para análisis. Integración perfecta con flujos de trabajo existentes."
-      },
-      "glossary": {
-        "title": "Glosario de Trading",
-        "description": "Aprende términos de trading: Win Rate, R-Multiple, Profit Factor, Expectancy y más. Construye tu conocimiento de trading."
       },
       "discipline": {
         "title": "Disciplina y límites diarios",
@@ -1105,36 +690,11 @@
       "unlimited": "Documentar operaciones ilimitadas",
       "fullAnalytics": "Analytics de Rendimiento Completo (Win Rate, R-Multiple, Profit Factor, Expectancy)",
       "journal": "Diario de Trading con notas y capturas de pantalla",
-      "equity": "Curva de Capital para seguimiento de capital",
-      "consistency": "Rastreador de Consistencia (mapa de calor de 12 semanas)",
-      "news": "Smart Portfolio News con proxy-mapping (futuros), smart-tags y traducción",
-      "politicalEvents": "Calendario Económico (FOMC, CPI, NFP, GDP) + Noticias Políticas",
-      "sectorSentiment": "Dashboard de Sentimiento Sectorial Diario (9 sectores rastreados)",
-      "ai": "Asistente de trading IA",
-      "aiCharts": "Chat IA con Gráficos & Tablas interactivas",
-      "dailySummary": "Reportes Diarios IA automáticos por Email",
       "goalAlerts": "Alertas de Objetivos & Notificaciones en tiempo real",
       "riskSimulator": "Simulador de Riesgo What-If (Monte Carlo)",
-      "winLoss": "Analytics de Ganancias/Pérdidas y Desglose de Rendimiento",
-      "calendar": "Vista de Calendario de Trading",
-      "pnlCharts": "Gráficos y Visualizaciones de P&L",
-      "csvImport": "Importación y Exportación CSV",
-      "setupReports": "Informes de Rendimiento basados en Setup",
-      "hourAnalysis": "Analytics por Hora del Día (mejores horarios de trading)",
-      "symbolReports": "Informes de Rendimiento por Símbolo",
-      "streakAnalysis": "Análisis de Rachas (rachas de ganancias/pérdidas)",
-      "holdingPeriod": "Análisis de Período de Tenencia",
-      "weeklyTracking": "Seguimiento de Rendimiento Semanal",
-      "dailyPrep": "Preparación Diaria con eventos políticos",
-      "glossary": "Glosario de Trading con todos los términos importantes",
-      "darkMode": "Modo Oscuro/Claro",
-      "multiLanguage": "Soporte Multi-idioma (DE, EN, ES, FR, NL, IT)",
-      "futureFeatures": "Todas las funciones futuras incluidas",
-      "freeTrial": "14 Días de Prueba Gratis",
-      "ninjaTraderSync": "NinjaTrader Auto-Sync (Integración Webhook)",
+      "ninjaTraderSync": "Sincronización con NinjaTrader mediante add-on (automática)",
       "propFirmDetection": "Detección Cuentas Prop Firm (Apex, Topstep, Tradeify, etc.)",
       "mfeMaeTracking": "Seguimiento MFE/MAE para Optimización Stop-Loss",
-      "achievements": "Gamificación & Sistema de Logros",
       "discipline": "Límites diarios con estado en vivo y puntuación de disciplina",
       "behavior": "Seguimiento de errores y emociones con detección automática de operaciones de venganza",
       "dayView": "Vista diaria con curva de P&L intradía",
@@ -1222,17 +782,14 @@
     "teaserCards": {
       "tradingTools": "Entrada rápida e importación",
       "analytics": "Seguimiento y análisis",
-      "ai": "Insights con IA",
-      "marketIntel": "Datos y noticias de mercado",
       "discipline": "Límites diarios, análisis de errores y una puntuación que muestra dónde estás",
       "import": "NinjaTrader e IBKR automáticamente, TradingView por CSV"
     },
     "categories": {
       "tradingTools": "Herramientas",
       "analytics": "Análisis",
-      "ai": "IA & Automatización",
       "reports": "Informes",
-      "marketIntel": "Inteligencia de Mercado",
+      "marketIntel": "Eventos de mercado",
       "discipline": "Disciplina y comportamiento",
       "import": "Importación automática"
     },
@@ -1327,33 +884,6 @@
           "Codificación P&L"
         ]
       },
-      "aiAssistant": {
-        "title": "Asistente IA",
-        "description": "Preguntas sobre rendimiento",
-        "benefits": [
-          "Lenguaje natural",
-          "Insights",
-          "Análisis histórico"
-        ]
-      },
-      "aiCharts": {
-        "title": "Chat IA con Gráficos",
-        "description": "Visualizaciones interactivas",
-        "benefits": [
-          "Barras, líneas, pastel",
-          "Tablas",
-          "Visualización instantánea"
-        ]
-      },
-      "dailySummary": {
-        "title": "Informe Diario IA",
-        "description": "Resumen email automático",
-        "benefits": [
-          "Fortalezas/debilidades",
-          "Sugerencias",
-          "Por email"
-        ]
-      },
       "goalAlerts": {
         "title": "Alertas Objetivos",
         "description": "Alertas tiempo real",
@@ -1417,15 +947,6 @@
           "Duración óptima"
         ]
       },
-      "portfolioNews": {
-        "title": "Inteligencia Noticias",
-        "description": "Noticias auto-curadas",
-        "benefits": [
-          "Proxy-mapping",
-          "Smart tags",
-          "Traducción IA"
-        ]
-      },
       "politicalEvents": {
         "title": "Calendario Económico",
         "description": "FOMC, CPI, NFP, GDP",
@@ -1433,24 +954,6 @@
           "Eventos importantes",
           "Nivel impacto",
           "En calendario"
-        ]
-      },
-      "sectorSentiment": {
-        "title": "Sentimiento Sectorial",
-        "description": "Análisis sentimiento",
-        "benefits": [
-          "11 sectores",
-          "Artículos",
-          "Score sentimiento"
-        ]
-      },
-      "economicCalendar": {
-        "title": "Datos Económicos",
-        "description": "Fed, Powell en tiempo real",
-        "benefits": [
-          "Eventos políticos",
-          "Impacto mercado",
-          "Trading informado"
         ]
       },
       "discipline": {
@@ -1704,11 +1207,6 @@
       "definition": "Heatmap visual de su actividad diaria de trading.",
       "example": "Muestra días rentables (verde) vs días de pérdidas (rojo)"
     },
-    "portfolioNews": {
-      "term": "Noticias del Portfolio (Portfolio News)",
-      "definition": "Feed de noticias filtrado para sus símbolos más comerciados.",
-      "example": "Noticias automáticas para AAPL, TSLA, etc."
-    },
     "dailyTradeGoal": {
       "term": "Objetivo Diario (Daily Trade Goal)",
       "definition": "Meta diaria de beneficio y límite máximo de trades por día.",
@@ -1785,11 +1283,6 @@
       "term": "Volumen (Volume)",
       "definition": "Número de acciones/contratos negociados en un período. Alto volumen confirma movimientos.",
       "example": "Breakout sobre $50 con 10x volumen normal = señal fuerte. Con volumen bajo = probable falso"
-    },
-    "newsSentiment": {
-      "term": "Sentimiento de Noticias (News Sentiment)",
-      "definition": "El Sentimiento de Noticias analiza el tono de los artículos de noticias sobre un símbolo específico. Calcula un promedio de todas las noticias en las 24 horas antes de tu entrada en la operación. El valor varía de -1 (muy bajista/negativo) a 0 (neutral) hasta +1 (muy alcista/positivo). Un valor de 0.00 significa sentimiento neutral o ningún artículo encontrado en esa ventana temporal.",
-      "example": "Entrada long en NQ a las 14:30. El sistema analiza todas las noticias desde las 14:30 de ayer hasta las 14:30 de hoy. Resultado: 0.35 (alcista) - coincide con la posición Long. Si fuera -0.35, aparecería una advertencia 'Trade Contra-News' ya que estás operando contra el sentimiento del mercado."
     },
     "mfe": {
       "term": "MFE (Maximum Favorable Excursion)",
@@ -1889,11 +1382,6 @@
       "definition": "El Simulador de Riesgo es una herramienta para probar escenarios What-If basados en tus datos de trading reales. Permite simular cómo habría evolucionado tu curva de capital con diferentes estrategias de salida (R-Multiple) o tamaños de posición.",
       "formula": "Capital Simulado = Capital Inicial × ∏(1 + Ri × Riesgo%) donde Ri = R-Multiple simulado para cada operación",
       "example": "Tus últimas 100 operaciones tuvieron un R promedio de 1.2R. El simulador muestra: Con 2% de riesgo por operación, tus $10.000 podrían haberse convertido en $15.400."
-    },
-    "aiAssistantCharts": {
-      "term": "Chat IA con Gráficos Integrados (AI Chat with Inline Charts)",
-      "definition": "El Asistente de Trading IA puede responder preguntas no solo con texto, sino también con visualizaciones interactivas. Para preguntas sobre comparaciones, tendencias o rankings, la IA genera automáticamente gráficos apropiados (barras, líneas, circular) o tablas directamente en el chat.",
-      "example": "Pregunta: 'Muestra mi rendimiento por día de la semana' → La IA responde con un gráfico de barras mostrando tasa de éxito o P&L por día. Pregunta: 'Compara Long vs Short' → Gráfico circular con proporciones y rendimiento."
     }
   },
   "reports": {
@@ -2074,22 +1562,6 @@
     "savePrep": "Guardar Preparación Diaria",
     "saved": "Preparación diaria guardada exitosamente",
     "saveError": "Error al guardar preparación diaria"
-  },
-  "assistant": {
-    "title": "Asistente de Trading IA",
-    "subtitle": "Haz preguntas sobre tu rendimiento de trading y obtén respuestas basadas en datos",
-    "welcome": "Bienvenido al Asistente IA",
-    "welcomeDescription": "Hazme preguntas sobre tu rendimiento de trading, setups, símbolos o cualquier otro análisis.",
-    "suggestedQuestions": "Preguntas Sugeridas:",
-    "inputPlaceholder": "Haz una pregunta...",
-    "error": "Error de Procesamiento",
-    "errorDescription": "No se pudo procesar la solicitud. Por favor, inténtalo de nuevo.",
-    "creditsExhausted": "Créditos Lovable AI agotados. Añade créditos en Configuración → Workspace → Uso.",
-    "dailyLimitReached": "Límite diario alcanzado. Inténtalo mañana.",
-    "questionsRemaining": "preguntas restantes hoy",
-    "upgradeForMore": "Más preguntas mañana",
-    "chartsTooltip": "Para preguntas apropiadas, la IA genera automáticamente gráficos para visualizar tus datos.",
-    "showingTopResults": "Mostrando {{count}} de {{total}} resultados"
   },
   "privacy": {
     "title": "Política de Privacidad",
@@ -2354,7 +1826,7 @@
     "overtradingTitle": "{{count}} Trades hoy",
     "overtradingDescription": "Un alto número de operaciones puede indicar sobreoperar. Calidad sobre cantidad.",
     "needsMoreData": "Recopilando datos",
-    "needsMoreDataDescription": "{{current}} de {{required}} operaciones registradas. Sigue operando para desbloquear insights personalizados de IA.",
+    "needsMoreDataDescription": "{{current}} de {{required}} operaciones registradas. Sigue operando para desbloquear tus análisis personales.",
     "revengeScore": "Puntuación de Revenge Trading",
     "revengeScoreExcellent": "Excelente",
     "revengeScoreGood": "Bueno",
@@ -2657,22 +2129,6 @@
     "drawdownCriticalDesc": "Has perdido todo tu objetivo diario. Deja de operar por hoy.",
     "tradeLimitReached": "📊 Límite de trades alcanzado",
     "tradeLimitReachedDesc": "Hoy ya has hecho {{limit}} trades."
-  },
-  "dailySummary": {
-    "title": "Resumen diario con IA",
-    "generate": "Generar resumen",
-    "generating": "Generando…",
-    "generated": "¡Resumen generado!",
-    "generateError": "Error al generar el resumen",
-    "regenerate": "Volver a generar",
-    "noSummary": "Todavía no hay resumen para este día. Pulsa 'Generar' para obtener un análisis con IA.",
-    "trades": "Trades",
-    "netPnL": "P&L neto",
-    "showMore": "Mostrar detalles",
-    "showLess": "Ocultar detalles",
-    "bestTrade": "Mejor trade",
-    "worstTrade": "Peor trade",
-    "suggestions": "Sugerencias de mejora"
   },
   "riskSimulator": {
     "title": "Simulador de riesgo «¿Y si…?»",
@@ -2977,10 +2433,6 @@
     "notFound": {
       "title": "Página no encontrada | TradeNot.es",
       "description": "Esta página no existe. Vuelve al diario de trading gratuito TradeNot.es."
-    },
-    "checkout": {
-      "title": "TradeNot.es",
-      "description": "TradeNot.es"
     }
   },
   "motion": {

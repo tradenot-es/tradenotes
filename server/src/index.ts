@@ -20,8 +20,6 @@ const cleanup = async () => {
   // matched executions are only kept to skip resent duplicates (the add-on resends the session)
   // (IBKR Flex reports can cover up to a year, so they are kept that long)
   await pool.query("delete from executions where matched and time < now() - interval '400 days'");
-  await pool.query("delete from news_cache where expires_at < now()");
-  await pool.query("delete from sector_sentiments where expires_at < now()");
   await pool.query(`delete from verification where "expiresAt" < now()`);
 };
 setInterval(() => cleanup().catch((e) => console.error("cleanup failed", e)), 60 * 60 * 1000);

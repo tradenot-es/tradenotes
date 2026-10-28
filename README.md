@@ -19,7 +19,6 @@ Die ursprüngliche Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC
     Jede Tabelle steht mit erlaubten Aktionen in einer Freigabeliste, die Nutzer-ID setzt immer der Server.
   - `src/routes/import.ts`: Trade-Import (`POST /api/import-trades`): Add-on mit Header `X-API-Key`, CSV und Vorlage für eingeloggte Nutzer
   - `src/matching.ts`: Ausführungen → Trades (FIFO, flat bis flat), `src/ibkr.ts`: Interactive-Brokers-Abruf
-  - `src/routes/news.ts`: Marktnews über Marketaux (optional, nur mit API-Key)
   - `migrations/`: SQL-Migrationen, laufen beim Start automatisch
 - KI-Funktionen sind über `AI_FEATURES` in `src/config/featureFlags.ts` abgeschaltet.
 
