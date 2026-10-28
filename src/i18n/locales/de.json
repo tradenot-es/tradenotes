@@ -563,7 +563,7 @@
     "trading": "Trading",
     "language": "Sprache",
     "selectLanguage": "Sprache auswählen",
-    "dailyGoal": "Daily Trade Goal",
+    "dailyGoal": "Tägliches Trade-Ziel",
     "dailyGoalTooltip": "Setze ein tägliches Gewinnziel und eine maximale Anzahl von Trades pro Tag",
     "dailyGoalDesc": "Definiere dein tägliches Handelsziel und verfolge es in den Reports",
     "dailyGoalAmount": "Tägliches Gewinnziel ($)",
@@ -960,7 +960,7 @@
         ]
       },
       "positionCalc": {
-        "title": "Position Size Calculator",
+        "title": "Positionsgrößen-Rechner",
         "description": "Berechne optimale Positionsgrößen basierend auf Risiko",
         "benefits": [
           "Risk-basierte Lot-Berechnung",
@@ -1506,7 +1506,7 @@
       "example": "Bid 49,95€, Ask 50,05€ → Spread = 0,10€ (0,2%). Bei 1000 Aktien = 100€ implizite Kosten."
     },
     "bullBearMarket": {
-      "term": "Bull Market / Bear Market",
+      "term": "Bullenmarkt / Bärenmarkt",
       "definition": "Bull Market = anhaltend steigende Kurse (≥20% vom Tief). Bear Market = anhaltend fallende Kurse (≥20% vom Hoch). Definiert die Marktphase.",
       "example": "S&P 500 steigt 30% über 12 Monate = Bull Market. Fällt um 25% = Bear Market."
     },
@@ -1589,7 +1589,7 @@
     "overtradingDescription": "Hohe Trade-Anzahl kann auf Overtrading hindeuten. Qualität vor Quantität.",
     "needsMoreData": "Sammle Trading-Daten",
     "needsMoreDataDescription": "{{current}} von {{required}} Trades erfasst. Trade weiter, um deine persönlichen Auswertungen freizuschalten.",
-    "revengeScore": "Revenge Trading Score",
+    "revengeScore": "Revenge-Trading-Score",
     "revengeScoreTooltipAria": "Info zum Revenge-Score",
     "revengeScoreExcellent": "Exzellent",
     "revengeScoreGood": "Gut",
@@ -1647,7 +1647,7 @@
     "comeback_king_desc": "Nach 3 Verlusttrades den Tag profitabel abgeschlossen"
   },
   "positionCalculator": {
-    "title": "Position Size Calculator",
+    "title": "Positionsgrößen-Rechner",
     "accountSize": "Account-Größe",
     "riskPercent": "Risiko pro Trade",
     "stopDistance": "Stop Distance",
@@ -1688,7 +1688,7 @@
     "missedProfit": "Ø Verpasst",
     "optimalStop": "Optimaler Stop",
     "optimalStopHint": "80% deiner Gewinntrades hatten einen MAE unter diesem Wert",
-    "scatterTitle": "MFE vs MAE Scatter Plot",
+    "scatterTitle": "MFE/MAE-Streudiagramm",
     "scatterDesc": "Jeder Punkt ist ein Trade. Grün = Gewinn, Rot = Verlust.",
     "maeDistribution": "MAE Verteilung",
     "maeDistributionDesc": "Wie weit laufen deine Trades gegen dich, bevor sie drehen?",
@@ -2057,7 +2057,7 @@
     "tradeLimitReachedDesc": "Du hast {{limit}} Trades heute gemacht."
   },
   "riskSimulator": {
-    "title": "What-If Risk Simulator",
+    "title": "Was-wäre-wenn-Risikosimulator",
     "description": "Simuliere verschiedene Szenarien basierend auf deinen echten Trades",
     "scenario": "Szenario",
     "rExit": "R-Multiple Exit",
@@ -2078,16 +2078,16 @@
     "simulated": "Simuliert"
   },
   "tradingGoals": {
-    "title": "Trading Goals Tracker",
+    "title": "Trading-Ziele",
     "description": "Tracke deine täglichen Ziele und Fortschritte",
     "dailyPnl": "Täglicher Gewinn",
     "maxTrades": "Max Trades",
-    "minWinRate": "Min Win Rate",
+    "minWinRate": "Mindest-Win-Rate",
     "maxDrawdown": "Max Drawdown",
     "maxCommissions": "Max Gebühren",
     "minAvgR": "Min Ø R",
     "maxLosingStreak": "Max Verlustserie",
-    "minProfitFactor": "Min Profit Factor",
+    "minProfitFactor": "Mindest-Profit-Factor",
     "minWins": "Min Gewinntrades",
     "maxLosses": "Max Verlusttrades",
     "minAvgWin": "Min Ø Gewinn",

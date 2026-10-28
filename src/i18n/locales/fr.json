@@ -50,7 +50,7 @@
     "needAccess": "Besoin d'un accès beta ?",
     "joinWaitlist": "Rejoindre la liste d'attente",
     "alreadyHaveAccount": "Déjà un compte ? Se connecter",
-    "checkEmail": "Confirme ton adresse e-mail avec le lien que nous t'avons envoyé.",
+    "checkEmail": "Confirmez votre adresse e-mail avec le lien que nous vous avons envoyé.",
     "confirmPassword": "Confirmer le mot de passe",
     "firstName": "Prénom",
     "lastName": "Nom",
@@ -58,7 +58,7 @@
     "termsLink": "Conditions d'utilisation",
     "signup": "Créer un compte",
     "signupSuccess": "Compte créé !",
-    "emailNotVerified": "Ton adresse e-mail n'est pas encore confirmée. Clique sur le lien de notre e-mail.",
+    "emailNotVerified": "Votre adresse e-mail n'est pas encore confirmée. Cliquez sur le lien de notre e-mail.",
     "resendVerification": "Renvoyer l'e-mail de confirmation",
     "verificationResent": "E-mail de confirmation renvoyé.",
     "resetLinkInvalid": "Le lien de réinitialisation est invalide ou a expiré. Demandes-en un nouveau."
@@ -324,7 +324,7 @@
     "noTradesFound": "Aucun trade valide trouvé dans le CSV",
     "notAuthenticated": "Veuillez vous connecter pour importer des trades",
     "csvTemplate": "Autres plateformes : modèle CSV",
-    "templateDesc": "Pour toutes les autres plateformes : saisis tes trades (une ligne par trade clôturé) et importe le fichier ci-dessus.",
+    "templateDesc": "Pour toutes les autres plateformes : saisissez vos trades (une ligne par trade clôturé) et importez le fichier ci-dessus.",
     "requiredFields": "Champs requis:",
     "optionalFields": "Champs optionnels:",
     "downloadTemplate": "Télécharger le modèle",
@@ -335,33 +335,33 @@
     "helpCsvTitle": "📄 Import CSV",
     "helpCsvStep1": "Téléchargez le modèle CSV en cliquant sur 'Télécharger le Modèle'",
     "helpCsvStep2": "Remplissez vos données de trading en suivant le format du modèle",
-    "helpCsvStep3": "Téléchargez le fichier CSV complété en utilisant la zone de téléchargement",
+    "helpCsvStep3": "Importez le fichier CSV complété dans la zone d’import",
     "helpNtTitle": "🔷 Intégration NinjaTrader",
     "helpNtIntro": "Synchronisez automatiquement les trades depuis NinjaTrader:",
-    "helpNtStep1": "Télécharge l’add-on NinjaTrader sur cette page (ZIP, ta clé est déjà dedans)",
-    "helpNtStep2": "Importe-le dans NinjaTrader : Tools → Import → NinjaScript Add-On",
-    "helpNtStep3": "Redémarre NinjaTrader ; l’add-on tourne ensuite en arrière-plan",
+    "helpNtStep1": "Téléchargez l’add-on NinjaTrader sur cette page (ZIP, votre clé est déjà dedans)",
+    "helpNtStep2": "Importez-le dans NinjaTrader : Tools → Import → NinjaScript Add-On",
+    "helpNtStep3": "Redémarrez NinjaTrader ; l’add-on tourne ensuite en arrière-plan",
     "helpNtStep4": "Chaque exécution est envoyée ; dès qu’une position est fermée, elle devient un trade",
     "ntTitle": "NinjaTrader : automatique",
-    "ntDescription": "Chaque exécution de NinjaTrader 8 arrive automatiquement dans ton journal sous forme de trade, avec exécutions partielles, commissions et MFE/MAE.",
+    "ntDescription": "Chaque exécution de NinjaTrader 8 arrive automatiquement dans votre journal sous forme de trade, avec exécutions partielles, commissions et MFE/MAE.",
     "ntApiKeyTitle": "Votre clé API personnelle",
-    "ntApiKeyInfo": "La clé est déjà incluse dans le téléchargement de l’add-on. Tu n’en as besoin que si tu installes le fichier .cs à la main.",
+    "ntApiKeyInfo": "La clé est déjà incluse dans le téléchargement de l’add-on. Vous n’en avez besoin que si vous installez le fichier .cs à la main.",
     "ntApiKeySecurityWarning": "Gardez cette clé en sécurité. Toute personne possédant cette clé peut importer des trades sur votre compte. Ne la partagez jamais dans des captures d'écran ou des canaux publics.",
     "ntApiKeyCopied": "Clé API copiée dans le presse-papiers",
     "ntRegenerateKey": "Régénérer la clé",
     "ntRegenerateKeyConfirm": "Régénérer la clé API ?",
-    "ntRegenerateKeyWarning": "Ta clé API actuelle ne fonctionnera plus.",
+    "ntRegenerateKeyWarning": "Votre clé API actuelle ne fonctionnera plus.",
     "ntApiKeyRegenerated": "Nouvelle clé API générée avec succès",
     "ntApiKeyRegenerateError": "Échec de la régénération de la clé API",
     "ntScriptTitle": "Add-on NinjaTrader",
     "ntScriptDescription": "À installer une fois, il tourne ensuite en arrière-plan : sans graphique, pour tous les comptes (comptes prop firm inclus). Les exécutions manquées sont envoyées au démarrage suivant.",
     "ntDownloadScript": "Télécharger l’add-on (.zip)",
     "ntScriptDownloaded": "NinjaScript téléchargé avec succès",
-    "ntScriptDownloadedWithKey": "Add-on téléchargé avec ta clé API",
+    "ntScriptDownloadedWithKey": "Add-on téléchargé avec votre clé API",
     "ntScriptDownloadError": "Impossible de télécharger l’add-on",
     "ntNoApiKeyError": "Aucune clé API disponible. Veuillez d'abord en générer une.",
     "ntScriptIncludesKey": "Inclut votre clé",
-    "ntScriptKeyEmbeddedInfo": "Le téléchargement contient ta clé API personnelle, rien à saisir.",
+    "ntScriptKeyEmbeddedInfo": "Le téléchargement contient votre clé API personnelle, rien à saisir.",
     "ntRegenerateKeyNinjaTraderNote": "Important pour NinjaTrader :",
     "ntRegenerateKeyOptionA": "Retélécharger et réimporter l’add-on (recommandé)",
     "ntRegenerateKeyOptionB": "Ou remplacer la clé dans TradeNotesSync.cs et recompiler",
@@ -376,24 +376,24 @@
     "ntDeleteSelectedConfirm": "Supprimer {{count}} exécutions ?",
     "ntDeleteSelectedWarning": "Toutes les entrées sélectionnées seront définitivement supprimées.",
     "ntExecutionsDeleted": "{{count}} exécutions supprimées",
-    "ntInstallStep1": "Télécharge le ZIP (ta clé est déjà dedans).",
-    "ntInstallStep2": "Dans NinjaTrader : Control Center → Tools → Import → NinjaScript Add-On… puis choisis le fichier ZIP.",
-    "ntInstallStep3": "Redémarre NinjaTrader. Désormais chaque exécution arrive ici automatiquement. Messages d’état : New → NinjaScript Output.",
-    "ntInstallFallback": "L’import ne marche pas ? Télécharge le fichier source, copie-le dans Documents\\NinjaTrader 8\\bin\\Custom\\AddOns et compile-le dans le NinjaScript Editor avec F5 :",
+    "ntInstallStep1": "Téléchargez le ZIP (votre clé est déjà dedans).",
+    "ntInstallStep2": "Dans NinjaTrader : Control Center → Tools → Import → NinjaScript Add-On… puis choisissez le fichier ZIP.",
+    "ntInstallStep3": "Redémarrez NinjaTrader. Désormais chaque exécution arrive ici automatiquement. Messages d’état : New → NinjaScript Output.",
+    "ntInstallFallback": "L’import ne marche pas ? Téléchargez le fichier source, copiez-le dans Documents\\NinjaTrader 8\\bin\\Custom\\AddOns et compilez-le dans le NinjaScript Editor avec F5 :",
     "ntLastExecution": "Dernière exécution reçue {{time}}",
     "ntNoExecutionYet": "Aucune exécution reçue pour l’instant",
     "tvTitle": "TradingView : par export CSV",
-    "tvIntro": "TradingView ne propose aucune interface pour tes trades. Exporte l’historique des ordres depuis le panneau de trading et importe le fichier ici.",
-    "tvStep1": "Ouvre le panneau de trading sous le graphique et choisis ton compte (Paper Trading ou ton courtier).",
-    "tvStep2": "Passe à l’onglet « Historique » ou « Historique des ordres ».",
-    "tvStep3": "Dans le menu du panneau, choisis « Exporter les données » et enregistre le fichier CSV.",
-    "tvStep4": "Importe le fichier ici et choisis le type de compte. Les ordres exécutés deviennent automatiquement des trades.",
-    "tvNote": "Les noms des menus peuvent varier légèrement selon la version de TradingView et le courtier. Tu peux exporter régulièrement, par exemple une fois par semaine : les ordres déjà importés sont reconnus et ignorés.",
+    "tvIntro": "TradingView ne propose aucune interface pour vos trades. Exportez l’historique des ordres depuis le panneau de trading et importez le fichier ici.",
+    "tvStep1": "Ouvrez le panneau de trading sous le graphique et choisissez votre compte (Paper Trading ou votre courtier).",
+    "tvStep2": "Passez à l’onglet « Historique » ou « Historique des ordres ».",
+    "tvStep3": "Dans le menu du panneau, choisissez « Exporter les données » et enregistrez le fichier CSV.",
+    "tvStep4": "Importez le fichier ici et choisissez le type de compte. Les ordres exécutés deviennent automatiquement des trades.",
+    "tvNote": "Les noms des menus peuvent varier légèrement selon la version de TradingView et le courtier. Vous pouvez exporter régulièrement, par exemple une fois par semaine : les ordres déjà importés sont reconnus et ignorés.",
     "detectedTemplate": "Modèle TradeNot.es détecté : {{count}} trades.",
     "detectedTradingView": "Export TradingView détecté : {{count}} ordres exécutés ({{skipped}} ordres annulés ou en attente sont ignorés).",
     "csvAccountType": "Type de compte de ces trades",
     "accountTypes": {
-      "sim": "Paper trading / simulation",
+      "sim": "Compte démo / simulation",
       "evaluation": "Prop firm : évaluation",
       "performance": "Prop firm : financé",
       "live": "Compte réel"
@@ -403,12 +403,12 @@
     "unknownFormatDetail": "Format non reconnu. Un export TradingView ou le modèle TradeNot.es est attendu. Colonnes trouvées : {{headers}}",
     "ibkr": {
       "title": "Interactive Brokers : automatique par Flex Query",
-      "description": "Rien à installer : tradenot.es récupère tes exécutions chez IBKR une fois par jour et en fait des trades.",
-      "step1": "Dans le portail IBKR : Performance et rapports → Flex Queries → crée une nouvelle Activity Flex Query.",
-      "step2": "Choisis la section « Trades » avec « Executions » et tous les champs. Format XML, période « 30 derniers jours calendaires ». Enregistre et note l’ID de la requête.",
-      "step3": "Sur la même page, ouvre « Flex Web Service Configuration », active le service et génère un token.",
-      "step4": "Saisis ici le token et l’ID de la requête. La première récupération a lieu tout de suite, puis une fois par jour.",
-      "note": "Le token permet seulement de récupérer des rapports : pas d’ordres, aucun accès à ton argent. Il expire après la durée choisie chez IBKR ; saisis alors simplement un nouveau token. Les noms des menus du portail peuvent varier légèrement. Les comptes paper (DU…) sont reconnus automatiquement comme simulation.",
+      "description": "Rien à installer : tradenot.es récupère vos exécutions chez IBKR une fois par jour et en fait des trades.",
+      "step1": "Dans le portail IBKR : Performance et rapports → Flex Queries → créez une nouvelle Activity Flex Query.",
+      "step2": "Choisissez la section « Trades » avec « Executions » et tous les champs. Format XML, période « 30 derniers jours calendaires ». Enregistrez et notez l’ID de la requête.",
+      "step3": "Sur la même page, ouvrez « Flex Web Service Configuration », activez le service et générez un token.",
+      "step4": "Saisissez ici le token et l’ID de la requête. La première récupération a lieu tout de suite, puis une fois par jour.",
+      "note": "Le token permet seulement de récupérer des rapports : pas d’ordres, aucun accès à votre argent. Il expire après la durée choisie chez IBKR ; saisissez alors simplement un nouveau token. Les noms des menus du portail peuvent varier légèrement. Les comptes paper (DU…) sont reconnus automatiquement comme simulation.",
       "token": "Token Flex",
       "queryId": "ID de requête",
       "connect": "Connecter",
@@ -542,7 +542,7 @@
     "passwordMismatch": "Les mots de passe ne correspondent pas",
     "passwordTooShort": "Le mot de passe doit contenir au moins 10 caractères",
     "twoFactor": "Authentification à Deux Facteurs",
-    "twoFactorHelp": "Ajoute une couche de sécurité supplémentaire en exigeant un code à 6 chiffres de votre application d'authentification lors de la connexion",
+    "twoFactorHelp": "Ajoutez une couche de sécurité supplémentaire : à la connexion, un code à 6 chiffres de votre application d'authentification est demandé",
     "enable2FA": "Activer 2FA",
     "disable2FA": "Désactiver 2FA",
     "scanQRCode": "Configurer l'Authentification à Deux Facteurs",
@@ -584,15 +584,15 @@
     "drawdownWarningThresholdHelp": "Recevez un avertissement lorsque le drawdown quotidien dépasse ce montant",
     "currentPassword": "Mot de passe actuel",
     "backupCodes": "Codes de secours",
-    "backupCodesDesc": "Conserve ces codes en lieu sûr. Chacun permet de te connecter une fois si tu n'as plus accès à ton application d'authentification.",
-    "emailChangeSent": "Nous t'avons envoyé un e-mail à ton adresse actuelle. Confirme le changement depuis cet e-mail.",
+    "backupCodesDesc": "Conservez ces codes en lieu sûr. Chacun permet de vous connecter une fois si vous n'avez plus accès à votre application d'authentification.",
+    "emailChangeSent": "Nous vous avons envoyé un e-mail à votre adresse actuelle. Confirmez le changement depuis cet e-mail.",
     "cooldown": {
       "title": "Pause obligatoire après une série de pertes",
-      "description": "Après plusieurs pertes d’affilée, le tableau de bord affiche un compte à rebours jusqu’à ce que tu puisses retrader.",
+      "description": "Après plusieurs pertes d’affilée, le tableau de bord affiche un compte à rebours jusqu’à ce que vous puissiez retrader.",
       "enable": "Activer la pause obligatoire",
       "afterLosses": "Après pertes d’affilée",
       "minutes": "Pause en minutes",
-      "hint": "La pause commence à la clôture du dernier trade perdant. tradenot.es ne bloque pas ton compte chez le courtier ; le compte à rebours n’est qu’un rappel."
+      "hint": "La pause commence à la clôture du dernier trade perdant. tradenot.es ne bloque pas votre compte chez le courtier ; le compte à rebours n’est qu’un rappel."
     }
   },
   "notFound": {
@@ -646,7 +646,7 @@
       "journaling systématique"
     ],
     "heroTitleHighlightSuffix": "",
-    "heroDescription": "Saisis tes trades en quelques secondes, fixe des limites journalières et vois noir sur blanc quelles erreurs te coûtent de l'argent. Sans abonnement, sans publicité.",
+    "heroDescription": "Saisissez vos trades en quelques secondes, fixez des limites journalières et voyez noir sur blanc quelles erreurs vous coûtent de l'argent. Sans abonnement, sans publicité.",
     "ctaStart": "Commencer Gratuitement",
     "ctaFeatures": "Découvrir les Fonctionnalités",
     "featuresBadge": "Fonctionnalités",
@@ -668,7 +668,7 @@
     "whySection": {
       "badge": "Pourquoi un journal de trading?",
       "title": "Les traders performants documentent chaque trade",
-      "description": "Un journal transforme l'intuition en données : ce qui marche, ce qui ne marche pas, et quelles habitudes te freinent.",
+      "description": "Un journal transforme l'intuition en données : ce qui marche, ce qui ne marche pas, et quelles habitudes vous freinent.",
       "benefit1Title": "Identifier les patterns",
       "benefit1Desc": "Analyse automatique de vos meilleurs setups, horaires et symboles",
       "benefit2Title": "Renforcer la discipline",
@@ -691,15 +691,15 @@
       },
       "discipline": {
         "title": "Discipline et limites journalières",
-        "description": "Fixe des limites de trades, de perte et de séries de pertes. Un statut en direct t'avertit à temps et te dit quand arrêter pour aujourd'hui."
+        "description": "Fixez des limites de trades, de perte et de séries de pertes. Un statut en direct vous avertit à temps et vous dit quand arrêter pour aujourd'hui."
       },
       "behavior": {
         "title": "Analyse des erreurs et émotions",
-        "description": "Indique erreurs et état émotionnel par trade. Les trades de revanche et le surtrading sont détectés automatiquement, le rapport montre ce que coûte chaque erreur."
+        "description": "Indiquez erreurs et état émotionnel par trade. Les trades de revanche et le surtrading sont détectés automatiquement, le rapport montre ce que coûte chaque erreur."
       },
       "dayView": {
         "title": "Vue journalière",
-        "description": "Chaque jour de trading avec courbe P&L intraday, chiffres, trades et tes notes en un coup d'œil."
+        "description": "Chaque jour de trading avec courbe P&L intraday, chiffres, trades et vos notes en un coup d'œil."
       }
     },
     "allFeatures": {
@@ -714,7 +714,7 @@
       "discipline": "Limites journalières avec statut en direct et score de discipline",
       "behavior": "Suivi des erreurs et émotions avec détection automatique des trades de revanche",
       "dayView": "Vue journalière avec courbe P&L intraday",
-      "score": "TradeNot.es Score : une note pour ta performance",
+      "score": "TradeNot.es Score : une note pour votre performance",
       "templates": "Modèles de journal (plan pré-marché, bilan du jour, analyse de perte)"
     },
     "free": {
@@ -730,12 +730,12 @@
     ],
     "habits": {
       "badge": "Les habitudes les plus coûteuses",
-      "title": "Un journal qui repère tes erreurs, pas seulement tes trades",
+      "title": "Un journal qui repère vos erreurs, pas seulement vos trades",
       "description": "Quatre comportements coûtent le plus cher aux traders. tradenot.es rend chacun d'eux visible.",
       "items": {
         "overtrading": {
           "title": "Surtrading",
-          "description": "Plus de trades que prévu, parce que le marché bouge et non parce que ton setup est là.",
+          "description": "Plus de trades que prévu, parce que le marché bouge et non parce que votre setup est là.",
           "fix": "Limite journalière de trades avec statut en direct et avis d'arrêt"
         },
         "revenge": {
@@ -746,12 +746,12 @@
         "rules": {
           "title": "Enfreindre ses règles",
           "description": "Stop déplacé, entrée poursuivie, position trop grosse.",
-          "fix": "Indique les erreurs par trade et vois ce qu'elles coûtent"
+          "fix": "Indiquez les erreurs par trade et voyez ce qu'elles coûtent"
         },
         "emotions": {
           "title": "Cécité émotionnelle",
-          "description": "Tu ne remarques pas dans quel état d'esprit tu trades moins bien.",
-          "fix": "Saisis ton état émotionnel et analyse par humeur"
+          "description": "Vous ne remarquez pas dans quel état d'esprit vous tradez moins bien.",
+          "fix": "Saisissez votre état émotionnel et analysez par humeur"
         }
       }
     },
@@ -766,7 +766,7 @@
         },
         "rules": {
           "title": "Définir les règles",
-          "description": "Trades max., perte max., série de pertes max. Le tableau de bord montre toujours où tu en es."
+          "description": "Trades max., perte max., série de pertes max. Le tableau de bord montre toujours où vous en êtes."
         },
         "review": {
           "title": "Analyser et progresser",
@@ -776,17 +776,17 @@
     },
     "importSection": {
       "badge": "Import automatique",
-      "title": "Tes trades arrivent tout seuls",
-      "description": "Saisir ses trades à la main, c’est la raison pour laquelle la plupart des journaux de trading sont abandonnés au bout de deux semaines. Avec TradeNot.es, ils arrivent tout seuls dans ton journal.",
+      "title": "Vos trades arrivent tout seuls",
+      "description": "Saisir ses trades à la main, c’est la raison pour laquelle la plupart des journaux de trading sont abandonnés au bout de deux semaines. Avec TradeNot.es, ils arrivent tout seuls dans votre journal.",
       "points": [
         "NinjaTrader : importer un add-on une fois, puis chaque exécution en temps réel, pour tous les comptes",
-        "Interactive Brokers : saisir un token, tradenot.es récupère tes exécutions chaque jour",
+        "Interactive Brokers : saisissez un token, tradenot.es récupère vos exécutions chaque jour",
         "TradingView et autres : importer l’export CSV, les doublons sont reconnus"
       ]
     }
   },
   "features": {
-    "heroTitle": "Toutes les fonctions de ton journal de trading gratuit",
+    "heroTitle": "Toutes les fonctions de votre journal de trading gratuit",
     "heroDescription": "Import automatique des trades depuis NinjaTrader et Interactive Brokers, TradingView par CSV, limites journalières et pauses obligatoires, analyse des erreurs et du respect des règles, comptes prop firm en un coup d’œil. Sans abonnement ni carte bancaire.",
     "featureCount": "20+ Fonctionnalités",
     "backToLanding": "Retour à l'Accueil",
@@ -798,7 +798,7 @@
     "teaserCards": {
       "tradingTools": "Saisie rapide & import",
       "analytics": "Suivi & analyse performance",
-      "discipline": "Limites journalières, analyse des erreurs et un score qui montre où tu en es",
+      "discipline": "Limites journalières, analyse des erreurs et un score qui montre où vous en êtes",
       "import": "NinjaTrader et IBKR automatiquement, TradingView par CSV"
     },
     "categories": {
@@ -821,7 +821,7 @@
       },
       "ninjaTrader": {
         "title": "NinjaTrader : automatique",
-        "description": "Importe un add-on une fois et chaque exécution arrive toute seule dans ton journal. Pas de graphique, pas de stratégie, aucun réglage : ta clé est déjà dans le téléchargement.",
+        "description": "Importez un add-on une fois et chaque exécution arrive toute seule dans votre journal. Pas de graphique, pas de stratégie, aucun réglage : votre clé est déjà dans le téléchargement.",
         "benefits": [
           "Tous les comptes, y compris prop firm (Apex, Topstep & co. sont reconnus)",
           "Exécutions partielles, renforcements/allègements et retournements bien calculés, commissions comprises",
@@ -974,7 +974,7 @@
       },
       "discipline": {
         "title": "Discipline et limites journalières",
-        "description": "Tes règles du jour, comptées en direct. Avant d'atteindre une limite, le tableau de bord t'avertit ; ensuite il te dit clairement que c'est fini pour aujourd'hui.",
+        "description": "Vos règles du jour, comptées en direct. Avant que vous n'atteigniez une limite, le tableau de bord vous avertit ; ensuite il vous dit clairement que c'est fini pour aujourd'hui.",
         "benefits": [
           "Limites de trades, drawdown, série de pertes et plus",
           "Statut en direct : dans le plan, attention, arrêté",
@@ -983,7 +983,7 @@
       },
       "behavior": {
         "title": "Analyse des erreurs et émotions",
-        "description": "Indique pour chaque trade ce qui a mal tourné et ce que tu ressentais. Le rapport calcule ce que chaque erreur t'a coûté.",
+        "description": "Indiquez pour chaque trade ce qui a mal tourné et ce que vous ressentiez. Le rapport calcule ce que chaque erreur vous a coûté.",
         "benefits": [
           "10 erreurs typiques comme FOMO, stop déplacé, trade de revanche",
           "Détection automatique des trades de revanche et du surtrading",
@@ -992,7 +992,7 @@
       },
       "dayView": {
         "title": "Vue journalière",
-        "description": "Chaque jour de trading sur sa propre carte : l'évolution de ton P&L dans la journée, les chiffres, tous les trades et ta note de journal.",
+        "description": "Chaque jour de trading sur sa propre carte : l'évolution de votre P&L dans la journée, les chiffres, tous les trades et votre note de journal.",
         "benefits": [
           "Courbe P&L intraday avec infobulle par trade",
           "Taux de réussite, meilleur et pire trade, frais",
@@ -1001,7 +1001,7 @@
       },
       "score": {
         "title": "TradeNot.es Score",
-        "description": "Une note de 0 à 100 issue de six indicateurs, pour voir d'un coup d'œil si tu progresses et ce qui te freine.",
+        "description": "Une note de 0 à 100 issue de six indicateurs, pour voir d'un coup d'œil si vous progressez et ce qui vous freine.",
         "benefits": [
           "Taux de réussite, profit factor, ratio gain/perte",
           "Drawdown, facteur de récupération, part de jours verts",
@@ -1010,7 +1010,7 @@
       },
       "ibkr": {
         "title": "Interactive Brokers : automatique",
-        "description": "Rien à installer : crée une Flex Query chez IBKR et saisis le token et l’ID de la requête. tradenot.es récupère ensuite tes exécutions une fois par jour.",
+        "description": "Rien à installer : créez une Flex Query chez IBKR et saisissez le token et l’ID de la requête. tradenot.es récupère ensuite vos exécutions une fois par jour.",
         "benefits": [
           "Actions, futures et options",
           "Le token ne peut que lire des rapports, aucun ordre",
@@ -1019,25 +1019,25 @@
       },
       "tradingView": {
         "title": "TradingView : par export CSV",
-        "description": "TradingView n’a pas d’interface pour tes trades. Exporte l’historique des ordres depuis le panneau de trading et dépose le fichier sur la page d’import ; le guide t’accompagne pas à pas.",
+        "description": "TradingView n’a pas d’interface pour vos trades. Exportez l’historique des ordres depuis le panneau de trading et déposez le fichier sur la page d’import ; le guide vous accompagne pas à pas.",
         "benefits": [
           "Format détecté automatiquement",
           "Les ordres exécutés deviennent des trades, les annulés sont ignorés",
-          "Exporte régulièrement sans doublons : les ordres déjà importés sont reconnus"
+          "Exportez régulièrement sans doublons : les ordres déjà importés sont reconnus"
         ]
       },
       "ruleAdherence": {
         "title": "Respect des règles : le processus avant le résultat",
-        "description": "As-tu suivi la checklist de ton setup ? Le rapport sépare les gains mérités des coups de chance et les bonnes pertes des fautes personnelles, aussi par setup.",
+        "description": "Avez-vous suivi la checklist de votre setup ? Le rapport sépare les gains mérités des coups de chance et les bonnes pertes des fautes personnelles, aussi par setup.",
         "benefits": [
           "Quatre cases : gain mérité, bonne perte, coup de chance, faute personnelle",
           "Résultat moyen avec et sans règles respectées",
-          "Montre quel setup tu dilues le plus souvent"
+          "Montre quel setup vous diluez le plus souvent"
         ]
       },
       "cooldown": {
         "title": "Pause obligatoire après une série de pertes",
-        "description": "Après deux pertes d’affilée (ou le nombre que tu veux), le tableau de bord affiche un compte à rebours jusqu’à ce que tu puisses retrader. Les trades ouverts malgré la pause sont comptés.",
+        "description": "Après deux pertes d’affilée (ou le nombre que vous voulez), le tableau de bord affiche un compte à rebours jusqu’à ce que vous puissiez retrader. Les trades ouverts malgré la pause sont comptés.",
         "benefits": [
           "Nombre de pertes et durée de la pause au choix",
           "Compte à rebours dans le panneau de discipline",
@@ -1045,8 +1045,8 @@
         ]
       },
       "insights": {
-        "title": "Ce qui marche pour toi",
-        "description": "Tes points forts et faibles en un coup d’œil : meilleurs et pires setups, jours, heures d’entrée, symboles et directions, calculés à partir de tes trades, sans IA.",
+        "title": "Ce qui marche pour vous",
+        "description": "Vos points forts et faibles en un coup d’œil : meilleurs et pires setups, jours, heures d’entrée, symboles et directions, calculés à partir de vos trades, sans IA.",
         "benefits": [
           "Seulement les groupes avec assez de trades, pas de hasard",
           "P&L, taux de réussite et résultat moyen par groupe",
@@ -1055,11 +1055,11 @@
       },
       "mentor": {
         "title": "Mode mentor : partager des trades",
-        "description": "Partage un trade par lien avec ton mentor, ton coach ou ton partenaire de trading. Il voit l’entrée, la sortie, le résultat, le setup, les erreurs et la capture, sans compte et sans accès au reste de ton journal.",
+        "description": "Partagez un trade par lien avec votre mentor, votre coach ou votre partenaire de trading. Il voit l’entrée, la sortie, le résultat, le setup, les erreurs et la capture, sans compte et sans accès au reste de votre journal.",
         "benefits": [
           "Un clic sur le trade, copier le lien, terminé",
-          "Partage ta note ou garde-la privée ; le nom du compte reste toujours privé",
-          "Vois les consultations et arrête le partage à tout moment"
+          "Partagez votre note ou gardez-la privée ; le nom du compte reste toujours privé",
+          "Voyez les consultations et arrêtez le partage à tout moment"
         ]
       }
     },
@@ -1078,15 +1078,15 @@
         },
         {
           "q": "Comment mes trades NinjaTrader arrivent-ils dans le journal ?",
-          "a": "Télécharge l’add-on NinjaTrader sur la page d’import (ta clé personnelle est déjà incluse) et importe-le une fois via Tools → Import → NinjaScript Add-On. Ensuite chaque exécution est transmise automatiquement, pour tous les comptes, avec exécutions partielles, commissions et MFE/MAE."
+          "a": "Téléchargez l’add-on NinjaTrader sur la page d’import (votre clé personnelle est déjà incluse) et importez-le une fois via Tools → Import → NinjaScript Add-On. Ensuite chaque exécution est transmise automatiquement, pour tous les comptes, avec exécutions partielles, commissions et MFE/MAE."
         },
         {
           "q": "Puis-je importer automatiquement mes trades Interactive Brokers ?",
-          "a": "Oui. Crée une Flex Query chez IBKR et saisis une fois le token et l’ID de la requête. TradeNot.es récupère ensuite tes exécutions chaque jour. Le token ne peut que lire des rapports, il ne peut pas passer d’ordres."
+          "a": "Oui. Créez une Flex Query chez IBKR et saisissez une fois le token et l’ID de la requête. TradeNot.es récupère ensuite vos exécutions chaque jour. Le token ne peut que lire des rapports, il ne peut pas passer d’ordres."
         },
         {
           "q": "Comment importer des trades depuis TradingView ?",
-          "a": "TradingView ne propose pas d’interface pour tes propres trades. Exporte plutôt l’historique des ordres du panneau de trading en CSV et importe-le sur la page d’import. Le format est reconnu et les ordres déjà importés sont ignorés."
+          "a": "TradingView ne propose pas d’interface pour vos propres trades. Exportez plutôt l’historique des ordres du panneau de trading en CSV et importez-le sur la page d’import. Le format est reconnu et les ordres déjà importés sont ignorés."
         },
         {
           "q": "Le journal convient-il aux traders de prop firms ?",
@@ -1094,11 +1094,11 @@
         },
         {
           "q": "Puis-je partager des trades avec mon mentor ?",
-          "a": "Oui, avec le mode mentor. Tu crées pour un trade un lien que seules les personnes qui l’ont peuvent voir. Le nom du compte et tes autres trades restent privés, et tu peux arrêter le partage à tout moment."
+          "a": "Oui, avec le mode mentor. Vous créez pour un trade un lien que seules les personnes qui l’ont peuvent voir. Le nom du compte et vos autres trades restent privés, et vous pouvez arrêter le partage à tout moment."
         },
         {
           "q": "Où sont stockées mes données de trading ?",
-          "a": "Sur notre propre serveur aux Pays-Bas (UE). Tes données ne sont jamais vendues ni utilisées pour de la publicité."
+          "a": "Sur notre propre serveur aux Pays-Bas (UE). Vos données ne sont jamais vendues ni utilisées pour de la publicité."
         }
       ]
     }
@@ -1530,7 +1530,7 @@
     "generatingSummary": "Génération en cours...",
     "noTradesForSummary": "Aucune transaction trouvée pour cette journée.",
     "rules": "Respect des règles",
-    "rulesTooltip": "As-tu suivi la checklist de ton setup ? Processus contre résultat : gains mérités, bonnes pertes, coups de chance.",
+    "rulesTooltip": "Avez-vous suivi la checklist de votre setup ? Processus contre résultat : gains mérités, bonnes pertes, coups de chance.",
     "dailyGoals": "Objectifs quotidiens"
   },
   "filters": {
@@ -1690,7 +1690,7 @@
     "howToEnable": "Comment activer cette fonctionnalité",
     "requiresData": "Cette analyse nécessite des données de prix haut/bas pendant le trade, que seule votre plateforme de trading peut suivre automatiquement.",
     "ninjaTraderTitle": "Utilisateurs NinjaTrader",
-    "ninjaTraderAutomatic": "L’add-on TradeNotesSync capture MFE/MAE automatiquement. Télécharge la dernière version sur la page d’import.",
+    "ninjaTraderAutomatic": "L’add-on TradeNotesSync capture MFE/MAE automatiquement. Téléchargez la dernière version sur la page d’import.",
     "automaticTracking": "✓ Suivi automatique des hauts/bas pendant les positions ouvertes",
     "ninjaTraderHint": "Étendez votre script TradeNotesSync pour envoyer les champs highDuringTrade et lowDuringTrade. Ceux-ci seront automatiquement convertis en MFE/MAE.",
     "comingSoon": "Fonctionnalité disponible une fois les trades avec données high/low importés",
@@ -2093,12 +2093,12 @@
     "description": "Suivez vos objectifs quotidiens et vos progrès",
     "dailyPnl": "PnL Quotidien",
     "maxTrades": "Max Trades",
-    "minWinRate": "Min Win Rate",
+    "minWinRate": "Win rate minimum",
     "maxDrawdown": "Max Drawdown",
     "maxCommissions": "Max Commissions",
     "minAvgR": "Min R Moyen",
     "maxLosingStreak": "Max Série Perdante",
-    "minProfitFactor": "Min Profit Factor",
+    "minProfitFactor": "Profit factor minimum",
     "minWins": "Min Trades Gagnants",
     "maxLosses": "Max Trades Perdants",
     "minAvgWin": "Min Gain Moyen",
@@ -2152,17 +2152,17 @@
       "tired": "Fatigué"
     },
     "reportTitle": "Comportement et erreurs",
-    "reportEmpty": "Indique tes erreurs et ton état émotionnel en saisissant un trade, et ce rapport montre ce que chaque erreur te coûte.",
+    "reportEmpty": "Indiquez vos erreurs et votre état émotionnel en saisissant un trade, et ce rapport montre ce que chaque erreur vous coûte.",
     "mistakeCost": "P&L des trades avec erreurs",
     "mistakeShare": "{{count}} trades avec au moins une erreur ({{share}} % de tous les trades)",
     "avgClean": "P&L moyen sans erreur",
     "avgWithMistakes": "P&L moyen avec erreurs",
     "autoDetected": "Détecté automatiquement",
-    "autoDetectedHint": "Trades de revanche (entrée juste après une perte avec une taille égale ou supérieure) et trades au-delà de ta limite journalière",
+    "autoDetectedHint": "Trades de revanche (entrée juste après une perte avec une taille égale ou supérieure) et trades au-delà de votre limite journalière",
     "byMistake": "Par erreur",
     "byMistakeDesc": "P&L total par type d'erreur, la plus coûteuse d'abord",
     "byEmotion": "Par état émotionnel",
-    "byEmotionDesc": "Comment tu trades selon ton humeur",
+    "byEmotionDesc": "Comment vous tradez selon votre humeur",
     "noMistakes": "Aucune erreur indiquée ou détectée.",
     "noEmotions": "Aucun état émotionnel saisi pour l'instant.",
     "tagDetail_one": "{{count}} trade · {{winRate}} % gagnants",
@@ -2170,17 +2170,17 @@
   },
   "discipline": {
     "title": "Discipline aujourd'hui",
-    "subtitle": "Tes limites journalières et ce que tu en as déjà utilisé",
+    "subtitle": "Vos limites journalières et ce que vous en avez déjà utilisé",
     "state": {
       "ok": "Dans le plan",
       "warning": "Attention",
       "stopped": "Arrêté pour aujourd'hui"
     },
     "stoppedTitle": "Limite atteinte – c'est fini pour aujourd'hui.",
-    "stoppedText": "Tu as épuisé une de tes règles. Chaque trade supplémentaire aujourd'hui brise ton plan. Demain est un autre jour.",
+    "stoppedText": "Vous avez épuisé une de vos règles. Chaque trade supplémentaire aujourd'hui brise votre plan. Demain est un autre jour.",
     "revengeToday_one": "{{count}} trade de revanche possible détecté aujourd'hui. Respire avant de continuer.",
     "revengeToday_other": "{{count}} trades de revanche possibles détectés aujourd'hui. Respire avant de continuer.",
-    "noRules": "Définis des limites journalières (p. ex. trades max., drawdown max., série de pertes max.) et ce panneau te montre toujours où tu en es.",
+    "noRules": "Définissez des limites journalières (p. ex. trades max., drawdown max., série de pertes max.) et ce panneau vous montre toujours où vous en êtes.",
     "setRules": "Définir les règles",
     "scoreLabel": "Score de discipline · 30 jours",
     "scoreDetail": "{{clean}} jours de trading sur {{total}} sans règle enfreinte",
@@ -2189,14 +2189,14 @@
     "dayBroken": "Règle enfreinte",
     "cooldownTitle_one": "Pause après {{count}} perte",
     "cooldownTitle_other": "Pause après {{count}} pertes d’affilée",
-    "cooldownText": "Lève-toi un instant. Prochain trade pas avant {{time}}.",
+    "cooldownText": "Levez-vous un instant. Prochain trade pas avant {{time}}.",
     "cooldownRemaining": "Temps de pause restant",
     "cooldownIgnored_one": "{{count}} trade a été ouvert pendant une pause aujourd’hui.",
     "cooldownIgnored_other": "{{count}} trades ont été ouverts pendant une pause aujourd’hui."
   },
   "score": {
     "title": "TradeNot.es Score",
-    "subtitle": "Une note pour ta performance globale",
+    "subtitle": "Une note pour votre performance globale",
     "howTitle": "Comment le score est calculé",
     "how": "Moyenne de six valeurs, chacune de 0 à 100 par rapport à un très bon objectif : taux de réussite 60 %, profit factor 2,5, gain moyen/perte moyenne 2,5, drawdown sous 10 % du profit brut, facteur de récupération 3, 70 % de jours verts.",
     "notEnough": "Calculé à partir de {{count}} trades (pour l'instant {{have}}).",
@@ -2218,7 +2218,7 @@
   "days": {
     "title": "Vue journalière",
     "subtitle": "Chaque jour de trading en un coup d'œil : courbe, chiffres, trades et notes",
-    "empty": "Pas encore de trades. Dès que tu en saisis, chaque jour de trading apparaît ici.",
+    "empty": "Pas encore de trades. Dès que vous en saisissez, chaque jour de trading apparaît ici.",
     "loadMore": "Charger {{count}} jours de plus",
     "trades": "Trades",
     "winRate": "Taux de réussite",
@@ -2251,8 +2251,8 @@
   },
   "adherence": {
     "title": "Respect des règles",
-    "subtitle": "Processus contre résultat : as-tu suivi les règles de ton setup, et comment le trade s’est-il terminé ?",
-    "empty": "Pas encore de données. Crée une checklist pour tes setups dans les Paramètres et coche-la en saisissant un trade. Les trades marqués de l’erreur « Règles enfreintes » comptent aussi.",
+    "subtitle": "Processus contre résultat : avez-vous suivi les règles de votre setup, et comment le trade s’est-il terminé ?",
+    "empty": "Pas encore de données. Créez une checklist pour vos setups dans les Paramètres et cochez-la en saisissant un trade. Les trades marqués de l’erreur « Règles enfreintes » comptent aussi.",
     "defineChecklists": "Créer des checklists",
     "rate": "Respect",
     "rateDetail": "{{followed}} trades évalués sur {{rated}} ont suivi toutes les règles",
@@ -2275,7 +2275,7 @@
       "broken": "Règles enfreintes"
     },
     "avgByGroup": "Résultat moyen par trade",
-    "avgByGroupHint": "Est-ce payant de suivre tes règles ?",
+    "avgByGroupHint": "Est-ce payant de suivre vos règles ?",
     "bySetup": "Par setup",
     "bySetupHint": "Respect et résultat moyen avec et sans règles suivies",
     "setup": "Setup",
@@ -2285,8 +2285,8 @@
     "tradesCount_other": "{{count}} trades"
   },
   "insights": {
-    "title": "Ce qui marche pour toi",
-    "subtitle": "Tes setups, jours, heures, symboles et directions les plus forts et les plus faibles (groupes d’au moins {{min}} trades)",
+    "title": "Ce qui marche pour vous",
+    "subtitle": "Vos setups, jours, heures, symboles et directions les plus forts et les plus faibles (groupes d’au moins {{min}} trades)",
     "strengths": "Points forts",
     "weaknesses": "Points faibles",
     "noStrengths": "Aucun groupe avec assez de trades en positif pour l’instant.",
@@ -2308,7 +2308,7 @@
   "share": {
     "button": "Partager le trade",
     "title": "Partager le trade {{symbol}}",
-    "description": "Crée un lien pour que ton mentor ou ton partenaire de trading voie ce trade, sans compte et sans accès au reste de ton journal.",
+    "description": "Créez un lien pour que votre mentor ou votre partenaire de trading voie ce trade, sans compte et sans accès au reste de votre journal.",
     "showNote": "Inclure la note",
     "create": "Créer le lien",
     "link": "Lien de partage",
@@ -2321,19 +2321,19 @@
     "noViews": "Pas encore consulté",
     "privacy": "Visibles : symbole, prix, heures, résultat, setup, note, erreurs, émotions et capture. Le nom du compte et tous les autres trades restent privés. Le lien n’est pas indexé par les moteurs de recherche.",
     "pageTitle": "Trade {{symbol}} partagé",
-    "sharedBy": "{{name}} partage ce trade avec toi",
+    "sharedBy": "{{name}} partage ce trade avec vous",
     "sharedAnonymous": "Un trade partagé",
     "missingTitle": "Lien introuvable",
     "missingText": "Ce partage n’existe pas ou a été arrêté.",
     "screenshotAlt": "Capture du graphique du trade {{symbol}}",
-    "ctaTitle": "Tiens ton propre journal de trading",
+    "ctaTitle": "Tenez votre propre journal de trading",
     "ctaText": "Gratuit, avec import automatique depuis NinjaTrader et Interactive Brokers.",
     "ctaButton": "Commencer gratuitement"
   },
   "seo": {
     "landing": {
       "title": "Journal de trading gratuit pour futures, actions et prop firms | TradeNot.es",
-      "description": "Journal de trading gratuit : importe automatiquement tes trades depuis NinjaTrader et Interactive Brokers, fixe des limites journalières et vois quelles erreurs te coûtent de l’argent."
+      "description": "Journal de trading gratuit : importez automatiquement vos trades depuis NinjaTrader et Interactive Brokers, fixez des limites journalières et voyez quelles erreurs vous coûtent de l’argent."
     },
     "whyJournal": {
       "title": "Pourquoi tenir un journal de trading ? Avantages et guide | TradeNot.es",
@@ -2345,7 +2345,7 @@
     },
     "contact": {
       "title": "Contact | TradeNot.es",
-      "description": "Questions, retours ou idées sur le journal de trading gratuit TradeNot.es ? Écris-nous via le formulaire de contact."
+      "description": "Questions, retours ou idées sur le journal de trading gratuit TradeNot.es ? Écrivez-nous via le formulaire de contact."
     },
     "status": {
       "title": "État du système | TradeNot.es",
@@ -2357,7 +2357,7 @@
     },
     "privacy": {
       "title": "Politique de confidentialité | TradeNot.es",
-      "description": "Comment TradeNot.es traite tes données : ce qui est stocké, où se trouve le serveur et quels sont tes droits."
+      "description": "Comment TradeNot.es traite vos données : ce qui est stocké, où se trouve le serveur et quels sont vos droits."
     },
     "terms": {
       "title": "Conditions d’utilisation | TradeNot.es",
@@ -2365,7 +2365,7 @@
     },
     "auth": {
       "title": "Connexion ou inscription gratuite | TradeNot.es",
-      "description": "Connecte-toi à TradeNot.es ou crée gratuitement un compte pour ton journal de trading."
+      "description": "Connectez-vous à TradeNot.es ou créez gratuitement un compte pour votre journal de trading."
     },
     "notFound": {
       "title": "Page introuvable | TradeNot.es",

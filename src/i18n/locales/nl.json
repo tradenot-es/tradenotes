@@ -632,7 +632,7 @@
       "ssl": "SSL Versleuteld",
       "gdpr": "AVG Conform",
       "traders": "Door Traders voor Traders",
-      "sync": "NinjaTrader & IBKR auto-sync"
+      "sync": "Automatische sync met NinjaTrader en IBKR"
     },
     "footerAllFeatures": "Alle Functies",
     "cta": {
@@ -1384,7 +1384,7 @@
       "example": "Bid €49,95, Ask €50,05 → Spread = €0,10 (0,2%). Met 1000 aandelen = €100 impliciete kosten."
     },
     "bullBearMarket": {
-      "term": "Bull Market / Bear Market",
+      "term": "Bullmarkt / bearmarkt",
       "definition": "Bull Market = aanhoudend stijgende prijzen (≥20% vanaf dieptepunt). Bear Market = aanhoudend dalende prijzen (≥20% vanaf hoogtepunt). Definieert marktfase.",
       "example": "S&P 500 stijgt 30% over 12 maanden = Bull Market. Daalt 25% = Bear Market."
     },
@@ -1600,7 +1600,7 @@
     "overtradingDescription": "Een hoog aantal trades kan wijzen op overtrading. Kwaliteit boven kwantiteit.",
     "needsMoreData": "Handelsgegevens verzamelen",
     "needsMoreDataDescription": "{{current}} van {{required}} trades geregistreerd. Blijf handelen om je persoonlijke inzichten te ontgrendelen.",
-    "revengeScore": "Revenge Trading Score",
+    "revengeScore": "Revenge-tradingscore",
     "revengeScoreTooltipAria": "Over de revenge-score",
     "revengeScoreExcellent": "Uitstekend",
     "revengeScoreGood": "Goed",
@@ -1699,7 +1699,7 @@
     "missedProfit": "Gem. Gemist",
     "optimalStop": "Optimale Stop",
     "optimalStopHint": "80% van je winnende trades had een MAE onder deze waarde",
-    "scatterTitle": "MFE vs MAE Scatter Plot",
+    "scatterTitle": "MFE/MAE-spreidingsdiagram",
     "scatterDesc": "Elk punt is een trade. Groen = Winst, Rood = Verlies.",
     "maeDistribution": "MAE Verdeling",
     "maeDistributionDesc": "Hoe ver lopen je trades tegen je voordat ze keren?",
@@ -2093,12 +2093,12 @@
     "description": "Volg je dagelijkse doelen en voortgang",
     "dailyPnl": "Dagelijkse PnL",
     "maxTrades": "Max Trades",
-    "minWinRate": "Min Win Rate",
+    "minWinRate": "Min. win rate",
     "maxDrawdown": "Max Drawdown",
     "maxCommissions": "Max Commissies",
     "minAvgR": "Min Gem R",
     "maxLosingStreak": "Max Verliesserie",
-    "minProfitFactor": "Min Profit Factor",
+    "minProfitFactor": "Min. profit factor",
     "minWins": "Min Winnende Trades",
     "maxLosses": "Max Verliezende Trades",
     "minAvgWin": "Min Gem Winst",
@@ -2237,7 +2237,7 @@
   "journalTemplates": {
     "label": "Sjabloon:",
     "premarket": {
-      "title": "Pre-market plan",
+      "title": "Plan voor de opening",
       "body": "PRE-MARKET PLAN\n\nMarktbeeld / bias:\n\nBelangrijke niveaus:\n\nAgenda & nieuws vandaag:\n\nMijn A-setups vandaag:\n\nMax. risico vandaag:\n\nWat ik vandaag NIET doe:"
     },
     "recap": {
