@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { formatDistanceToNow, differenceInDays, differenceInHours, differenceInMinutes } from "date-fns";
 import { useCurrency } from "@/hooks/useCurrency";
@@ -248,7 +248,7 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
             const isExpanded = expandedTrade === trade.id;
 
             return (
-              <>
+              <Fragment key={trade.id}>
                 <TableRow 
                   key={trade.id}
                   className={cn(
@@ -414,7 +414,7 @@ export function TradesTable({ trades, onEditTrade, onDeleteTrade }: TradesTableP
                     </TableCell>
                   </TableRow>
                 )}
-              </>
+              </Fragment>
             );
           })}
           {trades.length === 0 && (

@@ -94,7 +94,7 @@ export default function Reports() {
     const now = new Date();
 
     switch (timeFilter) {
-      case "week":
+      case "week": {
         const weekStart = startOfWeek(now);
         const weekEnd = endOfWeek(now);
         filtered = filtered.filter(t => {
@@ -102,7 +102,8 @@ export default function Reports() {
           return exitDate >= weekStart && exitDate <= weekEnd;
         });
         break;
-      case "month":
+      }
+      case "month": {
         const monthStart = startOfMonth(now);
         const monthEnd = endOfMonth(now);
         filtered = filtered.filter(t => {
@@ -110,14 +111,17 @@ export default function Reports() {
           return exitDate >= monthStart && exitDate <= monthEnd;
         });
         break;
-      case "3months":
+      }
+      case "3months": {
         const threeMonthsAgo = subMonths(now, 3);
         filtered = filtered.filter(t => new Date(t.exit_time) >= threeMonthsAgo);
         break;
-      case "year":
+      }
+      case "year": {
         const oneYearAgo = subMonths(now, 12);
         filtered = filtered.filter(t => new Date(t.exit_time) >= oneYearAgo);
         break;
+      }
       default:
         break;
     }
