@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { env } from "./env.js";
 
-export type MailType = "verify" | "reset" | "change_email" | "change_email_new";
+export type MailType = "verify" | "reset" | "change_email" | "change_email_new" | "login_locked";
 
 type Template = { subject: string; heading: string; body: string; button: string; footer: string };
 
@@ -69,6 +69,22 @@ const templates: Record<MailType, Record<"de" | "en", Template>> = {
       body: "Please confirm your new email address for TradeNot.es.",
       button: "Confirm email address",
       footer: "This link is valid for 24 hours.",
+    },
+  },
+  login_locked: {
+    de: {
+      subject: "Viele fehlgeschlagene Anmeldungen – TradeNot.es",
+      heading: "Anmeldung vorübergehend gesperrt",
+      body: "Für dein Konto wurde in kurzer Zeit zehnmal ein falsches Passwort eingegeben. Zum Schutz ist die Anmeldung mit Passwort für 15 Minuten gesperrt. Warst du das selbst, warte einfach kurz. Warst du es nicht, ändere dein Passwort und schalte am besten die Zwei-Faktor-Anmeldung ein (Konto → Sicherheit).",
+      button: "Passwort zurücksetzen",
+      footer: "Du musst nichts tun, wenn du dich nur vertippt hast.",
+    },
+    en: {
+      subject: "Many failed logins – TradeNot.es",
+      heading: "Login temporarily locked",
+      body: "Someone entered a wrong password for your account ten times in a short period. To protect you, logging in with a password is locked for 15 minutes. If it was you, just wait a moment. If it was not you, change your password and ideally turn on two-factor login (Account → Security).",
+      button: "Reset password",
+      footer: "You do not need to do anything if you only mistyped.",
     },
   },
 };

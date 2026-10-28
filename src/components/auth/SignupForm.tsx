@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
+import { MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from "@/lib/password";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { Honeypot } from "@/components/Honeypot";
 import { Link } from "react-router-dom";
@@ -35,9 +36,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       .email({ message: t("validation.emailInvalid") })
       .max(255, { message: t("validation.emailTooLong") }),
     password: z.string()
-      .min(8, { message: t("validation.passwordMin") })
-      .regex(/[A-Z]/, { message: t("validation.passwordUppercase") })
-      .regex(/[0-9]/, { message: t("validation.passwordNumber") }),
+      .min(MIN_PASSWORD_LENGTH, { message: t("validation.passwordMin", { min: MIN_PASSWORD_LENGTH }) })
+      .max(MAX_PASSWORD_LENGTH),
     nickname: z.string().trim().max(40, { message: t("validation.nicknameTooLong") }),
   });
 
@@ -156,6 +156,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
             setErrors({ ...errors, password: "" });
           }}
         />
+        <p className="text-xs text-muted-foreground">{t("settings.passwordHelp")}</p>
         {errors.password && (
           <p className="text-sm text-destructive">{errors.password}</p>
         )}

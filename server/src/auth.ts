@@ -7,6 +7,7 @@ import { sendMail } from "./mail.js";
 import { verifyPayload } from "./altcha.js";
 import { deleteUserFiles } from "./uploads.js";
 import { isHoneypotFilled } from "./limits.js";
+import { isLocked, recordFailure, recordSuccess } from "./loginGuard.js";
 import { networkInterfaces } from "node:os";
 
 // In development the Vite server is also opened from other machines in the LAN (http://<ip>:8080)
@@ -20,6 +21,18 @@ const devOrigins = () =>
 async function greeting(user: { id: string; name?: string | null }) {
   const { rows } = await pool.query("select nickname from profiles where id = $1", [user.id]);
   return rows[0]?.nickname ?? (user.name?.trim() || undefined);
+}
+
+/** One mail when an account gets locked for too many wrong passwords (only if it exists). */
+async function warnAboutLock(email: unknown, request?: Request) {
+  if (typeof email !== "string") return;
+  const { rows } = await pool.query(`select id, email, name from "user" where lower(email) = lower($1)`, [email.trim()]);
+  if (!rows[0]) return;
+  await sendMail("login_locked", rows[0].email, {
+    url: `${env.baseUrl}/auth?forgot=1`,
+    name: await greeting(rows[0]),
+    lang: uiLang(request),
+  });
 }
 
 const uiLang = (request?: Request) =>
@@ -67,7 +80,8 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
-    minPasswordLength: 8,
+    minPasswordLength: 12,
+    maxPasswordLength: 128,
     revokeSessionsOnPasswordReset: true,
     sendResetPassword: async ({ user, url }, request) => {
       await sendMail("reset", user.email, { url, name: await greeting(user), lang: uiLang(request) });
@@ -86,9 +100,24 @@ export const auth = betterAuth({
   plugins: [twoFactor({ issuer: "TradeNot.es" })],
   hooks: {
     before: createAuthMiddleware(async (ctx) => {
+      // account locked after too many wrong passwords: same answer as a wrong password
+      if (ctx.path === "/sign-in/email" && isLocked(ctx.body?.email)) {
+        throw new APIError("UNAUTHORIZED", { message: "Invalid email or password", code: "INVALID_EMAIL_OR_PASSWORD" });
+      }
       // a filled hidden field means a bot; answer like a failed captcha
       if (CAPTCHA_PATHS.has(ctx.path) && (isHoneypotFilled(ctx.body) || !verifyPayload(ctx.body?.altcha))) {
         throw new APIError("BAD_REQUEST", { message: "Captcha verification failed", code: "CAPTCHA_FAILED" });
+      }
+    }),
+    after: createAuthMiddleware(async (ctx) => {
+      if (ctx.path !== "/sign-in/email") return;
+      const returned = ctx.context.returned;
+      if (returned instanceof APIError) {
+        if (returned.status === "UNAUTHORIZED" && recordFailure(ctx.body?.email)) {
+          await warnAboutLock(ctx.body?.email, ctx.request).catch((e) => console.error("lock warning mail failed", e));
+        }
+      } else {
+        recordSuccess(ctx.body?.email);
       }
     }),
   },

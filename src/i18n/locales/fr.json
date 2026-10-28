@@ -529,7 +529,7 @@
     "newPasswordPlaceholder": "Entrez le nouveau mot de passe",
     "confirmPassword": "Confirmer le Mot de Passe",
     "confirmPasswordPlaceholder": "Confirmez le nouveau mot de passe",
-    "passwordHelp": "Doit contenir au moins 10 caractères. Utilisez un mot de passe fort et unique avec majuscules, minuscules, chiffres et caractères spéciaux.",
+    "passwordHelp": "Au moins 12 caractères. Le plus sûr est une longue phrase ou plusieurs mots que vous seul connaissez, avec un mot de passe différent pour chaque service. Un gestionnaire de mots de passe vous y aide.",
     "passwordStrength": {
       "weak": "Faible - Ajoutez plus de caractères et de variété",
       "medium": "Moyen - Envisagez d'ajouter des caractères spéciaux",
@@ -539,7 +539,6 @@
     "passwordUpdateSuccess": "Mot de passe mis à jour avec succès",
     "passwordUpdateError": "Erreur lors de la mise à jour du mot de passe",
     "passwordMismatch": "Les mots de passe ne correspondent pas",
-    "passwordTooShort": "Le mot de passe doit contenir au moins 10 caractères",
     "twoFactor": "Authentification à Deux Facteurs",
     "twoFactorHelp": "Ajoutez une couche de sécurité supplémentaire : à la connexion, un code à 6 chiffres de votre application d'authentification est demandé",
     "enable2FA": "Activer 2FA",
@@ -1106,9 +1105,7 @@
   "validation": {
     "emailInvalid": "Format d'e-mail invalide",
     "emailTooLong": "L'e-mail doit contenir moins de 255 caractères",
-    "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
-    "passwordUppercase": "Le mot de passe doit contenir une majuscule",
-    "passwordNumber": "Le mot de passe doit contenir un chiffre",
+    "passwordMin": "Le mot de passe doit comporter au moins {{min}} caractères.",
     "symbolRequired": "Le symbole est requis",
     "symbolInvalid": "Seules les lettres majuscules et les chiffres sont autorisés",
     "symbolTooLong": "Le symbole doit contenir 10 caractères ou moins",
@@ -1742,7 +1739,7 @@
         },
         {
           "title": "Données que nous enregistrons",
-          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, un pseudo. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n- Retours depuis l’application : type, titre et texte et, si vous le souhaitez, des informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Ils nous sont envoyés par e-mail afin que nous puissions vous répondre.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite. Pour éviter les abus, le serveur compte brièvement les requêtes par adresse IP lors de l’inscription, de la connexion, de la réinitialisation du mot de passe et du formulaire de contact ; ces compteurs restent uniquement en mémoire et expirent au plus tard après une heure."
+          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, un pseudo. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n- Retours depuis l’application : type, titre et texte et, si vous le souhaitez, des informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Ils nous sont envoyés par e-mail afin que nous puissions vous répondre.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite. Pour éviter les abus, le serveur compte brièvement les requêtes par adresse IP et les mots de passe erronés par compte lors de l’inscription, de la connexion, de la réinitialisation du mot de passe et du formulaire de contact ; ces compteurs restent uniquement en mémoire et expirent au plus tard après une heure."
         },
         {
           "title": "Finalités et base juridique",

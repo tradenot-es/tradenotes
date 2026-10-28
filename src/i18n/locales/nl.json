@@ -529,7 +529,7 @@
     "newPasswordPlaceholder": "Voer nieuw wachtwoord in",
     "confirmPassword": "Wachtwoord Bevestigen",
     "confirmPasswordPlaceholder": "Bevestig nieuw wachtwoord",
-    "passwordHelp": "Moet minimaal 10 tekens bevatten. Gebruik een sterk, uniek wachtwoord met hoofdletters, kleine letters, cijfers en speciale tekens.",
+    "passwordHelp": "Minstens 12 tekens. Het veiligst is een lange zin of meerdere woorden die alleen jij kent, met voor elke dienst een ander wachtwoord. Een wachtwoordmanager helpt daarbij.",
     "passwordStrength": {
       "weak": "Zwak - Voeg meer tekens en variatie toe",
       "medium": "Gemiddeld - Overweeg speciale tekens toe te voegen",
@@ -539,7 +539,6 @@
     "passwordUpdateSuccess": "Wachtwoord succesvol bijgewerkt",
     "passwordUpdateError": "Fout bij bijwerken van wachtwoord",
     "passwordMismatch": "Wachtwoorden komen niet overeen",
-    "passwordTooShort": "Wachtwoord moet minimaal 10 tekens bevatten",
     "twoFactor": "Twee-Factor Authenticatie",
     "twoFactorHelp": "Voegt een extra beveiligingslaag toe door een 6-cijferige code van je authenticator app te vereisen bij het inloggen",
     "enable2FA": "2FA Activeren",
@@ -1106,9 +1105,7 @@
   "validation": {
     "emailInvalid": "Ongeldig e-mailformaat",
     "emailTooLong": "E-mail moet minder dan 255 tekens bevatten",
-    "passwordMin": "Wachtwoord moet minimaal 8 tekens bevatten",
-    "passwordUppercase": "Wachtwoord moet een hoofdletter bevatten",
-    "passwordNumber": "Wachtwoord moet een cijfer bevatten",
+    "passwordMin": "Het wachtwoord moet minstens {{min}} tekens hebben.",
     "symbolRequired": "Symbool is verplicht",
     "symbolInvalid": "Alleen hoofdletters en cijfers toegestaan",
     "symbolTooLong": "Symbool moet 10 tekens of minder zijn",
@@ -1742,7 +1739,7 @@
         },
         {
           "title": "Welke gegevens we opslaan",
-          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, een bijnaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij. Om misbruik te voorkomen telt de server bij registratie, inloggen, wachtwoordherstel en het contactformulier kort het aantal verzoeken per IP-adres; die tellers staan alleen in het werkgeheugen en vervallen na hoogstens een uur."
+          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, een bijnaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij. Om misbruik te voorkomen telt de server bij registratie, inloggen, wachtwoordherstel en het contactformulier kort het aantal verzoeken per IP-adres en foute wachtwoorden per account; die tellers staan alleen in het werkgeheugen en vervallen na hoogstens een uur."
         },
         {
           "title": "Waarvoor en op welke grondslag",

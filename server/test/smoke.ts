@@ -59,10 +59,10 @@ async function signUpAndVerify(email: string, nickname: string) {
   const c = new Client();
   const r = await c.req("/api/auth/sign-up/email", {
     method: "POST",
-    json: { email, password: "Passwort123", name: nickname, altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
+    json: { email, password: "Passwort1234", name: nickname, altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
   });
   check(`sign up ${email}`, r.status === 200, r.body);
-  const login = await c.req("/api/auth/sign-in/email", { method: "POST", json: { email, password: "Passwort123" } });
+  const login = await c.req("/api/auth/sign-in/email", { method: "POST", json: { email, password: "Passwort1234" } });
   check("login blocked before email verification", login.status === 403, login.status);
 
   if (!devLog) throw new Error("pass the dev server log file to read verification links");
@@ -176,11 +176,27 @@ check("screenshot upload", typeof shot.body.url === "string", shot.body);
 check("owner can read screenshot", (await anna.req(shot.body.url)).status === 200);
 check("other user cannot read screenshot", (await bob.req(shot.body.url)).status === 404);
 
+// passwords: at least 12 characters
+const shortPw = new Client();
+const shortPwRes = await shortPw.req("/api/auth/sign-up/email", { method: "POST", json: { email: `short${stamp}@example.com`, password: "Kurz1234567", name: "", altcha: await solveCaptcha(shortPw) } });
+check("password under 12 characters rejected", shortPwRes.status === 400, shortPwRes.body);
+
+// password guessing: after 10 wrong passwords the account is locked for every IP, even for the right one
+const carlEmail = `carl${stamp}@example.com`;
+await signUpAndVerify(carlEmail, "Carl");
+const attacker = new Client();
+for (let i = 0; i < 10; i++) await attacker.req("/api/auth/sign-in/email", { method: "POST", json: { email: carlEmail, password: `falsch-${i}-falsch` } });
+const lockedLogin = await new Client().req("/api/auth/sign-in/email", { method: "POST", json: { email: carlEmail, password: "Passwort1234" } });
+check("account locked after 10 wrong passwords", lockedLogin.status === 401 && lockedLogin.body?.code === "INVALID_EMAIL_OR_PASSWORD", lockedLogin);
+check("lock warning mail sent", !!devLog && readFileSync(devLog, "utf8").includes(`[mail] login_locked → ${carlEmail}`));
+const otherLogin = await new Client().req("/api/auth/sign-in/email", { method: "POST", json: { email: `anna${stamp}@example.com`, password: "Passwort1234" } });
+check("other accounts not affected", otherLogin.status === 200, otherLogin.status);
+
 // bots: a filled hidden field is rejected like a failed captcha
 const botContact = await new Client().req("/api/contact", { method: "POST", json: { name: "Bot", email: "bot@example.com", subject: "Hi", message: "Spam", website: "http://spam.example", altcha: "x" } });
 check("contact honeypot rejected", botContact.status === 400, botContact.body);
 const botSignup = new Client();
-const botSignupRes = await botSignup.req("/api/auth/sign-up/email", { method: "POST", json: { email: `bot${stamp}@example.com`, password: "Passwort123", name: "", website: "http://spam.example", altcha: await solveCaptcha(botSignup) } });
+const botSignupRes = await botSignup.req("/api/auth/sign-up/email", { method: "POST", json: { email: `bot${stamp}@example.com`, password: "Passwort1234", name: "", website: "http://spam.example", altcha: await solveCaptcha(botSignup) } });
 check("sign-up honeypot rejected", botSignupRes.status === 400, botSignupRes.body);
 
 // in-app feedback (no SMTP/GitHub in dev: the server logs it)
@@ -201,11 +217,11 @@ check("export needs login", (await new Client().req("/api/export")).status === 4
 // reset and delete
 const wrongPw = await anna.req("/api/account/reset", { method: "POST", json: { password: "falsch" } });
 check("reset needs correct password", wrongPw.status === 401, wrongPw.body);
-const reset = await anna.req("/api/account/reset", { method: "POST", json: { password: "Passwort123" } });
+const reset = await anna.req("/api/account/reset", { method: "POST", json: { password: "Passwort1234" } });
 const after = await anna.db({ table: "trades", action: "select" });
 check("reset deletes trades", reset.status === 200 && after.body.data?.length === 0, [reset.body, after.body]);
 
-const del = await bob.req("/api/auth/delete-user", { method: "POST", json: { password: "Passwort123" } });
+const del = await bob.req("/api/auth/delete-user", { method: "POST", json: { password: "Passwort1234" } });
 check("delete account", del.status === 200, del.body);
 const gone = await bob.db({ table: "trades", action: "select" });
 check("deleted user has no session", gone.status === 401, gone.status);

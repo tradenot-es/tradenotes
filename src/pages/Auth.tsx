@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { z } from "zod";
+import { MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from "@/lib/password";
 import logo from "@/assets/logo.webp";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { SignupForm } from "@/components/auth/SignupForm";
@@ -32,7 +33,8 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  // ?forgot=1 opens the reset form directly (link in the "many failed logins" mail)
+  const [showForgotPassword, setShowForgotPassword] = useState(searchParams.get("forgot") === "1");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [forgotPasswordAltchaPayload, setForgotPasswordAltchaPayload] = useState<string | null>(null);
@@ -42,10 +44,9 @@ const Auth = () => {
     email: z.string()
       .email({ message: t("validation.emailInvalid") })
       .max(255, { message: t("validation.emailTooLong") }),
-    password: z.string()
-      .min(8, { message: t("validation.passwordMin") })
-      .regex(/[A-Z]/, { message: t("validation.passwordUppercase") })
-      .regex(/[0-9]/, { message: t("validation.passwordNumber") })
+    // login only needs a password; the length rule applies when one is chosen (older accounts may
+    // still have a shorter one)
+    password: z.string().min(1).max(MAX_PASSWORD_LENGTH),
   });
 
   useEffect(() => {
@@ -161,8 +162,8 @@ const Auth = () => {
       toast.error(t("settings.passwordMismatch"));
       return;
     }
-    if (newPassword.length < 8) {
-      toast.error(t("validation.passwordMin"));
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+      toast.error(t("validation.passwordMin", { min: MIN_PASSWORD_LENGTH }));
       return;
     }
     

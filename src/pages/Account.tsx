@@ -19,6 +19,7 @@ import { format } from "date-fns";
 import { de } from "date-fns/locale";
 import { PageHeader } from "@/components/PageHeader";
 import { z } from "zod";
+import { MIN_PASSWORD_LENGTH } from "@/lib/password";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -145,8 +146,8 @@ const Account = () => {
       toast.error(t("settings.passwordMismatch"));
       return;
     }
-    if (newPassword.length < 10) {
-      toast.error(t("settings.passwordTooShort"));
+    if (newPassword.length < MIN_PASSWORD_LENGTH) {
+      toast.error(t("validation.passwordMin", { min: MIN_PASSWORD_LENGTH }));
       return;
     }
     if (!currentPassword) {

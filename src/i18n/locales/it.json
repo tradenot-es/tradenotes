@@ -520,7 +520,7 @@
     "newPasswordPlaceholder": "Inserisci nuova password",
     "confirmPassword": "Conferma Password",
     "confirmPasswordPlaceholder": "Conferma nuova password",
-    "passwordHelp": "Deve essere di almeno 10 caratteri. Usa una password forte e unica con maiuscole, minuscole, numeri e caratteri speciali.",
+    "passwordHelp": "Almeno 12 caratteri. La soluzione più sicura è una frase lunga o più parole che conosci solo tu, con una password diversa per ogni servizio. Un password manager ti aiuta.",
     "passwordStrength": {
       "weak": "Debole - Aggiungi più caratteri e varietà",
       "medium": "Media - Considera l'aggiunta di caratteri speciali",
@@ -530,7 +530,6 @@
     "passwordUpdateSuccess": "Password aggiornata con successo",
     "passwordUpdateError": "Errore aggiornamento password",
     "passwordMismatch": "Le password non corrispondono",
-    "passwordTooShort": "La password deve essere di almeno 10 caratteri",
     "twoFactor": "Autenticazione a Due Fattori",
     "twoFactorHelp": "Aggiunge un livello extra di sicurezza richiedendo un codice a 6 cifre dalla tua app di autenticazione al login",
     "enable2FA": "Abilita 2FA",
@@ -1097,9 +1096,7 @@
   "validation": {
     "emailInvalid": "Formato email non valido",
     "emailTooLong": "L'email deve essere meno di 255 caratteri",
-    "passwordMin": "La password deve essere di almeno 8 caratteri",
-    "passwordUppercase": "La password deve contenere una lettera maiuscola",
-    "passwordNumber": "La password deve contenere un numero",
+    "passwordMin": "La password deve avere almeno {{min}} caratteri.",
     "symbolRequired": "Il simbolo è obbligatorio",
     "symbolInvalid": "Solo lettere maiuscole e numeri consentiti",
     "symbolTooLong": "Il simbolo deve essere di 10 caratteri o meno",
@@ -1733,7 +1730,7 @@
         },
         {
           "title": "Quali dati salviamo",
-          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, un nickname. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori. Per prevenire abusi, il server conta brevemente le richieste per indirizzo IP durante registrazione, accesso, reimpostazione della password e modulo di contatto; questi contatori restano solo in memoria e scadono al massimo dopo un’ora."
+          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, un nickname. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori. Per prevenire abusi, il server conta brevemente le richieste per indirizzo IP e le password errate per account durante registrazione, accesso, reimpostazione della password e modulo di contatto; questi contatori restano solo in memoria e scadono al massimo dopo un’ora."
         },
         {
           "title": "Finalità e base giuridica",
