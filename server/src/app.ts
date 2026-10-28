@@ -11,6 +11,7 @@ import { FlexError, syncIbkr } from "./ibkr.js";
 import { sendContactMail } from "./mail.js";
 import { buildExport } from "./export.js";
 import { marketEventsBetween } from "./marketEvents.js";
+import { allowFeedback, feedbackSchema, submitFeedback } from "./feedback.js";
 
 type Vars = { userId: string; userEmail: string };
 
@@ -234,6 +235,15 @@ app.get("/api/market-events", async (c) => {
   const to = c.req.query("to") ?? "";
   if (!DATE.test(from) || !DATE.test(to)) return c.json({ error: "from and to must be YYYY-MM-DD" }, 400);
   return c.json({ events: await marketEventsBetween(from, to) });
+});
+
+// --- in-app feedback: bug or idea ------------------------------------------------
+
+app.post("/api/feedback", async (c) => {
+  const parsed = feedbackSchema.safeParse(await c.req.json());
+  if (!parsed.success) return c.json({ error: "Invalid feedback", field: parsed.error.issues[0]?.path[0] }, 400);
+  if (!allowFeedback(c.get("userId"))) return c.json({ error: "Too many messages, please try again later" }, 429);
+  return c.json({ success: true, ...(await submitFeedback(parsed.data, { email: c.get("userEmail") })) });
 });
 
 // --- data export ---------------------------------------------------------------

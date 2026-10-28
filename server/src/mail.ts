@@ -136,3 +136,12 @@ export async function sendContactMail(msg: { name: string; email: string; subjec
     text,
   });
 }
+
+/** In-app feedback (src/feedback.ts): plain-text mail to the operator, reply goes to the user. */
+export async function sendFeedbackMail(msg: { subject: string; replyTo: string; text: string }) {
+  if (!transport || !env.contactTo) {
+    console.log(`[mail] feedback: ${msg.subject}\n${msg.text}`);
+    return;
+  }
+  await transport.sendMail({ from: env.smtp.from, to: env.contactTo, replyTo: msg.replyTo, subject: msg.subject, text: msg.text });
+}

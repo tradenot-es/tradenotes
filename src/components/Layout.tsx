@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.webp";
+import { FeedbackDialog } from "@/components/FeedbackDialog";
 /** Nav link that also closes the off-canvas sidebar on phones. */
 function SidebarNavLink(props: NavLinkProps) {
   const { setOpenMobile } = useSidebar();
@@ -90,7 +91,8 @@ export function Layout({
                     </SidebarNavLink>
                 </SidebarMenuItem>)}
             </SidebarMenu>
-            <div className="mt-auto p-4 border-t border-sidebar-border">
+            <div className="mt-auto p-4 border-t border-sidebar-border space-y-1">
+              <FeedbackDialog />
               <Button variant="ghost" className="w-full justify-start" onClick={signOut}>
                 <LogOut className="h-4 w-4 mr-3" />
                 {t("nav.logout")}

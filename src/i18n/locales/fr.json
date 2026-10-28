@@ -1743,15 +1743,15 @@
         },
         {
           "title": "Données que nous enregistrons",
-          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, prénom et nom. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite."
+          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, prénom et nom. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n- Retours depuis l’application : type, titre et texte et, si vous le souhaitez, des informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Ils nous sont envoyés par e-mail afin que nous puissions vous répondre.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite."
         },
         {
           "title": "Finalités et base juridique",
-          "text": "Nous traitons ces données uniquement pour vous fournir le journal de trading (art. 6, par. 1, point b du RGPD). Les données de session et le captcha lors de l’inscription, de la réinitialisation du mot de passe et du formulaire de contact protègent contre les abus (intérêt légitime, art. 6, par. 1, point f du RGPD). Nous répondons aux demandes envoyées via le formulaire de contact sur la base de l’art. 6, par. 1, point b ou f du RGPD.\n\nLes analyses de l’application, comme la détection du revenge trading, ne sont visibles que par vous. Elles n’ont aucun effet juridique à votre égard."
+          "text": "Nous traitons ces données uniquement pour vous fournir le journal de trading (art. 6, par. 1, point b du RGPD). Les données de session et le captcha lors de l’inscription, de la réinitialisation du mot de passe et du formulaire de contact protègent contre les abus (intérêt légitime, art. 6, par. 1, point f du RGPD). Nous répondons aux demandes envoyées via le formulaire de contact sur la base de l’art. 6, par. 1, point b ou f du RGPD. Nous répondons aux retours envoyés depuis l’application et les utilisons pour améliorer TradeNot.es (intérêt légitime, art. 6, par. 1, point f du RGPD).\n\nLes analyses de l’application, comme la détection du revenge trading, ne sont visibles que par vous. Elles n’ont aucun effet juridique à votre égard."
         },
         {
           "title": "Où se trouvent les données",
-          "text": "Toutes les données sont stockées sur notre propre serveur aux Pays-Bas (centre de données de Leaseweb à Amsterdam). Leaseweb est notre sous-traitant pour l’hébergement. Pour l’envoi des e-mails (confirmation, réinitialisation du mot de passe, formulaire de contact), nous faisons appel à un prestataire d’e-mail en tant que sous-traitant. Vos données ne sont pas transférées vers des pays situés hors de l’UE."
+          "text": "Toutes les données sont stockées sur notre propre serveur aux Pays-Bas (centre de données de Leaseweb à Amsterdam). Leaseweb est notre sous-traitant pour l’hébergement. Pour l’envoi des e-mails (confirmation, réinitialisation du mot de passe, formulaire de contact), nous faisons appel à un prestataire d’e-mail en tant que sous-traitant. Nous enregistrons en outre le titre et le texte des retours envoyés depuis l’application comme tâche dans notre projet non public sur GitHub (GitHub Inc., États-Unis, certifiée selon le cadre de protection des données UE-États-Unis), sans votre nom ni votre adresse e-mail. En dehors de cela, vos données ne sont pas transférées vers des pays situés hors de l’UE."
         },
         {
           "title": "Requêtes vers d’autres services",
@@ -1767,7 +1767,7 @@
         },
         {
           "title": "Durée de conservation",
-          "text": "Vos données sont conservées jusqu’à ce que vous les supprimiez ou que vous supprimiez votre compte. Lors de la suppression du compte, nous effaçons immédiatement toutes les données, captures d’écran comprises. Les sessions expirées sont supprimées automatiquement, de même que les comptes dont l’adresse e-mail n’a pas été confirmée dans les 7 jours.\n\nPar sécurité, nous sauvegardons chaque jour la base de données et les captures d’écran sur le même serveur. Ces sauvegardes sont supprimées au bout de 14 jours ; les données effacées disparaissent donc aussi des sauvegardes au plus tard 14 jours après."
+          "text": "Vos données sont conservées jusqu’à ce que vous les supprimiez ou que vous supprimiez votre compte. Lors de la suppression du compte, nous effaçons immédiatement toutes les données, captures d’écran comprises. Les sessions expirées sont supprimées automatiquement, de même que les comptes dont l’adresse e-mail n’a pas été confirmée dans les 7 jours. Nous conservons les e-mails de retour et les tâches sur GitHub aussi longtemps que nécessaire pour les traiter.\n\nPar sécurité, nous sauvegardons chaque jour la base de données et les captures d’écran sur le même serveur. Ces sauvegardes sont supprimées au bout de 14 jours ; les données effacées disparaissent donc aussi des sauvegardes au plus tard 14 jours après."
         },
         {
           "title": "Vos droits",
@@ -1848,6 +1848,36 @@
       "message": "Veuillez saisir un message ({{max}} caractères au maximum).",
       "send": "Le message n’a pas pu être envoyé. Veuillez réessayer."
     }
+  },
+  "feedback": {
+    "button": "Une idée ?",
+    "title": "Un bug ou une idée ?",
+    "description": "De nombreuses fonctions de TradeNot.es viennent d’idées de traders. Dites-nous ce qui vous manque ou ce qui ne fonctionne pas.",
+    "typeLabel": "Type de message",
+    "types": {
+      "bug": "Bug trouvé",
+      "idea": "Nouvelle idée",
+      "other": "Autre"
+    },
+    "titleLabel": "Titre",
+    "titlePlaceholder": {
+      "bug": "p. ex. L’import échoue avec un gros CSV",
+      "idea": "p. ex. Rapport mensuel en PDF",
+      "other": "De quoi s’agit-il ?"
+    },
+    "messageLabel": "Description",
+    "messagePlaceholder": {
+      "bug": "Qu’avez-vous fait, que s’est-il passé et à quoi vous attendiez-vous ?",
+      "idea": "Que voudriez-vous pouvoir faire, et en quoi cela vous aiderait-il ?",
+      "other": "Votre message …"
+    },
+    "includeContext": "Joindre la page et les informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Utile pour les bugs.",
+    "privacyNote": "Nous répondons par e-mail à l’adresse de votre compte. Le titre et le texte rejoignent notre liste de tâches sur GitHub sans votre nom ni votre adresse e-mail ; merci de ne pas y mettre de données personnelles.",
+    "send": "Envoyer",
+    "sending": "Envoi en cours …",
+    "thanks": "Merci ! Votre message est bien arrivé.",
+    "error": "Échec de l’envoi. Veuillez réessayer.",
+    "tooMany": "Vous venez d’envoyer plusieurs messages. Veuillez réessayer dans une heure."
   },
   "help": {
     "title": "Aide et questions fréquentes",

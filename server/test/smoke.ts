@@ -2,7 +2,7 @@
 //   npx tsx test/smoke.ts [baseUrl] [devLogFile]
 // Signs up two users (solving the captcha), verifies them via the link the dev
 // server prints instead of mailing, and exercises the data API, isolation between
-// users, webhook import, screenshots, data export, data reset and account deletion.
+// users, webhook import, screenshots, feedback, data export, data reset and account deletion.
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
@@ -172,6 +172,12 @@ const shot = await anna.req("/api/screenshots", { method: "POST", body: form });
 check("screenshot upload", typeof shot.body.url === "string", shot.body);
 check("owner can read screenshot", (await anna.req(shot.body.url)).status === 200);
 check("other user cannot read screenshot", (await bob.req(shot.body.url)).status === 404);
+
+// in-app feedback (no SMTP/GitHub in dev: the server logs it)
+const fb = await anna.req("/api/feedback", { method: "POST", json: { type: "idea", title: "PDF-Export", message: "Ein Monatsbericht als PDF wäre super." } });
+check("feedback accepted with reference", fb.status === 200 && /^[0-9a-f]{6}$/.test(fb.body.ref ?? ""), fb.body);
+check("feedback validated", (await anna.req("/api/feedback", { method: "POST", json: { type: "idea", title: "x", message: "y" } })).status === 400);
+check("feedback needs login", (await new Client().req("/api/feedback", { method: "POST", json: { type: "bug", title: "abc", message: "0123456789" } })).status === 401);
 
 // data export: everything of the user as ZIP, without secrets and without other users' data
 const exp = await anna.req("/api/export");

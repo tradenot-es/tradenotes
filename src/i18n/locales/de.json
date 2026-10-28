@@ -1732,15 +1732,15 @@
         },
         {
           "title": "Welche Daten wir speichern",
-          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig Vor- und Nachname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht."
+          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig Vor- und Nachname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n- Feedback aus der App: Art, Titel und Text, auf Wunsch technische Angaben (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Es geht per E-Mail an uns, damit wir dir antworten können.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht."
         },
         {
           "title": "Wofür und auf welcher Grundlage",
-          "text": "Wir verarbeiten diese Daten nur, um dir das Trading-Journal bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Sitzungsdaten und das Captcha bei Registrierung, Passwort-Reset und Kontaktformular schützen vor Missbrauch (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Anfragen über das Kontaktformular beantworten wir auf Grundlage von Art. 6 Abs. 1 lit. b bzw. f DSGVO.\n\nDie Auswertungen der App, etwa die Erkennung von Revenge-Trades, siehst nur du. Sie haben keine rechtliche Wirkung für dich."
+          "text": "Wir verarbeiten diese Daten nur, um dir das Trading-Journal bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Sitzungsdaten und das Captcha bei Registrierung, Passwort-Reset und Kontaktformular schützen vor Missbrauch (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Anfragen über das Kontaktformular beantworten wir auf Grundlage von Art. 6 Abs. 1 lit. b bzw. f DSGVO. Feedback aus der App beantworten wir und nutzen es, um TradeNot.es zu verbessern (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO).\n\nDie Auswertungen der App, etwa die Erkennung von Revenge-Trades, siehst nur du. Sie haben keine rechtliche Wirkung für dich."
         },
         {
           "title": "Wo die Daten liegen",
-          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Deine Daten werden nicht in Länder außerhalb der EU übermittelt."
+          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Titel und Text von Feedback aus der App legen wir zusätzlich als Aufgabe in unserem nicht öffentlichen Projekt bei GitHub an (GitHub Inc., USA, zertifiziert nach dem EU-US Data Privacy Framework), ohne deinen Namen und deine E-Mail-Adresse. Davon abgesehen werden deine Daten nicht in Länder außerhalb der EU übermittelt."
         },
         {
           "title": "Abrufe bei anderen Diensten",
@@ -1756,7 +1756,7 @@
         },
         {
           "title": "Wie lange wir Daten speichern",
-          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde.\n\nZur Sicherheit sichern wir Datenbank und Screenshots täglich auf demselben Server. Diese Sicherungen werden nach 14 Tagen gelöscht; gelöschte Daten verschwinden also spätestens 14 Tage später auch aus den Sicherungen."
+          "text": "Deine Daten bleiben gespeichert, bis du sie löschst oder dein Konto löschst. Beim Löschen des Kontos entfernen wir sofort alle Daten einschließlich der Screenshots. Abgelaufene Sitzungen löschen wir automatisch, ebenso Konten, deren E-Mail-Adresse nicht innerhalb von 7 Tagen bestätigt wurde. Feedback-Mails und die Aufgaben auf GitHub behalten wir, solange wir sie für die Bearbeitung brauchen.\n\nZur Sicherheit sichern wir Datenbank und Screenshots täglich auf demselben Server. Diese Sicherungen werden nach 14 Tagen gelöscht; gelöschte Daten verschwinden also spätestens 14 Tage später auch aus den Sicherungen."
         },
         {
           "title": "Deine Rechte",
@@ -1837,6 +1837,36 @@
       "message": "Bitte gib eine Nachricht ein (höchstens {{max}} Zeichen).",
       "send": "Die Nachricht konnte nicht gesendet werden. Bitte versuch es noch einmal."
     }
+  },
+  "feedback": {
+    "button": "Verbesserungsvorschlag?",
+    "title": "Fehler gefunden oder eine Idee?",
+    "description": "Viele Funktionen von TradeNot.es kommen aus Ideen von Tradern. Schreib uns, was dir fehlt oder was nicht funktioniert.",
+    "typeLabel": "Art der Nachricht",
+    "types": {
+      "bug": "Fehler gefunden",
+      "idea": "Neue Idee",
+      "other": "Sonstiges"
+    },
+    "titleLabel": "Titel",
+    "titlePlaceholder": {
+      "bug": "z. B. Import bricht bei großer CSV ab",
+      "idea": "z. B. Monatsbericht als PDF",
+      "other": "Worum geht es?"
+    },
+    "messageLabel": "Beschreibung",
+    "messagePlaceholder": {
+      "bug": "Was hast du gemacht, was ist passiert und was hättest du erwartet?",
+      "idea": "Was möchtest du tun können, und wobei würde dir das helfen?",
+      "other": "Deine Nachricht …"
+    },
+    "includeContext": "Seite und technische Angaben mitschicken (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Das hilft bei Fehlern.",
+    "privacyNote": "Wir antworten per E-Mail an deine Konto-Adresse. Titel und Text landen ohne Namen und E-Mail-Adresse in unserer Aufgabenliste auf GitHub; schreib dort bitte keine persönlichen Daten hinein.",
+    "send": "Senden",
+    "sending": "Wird gesendet …",
+    "thanks": "Danke! Deine Nachricht ist angekommen.",
+    "error": "Senden fehlgeschlagen. Bitte versuch es noch einmal.",
+    "tooMany": "Du hast gerade viele Nachrichten geschickt. Bitte versuch es in einer Stunde wieder."
   },
   "help": {
     "title": "Hilfe & häufige Fragen",

@@ -1724,15 +1724,15 @@
         },
         {
           "title": "What we store",
-          "text": "- Account: email address, password (only as a hash, never in plain text) and, if you choose, first and last name. If you turn on two-factor login, also its secret key and backup codes.\n- Login: while you are logged in, we store the IP address and browser identifier (user agent) with your session.\n- Your trading data: trades, notes, journal entries, daily prep, settings, goals and uploaded screenshots. With automatic import, also the executions from your broker (e.g. account name, instrument, price, time, fees).\n- Connections: your API key for the NinjaTrader add-on and, if you connect Interactive Brokers, your Flex token and query ID.\n- Contact form: name, email address, subject and message. The message is forwarded to us by email and not stored in the database.\n\nWhen you open the website, the server necessarily processes your IP address to deliver the pages. We keep no access logs or visitor statistics."
+          "text": "- Account: email address, password (only as a hash, never in plain text) and, if you choose, first and last name. If you turn on two-factor login, also its secret key and backup codes.\n- Login: while you are logged in, we store the IP address and browser identifier (user agent) with your session.\n- Your trading data: trades, notes, journal entries, daily prep, settings, goals and uploaded screenshots. With automatic import, also the executions from your broker (e.g. account name, instrument, price, time, fees).\n- Connections: your API key for the NinjaTrader add-on and, if you connect Interactive Brokers, your Flex token and query ID.\n- Contact form: name, email address, subject and message. The message is forwarded to us by email and not stored in the database.\n- Feedback from the app: type, title and text, and if you choose, technical details (page, browser, language, time zone, window size). It is sent to us by email so we can reply.\n\nWhen you open the website, the server necessarily processes your IP address to deliver the pages. We keep no access logs or visitor statistics."
         },
         {
           "title": "Purpose and legal basis",
-          "text": "We process this data only to provide the trading journal to you (Art. 6(1)(b) GDPR). Session data and the captcha on sign-up, password reset and the contact form protect against abuse (legitimate interest, Art. 6(1)(f) GDPR). We answer contact form requests on the basis of Art. 6(1)(b) or (f) GDPR.\n\nThe app's analyses, such as revenge trade detection, are visible only to you. They have no legal effect on you."
+          "text": "We process this data only to provide the trading journal to you (Art. 6(1)(b) GDPR). Session data and the captcha on sign-up, password reset and the contact form protect against abuse (legitimate interest, Art. 6(1)(f) GDPR). We answer contact form requests on the basis of Art. 6(1)(b) or (f) GDPR. We answer feedback from the app and use it to improve TradeNot.es (legitimate interest, Art. 6(1)(f) GDPR).\n\nThe app's analyses, such as revenge trade detection, are visible only to you. They have no legal effect on you."
         },
         {
           "title": "Where the data is kept",
-          "text": "All data is stored on our own server in the Netherlands (Leaseweb data center in Amsterdam). Leaseweb acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. Your data is not transferred to countries outside the EU."
+          "text": "All data is stored on our own server in the Netherlands (Leaseweb data center in Amsterdam). Leaseweb acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. We also file the title and text of feedback from the app as a task in our non-public project on GitHub (GitHub Inc., USA, certified under the EU-US Data Privacy Framework), without your name or email address. Apart from that, your data is not transferred to countries outside the EU."
         },
         {
           "title": "Requests to other services",
@@ -1748,7 +1748,7 @@
         },
         {
           "title": "How long we keep data",
-          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days.\n\nFor safety, we back up the database and screenshots daily on the same server. These backups are deleted after 14 days, so deleted data disappears from the backups no later than 14 days afterwards."
+          "text": "Your data is kept until you delete it or delete your account. When you delete your account, we immediately remove all data including screenshots. Expired sessions are deleted automatically, as are accounts whose email address was not confirmed within 7 days. We keep feedback emails and the tasks on GitHub as long as we need them to work on them.\n\nFor safety, we back up the database and screenshots daily on the same server. These backups are deleted after 14 days, so deleted data disappears from the backups no later than 14 days afterwards."
         },
         {
           "title": "Your rights",
@@ -1829,6 +1829,36 @@
       "message": "Please enter a message (at most {{max}} characters).",
       "send": "The message could not be sent. Please try again."
     }
+  },
+  "feedback": {
+    "button": "Got an idea?",
+    "title": "Found a bug or have an idea?",
+    "description": "Many TradeNot.es features started as ideas from traders. Tell us what you are missing or what does not work.",
+    "typeLabel": "Type of message",
+    "types": {
+      "bug": "Found a bug",
+      "idea": "New idea",
+      "other": "Other"
+    },
+    "titleLabel": "Title",
+    "titlePlaceholder": {
+      "bug": "e.g. Import stops with a large CSV",
+      "idea": "e.g. Monthly report as PDF",
+      "other": "What is it about?"
+    },
+    "messageLabel": "Description",
+    "messagePlaceholder": {
+      "bug": "What did you do, what happened and what did you expect?",
+      "idea": "What would you like to be able to do, and how would it help you?",
+      "other": "Your message …"
+    },
+    "includeContext": "Include page and technical details (page, browser, language, time zone, window size). This helps with bugs.",
+    "privacyNote": "We reply by email to your account address. Title and text go into our task list on GitHub without your name or email address, so please do not put personal data in them.",
+    "send": "Send",
+    "sending": "Sending …",
+    "thanks": "Thanks! Your message has arrived.",
+    "error": "Sending failed. Please try again.",
+    "tooMany": "You have just sent several messages. Please try again in an hour."
   },
   "help": {
     "title": "Help & FAQ",

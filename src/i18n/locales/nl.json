@@ -1743,15 +1743,15 @@
         },
         {
           "title": "Welke gegevens we opslaan",
-          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, voor- en achternaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij."
+          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, voor- en achternaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij."
         },
         {
           "title": "Waarvoor en op welke grondslag",
-          "text": "We verwerken deze gegevens alleen om je het tradingjournal te leveren (art. 6 lid 1 sub b AVG). Sessiegegevens en de captcha bij registratie, wachtwoordherstel en het contactformulier beschermen tegen misbruik (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). Vragen via het contactformulier beantwoorden we op grond van art. 6 lid 1 sub b of f AVG.\n\nDe analyses in de app, zoals het herkennen van revenge trades, zie alleen jij. Ze hebben geen rechtsgevolgen voor je."
+          "text": "We verwerken deze gegevens alleen om je het tradingjournal te leveren (art. 6 lid 1 sub b AVG). Sessiegegevens en de captcha bij registratie, wachtwoordherstel en het contactformulier beschermen tegen misbruik (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). Vragen via het contactformulier beantwoorden we op grond van art. 6 lid 1 sub b of f AVG. Feedback uit de app beantwoorden we en gebruiken we om TradeNot.es te verbeteren (gerechtvaardigd belang, art. 6 lid 1 sub f AVG).\n\nDe analyses in de app, zoals het herkennen van revenge trades, zie alleen jij. Ze hebben geen rechtsgevolgen voor je."
         },
         {
           "title": "Waar de gegevens staan",
-          "text": "Alle gegevens staan op onze eigen server in Nederland (datacenter van Leaseweb in Amsterdam). Leaseweb is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Je gegevens worden niet doorgegeven aan landen buiten de EU."
+          "text": "Alle gegevens staan op onze eigen server in Nederland (datacenter van Leaseweb in Amsterdam). Leaseweb is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Titel en tekst van feedback uit de app zetten we daarnaast als taak in ons niet-openbare project op GitHub (GitHub Inc., VS, gecertificeerd onder het EU-VS Data Privacy Framework), zonder je naam en e-mailadres. Verder worden je gegevens niet doorgegeven aan landen buiten de EU."
         },
         {
           "title": "Opvragingen bij andere diensten",
@@ -1767,7 +1767,7 @@
         },
         {
           "title": "Hoe lang we gegevens bewaren",
-          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd.\n\nVoor de zekerheid maken we dagelijks een back-up van de database en de screenshots op dezelfde server. Die back-ups worden na 14 dagen verwijderd; verwijderde gegevens verdwijnen dus uiterlijk 14 dagen later ook uit de back-ups."
+          "text": "Je gegevens blijven bewaard totdat je ze verwijdert of je account verwijdert. Bij het verwijderen van je account wissen we direct alle gegevens, inclusief screenshots. Verlopen sessies verwijderen we automatisch, net als accounts waarvan het e-mailadres niet binnen 7 dagen is bevestigd. Feedbackmails en de taken op GitHub bewaren we zolang we ze nodig hebben om eraan te werken.\n\nVoor de zekerheid maken we dagelijks een back-up van de database en de screenshots op dezelfde server. Die back-ups worden na 14 dagen verwijderd; verwijderde gegevens verdwijnen dus uiterlijk 14 dagen later ook uit de back-ups."
         },
         {
           "title": "Je rechten",
@@ -1848,6 +1848,36 @@
       "message": "Vul een bericht in (maximaal {{max}} tekens).",
       "send": "Het bericht kon niet worden verstuurd. Probeer het opnieuw."
     }
+  },
+  "feedback": {
+    "button": "Een idee?",
+    "title": "Een fout gevonden of een idee?",
+    "description": "Veel functies van TradeNot.es komen uit ideeën van traders. Laat ons weten wat je mist of wat niet werkt.",
+    "typeLabel": "Soort bericht",
+    "types": {
+      "bug": "Fout gevonden",
+      "idea": "Nieuw idee",
+      "other": "Overig"
+    },
+    "titleLabel": "Titel",
+    "titlePlaceholder": {
+      "bug": "bijv. Import stopt bij een grote CSV",
+      "idea": "bijv. Maandrapport als pdf",
+      "other": "Waar gaat het over?"
+    },
+    "messageLabel": "Beschrijving",
+    "messagePlaceholder": {
+      "bug": "Wat deed je, wat gebeurde er en wat had je verwacht?",
+      "idea": "Wat zou je willen kunnen, en waarbij zou het je helpen?",
+      "other": "Je bericht …"
+    },
+    "includeContext": "Pagina en technische gegevens meesturen (pagina, browser, taal, tijdzone, venstergrootte). Dat helpt bij fouten.",
+    "privacyNote": "We antwoorden per e-mail op het adres van je account. Titel en tekst komen zonder naam en e-mailadres in onze takenlijst op GitHub; zet daar dus geen persoonlijke gegevens in.",
+    "send": "Versturen",
+    "sending": "Wordt verstuurd …",
+    "thanks": "Bedankt! Je bericht is aangekomen.",
+    "error": "Versturen mislukt. Probeer het opnieuw.",
+    "tooMany": "Je hebt net meerdere berichten gestuurd. Probeer het over een uur opnieuw."
   },
   "help": {
     "title": "Hulp en veelgestelde vragen",

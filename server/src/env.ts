@@ -22,6 +22,12 @@ export const env = {
     pass: process.env.SMTP_PASS,
     from: process.env.MAIL_FROM ?? "TradeNot.es <noreply@tradenot.es>",
   },
-  // recipient of the contact form
+  // recipient of the contact form and of in-app feedback
   contactTo: process.env.CONTACT_TO,
+  // optional: in-app feedback also becomes a GitHub issue (fine-grained token with
+  // "Issues: read and write" on this one repository; repo as "owner/name")
+  feedback: {
+    githubToken: process.env.GITHUB_FEEDBACK_TOKEN,
+    githubRepo: process.env.GITHUB_FEEDBACK_REPO,
+  },
 };

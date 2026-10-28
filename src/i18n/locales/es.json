@@ -1743,15 +1743,15 @@
         },
         {
           "title": "Qué datos guardamos",
-          "text": "- Cuenta: dirección de correo, contraseña (solo como hash, nunca en texto plano) y, si quieres, nombre y apellidos. Si activas el inicio de sesión en dos pasos, también su clave secreta y los códigos de respaldo.\n- Inicio de sesión: mientras tienes la sesión iniciada, guardamos con ella la dirección IP y el identificador del navegador (user agent).\n- Tus datos de trading: operaciones, notas, entradas del diario, preparación diaria, ajustes, objetivos y capturas subidas. Con la importación automática, también las ejecuciones de tu bróker (p. ej. nombre de la cuenta, instrumento, precio, hora, comisiones).\n- Conexiones: tu clave API para el complemento de NinjaTrader y, si conectas Interactive Brokers, tu token Flex y el ID de la consulta.\n- Formulario de contacto: nombre, correo, asunto y mensaje. El mensaje se nos reenvía por correo y no se guarda en la base de datos.\n\nAl abrir el sitio web, el servidor trata necesariamente tu dirección IP para entregar las páginas. No llevamos registros de acceso ni estadísticas de visitas."
+          "text": "- Cuenta: dirección de correo, contraseña (solo como hash, nunca en texto plano) y, si quieres, nombre y apellidos. Si activas el inicio de sesión en dos pasos, también su clave secreta y los códigos de respaldo.\n- Inicio de sesión: mientras tienes la sesión iniciada, guardamos con ella la dirección IP y el identificador del navegador (user agent).\n- Tus datos de trading: operaciones, notas, entradas del diario, preparación diaria, ajustes, objetivos y capturas subidas. Con la importación automática, también las ejecuciones de tu bróker (p. ej. nombre de la cuenta, instrumento, precio, hora, comisiones).\n- Conexiones: tu clave API para el complemento de NinjaTrader y, si conectas Interactive Brokers, tu token Flex y el ID de la consulta.\n- Formulario de contacto: nombre, correo, asunto y mensaje. El mensaje se nos reenvía por correo y no se guarda en la base de datos.\n- Comentarios desde la app: tipo, título y texto y, si quieres, datos técnicos (página, navegador, idioma, zona horaria, tamaño de ventana). Nos llegan por correo para poder responderte.\n\nAl abrir el sitio web, el servidor trata necesariamente tu dirección IP para entregar las páginas. No llevamos registros de acceso ni estadísticas de visitas."
         },
         {
           "title": "Finalidad y base jurídica",
-          "text": "Tratamos estos datos únicamente para ofrecerte el diario de trading (art. 6.1.b RGPD). Los datos de sesión y el captcha en el registro, el restablecimiento de contraseña y el formulario de contacto protegen contra el abuso (interés legítimo, art. 6.1.f RGPD). Respondemos a las consultas del formulario de contacto sobre la base del art. 6.1.b o f RGPD.\n\nLos análisis de la app, como la detección de revenge trading, solo los ves tú. No tienen ningún efecto jurídico para ti."
+          "text": "Tratamos estos datos únicamente para ofrecerte el diario de trading (art. 6.1.b RGPD). Los datos de sesión y el captcha en el registro, el restablecimiento de contraseña y el formulario de contacto protegen contra el abuso (interés legítimo, art. 6.1.f RGPD). Respondemos a las consultas del formulario de contacto sobre la base del art. 6.1.b o f RGPD. Respondemos a los comentarios desde la app y los usamos para mejorar TradeNot.es (interés legítimo, art. 6.1.f RGPD).\n\nLos análisis de la app, como la detección de revenge trading, solo los ves tú. No tienen ningún efecto jurídico para ti."
         },
         {
           "title": "Dónde se guardan los datos",
-          "text": "Todos los datos se guardan en nuestro propio servidor en los Países Bajos (centro de datos de Leaseweb en Ámsterdam). Leaseweb actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Tus datos no se transfieren a países fuera de la UE."
+          "text": "Todos los datos se guardan en nuestro propio servidor en los Países Bajos (centro de datos de Leaseweb en Ámsterdam). Leaseweb actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Además, guardamos el título y el texto de los comentarios desde la app como tarea en nuestro proyecto no público en GitHub (GitHub Inc., EE. UU., certificada según el Marco de Privacidad de Datos UE-EE. UU.), sin tu nombre ni tu correo. Aparte de esto, tus datos no se transfieren a países fuera de la UE."
         },
         {
           "title": "Consultas a otros servicios",
@@ -1767,7 +1767,7 @@
         },
         {
           "title": "Cuánto tiempo guardamos los datos",
-          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días.\n\nPor seguridad, hacemos cada día una copia de la base de datos y de las capturas en el mismo servidor. Estas copias se borran a los 14 días, así que los datos eliminados desaparecen también de las copias como máximo 14 días después."
+          "text": "Tus datos se guardan hasta que los borres o elimines tu cuenta. Al eliminar la cuenta borramos de inmediato todos los datos, incluidas las capturas. Las sesiones caducadas se eliminan automáticamente, igual que las cuentas cuyo correo no se confirmó en 7 días. Conservamos los correos de comentarios y las tareas en GitHub mientras los necesitemos para trabajar en ellos.\n\nPor seguridad, hacemos cada día una copia de la base de datos y de las capturas en el mismo servidor. Estas copias se borran a los 14 días, así que los datos eliminados desaparecen también de las copias como máximo 14 días después."
         },
         {
           "title": "Tus derechos",
@@ -1848,6 +1848,36 @@
       "message": "Introduce un mensaje (máximo {{max}} caracteres).",
       "send": "No se pudo enviar el mensaje. Inténtalo de nuevo."
     }
+  },
+  "feedback": {
+    "button": "¿Una idea?",
+    "title": "¿Has encontrado un error o tienes una idea?",
+    "description": "Muchas funciones de TradeNot.es nacieron de ideas de traders. Cuéntanos qué te falta o qué no funciona.",
+    "typeLabel": "Tipo de mensaje",
+    "types": {
+      "bug": "Error",
+      "idea": "Nueva idea",
+      "other": "Otro"
+    },
+    "titleLabel": "Título",
+    "titlePlaceholder": {
+      "bug": "p. ej. La importación falla con un CSV grande",
+      "idea": "p. ej. Informe mensual en PDF",
+      "other": "¿De qué se trata?"
+    },
+    "messageLabel": "Descripción",
+    "messagePlaceholder": {
+      "bug": "¿Qué hiciste, qué pasó y qué esperabas?",
+      "idea": "¿Qué te gustaría poder hacer y en qué te ayudaría?",
+      "other": "Tu mensaje …"
+    },
+    "includeContext": "Enviar la página y datos técnicos (página, navegador, idioma, zona horaria, tamaño de ventana). Ayuda con los errores.",
+    "privacyNote": "Te respondemos por correo a la dirección de tu cuenta. El título y el texto van a nuestra lista de tareas en GitHub sin tu nombre ni tu correo; por favor, no incluyas datos personales.",
+    "send": "Enviar",
+    "sending": "Enviando …",
+    "thanks": "¡Gracias! Hemos recibido tu mensaje.",
+    "error": "No se pudo enviar. Inténtalo de nuevo.",
+    "tooMany": "Acabas de enviar varios mensajes. Vuelve a intentarlo dentro de una hora."
   },
   "help": {
     "title": "Ayuda y preguntas frecuentes",
