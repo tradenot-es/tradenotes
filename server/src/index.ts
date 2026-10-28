@@ -5,6 +5,7 @@ import { env } from "./env.js";
 import { runMigrations } from "./migrate.js";
 import { syncDueIbkr } from "./ibkr.js";
 import { syncMarketEvents } from "./marketEvents.js";
+import { processQueue } from "./campaigns.js";
 
 await runMigrations(pool);
 // loaded after migrating: Better Auth checks its tables on startup
@@ -29,6 +30,8 @@ const cleanup = async () => {
 setInterval(() => cleanup().catch((e) => console.error("cleanup failed", e)), 60 * 60 * 1000);
 // Interactive Brokers: fetch each connection's Flex report once a day
 setInterval(() => syncDueIbkr().catch((e) => console.error("ibkr sync failed", e)), 60 * 60 * 1000);
+// mails to all users: send queued mails in small batches, within MAIL_DAILY_LIMIT
+setInterval(() => processQueue().catch((e) => console.error("mail queue failed", e)), 60 * 1000);
 // Fed speeches and the President's schedule for the calendar: at start and then hourly
 if (process.env.MARKET_EVENTS !== "off") {
   syncMarketEvents();

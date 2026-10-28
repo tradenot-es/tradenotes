@@ -12,7 +12,8 @@
     "login": "Accedi",
     "welcome": "Benvenuto, {{name}}!",
     "days": "Vista giornaliera",
-    "openMenu": "Apri menu"
+    "openMenu": "Apri menu",
+    "admin": "Admin"
   },
   "auth": {
     "login": "Accedi",
@@ -480,7 +481,8 @@
     "deleteAccountSuccess": "Account eliminato con successo",
     "deleteAccountSuccessMessage": "Il tuo account è stato completamente eliminato. Verrai reindirizzato alla pagina iniziale...",
     "deleteAccountError": "Errore durante l'eliminazione dell'account",
-    "deletingAccount": "Eliminazione account..."
+    "deletingAccount": "Eliminazione account...",
+    "newEmailRequired": "Inserisci un nuovo indirizzo e-mail."
   },
   "settings": {
     "title": "Impostazioni",
@@ -1730,11 +1732,11 @@
         },
         {
           "title": "Quali dati salviamo",
-          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, un nickname. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori. Per prevenire abusi, il server conta brevemente le richieste per indirizzo IP e le password errate per account durante registrazione, accesso, reimpostazione della password e modulo di contatto; questi contatori restano solo in memoria e scadono al massimo dopo un’ora."
+          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, un nickname. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n- Attività: quando hai usato l’app l’ultima volta (aggiornato al massimo ogni ora), per contare gli utenti attivi. Viene valutato solo come totale, non per persona.\n- Newsletter: se ti sei iscritto alle novità e quando hai dato il consenso.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori. Per prevenire abusi, il server conta brevemente le richieste per indirizzo IP e le password errate per account durante registrazione, accesso, reimpostazione della password e modulo di contatto; questi contatori restano solo in memoria e scadono al massimo dopo un’ora."
         },
         {
           "title": "Finalità e base giuridica",
-          "text": "Trattiamo questi dati solo per fornirti il diario di trading (art. 6, par. 1, lett. b GDPR). I dati di sessione e il captcha in registrazione, reimpostazione della password e modulo di contatto proteggono dagli abusi (legittimo interesse, art. 6, par. 1, lett. f GDPR). Rispondiamo alle richieste inviate tramite il modulo di contatto sulla base dell’art. 6, par. 1, lett. b o f GDPR. Rispondiamo ai feedback inviati dall’app e li usiamo per migliorare TradeNot.es (legittimo interesse, art. 6, par. 1, lett. f GDPR).\n\nLe analisi dell’app, come il riconoscimento del revenge trading, sono visibili solo a te. Non hanno alcun effetto giuridico nei tuoi confronti."
+          "text": "Trattiamo questi dati solo per fornirti il diario di trading (art. 6, par. 1, lett. b GDPR). I dati di sessione e il captcha in registrazione, reimpostazione della password e modulo di contatto proteggono dagli abusi (legittimo interesse, art. 6, par. 1, lett. f GDPR). Rispondiamo alle richieste inviate tramite il modulo di contatto sulla base dell’art. 6, par. 1, lett. b o f GDPR. Rispondiamo ai feedback inviati dall’app e li usiamo per migliorare TradeNot.es (legittimo interesse, art. 6, par. 1, lett. f GDPR). Inviamo la newsletter solo con il tuo consenso (art. 6, par. 1, lett. a GDPR), che puoi revocare in qualsiasi momento: nel tuo account o con il link di disiscrizione presente in ogni e-mail. Le comunicazioni sul tuo account (ad es. condizioni modificate, manutenzione) ti arrivano anche senza newsletter. Non rileviamo se o quando apri le nostre e-mail.\n\nLe analisi dell’app, come il riconoscimento del revenge trading, sono visibili solo a te. Non hanno alcun effetto giuridico nei tuoi confronti."
         },
         {
           "title": "Dove si trovano i dati",
@@ -1873,6 +1875,102 @@
     "setUp": "Configura ora",
     "banner": "Proteggi il tuo diario con l’accesso a due fattori: oltre alla password serve un codice dalla tua app di autenticazione.",
     "dismiss": "Non mostrare più"
+  },
+  "newsletter": {
+    "title": "Novità via e-mail",
+    "description": "Ogni tanto un’e-mail sulle nuove funzioni di TradeNot.es. Puoi disiscriverti in qualsiasi momento qui o con il link presente in ogni e-mail.",
+    "optIn": "Sì, desidero ricevere ogni tanto novità su TradeNot.es via e-mail (disiscrizione in qualsiasi momento).",
+    "subscribed": "Iscritto alle novità",
+    "unsubscribed": "Disiscrizione completata",
+    "unsubscribedText": "Non riceverai più novità da TradeNot.es. Le comunicazioni importanti sul tuo account ti arriveranno comunque.",
+    "unsubscribeFailed": "Disiscrizione non riuscita",
+    "unsubscribeFailedText": "Il link non è valido. Puoi disiscriverti dalle novità nel tuo account in qualsiasi momento.",
+    "toAccount": "Vai all’account"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Figures and mail to all",
+    "noAccess": "No access.",
+    "users": {
+      "title": "Users & growth",
+      "total": "Accounts",
+      "verified": "Confirmed",
+      "unverified": "{{count}} unconfirmed",
+      "new7": "New (7 days)",
+      "new30": "{{count}} in 30 days",
+      "active7": "Active (7 days)",
+      "active": "today {{d1}} · 30 days {{d30}}",
+      "twoFactor": "With 2FA",
+      "newsletter": "Newsletter",
+      "perWeek": "Sign-ups per week (12 weeks)",
+      "weekOf": "Week of {{date}}",
+      "signups": "Sign-ups"
+    },
+    "usage": {
+      "title": "Usage",
+      "trades": "Trades",
+      "tradesNew": "{{count}} in 7 days",
+      "tradingUsers": "Users with trades",
+      "ibkr": "IBKR connections",
+      "shares": "Shared trades",
+      "shareViews": "{{count}} views",
+      "journal": "Journal entries",
+      "screenshots": "Trades with screenshot",
+      "source": "Source",
+      "users": "Users"
+    },
+    "sources": {
+      "ninjatrader": "NinjaTrader add-on",
+      "ibkr": "Interactive Brokers",
+      "tradingview": "TradingView CSV",
+      "manual": "Manual / CSV template"
+    },
+    "github": {
+      "notConfigured": "GITHUB_FEEDBACK_REPO is not set.",
+      "stars": "Stars",
+      "forks": "Forks",
+      "watchers": "Watchers",
+      "openIssues": "Open issues",
+      "feedbackOpen": "Open feedback",
+      "feedbackTotal": "{{count}} in total",
+      "private": "private"
+    },
+    "tech": {
+      "title": "Technical",
+      "screenshots": "Screenshots",
+      "database": "Database",
+      "mailToday": "Mails (24 h / limit)",
+      "mailPending": "{{count}} queued",
+      "smtp": "Mail sending",
+      "smtpMissing": "SMTP not configured: mails are only logged",
+      "calendar": {
+        "fed": "Fed calendar",
+        "whitehouse": "President's schedule"
+      }
+    },
+    "mail": {
+      "title": "Mail to all",
+      "description": "Every recipient gets an individual mail, sent in batches within the daily limit. No open or click tracking.",
+      "kinds": {
+        "service": "Service notice",
+        "serviceHint": "To all {{count}} confirmed users. Only for account matters: changed terms, maintenance, discontinuing the service. No advertising.",
+        "newsletter": "Newsletter",
+        "newsletterHint": "Only to the {{count}} users who subscribed to news; every mail has an unsubscribe link."
+      },
+      "subject": "Subject",
+      "body": "Text",
+      "bodyHint": "Plain text; a blank line separates paragraphs, links become clickable. Tip: German and English one below the other for international users.",
+      "test": "Test mail to me",
+      "testSent": "Test mail sent",
+      "sendAll": "Send to {{count}} recipients",
+      "queued": "{{count}} mails queued",
+      "confirmTitle": "Really send to {{count}} recipients?",
+      "confirmText": "“{{subject}}” will be sent one by one, at most {{perDay}} per day. This cannot be undone. Did you send yourself a test mail first?",
+      "sentAt": "Created",
+      "progress": "Sent",
+      "pending": "{{count}} pending",
+      "failed": "{{count}} failed"
+    }
   },
   "help": {
     "title": "Aiuto e domande frequenti",

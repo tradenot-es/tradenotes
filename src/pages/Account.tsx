@@ -53,6 +53,7 @@ const Account = () => {
   const [resetSuccess, setResetSuccess] = useState(false);
 
   const [exporting, setExporting] = useState(false);
+  const [newsletter, setNewsletter] = useState(false);
 
   // Delete account states
   const [showDeleteAccountDialog, setShowDeleteAccountDialog] = useState(false);
@@ -127,7 +128,7 @@ const Account = () => {
 
   const handleUpdateEmail = async () => {
     if (!user?.email || email === user.email) {
-      toast.error("Bitte gib eine neue E-Mail-Adresse ein");
+      toast.error(t("account.newEmailRequired"));
       return;
     }
     
@@ -318,6 +319,21 @@ const Account = () => {
     }
   };
 
+  useEffect(() => {
+    db.from("user_settings").select("newsletter").maybeSingle().then(({ data }) => setNewsletter(!!data?.newsletter));
+  }, []);
+
+  const toggleNewsletter = async (subscribed: boolean) => {
+    setNewsletter(subscribed);
+    const { error } = await apiFetch("/api/newsletter", { method: "POST", json: { subscribed } });
+    if (error) {
+      setNewsletter(!subscribed);
+      toast.error(error.message);
+      return;
+    }
+    toast.success(t(subscribed ? "newsletter.subscribed" : "newsletter.unsubscribed"));
+  };
+
   // "/dashboard/account#security" (from the two-factor reminder) scrolls to the security card
   useEffect(() => {
     if (window.location.hash === "#security") {
@@ -497,6 +513,23 @@ const Account = () => {
                   </Button>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Newsletter (opt-in) */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Mail className="h-5 w-5" />
+                {t("newsletter.title")}
+              </CardTitle>
+              <CardDescription>{t("newsletter.description")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <label className="flex items-start gap-3 cursor-pointer">
+                <Checkbox checked={newsletter} onCheckedChange={(v) => toggleNewsletter(v === true)} className="mt-0.5" />
+                <span className="text-sm">{t("newsletter.optIn")}</span>
+              </label>
             </CardContent>
           </Card>
 

@@ -55,11 +55,11 @@ async function solveCaptcha(c: Client) {
   throw new Error("captcha unsolvable");
 }
 
-async function signUpAndVerify(email: string, nickname: string) {
+async function signUpAndVerify(email: string, nickname: string, extra: Record<string, unknown> = {}) {
   const c = new Client();
   const r = await c.req("/api/auth/sign-up/email", {
     method: "POST",
-    json: { email, password: "Passwort1234", name: nickname, altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
+    json: { email, password: "Passwort1234", name: nickname, altcha: await solveCaptcha(c), callbackURL: "/dashboard", ...extra },
   });
   check(`sign up ${email}`, r.status === 200, r.body);
   const login = await c.req("/api/auth/sign-in/email", { method: "POST", json: { email, password: "Passwort1234" } });
@@ -183,7 +183,9 @@ check("password under 12 characters rejected", shortPwRes.status === 400, shortP
 
 // password guessing: after 10 wrong passwords the account is locked for every IP, even for the right one
 const carlEmail = `carl${stamp}@example.com`;
-await signUpAndVerify(carlEmail, "Carl");
+const carl = await signUpAndVerify(carlEmail, "Carl", { newsletter: true });
+const carlNl = await carl.db({ table: "user_settings", action: "select", columns: "newsletter, newsletter_consent_at" });
+check("newsletter opt-in at sign-up", carlNl.body.data?.[0]?.newsletter === true && !!carlNl.body.data?.[0]?.newsletter_consent_at, carlNl.body);
 const attacker = new Client();
 for (let i = 0; i < 10; i++) await attacker.req("/api/auth/sign-in/email", { method: "POST", json: { email: carlEmail, password: `falsch-${i}-falsch` } });
 const lockedLogin = await new Client().req("/api/auth/sign-in/email", { method: "POST", json: { email: carlEmail, password: "Passwort1234" } });
@@ -204,6 +206,22 @@ const fb = await anna.req("/api/feedback", { method: "POST", json: { type: "idea
 check("feedback accepted with reference", fb.status === 200 && /^[0-9a-f]{6}$/.test(fb.body.ref ?? ""), fb.body);
 check("feedback validated", (await anna.req("/api/feedback", { method: "POST", json: { type: "idea", title: "x", message: "y" } })).status === 400);
 check("feedback needs login", (await new Client().req("/api/feedback", { method: "POST", json: { type: "bug", title: "abc", message: "0123456789" } })).status === 401);
+
+// newsletter: opt-in only, stored with the time of consent
+const nlBefore = await anna.db({ table: "user_settings", action: "select", columns: "newsletter" });
+check("newsletter off by default", nlBefore.body.data?.[0]?.newsletter === false, nlBefore.body);
+await anna.req("/api/newsletter", { method: "POST", json: { subscribed: true } });
+const nlAfter = await anna.db({ table: "user_settings", action: "select", columns: "newsletter, newsletter_consent_at" });
+check("newsletter opt-in with consent time", nlAfter.body.data?.[0]?.newsletter === true && !!nlAfter.body.data?.[0]?.newsletter_consent_at, nlAfter.body);
+const nlForge = await anna.db({ table: "user_settings", action: "update", values: { newsletter_consent_at: "2020-01-01T00:00:00Z" }, returning: true });
+check("consent time cannot be set through the data API", nlForge.body.data?.[0]?.newsletter_consent_at !== "2020-01-01T00:00:00.000Z", nlForge.body);
+const badUnsub = await anon.req(`/api/newsletter/unsubscribe?u=00000000-0000-0000-0000-000000000000&t=falsch`);
+check("forged unsubscribe link rejected", badUnsub.status === 302 && (badUnsub.headers.get("location") ?? "").includes("error=1"), badUnsub.headers.get("location"));
+
+// admin dashboard: hidden from normal users
+check("normal user is no admin", (await anna.req("/api/me/admin")).body.admin === false);
+check("admin stats hidden from normal users", (await anna.req("/api/admin/stats")).status === 404);
+check("admin campaigns hidden from normal users", (await anna.req("/api/admin/campaigns", { method: "POST", json: { kind: "service", subject: "x", body: "y" } })).status === 404);
 
 // data export: everything of the user as ZIP, without secrets and without other users' data
 const exp = await anna.req("/api/export");

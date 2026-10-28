@@ -13,7 +13,8 @@
     "login": "Inloggen",
     "welcome": "Welkom, {{name}}!",
     "days": "Dagoverzicht",
-    "openMenu": "Menu openen"
+    "openMenu": "Menu openen",
+    "admin": "Admin"
   },
   "auth": {
     "login": "Inloggen",
@@ -489,7 +490,8 @@
     "deleteAccountSuccess": "Account succesvol verwijderd",
     "deleteAccountSuccessMessage": "Je account is volledig verwijderd. Je wordt nu doorgestuurd naar de homepagina...",
     "deleteAccountError": "Fout bij verwijderen van account",
-    "deletingAccount": "Account verwijderen..."
+    "deletingAccount": "Account verwijderen...",
+    "newEmailRequired": "Vul een nieuw e-mailadres in."
   },
   "settings": {
     "title": "Instellingen",
@@ -1739,11 +1741,11 @@
         },
         {
           "title": "Welke gegevens we opslaan",
-          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, een bijnaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij. Om misbruik te voorkomen telt de server bij registratie, inloggen, wachtwoordherstel en het contactformulier kort het aantal verzoeken per IP-adres en foute wachtwoorden per account; die tellers staan alleen in het werkgeheugen en vervallen na hoogstens een uur."
+          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, een bijnaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n- Activiteit: wanneer je de app voor het laatst hebt gebruikt (hoogstens elk uur bijgewerkt), om actieve gebruikers te tellen. Dit wordt alleen als totaal bekeken, niet per persoon.\n- Nieuwsbrief: of je je voor nieuws hebt aangemeld en wanneer je toestemming gaf.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij. Om misbruik te voorkomen telt de server bij registratie, inloggen, wachtwoordherstel en het contactformulier kort het aantal verzoeken per IP-adres en foute wachtwoorden per account; die tellers staan alleen in het werkgeheugen en vervallen na hoogstens een uur."
         },
         {
           "title": "Waarvoor en op welke grondslag",
-          "text": "We verwerken deze gegevens alleen om je het tradingjournal te leveren (art. 6 lid 1 sub b AVG). Sessiegegevens en de captcha bij registratie, wachtwoordherstel en het contactformulier beschermen tegen misbruik (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). Vragen via het contactformulier beantwoorden we op grond van art. 6 lid 1 sub b of f AVG. Feedback uit de app beantwoorden we en gebruiken we om TradeNot.es te verbeteren (gerechtvaardigd belang, art. 6 lid 1 sub f AVG).\n\nDe analyses in de app, zoals het herkennen van revenge trades, zie alleen jij. Ze hebben geen rechtsgevolgen voor je."
+          "text": "We verwerken deze gegevens alleen om je het tradingjournal te leveren (art. 6 lid 1 sub b AVG). Sessiegegevens en de captcha bij registratie, wachtwoordherstel en het contactformulier beschermen tegen misbruik (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). Vragen via het contactformulier beantwoorden we op grond van art. 6 lid 1 sub b of f AVG. Feedback uit de app beantwoorden we en gebruiken we om TradeNot.es te verbeteren (gerechtvaardigd belang, art. 6 lid 1 sub f AVG). De nieuwsbrief sturen we alleen met je toestemming (art. 6 lid 1 sub a AVG), die je altijd kunt intrekken: in je account of via de afmeldlink in elke e-mail. Berichten over je account (bijv. gewijzigde voorwaarden, onderhoud) krijg je ook zonder nieuwsbrief. We houden niet bij of en wanneer je onze e-mails opent.\n\nDe analyses in de app, zoals het herkennen van revenge trades, zie alleen jij. Ze hebben geen rechtsgevolgen voor je."
         },
         {
           "title": "Waar de gegevens staan",
@@ -1882,6 +1884,102 @@
     "setUp": "Nu instellen",
     "banner": "Bescherm je journal met inloggen in twee stappen: naast je wachtwoord is dan een code uit je authenticator-app nodig.",
     "dismiss": "Niet meer tonen"
+  },
+  "newsletter": {
+    "title": "Nieuws per e-mail",
+    "description": "Af en toe een e-mail over nieuwe functies van TradeNot.es. Afmelden kan altijd hier of via de link in elke e-mail.",
+    "optIn": "Ja, ik wil af en toe nieuws over TradeNot.es per e-mail ontvangen (altijd af te melden).",
+    "subscribed": "Aangemeld voor nieuws",
+    "unsubscribed": "Je bent afgemeld",
+    "unsubscribedText": "Je ontvangt geen nieuws meer van TradeNot.es. Belangrijke berichten over je account krijg je wel.",
+    "unsubscribeFailed": "Afmelden niet gelukt",
+    "unsubscribeFailedText": "De link is ongeldig. Je kunt je in je account altijd afmelden voor nieuws.",
+    "toAccount": "Naar account"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Figures and mail to all",
+    "noAccess": "No access.",
+    "users": {
+      "title": "Users & growth",
+      "total": "Accounts",
+      "verified": "Confirmed",
+      "unverified": "{{count}} unconfirmed",
+      "new7": "New (7 days)",
+      "new30": "{{count}} in 30 days",
+      "active7": "Active (7 days)",
+      "active": "today {{d1}} · 30 days {{d30}}",
+      "twoFactor": "With 2FA",
+      "newsletter": "Newsletter",
+      "perWeek": "Sign-ups per week (12 weeks)",
+      "weekOf": "Week of {{date}}",
+      "signups": "Sign-ups"
+    },
+    "usage": {
+      "title": "Usage",
+      "trades": "Trades",
+      "tradesNew": "{{count}} in 7 days",
+      "tradingUsers": "Users with trades",
+      "ibkr": "IBKR connections",
+      "shares": "Shared trades",
+      "shareViews": "{{count}} views",
+      "journal": "Journal entries",
+      "screenshots": "Trades with screenshot",
+      "source": "Source",
+      "users": "Users"
+    },
+    "sources": {
+      "ninjatrader": "NinjaTrader add-on",
+      "ibkr": "Interactive Brokers",
+      "tradingview": "TradingView CSV",
+      "manual": "Manual / CSV template"
+    },
+    "github": {
+      "notConfigured": "GITHUB_FEEDBACK_REPO is not set.",
+      "stars": "Stars",
+      "forks": "Forks",
+      "watchers": "Watchers",
+      "openIssues": "Open issues",
+      "feedbackOpen": "Open feedback",
+      "feedbackTotal": "{{count}} in total",
+      "private": "private"
+    },
+    "tech": {
+      "title": "Technical",
+      "screenshots": "Screenshots",
+      "database": "Database",
+      "mailToday": "Mails (24 h / limit)",
+      "mailPending": "{{count}} queued",
+      "smtp": "Mail sending",
+      "smtpMissing": "SMTP not configured: mails are only logged",
+      "calendar": {
+        "fed": "Fed calendar",
+        "whitehouse": "President's schedule"
+      }
+    },
+    "mail": {
+      "title": "Mail to all",
+      "description": "Every recipient gets an individual mail, sent in batches within the daily limit. No open or click tracking.",
+      "kinds": {
+        "service": "Service notice",
+        "serviceHint": "To all {{count}} confirmed users. Only for account matters: changed terms, maintenance, discontinuing the service. No advertising.",
+        "newsletter": "Newsletter",
+        "newsletterHint": "Only to the {{count}} users who subscribed to news; every mail has an unsubscribe link."
+      },
+      "subject": "Subject",
+      "body": "Text",
+      "bodyHint": "Plain text; a blank line separates paragraphs, links become clickable. Tip: German and English one below the other for international users.",
+      "test": "Test mail to me",
+      "testSent": "Test mail sent",
+      "sendAll": "Send to {{count}} recipients",
+      "queued": "{{count}} mails queued",
+      "confirmTitle": "Really send to {{count}} recipients?",
+      "confirmText": "“{{subject}}” will be sent one by one, at most {{perDay}} per day. This cannot be undone. Did you send yourself a test mail first?",
+      "sentAt": "Created",
+      "progress": "Sent",
+      "pending": "{{count}} pending",
+      "failed": "{{count}} failed"
+    }
   },
   "help": {
     "title": "Hulp en veelgestelde vragen",

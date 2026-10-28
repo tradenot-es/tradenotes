@@ -110,6 +110,17 @@ export const auth = betterAuth({
       }
     }),
     after: createAuthMiddleware(async (ctx) => {
+      // newsletter opt-in from the sign-up form (unchecked by default); consent time is the proof
+      if (ctx.path === "/sign-up/email") {
+        if (ctx.body?.newsletter === true && !(ctx.context.returned instanceof APIError)) {
+          await pool.query(
+            `update user_settings set newsletter = true, newsletter_consent_at = now()
+             where user_id = (select id from "user" where lower(email) = lower($1))`,
+            [String(ctx.body.email ?? "").trim()],
+          );
+        }
+        return;
+      }
       if (ctx.path !== "/sign-in/email") return;
       const returned = ctx.context.returned;
       if (returned instanceof APIError) {

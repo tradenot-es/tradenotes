@@ -22,6 +22,14 @@ export const env = {
     pass: process.env.SMTP_PASS,
     from: process.env.MAIL_FROM ?? "TradeNot.es <noreply@tradenot.es>",
   },
+  // accounts with access to the admin dashboard (comma-separated e-mail addresses)
+  adminEmails: (process.env.ADMIN_EMAILS ?? "")
+    .split(",")
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean),
+  // mails to all users: at most this many per 24 hours, leaving room for confirmation mails
+  // (Hostinger Business Starter allows 1000 per day and mailbox)
+  mailDailyLimit: Number(process.env.MAIL_DAILY_LIMIT ?? 800),
   // recipient of the contact form and of in-app feedback
   contactTo: process.env.CONTACT_TO,
   // optional: in-app feedback also becomes a GitHub issue (fine-grained token with

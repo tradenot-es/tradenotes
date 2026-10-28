@@ -89,7 +89,7 @@ const templates: Record<MailType, Record<"de" | "en", Template>> = {
   },
 };
 
-const escapeHtml = (s: string) =>
+export const escapeHtml = (s: string) =>
   s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 function render(t: Template, name: string, url: string, lang: "de" | "en") {
@@ -160,4 +160,26 @@ export async function sendFeedbackMail(msg: { subject: string; replyTo: string; 
     return;
   }
   await transport.sendMail({ from: env.smtp.from, to: env.contactTo, replyTo: msg.replyTo, subject: msg.subject, text: msg.text });
+}
+
+/**
+ * A mail to many users (src/campaigns.ts): HTML and plain text, optional List-Unsubscribe headers
+ * (RFC 8058) so mail apps show their own "unsubscribe" button for newsletters.
+ * Without SMTP (local development) it is only logged.
+ */
+export async function sendCampaignMail(msg: { to: string; subject: string; html: string; text: string; unsubscribeUrl?: string }) {
+  if (!transport) {
+    console.log(`[mail] campaign → ${msg.to}: ${msg.subject}${msg.unsubscribeUrl ? ` (unsubscribe: ${msg.unsubscribeUrl})` : ""}`);
+    return;
+  }
+  await transport.sendMail({
+    from: env.smtp.from,
+    to: msg.to,
+    subject: msg.subject,
+    html: msg.html,
+    text: msg.text,
+    headers: msg.unsubscribeUrl
+      ? { "List-Unsubscribe": `<${msg.unsubscribeUrl}>`, "List-Unsubscribe-Post": "List-Unsubscribe=One-Click" }
+      : undefined,
+  });
 }

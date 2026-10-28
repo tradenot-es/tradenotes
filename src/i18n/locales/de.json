@@ -12,7 +12,8 @@
     "login": "Anmelden",
     "welcome": "Willkommen, {{name}}!",
     "days": "Tagesansicht",
-    "openMenu": "Menü öffnen"
+    "openMenu": "Menü öffnen",
+    "admin": "Admin"
   },
   "auth": {
     "login": "Anmelden",
@@ -488,7 +489,8 @@
     "deleteAccountSuccess": "Konto erfolgreich gelöscht",
     "deleteAccountSuccessMessage": "Dein Konto wurde vollständig gelöscht. Du wirst jetzt zur Startseite weitergeleitet...",
     "deleteAccountError": "Fehler beim Löschen des Kontos",
-    "deletingAccount": "Lösche Konto..."
+    "deletingAccount": "Lösche Konto...",
+    "newEmailRequired": "Bitte gib eine neue E-Mail-Adresse ein."
   },
   "settings": {
     "title": "Einstellungen",
@@ -1728,11 +1730,11 @@
         },
         {
           "title": "Welche Daten wir speichern",
-          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig ein Spitzname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n- Feedback aus der App: Art, Titel und Text, auf Wunsch technische Angaben (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Es geht per E-Mail an uns, damit wir dir antworten können.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht. Zum Schutz vor Missbrauch zählt der Server bei Registrierung, Anmeldung, Passwort-Reset und Kontaktformular kurzzeitig die Anfragen je IP-Adresse und falsche Passwörter je Konto; diese Zähler liegen nur im Arbeitsspeicher und verfallen nach höchstens einer Stunde."
+          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig ein Spitzname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n- Feedback aus der App: Art, Titel und Text, auf Wunsch technische Angaben (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Es geht per E-Mail an uns, damit wir dir antworten können.\n- Aktivität: wann du die App zuletzt genutzt hast (höchstens stündlich aktualisiert), für die Zahl aktiver Nutzer. Ausgewertet wird nur als Summe, nicht pro Person.\n- Newsletter: ob du Neuigkeiten abonniert hast und wann du eingewilligt hast.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht. Zum Schutz vor Missbrauch zählt der Server bei Registrierung, Anmeldung, Passwort-Reset und Kontaktformular kurzzeitig die Anfragen je IP-Adresse und falsche Passwörter je Konto; diese Zähler liegen nur im Arbeitsspeicher und verfallen nach höchstens einer Stunde."
         },
         {
           "title": "Wofür und auf welcher Grundlage",
-          "text": "Wir verarbeiten diese Daten nur, um dir das Trading-Journal bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Sitzungsdaten und das Captcha bei Registrierung, Passwort-Reset und Kontaktformular schützen vor Missbrauch (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Anfragen über das Kontaktformular beantworten wir auf Grundlage von Art. 6 Abs. 1 lit. b bzw. f DSGVO. Feedback aus der App beantworten wir und nutzen es, um TradeNot.es zu verbessern (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO).\n\nDie Auswertungen der App, etwa die Erkennung von Revenge-Trades, siehst nur du. Sie haben keine rechtliche Wirkung für dich."
+          "text": "Wir verarbeiten diese Daten nur, um dir das Trading-Journal bereitzustellen (Art. 6 Abs. 1 lit. b DSGVO). Sitzungsdaten und das Captcha bei Registrierung, Passwort-Reset und Kontaktformular schützen vor Missbrauch (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Anfragen über das Kontaktformular beantworten wir auf Grundlage von Art. 6 Abs. 1 lit. b bzw. f DSGVO. Feedback aus der App beantworten wir und nutzen es, um TradeNot.es zu verbessern (berechtigtes Interesse, Art. 6 Abs. 1 lit. f DSGVO). Den Newsletter schicken wir nur mit deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die du jederzeit widerrufen kannst: im Konto oder über den Abmelde-Link in jeder Mail. Mitteilungen, die dein Konto betreffen (z. B. geänderte Bedingungen, Wartung), bekommst du auch ohne Newsletter. Wir werten nicht aus, ob oder wann du unsere Mails öffnest.\n\nDie Auswertungen der App, etwa die Erkennung von Revenge-Trades, siehst nur du. Sie haben keine rechtliche Wirkung für dich."
         },
         {
           "title": "Wo die Daten liegen",
@@ -1871,6 +1873,102 @@
     "setUp": "Jetzt einrichten",
     "banner": "Schütze dein Journal mit der Zwei-Faktor-Anmeldung: Neben dem Passwort braucht es dann einen Code aus deiner Authenticator-App.",
     "dismiss": "Nicht mehr anzeigen"
+  },
+  "newsletter": {
+    "title": "Neuigkeiten per E-Mail",
+    "description": "Gelegentlich eine Mail zu neuen Funktionen von TradeNot.es. Abmelden geht jederzeit hier oder über den Link in jeder Mail.",
+    "optIn": "Ja, ich möchte gelegentlich Neuigkeiten zu TradeNot.es per E-Mail erhalten (jederzeit abbestellbar).",
+    "subscribed": "Neuigkeiten abonniert",
+    "unsubscribed": "Du bist abgemeldet",
+    "unsubscribedText": "Du bekommst keine Neuigkeiten mehr von TradeNot.es. Wichtige Mitteilungen zu deinem Konto erhältst du weiterhin.",
+    "unsubscribeFailed": "Abmeldung nicht möglich",
+    "unsubscribeFailedText": "Der Link ist ungültig. Du kannst Neuigkeiten jederzeit in deinem Konto abbestellen.",
+    "toAccount": "Zum Konto"
+  },
+  "admin": {
+    "title": "Admin",
+    "subtitle": "Kennzahlen und Mails an alle",
+    "noAccess": "Kein Zugriff.",
+    "users": {
+      "title": "Nutzer & Wachstum",
+      "total": "Konten",
+      "verified": "Bestätigt",
+      "unverified": "{{count}} unbestätigt",
+      "new7": "Neu (7 Tage)",
+      "new30": "{{count}} in 30 Tagen",
+      "active7": "Aktiv (7 Tage)",
+      "active": "heute {{d1}} · 30 Tage {{d30}}",
+      "twoFactor": "Mit 2FA",
+      "newsletter": "Newsletter",
+      "perWeek": "Registrierungen pro Woche (12 Wochen)",
+      "weekOf": "Woche ab {{date}}",
+      "signups": "Registrierungen"
+    },
+    "usage": {
+      "title": "Nutzung",
+      "trades": "Trades",
+      "tradesNew": "{{count}} in 7 Tagen",
+      "tradingUsers": "Nutzer mit Trades",
+      "ibkr": "IBKR-Verbindungen",
+      "shares": "Geteilte Trades",
+      "shareViews": "{{count}} Aufrufe",
+      "journal": "Journal-Einträge",
+      "screenshots": "Trades mit Screenshot",
+      "source": "Herkunft",
+      "users": "Nutzer"
+    },
+    "sources": {
+      "ninjatrader": "NinjaTrader-Add-on",
+      "ibkr": "Interactive Brokers",
+      "tradingview": "TradingView-CSV",
+      "manual": "Manuell / CSV-Vorlage"
+    },
+    "github": {
+      "notConfigured": "GITHUB_FEEDBACK_REPO ist nicht gesetzt.",
+      "stars": "Sterne",
+      "forks": "Forks",
+      "watchers": "Beobachter",
+      "openIssues": "Offene Issues",
+      "feedbackOpen": "Offenes Feedback",
+      "feedbackTotal": "{{count}} insgesamt",
+      "private": "privat"
+    },
+    "tech": {
+      "title": "Technik",
+      "screenshots": "Screenshots",
+      "database": "Datenbank",
+      "mailToday": "Mails (24 h / Limit)",
+      "mailPending": "{{count}} in der Warteschlange",
+      "smtp": "Mailversand",
+      "smtpMissing": "SMTP nicht eingerichtet: Mails werden nur protokolliert",
+      "calendar": {
+        "fed": "Fed-Kalender",
+        "whitehouse": "Präsidenten-Termine"
+      }
+    },
+    "mail": {
+      "title": "Mail an alle",
+      "description": "Jede Mail geht einzeln an jeden Empfänger, in Etappen innerhalb des Tageslimits. Kein Öffnungs- oder Klick-Tracking.",
+      "kinds": {
+        "service": "Service-Mitteilung",
+        "serviceHint": "An alle {{count}} bestätigten Nutzer. Nur für Dinge, die das Konto betreffen: Änderung der Bedingungen, Wartung, Einstellung des Dienstes. Keine Werbung.",
+        "newsletter": "Newsletter",
+        "newsletterHint": "Nur an die {{count}} Nutzer, die Neuigkeiten abonniert haben; jede Mail enthält einen Abmelde-Link."
+      },
+      "subject": "Betreff",
+      "body": "Text",
+      "bodyHint": "Einfacher Text; eine Leerzeile trennt Absätze, Links werden automatisch klickbar. Tipp: Für internationale Nutzer Deutsch und Englisch untereinander.",
+      "test": "Testmail an mich",
+      "testSent": "Testmail verschickt",
+      "sendAll": "An {{count}} Empfänger senden",
+      "queued": "{{count}} Mails in die Warteschlange gestellt",
+      "confirmTitle": "Wirklich an {{count}} Empfänger senden?",
+      "confirmText": "„{{subject}}“ wird nacheinander verschickt, höchstens {{perDay}} pro Tag. Das lässt sich nicht zurückholen. Hast du dir vorher eine Testmail geschickt?",
+      "sentAt": "Erstellt",
+      "progress": "Verschickt",
+      "pending": "{{count}} ausstehend",
+      "failed": "{{count}} fehlgeschlagen"
+    }
   },
   "help": {
     "title": "Hilfe & häufige Fragen",

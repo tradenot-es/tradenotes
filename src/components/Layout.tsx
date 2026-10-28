@@ -1,7 +1,9 @@
 import { ReactNode } from "react";
 import { NavLink, Link, useLocation, type NavLinkProps } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3, CalendarDays } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Upload, BookOpen, Settings, User, LogOut, BookMarked, BarChart3, CalendarDays, ShieldCheck } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "@/lib/api";
 import { SidebarProvider, Sidebar, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
@@ -30,6 +32,12 @@ export function Layout({
   const {
     displayName
   } = useProfile();
+  // admin entry only for accounts the server accepts as admin (ADMIN_EMAILS, 2FA in production)
+  const { data: isAdmin } = useQuery({
+    queryKey: ["me", "admin"],
+    queryFn: async () => (await apiFetch<{ admin: boolean }>("/api/me/admin")).data?.admin ?? false,
+    staleTime: 5 * 60 * 1000,
+  });
   const navItems = [{
     title: t("nav.dashboard"),
     url: "/dashboard",
@@ -66,7 +74,11 @@ export function Layout({
     title: t("nav.settings"),
     url: "/dashboard/settings",
     icon: Settings
-  }];
+  }, ...(isAdmin ? [{
+    title: t("nav.admin"),
+    url: "/dashboard/admin",
+    icon: ShieldCheck
+  }] : [])];
   return <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <Sidebar>

@@ -20,6 +20,8 @@ process.env.DATABASE_URL ??= `postgres://tradenotes:tradenotes@localhost:${port}
 process.env.BASE_URL ??= "http://localhost:8080";
 process.env.BETTER_AUTH_SECRET ??= "dev-secret-dev-secret-dev-secret-0123456789";
 process.env.UPLOAD_DIR ??= "./data/uploads";
+// the demo account (tools/seed-demo.ts) can open the admin dashboard locally
+process.env.ADMIN_EMAILS ??= "demo-screens@example.com";
 
 const { onShutdown } = await import("./index.js");
 onShutdown(() => db.stop());

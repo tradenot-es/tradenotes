@@ -32,6 +32,8 @@ const SharedTrade = lazy(() => import("./pages/SharedTrade"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const WhyJournal = lazy(() => import("./pages/WhyJournal"));
 const Features = lazy(() => import("./pages/Features"));
+const Admin = lazy(() => import("./pages/Admin"));
+const NewsletterUnsubscribed = lazy(() => import("./pages/NewsletterUnsubscribed"));
 
 const queryClient = new QueryClient();
 
@@ -76,6 +78,7 @@ const App = () => (
             <Route path="/agb" element={<AGB />} />
             <Route path="/impressum" element={<Impressum />} />
             <Route path="/share/:token" element={<SharedTrade />} />
+            <Route path="/newsletter-abgemeldet" element={<NewsletterUnsubscribed />} />
             <Route
               path="/dashboard/*"
               element={
@@ -94,6 +97,7 @@ const App = () => (
                           <Route path="/account" element={<Account />} />
                           <Route path="/settings" element={<Settings />} />
                           <Route path="/glossary" element={<Glossary />} />
+                          <Route path="/admin" element={<Admin />} />
                           <Route path="*" element={<NotFound />} />
                         </Routes>
                       </Suspense>

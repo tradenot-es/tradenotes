@@ -13,8 +13,10 @@ import { clientIp, createLimiter, isHoneypotFilled } from "./limits.js";
 import { buildExport } from "./export.js";
 import { marketEventsBetween } from "./marketEvents.js";
 import { allowFeedback, feedbackSchema, submitFeedback } from "./feedback.js";
+import { adminStats, isAdmin } from "./admin.js";
+import { countRecipients, createCampaign, listCampaigns, sendTest, unsubscribe, verifyUnsubscribe, type CampaignKind } from "./campaigns.js";
 
-type Vars = { userId: string; userEmail: string };
+type Vars = { userId: string; userEmail: string; isAdmin: boolean };
 
 export const app = new Hono<{ Variables: Vars }>();
 
@@ -117,13 +119,43 @@ app.get("/api/public/share/:token/screenshot", async (c) => {
   return c.body(file.data, 200, { "Content-Type": file.contentType, "Cache-Control": "private, max-age=3600", "X-Robots-Tag": "noindex" });
 });
 
+// --- newsletter: unsubscribe link from the mail (signed, works without login) -------------
+
+const UUID = /^[0-9a-f-]{36}$/;
+
+app.get("/api/newsletter/unsubscribe", async (c) => {
+  const userId = c.req.query("u") ?? "";
+  const ok = UUID.test(userId) && verifyUnsubscribe(userId, c.req.query("t") ?? "");
+  if (ok) await unsubscribe(userId);
+  return c.redirect(`/newsletter-abgemeldet${ok ? "" : "?error=1"}`);
+});
+
+// one-click unsubscribe from the mail app's own button (RFC 8058)
+app.post("/api/newsletter/unsubscribe", async (c) => {
+  const userId = c.req.query("u") ?? "";
+  if (!UUID.test(userId) || !verifyUnsubscribe(userId, c.req.query("t") ?? "")) return c.json({ error: "Invalid link" }, 400);
+  await unsubscribe(userId);
+  return c.json({ success: true });
+});
+
 // --- endpoints for logged-in users ------------------------------------------
+
+// "active users" for the admin dashboard: last activity, written at most once an hour per user
+const lastTouched = new Map<string, number>();
+function touchActivity(userId: string) {
+  const now = Date.now();
+  if ((lastTouched.get(userId) ?? 0) > now - 60 * 60 * 1000) return;
+  lastTouched.set(userId, now);
+  pool.query("update user_settings set last_active_at = now() where user_id = $1", [userId]).catch(() => {});
+}
 
 app.use("/api/*", async (c, next) => {
   const session = await auth.api.getSession({ headers: c.req.raw.headers });
   if (!session) return c.json({ error: "Unauthorized" }, 401);
   c.set("userId", session.user.id);
   c.set("userEmail", session.user.email);
+  c.set("isAdmin", isAdmin(session.user));
+  touchActivity(session.user.id);
   await next();
 });
 
@@ -251,6 +283,57 @@ app.post("/api/feedback", async (c) => {
   if (!parsed.success) return c.json({ error: "Invalid feedback", field: parsed.error.issues[0]?.path[0] }, 400);
   if (!allowFeedback(c.get("userId"))) return c.json({ error: "Too many messages, please try again later" }, 429);
   return c.json({ success: true, ...(await submitFeedback(parsed.data, { email: c.get("userEmail") })) });
+});
+
+// --- newsletter subscription (opt-in, the moment of consent is stored) ---------------------
+
+app.post("/api/newsletter", async (c) => {
+  const parsed = z.object({ subscribed: z.boolean() }).safeParse(await c.req.json());
+  if (!parsed.success) return c.json({ error: "Invalid request" }, 400);
+  await pool.query(
+    `update user_settings set newsletter = $2, newsletter_consent_at = case when $2 then now() else newsletter_consent_at end
+     where user_id = $1`,
+    [c.get("userId"), parsed.data.subscribed],
+  );
+  return c.json({ success: true });
+});
+
+// --- admin dashboard -----------------------------------------------------------------------
+
+app.get("/api/me/admin", (c) => c.json({ admin: c.get("isAdmin") }));
+
+app.use("/api/admin/*", async (c, next) => {
+  if (!c.get("isAdmin")) return c.json({ error: "Not found" }, 404);
+  await next();
+});
+
+app.get("/api/admin/stats", async (c) => c.json(await adminStats()));
+
+const campaignSchema = z.object({
+  kind: z.enum(["service", "newsletter"]),
+  subject: z.string().trim().min(1).max(200),
+  body: z.string().trim().min(1).max(20000),
+});
+
+app.get("/api/admin/campaigns", async (c) =>
+  c.json({
+    campaigns: await listCampaigns(),
+    recipients: { service: await countRecipients("service"), newsletter: await countRecipients("newsletter") },
+  }),
+);
+
+app.post("/api/admin/campaigns/test", async (c) => {
+  const parsed = campaignSchema.safeParse(await c.req.json());
+  if (!parsed.success) return c.json({ error: "Invalid campaign" }, 400);
+  await sendTest(parsed.data.kind, parsed.data.subject, parsed.data.body, { id: c.get("userId"), email: c.get("userEmail") });
+  return c.json({ success: true });
+});
+
+app.post("/api/admin/campaigns", async (c) => {
+  const parsed = campaignSchema.safeParse(await c.req.json());
+  if (!parsed.success) return c.json({ error: "Invalid campaign" }, 400);
+  const { kind, subject, body } = parsed.data;
+  return c.json({ success: true, ...(await createCampaign(kind as CampaignKind, subject, body, c.get("userEmail"))) });
 });
 
 // --- data export ---------------------------------------------------------------

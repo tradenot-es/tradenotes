@@ -31,7 +31,8 @@ const TABLES: Record<string, TableConfig> = {
   user_settings: {
     owner: "user_id",
     actions: ["select", "update"],
-    protected: [...BASE_PROTECTED, "webhook_api_key", "subscription_tier"],
+    // newsletter consent and activity are only set by the server (/api/newsletter, auth middleware)
+    protected: [...BASE_PROTECTED, "webhook_api_key", "subscription_tier", "newsletter", "newsletter_consent_at", "last_active_at"],
   },
   profiles: { owner: "id", actions: ["select", "update", "upsert"], protected: BASE_PROTECTED, conflict: ["id"] },
   user_achievements: {

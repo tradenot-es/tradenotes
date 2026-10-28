@@ -24,6 +24,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [website, setWebsite] = useState("");
+  // newsletter only with an active opt-in, never pre-checked
+  const [newsletter, setNewsletter] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -82,6 +84,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
         email,
         password,
         nickname: nickname.trim(),
+        newsletter,
         website,
         altcha: altchaPayload,
       });
@@ -205,6 +208,13 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       {errors.terms && (
         <p className="text-sm text-destructive">{errors.terms}</p>
       )}
+
+      <div className="flex items-start gap-2">
+        <Checkbox id="newsletter" checked={newsletter} onCheckedChange={(v) => setNewsletter(v === true)} />
+        <label htmlFor="newsletter" className="text-sm text-muted-foreground leading-tight cursor-pointer">
+          {t("newsletter.optIn")}
+        </label>
+      </div>
 
       <AltchaWidget 
         key={captchaRound}
