@@ -10,6 +10,7 @@ import { importTrades, userIdForWebhookKey } from "./routes/import.js";
 import { FlexError, syncIbkr } from "./ibkr.js";
 import { sendContactMail } from "./mail.js";
 import { buildExport } from "./export.js";
+import { marketEventsBetween } from "./marketEvents.js";
 
 type Vars = { userId: string; userEmail: string };
 
@@ -222,6 +223,17 @@ app.post("/api/connections/ibkr/sync", async (c) => {
   } catch (e) {
     return c.json({ error: (e as Error).message }, e instanceof FlexError ? 400 : 500);
   }
+});
+
+// --- calendar: announced Fed speeches and presidential appearances ---------------
+
+const DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+app.get("/api/market-events", async (c) => {
+  const from = c.req.query("from") ?? "";
+  const to = c.req.query("to") ?? "";
+  if (!DATE.test(from) || !DATE.test(to)) return c.json({ error: "from and to must be YYYY-MM-DD" }, 400);
+  return c.json({ events: await marketEventsBetween(from, to) });
 });
 
 // --- data export ---------------------------------------------------------------

@@ -175,8 +175,10 @@
       "pce": "Inflación PCE",
       "ppi": "Precios productor",
       "housing": "Vivienda",
-      "other": "Otro"
-    }
+      "other": "Otro",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "Los discursos de la Fed y las apariciones del presidente de EE. UU. se obtienen cada hora de federalreserve.gov y Roll Call Factba.se, normalmente con 1 día a 2 semanas de antelación. Las declaraciones espontáneas, por ejemplo en Truth Social, no están incluidas. Horas en hora del este de EE. UU."
   },
   "trades": {
     "title": "Operaciones",
@@ -965,7 +967,7 @@
       },
       "politicalEvents": {
         "title": "Calendario Económico",
-        "description": "FOMC, CPI, NFP, GDP",
+        "description": "Fed, BCE, IPC, NFP y más incluidos, además de discursos de la Fed y apariciones anunciadas de Trump",
         "benefits": [
           "Eventos importantes",
           "Nivel impacto",
@@ -1751,7 +1753,7 @@
         },
         {
           "title": "Consultas a otros servicios",
-          "text": "- Cotizaciones: cuando eliges un símbolo en el diálogo de operación, nuestro servidor consulta el precio actual en Yahoo Finance. Solo se envía el símbolo, ningún dato sobre ti.\n- Interactive Brokers: si configuras la conexión, nuestro servidor usa tu token para obtener tus informes Flex de Interactive Brokers una vez al día y cuando pulsas el botón.\n\nEl sitio web no carga fuentes, scripts ni otros contenidos de servidores de terceros."
+          "text": "- Cotizaciones: cuando eliges un símbolo en el diálogo de operación, nuestro servidor consulta el precio actual en Yahoo Finance. Solo se envía el símbolo, ningún dato sobre ti.\n- Interactive Brokers: si configuras la conexión, nuestro servidor usa tu token para obtener tus informes Flex de Interactive Brokers una vez al día y cuando pulsas el botón.\n- Calendario: nuestro servidor consulta cada hora los calendarios públicos de la Reserva Federal (federalreserve.gov) y del presidente de EE. UU. (Roll Call Factba.se). No se envía ningún dato sobre ti.\n\nEl sitio web no carga fuentes, scripts ni otros contenidos de servidores de terceros."
         },
         {
           "title": "Cookies y almacenamiento del navegador",

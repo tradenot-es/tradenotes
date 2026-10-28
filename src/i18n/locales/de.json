@@ -131,7 +131,7 @@
     "highImpact": "High Impact",
     "mediumImpact": "Medium Impact",
     "lowImpact": "Low Impact",
-    "political": "Political",
+    "political": "Politisch",
     "impactHighTooltip": "Starke Marktbewegung erwartet. Erhöhte Volatilität und größere Spreads möglich. Stop-Loss-Anpassung empfohlen.",
     "impactMediumTooltip": "Moderate Volatilität möglich. Marktreaktion abhängig von den Ergebnissen oder Aussagen.",
     "impactLowTooltip": "Geringe unmittelbare Marktreaktion erwartet. Langfristige Auswirkungen möglich.",
@@ -155,8 +155,10 @@
       "pce": "PCE Inflation",
       "ppi": "Erzeugerpreise",
       "housing": "Immobilien",
-      "other": "Sonstige"
-    }
+      "other": "Sonstige",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "Fed-Reden und Auftritte des US-Präsidenten werden stündlich von federalreserve.gov und Roll Call Factba.se abgerufen, meist mit 1 Tag bis 2 Wochen Vorlauf. Spontane Äußerungen, etwa auf Truth Social, sind nicht enthalten. Zeiten in US-Ostküstenzeit."
   },
   "weekdays": {
     "mon": "Mo",
@@ -1087,7 +1089,7 @@
       },
       "politicalEvents": {
         "title": "Wirtschaftskalender",
-        "description": "FOMC, CPI, NFP, GDP und mehr vorgeladen",
+        "description": "Fed, EZB, CPI, NFP und mehr fest hinterlegt, dazu Fed-Reden und Trumps angekündigte Auftritte",
         "benefits": [
           "Marktbewegende Events nie verpassen",
           "Impact-Level anzeigen",
@@ -1740,7 +1742,7 @@
         },
         {
           "title": "Abrufe bei anderen Diensten",
-          "text": "- Kurse: Wenn du im Trade-Dialog ein Symbol wählst, fragt unser Server den aktuellen Kurs bei Yahoo Finance ab. Dabei wird nur das Symbol übermittelt, keine Daten über dich.\n- Interactive Brokers: Wenn du die Verbindung einrichtest, ruft unser Server mit deinem Token einmal täglich und auf Knopfdruck deine Flex-Berichte bei Interactive Brokers ab.\n\nDie Website lädt keine Schriften, Skripte oder sonstigen Inhalte von fremden Servern."
+          "text": "- Kurse: Wenn du im Trade-Dialog ein Symbol wählst, fragt unser Server den aktuellen Kurs bei Yahoo Finance ab. Dabei wird nur das Symbol übermittelt, keine Daten über dich.\n- Interactive Brokers: Wenn du die Verbindung einrichtest, ruft unser Server mit deinem Token einmal täglich und auf Knopfdruck deine Flex-Berichte bei Interactive Brokers ab.\n- Termine: Unser Server ruft stündlich die öffentlichen Terminkalender der US-Notenbank (federalreserve.gov) und des US-Präsidenten (Roll Call Factba.se) ab. Dabei werden keine Daten über dich übermittelt.\n\nDie Website lädt keine Schriften, Skripte oder sonstigen Inhalte von fremden Servern."
         },
         {
           "title": "Cookies und Speicher im Browser",

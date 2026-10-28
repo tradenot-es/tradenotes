@@ -174,8 +174,10 @@
       "pce": "PCE Inflation",
       "ppi": "Producer Prices",
       "housing": "Housing",
-      "other": "Other"
-    }
+      "other": "Other",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "Fed speeches and the US President's appearances are fetched hourly from federalreserve.gov and Roll Call Factba.se, usually 1 day to 2 weeks ahead. Unannounced statements, e.g. on Truth Social, are not included. Times in US Eastern time."
   },
   "trades": {
     "title": "Trades",
@@ -1079,7 +1081,7 @@
       },
       "politicalEvents": {
         "title": "Economic Calendar",
-        "description": "FOMC, CPI, NFP, GDP and more preloaded",
+        "description": "Fed, ECB, CPI, NFP and more built in, plus Fed speeches and Trump's announced appearances",
         "benefits": [
           "Never miss market-moving events",
           "Show impact level",
@@ -1732,7 +1734,7 @@
         },
         {
           "title": "Requests to other services",
-          "text": "- Prices: when you pick a symbol in the trade dialog, our server looks up the current price at Yahoo Finance. Only the symbol is sent, no data about you.\n- Interactive Brokers: once you set up the connection, our server uses your token to fetch your Flex reports from Interactive Brokers once a day and when you press the button.\n\nThe website loads no fonts, scripts or other content from third-party servers."
+          "text": "- Prices: when you pick a symbol in the trade dialog, our server looks up the current price at Yahoo Finance. Only the symbol is sent, no data about you.\n- Interactive Brokers: once you set up the connection, our server uses your token to fetch your Flex reports from Interactive Brokers once a day and when you press the button.\n- Calendar: our server fetches the public calendars of the US Federal Reserve (federalreserve.gov) and of the US President (Roll Call Factba.se) every hour. No data about you is sent.\n\nThe website loads no fonts, scripts or other content from third-party servers."
         },
         {
           "title": "Cookies and browser storage",

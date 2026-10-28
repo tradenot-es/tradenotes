@@ -175,8 +175,10 @@
       "pce": "Inflation PCE",
       "ppi": "Prix producteurs",
       "housing": "Immobilier",
-      "other": "Autre"
-    }
+      "other": "Autre",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "Les discours de la Fed et les apparitions du président américain sont récupérés toutes les heures sur federalreserve.gov et Roll Call Factba.se, en général 1 jour à 2 semaines à l’avance. Les déclarations spontanées, par exemple sur Truth Social, ne sont pas incluses. Heures de la côte Est des États-Unis."
   },
   "trades": {
     "title": "Transactions",
@@ -965,7 +967,7 @@
       },
       "politicalEvents": {
         "title": "Calendrier Économique",
-        "description": "FOMC, CPI, NFP, GDP",
+        "description": "Fed, BCE, IPC, NFP et plus encore intégrés, ainsi que les discours de la Fed et les apparitions annoncées de Trump",
         "benefits": [
           "Événements importants",
           "Niveau d'impact",
@@ -1751,7 +1753,7 @@
         },
         {
           "title": "Requêtes vers d’autres services",
-          "text": "- Cours : lorsque vous choisissez un symbole dans la fenêtre de saisie d’un trade, notre serveur demande le cours actuel à Yahoo Finance. Seul le symbole est transmis, aucune donnée vous concernant.\n- Interactive Brokers : si vous configurez la connexion, notre serveur utilise votre jeton pour récupérer vos rapports Flex chez Interactive Brokers une fois par jour et lorsque vous cliquez sur le bouton.\n\nLe site ne charge ni polices, ni scripts, ni autre contenu depuis des serveurs tiers."
+          "text": "- Cours : lorsque vous choisissez un symbole dans la fenêtre de saisie d’un trade, notre serveur demande le cours actuel à Yahoo Finance. Seul le symbole est transmis, aucune donnée vous concernant.\n- Interactive Brokers : si vous configurez la connexion, notre serveur utilise votre jeton pour récupérer vos rapports Flex chez Interactive Brokers une fois par jour et lorsque vous cliquez sur le bouton.\n- Calendrier : notre serveur récupère toutes les heures les calendriers publics de la Réserve fédérale (federalreserve.gov) et du président américain (Roll Call Factba.se). Aucune donnée vous concernant n’est transmise.\n\nLe site ne charge ni polices, ni scripts, ni autre contenu depuis des serveurs tiers."
         },
         {
           "title": "Cookies et stockage du navigateur",

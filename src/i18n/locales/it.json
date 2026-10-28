@@ -174,8 +174,10 @@
       "pce": "Inflazione PCE",
       "ppi": "Prezzi produttore",
       "housing": "Immobiliare",
-      "other": "Altro"
-    }
+      "other": "Altro",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "I discorsi della Fed e le apparizioni del presidente degli Stati Uniti vengono scaricati ogni ora da federalreserve.gov e Roll Call Factba.se, di solito con 1 giorno - 2 settimane di anticipo. Le dichiarazioni improvvise, ad esempio su Truth Social, non sono incluse. Orari della costa est degli USA."
   },
   "trades": {
     "title": "Operazioni",
@@ -956,7 +958,7 @@
       },
       "politicalEvents": {
         "title": "Calendario Economico",
-        "description": "FOMC, CPI, NFP, GDP",
+        "description": "Fed, BCE, CPI, NFP e altro già inclusi, più i discorsi della Fed e le apparizioni annunciate di Trump",
         "benefits": [
           "Eventi importanti",
           "Livello impatto",
@@ -1742,7 +1744,7 @@
         },
         {
           "title": "Richieste ad altri servizi",
-          "text": "- Quotazioni: quando scegli un simbolo nella finestra del trade, il nostro server chiede il prezzo attuale a Yahoo Finance. Viene inviato solo il simbolo, nessun dato su di te.\n- Interactive Brokers: se configuri il collegamento, il nostro server usa il tuo token per scaricare i tuoi report Flex da Interactive Brokers una volta al giorno e quando premi il pulsante.\n\nIl sito non carica font, script o altri contenuti da server di terzi."
+          "text": "- Quotazioni: quando scegli un simbolo nella finestra del trade, il nostro server chiede il prezzo attuale a Yahoo Finance. Viene inviato solo il simbolo, nessun dato su di te.\n- Interactive Brokers: se configuri il collegamento, il nostro server usa il tuo token per scaricare i tuoi report Flex da Interactive Brokers una volta al giorno e quando premi il pulsante.\n- Calendario: il nostro server scarica ogni ora i calendari pubblici della Federal Reserve (federalreserve.gov) e del presidente degli Stati Uniti (Roll Call Factba.se). Non viene inviato alcun dato su di te.\n\nIl sito non carica font, script o altri contenuti da server di terzi."
         },
         {
           "title": "Cookie e memoria del browser",

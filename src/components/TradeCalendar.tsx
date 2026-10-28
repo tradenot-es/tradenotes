@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PoliticalEvents } from "./PoliticalEvents";
 import { usePoliticalEvents } from "@/hooks/usePoliticalEvents";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import trumpEmoji from "@/assets/trump-emoji.webp";
+import trumpHead from "@/assets/trump-head.webp";
 import { db } from "@/lib/api";
 import { useEffect } from "react";
 import { getCurrencySymbol } from "@/lib/utils";
@@ -34,6 +34,8 @@ interface TradeCalendarProps {
   onEditTrade?: (trade: Trade) => void;
   onMonthChange?: (date: Date) => void;
 }
+
+const IMPACT_ORDER: Record<string, number> = { high: 0, medium: 1, political: 2, low: 3 };
 
 export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, onEditTrade, onMonthChange }: TradeCalendarProps) {
   const { t, i18n } = useTranslation();
@@ -199,19 +201,14 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                 const isToday = format(day, 'yyyy-MM-dd') === today;
                 const hasPoliticalEvents = hasEventsOnDate(day);
                 const politicalEvents = getEventsForDate(day);
-                const hasScheduledEvent = politicalEvents.some(e => e.isScheduled);
-                const hasTrumpEvent = politicalEvents.some(e => 
-                  e.title.toLowerCase().includes('trump') && 
-                  (e.title.toLowerCase().includes('speech') || 
-                   e.title.toLowerCase().includes('rally') || 
-                   e.title.toLowerCase().includes('address'))
-                );
-                const hasHighImpact = politicalEvents.some(e => e.impact_level === 'high');
-                const hasMediumImpact = politicalEvents.some(e => e.impact_level === 'medium');
-                
-                // Get category for scheduled events (for icon display)
-                const scheduledEvent = politicalEvents.find(e => e.isScheduled);
-                const scheduledCategory = scheduledEvent?.category;
+                // up to three symbols per day: Trump if he appears, then the most important other events
+                const hasTrumpEvent = politicalEvents.some(e => e.category === 'trump');
+                const iconCategories = [...new Set(
+                  [...politicalEvents]
+                    .filter(e => e.category && e.category !== 'trump')
+                    .sort((a, b) => IMPACT_ORDER[a.impact_level ?? 'low'] - IMPACT_ORDER[b.impact_level ?? 'low'])
+                    .map(e => e.category!),
+                )].slice(0, hasTrumpEvent ? 2 : 3);
 
                 return (
                   <div
@@ -234,29 +231,22 @@ export function TradeCalendar({ trades, onDateSelect, selectedDate, onAddTrade, 
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger asChild>
-                                {hasTrumpEvent ? (
-                                  <img 
-                                    src={trumpEmoji} 
-                                    alt="Political event" 
-                                    className="h-5 w-5 object-contain cursor-help" 
-                                  />
-                                ) : hasScheduledEvent && scheduledCategory ? (
-                                  <span className="text-base cursor-help">{getCategoryIcon(scheduledCategory)}</span>
-                                ) : hasHighImpact ? (
-                                  <span className="text-base cursor-help">🔴</span>
-                                ) : hasMediumImpact ? (
-                                  <span className="text-base cursor-help">🟡</span>
-                                ) : (
-                                  <span className="text-base cursor-help">🔔</span>
-                                )}
+                                <span className="inline-flex items-center gap-0.5 cursor-help">
+                                  {hasTrumpEvent && (
+                                    <img src={trumpHead} alt="Trump" className="h-5 w-5 rounded-full ring-1 ring-border bg-white" />
+                                  )}
+                                  {iconCategories.map(category => (
+                                    <span key={category} className="text-sm leading-none">{getCategoryIcon(category)}</span>
+                                  ))}
+                                </span>
                               </TooltipTrigger>
                               <TooltipContent className="max-w-xs">
                                 <p className="font-semibold text-xs mb-1">{t("calendar.politicalEventsToday")}</p>
-                                {politicalEvents.slice(0, 2).map((event, idx) => (
-                                  <p key={idx} className="text-xs opacity-90">• {event.title}</p>
+                                {politicalEvents.slice(0, 4).map((event, idx) => (
+                                  <p key={idx} className="text-xs opacity-90">• {event.time ? `${event.time} ` : ""}{event.title}</p>
                                 ))}
-                                {politicalEvents.length > 2 && (
-                                  <p className="text-xs opacity-70 mt-1">+{politicalEvents.length - 2} {t("calendar.moreEvents")}</p>
+                                {politicalEvents.length > 4 && (
+                                  <p className="text-xs opacity-70 mt-1">+{politicalEvents.length - 4} {t("calendar.moreEvents")}</p>
                                 )}
                               </TooltipContent>
                             </Tooltip>

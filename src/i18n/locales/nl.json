@@ -175,8 +175,10 @@
       "pce": "PCE Inflatie",
       "ppi": "Producentenprijzen",
       "housing": "Huizenmarkt",
-      "other": "Overig"
-    }
+      "other": "Overig",
+      "trump": "Trump"
+    },
+    "liveSourcesNote": "Fed-toespraken en optredens van de Amerikaanse president worden elk uur opgehaald van federalreserve.gov en Roll Call Factba.se, meestal 1 dag tot 2 weken van tevoren. Spontane uitspraken, bijvoorbeeld op Truth Social, zitten er niet in. Tijden in Amerikaanse oostkusttijd."
   },
   "trades": {
     "title": "Transacties",
@@ -965,7 +967,7 @@
       },
       "politicalEvents": {
         "title": "Economische Kalender",
-        "description": "FOMC, CPI, NFP, GDP",
+        "description": "Fed, ECB, CPI, NFP en meer ingebouwd, plus Fed-toespraken en aangekondigde optredens van Trump",
         "benefits": [
           "Belangrijke events",
           "Impact niveau",
@@ -1751,7 +1753,7 @@
         },
         {
           "title": "Opvragingen bij andere diensten",
-          "text": "- Koersen: als je in het tradevenster een symbool kiest, vraagt onze server de actuele koers op bij Yahoo Finance. Daarbij wordt alleen het symbool verstuurd, geen gegevens over jou.\n- Interactive Brokers: als je de koppeling instelt, haalt onze server met je token één keer per dag en op jouw verzoek je Flex-rapporten op bij Interactive Brokers.\n\nDe website laadt geen lettertypen, scripts of andere inhoud van servers van derden."
+          "text": "- Koersen: als je in het tradevenster een symbool kiest, vraagt onze server de actuele koers op bij Yahoo Finance. Daarbij wordt alleen het symbool verstuurd, geen gegevens over jou.\n- Interactive Brokers: als je de koppeling instelt, haalt onze server met je token één keer per dag en op jouw verzoek je Flex-rapporten op bij Interactive Brokers.\n- Agenda: onze server haalt elk uur de openbare agenda’s op van de Federal Reserve (federalreserve.gov) en van de Amerikaanse president (Roll Call Factba.se). Daarbij worden geen gegevens over jou verstuurd.\n\nDe website laadt geen lettertypen, scripts of andere inhoud van servers van derden."
         },
         {
           "title": "Cookies en browseropslag",

@@ -6,7 +6,7 @@ export interface EconomicEvent {
   date: string; // YYYY-MM-DD format
   time?: string; // Optional time in EST
   title: string;
-  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'ecb' | 'opec' | 'election' | 'boe' | 'boj' | 'ism' | 'retail' | 'pce' | 'ppi' | 'other';
+  category: 'fomc' | 'cpi' | 'nfp' | 'gdp' | 'fed_speech' | 'summit' | 'ecb' | 'opec' | 'election' | 'boe' | 'boj' | 'ism' | 'retail' | 'pce' | 'ppi' | 'trump' | 'other';
   impact: 'high' | 'medium' | 'low';
   description: string;
 }
@@ -589,6 +589,7 @@ export function getCategoryIcon(category: EconomicEvent['category']): string {
     retail: '🛒',
     pce: '💲',
     ppi: '🏭',
+    trump: '🇺🇸',
     other: '📅'
   };
   return icons[category] || '📅';
@@ -612,6 +613,7 @@ export function getCategoryLabel(category: EconomicEvent['category']): string {
     retail: 'Retail Sales',
     pce: 'PCE Inflation',
     ppi: 'Producer Prices',
+    trump: 'Trump',
     other: 'Other'
   };
   return labels[category] || 'Other';

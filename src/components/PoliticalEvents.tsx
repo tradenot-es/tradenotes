@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home } from "lucide-react";
+import { Calendar, Landmark, BarChart3, Users, TrendingUp, Globe, Fuel, Vote, Info, Factory, ShoppingCart, DollarSign, Home, Mic, ExternalLink } from "lucide-react";
+import trumpHead from "@/assets/trump-head.webp";
 import type { PoliticalEvent } from "@/hooks/usePoliticalEvents";
 
 interface PoliticalEventsProps {
@@ -27,6 +28,7 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
     const categoryToFlag: Record<string, string> = {
       fomc: '🇺🇸',
       fed_speech: '🇺🇸',
+      trump: '🇺🇸',
       ism: '🇺🇸',
       pce: '🇺🇸',
       ppi: '🇺🇸',
@@ -98,6 +100,10 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
 
   const getCategoryIconComponent = (category?: string) => {
     switch (category) {
+      case 'trump':
+        return <img src={trumpHead} alt="" className="h-5 w-5 rounded-full ring-1 ring-border bg-white" />;
+      case 'fed_speech':
+        return <Mic className="h-4 w-4 text-blue-600" />;
       case 'fomc':
         return <Landmark className="h-4 w-4 text-blue-600" />;
       case 'cpi':
@@ -188,7 +194,16 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                     <span className="text-sm" title={event.category}>{getCountryFlag(event.category, event.title)}</span>
                     {getCategoryIconComponent(event.category)}
                     <div className="flex-1">
-                      <h4 className="text-sm font-medium">{event.title}</h4>
+                      <h4 className="text-sm font-medium">
+                        {event.url ? (
+                          <a href={event.url} target="_blank" rel="noopener noreferrer" className="hover:underline inline-flex items-center gap-1">
+                            {event.title}
+                            <ExternalLink className="h-3 w-3 text-muted-foreground" />
+                          </a>
+                        ) : (
+                          event.title
+                        )}
+                      </h4>
                       {event.snippet && (
                         <p className="text-xs text-muted-foreground mt-1">
                           {event.snippet}
@@ -212,6 +227,9 @@ export function PoliticalEvents({ date, events, loading, hasAnyEventsInPeriod }:
                 </div>
               ))}
             </div>
+            <p className="text-[11px] text-muted-foreground mt-3 pt-3 border-t border-blue-200/50 dark:border-blue-900/50">
+              {t("calendar.liveSourcesNote")}
+            </p>
           </CardContent>
         </Card>
       )}
