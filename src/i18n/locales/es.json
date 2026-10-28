@@ -331,7 +331,7 @@
     "templateDownloaded": "Plantilla descargada con éxito",
     "fileSelected": "Archivo seleccionado:",
     "helpTitle": "Guía de Importación",
-    "helpDescription": "Cómo llegan tus operaciones al diario: NinjaTrader automáticamente, TradingView y otras plataformas por CSV.",
+    "helpDescription": "Así llegan tus operaciones al diario: NinjaTrader e Interactive Brokers de forma automática, TradingView y otras plataformas por CSV.",
     "helpCsvTitle": "📄 Importación CSV",
     "helpCsvStep1": "Descarga la plantilla CSV haciendo clic en 'Descargar plantilla'",
     "helpCsvStep2": "Completa tus datos de trading siguiendo el formato de la plantilla",
@@ -1844,6 +1844,94 @@
       "message": "Introduce un mensaje (máximo {{max}} caracteres).",
       "send": "No se pudo enviar el mensaje. Inténtalo de nuevo."
     }
+  },
+  "help": {
+    "title": "Ayuda y preguntas frecuentes",
+    "subtitle": "Respuestas sobre TradeNot.es: primeros pasos, importación, informes y tus datos.",
+    "searchPlaceholder": "Buscar preguntas …",
+    "noResults": "No hay ninguna pregunta que coincida. Escríbenos por el formulario de contacto.",
+    "moreTitle": "¿Más preguntas?",
+    "moreDescription": "Escríbenos y te responderemos por correo.",
+    "contactButton": "Contactar",
+    "items": [
+      {
+        "q": "¿Cómo empiezo?",
+        "a": "Regístrate con tu correo y confírmalo con el enlace del mensaje. Después añade operaciones con «Añadir operación» o impórtalas en la página de importación."
+      },
+      {
+        "q": "¿Cuánto cuesta TradeNot.es?",
+        "a": "Nada. No hay suscripción, ni nivel premium, ni publicidad."
+      },
+      {
+        "q": "¿Qué brókers y plataformas se admiten?",
+        "a": "- Automáticamente: NinjaTrader (con un complemento) e Interactive Brokers (descarga diaria mediante consulta Flex).\n- Con archivo CSV: el historial de órdenes de TradingView y nuestra propia plantilla, en la que puedes copiar operaciones de cualquier otra plataforma.\n\nOtros formatos CSV no se reconocen."
+      },
+      {
+        "q": "¿Cómo configuro el complemento de NinjaTrader?",
+        "a": "Descarga el archivo ZIP en la página de importación; tu clave personal ya está incluida. Impórtalo en NinjaTrader con Tools → Import → NinjaScript Add-On y reinicia NinjaTrader. A partir de entonces el complemento envía cada ejecución de todas las cuentas. En cuanto una posición vuelve a estar plana, se convierte en una operación."
+      },
+      {
+        "q": "¿Cómo conecto Interactive Brokers?",
+        "a": "En el portal de IBKR crea una Activity Flex Query (Trades → Executions, formato XML, últimos 30 días naturales) y activa el Flex Web Service para obtener un token. Introduce el token y el ID de la consulta en la página de importación. TradeNot.es descargará tus ejecuciones una vez al día, o al momento con «Descargar ahora». El token solo puede leer informes, no enviar órdenes."
+      },
+      {
+        "q": "¿Puedo exportar o borrar mis datos?",
+        "a": "Sí. En «Cuenta» descargas todos tus datos en un archivo ZIP, con un CSV que se puede volver a importar y todas las capturas. Allí también puedes restablecer todos los datos de trading o eliminar tu cuenta."
+      },
+      {
+        "q": "¿Quién puede ver mis operaciones?",
+        "a": "Solo tú. Puedes compartir operaciones sueltas con un enlace (modo mentor) y dejar de compartir en cualquier momento. Los datos están en nuestro propio servidor en los Países Bajos y no se venden ni se usan para publicidad."
+      },
+      {
+        "q": "¿Cómo separo cuentas de simulación, prop firm y reales?",
+        "a": "Cada operación tiene un tipo de cuenta (simulación, evaluación, financiada, real); las importadas incluyen además el nombre de la cuenta. En Informes → Cuentas analizas cada tipo por separado."
+      },
+      {
+        "q": "¿Cómo creo setups?",
+        "a": "En Configuración → Setups de Trading creas tus setups, si quieres con una lista de comprobación. En el diálogo de la operación eliges el setup y marcas qué criterios se cumplieron. Informes → Cumplimiento muestra después tus resultados con y sin las reglas cumplidas."
+      },
+      {
+        "q": "¿Para qué sirven el diario y la preparación diaria?",
+        "a": "En el diario escribes notas sobre tus días de trading. En la preparación diaria anotas antes de operar tu visión del mercado, niveles clave, tu plan y tu estado de ánimo."
+      },
+      {
+        "q": "¿Qué significan win rate, profit factor, múltiplo R y drawdown?",
+        "a": "- Win rate: proporción de operaciones ganadoras sobre el total.\n- Profit factor: suma de ganancias dividida entre suma de pérdidas. Por encima de 1 eres rentable.\n- Múltiplo R: resultado en relación con el riesgo inicial. 2R significa que ganaste el doble de lo que arriesgaste.\n- Drawdown máximo: mayor caída desde un máximo anterior.\n\nEl glosario del panel explica más términos."
+      },
+      {
+        "q": "¿Hay una app para el móvil?",
+        "a": "No hay una app propia, pero TradeNot.es funciona en el navegador del móvil y la tableta."
+      },
+      {
+        "q": "¿TradeNot.es es asesoramiento de inversión?",
+        "a": "No. TradeNot.es solo analiza tus propias operaciones y no da recomendaciones."
+      }
+    ]
+  },
+  "status": {
+    "title": "Estado del sistema",
+    "subtitle": "Si el sitio web y la app están disponibles en este momento.",
+    "summary": {
+      "checking": "Comprobando el estado …",
+      "ok": "Todo funciona",
+      "okDescription": "El sitio web y la app funcionan con normalidad.",
+      "outage": "Incidencia",
+      "outageDescription": "La app no está disponible en este momento. Estamos trabajando en ello."
+    },
+    "checkedAt": "Comprobado: {{time}}",
+    "servicesTitle": "Servicios",
+    "services": {
+      "website": "Sitio web",
+      "websiteDescription": "Página de inicio y páginas informativas",
+      "app": "App e inicio de sesión",
+      "appDescription": "Diario de trading, inicio de sesión y base de datos"
+    },
+    "states": {
+      "operational": "Operativo",
+      "down": "Caído",
+      "checking": "Comprobando"
+    },
+    "contact": "¿Problemas o preguntas? Escribe a"
   },
   "whyJournal": {
     "badge": "Conocimiento Trading",

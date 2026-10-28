@@ -353,6 +353,19 @@ TSLA,short,50,250.00,245.50,2024-01-16T10:00:00Z,2024-01-16T14:30:00Z,1.50,rever
                     </ol>
                   </div>
 
+                  <Separator />
+
+                  {/* Interactive Brokers Section */}
+                  <div>
+                    <h3 className="font-semibold text-lg mb-2">{t("import.ibkr.title")}</h3>
+                    <p className="text-sm text-muted-foreground mb-2">{t("import.ibkr.description")}</p>
+                    <ol className="list-decimal list-inside space-y-2 text-sm text-muted-foreground">
+                      <li>{t("import.ibkr.step1")}</li>
+                      <li>{t("import.ibkr.step2")}</li>
+                      <li>{t("import.ibkr.step3")}</li>
+                      <li>{t("import.ibkr.step4")}</li>
+                    </ol>
+                  </div>
                 </div>
               </ScrollArea>
             </DialogContent>

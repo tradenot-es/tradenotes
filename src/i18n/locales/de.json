@@ -330,7 +330,7 @@
     "templateDownloaded": "Vorlage erfolgreich heruntergeladen",
     "fileSelected": "Datei ausgewählt:",
     "helpTitle": "Import-Anleitung",
-    "helpDescription": "So kommen deine Trades ins Journal: NinjaTrader automatisch, TradingView und andere Plattformen per CSV.",
+    "helpDescription": "So kommen deine Trades ins Journal: NinjaTrader und Interactive Brokers automatisch, TradingView und andere Plattformen per CSV.",
     "helpCsvTitle": "📄 CSV Import",
     "helpCsvStep1": "Lade die CSV-Vorlage herunter, indem du auf 'Vorlage herunterladen' klickst",
     "helpCsvStep2": "Fülle deine Trade-Daten gemäß dem Vorlagenformat aus",
@@ -603,7 +603,7 @@
     "simulatorTooltip": "Simuliere Was-wäre-wenn-Szenarien basierend auf deinen Trade-Daten",
     "mfemae": "MFE/MAE",
     "mfemaeTooltip": "Maximum Favorable/Adverse Excursion Analyse. Zeigt wie weit deine Trades für dich vs. gegen dich laufen, optimiere Stop-Loss und Take-Profit Levels.",
-    "accountTypes": "Accounts",
+    "accountTypes": "Konten",
     "accountTypesTooltip": "Vergleiche Performance zwischen verschiedenen Account-Typen (Sim, Evaluation, Funded, Live)",
     "accountTypesComparison": "Account-Typ Vergleich",
     "accountType": "Account-Typ",
@@ -1833,6 +1833,94 @@
       "message": "Bitte gib eine Nachricht ein (höchstens {{max}} Zeichen).",
       "send": "Die Nachricht konnte nicht gesendet werden. Bitte versuch es noch einmal."
     }
+  },
+  "help": {
+    "title": "Hilfe & häufige Fragen",
+    "subtitle": "Antworten rund um TradeNot.es: Start, Import, Auswertungen und deine Daten.",
+    "searchPlaceholder": "Fragen durchsuchen …",
+    "noResults": "Keine passende Frage gefunden. Schreib uns gern über das Kontaktformular.",
+    "moreTitle": "Noch Fragen?",
+    "moreDescription": "Schreib uns, wir antworten per E-Mail.",
+    "contactButton": "Kontakt aufnehmen",
+    "items": [
+      {
+        "q": "Wie fange ich an?",
+        "a": "Registriere dich mit deiner E-Mail-Adresse und bestätige sie über den Link in der Mail. Danach trägst du Trades über „Trade hinzufügen“ ein oder importierst sie auf der Import-Seite."
+      },
+      {
+        "q": "Was kostet TradeNot.es?",
+        "a": "Nichts. Es gibt kein Abo, keine Premium-Stufe und keine Werbung."
+      },
+      {
+        "q": "Welche Broker und Plattformen werden unterstützt?",
+        "a": "- Automatisch: NinjaTrader (über ein Add-on) und Interactive Brokers (täglicher Abruf per Flex-Abfrage).\n- Per CSV-Datei: die Order-Historie aus TradingView und unsere eigene Vorlage, in die du Trades aus jeder anderen Plattform übertragen kannst.\n\nAndere CSV-Formate werden nicht erkannt."
+      },
+      {
+        "q": "Wie richte ich das NinjaTrader-Add-on ein?",
+        "a": "Lade auf der Import-Seite die ZIP-Datei herunter, dein persönlicher Schlüssel ist schon eingetragen. Importiere sie in NinjaTrader über Tools → Import → NinjaScript Add-On und starte NinjaTrader neu. Danach überträgt das Add-on jede Ausführung aus allen Konten. Sobald eine Position wieder flat ist, entsteht daraus ein Trade."
+      },
+      {
+        "q": "Wie verbinde ich Interactive Brokers?",
+        "a": "Lege im IBKR-Portal eine Activity Flex Query an (Trades → Executions, Format XML, letzte 30 Kalendertage) und aktiviere den Flex Web Service, um ein Token zu bekommen. Trag Token und Query-ID auf der Import-Seite ein. TradeNot.es holt deine Ausführungen dann einmal täglich ab, mit „Jetzt abrufen“ sofort. Das Token kann nur Berichte lesen, keine Orders aufgeben."
+      },
+      {
+        "q": "Kann ich meine Daten exportieren oder löschen?",
+        "a": "Ja. Unter „Konto“ lädst du alle Daten als ZIP-Datei herunter, darin eine CSV-Datei, die sich wieder importieren lässt, und alle Screenshots. Dort kannst du auch alle Trading-Daten zurücksetzen oder dein Konto löschen."
+      },
+      {
+        "q": "Wer kann meine Trades sehen?",
+        "a": "Nur du. Einzelne Trades kannst du per Link teilen (Mentor-Modus) und die Freigabe jederzeit beenden. Die Daten liegen auf einem eigenen Server in den Niederlanden und werden weder verkauft noch für Werbung genutzt."
+      },
+      {
+        "q": "Wie trenne ich Sim-, Prop-Firm- und Live-Konten?",
+        "a": "Jeder Trade hat einen Kontotyp (Simulation, Evaluation, Funded, Live), importierte Trades zusätzlich den Kontonamen. Unter Reports → Konten wertest du die Kontotypen getrennt aus."
+      },
+      {
+        "q": "Wie lege ich Setups an?",
+        "a": "Unter Einstellungen → Trading-Setups legst du deine Setups an, auf Wunsch mit einer Checkliste. Im Trade-Dialog wählst du das Setup und hakst ab, welche Kriterien erfüllt waren. Reports → Regeltreue zeigt dann, wie deine Ergebnisse mit und ohne eingehaltene Regeln aussehen."
+      },
+      {
+        "q": "Wofür sind Journal und Tagesvorbereitung?",
+        "a": "Im Journal schreibst du Notizen zu deinen Handelstagen. In der Tagesvorbereitung hältst du vor dem Handel Marktausblick, wichtige Marken, deinen Plan und deine Verfassung fest."
+      },
+      {
+        "q": "Was bedeuten Win Rate, Profit Factor, R-Multiple und Drawdown?",
+        "a": "- Win Rate: Anteil der Gewinner an allen Trades.\n- Profit Factor: Summe der Gewinne geteilt durch die Summe der Verluste. Über 1 bist du profitabel.\n- R-Multiple: Ergebnis im Verhältnis zum anfänglichen Risiko. 2R heißt: doppelt so viel gewonnen wie riskiert.\n- Max. Drawdown: größter Rückgang vom bisherigen Höchststand.\n\nWeitere Begriffe erklärt das Glossar im Dashboard."
+      },
+      {
+        "q": "Gibt es eine App fürs Handy?",
+        "a": "Keine eigene App, aber TradeNot.es läuft im Browser auf Handy und Tablet."
+      },
+      {
+        "q": "Ist TradeNot.es eine Anlageberatung?",
+        "a": "Nein. TradeNot.es wertet nur deine eigenen Trades aus und gibt keine Empfehlungen."
+      }
+    ]
+  },
+  "status": {
+    "title": "Systemstatus",
+    "subtitle": "Ob Website und App gerade erreichbar sind.",
+    "summary": {
+      "checking": "Status wird geprüft …",
+      "ok": "Alles läuft",
+      "okDescription": "Website und App laufen normal.",
+      "outage": "Störung",
+      "outageDescription": "Die App ist gerade nicht erreichbar. Wir arbeiten daran."
+    },
+    "checkedAt": "Geprüft: {{time}}",
+    "servicesTitle": "Dienste",
+    "services": {
+      "website": "Website",
+      "websiteDescription": "Startseite und Infoseiten",
+      "app": "App & Login",
+      "appDescription": "Trading-Journal, Anmeldung und Datenbank"
+    },
+    "states": {
+      "operational": "In Betrieb",
+      "down": "Ausgefallen",
+      "checking": "Wird geprüft"
+    },
+    "contact": "Probleme oder Fragen? Schreib an"
   },
   "whyJournal": {
     "badge": "Trading-Wissen",

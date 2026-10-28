@@ -322,7 +322,7 @@
     "templateDownloaded": "Template scaricato con successo",
     "fileSelected": "File selezionato:",
     "helpTitle": "Guida Importazione",
-    "helpDescription": "Come arrivano i tuoi trade nel diario: NinjaTrader automaticamente, TradingView e altre piattaforme via CSV.",
+    "helpDescription": "Come arrivano i tuoi trade nel diario: NinjaTrader e Interactive Brokers in automatico, TradingView e altre piattaforme tramite CSV.",
     "helpCsvTitle": "📄 Importazione CSV",
     "helpCsvStep1": "Scarica il template CSV cliccando 'Scarica Template'",
     "helpCsvStep2": "Compila i dati delle tue operazioni seguendo il formato del template",
@@ -1835,6 +1835,94 @@
       "message": "Inserisci un messaggio (al massimo {{max}} caratteri).",
       "send": "Non è stato possibile inviare il messaggio. Riprova."
     }
+  },
+  "help": {
+    "title": "Aiuto e domande frequenti",
+    "subtitle": "Risposte su TradeNot.es: primi passi, importazione, report e i tuoi dati.",
+    "searchPlaceholder": "Cerca tra le domande …",
+    "noResults": "Nessuna domanda corrispondente. Scrivici pure tramite il modulo di contatto.",
+    "moreTitle": "Altre domande?",
+    "moreDescription": "Scrivici, rispondiamo via e-mail.",
+    "contactButton": "Contattaci",
+    "items": [
+      {
+        "q": "Come inizio?",
+        "a": "Registrati con il tuo indirizzo e-mail e confermalo tramite il link nel messaggio. Poi aggiungi i trade con «Aggiungi Operazione» o importali nella pagina di importazione."
+      },
+      {
+        "q": "Quanto costa TradeNot.es?",
+        "a": "Niente. Non ci sono abbonamenti, livelli premium né pubblicità."
+      },
+      {
+        "q": "Quali broker e piattaforme sono supportati?",
+        "a": "- In automatico: NinjaTrader (tramite un add-on) e Interactive Brokers (download giornaliero tramite query Flex).\n- Tramite file CSV: lo storico ordini di TradingView e il nostro modello, in cui puoi riportare i trade di qualsiasi altra piattaforma.\n\nAltri formati CSV non vengono riconosciuti."
+      },
+      {
+        "q": "Come configuro l’add-on NinjaTrader?",
+        "a": "Scarica il file ZIP nella pagina di importazione: la tua chiave personale è già inserita. Importalo in NinjaTrader con Tools → Import → NinjaScript Add-On e riavvia NinjaTrader. Da quel momento l’add-on invia ogni esecuzione di tutti i conti. Appena una posizione torna flat, diventa un trade."
+      },
+      {
+        "q": "Come collego Interactive Brokers?",
+        "a": "Nel portale IBKR crea una Activity Flex Query (Trades → Executions, formato XML, ultimi 30 giorni di calendario) e attiva il Flex Web Service per ottenere un token. Inserisci token e ID della query nella pagina di importazione. TradeNot.es scaricherà le tue esecuzioni una volta al giorno, oppure subito con «Recupera ora». Il token può solo leggere report, non inviare ordini."
+      },
+      {
+        "q": "Posso esportare o cancellare i miei dati?",
+        "a": "Sì. In «Account» scarichi tutti i tuoi dati in un file ZIP, con un CSV reimportabile e tutti gli screenshot. Lì puoi anche reimpostare tutti i dati di trading o eliminare il tuo account."
+      },
+      {
+        "q": "Chi può vedere i miei trade?",
+        "a": "Solo tu. Puoi condividere singoli trade tramite link (modalità mentor) e interrompere la condivisione in qualsiasi momento. I dati si trovano su un nostro server nei Paesi Bassi e non vengono né venduti né usati per pubblicità."
+      },
+      {
+        "q": "Come separo conti simulati, prop firm e reali?",
+        "a": "Ogni trade ha un tipo di conto (simulazione, valutazione, funded, reale); quelli importati riportano anche il nome del conto. In Report → Account analizzi ogni tipo separatamente."
+      },
+      {
+        "q": "Come creo i setup?",
+        "a": "In Impostazioni → Setup di Trading crei i tuoi setup, se vuoi con una checklist. Nella finestra del trade scegli il setup e spunti i criteri rispettati. Report → Rispetto regole mostra poi i tuoi risultati con e senza le regole rispettate."
+      },
+      {
+        "q": "A cosa servono il diario e la preparazione giornaliera?",
+        "a": "Nel diario scrivi note sulle tue giornate di trading. Nella preparazione giornaliera annoti prima di operare la tua visione del mercato, i livelli chiave, il tuo piano e il tuo stato d’animo."
+      },
+      {
+        "q": "Cosa significano win rate, profit factor, multiplo R e drawdown?",
+        "a": "- Win rate: quota di trade vincenti sul totale.\n- Profit factor: somma dei guadagni divisa per la somma delle perdite. Sopra 1 sei in profitto.\n- Multiplo R: risultato rispetto al rischio iniziale. 2R significa che hai guadagnato il doppio di quanto hai rischiato.\n- Drawdown massimo: calo più forte da un massimo precedente.\n\nIl glossario nella dashboard spiega altri termini."
+      },
+      {
+        "q": "Esiste un’app per smartphone?",
+        "a": "Non un’app dedicata, ma TradeNot.es funziona nel browser su smartphone e tablet."
+      },
+      {
+        "q": "TradeNot.es è una consulenza finanziaria?",
+        "a": "No. TradeNot.es analizza solo i tuoi trade e non dà raccomandazioni."
+      }
+    ]
+  },
+  "status": {
+    "title": "Stato del sistema",
+    "subtitle": "Se il sito e l’app sono raggiungibili in questo momento.",
+    "summary": {
+      "checking": "Verifica dello stato …",
+      "ok": "Tutto funziona",
+      "okDescription": "Il sito e l’app funzionano normalmente.",
+      "outage": "Disservizio",
+      "outageDescription": "L’app non è raggiungibile in questo momento. Ci stiamo lavorando."
+    },
+    "checkedAt": "Verificato: {{time}}",
+    "servicesTitle": "Servizi",
+    "services": {
+      "website": "Sito web",
+      "websiteDescription": "Home page e pagine informative",
+      "app": "App e accesso",
+      "appDescription": "Diario di trading, accesso e database"
+    },
+    "states": {
+      "operational": "Operativo",
+      "down": "Non disponibile",
+      "checking": "Verifica"
+    },
+    "contact": "Problemi o domande? Scrivi a"
   },
   "whyJournal": {
     "badge": "Conoscenza Trading",

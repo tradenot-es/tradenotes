@@ -322,7 +322,7 @@
     "templateDownloaded": "Template downloaded successfully",
     "fileSelected": "File selected:",
     "helpTitle": "Import Guide",
-    "helpDescription": "How your trades get into the journal: NinjaTrader automatically, TradingView and other platforms via CSV.",
+    "helpDescription": "How your trades get into the journal: NinjaTrader and Interactive Brokers automatically, TradingView and other platforms via CSV.",
     "helpCsvTitle": "📄 CSV Import",
     "helpCsvStep1": "Download the CSV template by clicking 'Download Template'",
     "helpCsvStep2": "Fill in your trade data following the template format",
@@ -1825,6 +1825,94 @@
       "message": "Please enter a message (at most {{max}} characters).",
       "send": "The message could not be sent. Please try again."
     }
+  },
+  "help": {
+    "title": "Help & FAQ",
+    "subtitle": "Answers about TradeNot.es: getting started, importing, reports and your data.",
+    "searchPlaceholder": "Search questions …",
+    "noResults": "No matching question. Feel free to write to us via the contact form.",
+    "moreTitle": "Still have questions?",
+    "moreDescription": "Write to us, we reply by email.",
+    "contactButton": "Get in touch",
+    "items": [
+      {
+        "q": "How do I get started?",
+        "a": "Sign up with your email address and confirm it via the link in the email. Then add trades with “Add trade” or import them on the import page."
+      },
+      {
+        "q": "What does TradeNot.es cost?",
+        "a": "Nothing. There is no subscription, no premium tier and no advertising."
+      },
+      {
+        "q": "Which brokers and platforms are supported?",
+        "a": "- Automatically: NinjaTrader (via an add-on) and Interactive Brokers (daily fetch via Flex query).\n- Via CSV file: the order history from TradingView and our own template, into which you can copy trades from any other platform.\n\nOther CSV formats are not recognized."
+      },
+      {
+        "q": "How do I set up the NinjaTrader add-on?",
+        "a": "Download the ZIP file on the import page; your personal key is already filled in. Import it in NinjaTrader via Tools → Import → NinjaScript Add-On and restart NinjaTrader. From then on the add-on sends every execution from all accounts. As soon as a position is flat again, it becomes a trade."
+      },
+      {
+        "q": "How do I connect Interactive Brokers?",
+        "a": "In the IBKR portal, create an Activity Flex Query (Trades → Executions, XML format, last 30 calendar days) and enable the Flex Web Service to get a token. Enter the token and query ID on the import page. TradeNot.es then fetches your executions once a day, or immediately with “Fetch now”. The token can only read reports, not place orders."
+      },
+      {
+        "q": "Can I export or delete my data?",
+        "a": "Yes. Under “Account” you can download all your data as a ZIP file, including a CSV file that can be imported again and all screenshots. There you can also reset all trading data or delete your account."
+      },
+      {
+        "q": "Who can see my trades?",
+        "a": "Only you. You can share single trades via a link (mentor mode) and stop sharing at any time. The data is stored on our own server in the Netherlands and is neither sold nor used for advertising."
+      },
+      {
+        "q": "How do I keep sim, prop firm and live accounts apart?",
+        "a": "Every trade has an account type (simulation, evaluation, funded, live); imported trades also carry the account name. Under Reports → Accounts you analyze the account types separately."
+      },
+      {
+        "q": "How do I create setups?",
+        "a": "Under Settings → Trading setups you create your setups, optionally with a checklist. In the trade dialog you pick the setup and tick which criteria were met. Reports → Rule adherence then shows your results with and without the rules followed."
+      },
+      {
+        "q": "What are the journal and daily prep for?",
+        "a": "In the journal you write notes about your trading days. In the daily prep you record your market outlook, key levels, your plan and your state of mind before trading."
+      },
+      {
+        "q": "What do win rate, profit factor, R-multiple and drawdown mean?",
+        "a": "- Win rate: share of winners among all trades.\n- Profit factor: total gains divided by total losses. Above 1 you are profitable.\n- R-multiple: result relative to the initial risk. 2R means you won twice what you risked.\n- Max drawdown: largest decline from a previous peak.\n\nThe glossary in the dashboard explains more terms."
+      },
+      {
+        "q": "Is there a mobile app?",
+        "a": "No separate app, but TradeNot.es works in the browser on phones and tablets."
+      },
+      {
+        "q": "Is TradeNot.es investment advice?",
+        "a": "No. TradeNot.es only analyzes your own trades and gives no recommendations."
+      }
+    ]
+  },
+  "status": {
+    "title": "System status",
+    "subtitle": "Whether the website and the app are reachable right now.",
+    "summary": {
+      "checking": "Checking status …",
+      "ok": "All systems running",
+      "okDescription": "The website and the app are running normally.",
+      "outage": "Outage",
+      "outageDescription": "The app is not reachable right now. We are working on it."
+    },
+    "checkedAt": "Checked: {{time}}",
+    "servicesTitle": "Services",
+    "services": {
+      "website": "Website",
+      "websiteDescription": "Home page and info pages",
+      "app": "App & login",
+      "appDescription": "Trading journal, login and database"
+    },
+    "states": {
+      "operational": "Operational",
+      "down": "Down",
+      "checking": "Checking"
+    },
+    "contact": "Problems or questions? Write to"
   },
   "whyJournal": {
     "badge": "Trading Knowledge",

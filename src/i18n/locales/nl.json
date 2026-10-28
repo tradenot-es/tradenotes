@@ -331,7 +331,7 @@
     "templateDownloaded": "Sjabloon succesvol gedownload",
     "fileSelected": "Bestand geselecteerd:",
     "helpTitle": "Import Handleiding",
-    "helpDescription": "Zo komen je trades in je journal: NinjaTrader automatisch, TradingView en andere platforms via CSV.",
+    "helpDescription": "Zo komen je trades in het journal: NinjaTrader en Interactive Brokers automatisch, TradingView en andere platforms via CSV.",
     "helpCsvTitle": "📄 CSV Import",
     "helpCsvStep1": "Download de CSV-sjabloon door op 'Sjabloon downloaden' te klikken",
     "helpCsvStep2": "Vul je handelsgegevens in volgens het sjabloonformaat",
@@ -1844,6 +1844,94 @@
       "message": "Vul een bericht in (maximaal {{max}} tekens).",
       "send": "Het bericht kon niet worden verstuurd. Probeer het opnieuw."
     }
+  },
+  "help": {
+    "title": "Hulp en veelgestelde vragen",
+    "subtitle": "Antwoorden over TradeNot.es: starten, importeren, rapporten en je gegevens.",
+    "searchPlaceholder": "Vragen doorzoeken …",
+    "noResults": "Geen passende vraag gevonden. Stuur ons gerust een bericht via het contactformulier.",
+    "moreTitle": "Nog vragen?",
+    "moreDescription": "Schrijf ons, we antwoorden per e-mail.",
+    "contactButton": "Contact opnemen",
+    "items": [
+      {
+        "q": "Hoe begin ik?",
+        "a": "Registreer je met je e-mailadres en bevestig het via de link in de mail. Daarna voeg je trades toe met ‘Transactie toevoegen’ of importeer je ze op de importpagina."
+      },
+      {
+        "q": "Wat kost TradeNot.es?",
+        "a": "Niets. Er is geen abonnement, geen premiumversie en geen reclame."
+      },
+      {
+        "q": "Welke brokers en platforms worden ondersteund?",
+        "a": "- Automatisch: NinjaTrader (via een add-on) en Interactive Brokers (dagelijks ophalen via een Flex-query).\n- Via CSV-bestand: de ordergeschiedenis uit TradingView en ons eigen sjabloon, waarin je trades uit elk ander platform kunt overnemen.\n\nAndere CSV-formaten worden niet herkend."
+      },
+      {
+        "q": "Hoe stel ik de NinjaTrader-add-on in?",
+        "a": "Download het ZIP-bestand op de importpagina; je persoonlijke sleutel staat er al in. Importeer het in NinjaTrader via Tools → Import → NinjaScript Add-On en start NinjaTrader opnieuw. Daarna stuurt de add-on elke uitvoering van alle accounts door. Zodra een positie weer flat is, wordt het een trade."
+      },
+      {
+        "q": "Hoe koppel ik Interactive Brokers?",
+        "a": "Maak in het IBKR-portaal een Activity Flex Query aan (Trades → Executions, formaat XML, laatste 30 kalenderdagen) en activeer de Flex Web Service om een token te krijgen. Vul token en query-ID in op de importpagina. TradeNot.es haalt je uitvoeringen dan één keer per dag op, of direct met ‘Nu ophalen’. Het token kan alleen rapporten lezen, geen orders plaatsen."
+      },
+      {
+        "q": "Kan ik mijn gegevens exporteren of verwijderen?",
+        "a": "Ja. Onder ‘Account’ download je al je gegevens als ZIP-bestand, met een CSV-bestand dat je opnieuw kunt importeren en alle screenshots. Daar kun je ook al je tradinggegevens resetten of je account verwijderen."
+      },
+      {
+        "q": "Wie kan mijn trades zien?",
+        "a": "Alleen jij. Losse trades kun je via een link delen (mentormodus) en het delen kun je altijd stoppen. De gegevens staan op onze eigen server in Nederland en worden niet verkocht of voor reclame gebruikt."
+      },
+      {
+        "q": "Hoe houd ik sim-, prop-firm- en live-accounts uit elkaar?",
+        "a": "Elke trade heeft een accounttype (simulatie, evaluatie, funded, live); geïmporteerde trades hebben ook de accountnaam. Onder Rapporten → Accounts analyseer je de accounttypes apart."
+      },
+      {
+        "q": "Hoe maak ik setups aan?",
+        "a": "Onder Instellingen → Trading Setups maak je je setups aan, desgewenst met een checklist. In het tradevenster kies je de setup en vink je aan aan welke criteria is voldaan. Rapporten → Regeltrouw laat daarna je resultaten zien met en zonder nageleefde regels."
+      },
+      {
+        "q": "Waarvoor zijn het journal en de dagvoorbereiding?",
+        "a": "In het journal schrijf je notities over je handelsdagen. In de dagvoorbereiding leg je vóór het handelen je marktvisie, belangrijke niveaus, je plan en je gemoedstoestand vast."
+      },
+      {
+        "q": "Wat betekenen win rate, profit factor, R-multiple en drawdown?",
+        "a": "- Win rate: aandeel winnende trades van alle trades.\n- Profit factor: totale winst gedeeld door totaal verlies. Boven 1 ben je winstgevend.\n- R-multiple: resultaat ten opzichte van het oorspronkelijke risico. 2R betekent dat je twee keer zoveel won als je riskeerde.\n- Max. drawdown: grootste daling vanaf een eerdere piek.\n\nDe begrippenlijst in het dashboard legt meer termen uit."
+      },
+      {
+        "q": "Is er een app voor de telefoon?",
+        "a": "Geen eigen app, maar TradeNot.es werkt in de browser op telefoon en tablet."
+      },
+      {
+        "q": "Is TradeNot.es beleggingsadvies?",
+        "a": "Nee. TradeNot.es analyseert alleen je eigen trades en geeft geen aanbevelingen."
+      }
+    ]
+  },
+  "status": {
+    "title": "Systeemstatus",
+    "subtitle": "Of de website en de app op dit moment bereikbaar zijn.",
+    "summary": {
+      "checking": "Status wordt gecontroleerd …",
+      "ok": "Alles werkt",
+      "okDescription": "De website en de app werken normaal.",
+      "outage": "Storing",
+      "outageDescription": "De app is op dit moment niet bereikbaar. We werken eraan."
+    },
+    "checkedAt": "Gecontroleerd: {{time}}",
+    "servicesTitle": "Diensten",
+    "services": {
+      "website": "Website",
+      "websiteDescription": "Startpagina en informatiepagina’s",
+      "app": "App en inloggen",
+      "appDescription": "Tradingjournal, inloggen en database"
+    },
+    "states": {
+      "operational": "In bedrijf",
+      "down": "Storing",
+      "checking": "Controleren"
+    },
+    "contact": "Problemen of vragen? Mail naar"
   },
   "whyJournal": {
     "badge": "Trading Kennis",

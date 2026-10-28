@@ -31,8 +31,35 @@ function Linked({ text }: { text: string }) {
 }
 
 /**
- * Imprint, privacy policy and terms: a title and sections from legal.<page> in the language
- * files. Paragraphs are separated by a blank line; lines starting with "- " form a list.
+ * Text from a language file: paragraphs separated by a blank line, lines starting with "- "
+ * form a list, {{name}} and {{email}} become the operator's name and (linked) address.
+ */
+export function TextBlocks({ text }: { text: string }) {
+  return (
+    <div className="space-y-3 text-muted-foreground leading-relaxed">
+      {fill(text)
+        .split("\n\n")
+        .map((block, i) =>
+          block.startsWith("- ") ? (
+            <ul key={i} className="list-disc pl-5 space-y-1.5">
+              {block.split("\n").map((line) => (
+                <li key={line}>
+                  <Linked text={line.replace(/^- /, "")} />
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p key={i} className="whitespace-pre-line">
+              <Linked text={block} />
+            </p>
+          ),
+        )}
+    </div>
+  );
+}
+
+/**
+ * Imprint, privacy policy and terms: a title and sections from legal.<page> in the language files.
  */
 export function LegalPage({ page, showUpdated = true }: { page: "imprint" | "privacy" | "terms"; showUpdated?: boolean }) {
   const { t, i18n } = useTranslation();
@@ -50,25 +77,7 @@ export function LegalPage({ page, showUpdated = true }: { page: "imprint" | "pri
             {sections.map((section) => (
               <section key={section.title}>
                 <h2 className="text-xl font-semibold mb-3">{section.title}</h2>
-                <div className="space-y-3 text-muted-foreground leading-relaxed">
-                  {fill(section.text)
-                    .split("\n\n")
-                    .map((block, i) =>
-                      block.startsWith("- ") ? (
-                        <ul key={i} className="list-disc pl-5 space-y-1.5">
-                          {block.split("\n").map((line) => (
-                            <li key={line}>
-                              <Linked text={line.replace(/^- /, "")} />
-                            </li>
-                          ))}
-                        </ul>
-                      ) : (
-                        <p key={i} className="whitespace-pre-line">
-                          <Linked text={block} />
-                        </p>
-                      ),
-                    )}
-                </div>
+                <TextBlocks text={section.text} />
               </section>
             ))}
           </div>
