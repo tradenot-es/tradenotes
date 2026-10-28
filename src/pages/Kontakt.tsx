@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { AltchaWidget } from "@/components/AltchaWidget";
+import { Honeypot } from "@/components/Honeypot";
 import { invoke } from "@/lib/api";
 import { usePageSeo } from "@/hooks/useSeo";
 import { operator } from "@/config/operator";
@@ -23,6 +24,7 @@ const Kontakt = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [altchaPayload, setAltchaPayload] = useState<string | null>(null);
   const [captchaRound, setCaptchaRound] = useState(0);
+  const [website, setWebsite] = useState("");
 
   const fail = (description: string) => toast({ title: t("contact.errorTitle"), description, variant: "destructive" });
 
@@ -43,7 +45,7 @@ const Kontakt = () => {
 
     setIsSubmitting(true);
     // the server checks the captcha and forwards the message by email
-    const { error } = await invoke("contact", { body: { ...values, altcha: altchaPayload } });
+    const { error } = await invoke("contact", { body: { ...values, website, altcha: altchaPayload } });
     // a captcha solution is single-use, so every attempt needs a fresh one
     setAltchaPayload(null);
     setCaptchaRound((r) => r + 1);
@@ -77,7 +79,8 @@ const Kontakt = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="relative space-y-6">
+                  <Honeypot value={website} onChange={setWebsite} />
                   <div className="space-y-2">
                     <Label htmlFor="name">{t("contact.name")} *</Label>
                     <Input id="name" name="name" placeholder={t("contact.namePlaceholder")} maxLength={FIELDS.name} required />

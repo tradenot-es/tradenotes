@@ -51,11 +51,12 @@ export const auth = {
   },
 
   /** The optional nickname travels as Better Auth's "name"; the server copies it into the profile. */
-  async signUp(input: { email: string; password: string; nickname: string; altcha: string }) {
+  async signUp(input: { email: string; password: string; nickname: string; website?: string; altcha: string }) {
     return post("/sign-up/email", {
       email: input.email,
       password: input.password,
       name: input.nickname,
+      website: input.website ?? "",
       altcha: input.altcha,
       callbackURL: "/dashboard",
     });

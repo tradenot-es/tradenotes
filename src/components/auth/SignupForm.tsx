@@ -8,6 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { z } from "zod";
 import { AltchaWidget } from "@/components/AltchaWidget";
+import { Honeypot } from "@/components/Honeypot";
 import { Link } from "react-router-dom";
 
 interface SignupFormProps {
@@ -21,6 +22,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [nickname, setNickname] = useState("");
+  const [website, setWebsite] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -80,6 +82,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
         email,
         password,
         nickname: nickname.trim(),
+        website,
         altcha: altchaPayload,
       });
 
@@ -102,7 +105,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSignup} className="space-y-4">
+    <form onSubmit={handleSignup} className="relative space-y-4">
+      <Honeypot value={website} onChange={setWebsite} />
       <div className="space-y-2">
         <Label htmlFor="nickname">
           {t("auth.nickname")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>

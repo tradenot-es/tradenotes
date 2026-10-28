@@ -9,6 +9,7 @@ import { readScreenshot, saveScreenshot } from "./uploads.js";
 import { importTrades, userIdForWebhookKey } from "./routes/import.js";
 import { FlexError, syncIbkr } from "./ibkr.js";
 import { sendContactMail } from "./mail.js";
+import { clientIp, createLimiter, isHoneypotFilled } from "./limits.js";
 import { buildExport } from "./export.js";
 import { marketEventsBetween } from "./marketEvents.js";
 import { allowFeedback, feedbackSchema, submitFeedback } from "./feedback.js";
@@ -43,8 +44,14 @@ const contactSchema = z.object({
   altcha: z.string(),
 });
 
+// at most 5 messages per IP and hour
+const contactLimit = createLimiter(5, 60 * 60 * 1000);
+
 app.post("/api/contact", async (c) => {
-  const body = contactSchema.parse(await c.req.json());
+  const raw = await c.req.json();
+  if (isHoneypotFilled(raw)) return c.json({ error: "Captcha verification failed" }, 400);
+  if (!contactLimit(clientIp(c.req.raw.headers))) return c.json({ error: "Too many messages, please try again later" }, 429);
+  const body = contactSchema.parse(raw);
   if (!verifyPayload(body.altcha)) return c.json({ error: "Captcha verification failed" }, 400);
   await sendContactMail(body);
   return c.json({ success: true });

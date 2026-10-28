@@ -7,7 +7,8 @@ import { env } from "./env.js";
 // The salt carries its own expiry and an HMAC, so no server-side state is needed
 // apart from a short-lived set of already used challenges.
 
-const MAX_NUMBER = 100_000;
+// average work for a browser: about half of this many SHA-256 rounds (well under a second)
+const MAX_NUMBER = 250_000;
 const EXPIRY_MS = 5 * 60 * 1000;
 const used = new Map<string, number>();
 

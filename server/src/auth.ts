@@ -6,6 +6,7 @@ import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { verifyPayload } from "./altcha.js";
 import { deleteUserFiles } from "./uploads.js";
+import { isHoneypotFilled } from "./limits.js";
 import { networkInterfaces } from "node:os";
 
 // In development the Vite server is also opened from other machines in the LAN (http://<ip>:8080)
@@ -34,6 +35,17 @@ export const auth = betterAuth({
   secret: env.authSecret,
   database: pool,
   trustedOrigins: [env.baseUrl, ...(process.env.NODE_ENV === "production" ? [] : devOrigins())],
+  // On in production (Better Auth's defaults: sign-in 3 per 10 s per IP, everything else 100 per
+  // 10 s). Sign-up and the mails it triggers get a much tighter limit, so nobody can use the form
+  // to send confirmation or reset mails to strangers in bulk.
+  rateLimit: {
+    enabled: process.env.NODE_ENV === "production",
+    customRules: {
+      "/sign-up/email": { window: 60 * 60, max: 5 },
+      "/request-password-reset": { window: 60 * 60, max: 5 },
+      "/send-verification-email": { window: 60 * 60, max: 5 },
+    },
+  },
   advanced: {
     database: { generateId: "uuid" },
   },
@@ -74,7 +86,8 @@ export const auth = betterAuth({
   plugins: [twoFactor({ issuer: "TradeNot.es" })],
   hooks: {
     before: createAuthMiddleware(async (ctx) => {
-      if (CAPTCHA_PATHS.has(ctx.path) && !verifyPayload(ctx.body?.altcha)) {
+      // a filled hidden field means a bot; answer like a failed captcha
+      if (CAPTCHA_PATHS.has(ctx.path) && (isHoneypotFilled(ctx.body) || !verifyPayload(ctx.body?.altcha))) {
         throw new APIError("BAD_REQUEST", { message: "Captcha verification failed", code: "CAPTCHA_FAILED" });
       }
     }),

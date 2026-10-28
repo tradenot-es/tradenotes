@@ -176,6 +176,13 @@ check("screenshot upload", typeof shot.body.url === "string", shot.body);
 check("owner can read screenshot", (await anna.req(shot.body.url)).status === 200);
 check("other user cannot read screenshot", (await bob.req(shot.body.url)).status === 404);
 
+// bots: a filled hidden field is rejected like a failed captcha
+const botContact = await new Client().req("/api/contact", { method: "POST", json: { name: "Bot", email: "bot@example.com", subject: "Hi", message: "Spam", website: "http://spam.example", altcha: "x" } });
+check("contact honeypot rejected", botContact.status === 400, botContact.body);
+const botSignup = new Client();
+const botSignupRes = await botSignup.req("/api/auth/sign-up/email", { method: "POST", json: { email: `bot${stamp}@example.com`, password: "Passwort123", name: "", website: "http://spam.example", altcha: await solveCaptcha(botSignup) } });
+check("sign-up honeypot rejected", botSignupRes.status === 400, botSignupRes.body);
+
 // in-app feedback (no SMTP/GitHub in dev: the server logs it)
 const fb = await anna.req("/api/feedback", { method: "POST", json: { type: "idea", title: "PDF-Export", message: "Ein Monatsbericht als PDF wäre super." } });
 check("feedback accepted with reference", fb.status === 200 && /^[0-9a-f]{6}$/.test(fb.body.ref ?? ""), fb.body);
