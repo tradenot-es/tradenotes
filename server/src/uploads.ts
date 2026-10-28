@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, unlink, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, rm, unlink, writeFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { join, resolve } from "node:path";
 import { env } from "./env.js";
@@ -44,6 +44,12 @@ export async function deleteScreenshotUrl(userId: string, url: string | null | u
   if (!url?.startsWith(prefix)) return;
   const name = url.slice(prefix.length);
   if (SAFE_NAME.test(name)) await unlink(join(userDir(userId), name)).catch(() => {});
+}
+
+/** All screenshots of a user, for the data export. */
+export async function listScreenshots(userId: string): Promise<string[]> {
+  const names = await readdir(userDir(userId)).catch(() => [] as string[]);
+  return names.filter((name) => SAFE_NAME.test(name)).sort();
 }
 
 export async function deleteUserFiles(userId: string) {

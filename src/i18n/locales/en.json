@@ -119,7 +119,8 @@
     "clickForDetails": "Click for details",
     "noTrades": "No trades yet. Add your first trade!",
     "tradeCount_one": "{{count}} trade",
-    "tradeCount_other": "{{count}} trades"
+    "tradeCount_other": "{{count}} trades",
+    "clickToView": "Click to see the trades"
   },
   "weekdays": {
     "mon": "Mon",
@@ -188,6 +189,7 @@
     "selectSymbolFirst": "Please select symbol first",
     "refreshPrice": "Refresh price",
     "side": "Side",
+    "accountType": "Account type",
     "qty": "Quantity",
     "entryPrice": "Entry Price",
     "exitPrice": "Exit Price",
@@ -433,6 +435,15 @@
     "subtitle": "Manage your email, password and security settings",
     "accountInfo": "Account Information",
     "accountInfoDesc": "Update your email and authentication settings",
+    "exportTitle": "Export your data",
+    "exportDesc": "Download everything TradeNot.es stores for your account as a ZIP file.",
+    "exportItemJson": "data.json: all data (account, settings, trades, journal, daily prep, executions, shares)",
+    "exportItemCsv": "trades.csv: your trades in the import template format, can be imported again",
+    "exportItemScreenshots": "screenshots/: all uploaded images",
+    "exportButton": "Download export",
+    "exporting": "Creating export …",
+    "exportDone": "Export downloaded",
+    "exportError": "Export failed",
     "dangerZone": "Danger Zone",
     "dangerZoneDesc": "Irreversible actions for your account",
     "resetAll": "Reset Everything",
@@ -771,7 +782,13 @@
     "whySection": {
       "badge": "Why a Trading Journal?",
       "title": "Successful traders document every trade",
-      "description": "A journal turns gut feeling into data: what works, what doesn't, and which habits hold you back."
+      "description": "A journal turns gut feeling into data: what works, what doesn't, and which habits hold you back.",
+      "benefit1Title": "Spot Patterns",
+      "benefit1Desc": "Automatic analysis of your best setups, times and symbols",
+      "benefit2Title": "Build Discipline",
+      "benefit2Desc": "Daily limits, discipline score and automatic detection of revenge trades",
+      "benefit3Title": "Track Performance",
+      "benefit3Desc": "Equity curve, R-multiple, expectancy and 20+ KPIs at a glance"
     },
     "features": {
       "mfeMAE": {
@@ -1808,6 +1825,7 @@
     "needsMoreData": "Collecting Trading Data",
     "needsMoreDataDescription": "{{current}} of {{required}} trades recorded. Keep trading to unlock your personal insights.",
     "revengeScore": "Revenge Trading Score",
+    "revengeScoreTooltipAria": "About the revenge score",
     "revengeScoreExcellent": "Excellent",
     "revengeScoreGood": "Good",
     "revengeScoreWarning": "Needs Work",

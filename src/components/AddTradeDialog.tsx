@@ -642,16 +642,16 @@ export function AddTradeDialog({ open, onOpenChange, onSuccess, preselectedDate,
                 className="justify-start flex-wrap"
               >
                 <ToggleGroupItem value="sim" className="data-[state=on]:bg-blue-500 data-[state=on]:text-white text-xs px-2">
-                  🔵 {t("trades.accountTypes.sim")}
+                  🔵 {t("accountTypes.sim")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="evaluation" className="data-[state=on]:bg-yellow-500 data-[state=on]:text-white text-xs px-2">
-                  🟡 {t("trades.accountTypes.evaluation")}
+                  🟡 {t("accountTypes.evaluation")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="performance" className="data-[state=on]:bg-green-500 data-[state=on]:text-white text-xs px-2">
-                  🟢 {t("trades.accountTypes.funded")}
+                  🟢 {t("accountTypes.performance")}
                 </ToggleGroupItem>
                 <ToggleGroupItem value="live" className="data-[state=on]:bg-red-500 data-[state=on]:text-white text-xs px-2">
-                  🔴 {t("trades.accountTypes.live")}
+                  🔴 {t("accountTypes.live")}
                 </ToggleGroupItem>
               </ToggleGroup>
             </div>

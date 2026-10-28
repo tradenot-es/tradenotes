@@ -1,47 +1,47 @@
-import i18n from 'i18next';
+import i18n, { type BackendModule } from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import en from './locales/en.json';
-import de from './locales/de.json';
-import fr from './locales/fr.json';
-import es from './locales/es.json';
-import nl from './locales/nl.json';
-import it from './locales/it.json';
+
+const supportedLanguages = ['en', 'de', 'fr', 'es', 'nl', 'it'];
+
+// each language is its own chunk (about 130 kB), so only the one in use is downloaded
+const locales = import.meta.glob<Record<string, unknown>>('./locales/*.json', { import: 'default' });
+
+const lazyLocales: BackendModule = {
+  type: 'backend',
+  init() {},
+  read(language, _namespace, callback) {
+    const load = locales[`./locales/${language}.json`];
+    if (!load) return callback(null, {});
+    load().then((data) => callback(null, data), (error) => callback(error, null));
+  },
+};
 
 // Detect browser language
 const getBrowserLanguage = (): string => {
   const browserLang = navigator.language.split('-')[0]; // Get language code without region
-  const supportedLanguages = ['en', 'de', 'fr', 'es', 'nl', 'it'];
   return supportedLanguages.includes(browserLang) ? browserLang : 'en';
 };
 
-i18n
+// resolves once the current language (and the English fallback) is loaded; main.tsx renders after it
+export const i18nReady = i18n
+  .use(lazyLocales)
   .use(initReactI18next)
   .init({
-    resources: {
-      en: { translation: en },
-      de: { translation: de },
-      fr: { translation: fr },
-      es: { translation: es },
-      nl: { translation: nl },
-      it: { translation: it },
-    },
     lng: getBrowserLanguage(),
+    supportedLngs: supportedLanguages,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
+    // in development, report texts the code asks for but no language file has
+    saveMissing: import.meta.env.DEV,
+    missingKeyHandler: (_languages, _namespace, key) => console.warn(`[i18n] missing key: ${key}`),
     returnEmptyString: false,
     returnNull: false,
     keySeparator: '.',
     react: {
       useSuspense: false,
     },
-  })
-  .then(() => {
-    console.log('i18n initialized:', i18n.isInitialized);
-    console.log('Current language:', i18n.language);
-    console.log('Available resources:', Object.keys(i18n.store.data));
-    console.log('Test translation:', i18n.t('dashboard.maxDrawdown'));
   });
 
 export default i18n;

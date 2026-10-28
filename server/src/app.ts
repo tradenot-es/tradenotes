@@ -9,6 +9,7 @@ import { readScreenshot, saveScreenshot } from "./uploads.js";
 import { importTrades, userIdForWebhookKey } from "./routes/import.js";
 import { FlexError, syncIbkr } from "./ibkr.js";
 import { sendContactMail } from "./mail.js";
+import { buildExport } from "./export.js";
 
 type Vars = { userId: string; userEmail: string };
 
@@ -221,6 +222,18 @@ app.post("/api/connections/ibkr/sync", async (c) => {
   } catch (e) {
     return c.json({ error: (e as Error).message }, e instanceof FlexError ? 400 : 500);
   }
+});
+
+// --- data export ---------------------------------------------------------------
+
+app.get("/api/export", async (c) => {
+  const zip = await buildExport(c.get("userId"));
+  const date = new Date().toISOString().slice(0, 10);
+  return c.body(new Uint8Array(zip), 200, {
+    "Content-Type": "application/zip",
+    "Content-Disposition": `attachment; filename="tradenotes-export-${date}.zip"`,
+    "Cache-Control": "no-store",
+  });
 });
 
 // re-checks the password for destructive actions without touching the session

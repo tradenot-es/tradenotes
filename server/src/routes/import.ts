@@ -298,8 +298,8 @@ export async function importTrades(userId: string, payload: any): Promise<{ stat
       tags: t.tags || [],
       setup: t.setup,
       note: t.note,
-      account_type: t.account_type,
-      account_name: t.account_name,
+      account_type: t.accountType ?? t.account_type,
+      account_name: t.accountName ?? t.account_name,
     }));
   } else {
     return { status: 400, body: { error: "Unsupported payload format" } };

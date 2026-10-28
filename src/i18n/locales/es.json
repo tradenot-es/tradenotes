@@ -120,7 +120,8 @@
     "clickForDetails": "Clic para detalles",
     "noTrades": "No hay operaciones aún. ¡Añade tu primera operación!",
     "tradeCount_one": "{{count}} trade",
-    "tradeCount_other": "{{count}} trades"
+    "tradeCount_other": "{{count}} trades",
+    "clickToView": "Haz clic para ver las operaciones"
   },
   "weekdays": {
     "mon": "Lun",
@@ -189,6 +190,7 @@
     "selectSymbolFirst": "Por favor seleccione el símbolo primero",
     "refreshPrice": "Actualizar precio",
     "side": "Lado",
+    "accountType": "Tipo de Cuenta",
     "qty": "Cantidad",
     "entryPrice": "Precio de entrada",
     "exitPrice": "Precio de salida",
@@ -280,7 +282,6 @@
       "description": "¿Está seguro de eliminar esta operación de {{symbol}}? Esta acción no se puede deshacer."
     },
     "deleteSuccess": "Operación eliminada exitosamente",
-    "accountType": "Tipo de Cuenta",
     "accountName": "Nombre de Cuenta",
     "accountNamePlaceholder": "ej. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -443,6 +444,15 @@
     "subtitle": "Gestiona tu correo, contraseña y configuración de seguridad",
     "accountInfo": "Información de Cuenta",
     "accountInfoDesc": "Actualiza tu correo y configuración de autenticación",
+    "exportTitle": "Exportar tus datos",
+    "exportDesc": "Descarga en un archivo ZIP todo lo que TradeNot.es guarda de tu cuenta.",
+    "exportItemJson": "data.json: todos los datos (cuenta, ajustes, operaciones, diario, preparación diaria, ejecuciones, enlaces compartidos)",
+    "exportItemCsv": "trades.csv: tus operaciones en el formato de la plantilla de importación, se pueden volver a importar",
+    "exportItemScreenshots": "screenshots/: todas las imágenes subidas",
+    "exportButton": "Descargar exportación",
+    "exporting": "Creando exportación …",
+    "exportDone": "Exportación descargada",
+    "exportError": "Error en la exportación",
     "dangerZone": "Zona de Peligro",
     "dangerZoneDesc": "Acciones irreversibles para tu cuenta",
     "resetAll": "Restablecer Todo",
@@ -658,7 +668,13 @@
     "whySection": {
       "badge": "¿Por qué un diario de trading?",
       "title": "Los traders exitosos documentan cada operación",
-      "description": "Un diario convierte la intuición en datos: qué funciona, qué no y qué hábitos te frenan."
+      "description": "Un diario convierte la intuición en datos: qué funciona, qué no y qué hábitos te frenan.",
+      "benefit1Title": "Detectar patrones",
+      "benefit1Desc": "Análisis automático de tus mejores setups, horarios y símbolos",
+      "benefit2Title": "Fortalecer disciplina",
+      "benefit2Desc": "Límites diarios, puntuación de disciplina y detección automática de operaciones de venganza",
+      "benefit3Title": "Medir rendimiento",
+      "benefit3Desc": "Curva de equity, R-múltiple, expectativa y más de 20 KPIs de un vistazo"
     },
     "features": {
       "mfeMAE": {
@@ -1828,6 +1844,7 @@
     "needsMoreData": "Recopilando datos",
     "needsMoreDataDescription": "{{current}} de {{required}} operaciones registradas. Sigue operando para desbloquear tus análisis personales.",
     "revengeScore": "Puntuación de Revenge Trading",
+    "revengeScoreTooltipAria": "Información sobre la puntuación de revenge trading",
     "revengeScoreExcellent": "Excelente",
     "revengeScoreGood": "Bueno",
     "revengeScoreWarning": "Necesita mejora",

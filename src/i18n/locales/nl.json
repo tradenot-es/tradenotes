@@ -120,7 +120,8 @@
     "clickForDetails": "Klik voor details",
     "noTrades": "Nog geen transacties. Voeg je eerste transactie toe!",
     "tradeCount_one": "{{count}} trade",
-    "tradeCount_other": "{{count}} trades"
+    "tradeCount_other": "{{count}} trades",
+    "clickToView": "Klik om de trades te zien"
   },
   "weekdays": {
     "mon": "Ma",
@@ -189,6 +190,7 @@
     "selectSymbolFirst": "Selecteer eerst een symbool",
     "refreshPrice": "Prijs vernieuwen",
     "side": "Kant",
+    "accountType": "Account Type",
     "qty": "Aantal",
     "entryPrice": "Instapprijs",
     "exitPrice": "Uitstapprijs",
@@ -280,7 +282,6 @@
       "description": "Weet u zeker dat u deze {{symbol}} trade wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
     },
     "deleteSuccess": "Trade succesvol verwijderd",
-    "accountType": "Account Type",
     "accountName": "Account Naam",
     "accountNamePlaceholder": "bv. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -443,6 +444,15 @@
     "subtitle": "Beheer je email, wachtwoord en beveiligingsinstellingen",
     "accountInfo": "Accountinformatie",
     "accountInfoDesc": "Update je email en authenticatie-instellingen",
+    "exportTitle": "Je gegevens exporteren",
+    "exportDesc": "Download alles wat TradeNot.es voor je account opslaat als ZIP-bestand.",
+    "exportItemJson": "data.json: alle gegevens (account, instellingen, trades, journal, dagvoorbereiding, uitvoeringen, deellinks)",
+    "exportItemCsv": "trades.csv: je trades in het formaat van het importsjabloon, opnieuw te importeren",
+    "exportItemScreenshots": "screenshots/: alle geüploade afbeeldingen",
+    "exportButton": "Export downloaden",
+    "exporting": "Export wordt gemaakt …",
+    "exportDone": "Export gedownload",
+    "exportError": "Export mislukt",
     "dangerZone": "Gevarenzone",
     "dangerZoneDesc": "Onomkeerbare acties voor je account",
     "resetAll": "Alles Resetten",
@@ -658,7 +668,13 @@
     "whySection": {
       "badge": "Waarom een trading journal?",
       "title": "Succesvolle traders documenteren elke trade",
-      "description": "Een dagboek maakt van onderbuikgevoel data: wat werkt, wat niet, en welke gewoontes je afremmen."
+      "description": "Een dagboek maakt van onderbuikgevoel data: wat werkt, wat niet, en welke gewoontes je afremmen.",
+      "benefit1Title": "Patronen herkennen",
+      "benefit1Desc": "Automatische analyse van je beste setups, tijden en symbolen",
+      "benefit2Title": "Discipline versterken",
+      "benefit2Desc": "Daglimieten, disciplinescore en automatische herkenning van revenge-trades",
+      "benefit3Title": "Prestaties meten",
+      "benefit3Desc": "Equity curve, R-multiple, verwachting en 20+ KPI's in één oogopslag"
     },
     "features": {
       "mfeMAE": {
@@ -1828,6 +1844,7 @@
     "needsMoreData": "Handelsgegevens verzamelen",
     "needsMoreDataDescription": "{{current}} van {{required}} trades geregistreerd. Blijf handelen om je persoonlijke inzichten te ontgrendelen.",
     "revengeScore": "Revenge Trading Score",
+    "revengeScoreTooltipAria": "Over de revenge-score",
     "revengeScoreExcellent": "Uitstekend",
     "revengeScoreGood": "Goed",
     "revengeScoreWarning": "Verbetering nodig",

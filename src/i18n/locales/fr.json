@@ -120,7 +120,8 @@
     "clickForDetails": "Cliquez pour détails",
     "noTrades": "Pas encore de transactions. Ajoutez votre première transaction !",
     "tradeCount_one": "{{count}} trade",
-    "tradeCount_other": "{{count}} trades"
+    "tradeCount_other": "{{count}} trades",
+    "clickToView": "Cliquez pour voir les trades"
   },
   "weekdays": {
     "mon": "Lun",
@@ -189,6 +190,7 @@
     "selectSymbolFirst": "Veuillez d'abord sélectionner le symbole",
     "refreshPrice": "Actualiser le prix",
     "side": "Côté",
+    "accountType": "Type de Compte",
     "qty": "Quantité",
     "entryPrice": "Prix d'entrée",
     "exitPrice": "Prix de sortie",
@@ -280,7 +282,6 @@
       "description": "Êtes-vous sûr de vouloir supprimer cette transaction {{symbol}} ? Cette action ne peut pas être annulée."
     },
     "deleteSuccess": "Transaction supprimée avec succès",
-    "accountType": "Type de Compte",
     "accountName": "Nom du Compte",
     "accountNamePlaceholder": "ex. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -443,6 +444,15 @@
     "subtitle": "Gérez votre email, mot de passe et paramètres de sécurité",
     "accountInfo": "Informations du Compte",
     "accountInfoDesc": "Mettez à jour votre email et paramètres d'authentification",
+    "exportTitle": "Exporter vos données",
+    "exportDesc": "Téléchargez dans un fichier ZIP tout ce que TradeNot.es enregistre pour votre compte.",
+    "exportItemJson": "data.json : toutes les données (compte, paramètres, trades, journal, préparation quotidienne, exécutions, partages)",
+    "exportItemCsv": "trades.csv : vos trades au format du modèle d’import, réimportables",
+    "exportItemScreenshots": "screenshots/ : toutes les images téléversées",
+    "exportButton": "Télécharger l’export",
+    "exporting": "Création de l’export …",
+    "exportDone": "Export téléchargé",
+    "exportError": "Échec de l’export",
     "dangerZone": "Zone Dangereuse",
     "dangerZoneDesc": "Actions irréversibles pour votre compte",
     "resetAll": "Tout Réinitialiser",
@@ -658,7 +668,13 @@
     "whySection": {
       "badge": "Pourquoi un journal de trading?",
       "title": "Les traders performants documentent chaque trade",
-      "description": "Un journal transforme l'intuition en données : ce qui marche, ce qui ne marche pas, et quelles habitudes te freinent."
+      "description": "Un journal transforme l'intuition en données : ce qui marche, ce qui ne marche pas, et quelles habitudes te freinent.",
+      "benefit1Title": "Identifier les patterns",
+      "benefit1Desc": "Analyse automatique de vos meilleurs setups, horaires et symboles",
+      "benefit2Title": "Renforcer la discipline",
+      "benefit2Desc": "Limites journalières, score de discipline et détection automatique des trades de revanche",
+      "benefit3Title": "Mesurer la performance",
+      "benefit3Desc": "Courbe d'équité, R-multiple, espérance et plus de 20 KPIs en un coup d'œil"
     },
     "features": {
       "mfeMAE": {
@@ -1828,6 +1844,7 @@
     "needsMoreData": "Collecte des données",
     "needsMoreDataDescription": "{{current}} sur {{required}} trades enregistrés. Continuez à trader pour débloquer vos analyses personnelles.",
     "revengeScore": "Score de Revenge Trading",
+    "revengeScoreTooltipAria": "À propos du score de revenge trading",
     "revengeScoreExcellent": "Excellent",
     "revengeScoreGood": "Bon",
     "revengeScoreWarning": "À améliorer",

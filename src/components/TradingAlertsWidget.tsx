@@ -315,7 +315,7 @@ export function TradingAlertsWidget({ trades }: TradingAlertsWidgetProps) {
                     <button
                       type="button"
                       className="inline-flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                      aria-label={t("alerts.revengeScoreTooltipAria", { defaultValue: "Info" })}
+                      aria-label={t("alerts.revengeScoreTooltipAria")}
                     >
                       <Info className="h-4 w-4" />
                     </button>

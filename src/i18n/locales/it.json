@@ -119,7 +119,8 @@
     "clickForDetails": "Clicca per dettagli",
     "noTrades": "Nessuna operazione ancora. Aggiungi la tua prima operazione!",
     "tradeCount_one": "{{count}} trade",
-    "tradeCount_other": "{{count}} trade"
+    "tradeCount_other": "{{count}} trade",
+    "clickToView": "Clicca per vedere i trade"
   },
   "weekdays": {
     "mon": "Lun",
@@ -188,6 +189,7 @@
     "selectSymbolFirst": "Seleziona prima il simbolo",
     "refreshPrice": "Aggiorna prezzo",
     "side": "Lato",
+    "accountType": "Tipo di conto",
     "qty": "Quantità",
     "entryPrice": "Prezzo Entrata",
     "exitPrice": "Prezzo Uscita",
@@ -433,6 +435,15 @@
     "subtitle": "Gestisci email, password e impostazioni di sicurezza",
     "accountInfo": "Informazioni Account",
     "accountInfoDesc": "Aggiorna le tue impostazioni email e autenticazione",
+    "exportTitle": "Esporta i tuoi dati",
+    "exportDesc": "Scarica in un file ZIP tutto ciò che TradeNot.es salva per il tuo account.",
+    "exportItemJson": "data.json: tutti i dati (account, impostazioni, trade, diario, preparazione giornaliera, esecuzioni, condivisioni)",
+    "exportItemCsv": "trades.csv: i tuoi trade nel formato del modello di importazione, reimportabili",
+    "exportItemScreenshots": "screenshots/: tutte le immagini caricate",
+    "exportButton": "Scarica esportazione",
+    "exporting": "Creazione dell’esportazione …",
+    "exportDone": "Esportazione scaricata",
+    "exportError": "Esportazione non riuscita",
     "dangerZone": "Zona di Pericolo",
     "dangerZoneDesc": "Azioni irreversibili per il tuo account",
     "resetAll": "Reimposta Tutto",
@@ -648,7 +659,13 @@
     "whySection": {
       "badge": "Perché un diario di trading?",
       "title": "I trader di successo documentano ogni operazione",
-      "description": "Un diario trasforma l'istinto in dati: cosa funziona, cosa no e quali abitudini ti frenano."
+      "description": "Un diario trasforma l'istinto in dati: cosa funziona, cosa no e quali abitudini ti frenano.",
+      "benefit1Title": "Riconoscere pattern",
+      "benefit1Desc": "Analisi automatica dei tuoi migliori setup, orari e simboli",
+      "benefit2Title": "Rafforzare la disciplina",
+      "benefit2Desc": "Limiti giornalieri, punteggio di disciplina e rilevamento automatico dei revenge trade",
+      "benefit3Title": "Misurare le performance",
+      "benefit3Desc": "Curva equity, R-multiplo, aspettativa e oltre 20 KPI a colpo d'occhio"
     },
     "features": {
       "mfeMAE": {
@@ -1818,6 +1835,7 @@
     "needsMoreData": "Raccolta dati",
     "needsMoreDataDescription": "{{current}} di {{required}} operazioni registrate. Continua a fare trading per sbloccare le tue analisi personali.",
     "revengeScore": "Punteggio Revenge Trading",
+    "revengeScoreTooltipAria": "Informazioni sul punteggio di revenge trading",
     "revengeScoreExcellent": "Eccellente",
     "revengeScoreGood": "Buono",
     "revengeScoreWarning": "Da migliorare",

@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,30 +10,38 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { CookieConsent } from "./components/CookieConsent";
 import { GoalAlertsProvider } from "./components/GoalAlertsProvider";
 import { featureFlags } from "./config/featureFlags";
+// the landing page is the usual entry, everything else is loaded when it is opened
 import Landing from "./pages/Landing";
-import PreLaunch from "./pages/PreLaunch";
-import Index from "./pages/Index";
-import Trades from "./pages/Trades";
-import Days from "./pages/Days";
-import Import from "./pages/Import";
-import Journal from "./pages/Journal";
-import Settings from "./pages/Settings";
-import Account from "./pages/Account";
-import Glossary from "./pages/Glossary";
-import Reports from "./pages/Reports";
-import Auth from "./pages/Auth";
-import Kontakt from "./pages/Kontakt";
-import Hilfe from "./pages/Hilfe";
-import Status from "./pages/Status";
-import Datenschutz from "./pages/Datenschutz";
-import AGB from "./pages/AGB";
-import Impressum from "./pages/Impressum";
-import SharedTrade from "./pages/SharedTrade";
-import NotFound from "./pages/NotFound";
-import WhyJournal from "./pages/WhyJournal";
-import Features from "./pages/Features";
+const PreLaunch = lazy(() => import("./pages/PreLaunch"));
+const Index = lazy(() => import("./pages/Index"));
+const Trades = lazy(() => import("./pages/Trades"));
+const Days = lazy(() => import("./pages/Days"));
+const Import = lazy(() => import("./pages/Import"));
+const Journal = lazy(() => import("./pages/Journal"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Account = lazy(() => import("./pages/Account"));
+const Glossary = lazy(() => import("./pages/Glossary"));
+const Reports = lazy(() => import("./pages/Reports"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Kontakt = lazy(() => import("./pages/Kontakt"));
+const Hilfe = lazy(() => import("./pages/Hilfe"));
+const Status = lazy(() => import("./pages/Status"));
+const Datenschutz = lazy(() => import("./pages/Datenschutz"));
+const AGB = lazy(() => import("./pages/AGB"));
+const Impressum = lazy(() => import("./pages/Impressum"));
+const SharedTrade = lazy(() => import("./pages/SharedTrade"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const WhyJournal = lazy(() => import("./pages/WhyJournal"));
+const Features = lazy(() => import("./pages/Features"));
 
 const queryClient = new QueryClient();
+
+// shown while a page's code is loading
+const PageLoading = () => (
+  <div className="flex items-center justify-center min-h-[50vh]">
+    <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 // Conditional Home Route based on feature flags
 // Secret preview parameter: ?preview=landing to bypass PreLaunch mode
@@ -50,7 +58,7 @@ const HomeRoute = () => {
 };
 
 const App = () => (
-  <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+  <Suspense fallback={<PageLoading />}>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="tradenotes-theme">
       <TooltipProvider>
@@ -75,18 +83,21 @@ const App = () => (
                 <ProtectedRoute>
                   <GoalAlertsProvider>
                     <Layout>
-                      <Routes>
-                        <Route path="/" element={<Index />} />
-                        <Route path="/trades" element={<Trades />} />
-                        <Route path="/days" element={<Days />} />
-                        <Route path="/import" element={<Import />} />
-                        <Route path="/reports" element={<Reports />} />
-                        <Route path="/journal" element={<Journal />} />
-                        <Route path="/account" element={<Account />} />
-                        <Route path="/settings" element={<Settings />} />
-                        <Route path="/glossary" element={<Glossary />} />
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
+                      {/* inside the layout, so the sidebar stays while a page loads */}
+                      <Suspense fallback={<PageLoading />}>
+                        <Routes>
+                          <Route path="/" element={<Index />} />
+                          <Route path="/trades" element={<Trades />} />
+                          <Route path="/days" element={<Days />} />
+                          <Route path="/import" element={<Import />} />
+                          <Route path="/reports" element={<Reports />} />
+                          <Route path="/journal" element={<Journal />} />
+                          <Route path="/account" element={<Account />} />
+                          <Route path="/settings" element={<Settings />} />
+                          <Route path="/glossary" element={<Glossary />} />
+                          <Route path="*" element={<NotFound />} />
+                        </Routes>
+                      </Suspense>
                     </Layout>
                   </GoalAlertsProvider>
                 </ProtectedRoute>

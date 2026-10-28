@@ -2,7 +2,7 @@
 //   npx tsx test/smoke.ts [baseUrl] [devLogFile]
 // Signs up two users (solving the captcha), verifies them via the link the dev
 // server prints instead of mailing, and exercises the data API, isolation between
-// users, webhook import, screenshots, data reset and account deletion.
+// users, webhook import, screenshots, data export, data reset and account deletion.
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
@@ -87,7 +87,7 @@ check("settings created with defaults", settings.body.data?.[0]?.base_currency =
 const trade = {
   symbol: "ES", side: "long", qty: 1, entry_price: 5000, exit_price: 5010,
   entry_time: "2026-10-27T14:00:00Z", exit_time: "2026-10-27T15:00:00Z", pnl_net: 500,
-  market: "Futures", tags: ["test"], news_context: { a: 1 }, user_id: "00000000-0000-0000-0000-000000000000",
+  market: "Futures", tags: ["test"], user_id: "00000000-0000-0000-0000-000000000000",
 };
 const ins = await anna.db({ table: "trades", action: "insert", values: trade, returning: true });
 check("insert trade", ins.status === 200 && ins.body.data?.[0]?.pnl_net === 500, ins.body);
@@ -172,6 +172,15 @@ const shot = await anna.req("/api/screenshots", { method: "POST", body: form });
 check("screenshot upload", typeof shot.body.url === "string", shot.body);
 check("owner can read screenshot", (await anna.req(shot.body.url)).status === 200);
 check("other user cannot read screenshot", (await bob.req(shot.body.url)).status === 404);
+
+// data export: everything of the user as ZIP, without secrets and without other users' data
+const exp = await anna.req("/api/export");
+const zip = typeof exp.body === "string" ? exp.body : JSON.stringify(exp.body);
+check("export is a zip", exp.status === 200 && exp.headers.get("content-type") === "application/zip" && zip.startsWith("PK"), exp.status);
+check("export has data, csv and screenshot", zip.includes("data.json") && zip.includes("trades.csv") && zip.includes(`screenshots/${shot.body.url.split("/").pop()}`));
+check("export holds own account, no webhook key", zip.includes(`anna${stamp}@example.com`) && !zip.includes(key) && !zip.includes("webhook_api_key"));
+check("export has no data of other users", !zip.includes(`bob${stamp}@example.com`));
+check("export needs login", (await new Client().req("/api/export")).status === 401);
 
 // reset and delete
 const wrongPw = await anna.req("/api/account/reset", { method: "POST", json: { password: "falsch" } });

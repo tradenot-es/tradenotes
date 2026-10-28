@@ -119,7 +119,8 @@
     "clickForDetails": "Klicken für Details",
     "noTrades": "Noch keine Trades vorhanden. Füge deinen ersten Trade hinzu!",
     "tradeCount_one": "{{count}} Trade",
-    "tradeCount_other": "{{count}} Trades"
+    "tradeCount_other": "{{count}} Trades",
+    "clickToView": "Klicken, um die Trades zu sehen"
   },
   "calendar": {
     "politicalEventsToday": "Impact Events an diesem Tag",
@@ -188,6 +189,7 @@
     "selectSymbolFirst": "Bitte zuerst Symbol auswählen",
     "refreshPrice": "Preis aktualisieren",
     "side": "Seite",
+    "accountType": "Account-Typ",
     "qty": "Menge",
     "entryPrice": "Einstiegspreis",
     "exitPrice": "Ausstiegspreis",
@@ -279,7 +281,6 @@
       "description": "Möchten Sie diesen {{symbol}} Trade wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "deleteSuccess": "Trade erfolgreich gelöscht",
-    "accountType": "Account-Typ",
     "accountName": "Account-Name",
     "accountNamePlaceholder": "z.B. Apex Eval 1, Topstep PA",
     "accountTypes": {
@@ -442,6 +443,15 @@
     "subtitle": "Verwalte deine E-Mail, Passwort und Sicherheitseinstellungen",
     "accountInfo": "Kontoinformationen",
     "accountInfoDesc": "Aktualisiere deine E-Mail und Authentifizierungseinstellungen",
+    "exportTitle": "Deine Daten exportieren",
+    "exportDesc": "Lade alles herunter, was TradeNot.es zu deinem Konto speichert, als ZIP-Datei.",
+    "exportItemJson": "data.json: alle Daten (Konto, Einstellungen, Trades, Journal, Tagesvorbereitung, Ausführungen, Freigaben)",
+    "exportItemCsv": "trades.csv: deine Trades im Format der Importvorlage, lässt sich wieder importieren",
+    "exportItemScreenshots": "screenshots/: alle hochgeladenen Bilder",
+    "exportButton": "Export herunterladen",
+    "exporting": "Export wird erstellt …",
+    "exportDone": "Export heruntergeladen",
+    "exportError": "Export fehlgeschlagen",
     "dangerZone": "Gefahrenzone",
     "dangerZoneDesc": "Irreversible Aktionen für dein Konto",
     "resetAll": "Alles zurücksetzen",
@@ -821,7 +831,13 @@
     "whySection": {
       "badge": "Warum ein Trading Journal?",
       "title": "Erfolgreiche Trader dokumentieren jeden Trade",
-      "description": "Ein Journal macht aus Bauchgefühl Daten: was funktioniert, was nicht, und welche Gewohnheiten dich ausbremsen."
+      "description": "Ein Journal macht aus Bauchgefühl Daten: was funktioniert, was nicht, und welche Gewohnheiten dich ausbremsen.",
+      "benefit1Title": "Muster erkennen",
+      "benefit1Desc": "Automatische Analyse deiner besten Setups, Uhrzeiten und Symbole",
+      "benefit2Title": "Disziplin stärken",
+      "benefit2Desc": "Tageslimits, Disziplin-Score und automatische Erkennung von Revenge-Trades",
+      "benefit3Title": "Performance messen",
+      "benefit3Desc": "Equity Curve, R-Multiple, Expectancy und 20+ KPIs auf einen Blick"
     },
     "free": {
       "badge": "100% kostenlos",
@@ -1817,6 +1833,7 @@
     "needsMoreData": "Sammle Trading-Daten",
     "needsMoreDataDescription": "{{current}} von {{required}} Trades erfasst. Trade weiter, um deine persönlichen Auswertungen freizuschalten.",
     "revengeScore": "Revenge Trading Score",
+    "revengeScoreTooltipAria": "Info zum Revenge-Score",
     "revengeScoreExcellent": "Exzellent",
     "revengeScoreGood": "Gut",
     "revengeScoreWarning": "Verbesserungsbedarf",

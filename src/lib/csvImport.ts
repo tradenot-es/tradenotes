@@ -16,6 +16,8 @@ export interface TemplateTrade {
   tags: string[];
   setup?: string;
   note?: string;
+  accountType?: "sim" | "evaluation" | "performance" | "live";
+  accountName?: string;
 }
 
 export interface CsvExecution {
@@ -155,6 +157,8 @@ export function detectCsv(text: string): CsvImport {
   return { format: "tradingview", executions, skipped };
 }
 
+const ACCOUNT_TYPES = ["sim", "evaluation", "performance", "live"] as const;
+
 function templateTrade(headers: string[], values: string[]): TemplateTrade {
   const get = (...names: string[]) => {
     const i = headers.findIndex((h) => names.includes(h));
@@ -173,8 +177,14 @@ function templateTrade(headers: string[], values: string[]): TemplateTrade {
     tags: get("tags") ? get("tags").split(";") : [],
     setup: get("setup") || undefined,
     note: get("note") || undefined,
+    accountType: ACCOUNT_TYPES.find((type) => type === get("accounttype").toLowerCase()),
+    accountName: get("accountname") || undefined,
   };
-  if (trade.entryPrice && trade.exitPrice && trade.qty) {
+  // our own export carries the real P&L (futures need the point value, which the template lacks)
+  const pnl = get("pnlnet", "pnl");
+  if (pnl) {
+    trade.pnlNet = parseNumber(pnl);
+  } else if (trade.entryPrice && trade.exitPrice && trade.qty) {
     trade.pnlNet = (trade.exitPrice - trade.entryPrice) * trade.qty * (trade.side === "long" ? 1 : -1) - trade.fees;
   }
   return trade;

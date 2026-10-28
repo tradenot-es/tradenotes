@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CreditCard, CheckCircle, XCircle, AlertTriangle, Trophy, Trash2 } from "lucide-react";
+import { User, Lock, Mail, ShieldCheck, QrCode, HelpCircle, CheckCircle, XCircle, AlertTriangle, Trophy, Trash2, Download } from "lucide-react";
 import { AchievementsOverview } from "@/components/AchievementsOverview";
 import { toast } from "sonner";
 import { apiFetch, db } from "@/lib/api";
@@ -51,6 +51,8 @@ const Account = () => {
   const [resetConfirmed, setResetConfirmed] = useState(false);
   const [resetting, setResetting] = useState(false);
   const [resetSuccess, setResetSuccess] = useState(false);
+
+  const [exporting, setExporting] = useState(false);
 
   // Delete account states
   const [showDeleteAccountDialog, setShowDeleteAccountDialog] = useState(false);
@@ -240,6 +242,27 @@ const Account = () => {
     setVerifyCode("");
     setBackupCodes([]);
     toast.success(t("settings.mfaEnabled"));
+  };
+
+  const handleExport = async () => {
+    setExporting(true);
+    try {
+      const response = await fetch('/api/export', { credentials: 'include' });
+      if (!response.ok) throw new Error(`export: ${response.status}`);
+      const name = response.headers.get('Content-Disposition')?.match(/filename="(.+)"/)?.[1] ?? 'tradenotes-export.zip';
+      const url = window.URL.createObjectURL(await response.blob());
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      a.click();
+      window.URL.revokeObjectURL(url);
+      toast.success(t("account.exportDone"));
+    } catch (error) {
+      console.error('Export failed:', error);
+      toast.error(t("account.exportError"));
+    } finally {
+      setExporting(false);
+    }
   };
 
   const handleResetAllData = async () => {
@@ -507,6 +530,28 @@ const Account = () => {
                   </Button>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+
+          {/* Data export */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Download className="h-5 w-5" />
+                {t("account.exportTitle")}
+              </CardTitle>
+              <CardDescription>{t("account.exportDesc")}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <ul className="text-sm text-muted-foreground list-disc pl-5 space-y-1">
+                <li>{t("account.exportItemJson")}</li>
+                <li>{t("account.exportItemCsv")}</li>
+                <li>{t("account.exportItemScreenshots")}</li>
+              </ul>
+              <Button onClick={handleExport} disabled={exporting}>
+                <Download className="h-4 w-4 mr-2" />
+                {exporting ? t("account.exporting") : t("account.exportButton")}
+              </Button>
             </CardContent>
           </Card>
 
