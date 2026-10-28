@@ -62,10 +62,19 @@ export function utcToZoned(utcMs: number, zone: string): { date: string; time: s
   return { date: `${w.year}-${pad(w.month)}-${pad(w.day)}`, time: `${pad(w.hour)}:${pad(w.minute)}` };
 }
 
-/** Short zone name at that instant in the given language, e.g. "MEZ", "EDT", "GMT+9". */
-export function zoneAbbreviation(utcMs: number, zone: string, language: string): string {
-  const part = new Intl.DateTimeFormat(language, { timeZone: zone, timeZoneName: "short" })
+function shortName(utcMs: number, zone: string, language: string): string | undefined {
+  return new Intl.DateTimeFormat(language, { timeZone: zone, timeZoneName: "short" })
     .formatToParts(new Date(utcMs))
-    .find((x) => x.type === "timeZoneName");
-  return part?.value ?? zone;
+    .find((x) => x.type === "timeZoneName")?.value;
+}
+
+/**
+ * Short zone name at that instant in the given language, e.g. "MEZ", "EDT", "GMT+9". Many
+ * languages only know "GMT-4" for US zones; then the English name (EDT) is clearer.
+ */
+export function zoneAbbreviation(utcMs: number, zone: string, language: string): string {
+  const local = shortName(utcMs, zone, language) ?? zone;
+  if (!/^(GMT|UTC)[+-]/.test(local)) return local;
+  const english = shortName(utcMs, zone, "en-US");
+  return english && !/^(GMT|UTC)[+-]/.test(english) ? english : local;
 }

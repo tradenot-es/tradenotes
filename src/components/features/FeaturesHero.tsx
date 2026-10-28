@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/components/ui/badge";
@@ -190,47 +190,55 @@ export function FeaturesHero({ onCategoryClick, onSearchChange }: FeaturesHeroPr
               style={{ transform: `translateY(${-parallaxOffset * 0.5}px)` }}
             >
               {/* Top Left - discipline & score */}
-              <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
-                <img
-                  src={shot("discipline-score")}
-                  alt={`${t("discipline.title")} · ${t("score.title")}`}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="float-slow" style={{ "--d": "0s" } as CSSProperties}>
+                <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
+                  <img
+                    src={shot("discipline-score")}
+                    alt={`${t("discipline.title")} · ${t("score.title")}`}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
               {/* Top Right - day view */}
-              <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
-                <img
-                  src={shot("days")}
-                  alt={t("days.title")}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="float-slow" style={{ "--d": "-1.7s" } as CSSProperties}>
+                <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
+                  <img
+                    src={shot("days")}
+                    alt={t("days.title")}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
               {/* Bottom Left - behaviour report */}
-              <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
-                <img
-                  src={shot("reports-behavior")}
-                  alt={t("behavior.reportTitle")}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="float-slow" style={{ "--d": "-3.4s" } as CSSProperties}>
+                <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
+                  <img
+                    src={shot("reports-behavior")}
+                    alt={t("behavior.reportTitle")}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
 
               {/* Bottom Right - equity curve */}
-              <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
-                <img
-                  src={shot("equity")}
-                  alt={t("dashboard.equityCurve")}
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="float-slow" style={{ "--d": "-5.1s" } as CSSProperties}>
+                <div className="feature-collage-item col-span-1 row-span-1 aspect-video">
+                  <img
+                    src={shot("equity")}
+                    alt={t("dashboard.equityCurve")}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
 

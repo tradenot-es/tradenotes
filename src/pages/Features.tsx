@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { useScreens } from "@/lib/screens";
 import { useSeo } from "@/hooks/useSeo";
-import { AdherenceScene, CsvScene, FlexScene, InsightsScene, SyncScene } from "@/components/motion/Scenes";
+import { AdherenceScene, CalendarScene, CsvScene, EquityScene, FlexScene, InsightsScene, PositionScene, SimulatorScene, SyncScene } from "@/components/motion/Scenes";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import { Button } from "@/components/ui/button";
@@ -116,7 +116,7 @@ const Features = () => {
           title: t("features.items.riskSimulator.title"),
           description: t("features.items.riskSimulator.description"),
           benefits: t("features.items.riskSimulator.benefits", { returnObjects: true }) as string[],
-          illustration: shot("reports-simulator"),
+          visual: <SimulatorScene />,
         },
       ],
     },
@@ -184,7 +184,7 @@ const Features = () => {
           title: t("features.items.positionCalc.title"),
           description: t("features.items.positionCalc.description"),
           benefits: t("features.items.positionCalc.benefits", { returnObjects: true }) as string[],
-          illustration: shot("position-calc"),
+          visual: <PositionScene />,
         },
       ],
     },
@@ -218,7 +218,7 @@ const Features = () => {
           title: t("features.items.equityCurve.title"),
           description: t("features.items.equityCurve.description"),
           benefits: t("features.items.equityCurve.benefits", { returnObjects: true }) as string[],
-          illustration: shot("equity"),
+          visual: <EquityScene />,
         },
         {
           icon: <Activity className="h-6 w-6" />,
@@ -286,7 +286,7 @@ const Features = () => {
           title: t("features.items.politicalEvents.title"),
           description: t("features.items.politicalEvents.description"),
           benefits: t("features.items.politicalEvents.benefits", { returnObjects: true }) as string[],
-          illustration: shot("trades"),
+          visual: <CalendarScene />,
         },
       ],
     },

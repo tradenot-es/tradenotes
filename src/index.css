@@ -369,7 +369,9 @@ All colors MUST be HSL.
   .scene-drop,
   .scene-skip,
   .scene-focus,
-  .scene-spin {
+  .scene-spin,
+  .scene-draw,
+  .scene-cycle {
     animation-duration: 6s;
     animation-iteration-count: infinite;
     animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
@@ -384,6 +386,8 @@ All colors MUST be HSL.
   .scene-skip { animation-name: scene-skip; }
   .scene-focus { animation-name: scene-focus; }
   .scene-spin { animation-name: scene-spin; animation-timing-function: linear; }
+  .scene-draw { animation-name: scene-draw; animation-timing-function: ease-out; }
+  .scene-cycle { animation-name: scene-cycle; }
   [data-scene]:not([data-playing]) * { animation-play-state: paused !important; }
 
   @keyframes scene-row {
@@ -424,9 +428,30 @@ All colors MUST be HSL.
     0%, 22% { box-shadow: 0 0 0 2px hsl(var(--primary) / 0.9), 0 0 24px -4px hsl(var(--primary) / 0.6); }
     28%, 100% { box-shadow: 0 0 0 0 transparent; }
   }
+  /* SVG lines with pathLength="1": drawn, held, faded */
+  @keyframes scene-draw {
+    0% { stroke-dashoffset: 1; opacity: 1; }
+    55%, 88% { stroke-dashoffset: 0; opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+  /* three labels taking turns (delays 0 s, 2 s, 4 s) */
+  @keyframes scene-cycle {
+    0% { opacity: 0; transform: translateY(4px); }
+    5%, 30% { opacity: 1; transform: none; }
+    35%, 100% { opacity: 0; transform: translateY(-4px); }
+  }
   @keyframes scene-spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+  }
+}
+
+/* slow drift for the screenshot collage on the feature page */
+@layer utilities {
+  .float-slow { animation: float-slow 7s ease-in-out infinite alternate; animation-delay: var(--d, 0s); }
+  @keyframes float-slow {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
   }
 }
 
@@ -434,5 +459,9 @@ All colors MUST be HSL.
   /* the end state of every scene, without motion */
   .scene-row, .scene-pop, .scene-drop, .scene-focus, .scene-spin { animation: none !important; opacity: 1 !important; transform: none !important; }
   .scene-skip { animation: none !important; opacity: 0.4 !important; text-decoration-color: currentColor !important; }
+  .scene-draw { animation: none !important; stroke-dashoffset: 0 !important; opacity: 1 !important; }
+  .scene-cycle { animation: none !important; opacity: 0 !important; }
+  .scene-cycle:first-child { opacity: 1 !important; transform: none !important; }
+  .float-slow { animation: none !important; }
   .scene-travel, .scene-scan { display: none; }
 }

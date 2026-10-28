@@ -1,5 +1,5 @@
 // Checks for src/lib/timezone.ts around the DST switches: npx tsx src/lib/timezone.check.ts
-import { utcToZoned, zonedToUtc } from "./timezone";
+import { utcToZoned, zonedToUtc, zoneAbbreviation } from "./timezone";
 
 let failures = 0;
 function check(name: string, actual: unknown, expected: unknown) {
@@ -36,6 +36,11 @@ check("NFP December in Sydney", utcToZoned(zonedToUtc("2026-12-04", "08:30", "Am
 check("New York 08:30 on switch day (spring)", iso(zonedToUtc("2027-03-14", "08:30", "America/New_York")), "2027-03-14T12:30");
 check("New York 08:30 on switch day (autumn)", iso(zonedToUtc("2026-11-01", "08:30", "America/New_York")), "2026-11-01T13:30");
 check("India (no DST, half-hour offset)", utcToZoned(fomc, "Asia/Kolkata"), { date: "2026-10-28", time: "23:30" });
+
+// zone names: German has no name for US zones, the English one is used then
+check("German name for Berlin in winter", zoneAbbreviation(fomcDec, "Europe/Berlin", "de"), "MEZ");
+check("US zone in German falls back to English", zoneAbbreviation(fomc, "America/New_York", "de"), "EDT");
+check("US zone in winter", zoneAbbreviation(fomcDec, "America/New_York", "de"), "EST");
 
 console.log(failures ? `\n${failures} check(s) failed` : "\nall time zone checks passed");
 process.exit(failures ? 1 : 0);

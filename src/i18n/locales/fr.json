@@ -2397,6 +2397,22 @@
     },
     "insights": {
       "label": "Animation : groupes les plus forts et les plus faibles en barres"
+    },
+    "calendar": {
+      "label": "Animation : les événements apparaissent dans le calendrier de la semaine, l’heure de la décision de la Fed alterne entre New York, Berlin et Tokyo",
+      "caption": "Fed, BCE, Trump : chaque heure dans votre fuseau horaire.",
+      "tokyo": "Tokyo"
+    },
+    "equity": {
+      "label": "Animation : la courbe des capitaux se dessine pendant que le gain net augmente",
+      "caption": "L’évolution de votre compte, trade après trade."
+    },
+    "simulator": {
+      "label": "Animation : de nombreuses trajectoires simulées des mêmes trades se déploient en éventail, avec le pire cas, la médiane et le meilleur cas"
+    },
+    "position": {
+      "label": "Animation : taille du compte, risque et distance du stop donnent le montant du risque et la taille de position",
+      "caption": "Le risque en entrée, la taille de position en sortie."
     }
   }
 }

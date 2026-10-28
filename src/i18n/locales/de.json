@@ -1652,9 +1652,9 @@
   },
   "positionCalculator": {
     "title": "Positionsgrößen-Rechner",
-    "accountSize": "Account-Größe",
+    "accountSize": "Kontogröße",
     "riskPercent": "Risiko pro Trade",
-    "stopDistance": "Stop Distance",
+    "stopDistance": "Stop-Abstand",
     "riskAmount": "Risikobetrag",
     "calculatedSize": "Berechnete Position",
     "positionValue": "Positionswert",
@@ -2386,6 +2386,22 @@
     },
     "insights": {
       "label": "Animation: stärkste und schwächste Gruppen als Balken"
+    },
+    "calendar": {
+      "label": "Animation: Termine erscheinen im Wochenkalender, die Uhrzeit des Fed-Zinsentscheids wechselt zwischen New York, Berlin und Tokio",
+      "caption": "Fed, EZB, Trump: jede Uhrzeit in deiner Zeitzone.",
+      "tokyo": "Tokio"
+    },
+    "equity": {
+      "label": "Animation: die Equity-Kurve zeichnet sich, der Gesamtgewinn zählt hoch",
+      "caption": "Dein Kontoverlauf, Trade für Trade."
+    },
+    "simulator": {
+      "label": "Animation: viele simulierte Verläufe derselben Trades fächern sich auf, dazu schlechtester, mittlerer und bester Fall"
+    },
+    "position": {
+      "label": "Animation: Kontogröße, Risiko und Stop-Abstand ergeben Risikobetrag und Positionsgröße",
+      "caption": "Risiko rein, Positionsgröße raus."
     }
   }
 }

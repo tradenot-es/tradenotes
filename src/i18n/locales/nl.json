@@ -2397,6 +2397,22 @@
     },
     "insights": {
       "label": "Animatie: sterkste en zwakste groepen als balken"
+    },
+    "calendar": {
+      "label": "Animatie: gebeurtenissen verschijnen in de weekkalender, de tijd van het Fed-besluit wisselt tussen New York, Berlijn en Tokio",
+      "caption": "Fed, ECB, Trump: elke tijd in jouw tijdzone.",
+      "tokyo": "Tokio"
+    },
+    "equity": {
+      "label": "Animatie: de equitycurve tekent zichzelf terwijl de nettowinst oploopt",
+      "caption": "Het verloop van je account, trade na trade."
+    },
+    "simulator": {
+      "label": "Animatie: veel gesimuleerde verlopen van dezelfde trades waaieren uit, met slechtste, mediane en beste uitkomst"
+    },
+    "position": {
+      "label": "Animatie: accountgrootte, risico en stopafstand geven het risicobedrag en de positiegrootte",
+      "caption": "Risico erin, positiegrootte eruit."
     }
   }
 }

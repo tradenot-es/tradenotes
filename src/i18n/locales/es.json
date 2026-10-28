@@ -2397,6 +2397,22 @@
     },
     "insights": {
       "label": "Animación: grupos más fuertes y más débiles como barras"
+    },
+    "calendar": {
+      "label": "Animación: los eventos aparecen en el calendario semanal y la hora de la decisión de la Fed cambia entre Nueva York, Berlín y Tokio",
+      "caption": "Fed, BCE, Trump: cada hora en tu zona horaria.",
+      "tokyo": "Tokio"
+    },
+    "equity": {
+      "label": "Animación: la curva de capital se dibuja mientras el beneficio neto sube",
+      "caption": "La evolución de tu cuenta, operación a operación."
+    },
+    "simulator": {
+      "label": "Animación: muchas trayectorias simuladas de las mismas operaciones se abren en abanico, con el peor caso, la mediana y el mejor caso"
+    },
+    "position": {
+      "label": "Animación: tamaño de cuenta, riesgo y distancia del stop dan el importe de riesgo y el tamaño de la posición",
+      "caption": "Entra el riesgo, sale el tamaño de la posición."
     }
   }
 }

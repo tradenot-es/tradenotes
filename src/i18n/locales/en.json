@@ -2378,6 +2378,22 @@
     },
     "insights": {
       "label": "Animation: strongest and weakest groups as bars"
+    },
+    "calendar": {
+      "label": "Animation: events appear in the week calendar, the time of the Fed decision switches between New York, Berlin and Tokyo",
+      "caption": "Fed, ECB, Trump: every time in your time zone.",
+      "tokyo": "Tokyo"
+    },
+    "equity": {
+      "label": "Animation: the equity curve draws itself while the net profit counts up",
+      "caption": "Your account curve, trade by trade."
+    },
+    "simulator": {
+      "label": "Animation: many simulated paths of the same trades fan out, with worst, median and best case"
+    },
+    "position": {
+      "label": "Animation: account size, risk and stop distance give the risk amount and position size",
+      "caption": "Risk in, position size out."
     }
   }
 }
