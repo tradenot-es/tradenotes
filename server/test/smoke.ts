@@ -55,11 +55,11 @@ async function solveCaptcha(c: Client) {
   throw new Error("captcha unsolvable");
 }
 
-async function signUpAndVerify(email: string, firstName: string) {
+async function signUpAndVerify(email: string, nickname: string) {
   const c = new Client();
   const r = await c.req("/api/auth/sign-up/email", {
     method: "POST",
-    json: { email, password: "Passwort123", name: firstName, firstName, lastName: "Test", altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
+    json: { email, password: "Passwort123", name: nickname, altcha: await solveCaptcha(c), callbackURL: "/dashboard" },
   });
   check(`sign up ${email}`, r.status === 200, r.body);
   const login = await c.req("/api/auth/sign-in/email", { method: "POST", json: { email, password: "Passwort123" } });
@@ -77,10 +77,13 @@ async function signUpAndVerify(email: string, firstName: string) {
 
 const stamp = Date.now();
 const anna = await signUpAndVerify(`anna${stamp}@example.com`, "Anna");
-const bob = await signUpAndVerify(`bob${stamp}@example.com`, "Bob");
+// without nickname: it is optional
+const bob = await signUpAndVerify(`bob${stamp}@example.com`, "");
 
-const profile = await anna.db({ table: "profiles", action: "select", columns: "first_name, last_name" });
-check("profile created on sign up", profile.body.data?.[0]?.first_name === "Anna", profile.body);
+const profile = await anna.db({ table: "profiles", action: "select", columns: "nickname" });
+check("profile created on sign up with nickname", profile.body.data?.[0]?.nickname === "Anna", profile.body);
+const bobProfile = await bob.db({ table: "profiles", action: "select", columns: "nickname" });
+check("sign up without nickname", bobProfile.body.data?.[0]?.nickname === null, bobProfile.body);
 const settings = await anna.db({ table: "user_settings", action: "select", columns: "base_currency, setup_definitions" });
 check("settings created with defaults", settings.body.data?.[0]?.base_currency === "USD", settings.body);
 

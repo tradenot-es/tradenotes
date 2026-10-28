@@ -51,8 +51,9 @@
     "alreadyHaveAccount": "Already have an account? Log in",
     "checkEmail": "Please confirm your email address using the link we sent you.",
     "confirmPassword": "Confirm password",
-    "firstName": "First name",
-    "lastName": "Last name",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "e.g. Alex or ES_Scalper",
+    "nicknameHint": "We use it to greet you in the app and in emails; your mentor sees it when you share a trade. A real name is not needed.",
     "privacyLink": "Privacy Policy",
     "termsLink": "Terms of Use",
     "signup": "Create account",
@@ -511,10 +512,6 @@
     "settingsSaved": "Settings saved successfully",
     "saveError": "Error saving settings",
     "email": "Email Address",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "firstNamePlaceholder": "Your first name",
-    "lastNamePlaceholder": "Your last name",
     "updateProfile": "Update Profile",
     "profileUpdated": "Profile successfully updated",
     "emailHelp": "Your login email address. A confirmation link will be sent to verify your new email address.",
@@ -1228,9 +1225,6 @@
     "passwordMin": "Password must be at least 8 characters",
     "passwordUppercase": "Password must contain an uppercase letter",
     "passwordNumber": "Password must contain a number",
-    "firstNameRequired": "First name is required",
-    "firstNameTooLong": "First name must be 50 characters or less",
-    "lastNameTooLong": "Last name must be 50 characters or less",
     "symbolRequired": "Symbol is required",
     "symbolInvalid": "Only uppercase letters and numbers allowed",
     "symbolTooLong": "Symbol must be 10 characters or less",
@@ -1254,7 +1248,8 @@
     "checklistMaxReached": "Maximum 10 checklist items per setup",
     "slippageInvalid": "Slippage must be between 0 and 100%",
     "passwordMismatch": "Passwords do not match",
-    "termsRequired": "Please accept the terms of use and the privacy policy"
+    "termsRequired": "Please accept the terms of use and the privacy policy",
+    "nicknameTooLong": "The nickname can be at most 40 characters long."
   },
   "glossary": {
     "searchPlaceholder": "Search terms...",
@@ -1730,7 +1725,7 @@
         },
         {
           "title": "What we store",
-          "text": "- Account: email address, password (only as a hash, never in plain text) and, if you choose, first and last name. If you turn on two-factor login, also its secret key and backup codes.\n- Login: while you are logged in, we store the IP address and browser identifier (user agent) with your session.\n- Your trading data: trades, notes, journal entries, daily prep, settings, goals and uploaded screenshots. With automatic import, also the executions from your broker (e.g. account name, instrument, price, time, fees).\n- Connections: your API key for the NinjaTrader add-on and, if you connect Interactive Brokers, your Flex token and query ID.\n- Contact form: name, email address, subject and message. The message is forwarded to us by email and not stored in the database.\n- Feedback from the app: type, title and text, and if you choose, technical details (page, browser, language, time zone, window size). It is sent to us by email so we can reply.\n\nWhen you open the website, the server necessarily processes your IP address to deliver the pages. We keep no access logs or visitor statistics."
+          "text": "- Account: email address, password (only as a hash, never in plain text) and, if you choose, a nickname. If you turn on two-factor login, also its secret key and backup codes.\n- Login: while you are logged in, we store the IP address and browser identifier (user agent) with your session.\n- Your trading data: trades, notes, journal entries, daily prep, settings, goals and uploaded screenshots. With automatic import, also the executions from your broker (e.g. account name, instrument, price, time, fees).\n- Connections: your API key for the NinjaTrader add-on and, if you connect Interactive Brokers, your Flex token and query ID.\n- Contact form: name, email address, subject and message. The message is forwarded to us by email and not stored in the database.\n- Feedback from the app: type, title and text, and if you choose, technical details (page, browser, language, time zone, window size). It is sent to us by email so we can reply.\n\nWhen you open the website, the server necessarily processes your IP address to deliver the pages. We keep no access logs or visitor statistics."
         },
         {
           "title": "Purpose and legal basis",

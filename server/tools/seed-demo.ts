@@ -27,7 +27,7 @@ await pool.query(`delete from "user" where email = $1`, [DEMO_EMAIL]);
 const signUp = await fetch(`${base}/api/auth/sign-up/email`, {
   method: "POST",
   headers: { "content-type": "application/json", origin: "http://localhost:8080" },
-  body: JSON.stringify({ email: DEMO_EMAIL, password: DEMO_PASSWORD, name: "Alex", firstName: "Alex", lastName: "Demo", altcha: await solveCaptcha() }),
+  body: JSON.stringify({ email: DEMO_EMAIL, password: DEMO_PASSWORD, name: "Alex", altcha: await solveCaptcha() }),
 });
 if (!signUp.ok) throw new Error(`sign up failed: ${signUp.status} ${await signUp.text()}`);
 const { rows } = await pool.query(`update "user" set "emailVerified" = true where email = $1 returning id`, [DEMO_EMAIL]);

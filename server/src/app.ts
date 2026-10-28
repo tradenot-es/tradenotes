@@ -76,7 +76,7 @@ const SHARED_COLUMNS = `t.symbol, t.market, t.side, t.qty, t.entry_price, t.exit
 async function sharedTrade(token: string) {
   if (!/^[A-Za-z0-9_-]{20,64}$/.test(token)) return null;
   const { rows } = await pool.query(
-    `select ${SHARED_COLUMNS}, s.show_note, p.first_name, coalesce(us.base_currency, 'USD') as currency
+    `select ${SHARED_COLUMNS}, s.show_note, p.nickname, coalesce(us.base_currency, 'USD') as currency
      from trade_shares s join trades t on t.id = s.trade_id left join profiles p on p.id = s.user_id
        left join user_settings us on us.user_id = s.user_id
      where s.token = $1`,
@@ -89,11 +89,11 @@ app.get("/api/public/share/:token", async (c) => {
   const row = await sharedTrade(c.req.param("token"));
   if (!row) return c.json({ error: "Not found" }, 404);
   await pool.query("update trade_shares set view_count = view_count + 1, last_viewed_at = now() where token = $1", [c.req.param("token")]);
-  const { user_id, show_note, first_name, currency, note, screenshot_url, ...trade } = row;
+  const { user_id, show_note, nickname, currency, note, screenshot_url, ...trade } = row;
   return c.json(
     {
       trade: { ...trade, note: show_note ? note : null, has_screenshot: !!screenshot_url },
-      sharedBy: first_name ?? null,
+      sharedBy: nickname ?? null,
       currency,
     },
     200,

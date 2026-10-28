@@ -4,10 +4,7 @@ import { useAuth } from "./useAuth";
 
 export function useProfile() {
   const { user } = useAuth();
-  const [profile, setProfile] = useState<{
-    firstName: string | null;
-    lastName: string | null;
-  } | null>(null);
+  const [profile, setProfile] = useState<{ nickname: string | null } | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,16 +19,13 @@ export function useProfile() {
     try {
       const { data, error } = await db
         .from('profiles')
-        .select('first_name, last_name')
+        .select('nickname')
         .eq('id', user?.id)
         .single();
 
       if (error && error.code !== 'PGRST116') throw error;
       
-      setProfile({
-        firstName: data?.first_name || null,
-        lastName: data?.last_name || null,
-      });
+      setProfile({ nickname: data?.nickname || null });
     } catch (error) {
       console.error('Error loading profile:', error);
     } finally {
@@ -39,9 +33,7 @@ export function useProfile() {
     }
   };
 
-  const displayName = profile?.firstName 
-    ? `${profile.firstName}${profile.lastName ? ' ' + profile.lastName : ''}`
-    : "Trader";
+  const displayName = profile?.nickname || "Trader";
 
   return { profile, displayName, loading };
 }

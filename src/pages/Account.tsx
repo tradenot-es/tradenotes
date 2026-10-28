@@ -26,8 +26,7 @@ const Account = () => {
   
   // Account states
   const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -73,14 +72,13 @@ const Account = () => {
     try {
       const { data, error } = await db
         .from('profiles')
-        .select('first_name, last_name')
+        .select('nickname')
         .maybeSingle();
 
       if (error && error.code !== 'PGRST116') throw error;
       
       if (data) {
-        setFirstName(data.first_name || "");
-        setLastName(data.last_name || "");
+        setNickname(data.nickname || "");
       }
     } catch (error) {
       console.error('Error loading profile:', error);
@@ -113,42 +111,17 @@ const Account = () => {
   };
 
   const handleUpdateProfile = async () => {
-    // Validate first name is required
-    const profileSchema = z.object({
-      firstName: z.string()
-        .trim()
-        .min(1, { message: t("validation.firstNameRequired") })
-        .max(50, { message: t("validation.firstNameTooLong") }),
-      lastName: z.string()
-        .trim()
-        .max(50, { message: t("validation.lastNameTooLong") })
-        .optional(),
-    });
-
-    const validation = profileSchema.safeParse({ 
-      firstName: firstName.trim(), 
-      lastName: lastName.trim() || undefined 
-    });
-    
-    if (!validation.success) {
-      const firstError = validation.error.errors[0];
-      toast.error(firstError.message);
+    const value = nickname.trim();
+    if (value.length > 40) {
+      toast.error(t("validation.nicknameTooLong"));
       return;
     }
-
-    try {
-      const { error } = await db
-        .from('profiles')
-        .upsert({
-          first_name: firstName.trim(),
-          last_name: lastName.trim() || null,
-        });
-      
-      if (error) throw error;
-      toast.success(t("settings.profileUpdated"));
-    } catch (error: any) {
+    const { error } = await db.from('profiles').upsert({ nickname: value || null });
+    if (error) {
       toast.error(error.message);
+      return;
     }
+    toast.success(t("settings.profileUpdated"));
   };
 
   const handleUpdateEmail = async () => {
@@ -366,33 +339,19 @@ const Account = () => {
               <CardDescription>{t("account.accountInfoDesc")}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">
-                    {t("settings.firstName")} <span className="text-destructive">*</span>
-                  </Label>
-                  <Input
-                    id="firstName"
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder={t("settings.firstNamePlaceholder")}
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">
-                    {t("settings.lastName")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
-                  </Label>
-                  <Input
-                    id="lastName"
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                    placeholder={t("settings.lastNamePlaceholder")}
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="nickname">
+                  {t("auth.nickname")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
+                </Label>
+                <Input
+                  id="nickname"
+                  type="text"
+                  value={nickname}
+                  maxLength={40}
+                  onChange={(e) => setNickname(e.target.value)}
+                  placeholder={t("auth.nicknamePlaceholder")}
+                />
+                <p className="text-xs text-muted-foreground">{t("auth.nicknameHint")}</p>
               </div>
               <Button onClick={handleUpdateProfile} className="w-full">
                 <User className="h-4 w-4 mr-2" />

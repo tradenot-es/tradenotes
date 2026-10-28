@@ -15,6 +15,12 @@ const devOrigins = () =>
     .filter((i) => i?.family === "IPv4")
     .map((i) => `http://${i!.address === "127.0.0.1" ? "localhost" : i!.address}:8080`);
 
+/** Name for the mail greeting: the nickname from the profile, if any. */
+async function greeting(user: { id: string; name?: string | null }) {
+  const { rows } = await pool.query("select nickname from profiles where id = $1", [user.id]);
+  return rows[0]?.nickname ?? (user.name?.trim() || undefined);
+}
+
 const uiLang = (request?: Request) =>
   request?.headers.get("x-ui-lang") ?? request?.headers.get("accept-language") ?? "en";
 
@@ -32,14 +38,10 @@ export const auth = betterAuth({
     database: { generateId: "uuid" },
   },
   user: {
-    additionalFields: {
-      firstName: { type: "string", required: false, input: true },
-      lastName: { type: "string", required: false, input: true },
-    },
     changeEmail: {
       enabled: true,
       sendChangeEmailConfirmation: async ({ user, url }, request) => {
-        await sendMail("change_email", user.email, { url, name: user.name, lang: uiLang(request) });
+        await sendMail("change_email", user.email, { url, name: await greeting(user), lang: uiLang(request) });
       },
     },
     deleteUser: {
@@ -56,7 +58,7 @@ export const auth = betterAuth({
     minPasswordLength: 8,
     revokeSessionsOnPasswordReset: true,
     sendResetPassword: async ({ user, url }, request) => {
-      await sendMail("reset", user.email, { url, name: user.name, lang: uiLang(request) });
+      await sendMail("reset", user.email, { url, name: await greeting(user), lang: uiLang(request) });
     },
   },
   emailVerification: {
@@ -66,7 +68,7 @@ export const auth = betterAuth({
     sendVerificationEmail: async ({ user, url }, request) => {
       // after an email change, the user is already verified and this goes to the new address
       const type = user.emailVerified ? "change_email_new" : "verify";
-      await sendMail(type, user.email, { url, name: user.name, lang: uiLang(request) });
+      await sendMail(type, user.email, { url, name: await greeting(user), lang: uiLang(request) });
     },
   },
   plugins: [twoFactor({ issuer: "TradeNot.es" })],
@@ -81,13 +83,9 @@ export const auth = betterAuth({
     user: {
       create: {
         after: async (user) => {
-          const u = user as typeof user & { firstName?: string | null; lastName?: string | null };
-          await pool.query("insert into user_settings (user_id) values ($1)", [u.id]);
-          await pool.query("insert into profiles (id, first_name, last_name) values ($1, $2, $3)", [
-            u.id,
-            u.firstName?.trim() || u.name?.trim() || "Trader",
-            u.lastName?.trim() || null,
-          ]);
+          await pool.query("insert into user_settings (user_id) values ($1)", [user.id]);
+          // the optional nickname from sign-up travels in Better Auth's "name"
+          await pool.query("insert into profiles (id, nickname) values ($1, $2)", [user.id, user.name?.trim().slice(0, 40) || null]);
         },
       },
     },

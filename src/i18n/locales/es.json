@@ -52,8 +52,9 @@
     "alreadyHaveAccount": "¿Ya tienes una cuenta? Inicia sesión",
     "checkEmail": "Confirma tu dirección de correo con el enlace que te hemos enviado.",
     "confirmPassword": "Confirmar contraseña",
-    "firstName": "Nombre",
-    "lastName": "Apellido",
+    "nickname": "Apodo",
+    "nicknamePlaceholder": "p. ej. Alex o ES_Scalper",
+    "nicknameHint": "Lo usamos para saludarte en la app y en los correos; tu mentor lo ve cuando compartes una operación. No hace falta tu nombre real.",
     "privacyLink": "Política de privacidad",
     "termsLink": "Condiciones de uso",
     "signup": "Crear cuenta",
@@ -520,10 +521,6 @@
     "settingsSaved": "Configuración guardada exitosamente",
     "saveError": "Error al guardar la configuración",
     "email": "Dirección de Correo Electrónico",
-    "firstName": "Nombre",
-    "lastName": "Apellido",
-    "firstNamePlaceholder": "Tu nombre",
-    "lastNamePlaceholder": "Tu apellido",
     "updateProfile": "Actualizar Perfil",
     "profileUpdated": "Perfil actualizado exitosamente",
     "emailHelp": "Tu dirección de correo electrónico de inicio de sesión. Se enviará un enlace de confirmación para verificar tu nueva dirección de correo.",
@@ -1114,9 +1111,6 @@
     "passwordMin": "La contraseña debe tener al menos 8 caracteres",
     "passwordUppercase": "La contraseña debe contener una letra mayúscula",
     "passwordNumber": "La contraseña debe contener un número",
-    "firstNameRequired": "El nombre es obligatorio",
-    "firstNameTooLong": "El nombre debe tener 50 caracteres o menos",
-    "lastNameTooLong": "El apellido debe tener 50 caracteres o menos",
     "symbolRequired": "El símbolo es obligatorio",
     "symbolInvalid": "Solo se permiten letras mayúsculas y números",
     "symbolTooLong": "El símbolo debe tener 10 caracteres o menos",
@@ -1140,7 +1134,8 @@
     "checklistMaxReached": "Máximo 10 elementos de lista por setup",
     "slippageInvalid": "El slippage debe estar entre 0 y 100%",
     "passwordMismatch": "Las contraseñas no coinciden",
-    "termsRequired": "Acepta las condiciones de uso y la política de privacidad"
+    "termsRequired": "Acepta las condiciones de uso y la política de privacidad",
+    "nicknameTooLong": "El apodo puede tener como máximo 40 caracteres."
   },
   "glossary": {
     "searchPlaceholder": "Buscar términos...",
@@ -1749,7 +1744,7 @@
         },
         {
           "title": "Qué datos guardamos",
-          "text": "- Cuenta: dirección de correo, contraseña (solo como hash, nunca en texto plano) y, si quieres, nombre y apellidos. Si activas el inicio de sesión en dos pasos, también su clave secreta y los códigos de respaldo.\n- Inicio de sesión: mientras tienes la sesión iniciada, guardamos con ella la dirección IP y el identificador del navegador (user agent).\n- Tus datos de trading: operaciones, notas, entradas del diario, preparación diaria, ajustes, objetivos y capturas subidas. Con la importación automática, también las ejecuciones de tu bróker (p. ej. nombre de la cuenta, instrumento, precio, hora, comisiones).\n- Conexiones: tu clave API para el complemento de NinjaTrader y, si conectas Interactive Brokers, tu token Flex y el ID de la consulta.\n- Formulario de contacto: nombre, correo, asunto y mensaje. El mensaje se nos reenvía por correo y no se guarda en la base de datos.\n- Comentarios desde la app: tipo, título y texto y, si quieres, datos técnicos (página, navegador, idioma, zona horaria, tamaño de ventana). Nos llegan por correo para poder responderte.\n\nAl abrir el sitio web, el servidor trata necesariamente tu dirección IP para entregar las páginas. No llevamos registros de acceso ni estadísticas de visitas."
+          "text": "- Cuenta: dirección de correo, contraseña (solo como hash, nunca en texto plano) y, si quieres, un apodo. Si activas el inicio de sesión en dos pasos, también su clave secreta y los códigos de respaldo.\n- Inicio de sesión: mientras tienes la sesión iniciada, guardamos con ella la dirección IP y el identificador del navegador (user agent).\n- Tus datos de trading: operaciones, notas, entradas del diario, preparación diaria, ajustes, objetivos y capturas subidas. Con la importación automática, también las ejecuciones de tu bróker (p. ej. nombre de la cuenta, instrumento, precio, hora, comisiones).\n- Conexiones: tu clave API para el complemento de NinjaTrader y, si conectas Interactive Brokers, tu token Flex y el ID de la consulta.\n- Formulario de contacto: nombre, correo, asunto y mensaje. El mensaje se nos reenvía por correo y no se guarda en la base de datos.\n- Comentarios desde la app: tipo, título y texto y, si quieres, datos técnicos (página, navegador, idioma, zona horaria, tamaño de ventana). Nos llegan por correo para poder responderte.\n\nAl abrir el sitio web, el servidor trata necesariamente tu dirección IP para entregar las páginas. No llevamos registros de acceso ni estadísticas de visitas."
         },
         {
           "title": "Finalidad y base jurídica",

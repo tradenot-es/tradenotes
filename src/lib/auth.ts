@@ -8,8 +8,6 @@ export interface AuthUser {
   name: string;
   emailVerified: boolean;
   twoFactorEnabled?: boolean | null;
-  firstName?: string | null;
-  lastName?: string | null;
   createdAt: string;
 }
 
@@ -52,13 +50,12 @@ export const auth = {
     return () => listeners.delete(listener);
   },
 
-  async signUp(input: { email: string; password: string; firstName: string; lastName?: string; altcha: string }) {
+  /** The optional nickname travels as Better Auth's "name"; the server copies it into the profile. */
+  async signUp(input: { email: string; password: string; nickname: string; altcha: string }) {
     return post("/sign-up/email", {
       email: input.email,
       password: input.password,
-      name: [input.firstName, input.lastName].filter(Boolean).join(" "),
-      firstName: input.firstName,
-      lastName: input.lastName,
+      name: input.nickname,
       altcha: input.altcha,
       callbackURL: "/dashboard",
     });

@@ -51,8 +51,9 @@
     "alreadyHaveAccount": "Hai già un account? Accedi",
     "checkEmail": "Conferma il tuo indirizzo email tramite il link che ti abbiamo inviato.",
     "confirmPassword": "Conferma password",
-    "firstName": "Nome",
-    "lastName": "Cognome",
+    "nickname": "Nickname",
+    "nicknamePlaceholder": "ad es. Alex o ES_Scalper",
+    "nicknameHint": "Lo usiamo per salutarti nell’app e nelle e-mail; il tuo mentor lo vede quando condividi un trade. Non serve il tuo vero nome.",
     "privacyLink": "Informativa sulla privacy",
     "termsLink": "Condizioni d'uso",
     "signup": "Crea account",
@@ -511,10 +512,6 @@
     "settingsSaved": "Impostazioni salvate con successo",
     "saveError": "Errore salvataggio impostazioni",
     "email": "Indirizzo Email",
-    "firstName": "Nome",
-    "lastName": "Cognome",
-    "firstNamePlaceholder": "Il tuo nome",
-    "lastNamePlaceholder": "Il tuo cognome",
     "updateProfile": "Aggiorna Profilo",
     "profileUpdated": "Profilo aggiornato con successo",
     "emailHelp": "Il tuo indirizzo email di accesso. Un link di conferma sarà inviato per verificare il tuo nuovo indirizzo email.",
@@ -1105,9 +1102,6 @@
     "passwordMin": "La password deve essere di almeno 8 caratteri",
     "passwordUppercase": "La password deve contenere una lettera maiuscola",
     "passwordNumber": "La password deve contenere un numero",
-    "firstNameRequired": "Il nome è obbligatorio",
-    "firstNameTooLong": "Il nome deve essere di 50 caratteri o meno",
-    "lastNameTooLong": "Il cognome deve essere di 50 caratteri o meno",
     "symbolRequired": "Il simbolo è obbligatorio",
     "symbolInvalid": "Solo lettere maiuscole e numeri consentiti",
     "symbolTooLong": "Il simbolo deve essere di 10 caratteri o meno",
@@ -1131,7 +1125,8 @@
     "checklistMaxReached": "Massimo 10 elementi checklist per setup",
     "slippageInvalid": "Lo slippage deve essere tra 0 e 100%",
     "passwordMismatch": "Le password non corrispondono",
-    "termsRequired": "Accetta le condizioni d'uso e l'informativa sulla privacy"
+    "termsRequired": "Accetta le condizioni d'uso e l'informativa sulla privacy",
+    "nicknameTooLong": "Il nickname può avere al massimo 40 caratteri."
   },
   "glossary": {
     "searchPlaceholder": "Cerca termini...",
@@ -1740,7 +1735,7 @@
         },
         {
           "title": "Quali dati salviamo",
-          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, nome e cognome. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori."
+          "text": "- Account: indirizzo e-mail, password (solo come hash, mai in chiaro) e, se vuoi, un nickname. Se attivi l’accesso a due fattori, anche la relativa chiave segreta e i codici di backup.\n- Accesso: finché sei connesso, salviamo con la tua sessione l’indirizzo IP e l’identificativo del browser (user agent).\n- I tuoi dati di trading: trade, note, voci del diario, preparazione giornaliera, impostazioni, obiettivi e screenshot caricati. Con l’importazione automatica, anche le esecuzioni del tuo broker (ad es. nome del conto, strumento, prezzo, ora, commissioni).\n- Collegamenti: la tua chiave API per l’add-on NinjaTrader e, se colleghi Interactive Brokers, il tuo token Flex e l’ID della query.\n- Modulo di contatto: nome, indirizzo e-mail, oggetto e messaggio. Il messaggio ci viene inoltrato via e-mail e non viene salvato nel database.\n- Feedback dall’app: tipo, titolo e testo e, se vuoi, dati tecnici (pagina, browser, lingua, fuso orario, dimensione della finestra). Ci arriva via e-mail così possiamo risponderti.\n\nQuando apri il sito, il server tratta necessariamente il tuo indirizzo IP per fornire le pagine. Non teniamo registri di accesso né statistiche sui visitatori."
         },
         {
           "title": "Finalità e base giuridica",

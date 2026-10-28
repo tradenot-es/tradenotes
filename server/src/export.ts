@@ -46,7 +46,7 @@ function tradesCsv(trades: Record<string, any>[]): string {
 
 export async function buildExport(userId: string): Promise<Buffer> {
   const { rows: users } = await pool.query(
-    `select email, name, "firstName", "lastName", "emailVerified", "twoFactorEnabled", "createdAt" from "user" where id = $1`,
+    `select email, "emailVerified", "twoFactorEnabled", "createdAt" from "user" where id = $1`,
     [userId],
   );
   const { rows: profiles } = await pool.query("select * from profiles where id = $1", [userId]);

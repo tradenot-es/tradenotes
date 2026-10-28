@@ -52,8 +52,9 @@
     "alreadyHaveAccount": "Al een account? Inloggen",
     "checkEmail": "Bevestig je e-mailadres via de link die we je hebben gestuurd.",
     "confirmPassword": "Wachtwoord bevestigen",
-    "firstName": "Voornaam",
-    "lastName": "Achternaam",
+    "nickname": "Bijnaam",
+    "nicknamePlaceholder": "bijv. Alex of ES_Scalper",
+    "nicknameHint": "Daarmee begroeten we je in de app en in e-mails; je mentor ziet hem als je een trade deelt. Een echte naam is niet nodig.",
     "privacyLink": "Privacyverklaring",
     "termsLink": "Gebruiksvoorwaarden",
     "signup": "Account aanmaken",
@@ -520,10 +521,6 @@
     "settingsSaved": "Instellingen succesvol opgeslagen",
     "saveError": "Fout bij opslaan van instellingen",
     "email": "E-mailadres",
-    "firstName": "Voornaam",
-    "lastName": "Achternaam",
-    "firstNamePlaceholder": "Je voornaam",
-    "lastNamePlaceholder": "Je achternaam",
     "updateProfile": "Profiel Bijwerken",
     "profileUpdated": "Profiel succesvol bijgewerkt",
     "emailHelp": "Je login e-mailadres. Een bevestigingslink wordt verzonden om je nieuwe e-mailadres te verifiëren.",
@@ -1114,9 +1111,6 @@
     "passwordMin": "Wachtwoord moet minimaal 8 tekens bevatten",
     "passwordUppercase": "Wachtwoord moet een hoofdletter bevatten",
     "passwordNumber": "Wachtwoord moet een cijfer bevatten",
-    "firstNameRequired": "Voornaam is verplicht",
-    "firstNameTooLong": "Voornaam moet 50 tekens of minder zijn",
-    "lastNameTooLong": "Achternaam moet 50 tekens of minder zijn",
     "symbolRequired": "Symbool is verplicht",
     "symbolInvalid": "Alleen hoofdletters en cijfers toegestaan",
     "symbolTooLong": "Symbool moet 10 tekens of minder zijn",
@@ -1140,7 +1134,8 @@
     "checklistMaxReached": "Maximaal 10 checklist items per setup",
     "slippageInvalid": "Slippage moet tussen 0 en 100% zijn",
     "passwordMismatch": "Wachtwoorden komen niet overeen",
-    "termsRequired": "Accepteer de gebruiksvoorwaarden en de privacyverklaring"
+    "termsRequired": "Accepteer de gebruiksvoorwaarden en de privacyverklaring",
+    "nicknameTooLong": "De bijnaam mag hoogstens 40 tekens lang zijn."
   },
   "glossary": {
     "searchPlaceholder": "Zoek termen...",
@@ -1749,7 +1744,7 @@
         },
         {
           "title": "Welke gegevens we opslaan",
-          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, voor- en achternaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij."
+          "text": "- Account: e-mailadres, wachtwoord (alleen als hash, nooit leesbaar) en, als je wilt, een bijnaam. Als je inloggen in twee stappen inschakelt, ook de geheime sleutel en de herstelcodes.\n- Inloggen: zolang je bent ingelogd, slaan we bij je sessie het IP-adres en de browserkenmerken (user agent) op.\n- Je tradinggegevens: trades, notities, journal-items, dagvoorbereiding, instellingen, doelen en geüploade screenshots. Bij automatische import ook de uitvoeringen van je broker (bijv. accountnaam, instrument, prijs, tijd, kosten).\n- Koppelingen: je API-sleutel voor de NinjaTrader-add-on en, als je Interactive Brokers koppelt, je Flex-token en query-ID.\n- Contactformulier: naam, e-mailadres, onderwerp en bericht. Het bericht wordt per e-mail naar ons doorgestuurd en niet in de database opgeslagen.\n- Feedback uit de app: soort, titel en tekst en, als je wilt, technische gegevens (pagina, browser, taal, tijdzone, venstergrootte). Dit komt per e-mail bij ons binnen, zodat we je kunnen antwoorden.\n\nAls je de website opent, verwerkt de server noodzakelijkerwijs je IP-adres om de pagina’s te leveren. We houden geen toegangslogs of bezoekersstatistieken bij."
         },
         {
           "title": "Waarvoor en op welke grondslag",

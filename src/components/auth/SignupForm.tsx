@@ -20,8 +20,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -37,8 +36,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       .min(8, { message: t("validation.passwordMin") })
       .regex(/[A-Z]/, { message: t("validation.passwordUppercase") })
       .regex(/[0-9]/, { message: t("validation.passwordNumber") }),
-    firstName: z.string().min(1, { message: t("validation.firstNameRequired") }),
-    lastName: z.string().optional(),
+    nickname: z.string().trim().max(40, { message: t("validation.nicknameTooLong") }),
   });
 
   const handleSignup = async (e: React.FormEvent) => {
@@ -59,12 +57,12 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
 
     // Validate ALTCHA
     if (!altchaPayload) {
-      toast.error(t("auth.captchaRequired") || "Bitte bestätigen Sie, dass Sie kein Roboter sind.");
+      toast.error(t("auth.captchaRequired"));
       return;
     }
 
     // Validate input
-    const validation = signupSchema.safeParse({ email, password, firstName, lastName });
+    const validation = signupSchema.safeParse({ email, password, nickname });
     if (!validation.success) {
       const fieldErrors: Record<string, string> = {};
       validation.error.errors.forEach((err) => {
@@ -81,8 +79,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       const { error } = await auth.signUp({
         email,
         password,
-        firstName,
-        lastName,
+        nickname: nickname.trim(),
         altcha: altchaPayload,
       });
 
@@ -93,7 +90,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       }
 
       toast.success(t("auth.signupSuccess"));
-      toast.info(t("auth.checkEmail") || "Bitte überprüfe deine E-Mails zur Bestätigung.");
+      toast.info(t("auth.checkEmail"));
 
       onSuccess?.();
     } catch (error: any) {
@@ -106,41 +103,24 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
 
   return (
     <form onSubmit={handleSignup} className="space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label htmlFor="firstName">
-            {t("auth.firstName")} <span className="text-destructive">*</span>
-          </Label>
-          <Input
-            id="firstName"
-            type="text"
-            placeholder="Max"
-            value={firstName}
-            onChange={(e) => {
-              setFirstName(e.target.value);
-              setErrors({ ...errors, firstName: "" });
-            }}
-            required
-          />
-          {errors.firstName && (
-            <p className="text-sm text-destructive">{errors.firstName}</p>
-          )}
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="lastName">
-            {t("auth.lastName")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
-          </Label>
-          <Input
-            id="lastName"
-            type="text"
-            placeholder="Mustermann"
-            value={lastName}
-            onChange={(e) => {
-              setLastName(e.target.value);
-              setErrors({ ...errors, lastName: "" });
-            }}
-          />
-        </div>
+      <div className="space-y-2">
+        <Label htmlFor="nickname">
+          {t("auth.nickname")} <span className="text-muted-foreground text-xs">({t("trades.optional")})</span>
+        </Label>
+        <Input
+          id="nickname"
+          type="text"
+          placeholder={t("auth.nicknamePlaceholder")}
+          value={nickname}
+          maxLength={40}
+          autoComplete="nickname"
+          onChange={(e) => {
+            setNickname(e.target.value);
+            setErrors({ ...errors, nickname: "" });
+          }}
+        />
+        <p className="text-xs text-muted-foreground">{t("auth.nicknameHint")}</p>
+        {errors.nickname && <p className="text-sm text-destructive">{errors.nickname}</p>}
       </div>
 
       <div className="space-y-2">
@@ -148,7 +128,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
         <Input
           id="email"
           type="email"
-          placeholder="your@email.com"
+          placeholder={t("contact.emailPlaceholder")}
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);

@@ -51,8 +51,9 @@
     "alreadyHaveAccount": "Schon ein Konto? Anmelden",
     "checkEmail": "Bitte bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben.",
     "confirmPassword": "Passwort bestätigen",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
+    "nickname": "Spitzname",
+    "nicknamePlaceholder": "z. B. Alex oder ES_Scalper",
+    "nicknameHint": "Damit begrüßen wir dich in der App und in Mails; beim Teilen eines Trades sieht ihn dein Mentor. Ein echter Name ist nicht nötig.",
     "privacyLink": "Datenschutzerklärung",
     "termsLink": "Nutzungsbedingungen",
     "signup": "Konto erstellen",
@@ -519,10 +520,6 @@
     "settingsSaved": "Einstellungen erfolgreich gespeichert",
     "saveError": "Fehler beim Speichern der Einstellungen",
     "email": "E-Mail-Adresse",
-    "firstName": "Vorname",
-    "lastName": "Nachname",
-    "firstNamePlaceholder": "Dein Vorname",
-    "lastNamePlaceholder": "Dein Nachname",
     "updateProfile": "Profil aktualisieren",
     "profileUpdated": "Profil erfolgreich aktualisiert",
     "emailHelp": "Deine Login-E-Mail-Adresse. Ein Bestätigungslink wird an deine neue E-Mail-Adresse gesendet.",
@@ -1236,9 +1233,6 @@
     "passwordMin": "Passwort muss mindestens 8 Zeichen haben",
     "passwordUppercase": "Passwort muss einen Großbuchstaben enthalten",
     "passwordNumber": "Passwort muss eine Zahl enthalten",
-    "firstNameRequired": "Vorname ist erforderlich",
-    "firstNameTooLong": "Vorname darf maximal 50 Zeichen haben",
-    "lastNameTooLong": "Nachname darf maximal 50 Zeichen haben",
     "symbolRequired": "Symbol ist erforderlich",
     "symbolInvalid": "Nur Großbuchstaben und Zahlen erlaubt",
     "symbolTooLong": "Symbol darf maximal 10 Zeichen haben",
@@ -1262,7 +1256,8 @@
     "checklistMaxReached": "Maximal 10 Checklisten-Punkte pro Setup",
     "slippageInvalid": "Slippage muss zwischen 0 und 100% liegen",
     "passwordMismatch": "Die Passwörter stimmen nicht überein",
-    "termsRequired": "Bitte akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung"
+    "termsRequired": "Bitte akzeptiere die Nutzungsbedingungen und die Datenschutzerklärung",
+    "nicknameTooLong": "Der Spitzname darf höchstens 40 Zeichen lang sein."
   },
   "glossary": {
     "searchPlaceholder": "Begriffe suchen...",
@@ -1738,7 +1733,7 @@
         },
         {
           "title": "Welche Daten wir speichern",
-          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig Vor- und Nachname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n- Feedback aus der App: Art, Titel und Text, auf Wunsch technische Angaben (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Es geht per E-Mail an uns, damit wir dir antworten können.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht."
+          "text": "- Konto: E-Mail-Adresse, Passwort (nur als Hash, nicht im Klartext) und freiwillig ein Spitzname. Wenn du die Zwei-Faktor-Anmeldung einschaltest, auch deren geheimen Schlüssel und die Ersatzcodes.\n- Anmeldung: Solange du angemeldet bist, speichern wir zu deiner Sitzung die IP-Adresse und die Browserkennung (User-Agent).\n- Deine Trading-Daten: Trades, Notizen, Journal-Einträge, Tagesvorbereitung, Einstellungen, Ziele und hochgeladene Screenshots. Beim automatischen Import zusätzlich die Ausführungen von deinem Broker (z. B. Kontoname, Instrument, Preis, Zeit, Gebühren).\n- Verbindungen: dein API-Schlüssel für das NinjaTrader-Add-on und, wenn du Interactive Brokers verbindest, dein Flex-Token und die Query-ID.\n- Kontaktformular: Name, E-Mail-Adresse, Betreff und Nachricht. Die Nachricht wird per E-Mail an uns weitergeleitet und nicht in der Datenbank gespeichert.\n- Feedback aus der App: Art, Titel und Text, auf Wunsch technische Angaben (Seite, Browser, Sprache, Zeitzone, Fenstergröße). Es geht per E-Mail an uns, damit wir dir antworten können.\n\nBeim Aufruf der Website verarbeitet der Server technisch bedingt deine IP-Adresse, um die Seiten auszuliefern. Zugriffsprotokolle oder Besucherstatistiken führen wir nicht."
         },
         {
           "title": "Wofür und auf welcher Grundlage",

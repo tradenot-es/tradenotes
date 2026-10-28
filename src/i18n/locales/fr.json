@@ -52,8 +52,9 @@
     "alreadyHaveAccount": "Déjà un compte ? Se connecter",
     "checkEmail": "Confirmez votre adresse e-mail avec le lien que nous vous avons envoyé.",
     "confirmPassword": "Confirmer le mot de passe",
-    "firstName": "Prénom",
-    "lastName": "Nom",
+    "nickname": "Pseudo",
+    "nicknamePlaceholder": "p. ex. Alex ou ES_Scalper",
+    "nicknameHint": "Il sert à vous saluer dans l’application et dans les e-mails ; votre mentor le voit quand vous partagez un trade. Un vrai nom n’est pas nécessaire.",
     "privacyLink": "Politique de confidentialité",
     "termsLink": "Conditions d'utilisation",
     "signup": "Créer un compte",
@@ -520,10 +521,6 @@
     "settingsSaved": "Paramètres enregistrés avec succès",
     "saveError": "Erreur lors de l'enregistrement des paramètres",
     "email": "Adresse Email",
-    "firstName": "Prénom",
-    "lastName": "Nom",
-    "firstNamePlaceholder": "Votre prénom",
-    "lastNamePlaceholder": "Votre nom",
     "updateProfile": "Mettre à jour le Profil",
     "profileUpdated": "Profil mis à jour avec succès",
     "emailHelp": "Votre adresse email de connexion. Un lien de confirmation sera envoyé pour vérifier votre nouvelle adresse email.",
@@ -1114,9 +1111,6 @@
     "passwordMin": "Le mot de passe doit contenir au moins 8 caractères",
     "passwordUppercase": "Le mot de passe doit contenir une majuscule",
     "passwordNumber": "Le mot de passe doit contenir un chiffre",
-    "firstNameRequired": "Le prénom est requis",
-    "firstNameTooLong": "Le prénom doit contenir 50 caractères ou moins",
-    "lastNameTooLong": "Le nom doit contenir 50 caractères ou moins",
     "symbolRequired": "Le symbole est requis",
     "symbolInvalid": "Seules les lettres majuscules et les chiffres sont autorisés",
     "symbolTooLong": "Le symbole doit contenir 10 caractères ou moins",
@@ -1140,7 +1134,8 @@
     "checklistMaxReached": "Maximum 10 éléments par setup",
     "slippageInvalid": "Le slippage doit être entre 0 et 100%",
     "passwordMismatch": "Les mots de passe ne correspondent pas",
-    "termsRequired": "Merci d'accepter les conditions d'utilisation et la politique de confidentialité"
+    "termsRequired": "Merci d'accepter les conditions d'utilisation et la politique de confidentialité",
+    "nicknameTooLong": "Le pseudo peut comporter 40 caractères au maximum."
   },
   "glossary": {
     "searchPlaceholder": "Rechercher des termes...",
@@ -1749,7 +1744,7 @@
         },
         {
           "title": "Données que nous enregistrons",
-          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, prénom et nom. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n- Retours depuis l’application : type, titre et texte et, si vous le souhaitez, des informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Ils nous sont envoyés par e-mail afin que nous puissions vous répondre.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite."
+          "text": "- Compte : adresse e-mail, mot de passe (uniquement sous forme de hash, jamais en clair) et, si vous le souhaitez, un pseudo. Si vous activez la connexion à deux facteurs, également sa clé secrète et les codes de secours.\n- Connexion : tant que vous êtes connecté, nous enregistrons avec votre session l’adresse IP et l’identifiant du navigateur (user agent).\n- Vos données de trading : trades, notes, entrées de journal, préparation quotidienne, paramètres, objectifs et captures d’écran téléversées. Avec l’import automatique, également les exécutions de votre courtier (p. ex. nom du compte, instrument, prix, heure, frais).\n- Connexions : votre clé API pour l’add-on NinjaTrader et, si vous connectez Interactive Brokers, votre jeton Flex et l’ID de la requête.\n- Formulaire de contact : nom, adresse e-mail, objet et message. Le message nous est transmis par e-mail et n’est pas enregistré dans la base de données.\n- Retours depuis l’application : type, titre et texte et, si vous le souhaitez, des informations techniques (page, navigateur, langue, fuseau horaire, taille de fenêtre). Ils nous sont envoyés par e-mail afin que nous puissions vous répondre.\n\nLorsque vous ouvrez le site, le serveur traite nécessairement votre adresse IP pour livrer les pages. Nous ne tenons ni journaux d’accès ni statistiques de visite."
         },
         {
           "title": "Finalités et base juridique",
