@@ -659,7 +659,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Termini",
     "footerImprint": "Note Legali",
-    "footerCopyright": "© {{year}} TradeNot.es. Tutti i diritti riservati.",
+    "footerCopyright": "© {{year}} TradeNot.es",
     "whySection": {
       "badge": "Perché un diario di trading?",
       "title": "I trader di successo documentano ogni operazione",
@@ -1708,6 +1708,7 @@
   },
   "legal": {
     "updated": "Ultimo aggiornamento: {{date}}",
+    "trademarks": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep e gli altri nomi citati sono marchi dei rispettivi proprietari. TradeNot.es è un progetto indipendente e non è affiliato, approvato o sponsorizzato da queste aziende.",
     "imprint": {
       "title": "Note legali",
       "sections": [
@@ -1718,6 +1719,10 @@
         {
           "title": "Nessuna consulenza finanziaria",
           "text": "TradeNot.es è uno strumento per registrare e analizzare i tuoi trade. Nulla su questo sito costituisce consulenza in materia di investimenti o una raccomandazione ad acquistare o vendere strumenti finanziari. Il trading di azioni, futures, opzioni, valute o criptovalute è rischioso e può portare alla perdita totale del capitale investito."
+        },
+        {
+          "title": "Marchi",
+          "text": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep e gli altri nomi citati sono marchi dei rispettivi proprietari. TradeNot.es è un progetto indipendente e non è affiliato, approvato o sponsorizzato da queste aziende."
         },
         {
           "title": "Link ad altri siti",

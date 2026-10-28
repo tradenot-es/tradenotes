@@ -45,6 +45,7 @@ export function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
           {t("landing.footerCopyright", { year: new Date().getFullYear() })}
+          <p className="mx-auto mt-2 max-w-3xl text-xs">{t("legal.trademarks")}</p>
         </div>
       </div>
     </footer>

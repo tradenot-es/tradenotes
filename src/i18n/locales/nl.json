@@ -668,7 +668,7 @@
     "footerPrivacy": "Privacy",
     "footerTerms": "Voorwaarden",
     "footerImprint": "Colofon",
-    "footerCopyright": "© {{year}} TradeNot.es. Alle rechten voorbehouden.",
+    "footerCopyright": "© {{year}} TradeNot.es",
     "whySection": {
       "badge": "Waarom een trading journal?",
       "title": "Succesvolle traders documenteren elke trade",
@@ -1717,6 +1717,7 @@
   },
   "legal": {
     "updated": "Laatst bijgewerkt: {{date}}",
+    "trademarks": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep en andere genoemde namen zijn merken van hun respectieve eigenaren. TradeNot.es is een onafhankelijk project en is niet verbonden aan, goedgekeurd of gesponsord door deze bedrijven.",
     "imprint": {
       "title": "Colofon",
       "sections": [
@@ -1727,6 +1728,10 @@
         {
           "title": "Geen beleggingsadvies",
           "text": "TradeNot.es is een hulpmiddel om je eigen trades vast te leggen en te analyseren. Niets op deze website is beleggingsadvies of een aanbeveling om financiële instrumenten te kopen of te verkopen. Handelen in aandelen, futures, opties, valuta of crypto is riskant en kan leiden tot verlies van het volledige ingelegde kapitaal."
+        },
+        {
+          "title": "Merken",
+          "text": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep en andere genoemde namen zijn merken van hun respectieve eigenaren. TradeNot.es is een onafhankelijk project en is niet verbonden aan, goedgekeurd of gesponsord door deze bedrijven."
         },
         {
           "title": "Links naar andere websites",

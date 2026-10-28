@@ -790,7 +790,7 @@
     "footerPrivacy": "Datenschutz",
     "footerTerms": "Nutzungsbedingungen",
     "footerImprint": "Impressum",
-    "footerCopyright": "© {{year}} TradeNot.es. Alle Rechte vorbehalten.",
+    "footerCopyright": "© {{year}} TradeNot.es",
     "features": {
       "mfeMAE": {
         "title": "MFE/MAE Analyse",
@@ -1706,6 +1706,7 @@
   },
   "legal": {
     "updated": "Stand: {{date}}",
+    "trademarks": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep und andere genannte Namen sind Marken ihrer jeweiligen Inhaber. TradeNot.es ist ein unabhängiges Projekt und steht in keiner Verbindung zu diesen Unternehmen; sie unterstützen oder empfehlen es nicht.",
     "imprint": {
       "title": "Impressum",
       "sections": [
@@ -1716,6 +1717,10 @@
         {
           "title": "Keine Anlageberatung",
           "text": "TradeNot.es ist ein Werkzeug, mit dem du deine eigenen Trades dokumentierst und auswertest. Nichts auf dieser Website ist eine Anlageberatung oder eine Empfehlung, Finanzinstrumente zu kaufen oder zu verkaufen. Der Handel mit Aktien, Futures, Optionen, Devisen oder Kryptowährungen ist riskant und kann zum Totalverlust des eingesetzten Kapitals führen."
+        },
+        {
+          "title": "Marken",
+          "text": "NinjaTrader, Interactive Brokers (IBKR), TradingView, Apex Trader Funding, Topstep und andere genannte Namen sind Marken ihrer jeweiligen Inhaber. TradeNot.es ist ein unabhängiges Projekt und steht in keiner Verbindung zu diesen Unternehmen; sie unterstützen oder empfehlen es nicht."
         },
         {
           "title": "Links zu anderen Websites",
