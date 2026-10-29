@@ -775,7 +775,8 @@
         "Interactive Brokers: inserisci un token, tradenot.es recupera le tue esecuzioni ogni giorno",
         "TradingView e altri: carica l’esportazione CSV, i doppioni vengono riconosciuti"
       ]
-    }
+    },
+    "footerDonate": "☕ Sostieni TradeNot.es"
   },
   "features": {
     "heroTitle": "Tutte le funzioni del tuo diario di trading gratuito",
@@ -1747,6 +1748,10 @@
           "text": "- Quotazioni: quando scegli un simbolo nella finestra del trade, il nostro server chiede il prezzo attuale a Yahoo Finance. Viene inviato solo il simbolo, nessun dato su di te.\n- Interactive Brokers: se configuri il collegamento, il nostro server usa il tuo token per scaricare i tuoi report Flex da Interactive Brokers una volta al giorno e quando premi il pulsante.\n- Calendario: il nostro server scarica ogni ora i calendari pubblici della Federal Reserve (federalreserve.gov) e del presidente degli Stati Uniti (Roll Call Factba.se). Non viene inviato alcun dato su di te.\n\nIl sito non carica font, script o altri contenuti da server di terzi."
         },
         {
+          "title": "Donazioni tramite Ko-fi",
+          "text": "Il link «Sostieni TradeNot.es» porta alla nostra pagina su Ko-fi (Ko-fi Labs Limited, Regno Unito). Su tradenot.es non viene caricato nulla da Ko-fi. Solo quando apri il link Ko-fi tratta i tuoi dati secondo la propria informativa sulla privacy; Ko-fi gestisce il pagamento tramite PayPal o Stripe.\n\nSe fai una donazione, su Ko-fi vediamo l’importo e ciò che indichi lì (ad es. nome, messaggio e indirizzo e-mail). Usiamo questi dati solo per attribuire la donazione ed eventualmente ringraziarti (art. 6, par. 1, lett. b GDPR) e non li colleghiamo al tuo account TradeNot.es."
+        },
+        {
           "title": "Cookie e memoria del browser",
           "text": "Usiamo un solo cookie: il cookie di sessione per l’accesso. È tecnicamente necessario e quindi non richiede consenso. Nella memoria del tuo browser (localStorage) salviamo inoltre il tema dei colori. Questa impostazione non lascia mai il tuo browser."
         },
@@ -1781,7 +1786,7 @@
         },
         {
           "title": "Gratuito",
-          "text": "L’uso è gratuito. Non ci sono funzioni a pagamento, abbonamenti né pubblicità."
+          "text": "L’uso è gratuito. Non ci sono funzioni a pagamento, abbonamenti né pubblicità. Sono possibili donazioni volontarie tramite Ko-fi. Non sono un corrispettivo e non sbloccano nulla."
         },
         {
           "title": "Nessuna consulenza finanziaria",
@@ -1987,7 +1992,7 @@
       },
       {
         "q": "Quanto costa TradeNot.es?",
-        "a": "Niente. Non ci sono abbonamenti, livelli premium né pubblicità."
+        "a": "Niente. Non ci sono abbonamenti, livelli premium né pubblicità.\n\nSe vuoi, puoi offrirci un caffè su Ko-fi. È facoltativo e non dà vantaggi: tutte le funzioni restano gratuite per tutti."
       },
       {
         "q": "Quali broker e piattaforme sono supportati?",
@@ -2033,7 +2038,8 @@
         "q": "TradeNot.es è una consulenza finanziaria?",
         "a": "No. TradeNot.es analizza solo i tuoi trade e non dà raccomandazioni."
       }
-    ]
+    ],
+    "donate": "Ti piace TradeNot.es? Offrici un caffè"
   },
   "status": {
     "title": "Stato del sistema",

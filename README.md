@@ -21,6 +21,7 @@
   <img alt="Lizenz AGPL-3.0" src="https://img.shields.io/badge/Lizenz-AGPL--3.0-10b981" />
   <img alt="Sprachen" src="https://img.shields.io/badge/Sprachen-DE%20·%20EN%20·%20ES%20·%20FR%20·%20IT%20·%20NL-10b981" />
   <img alt="Selbst hostbar" src="https://img.shields.io/badge/selbst%20hostbar-Docker-10b981" />
+  <a href="https://ko-fi.com/tradenotes"><img alt="Unterstützen auf Ko-fi" src="https://img.shields.io/badge/Ko--fi-Kaffee%20spendieren-10b981?logo=kofi&logoColor=white" /></a>
 </p>
 
 <p align="center">

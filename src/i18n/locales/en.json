@@ -898,7 +898,8 @@
         "Interactive Brokers: enter a token, tradenot.es fetches your executions daily",
         "TradingView and others: upload the CSV export, duplicates are recognised"
       ]
-    }
+    },
+    "footerDonate": "☕ Support TradeNot.es"
   },
   "features": {
     "heroTitle": "Every feature of your free trading journal",
@@ -1737,6 +1738,10 @@
           "text": "- Prices: when you pick a symbol in the trade dialog, our server looks up the current price at Yahoo Finance. Only the symbol is sent, no data about you.\n- Interactive Brokers: once you set up the connection, our server uses your token to fetch your Flex reports from Interactive Brokers once a day and when you press the button.\n- Calendar: our server fetches the public calendars of the US Federal Reserve (federalreserve.gov) and of the US President (Roll Call Factba.se) every hour. No data about you is sent.\n\nThe website loads no fonts, scripts or other content from third-party servers."
         },
         {
+          "title": "Donations via Ko-fi",
+          "text": "The link “Support TradeNot.es” leads to our page on Ko-fi (Ko-fi Labs Limited, United Kingdom). Nothing from Ko-fi is loaded on tradenot.es itself. Only when you open the link does Ko-fi process your data under its own privacy policy; Ko-fi handles the payment through PayPal or Stripe.\n\nIf you donate, we see the amount on Ko-fi and whatever you enter there (e.g. name, message and email address). We use this only to match the donation and, where appropriate, to thank you (Art. 6(1)(b) GDPR), and we do not link it to your TradeNot.es account."
+        },
+        {
           "title": "Cookies and browser storage",
           "text": "We set only one cookie: the session cookie for logging in. It is strictly necessary and therefore needs no consent. In your browser's storage (localStorage) we also remember the color theme. This setting never leaves your browser."
         },
@@ -1771,7 +1776,7 @@
         },
         {
           "title": "Free of charge",
-          "text": "Using TradeNot.es is free. There are no paid features, no subscriptions and no ads."
+          "text": "Using TradeNot.es is free. There are no paid features, no subscriptions and no ads. Voluntary donations via Ko-fi are possible. They are not a payment for anything and unlock nothing."
         },
         {
           "title": "No investment advice",
@@ -1977,7 +1982,7 @@
       },
       {
         "q": "What does TradeNot.es cost?",
-        "a": "Nothing. There is no subscription, no premium tier and no advertising."
+        "a": "Nothing. There is no subscription, no premium tier and no advertising.\n\nIf you like, you can buy us a coffee on Ko-fi. It is voluntary and gives you no extras: every feature stays free for everyone."
       },
       {
         "q": "Which brokers and platforms are supported?",
@@ -2023,7 +2028,8 @@
         "q": "Is TradeNot.es investment advice?",
         "a": "No. TradeNot.es only analyzes your own trades and gives no recommendations."
       }
-    ]
+    ],
+    "donate": "Enjoying TradeNot.es? Buy us a coffee"
   },
   "status": {
     "title": "System status",

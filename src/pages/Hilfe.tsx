@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { TextBlocks } from "@/components/LegalPage";
 import { usePageSeo } from "@/hooks/useSeo";
+import { project } from "@/config/project";
 
 interface Faq {
   q: string;
@@ -80,6 +81,11 @@ const Hilfe = () => {
                 </Button>
               </CardContent>
             </Card>
+            <p className="mt-6 text-sm text-muted-foreground">
+              <a href={project.donateUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                ☕ {t("help.donate")}
+              </a>
+            </p>
           </div>
         </div>
       </main>

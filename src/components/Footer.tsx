@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { operator } from "@/config/operator";
+import { project } from "@/config/project";
 import { useTranslation } from "react-i18next";
 import footerLogo from "@/assets/logo.webp";
 
@@ -40,6 +41,11 @@ export function Footer() {
               <li><Link to="/hilfe" className="hover:text-primary">{t("landing.footerHelp")}</Link></li>
               <li><Link to="/kontakt" className="hover:text-primary">{t("landing.footerContact")}</Link></li>
               <li><Link to="/status" className="hover:text-primary">{t("landing.footerStatus")}</Link></li>
+              <li>
+                <a href={project.donateUrl} target="_blank" rel="noopener noreferrer" className="hover:text-primary">
+                  {t("landing.footerDonate")}
+                </a>
+              </li>
             </ul>
           </div>
           <div>
