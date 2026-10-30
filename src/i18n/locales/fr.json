@@ -2552,5 +2552,13 @@
       "label": "Animation : taille du compte, risque et distance du stop donnent le montant du risque et la taille de position",
       "caption": "Le risque en entrée, la taille de position en sortie."
     }
+  },
+  "selfhost": {
+    "footer": "auto-hébergé",
+    "signupClosed": "Les inscriptions sont fermées sur cette instance. Demandez un compte à l'administrateur.",
+    "accountCreated": "Compte créé – vous êtes connecté.",
+    "firstRunTitle": "Créer le compte administrateur",
+    "firstRunDesc": "Nouvelle installation : le premier compte devient l'administrateur de cette instance.",
+    "resetNoMail": "Aucun serveur mail n'est configuré sur cette instance. Le lien de réinitialisation est écrit dans le journal du conteneur (p. ex. docker logs tradenotes)."
   }
 }

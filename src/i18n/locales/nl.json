@@ -2552,5 +2552,13 @@
       "label": "Animatie: accountgrootte, risico en stopafstand geven het risicobedrag en de positiegrootte",
       "caption": "Risico erin, positiegrootte eruit."
     }
+  },
+  "selfhost": {
+    "footer": "zelf gehost",
+    "signupClosed": "Registratie is gesloten op deze instantie. Vraag de beheerder om een account.",
+    "accountCreated": "Account aangemaakt – je bent ingelogd.",
+    "firstRunTitle": "Beheerdersaccount aanmaken",
+    "firstRunDesc": "Nieuwe installatie: het eerste account wordt de beheerder van deze instantie.",
+    "resetNoMail": "Er is geen mailserver ingesteld op deze instantie. De resetlink verschijnt in plaats daarvan in het containerlog (bijv. docker logs tradenotes)."
   }
 }

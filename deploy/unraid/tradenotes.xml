@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>TradeNot.es</Name>
+  <Repository>ghcr.io/tradenot-es/tradenotes:latest</Repository>
+  <Registry>https://github.com/tradenot-es/tradenotes/pkgs/container/tradenotes</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/tradenot-es/tradenotes/issues</Support>
+  <Project>https://github.com/tradenot-es/tradenotes</Project>
+  <Overview>Free, open-source trading journal for futures, stock and prop-firm traders. Trades are imported from NinjaTrader (add-on), Interactive Brokers (Flex query), TradingView exports or CSV. Daily limits and rule-adherence analytics, reports, equity curve, R-multiples, an economic calendar, a daily journal and screenshots per trade, in six languages. Everything runs in this one container, including its own PostgreSQL database; all data is kept in /data. After the first start, open the WebUI and create your account: the first account becomes the administrator, then sign-up closes. No mail server needed.</Overview>
+  <Category>Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/tradenot-es/tradenotes/main/deploy/unraid/tradenotes.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/tradenot-es/tradenotes/main/public/logo.png</Icon>
+  <ExtraParams>--restart unless-stopped</ExtraParams>
+  <DonateText>Support TradeNot.es</DonateText>
+  <DonateLink>https://ko-fi.com/tradenotes</DonateLink>
+  <Config Name="WebUI port" Target="3000" Default="3000" Mode="tcp" Description="Port of the web interface" Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="Data" Target="/data" Default="/mnt/user/appdata/tradenotes" Mode="rw" Description="Database, screenshots and daily database dumps (backups)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/tradenotes</Config>
+  <Config Name="BASE_URL" Target="BASE_URL" Default="http://192.168.1.10:3000" Mode="" Description="The address you open TradeNot.es under, e.g. http://[server IP]:3000 or https://journal.example.com" Type="Variable" Display="always" Required="true" Mask="false">http://192.168.1.10:3000</Config>
+  <Config Name="TRUSTED_ORIGINS" Target="TRUSTED_ORIGINS" Default="" Mode="" Description="Further addresses you open it under, comma-separated (e.g. the IP next to a domain)" Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="ALLOW_SIGNUP" Target="ALLOW_SIGNUP" Default="false" Mode="" Description="true: more people can create accounts after the first (admin) account" Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="TRUST_PROXY" Target="TRUST_PROXY" Default="false" Mode="" Description="true when a reverse proxy (SWAG, Nginx Proxy Manager, Traefik, Caddy) is in front" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="" Description="User ID owning the data folder" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="" Description="Group ID owning the data folder" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="SMTP_HOST" Target="SMTP_HOST" Default="" Mode="" Description="Optional mail server for password-reset mails (without one the reset link is written to the container log)" Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="SMTP_PORT" Target="SMTP_PORT" Default="465" Mode="" Description="465 (TLS) or 587 (STARTTLS)" Type="Variable" Display="advanced" Required="false" Mask="false">465</Config>
+  <Config Name="SMTP_USER" Target="SMTP_USER" Default="" Mode="" Description="Mail server login (usually the sender address)" Type="Variable" Display="advanced" Required="false" Mask="false"></Config>
+  <Config Name="SMTP_PASS" Target="SMTP_PASS" Default="" Mode="" Description="Mail server password" Type="Variable" Display="advanced" Required="false" Mask="true"></Config>
+  <Config Name="BACKUP_KEEP_DAYS" Target="BACKUP_KEEP_DAYS" Default="7" Mode="" Description="Days to keep the daily database dumps in /data/backups (0 = off)" Type="Variable" Display="advanced" Required="false" Mask="false">7</Config>
+  <Config Name="MARKET_EVENTS" Target="MARKET_EVENTS" Default="on" Mode="" Description="off: do not fetch Fed speeches and the White House schedule for the calendar" Type="Variable" Display="advanced" Required="false" Mask="false">on</Config>
+</Container>

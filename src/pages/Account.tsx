@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useQueryClient } from "@tanstack/react-query";
+import { instance } from "@/config/instance";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -521,7 +522,8 @@ const Account = () => {
             </CardContent>
           </Card>
 
-          {/* Newsletter (opt-in) */}
+          {/* Newsletter (opt-in): news of tradenot.es, not of a self-hosted instance */}
+          {!instance.selfHosted && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -537,6 +539,7 @@ const Account = () => {
               </label>
             </CardContent>
           </Card>
+          )}
 
           {/* Data export */}
           <Card>

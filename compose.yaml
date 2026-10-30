@@ -1,49 +1,29 @@
-# Production stack for /opt/tradenotes on the shared VPS.
-# Separate from the REDACTED stack: own network, own database, own volumes.
-# The Caddy in front of ports 80/443 (the REDACTED one, in a container) reaches the app through the
-# external Docker network "edge" as tradenotes-app:3000. The database stays on the default network only.
-# 127.0.0.1:3010 is kept for the health check in deploy/deploy.sh.
-name: tradenotes
-
+# Self-hosting TradeNot.es with Docker Compose: one container, all data in ./data
+# (database, screenshots, daily database dumps). Full guide: docs/self-hosting.md
+#   docker compose up -d     then open http://<server>:3000 and create the admin account
 services:
-  app:
-    build: .
-    image: tradenotes-app
+  tradenotes:
+    image: ghcr.io/tradenot-es/tradenotes:latest
+    container_name: tradenotes
     restart: unless-stopped
-    depends_on:
-      db:
-        condition: service_healthy
-    env_file: .env
-    environment:
-      DATABASE_URL: postgres://tradenotes:${POSTGRES_PASSWORD}@db:5432/tradenotes
     ports:
-      - "127.0.0.1:3010:3000"
-    networks:
-      default:
-      edge:
-        aliases: [tradenotes-app]
+      - "3000:3000"
     volumes:
-      - uploads:/data/uploads
-
-  db:
-    image: postgres:18-alpine
-    restart: unless-stopped
+      - ./data:/data
     environment:
-      POSTGRES_USER: tradenotes
-      POSTGRES_DB: tradenotes
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    volumes:
-      - db:/var/lib/postgresql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U tradenotes -d tradenotes"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
-networks:
-  edge:
-    external: true
-
-volumes:
-  db:
-  uploads:
+      # the address you open TradeNot.es under (links in mails and shared trades, login cookies)
+      BASE_URL: http://localhost:3000
+      # further addresses, comma-separated, e.g. the IP next to a domain
+      # TRUSTED_ORIGINS: http://192.168.1.10:3000
+      # owner of ./data (Unraid: 99 / 100)
+      # PUID: 1000
+      # PGID: 1000
+      # more accounts after the first (admin) one
+      # ALLOW_SIGNUP: "true"
+      # optional mail server for confirmation and password-reset mails
+      # SMTP_HOST: smtp.example.com
+      # SMTP_PORT: 465
+      # SMTP_USER: you@example.com
+      # SMTP_PASS: secret
+      # an existing Postgres instead of the built-in one
+      # DATABASE_URL: postgres://user:password@host:5432/tradenotes

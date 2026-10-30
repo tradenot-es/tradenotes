@@ -1,11 +1,23 @@
 // Admin dashboard: totals only, no individual profiles. Access for the addresses in ADMIN_EMAILS,
-// in production only with two-factor login turned on.
+// in production only with two-factor login turned on. On a self-hosted instance the first account
+// (the one created at setup) is admin as well, without the 2FA requirement.
 import { readdir, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { pool } from "./db.js";
 import { env } from "./env.js";
 
-export function isAdmin(user: { email: string; twoFactorEnabled?: boolean | null }) {
+// id of the oldest account, looked up at most once a minute (checked on every API request)
+let firstUser: { id: string | null; at: number } = { id: null, at: 0 };
+async function firstUserId() {
+  if (Date.now() - firstUser.at > 60 * 1000) {
+    const { rows } = await pool.query(`select id from "user" order by "createdAt" limit 1`);
+    firstUser = { id: rows[0]?.id ?? null, at: Date.now() };
+  }
+  return firstUser.id;
+}
+
+export async function isAdmin(user: { id: string; email: string; twoFactorEnabled?: boolean | null }) {
+  if (env.selfHosted && user.id === (await firstUserId())) return true;
   if (!env.adminEmails.includes(user.email.toLowerCase())) return false;
   return process.env.NODE_ENV !== "production" || !!user.twoFactorEnabled;
 }

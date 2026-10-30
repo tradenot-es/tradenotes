@@ -2533,5 +2533,13 @@
       "label": "Animation: account size, risk and stop distance give the risk amount and position size",
       "caption": "Risk in, position size out."
     }
+  },
+  "selfhost": {
+    "footer": "self-hosted",
+    "signupClosed": "Sign-up is closed on this instance. Ask the administrator for an account.",
+    "accountCreated": "Account created – you are signed in.",
+    "firstRunTitle": "Create the admin account",
+    "firstRunDesc": "New installation: the first account becomes the administrator of this instance.",
+    "resetNoMail": "No mail server is set up on this instance. The reset link is written to the container log instead (e.g. docker logs tradenotes)."
   }
 }

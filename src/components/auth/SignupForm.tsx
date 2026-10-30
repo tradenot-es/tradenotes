@@ -10,7 +10,8 @@ import { z } from "zod";
 import { MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH } from "@/lib/password";
 import { AltchaWidget } from "@/components/AltchaWidget";
 import { Honeypot } from "@/components/Honeypot";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { instance } from "@/config/instance";
 
 interface SignupFormProps {
   onSuccess?: () => void;
@@ -19,6 +20,7 @@ interface SignupFormProps {
 
 export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -53,8 +55,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       return;
     }
 
-    // Validate terms acceptance
-    if (!acceptTerms) {
+    // Validate terms acceptance (a self-hosted instance has no terms of tradenot.es to accept)
+    if (!acceptTerms && !instance.selfHosted) {
       setErrors({ terms: t("validation.termsRequired") });
       return;
     }
@@ -80,7 +82,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
 
     try {
       // Creates the account; the server checks the captcha and sends the confirmation email
-      const { error } = await auth.signUp({
+      const { data, error } = await auth.signUp({
         email,
         password,
         nickname: nickname.trim(),
@@ -92,7 +94,18 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
       if (error) {
         setAltchaPayload(null);
         setCaptchaRound((r) => r + 1);
-        throw error;
+        throw error.code === "SIGNUP_CLOSED" ? new Error(t("selfhost.signupClosed")) : error;
+      }
+
+      // self-hosted: the first account (or every account without a mail server) is verified right
+      // away, so sign in directly instead of waiting for a confirmation mail
+      if (data?.user?.emailVerified) {
+        const signIn = await auth.signIn(email, password);
+        if (!signIn.error) {
+          toast.success(t("selfhost.accountCreated"));
+          navigate("/dashboard");
+          return;
+        }
       }
 
       toast.success(t("auth.signupSuccess"));
@@ -182,6 +195,8 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
         )}
       </div>
 
+      {/* terms, privacy policy and newsletter belong to tradenot.es, not to a self-hosted instance */}
+      {!instance.selfHosted && <>
       <div className="flex items-start space-x-2">
         <Checkbox
           id="terms"
@@ -215,6 +230,7 @@ export const SignupForm = ({ onSuccess, onSwitchToLogin }: SignupFormProps) => {
           {t("newsletter.optIn")}
         </label>
       </div>
+      </>}
 
       <AltchaWidget 
         key={captchaRound}

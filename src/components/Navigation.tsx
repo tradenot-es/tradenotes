@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.webp";
+import { instance } from "@/config/instance";
 
 const languages = [
   { code: "en", name: "English", flag: "🇬🇧" },
@@ -54,12 +55,12 @@ export const Navigation = () => {
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
-            <Link 
+            {!instance.selfHosted && <Link 
               to="/features" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}
             >
               {t("landing.nav.features")}
-            </Link>
+            </Link>}
             <Link 
               to="/auth" 
               className={`text-sm font-medium hover:text-primary transition-all duration-300 ${isAnimating ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}

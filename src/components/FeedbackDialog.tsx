@@ -12,6 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { apiFetch } from "@/lib/api";
 import { deviceTimeZone } from "@/lib/timezone";
 import { cn } from "@/lib/utils";
+import { instance } from "@/config/instance";
+import { project } from "@/config/project";
 
 type FeedbackType = "bug" | "idea" | "other";
 
@@ -57,6 +59,18 @@ export function FeedbackDialog({ className }: { className?: string }) {
     setMessage("");
     setOpen(false);
   };
+
+  // self-hosted: no feedback mail to tradenot.es; bugs and ideas go to the project's GitHub issues
+  if (instance.selfHosted) {
+    return (
+      <Button variant="ghost" className={cn("w-full justify-start", className)} asChild>
+        <a href={project.issuesUrl} target="_blank" rel="noopener noreferrer">
+          <MessageSquarePlus className="h-4 w-4 mr-3" />
+          {t("feedback.button")}
+        </a>
+      </Button>
+    );
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

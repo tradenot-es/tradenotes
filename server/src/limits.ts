@@ -1,9 +1,21 @@
 // Abuse protection for endpoints outside Better Auth (contact form): a small in-memory limit per
-// client IP, enough for a single server. Behind Caddy the client address is the first entry of
-// X-Forwarded-For (Caddy sets it; the app itself only listens on 127.0.0.1).
+// client IP, enough for a single server.
+
+// set by the server for every request (index.ts), never taken from the client
+export const CLIENT_IP_HEADER = "x-tn-client-ip";
 
 export function clientIp(headers: Headers): string {
-  return headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "local";
+  return headers.get(CLIENT_IP_HEADER) || "local";
+}
+
+/**
+ * The visitor's address: behind a trusted reverse proxy (tradenot.es: Caddy; self-hosted with
+ * TRUST_PROXY=true) the first X-Forwarded-For entry, otherwise the address of the connection itself,
+ * so nobody can pick their own rate-limit bucket by sending the header.
+ */
+export function resolveClientIp(headers: Headers, socketAddress: string | undefined, trustProxy: boolean): string {
+  const forwarded = trustProxy ? headers.get("x-forwarded-for")?.split(",")[0]?.trim() : undefined;
+  return forwarded || socketAddress?.replace(/^::ffff:/, "") || "local";
 }
 
 /** Allows `max` calls per key within `windowMs`. */

@@ -19,6 +19,6 @@ tradenot.es {
 		-Server
 	}
 
-	# the app on the shared Docker network "edge" (alias set in compose.yaml)
+	# the app on the shared Docker network "edge" (alias set in compose.hosted.yaml)
 	reverse_proxy tradenotes-app:3000
 }

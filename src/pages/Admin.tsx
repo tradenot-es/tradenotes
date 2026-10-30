@@ -13,6 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { apiFetch } from "@/lib/api";
 import { cn } from "@/lib/utils";
+import { instance } from "@/config/instance";
 
 interface Stats {
   users: { total: number; verified: number; two_factor: number; new_7d: number; new_30d: number; d1: number; d7: number; d30: number; newsletter: number };
@@ -195,6 +196,8 @@ const Admin = () => {
       </Section>
 
       <div className="grid gap-6 lg:grid-cols-2">
+        {/* project statistics of tradenot.es; not relevant to a self-hosted instance */}
+        {!instance.selfHosted && (
         <Section title="GitHub">
           {!github ? (
             <p className="text-sm text-muted-foreground">{t("admin.github.notConfigured")}</p>
@@ -215,6 +218,7 @@ const Admin = () => {
             </>
           )}
         </Section>
+        )}
 
         <Section title={t("admin.tech.title")}>
           <div className="grid grid-cols-2 gap-3">
@@ -233,6 +237,8 @@ const Admin = () => {
         </Section>
       </div>
 
+      {/* mail to all users: newsletter and notices of tradenot.es */}
+      {!instance.selfHosted && (
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
@@ -305,6 +311,7 @@ const Admin = () => {
           )}
         </CardContent>
       </Card>
+      )}
 
       <AlertDialog open={confirm} onOpenChange={setConfirm}>
         <AlertDialogContent>

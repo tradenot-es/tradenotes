@@ -1,7 +1,11 @@
-import { serve } from "@hono/node-server";
+import { serve, type HttpBindings, type Http2Bindings } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
+import { existsSync } from "node:fs";
+import { readFile } from "node:fs/promises";
+import { join, resolve, sep } from "node:path";
 import { pool } from "./db.js";
 import { env } from "./env.js";
+import { CLIENT_IP_HEADER, resolveClientIp } from "./limits.js";
 import { runMigrations } from "./migrate.js";
 import { syncDueIbkr } from "./ibkr.js";
 import { syncMarketEvents } from "./marketEvents.js";
@@ -12,9 +16,26 @@ await runMigrations(pool);
 const { app } = await import("./app.js");
 
 if (env.staticDir) {
-  // built frontend; unknown paths fall back to index.html for client-side routing
+  const root = resolve(env.staticDir);
+  // settings the frontend needs before it renders, as a meta tag in every page (no inline script)
+  const settings = JSON.stringify({ selfHosted: env.selfHosted, mail: !!env.smtp.host, version: env.version });
+  const meta = `<meta name="tn-instance" content="${settings.replace(/&/g, "&amp;").replace(/"/g, "&quot;")}">`;
+  const pages = new Map<string, string>();
+  const page = async (file: string) => {
+    if (!pages.has(file)) pages.set(file, (await readFile(file, "utf8")).replace("</head>", `${meta}</head>`));
+    return pages.get(file)!;
+  };
+  // pages: the pre-rendered dist/<path>/index.html (scripts/seo-pages.mjs) if there is one, else
+  // index.html for client-side routing. A self-hosted instance has no public pages to pre-render.
+  app.get("/*", async (c, next) => {
+    const path = c.req.path;
+    if (path.startsWith("/api/") || /\.[a-z0-9]+$/i.test(path)) return next();
+    const own = env.selfHosted ? null : join(root, path, "index.html");
+    const file = own && own.startsWith(root + sep) && existsSync(own) ? own : join(root, "index.html");
+    return c.html(await page(file), 200, { "Cache-Control": "no-cache" });
+  });
+  // built assets
   app.use("/*", serveStatic({ root: env.staticDir }));
-  app.get("/*", serveStatic({ root: env.staticDir, path: "index.html" }));
 }
 
 // housekeeping (replaces the Supabase cron jobs)
@@ -38,7 +59,12 @@ if (process.env.MARKET_EVENTS !== "off") {
   setInterval(syncMarketEvents, 60 * 60 * 1000);
 }
 
-const server = serve({ fetch: app.fetch, port: env.port }, (info) => console.log(`tradenotes server on :${info.port}`));
+// every request carries the visitor's address in our own header (rate limits, Better Auth)
+const fetchWithIp = (req: Request, bindings: HttpBindings | Http2Bindings) => {
+  req.headers.set(CLIENT_IP_HEADER, resolveClientIp(req.headers, bindings.incoming.socket.remoteAddress, env.trustProxy));
+  return app.fetch(req, bindings);
+};
+const server = serve({ fetch: fetchWithIp, port: env.port }, (info) => console.log(`tradenotes server on :${info.port}`));
 
 const shutdownHooks: Array<() => Promise<unknown>> = [];
 /** Lets the dev runner stop its embedded Postgres after the pool is closed. */

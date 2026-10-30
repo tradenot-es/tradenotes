@@ -2552,5 +2552,13 @@
       "label": "Animación: tamaño de cuenta, riesgo y distancia del stop dan el importe de riesgo y el tamaño de la posición",
       "caption": "Entra el riesgo, sale el tamaño de la posición."
     }
+  },
+  "selfhost": {
+    "footer": "autoalojado",
+    "signupClosed": "El registro está cerrado en esta instancia. Pide una cuenta al administrador.",
+    "accountCreated": "Cuenta creada: ya has iniciado sesión.",
+    "firstRunTitle": "Crear la cuenta de administrador",
+    "firstRunDesc": "Nueva instalación: la primera cuenta será la administradora de esta instancia.",
+    "resetNoMail": "Esta instancia no tiene servidor de correo. El enlace de restablecimiento se escribe en el registro del contenedor (p. ej. docker logs tradenotes)."
   }
 }

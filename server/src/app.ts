@@ -1,8 +1,9 @@
 import { Hono } from "hono";
 import { randomBytes } from "node:crypto";
 import { z } from "zod";
-import { auth } from "./auth.js";
+import { auth, signupOpen } from "./auth.js";
 import { pool } from "./db.js";
+import { env } from "./env.js";
 import { createChallenge, verifyPayload } from "./altcha.js";
 import { QueryError, querySchema, runQuery } from "./data.js";
 import { readScreenshot, saveScreenshot } from "./uploads.js";
@@ -27,6 +28,22 @@ app.onError((err, c) => {
   return c.json({ error: "Internal server error" }, 500);
 });
 
+// Basic security headers; on tradenot.es Caddy sets them as well. A self-hosted instance stays out
+// of search engines: it is somebody's private journal, not a public site.
+app.use("*", async (c, next) => {
+  await next();
+  c.header("X-Content-Type-Options", "nosniff");
+  c.header("Referrer-Policy", "strict-origin-when-cross-origin");
+  c.header("X-Frame-Options", "DENY");
+  c.header("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  if (env.selfHosted) c.header("X-Robots-Tag", "noindex, nofollow");
+});
+
+if (env.selfHosted) {
+  app.get("/robots.txt", (c) => c.text("User-agent: *\nDisallow: /\n"));
+  app.get("/sitemap.xml", (c) => c.notFound());
+}
+
 app.get("/api/health", async (c) => {
   await pool.query("select 1");
   return c.json({ ok: true });
@@ -37,6 +54,11 @@ app.on(["GET", "POST"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 // --- public endpoints -------------------------------------------------------
 
 app.get("/api/altcha/challenge", (c) => c.json(createChallenge()));
+
+// what the login page needs to know before anyone is signed in
+app.get("/api/instance", async (c) =>
+  c.json({ signupOpen: await signupOpen(), firstRun: env.selfHosted && !(await pool.query(`select 1 from "user" limit 1`)).rowCount }),
+);
 
 const contactSchema = z.object({
   name: z.string().trim().min(1).max(100),
@@ -154,7 +176,7 @@ app.use("/api/*", async (c, next) => {
   if (!session) return c.json({ error: "Unauthorized" }, 401);
   c.set("userId", session.user.id);
   c.set("userEmail", session.user.email);
-  c.set("isAdmin", isAdmin(session.user));
+  c.set("isAdmin", await isAdmin(session.user));
   touchActivity(session.user.id);
   await next();
 });

@@ -49,14 +49,19 @@
 
 ## Selbst hosten
 
-TradeNot.es läuft als ein Container (API und Frontend) plus PostgreSQL, siehe [`compose.yaml`](compose.yaml) und
-den Abschnitt [Betrieb](#betrieb) weiter unten. Mindestens nötig sind `BASE_URL`, `BETTER_AUTH_SECRET` und
-`POSTGRES_PASSWORD`; für Bestätigungs- und Passwort-Mails ein SMTP-Zugang. Updates: neues Image, Neustart,
-die Datenbank-Migrationen laufen automatisch.
+Ein Container, ein Ordner, kein Mailserver nötig: TradeNot.es bringt seine eigene Datenbank mit.
 
-Hinweis: Die Rechtstexte (Impressum, Datenschutz) und die Startseite sind die der offiziellen Instanz
-tradenot.es; Betreiberangaben stehen in [`src/config/operator.ts`](src/config/operator.ts). Eine vereinfachte
-Selbsthost-Variante (nur App, ohne Startseite und Rechtstexte, auch ohne Mailserver, fertige Images) ist geplant.
+```sh
+docker run -d --name tradenotes --restart unless-stopped -p 3000:3000 \
+  -v /pfad/zu/tradenotes:/data -e BASE_URL=http://192.168.1.10:3000 \
+  ghcr.io/tradenot-es/tradenotes:latest
+```
+
+Dann `BASE_URL` im Browser öffnen: Das erste Konto wird Administrator, danach ist die Registrierung zu
+(`ALLOW_SIGNUP=true` öffnet sie). Eine selbst gehostete Instanz zeigt keine Startseite, keine Rechtstexte und
+keinen Newsletter von tradenot.es und ist für Suchmaschinen gesperrt. Docker Compose: [`compose.yaml`](compose.yaml),
+Unraid: [`deploy/unraid/tradenotes.xml`](deploy/unraid/tradenotes.xml). Alle Einstellungen, Reverse-Proxy,
+Backups und Updates: **[docs/self-hosting.md](docs/self-hosting.md)** (Englisch).
 
 ## Aufbau
 
@@ -99,7 +104,10 @@ cd server && npx tsx test/smoke.ts http://localhost:3000 /tmp/tradenotes-dev.log
 
 ## Betrieb
 
-`compose.yaml` startet App und Datenbank als eigenen Stack. Davor sitzt der Caddy des Servers (bei
+Dieser Abschnitt beschreibt die offizielle Instanz tradenot.es. `compose.hosted.yaml` startet App und
+Datenbank als eigenen Stack (`SELF_HOSTED=false`); die `.env` auf dem Server setzt
+`COMPOSE_FILE=compose.hosted.yaml`, damit ein einfaches `docker compose` diese Datei nimmt und nicht das
+Selbsthost-Beispiel `compose.yaml`. Davor sitzt der Caddy des Servers (bei
 tradenot.es der von REDACTED, in einem Container). Er erreicht die App über das externe Docker-Netz `edge`
 als `tradenotes-app:3000`; die Datenbank hängt nur im eigenen Netz. Auf `127.0.0.1:3010` lauscht die App
 zusätzlich für den Health-Check. Alles für den Server liegt in `deploy/`:
@@ -115,7 +123,7 @@ Erstes Einrichten:
 ```sh
 git clone -b eigenes-backend git@github.com:tradenot-es/tradenotes.git /opt/tradenotes
 cd /opt/tradenotes
-cp .env.example .env   # Werte eintragen, Geheimnisse mit openssl rand -hex 32 / -hex 24
+cp deploy/hosted.env.example .env   # Werte eintragen, Geheimnisse mit openssl rand -hex 32 / -hex 24
 docker compose up -d --build   # das Netz edge muss es schon geben (docker network create edge)
 # Caddy: deploy/Caddyfile.tradenotes nach /opt/REDACTED-data/sites/tradenotes.caddy kopieren,
 #        dann im REDACTED-Stack: docker compose restart caddy

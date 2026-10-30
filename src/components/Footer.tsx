@@ -3,9 +3,19 @@ import { operator } from "@/config/operator";
 import { project } from "@/config/project";
 import { useTranslation } from "react-i18next";
 import footerLogo from "@/assets/logo.webp";
+import { instance } from "@/config/instance";
+import { InstanceFooter } from "@/components/InstanceFooter";
 
 export function Footer() {
   const { t } = useTranslation();
+
+  if (instance.selfHosted) {
+    return (
+      <footer className="border-t py-6 px-4">
+        <InstanceFooter />
+      </footer>
+    );
+  }
 
   return (
     <footer className="border-t py-12 px-4 sm:px-6 lg:px-8">

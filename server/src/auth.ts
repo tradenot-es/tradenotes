@@ -6,7 +6,7 @@ import { env } from "./env.js";
 import { sendMail } from "./mail.js";
 import { verifyPayload } from "./altcha.js";
 import { deleteUserFiles } from "./uploads.js";
-import { isHoneypotFilled } from "./limits.js";
+import { CLIENT_IP_HEADER, isHoneypotFilled } from "./limits.js";
 import { isLocked, recordFailure, recordSuccess } from "./loginGuard.js";
 import { networkInterfaces } from "node:os";
 
@@ -38,6 +38,13 @@ async function warnAboutLock(email: unknown, request?: Request) {
 const uiLang = (request?: Request) =>
   request?.headers.get("x-ui-lang") ?? request?.headers.get("accept-language") ?? "en";
 
+/** Self-hosted: the first account may always register; after it only with ALLOW_SIGNUP=true. */
+export async function signupOpen() {
+  if (!env.selfHosted || env.allowSignup) return true;
+  const { rows } = await pool.query(`select exists (select 1 from "user") as taken`);
+  return !rows[0].taken;
+}
+
 // Endpoints reachable without login that send mail: protected by the proof-of-work captcha
 const CAPTCHA_PATHS = new Set(["/sign-up/email", "/request-password-reset"]);
 
@@ -47,7 +54,7 @@ export const auth = betterAuth({
   basePath: "/api/auth",
   secret: env.authSecret,
   database: pool,
-  trustedOrigins: [env.baseUrl, ...(process.env.NODE_ENV === "production" ? [] : devOrigins())],
+  trustedOrigins: [env.baseUrl, ...env.extraOrigins, ...(process.env.NODE_ENV === "production" ? [] : devOrigins())],
   // On in production (Better Auth's defaults: sign-in 3 per 10 s per IP, everything else 100 per
   // 10 s). Sign-up and the mails it triggers get a much tighter limit, so nobody can use the form
   // to send confirmation or reset mails to strangers in bulk.
@@ -61,6 +68,8 @@ export const auth = betterAuth({
   },
   advanced: {
     database: { generateId: "uuid" },
+    // the visitor's address as resolved by the server (limits.ts), not a header the client controls
+    ipAddress: { ipAddressHeaders: [CLIENT_IP_HEADER] },
   },
   user: {
     changeEmail: {
@@ -92,6 +101,8 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
     expiresIn: 60 * 60 * 24,
     sendVerificationEmail: async ({ user, url }, request) => {
+      // self-hosted: accounts created already verified (see databaseHooks) need no mail at sign-up
+      if (user.emailVerified && request && new URL(request.url).pathname.endsWith("/sign-up/email")) return;
       // after an email change, the user is already verified and this goes to the new address
       const type = user.emailVerified ? "change_email_new" : "verify";
       await sendMail(type, user.email, { url, name: await greeting(user), lang: uiLang(request) });
@@ -103,6 +114,9 @@ export const auth = betterAuth({
       // account locked after too many wrong passwords: same answer as a wrong password
       if (ctx.path === "/sign-in/email" && isLocked(ctx.body?.email)) {
         throw new APIError("UNAUTHORIZED", { message: "Invalid email or password", code: "INVALID_EMAIL_OR_PASSWORD" });
+      }
+      if (ctx.path === "/sign-up/email" && !(await signupOpen())) {
+        throw new APIError("FORBIDDEN", { message: "Sign-up is closed on this instance", code: "SIGNUP_CLOSED" });
       }
       // a filled hidden field means a bot; answer like a failed captcha
       if (CAPTCHA_PATHS.has(ctx.path) && (isHoneypotFilled(ctx.body) || !verifyPayload(ctx.body?.altcha))) {
@@ -135,6 +149,13 @@ export const auth = betterAuth({
   databaseHooks: {
     user: {
       create: {
+        // self-hosted: the first account (the admin) and, without a mail server, every account is
+        // verified right away; there is nobody else to confirm it and no way to send the link
+        before: async (user) => {
+          if (!env.selfHosted) return;
+          const { rows } = await pool.query(`select exists (select 1 from "user") as taken`);
+          if (!rows[0].taken || !env.smtp.host) return { data: { ...user, emailVerified: true } };
+        },
         after: async (user) => {
           await pool.query("insert into user_settings (user_id) values ($1)", [user.id]);
           // the optional nickname from sign-up travels in Better Auth's "name"

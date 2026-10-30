@@ -2541,5 +2541,13 @@
       "label": "Animation: Kontogröße, Risiko und Stop-Abstand ergeben Risikobetrag und Positionsgröße",
       "caption": "Risiko rein, Positionsgröße raus."
     }
+  },
+  "selfhost": {
+    "footer": "selbst gehostet",
+    "signupClosed": "Die Registrierung ist auf dieser Instanz geschlossen. Frag den Administrator nach einem Konto.",
+    "accountCreated": "Konto angelegt – du bist angemeldet.",
+    "firstRunTitle": "Admin-Konto anlegen",
+    "firstRunDesc": "Neue Installation: Das erste Konto wird Administrator dieser Instanz.",
+    "resetNoMail": "Auf dieser Instanz ist kein Mailserver eingerichtet. Der Link zum Zurücksetzen erscheint stattdessen im Log des Containers (z. B. docker logs tradenotes)."
   }
 }

@@ -3,12 +3,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useSearchParams } from "react-router-dom";
 import { ThemeProvider } from "./hooks/useTheme";
 import { Layout } from "./components/Layout";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { GoalAlertsProvider } from "./components/GoalAlertsProvider";
 import { featureFlags } from "./config/featureFlags";
+import { instance } from "./config/instance";
 // the landing page is the usual entry, everything else is loaded when it is opened
 import Landing from "./pages/Landing";
 const PreLaunch = lazy(() => import("./pages/PreLaunch"));
@@ -48,6 +49,8 @@ const PageLoading = () => (
 // Secret preview parameter: ?preview=landing to bypass PreLaunch mode
 const HomeRoute = () => {
   const [searchParams] = useSearchParams();
+  // a self-hosted instance has no landing page: straight to the journal (or the login)
+  if (instance.selfHosted) return <Navigate to="/dashboard" replace />;
   const previewMode = searchParams.get("preview");
   
   // Allow preview of landing page with secret parameter
@@ -68,17 +71,23 @@ const App = () => (
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
           <Routes>
             <Route path="/" element={<HomeRoute />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/warum-trading-journal" element={<WhyJournal />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/kontakt" element={<Kontakt />} />
-            <Route path="/hilfe" element={<Hilfe />} />
-            <Route path="/status" element={<Status />} />
-            <Route path="/datenschutz" element={<Datenschutz />} />
-            <Route path="/agb" element={<AGB />} />
-            <Route path="/impressum" element={<Impressum />} />
             <Route path="/share/:token" element={<SharedTrade />} />
-            <Route path="/newsletter-abgemeldet" element={<NewsletterUnsubscribed />} />
+            {/* pages of the official tradenot.es (marketing, legal texts of its operator, contact,
+                newsletter); a self-hosted instance leaves them out and these paths lead home */}
+            {!instance.selfHosted && (
+              <>
+                <Route path="/features" element={<Features />} />
+                <Route path="/warum-trading-journal" element={<WhyJournal />} />
+                <Route path="/kontakt" element={<Kontakt />} />
+                <Route path="/hilfe" element={<Hilfe />} />
+                <Route path="/status" element={<Status />} />
+                <Route path="/datenschutz" element={<Datenschutz />} />
+                <Route path="/agb" element={<AGB />} />
+                <Route path="/impressum" element={<Impressum />} />
+                <Route path="/newsletter-abgemeldet" element={<NewsletterUnsubscribed />} />
+              </>
+            )}
             <Route
               path="/dashboard/*"
               element={
@@ -106,7 +115,7 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={instance.selfHosted ? <Navigate to="/dashboard" replace /> : <NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

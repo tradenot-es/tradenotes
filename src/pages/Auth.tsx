@@ -14,6 +14,8 @@ import { AltchaWidget } from "@/components/AltchaWidget";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { ArrowLeft } from "lucide-react";
 import { usePageSeo } from "@/hooks/useSeo";
+import { apiFetch } from "@/lib/api";
+import { instance } from "@/config/instance";
 
 const Auth = () => {
   usePageSeo("auth", "/auth", { noindex: true });
@@ -39,6 +41,16 @@ const Auth = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [forgotPasswordAltchaPayload, setForgotPasswordAltchaPayload] = useState<string | null>(null);
   const navigate = useNavigate();
+  // self-hosted: is this the first start (create the admin account) and is sign-up still open?
+  const [setup, setSetup] = useState<{ signupOpen: boolean; firstRun: boolean } | null>(null);
+  useEffect(() => {
+    if (!instance.selfHosted) return;
+    apiFetch<{ signupOpen: boolean; firstRun: boolean }>("/api/instance").then(({ data }) => {
+      if (!data) return;
+      setSetup(data);
+      if (data.firstRun) setMode("signup");
+    });
+  }, []);
 
   const authSchema = z.object({
     email: z.string()
@@ -262,6 +274,9 @@ const Auth = () => {
               <CardDescription>{t("auth.forgotPasswordDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
+              {!instance.mail && (
+                <p className="mb-4 rounded-md border border-border p-3 text-sm text-muted-foreground">{t("selfhost.resetNoMail")}</p>
+              )}
               <form onSubmit={handleForgotPassword} className="space-y-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">{t("auth.email")}</Label>
@@ -325,11 +340,11 @@ const Auth = () => {
         {mode === "signup" ? (
           <Card>
             <CardHeader>
-              <CardTitle>{t("auth.register")}</CardTitle>
-              <CardDescription>{t("auth.registerDesc")}</CardDescription>
+              <CardTitle>{setup?.firstRun ? t("selfhost.firstRunTitle") : t("auth.register")}</CardTitle>
+              <CardDescription>{setup?.firstRun ? t("selfhost.firstRunDesc") : t("auth.registerDesc")}</CardDescription>
             </CardHeader>
             <CardContent>
-              <SignupForm onSuccess={() => setMode("login")} onSwitchToLogin={() => setMode("login")} />
+              <SignupForm onSuccess={() => setMode("login")} onSwitchToLogin={setup?.firstRun ? undefined : () => setMode("login")} />
             </CardContent>
           </Card>
         ) : twoFactorStep ? (
@@ -425,9 +440,13 @@ const Auth = () => {
             </form>
             
             <div className="mt-6 pt-4 border-t border-border text-center">
-              <button type="button" className="text-sm text-primary hover:underline" onClick={() => setMode("signup")}>
-                {t("auth.noAccount")}
-              </button>
+              {setup && !setup.signupOpen ? (
+                <p className="text-sm text-muted-foreground">{t("selfhost.signupClosed")}</p>
+              ) : (
+                <button type="button" className="text-sm text-primary hover:underline" onClick={() => setMode("signup")}>
+                  {t("auth.noAccount")}
+                </button>
+              )}
             </div>
           </CardContent>
         </Card>

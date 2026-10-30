@@ -2543,5 +2543,13 @@
       "label": "Animazione: dimensione del conto, rischio e distanza dello stop danno l’importo di rischio e la dimensione della posizione",
       "caption": "Dentro il rischio, fuori la dimensione della posizione."
     }
+  },
+  "selfhost": {
+    "footer": "self-hosted",
+    "signupClosed": "La registrazione è chiusa su questa istanza. Chiedi un account all'amministratore.",
+    "accountCreated": "Account creato: hai effettuato l'accesso.",
+    "firstRunTitle": "Crea l'account amministratore",
+    "firstRunDesc": "Nuova installazione: il primo account diventa l'amministratore di questa istanza.",
+    "resetNoMail": "Su questa istanza non è configurato un server di posta. Il link di reimpostazione viene scritto nel log del container (es. docker logs tradenotes)."
   }
 }
