@@ -61,11 +61,14 @@ export function RotatingWord({
           aria-hidden={i !== currentIndex}
           className={cn(
             "[grid-area:1/1] transition-all duration-300 ease-out",
+            // hidden words stay transparent too: with only `invisible`, the outgoing word's opacity
+            // would transition back to 1 while visibility still counts as visible, so it showed up
+            // next to the incoming word
             i !== currentIndex
-              ? "invisible"
+              ? "invisible opacity-0 translate-y-2"
               : isVisible
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-2",
+                : "opacity-0 -translate-y-2",
             className
           )}
         >
