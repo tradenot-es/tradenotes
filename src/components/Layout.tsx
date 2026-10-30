@@ -26,6 +26,7 @@ export function Layout({
     t
   } = useTranslation();
   const {
+    user,
     signOut
   } = useAuth();
   const location = useLocation();
@@ -34,7 +35,9 @@ export function Layout({
   } = useProfile();
   // admin entry only for accounts the server accepts as admin (ADMIN_EMAILS, 2FA in production)
   const { data: isAdmin } = useQuery({
-    queryKey: ["me", "admin"],
+    // per account, so a sign-in with another account does not reuse the cached answer
+    queryKey: ["me", "admin", user?.id],
+    enabled: !!user,
     queryFn: async () => (await apiFetch<{ admin: boolean }>("/api/me/admin")).data?.admin ?? false,
     staleTime: 5 * 60 * 1000,
   });

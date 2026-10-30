@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import { useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -24,6 +25,7 @@ import { MIN_PASSWORD_LENGTH } from "@/lib/password";
 const Account = () => {
   const { t } = useTranslation();
   const { user } = useAuth();
+  const queryClient = useQueryClient();
   
   // Account states
   const [email, setEmail] = useState("");
@@ -194,6 +196,8 @@ const Account = () => {
         const { error } = await auth.twoFactor.disable(mfaPassword);
         if (error) throw new Error(error.code === "INVALID_PASSWORD" ? t("account.incorrectPassword") : t("settings.mfaDisableError"));
         setMfaEnabled(false);
+        // admin access depends on 2FA, so the menu entry has to be checked again
+        queryClient.invalidateQueries({ queryKey: ["me", "admin"] });
         setMfaPasswordAction(null);
         toast.success(t("settings.mfaDisabled"));
       }
@@ -213,6 +217,7 @@ const Account = () => {
       return;
     }
     setMfaEnabled(true);
+    queryClient.invalidateQueries({ queryKey: ["me", "admin"] });
     setShowQRDialog(false);
     setVerifyCode("");
     setBackupCodes([]);
