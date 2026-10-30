@@ -1,6 +1,8 @@
 # Production stack for /opt/tradenotes on the shared VPS.
 # Separate from the REDACTED stack: own network, own database, own volumes.
-# The app only listens on 127.0.0.1:3010; the Caddy in front of ports 80/443 proxies tradenot.es to it.
+# The Caddy in front of ports 80/443 (the REDACTED one, in a container) reaches the app through the
+# external Docker network "edge" as tradenotes-app:3000. The database stays on the default network only.
+# 127.0.0.1:3010 is kept for the health check in deploy/deploy.sh.
 name: tradenotes
 
 services:
@@ -16,6 +18,10 @@ services:
       DATABASE_URL: postgres://tradenotes:${POSTGRES_PASSWORD}@db:5432/tradenotes
     ports:
       - "127.0.0.1:3010:3000"
+    networks:
+      default:
+      edge:
+        aliases: [tradenotes-app]
     volumes:
       - uploads:/data/uploads
 
@@ -33,6 +39,10 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+
+networks:
+  edge:
+    external: true
 
 volumes:
   db:

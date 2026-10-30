@@ -1222,7 +1222,7 @@
         },
         {
           "q": "Wo werden meine Trading-Daten gespeichert?",
-          "a": "Auf einem eigenen Server in den Niederlanden (EU). Deine Daten werden nicht verkauft und nicht für Werbung genutzt."
+          "a": "Auf einem eigenen Server in Deutschland (EU). Deine Daten werden nicht verkauft und nicht für Werbung genutzt."
         }
       ]
     }
@@ -1739,7 +1739,7 @@
         },
         {
           "title": "Wo die Daten liegen",
-          "text": "Alle Daten liegen auf einem eigenen Server in den Niederlanden (Rechenzentrum von Leaseweb in Amsterdam). Leaseweb ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Titel und Text von Feedback aus der App veröffentlichen wir zusätzlich als Issue in unserem Projekt bei GitHub (GitHub Inc., USA, zertifiziert nach dem EU-US Data Privacy Framework). Dort sind sie öffentlich sichtbar, aber ohne deinen Namen, deine E-Mail-Adresse und die technischen Angaben. Davon abgesehen werden deine Daten nicht in Länder außerhalb der EU übermittelt."
+          "text": "Alle Daten liegen auf einem eigenen Server in Deutschland (Rechenzentrum der Contabo GmbH in der EU). Contabo ist als Hoster unser Auftragsverarbeiter. Für den Versand von E-Mails (Bestätigung, Passwort zurücksetzen, Kontaktformular) nutzen wir einen E-Mail-Dienstleister als Auftragsverarbeiter. Titel und Text von Feedback aus der App veröffentlichen wir zusätzlich als Issue in unserem Projekt bei GitHub (GitHub Inc., USA, zertifiziert nach dem EU-US Data Privacy Framework). Dort sind sie öffentlich sichtbar, aber ohne deinen Namen, deine E-Mail-Adresse und die technischen Angaben. Davon abgesehen werden deine Daten nicht in Länder außerhalb der EU übermittelt."
         },
         {
           "title": "Abrufe bei anderen Diensten",
@@ -2010,7 +2010,7 @@
       },
       {
         "q": "Wer kann meine Trades sehen?",
-        "a": "Nur du. Einzelne Trades kannst du per Link teilen (Mentor-Modus) und die Freigabe jederzeit beenden. Die Daten liegen auf einem eigenen Server in den Niederlanden und werden weder verkauft noch für Werbung genutzt."
+        "a": "Nur du. Einzelne Trades kannst du per Link teilen (Mentor-Modus) und die Freigabe jederzeit beenden. Die Daten liegen auf einem eigenen Server in Deutschland und werden weder verkauft noch für Werbung genutzt."
       },
       {
         "q": "Wie trenne ich Sim-, Prop-Firm- und Live-Konten?",

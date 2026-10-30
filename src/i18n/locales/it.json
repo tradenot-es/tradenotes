@@ -1091,7 +1091,7 @@
         },
         {
           "q": "Dove vengono salvati i miei dati di trading?",
-          "a": "Su un nostro server nei Paesi Bassi (UE). I tuoi dati non vengono mai venduti né usati per pubblicità."
+          "a": "Su un nostro server in Germania (UE). I tuoi dati non vengono mai venduti né usati per pubblicità."
         }
       ]
     }
@@ -1741,7 +1741,7 @@
         },
         {
           "title": "Dove si trovano i dati",
-          "text": "Tutti i dati si trovano su un nostro server nei Paesi Bassi (data center di Leaseweb ad Amsterdam). Leaseweb è il nostro responsabile del trattamento per l’hosting. Per l’invio delle e-mail (conferma, reimpostazione della password, modulo di contatto) ci avvaliamo di un fornitore di servizi e-mail come responsabile del trattamento. Inoltre pubblichiamo titolo e testo dei feedback inviati dall’app come issue nel nostro progetto su GitHub (GitHub Inc., USA, certificata secondo il Data Privacy Framework UE-USA). Lì sono visibili pubblicamente, ma senza il tuo nome, il tuo indirizzo e-mail e i dati tecnici. A parte questo, i tuoi dati non vengono trasferiti in paesi al di fuori dell’UE."
+          "text": "Tutti i dati si trovano su un nostro server in Germania (data center di Contabo GmbH nell’UE). Contabo è il nostro responsabile del trattamento per l’hosting. Per l’invio delle e-mail (conferma, reimpostazione della password, modulo di contatto) ci avvaliamo di un fornitore di servizi e-mail come responsabile del trattamento. Inoltre pubblichiamo titolo e testo dei feedback inviati dall’app come issue nel nostro progetto su GitHub (GitHub Inc., USA, certificata secondo il Data Privacy Framework UE-USA). Lì sono visibili pubblicamente, ma senza il tuo nome, il tuo indirizzo e-mail e i dati tecnici. A parte questo, i tuoi dati non vengono trasferiti in paesi al di fuori dell’UE."
         },
         {
           "title": "Richieste ad altri servizi",
@@ -2012,7 +2012,7 @@
       },
       {
         "q": "Chi può vedere i miei trade?",
-        "a": "Solo tu. Puoi condividere singoli trade tramite link (modalità mentor) e interrompere la condivisione in qualsiasi momento. I dati si trovano su un nostro server nei Paesi Bassi e non vengono né venduti né usati per pubblicità."
+        "a": "Solo tu. Puoi condividere singoli trade tramite link (modalità mentor) e interrompere la condivisione in qualsiasi momento. I dati si trovano su un nostro server in Germania e non vengono né venduti né usati per pubblicità."
       },
       {
         "q": "Come separo conti simulati, prop firm e reali?",

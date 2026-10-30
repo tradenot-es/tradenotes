@@ -1100,7 +1100,7 @@
         },
         {
           "q": "Où sont stockées mes données de trading ?",
-          "a": "Sur notre propre serveur aux Pays-Bas (UE). Vos données ne sont jamais vendues ni utilisées pour de la publicité."
+          "a": "Sur notre propre serveur en Allemagne (UE). Vos données ne sont jamais vendues ni utilisées pour de la publicité."
         }
       ]
     }
@@ -1750,7 +1750,7 @@
         },
         {
           "title": "Où se trouvent les données",
-          "text": "Toutes les données sont stockées sur notre propre serveur aux Pays-Bas (centre de données de Leaseweb à Amsterdam). Leaseweb est notre sous-traitant pour l’hébergement. Pour l’envoi des e-mails (confirmation, réinitialisation du mot de passe, formulaire de contact), nous faisons appel à un prestataire d’e-mail en tant que sous-traitant. Nous publions en outre le titre et le texte des retours envoyés depuis l’application comme issue dans notre projet sur GitHub (GitHub Inc., États-Unis, certifiée selon le cadre de protection des données UE-États-Unis). Ils y sont visibles publiquement, mais sans votre nom, votre adresse e-mail ni les informations techniques. En dehors de cela, vos données ne sont pas transférées vers des pays situés hors de l’UE."
+          "text": "Toutes les données sont stockées sur notre propre serveur en Allemagne (centre de données de Contabo GmbH dans l’UE). Contabo est notre sous-traitant pour l’hébergement. Pour l’envoi des e-mails (confirmation, réinitialisation du mot de passe, formulaire de contact), nous faisons appel à un prestataire d’e-mail en tant que sous-traitant. Nous publions en outre le titre et le texte des retours envoyés depuis l’application comme issue dans notre projet sur GitHub (GitHub Inc., États-Unis, certifiée selon le cadre de protection des données UE-États-Unis). Ils y sont visibles publiquement, mais sans votre nom, votre adresse e-mail ni les informations techniques. En dehors de cela, vos données ne sont pas transférées vers des pays situés hors de l’UE."
         },
         {
           "title": "Requêtes vers d’autres services",
@@ -2021,7 +2021,7 @@
       },
       {
         "q": "Qui peut voir mes trades ?",
-        "a": "Vous seul. Vous pouvez partager des trades individuels par lien (mode mentor) et arrêter le partage à tout moment. Les données sont stockées sur notre propre serveur aux Pays-Bas et ne sont ni vendues ni utilisées à des fins publicitaires."
+        "a": "Vous seul. Vous pouvez partager des trades individuels par lien (mode mentor) et arrêter le partage à tout moment. Les données sont stockées sur notre propre serveur en Allemagne et ne sont ni vendues ni utilisées à des fins publicitaires."
       },
       {
         "q": "Comment séparer les comptes simulés, prop firm et réels ?",

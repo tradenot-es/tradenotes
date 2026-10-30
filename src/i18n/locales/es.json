@@ -1100,7 +1100,7 @@
         },
         {
           "q": "¿Dónde se guardan mis datos de trading?",
-          "a": "En un servidor propio en los Países Bajos (UE). Tus datos nunca se venden ni se usan para publicidad."
+          "a": "En un servidor propio en Alemania (UE). Tus datos nunca se venden ni se usan para publicidad."
         }
       ]
     }
@@ -1750,7 +1750,7 @@
         },
         {
           "title": "Dónde se guardan los datos",
-          "text": "Todos los datos se guardan en nuestro propio servidor en los Países Bajos (centro de datos de Leaseweb en Ámsterdam). Leaseweb actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Además, publicamos el título y el texto de los comentarios desde la app como issue en nuestro proyecto en GitHub (GitHub Inc., EE. UU., certificada según el Marco de Privacidad de Datos UE-EE. UU.). Allí son visibles públicamente, pero sin tu nombre, tu correo ni los datos técnicos. Aparte de esto, tus datos no se transfieren a países fuera de la UE."
+          "text": "Todos los datos se guardan en nuestro propio servidor en Alemania (centro de datos de Contabo GmbH en la UE). Contabo actúa como nuestro encargado del tratamiento para el alojamiento. Para enviar correos (confirmación, restablecimiento de contraseña, formulario de contacto) usamos un proveedor de correo como encargado del tratamiento. Además, publicamos el título y el texto de los comentarios desde la app como issue en nuestro proyecto en GitHub (GitHub Inc., EE. UU., certificada según el Marco de Privacidad de Datos UE-EE. UU.). Allí son visibles públicamente, pero sin tu nombre, tu correo ni los datos técnicos. Aparte de esto, tus datos no se transfieren a países fuera de la UE."
         },
         {
           "title": "Consultas a otros servicios",
@@ -2021,7 +2021,7 @@
       },
       {
         "q": "¿Quién puede ver mis operaciones?",
-        "a": "Solo tú. Puedes compartir operaciones sueltas con un enlace (modo mentor) y dejar de compartir en cualquier momento. Los datos están en nuestro propio servidor en los Países Bajos y no se venden ni se usan para publicidad."
+        "a": "Solo tú. Puedes compartir operaciones sueltas con un enlace (modo mentor) y dejar de compartir en cualquier momento. Los datos están en nuestro propio servidor en Alemania y no se venden ni se usan para publicidad."
       },
       {
         "q": "¿Cómo separo cuentas de simulación, prop firm y reales?",

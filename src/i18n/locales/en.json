@@ -1214,7 +1214,7 @@
         },
         {
           "q": "Where is my trading data stored?",
-          "a": "On our own server in the Netherlands (EU). Your data is never sold or used for advertising."
+          "a": "On our own server in Germany (EU). Your data is never sold or used for advertising."
         }
       ]
     }
@@ -1731,7 +1731,7 @@
         },
         {
           "title": "Where the data is kept",
-          "text": "All data is stored on our own server in the Netherlands (Leaseweb data center in Amsterdam). Leaseweb acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. We also publish the title and text of feedback from the app as an issue in our project on GitHub (GitHub Inc., USA, certified under the EU-US Data Privacy Framework). There they are publicly visible, but without your name, email address or the technical details. Apart from that, your data is not transferred to countries outside the EU."
+          "text": "All data is stored on our own server in Germany (data center of Contabo GmbH in the EU). Contabo acts as our processor for hosting. To send emails (confirmation, password reset, contact form) we use an email service provider as a processor. We also publish the title and text of feedback from the app as an issue in our project on GitHub (GitHub Inc., USA, certified under the EU-US Data Privacy Framework). There they are publicly visible, but without your name, email address or the technical details. Apart from that, your data is not transferred to countries outside the EU."
         },
         {
           "title": "Requests to other services",
@@ -2002,7 +2002,7 @@
       },
       {
         "q": "Who can see my trades?",
-        "a": "Only you. You can share single trades via a link (mentor mode) and stop sharing at any time. The data is stored on our own server in the Netherlands and is neither sold nor used for advertising."
+        "a": "Only you. You can share single trades via a link (mentor mode) and stop sharing at any time. The data is stored on our own server in Germany and is neither sold nor used for advertising."
       },
       {
         "q": "How do I keep sim, prop firm and live accounts apart?",

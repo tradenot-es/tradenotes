@@ -99,8 +99,10 @@ cd server && npx tsx test/smoke.ts http://localhost:3000 /tmp/tradenotes-dev.log
 
 ## Betrieb
 
-`compose.yaml` startet App und Datenbank als eigenen Stack. Die App lauscht nur auf `127.0.0.1:3010`,
-davor sitzt der Caddy des Servers. Alles für den Server liegt in `deploy/`:
+`compose.yaml` startet App und Datenbank als eigenen Stack. Davor sitzt der Caddy des Servers (bei
+tradenot.es der von REDACTED, in einem Container). Er erreicht die App über das externe Docker-Netz `edge`
+als `tradenotes-app:3000`; die Datenbank hängt nur im eigenen Netz. Auf `127.0.0.1:3010` lauscht die App
+zusätzlich für den Health-Check. Alles für den Server liegt in `deploy/`:
 
 - `deploy/Caddyfile.tradenotes`: Site-Block (HTTPS, www → ohne www, Sicherheits-Header, **kein Zugriffslog**,
   so steht es in der Datenschutzerklärung)
@@ -114,8 +116,10 @@ Erstes Einrichten:
 git clone -b eigenes-backend git@github.com:tradenot-es/tradenotes.git /opt/tradenotes
 cd /opt/tradenotes
 cp .env.example .env   # Werte eintragen, Geheimnisse mit openssl rand -hex 32 / -hex 24
-docker compose up -d --build
-# Caddy: Inhalt von deploy/Caddyfile.tradenotes in den Caddyfile übernehmen, Caddy neu laden
+docker compose up -d --build   # das Netz edge muss es schon geben (docker network create edge)
+# Caddy: deploy/Caddyfile.tradenotes nach /opt/REDACTED-data/sites/tradenotes.caddy kopieren,
+#        dann im REDACTED-Stack: docker compose restart caddy
+#        (ohne diesen Caddy: Site-Block in den eigenen Caddyfile, reverse_proxy 127.0.0.1:3010)
 # Backup: Cron-Zeile aus deploy/backup.sh eintragen
 ```
 

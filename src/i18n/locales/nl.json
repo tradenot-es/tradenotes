@@ -1100,7 +1100,7 @@
         },
         {
           "q": "Waar worden mijn tradinggegevens opgeslagen?",
-          "a": "Op een eigen server in Nederland (EU). Je gegevens worden nooit verkocht of voor advertenties gebruikt."
+          "a": "Op een eigen server in Duitsland (EU). Je gegevens worden nooit verkocht of voor advertenties gebruikt."
         }
       ]
     }
@@ -1750,7 +1750,7 @@
         },
         {
           "title": "Waar de gegevens staan",
-          "text": "Alle gegevens staan op onze eigen server in Nederland (datacenter van Leaseweb in Amsterdam). Leaseweb is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Titel en tekst van feedback uit de app publiceren we daarnaast als issue in ons project op GitHub (GitHub Inc., VS, gecertificeerd onder het EU-VS Data Privacy Framework). Daar zijn ze openbaar zichtbaar, maar zonder je naam, e-mailadres en de technische gegevens. Verder worden je gegevens niet doorgegeven aan landen buiten de EU."
+          "text": "Alle gegevens staan op onze eigen server in Duitsland (datacenter van Contabo GmbH in de EU). Contabo is onze verwerker voor de hosting. Voor het versturen van e-mails (bevestiging, wachtwoord herstellen, contactformulier) gebruiken we een e-maildienst als verwerker. Titel en tekst van feedback uit de app publiceren we daarnaast als issue in ons project op GitHub (GitHub Inc., VS, gecertificeerd onder het EU-VS Data Privacy Framework). Daar zijn ze openbaar zichtbaar, maar zonder je naam, e-mailadres en de technische gegevens. Verder worden je gegevens niet doorgegeven aan landen buiten de EU."
         },
         {
           "title": "Opvragingen bij andere diensten",
@@ -2021,7 +2021,7 @@
       },
       {
         "q": "Wie kan mijn trades zien?",
-        "a": "Alleen jij. Losse trades kun je via een link delen (mentormodus) en het delen kun je altijd stoppen. De gegevens staan op onze eigen server in Nederland en worden niet verkocht of voor reclame gebruikt."
+        "a": "Alleen jij. Losse trades kun je via een link delen (mentormodus) en het delen kun je altijd stoppen. De gegevens staan op onze eigen server in Duitsland en worden niet verkocht of voor reclame gebruikt."
       },
       {
         "q": "Hoe houd ik sim-, prop-firm- en live-accounts uit elkaar?",
