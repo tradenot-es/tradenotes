@@ -35,7 +35,10 @@ import {
 
 const Landing = () => {
   usePageSeo("landing", "/");
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // read without the English fallback: French, Spanish and Italian keep "journaling" inside the
+  // rotating words and leave this empty, which t() would replace with the English "journaling"
+  const heroSuffix = i18n.getResource(i18n.resolvedLanguage ?? "en", "translation", "landing.heroTitleHighlightSuffix") as string | undefined;
   const location = useLocation();
 
   // Scroll to hash section (e.g. /#free from another page)
@@ -106,7 +109,7 @@ const Landing = () => {
                   intervalMs={3000}
                   className="gradient-text"
                 />
-                {t("landing.heroTitleHighlightSuffix") && <span className="gradient-text"> {t("landing.heroTitleHighlightSuffix")}</span>}
+                {heroSuffix && <span className="gradient-text"> {heroSuffix}</span>}
               </h1>
               <p className="max-w-xl text-lg text-muted-foreground sm:text-xl animate-rise-in motion-stagger" style={{ "--stagger": 2 } as React.CSSProperties}>
                 {t("landing.heroDescription")}

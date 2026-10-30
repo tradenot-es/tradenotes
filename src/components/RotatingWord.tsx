@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface RotatingWordProps {
@@ -29,11 +29,6 @@ export function RotatingWord({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Find the longest word for stable width
-  const longestWord = useMemo(() => {
-    return words.reduce((a, b) => a.length > b.length ? a : b, '');
-  }, [words]);
-
   // Rotation interval
   useEffect(() => {
     if (prefersReducedMotion || words.length <= 1) return;
@@ -55,25 +50,28 @@ export function RotatingWord({
     return <span className={className}>{words[0]}</span>;
   }
 
+  // All words share one grid cell; the hidden ones keep the cell as wide as the widest word as
+  // rendered (not the one with the most letters: "systematic" is wider than "disciplined"), so the
+  // text after it never overlaps or jumps
   return (
-    <span className="relative inline-block align-bottom">
-      {/* Invisible placeholder for stable width */}
-      <span className={cn("invisible", className)} aria-hidden="true">
-        {longestWord}
-      </span>
-      
-      {/* Animated word - absolutely positioned */}
-      <span
-        className={cn(
-          "absolute left-0 top-0 transition-all duration-300 ease-out",
-          isVisible 
-            ? "opacity-100 translate-y-0" 
-            : "opacity-0 translate-y-2",
-          className
-        )}
-      >
-        {words[currentIndex]}
-      </span>
+    <span className="inline-grid">
+      {words.map((word, i) => (
+        <span
+          key={word}
+          aria-hidden={i !== currentIndex}
+          className={cn(
+            "[grid-area:1/1] transition-all duration-300 ease-out",
+            i !== currentIndex
+              ? "invisible"
+              : isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-2",
+            className
+          )}
+        >
+          {word}
+        </span>
+      ))}
     </span>
   );
 }

@@ -223,6 +223,13 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
+  /* a highlighted word inside a headline keeps the headline's line spacing: the padding that keeps
+     descenders (g, j) inside the gradient must not push the lines apart */
+  h1 .gradient-text {
+    line-height: inherit;
+    margin-bottom: -0.15em;
+  }
+
   .smooth-transition {
     transition: var(--transition-smooth);
   }
