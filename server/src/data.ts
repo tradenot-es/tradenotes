@@ -1,6 +1,5 @@
 // Generic, user-scoped table access for the frontend's query builder (src/lib/db.ts).
-// Replaces Supabase's PostgREST + row level security: every table is whitelisted with
-// the operations it allows, and the owner column is always forced to the logged-in user.
+// Every table is whitelisted with the operations it allows, and the owner column is always forced to the logged-in user.
 import { z } from "zod";
 import { pool } from "./db.js";
 import { deleteScreenshotUrl } from "./uploads.js";

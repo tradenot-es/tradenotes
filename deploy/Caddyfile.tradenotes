@@ -1,6 +1,5 @@
-# Site block for tradenot.es for the Caddy that already serves ports 80/443 on the VPS (the REDACTED
-# one, in a container). It imports /opt/REDACTED-data/sites/*.caddy, so this file is copied to
-# /opt/REDACTED-data/sites/tradenotes.caddy, then: cd /opt/REDACTED/infra/stack && docker compose restart caddy
+# Site block for tradenot.es for the Caddy that serves ports 80/443 on the server (in a container,
+# on the Docker network "edge"). Add it to that Caddy's configuration, then reload Caddy.
 # No "log" directive on purpose: the privacy policy says there are no access logs.
 
 www.tradenot.es {

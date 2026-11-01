@@ -1,13 +1,12 @@
 import i18n from "@/i18n/config";
 
 /**
- * Rows and responses come back untyped, as they did from the Supabase client this replaces;
- * callers cast them to their own interfaces.
+ * Rows and responses come back untyped; callers cast them to their own interfaces.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type Untyped = any;
 
-/** Error shape returned by the API helpers (mirrors what the Supabase client returned). */
+/** Error shape returned by the API helpers. */
 export interface ApiError {
   message: string;
   status: number;
@@ -19,7 +18,7 @@ export interface ApiResult<T> {
   error: ApiError | null;
 }
 
-/** fetch against our own backend; never throws, returns { data, error } like the old Supabase client. */
+/** fetch against our own backend; never throws, returns { data, error }. */
 export async function apiFetch<T = Untyped>(path: string, init: RequestInit & { json?: unknown } = {}): Promise<ApiResult<T>> {
   const headers = new Headers(init.headers);
   headers.set("x-ui-lang", i18n.language || "en");
@@ -47,7 +46,7 @@ export async function apiFetch<T = Untyped>(path: string, init: RequestInit & { 
   }
 }
 
-/** Calls one of the server's action endpoints (successors of the Supabase edge functions). */
+/** Calls one of the server's action endpoints. */
 export function invoke<T = Untyped>(path: string, opts: { body?: unknown } = {}) {
   return apiFetch<T>(`/api/${path}`, { method: "POST", json: opts.body ?? {} });
 }
@@ -56,7 +55,7 @@ export function invoke<T = Untyped>(path: string, opts: { body?: unknown } = {})
 export const TRADES_CHANGED_EVENT = "tradenotes:trades-changed";
 
 // --- query builder ------------------------------------------------------------
-// Small subset of the Supabase/PostgREST builder, executed by POST /api/db
+// Small chainable query builder (select/insert/update/delete with filters), executed by POST /api/db
 // (server/src/data.ts), which scopes every query to the logged-in user.
 
 type Filter = { column: string; op: string; value: unknown };

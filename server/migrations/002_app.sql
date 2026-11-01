@@ -1,7 +1,5 @@
--- App tables, carried over from the Lovable/Supabase migrations (supabase/migrations, removed
--- from the repo after the switch; see git history)
--- as they stood on 2026-10-27. Row level security is replaced by the user scoping in
--- src/data.ts; user ids reference Better Auth's "user" table.
+-- App tables. Access is scoped per user in src/data.ts; user ids reference Better Auth's
+-- "user" table.
 -- Dropped: assistant_conversations, daily_summaries, news_translations (AI features),
 -- waitlist (pre-launch page), rate_limits, email_change_tracking (handled by Better Auth).
 

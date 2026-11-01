@@ -5,7 +5,7 @@ export type MailType = "verify" | "reset" | "change_email" | "change_email_new" 
 
 type Template = { subject: string; heading: string; body: string; button: string; footer: string };
 
-// German and English texts; every other UI language falls back to English (as in the Lovable version)
+// German and English texts; every other UI language falls back to English
 const templates: Record<MailType, Record<"de" | "en", Template>> = {
   verify: {
     de: {

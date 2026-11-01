@@ -1,4 +1,4 @@
-// Port of the Supabase edge function "import-trades": webhook for NinjaTrader
+// Trade import: webhook for NinjaTrader
 // (the TradeNotesSync add-on) and TradingView, authenticated by the user's webhook
 // key, plus batch import for logged-in users.
 import type pg from "pg";

@@ -107,8 +107,8 @@ cd server && npx tsx test/smoke.ts http://localhost:3000 /tmp/tradenotes-dev.log
 Dieser Abschnitt beschreibt die offizielle Instanz tradenot.es. `compose.hosted.yaml` startet App und
 Datenbank als eigenen Stack (`SELF_HOSTED=false`); die `.env` auf dem Server setzt
 `COMPOSE_FILE=compose.hosted.yaml`, damit ein einfaches `docker compose` diese Datei nimmt und nicht das
-Selbsthost-Beispiel `compose.yaml`. Davor sitzt der Caddy des Servers (bei
-tradenot.es der von REDACTED, in einem Container). Er erreicht die App über das externe Docker-Netz `edge`
+Selbsthost-Beispiel `compose.yaml`. Davor sitzt ein Caddy als Reverse Proxy
+(in einem Container). Er erreicht die App über das externe Docker-Netz `edge`
 als `tradenotes-app:3000`; die Datenbank hängt nur im eigenen Netz. Auf `127.0.0.1:3010` lauscht die App
 zusätzlich für den Health-Check. Alles für den Server liegt in `deploy/`:
 
@@ -125,9 +125,8 @@ git clone -b eigenes-backend git@github.com:tradenot-es/tradenotes.git /opt/trad
 cd /opt/tradenotes
 cp deploy/hosted.env.example .env   # Werte eintragen, Geheimnisse mit openssl rand -hex 32 / -hex 24
 docker compose up -d --build   # das Netz edge muss es schon geben (docker network create edge)
-# Caddy: deploy/Caddyfile.tradenotes nach /opt/REDACTED-data/sites/tradenotes.caddy kopieren,
-#        dann im REDACTED-Stack: docker compose restart caddy
-#        (ohne diesen Caddy: Site-Block in den eigenen Caddyfile, reverse_proxy 127.0.0.1:3010)
+# Caddy: Site-Block aus deploy/Caddyfile.tradenotes in die Caddy-Konfiguration übernehmen und Caddy neu laden
+#        (Caddy ohne Docker-Netz edge: reverse_proxy 127.0.0.1:3010)
 # Backup: Cron-Zeile aus deploy/backup.sh eintragen
 ```
 
@@ -147,8 +146,3 @@ tradenot.es steht unter der **GNU Affero General Public License v3.0 oder späte
 siehe [LICENSE](LICENSE). Jeder darf den Code nutzen, ändern und selbst betreiben. Wer eine veränderte
 Version als Dienst im Netz anbietet, muss deren Quellcode den Nutzern ebenfalls unter der AGPL zugänglich
 machen. Eingebundene Fremdbausteine (z. B. shadcn/ui, Radix, Recharts) behalten ihre eigenen Lizenzen (MIT u. a.).
-
-## Geschichte
-
-Ursprünglich 2025 mit Lovable gebaut, seit Oktober 2026 mit eigenem Backend ohne Lovable und Supabase. Die damalige
-Produktbeschreibung steht in [docs/MVP-SPEC.md](docs/MVP-SPEC.md).

@@ -9,7 +9,7 @@
 export const featureFlags = {
   /**
    * When true, shows the PreLaunch/Waitlist page instead of the Landing page.
-   * Keep false: the waitlist endpoint was not carried over from Lovable.
+   * Keep false: the waitlist on that page has no backend endpoint.
    */
   PRELAUNCH_MODE: false,
   

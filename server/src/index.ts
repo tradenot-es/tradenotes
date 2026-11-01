@@ -38,7 +38,7 @@ if (env.staticDir) {
   app.use("/*", serveStatic({ root: env.staticDir }));
 }
 
-// housekeeping (replaces the Supabase cron jobs)
+// housekeeping
 const cleanup = async () => {
   // matched executions are only kept to skip resent duplicates (the add-on resends the session)
   // (IBKR Flex reports can cover up to a year, so they are kept that long)
