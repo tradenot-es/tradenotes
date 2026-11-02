@@ -899,7 +899,20 @@
         "TradingView and others: upload the CSV export, duplicates are recognised"
       ]
     },
-    "footerDonate": "☕ Support TradeNot.es"
+    "footerDonate": "☕ Support TradeNot.es",
+    "selfHost": {
+      "badge": "Open source",
+      "title": "Rather run it on your own server?",
+      "description": "TradeNot.es is open source (AGPL-3.0). Run your own instance with Docker and all your data stays with you.",
+      "points": [
+        "One container with a built-in database, all data in one folder",
+        "For Unraid and any other server with Docker, images for x86 and ARM",
+        "No tradenot.es account, no telemetry, no mail server needed",
+        "Daily database backups land in the data folder automatically"
+      ],
+      "guide": "Self-hosting guide",
+      "source": "Source code on GitHub"
+    }
   },
   "features": {
     "heroTitle": "Every feature of your free trading journal",

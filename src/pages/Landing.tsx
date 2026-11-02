@@ -13,6 +13,7 @@ import { HeroShowcase } from "@/components/landing/HeroShowcase";
 import { Reveal } from "@/components/motion/Reveal";
 import { usePageSeo } from "@/hooks/useSeo";
 import { SyncScene } from "@/components/motion/Scenes";
+import { operator } from "@/config/operator";
 import {
   ArrowRight,
   BarChart3,
@@ -26,7 +27,9 @@ import {
   Flame,
   Gauge,
   ListChecks,
+  Github,
   PenLine,
+  Server,
   ShieldCheck,
   Target,
   TrendingUp,
@@ -316,6 +319,53 @@ const Landing = () => {
           </Reveal>
         </div>
       </section>
+
+      {/* Self-hosting: only once the source is public, the guide lives in the repository */}
+      {operator.sourceUrl && (
+        <section id="self-hosting" className="scroll-mt-20 px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
+            <Reveal>
+              <Badge className="mb-4">{t("landing.selfHost.badge")}</Badge>
+              <h2 className="mb-4 text-3xl font-bold tracking-tight md:text-4xl">{t("landing.selfHost.title")}</h2>
+              <p className="mb-6 text-lg text-muted-foreground">{t("landing.selfHost.description")}</p>
+              <ul className="mb-8 space-y-3">
+                {(t("landing.selfHost.points", { returnObjects: true }) as string[]).map((point) => (
+                  <li key={point} className="flex gap-3">
+                    <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Button asChild className="gap-2">
+                  <a href={`${operator.sourceUrl}/blob/main/docs/self-hosting.md`} target="_blank" rel="noopener noreferrer">
+                    <Server className="h-4 w-4" aria-hidden />
+                    {t("landing.selfHost.guide")}
+                  </a>
+                </Button>
+                <Button variant="outline" asChild className="gap-2">
+                  <a href={operator.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" aria-hidden />
+                    {t("landing.selfHost.source")}
+                  </a>
+                </Button>
+              </div>
+            </Reveal>
+            <Reveal index={1} className="min-w-0">
+              <Card className="overflow-hidden">
+                <div className="border-b bg-muted/50 px-4 py-2 font-mono text-xs text-muted-foreground">docker run</div>
+                <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed sm:text-sm">
+                  <code>{`docker run -d --name tradenotes \\
+  -p 3000:3000 \\
+  -v /path/to/tradenotes:/data \\
+  -e BASE_URL=http://192.168.1.10:3000 \\
+  ghcr.io/tradenot-es/tradenotes:latest`}</code>
+                </pre>
+              </Card>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* Final CTA */}
       <section className="px-4 py-24 sm:px-6 lg:px-8">

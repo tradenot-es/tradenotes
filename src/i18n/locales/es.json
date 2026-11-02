@@ -785,7 +785,20 @@
         "TradingView y otros: sube la exportación CSV, los duplicados se reconocen"
       ]
     },
-    "footerDonate": "☕ Apoya TradeNot.es"
+    "footerDonate": "☕ Apoya TradeNot.es",
+    "selfHost": {
+      "badge": "Código abierto",
+      "title": "¿Prefieres tu propio servidor?",
+      "description": "TradeNot.es es de código abierto (AGPL-3.0). Con Docker ejecutas tu propia instancia y todos tus datos se quedan contigo.",
+      "points": [
+        "Un solo contenedor con base de datos integrada, todos los datos en una carpeta",
+        "Para Unraid y cualquier otro servidor con Docker, imágenes para x86 y ARM",
+        "Sin cuenta en tradenot.es, sin telemetría, sin necesidad de servidor de correo",
+        "Las copias de seguridad diarias de la base de datos se guardan automáticamente en la carpeta de datos"
+      ],
+      "guide": "Guía de autoalojamiento",
+      "source": "Código fuente en GitHub"
+    }
   },
   "features": {
     "heroTitle": "Todas las funciones de tu diario de trading gratuito",

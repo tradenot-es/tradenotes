@@ -785,7 +785,20 @@
         "TradingView en andere: CSV-export uploaden, dubbelen worden herkend"
       ]
     },
-    "footerDonate": "☕ Steun TradeNot.es"
+    "footerDonate": "☕ Steun TradeNot.es",
+    "selfHost": {
+      "badge": "Open source",
+      "title": "Liever op je eigen server?",
+      "description": "TradeNot.es is open source (AGPL-3.0). Met Docker draai je je eigen instantie, zodat al je gegevens bij jou blijven.",
+      "points": [
+        "Eén container met ingebouwde database, alle gegevens in één map",
+        "Voor Unraid en elke andere server met Docker, images voor x86 en ARM",
+        "Geen account bij tradenot.es, geen telemetrie, geen mailserver nodig",
+        "Dagelijkse databaseback-ups komen automatisch in de datamap"
+      ],
+      "guide": "Handleiding voor zelf hosten",
+      "source": "Broncode op GitHub"
+    }
   },
   "features": {
     "heroTitle": "Alle functies van je gratis tradingjournal",

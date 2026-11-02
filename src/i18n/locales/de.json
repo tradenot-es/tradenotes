@@ -907,7 +907,20 @@
         "TradingView und andere: CSV-Export hochladen, Doppelte werden erkannt"
       ]
     },
-    "footerDonate": "☕ Unterstütze TradeNot.es"
+    "footerDonate": "☕ Unterstütze TradeNot.es",
+    "selfHost": {
+      "badge": "Open Source",
+      "title": "Lieber auf deinem eigenen Server?",
+      "description": "TradeNot.es ist Open Source (AGPL-3.0). Mit Docker betreibst du deine eigene Instanz, dann bleiben alle Daten bei dir.",
+      "points": [
+        "Ein Container mit eingebauter Datenbank, alle Daten in einem Ordner",
+        "Für Unraid und jeden anderen Server mit Docker, Images für x86 und ARM",
+        "Kein Konto bei tradenot.es, keine Telemetrie, kein Mailserver nötig",
+        "Tägliche Datenbank-Backups landen automatisch im Datenordner"
+      ],
+      "guide": "Anleitung zum Selbst-Hosten",
+      "source": "Quellcode auf GitHub"
+    }
   },
   "features": {
     "heroTitle": "Alle Funktionen deines kostenlosen Trading-Journals",
